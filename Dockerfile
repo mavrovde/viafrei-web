@@ -19,7 +19,7 @@
 # 2.6.17/2.6.18 runs, named literally and pinned by digest in both stages so Dependabot proposes
 # the update. Runs as uid 10001 on a read-only root file system: it writes nothing.
 
-FROM node:26.12.1-alpine3.24@sha256:40cd011b55415bc894e45b02fdd5a5dfde056921b7d23a64c74f80497af48797 AS build
+FROM node:26.13.0-alpine3.24@sha256:8996bb5821d62a8fd9bb27c1cb07462f3fdce6e47d640c6a881ead0b064ce216 AS build
 WORKDIR /src
 ENV PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD=1 ASTRO_TELEMETRY_DISABLED=1
 COPY package.json package-lock.json tsconfig.base.json ./
@@ -32,7 +32,7 @@ COPY scripts/site-pages.txt scripts/geoip-build.mjs scripts/
 RUN npm run build -w @viafrei/web \
  && test -f packages/web/dist/server/entry.mjs
 
-FROM node:26.12.1-alpine3.24@sha256:40cd011b55415bc894e45b02fdd5a5dfde056921b7d23a64c74f80497af48797
+FROM node:26.13.0-alpine3.24@sha256:8996bb5821d62a8fd9bb27c1cb07462f3fdce6e47d640c6a881ead0b064ce216
 # tini forwards SIGTERM and reaps. npm and npx are removed: the shell never runs them, and npm's own
 # bundled dependencies are what an image scan reports (viafrei-database's measurement).
 RUN apk add --no-cache tini=0.19.0-r3 \
