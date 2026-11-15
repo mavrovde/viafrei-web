@@ -13,16 +13,16 @@ import { readFileSync } from "node:fs";
 import { AxeBuilder } from "@axe-core/playwright";
 import { chromium, type Browser, type BrowserContext, type Page } from "playwright";
 import { afterAll, beforeAll, describe, expect, it } from "vitest";
-import type { Crossing } from "../../digest/src/analysis/motorway-crossings.js";
-import type { RelatedShown } from "../../digest/src/analysis/motorway-related.js";
-import { aroundOf } from "../../digest/src/analysis/motorway-around.js";
-import { AROUND_JUNCTIONS, NOW, page as supportPage } from "../../digest/src/analysis/motorway-around.test.support.js";
-import { resetMotorwayPages, setMotorwayPages } from "../../digest/src/cards/shared/shield.js";
-import { TILE_LANGS, type TileLang } from "../../digest/src/presentation/i18n.js";
-import type { MapContext, Pt } from "../../digest/src/presentation/map-context.js";
-import { renderMotorwayAround, shieldLinksOf, type AroundView } from "../../digest/src/presentation/motorway-around-html.js";
-import { crossingHref } from "../../digest/src/presentation/motorway-crossings-html.js";
-import { frameOf } from "../../digest/src/presentation/motorway-map.js";
+import type { Crossing } from "../../../.pinned/app/packages/digest/dist/src/analysis/motorway-crossings.js";
+import type { RelatedShown } from "../../../.pinned/app/packages/digest/dist/src/analysis/motorway-related.js";
+import { aroundOf } from "../../../.pinned/app/packages/digest/dist/src/analysis/motorway-around.js";
+import { AROUND_JUNCTIONS, NOW, page as supportPage } from "../test/digest-support/motorway-around.test.support.js";
+import { resetMotorwayPages, setMotorwayPages } from "../../../.pinned/app/packages/digest/dist/src/cards/shared/shield.js";
+import { TILE_LANGS, type TileLang } from "../../../.pinned/app/packages/digest/dist/src/presentation/i18n.js";
+import type { MapContext, Pt } from "../../../.pinned/app/packages/digest/dist/src/presentation/map-context.js";
+import { renderMotorwayAround, shieldLinksOf, type AroundView } from "../../../.pinned/app/packages/digest/dist/src/presentation/motorway-around-html.js";
+import { crossingHref } from "../../../.pinned/app/packages/digest/dist/src/presentation/motorway-crossings-html.js";
+import { frameOf } from "../../../.pinned/app/packages/digest/dist/src/presentation/motorway-map.js";
 
 const CSS = ["../../design/tokens.css", "../src/styles/site.css"].map((f) => readFileSync(new URL(f, import.meta.url), "utf8")).join("\n");
 

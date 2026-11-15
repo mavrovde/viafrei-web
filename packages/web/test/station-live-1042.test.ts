@@ -7,9 +7,9 @@
  * Every fetch here is a stub.
  */
 import { beforeEach, describe, expect, it } from "vitest";
-import { renderStationPage, stationFactsHeader } from "../../digest/src/presentation/station-page-html.js";
-import { stationPageOf } from "../../digest/src/analysis/station-page.js";
-import type { StationRecordRow } from "../../digest/src/queries/station-page.sql.js";
+import { renderStationPage, stationFactsHeader } from "../../../.pinned/app/packages/digest/dist/src/presentation/station-page-html.js";
+import { stationPageOf } from "../../../.pinned/app/packages/digest/dist/src/analysis/station-page.js";
+import type { StationRecordRow } from "../../../.pinned/app/packages/digest/dist/src/queries/station-page.sql.js";
 import { clearStationNames } from "../src/lib/station-names.js";
 import { clearStationFragments, stationFactsOf, stationLiveChoice, type StationFetchLike } from "../src/lib/station.js";
 import { resolveStationPage } from "../src/lib/station-page.js";

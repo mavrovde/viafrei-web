@@ -1,0 +1,102 @@
+# The local stack of the site (viafrei-web#2): the shell built here, and the released images it
+# depends on, by the digests images.pin names — nothing of viafrei is built.
+#
+#   bash scripts/stack.sh up | down | status
+#
+# stack.sh reads images.pin and exports VF_DIGEST_IMAGE and VF_DATABASE_IMAGE before compose runs,
+# so the pins have one home. The database is a throwaway (tmpfs) migrated by the pinned
+# viafrei-database release; the digest is the pinned viafrei-app's digest service; the shell is
+# this repository's image. Only the shell and the digest are published, on loopback, on ports that
+# do not collide with viafrei's own local stack (8791/8792).
+name: viafrei-web
+
+services:
+  db:
+    image: postgis/postgis:16-3.4@sha256:44126d872ac91993766c341e369c539e8196614321765d36a6f1bab0419a5fa5
+    environment:
+      POSTGRES_USER: viafrei
+      POSTGRES_PASSWORD: ${VF_STACK_DB_PASSWORD:-viafrei-web-local}
+      POSTGRES_DB: viafrei
+    tmpfs:
+      - /var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD", "pg_isready", "-q", "-h", "127.0.0.1", "-U", "viafrei", "-d", "viafrei"]
+      interval: 2s
+      timeout: 3s
+      retries: 60
+
+  migrate:
+    image: ${VF_DATABASE_IMAGE:?run through scripts/stack.sh, which reads images.pin}
+    command: ["migrate"]
+    environment:
+      # the parts, as viafrei's own stack hands them; the image assembles the URL
+      DB_HOST: db
+      DB_PORT: "5432"
+      DB_USER: viafrei
+      DB_NAME: viafrei
+      PGPASSWORD: ${VF_STACK_DB_PASSWORD:-viafrei-web-local}
+    depends_on:
+      db: { condition: service_healthy }
+    restart: "no"
+
+  digest:
+    image: ${VF_DIGEST_IMAGE:?run through scripts/stack.sh, which reads images.pin}
+    platform: linux/amd64
+    command: ["node", "--conditions=viafrei-dist", "packages/digest/dist/src/server/http.js"]
+    environment:
+      POSTGRES_HOST: db
+      POSTGRES_PORT: "5432"
+      POSTGRES_USER: viafrei
+      POSTGRES_PASSWORD: ${VF_STACK_DB_PASSWORD:-viafrei-web-local}
+      POSTGRES_DB: viafrei
+      DIGEST_BIND: 0.0.0.0
+      DIGEST_ALLOW_PUBLIC_BIND: "1"
+      DIGEST_PORT: "8791"
+    depends_on:
+      migrate: { condition: service_completed_successfully }
+    ports:
+      - "127.0.0.1:${VF_STACK_DIGEST_PORT:-18791}:8791"
+    healthcheck:
+      test: ["CMD", "curl", "-fsS", "http://127.0.0.1:8791/healthz"]
+      interval: 5s
+      timeout: 5s
+      retries: 30
+
+  web:
+    build: { context: ., dockerfile: Dockerfile }
+    image: viafrei-web:local
+    environment:
+      HOST: 0.0.0.0
+      PORT: "8792"
+      DIGEST_URL: http://digest:8791
+      WEB_TILE_TIMEOUT_MS: ${WEB_TILE_TIMEOUT_MS:-2000}
+      WEB_PLACE_TIMEOUT_MS: ${WEB_PLACE_TIMEOUT_MS:-2000}
+      GOOGLE_TAG: ${GOOGLE_TAG:-}
+      # Microsoft Clarity (#717), after consent and only where the consent island is; unset = none.
+      CLARITY_PROJECT_ID: ${CLARITY_PROJECT_ID:-}
+      CLARITY_ENABLED: ${CLARITY_ENABLED:-}
+      # The IndexNow key file /<key>.txt (#544); unset, that path is a 404.
+      INDEXNOW_KEY: ${INDEXNOW_KEY:-}
+      # The § 5 DDG identity for /impressum and /datenschutz (#379), the same names
+      # as the prod web service; unset, those two pages answer 500, never half a page.
+      IMPRESSUM_NAME: ${IMPRESSUM_NAME:-}
+      IMPRESSUM_STREET: ${IMPRESSUM_STREET:-}
+      IMPRESSUM_CITY: ${IMPRESSUM_CITY:-}
+      IMPRESSUM_EMAIL: ${IMPRESSUM_EMAIL:-}
+      IMPRESSUM_PHONE: ${IMPRESSUM_PHONE:-}
+      IMPRESSUM_VAT_ID: ${IMPRESSUM_VAT_ID:-}
+      IMPRESSUM_AUTHORITY: ${IMPRESSUM_AUTHORITY:-}
+      CONTACT_EMAIL: ${CONTACT_EMAIL:-}
+      APP_VERSION: ${APP_VERSION:-}
+      ASTRO_TELEMETRY_DISABLED: "1"
+    depends_on:
+      digest: { condition: service_healthy }
+    ports:
+      - "127.0.0.1:${VF_STACK_WEB_PORT:-18792}:8792"
+    healthcheck:
+      test: ["CMD", "wget", "-q", "-O", "/dev/null", "http://127.0.0.1:8792/healthz"]
+      interval: 5s
+      timeout: 5s
+      retries: 30
+    # as prod: 128m was killed under the smoke's load on 2026-10-26 (2.4.1)
+    mem_limit: 192m

@@ -6,8 +6,8 @@
 import { afterEach, describe, expect, it } from "vitest";
 import { all } from "@viafrei/design/testing";
 import { isPlaceLine, mergeSuggest, placeLinesOf } from "../src/lib/header-suggest.js";
-import { renderSuggestions } from "../../digest/src/presentation/place-suggest-html.js";
-import { resetStationSlugs, setStationSlugs } from "../../digest/src/analysis/station-slugs.js";
+import { renderSuggestions } from "../../../.pinned/app/packages/digest/dist/src/presentation/place-suggest-html.js";
+import { resetStationSlugs, setStationSlugs } from "../../../.pinned/app/packages/digest/dist/src/analysis/station-slugs.js";
 
 const station = { kind: "station", name: "Köln Hbf", town: "Köln", lat: 50.94303, lon: 6.95873 } as const;
 

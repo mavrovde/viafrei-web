@@ -11,11 +11,11 @@
  */
 import { readFileSync } from "node:fs";
 import { beforeEach, describe, expect, it, vi } from "vitest";
-import { STATION_PAGE_MAX_AGE_S } from "../../digest/src/server/station-service.js";
+import { STATION_PAGE_MAX_AGE_S } from "../../../.pinned/app/packages/digest/dist/src/server/station-service.js";
 import { all, first, text } from "@viafrei/design/testing";
-import { renderStationPage, stationListText } from "../../digest/src/presentation/station-page-html.js";
-import { stationPageOf } from "../../digest/src/analysis/station-page.js";
-import type { StationRecordRow } from "../../digest/src/queries/station-page.sql.js";
+import { renderStationPage, stationListText } from "../../../.pinned/app/packages/digest/dist/src/presentation/station-page-html.js";
+import { stationPageOf } from "../../../.pinned/app/packages/digest/dist/src/analysis/station-page.js";
+import type { StationRecordRow } from "../../../.pinned/app/packages/digest/dist/src/queries/station-page.sql.js";
 import { clearStationNames, heldStationName, keepStationNames, primeStationNames, stopKeepingStationNames } from "../src/lib/station-names.js";
 import { clearStationFragments, fetchStationList, STATION_KEPT_SERVE_SECONDS, type StationFetchLike } from "../src/lib/station.js";
 import { isTransient, resolveStationPage } from "../src/lib/station-page.js";

@@ -13,7 +13,7 @@ import type { ChildProcess } from "node:child_process";
 import { chromium, type Browser } from "playwright";
 import { afterAll, beforeAll, describe, expect, it } from "vitest";
 import { all, first, text } from "@viafrei/design/testing";
-import { STATION_COPY } from "../../digest/src/presentation/i18n-station.js";
+import { STATION_COPY } from "../../../.pinned/app/packages/digest/dist/src/presentation/i18n-station.js";
 import { LIVE_LANGS, pathFor } from "../src/site/pages.js";
 import { stationPath } from "../src/site/stations.js";
 import { startRealDigest } from "./real-digest.js";

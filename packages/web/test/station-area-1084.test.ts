@@ -7,12 +7,12 @@
  */
 import { afterEach, describe, expect, it, vi } from "vitest";
 import { all, first, text } from "@viafrei/design/testing";
-import { renderPlace } from "../../digest/src/presentation/place-tiles.js";
-import type { PlaceCards } from "../../digest/src/analysis/place-cards.js";
-import type { NeighboursCard } from "../../digest/src/cards/neighbours/judge.js";
-import { renderStationPage } from "../../digest/src/presentation/station-page-html.js";
-import { stationPageOf } from "../../digest/src/analysis/station-page.js";
-import type { StationRecordRow } from "../../digest/src/queries/station-page.sql.js";
+import { renderPlace } from "../../../.pinned/app/packages/digest/dist/src/presentation/place-tiles.js";
+import type { PlaceCards } from "../../../.pinned/app/packages/digest/dist/src/analysis/place-cards.js";
+import type { NeighboursCard } from "../../../.pinned/app/packages/digest/dist/src/cards/neighbours/judge.js";
+import { renderStationPage } from "../../../.pinned/app/packages/digest/dist/src/presentation/station-page-html.js";
+import { stationPageOf } from "../../../.pinned/app/packages/digest/dist/src/analysis/station-page.js";
+import type { StationRecordRow } from "../../../.pinned/app/packages/digest/dist/src/queries/station-page.sql.js";
 import { AREA_SHAPE, areaError, areaLoading, fetchArea } from "../src/lib/object-area.js";
 import { resolveStationPage } from "../src/lib/station-page.js";
 import { clearStationNames } from "../src/lib/station-names.js";

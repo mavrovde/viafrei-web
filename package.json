@@ -1,0 +1,51 @@
+{
+  "name": "viafrei-web",
+  "version": "0.0.0",
+  "description": "ViaFrei's user interface: the viafrei.de site shell (Astro SSR with Svelte islands) and the design tokens and building blocks it is made of. Reads no database: the live fragments come from the released digest image.",
+  "private": true,
+  "type": "module",
+  "license": "UNLICENSED",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mavrovde/viafrei-web.git"
+  },
+  "engines": {
+    "node": ">=26"
+  },
+  "workspaces": [
+    "packages/*"
+  ],
+  "scripts": {
+    "pinned": "bash scripts/pinned-app.sh install",
+    "typecheck": "tsc -b",
+    "lint": "eslint .",
+    "test": "vitest run",
+    "test:pins": "bash scripts/pins.test.sh",
+    "gates": "node scripts/web-contrast.mjs && bash scripts/web-contrast.test.sh && bash scripts/check_web_boundary.sh && bash scripts/check_web_boundary.test.sh",
+    "web:build": "npm run build -w @viafrei/web",
+    "web:test": "npm run build -w @viafrei/web && vitest run --config packages/web/vitest.e2e.config.ts",
+    "web:dev": "npm run dev -w @viafrei/web",
+    "web:browsers": "playwright install --with-deps chromium",
+    "web:e2e": "vitest run --config packages/web/vitest.e2e.config.ts",
+    "web:budget": "tsx packages/web/scripts/budget.ts",
+    "web:inline": "VF_INLINE_WRITE=1 vitest run packages/web/test/inline-scripts.test.ts",
+    "web:lighthouse": "tsx packages/web/scripts/lighthouse.ts",
+    "web:latency": "tsx packages/web/scripts/latency.ts",
+    "web:visual": "tsx packages/web/scripts/visual.ts",
+    "web:site-map": "tsx packages/web/scripts/site-map.ts"
+  },
+  "devDependencies": {
+    "@types/node": "^22.19.0",
+    "@types/pg": "^8.23.1",
+    "@vitest/coverage-v8": "^4.1.11",
+    "eslint": "^10.12.0",
+    "tsx": "^4.23.13",
+    "typescript": "^5.9.3",
+    "typescript-eslint": "^8.71.0",
+    "vitest": "^4.1.11"
+  },
+  "overrides": {
+    "glob": "^13.0.6",
+    "source-map-js": "^1.2.2"
+  }
+}

@@ -24,9 +24,9 @@ import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
 import { afterAll, beforeAll, describe, expect, it } from "vitest";
 import { all, text as nodeText } from "@viafrei/design/testing";
-import { CELL_DEG as DIGEST_CELL } from "../../digest/src/analysis/place.js";
-import { placePath as digestPlacePath } from "../../digest/src/cards/shared/paths.js";
-import { SPOT_MAX_ACC } from "../../digest/src/analysis/spot.js";
+import { CELL_DEG as DIGEST_CELL } from "../../../.pinned/app/packages/digest/dist/src/analysis/place.js";
+import { placePath as digestPlacePath } from "../../../.pinned/app/packages/digest/dist/src/cards/shared/paths.js";
+import { SPOT_MAX_ACC } from "../../../.pinned/app/packages/digest/dist/src/analysis/spot.js";
 import { openGeoIp, parseIp, type GeoIp } from "../src/location/geoip.js";
 import { RETRY_WAITS_MS } from "../src/lib/fragment-retry.js";
 import { CELL_DEG, cellKey, isPlaceKey, serverRung } from "../src/location/ladder.js";
@@ -1921,7 +1921,7 @@ describe("the island on a motorway page (#890: the same ladder, asking for 'arou
 
 describe("the pill's word for a browser position is the map legend's (2.3.8)", () => {
   it("in every language it says the position is rounded to about 500 m — never 'exact', which was untrue: the device rounds it to the cell", async () => {
-    const { MOTORWAY_AROUND_COPY } = await import("../../digest/src/presentation/i18n-motorway-around.js");
+    const { MOTORWAY_AROUND_COPY } = await import("../../../.pinned/app/packages/digest/dist/src/presentation/i18n-motorway-around.js");
     for (const l of LIVE_LANGS) {
       const word = islandLabels(l).exact;
       expect(word, l).toBe(MOTORWAY_AROUND_COPY[l].howExact);

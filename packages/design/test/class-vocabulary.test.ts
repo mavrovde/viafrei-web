@@ -27,7 +27,8 @@ import { C, HOOK, TILE_STATES } from "../src/index.js";
 
 const HERE = dirname(fileURLToPath(import.meta.url));
 const ROOT = join(HERE, "../../..");
-const SCOPES = ["packages/digest/src", "packages/status/src", "packages/web/src"] as const;
+// viafrei-web#2: the site is the one consumer here; the digest and the status console are swept in viafrei
+const SCOPES = ["packages/web/src"] as const;
 const RUNTIME = /\.(ts|astro|svelte)$/;
 const NOT_RUNTIME = /\.test\.ts$|\/__golden__\//;
 const CLASS_ATTR = /class="([^"]*)"/g;

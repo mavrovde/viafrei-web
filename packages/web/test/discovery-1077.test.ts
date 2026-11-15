@@ -17,8 +17,8 @@ import { ALL_SITEMAPS } from "../src/site/sitemaps.js";
 import { SITE_ORIGIN } from "../src/site/endpoints.js";
 import { LIVE_LANGS, PAGES, pathFor, type Lang, type PageId } from "../src/site/pages.js";
 import { MOTORWAY_ADDITIONAL_TYPE, exitJsonLd, motorwayJsonLd, placeJsonLd, stationJsonLd, structuredData } from "../src/site/structured-data.js";
-import { PLACE_PAGE_MIN_POPULATION } from "../../digest/src/server/place-service.js";
-import { SERVER_VERSION } from "../../mcp/src/server/server.js";
+import { PLACE_PAGE_MIN_POPULATION } from "../../../.pinned/app/packages/digest/dist/src/server/place-service.js";
+import { SERVER_VERSION } from "../../../.pinned/app/packages/mcp/dist/src/server/server.js";
 
 const FILES = [["llms.txt", llmsTxt()], ["llms-full.txt", llmsFullTxt()]] as const;
 const section = (txt: string, h: string): string[] => {

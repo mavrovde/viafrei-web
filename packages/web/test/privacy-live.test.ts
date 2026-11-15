@@ -10,9 +10,10 @@
  */
 import { readdirSync, readFileSync } from "node:fs";
 import { describe, expect, it } from "vitest";
+import { pinnedPath } from "./pinned-source.js";
 
 const REPO = new URL("../../../", import.meta.url);
-const read = (rel: string): string => readFileSync(new URL(rel, REPO), "utf8");
+const read = (rel: string): string => readFileSync(new URL(pinnedPath(rel), REPO), "utf8");
 
 const privacy = read("packages/web/src/components/LegalPrivacy.astro");
 const start = privacy.indexOf('<h3 id="live-abfragen">');
@@ -22,15 +23,15 @@ const section = privacy.slice(start, privacy.indexOf("{", start));
 const LIVE_PORTS = ["trains", "facilities", "fuel"] as const;
 
 function liveTools(): string[] {
-  const dir = new URL("packages/mcp/src/tools/", REPO);
+  const dir = new URL(".pinned/app/packages/mcp/dist/src/tools/", REPO);
   const out: string[] = [];
   for (const f of readdirSync(dir)) {
-    if (!f.endsWith(".ts") || f.endsWith(".test.ts") || f.endsWith(".schema.ts")) continue;
+    if (!f.endsWith(".js") || f.endsWith(".test.js") || f.endsWith(".schema.js")) continue;
     const src = readFileSync(new URL(f, dir), "utf8");
     // The asked price refresh (#521) reaches the fuel port through the one
     // shared helper, `refreshBeforeRead(deps, …)`, so that call counts too.
     const calls = LIVE_PORTS.some((p) => new RegExp(`deps\\.${p}(\\?)?\\.(board|check|discover)\\(`, "u").test(src)) || /\brefreshBeforeRead\(deps\b/u.test(src);
-    if (calls) out.push(f.replace(/\.ts$/u, ""));
+    if (calls) out.push(f.replace(/\.js$/u, ""));
   }
   return out.sort();
 }

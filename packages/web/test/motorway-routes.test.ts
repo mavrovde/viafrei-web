@@ -7,8 +7,8 @@
  */
 import { canonicalMotorway as ingestCanonical, compareMotorways as ingestCompare, motorwaySlug as ingestSlug } from "@viafrei/ingest";
 import { beforeEach, describe, expect, it, vi } from "vitest";
-import { MCP_ENDPOINT_URL, connectPath } from "../../digest/src/presentation/motorway-tiles.js";
-import { motorwayIndexPath as digestIndexPath, motorwayPath as digestPath } from "../../digest/src/cards/shared/paths.js";
+import { MCP_ENDPOINT_URL, connectPath } from "../../../.pinned/app/packages/digest/dist/src/presentation/motorway-tiles.js";
+import { motorwayIndexPath as digestIndexPath, motorwayPath as digestPath } from "../../../.pinned/app/packages/digest/dist/src/cards/shared/paths.js";
 import { MOTORWAY_FRAGMENT_CACHE_BYTES, MOTORWAY_KEPT_SERVE_SECONDS, clearMotorwayFragments, fetchMotorwayList, getMotorwayFragment, heapBytesOf, motorwayFragmentsKept } from "../src/lib/motorway.js";
 import { motorwayAddress, resolveMotorwayIndex, resolveMotorwayPage } from "../src/lib/motorway-page.js";
 import type { FetchLike } from "../src/lib/tiles.js";

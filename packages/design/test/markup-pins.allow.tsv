@@ -3,44 +3,12 @@
 escaping	packages/design/test/connect-note.test.ts	<b>
 escaping	packages/design/test/endpoint-chip.test.ts	<b>
 escaping	packages/design/test/html.test.ts	<b>
-escaping	packages/digest/src/cards/needs/needs-card.test.ts	<img src=x
-escaping	packages/digest/src/cards/stations/stations-card.test.ts	<img
-escaping	packages/digest/src/presentation/amenities-nearby-html.test.ts	<a 
-escaping	packages/digest/src/presentation/i18n.test.ts	<b>
-escaping	packages/digest/src/presentation/map-links.test.ts	<script>
-escaping	packages/digest/src/presentation/map-links.test.ts	<img
-escaping	packages/digest/src/presentation/motorway-around.test.ts	<a 
-escaping	packages/digest/src/presentation/motorway-cards.test.ts	<script
-escaping	packages/digest/src/presentation/motorway-messages.test.ts	<script
-escaping	packages/digest/src/queries/place-label.test.ts	<b>
-escaping	packages/digest/src/server/motorway-service.test.ts	<b>7
-escaping	packages/digest/src/server/place.app.test.ts	<img
-escaping	packages/status/src/presentation/charts.test.ts	<b>
-escaping	packages/status/src/presentation/console-render.test.ts	<script>x
-escaping	packages/status/src/presentation/render.test.ts	<img src=x
-escaping	packages/status/src/presentation/render.test.ts	<script
-escaping	packages/status/src/server/app.test.ts	<script
-escaping	packages/status/src/server/errors-screen.test.ts	<script
 escaping	packages/web/test/site-search-1111.test.ts	<b>x
 csp	packages/web/test/csp.test.ts	<script type="application/ld+json" nonce="${nonce}">{}</script>
 csp	packages/web/test/csp.test.ts	<script nonce="${nonce}">1</script>
 feed	packages/web/test/news.test.ts	<category term="plan"/>
 feed	packages/web/test/news.test.ts	<link rel="self" type="application/atom+xml" href="https://viafrei.de${feedPath(l)}"/>
 feed	packages/web/test/place-routes.test.ts	<loc>https://viafrei.de/${l}/place/koeln</loc><lastmod>${lastmodOf("place", l)!}</lastmod>
-provider	packages/ingest/src/clients/db-api.test.ts	<redacted>
-provider	packages/ingest/src/clients/tankerkoenig.test.ts	<redacted>
-provider	packages/ingest/src/connectors/city-traffic/parse.test.ts	<fes:PropertyIsNotEqualTo>
-provider	packages/ingest/src/connectors/city-traffic/parse.test.ts	<fes:ValueReference>de.hh.up:zustandsklasse</fes:ValueReference>
-provider	packages/ingest/src/connectors/city-traffic/parse.test.ts	<fes:Literal>fliessend</fes:Literal>
-provider	packages/ingest/src/connectors/datex2/load.test.ts	<updateMethod>snapshot</updateMethod>
-provider	packages/ingest/src/connectors/datex2/load.test.ts	<cancel>true</cancel>
-provider	packages/ingest/src/connectors/datex2/situation-roads-2.2.test.ts	<situation
-provider	packages/ingest/src/platform/feeds.test.ts	<overallEndTime>2034-01-31T05:00:00Z</overallEndTime>
-provider	packages/ingest/src/schedulers/vdv462.test.ts	<offer>
-provider	packages/mcp/src/server/http-limits.test.ts	<script>
-provider	packages/mcp/src/tools/fuel-refresh.db.test.ts	<discover>
-provider	packages/mcp/src/tools/fuel-refresh.db.test.ts	<discover>
-provider	packages/mcp/src/tools/road-feeds-2.2.test.ts	<situation
 source	packages/web/test/credit-links.test.ts	<li lang="de"><a href={c.url}
 source	packages/web/test/example-ledger.test.ts	<a href={pathFor("examples", lang)}>{t(lang, "day.allExamples")}</a>
 source	packages/web/test/example-ledger.test.ts	<a href={pathFor("examples", lang)}>{t(lang, "connectPage.allExamples")}</a>
@@ -54,34 +22,6 @@ source	packages/web/test/motorway-716.test.ts	<div class="wrap motorway-page" id
 source	packages/web/test/motorway-716.test.ts	<form class="motorway-search" method="get"
 source	packages/web/test/place-asks.test.ts	`<article class="pcard pcard--${c.verdict}" id="pcard-${c.id}" aria-labelledby="pcard-${c.id}-t"${refreshData(lang, c.id, refresh)}>`
 source	packages/web/test/place-asks.test.ts	`<p class="pcard__ask"><span class="pcard__asklabel">${safe(copy.ask.label)}:</span> <q class="pcard__q">${fillHtml(cardAsk(lang, c.id), { place: nameHtml(place) })}</q></p>`
-own-escaping	packages/digest/src/cards/roads/detour.test.ts	<span translate="no">${KREMSDORF}</span> (${facts.replace(/"/gu, "&quot;")})
-own-escaping	packages/digest/src/cards/roads/loading-zone.test.ts	<p class="tile__note">${cap.replace(/'/gu, "&#39;")}.</p>
-own-escaping	packages/digest/src/cards/roads/motorway-detour.test.ts	<span translate="no">U 7 Flensburg</span> (${near}; ${distanceText(lang, 100)})
-own-escaping	packages/digest/src/cards/roads/signed-detour-nrw.test.ts	<span class="pcard__sub">${closureDetourHtml("de", SP)}</span>
-own-escaping	packages/digest/src/cards/roads/traffic-profiles.test.ts	<p class="pcard__subhead">${src.head.replace("{km}", "1")}
-own-escaping	packages/digest/src/presentation/motorway-map.test.ts	<legend>${MOTORWAY_CHIP_COPY[lang].nearLegend.replaceAll("'", "&#39;")}</legend>
-sequence	packages/digest/src/cards/roads/lorry-943.test.ts	(<span translate="no">ivm Frankfurt RheinMain</span>):<p class="pcard__note">Einträge im Umkreis, alle ohne Straßenangabe: 2. Das ist keine Freigabe
-sequence	packages/digest/src/cards/roads/lorry-dresden.test.ts	Lkw-Beschränkungen im Umkreis von 5 km (<span translate="no">Landeshauptstadt Dresden</span>):<p class="pcard__note">Einträge im Umkreis, alle ohne Straßenangabe: 1. Das ist keine Freigabe: es gilt die Beschilderung vor Ort.</p>
-sequence	packages/digest/src/presentation/site-sources-card.test.ts	<span translate="no">Stuttgart-Vaihingen</span> · 4,2 km
-sequence	packages/digest/src/cards/roads/detour.test.ts	<span translate="no">${KREMSDORF}</span> (für Pkw und Lkw; 2,1 km länger; etwa 5 min mehr; bis 31. Oktober 2026)
-sequence	packages/digest/src/cards/roads/motorway-detour.test.ts	<span translate="no">U 7 Flensburg</span> (nächster Abschnitt: <span translate="no">Walter-Dudek-Brücke</span>; 100 m)
-sequence	packages/digest/src/cards/roads/signal-installation.test.ts	<li>14 im Umkreis von 500 m: 12 an Kreuzungen, 2 an Fußgängerüberwegen</li><li>an 4 davon ist eine Busanmeldung eingerichtet</li>
-sequence	packages/digest/src/cards/roads/winter.test.ts	<span translate=\"no\">Kriegsstraße</span> (Priorität 1) · 50 m
-sequence	packages/digest/src/presentation/map-links.test.ts	<a href="https://www.openstreetmap.org/search?query=F%C3%BCrther%20Str.%2012%2C%20N%C3%BCrnberg" rel="noopener noreferrer nofollow">${PLACE_COPY[lang].roads.detail.map}</a> · <a href="https://www.google.com/maps/search/?api=1&amp;query=F%C3%BCrther%20Str.%2012%2C%20N%C3%BCrnberg" rel="noopener noreferrer nofollow" translate="no">${MAP_APP_COPY[lang].google}</a></span>
-sequence	packages/digest/src/presentation/motorway-map.test.ts	<span class="mw-key mw-key--amen" aria-hidden="true"></span>${MOTORWAY_LAYERS_COPY[lang].map.amenities}</li>
-sequence	packages/digest/src/presentation/site-sources-card.test.ts	<summary class="pcard__moresum">Was der DWD dazu schreibt</summary><div class="pcard__morebody"><p class="pcard__official" lang="de">${desc}</p>
-sequence	packages/digest/src/presentation/tiles.test.ts	<meter class="punctuality__bar" min="0" max="17" value="7">7 %</meter><span class="punctuality__land-fig">7 % verspätet · 1.900 Fahrten
-sequence	packages/digest/src/presentation/tiles.test.ts	value="3">3 %</meter><span class="punctuality__land-fig">3 % verspätet · 780 Fahrten
-sequence	packages/digest/src/presentation/tiles.test.ts	>${delfi}</a> · <a class="credit__licence" href="https://www.dcat-ap.de/def/licenses/cc-by-sa" rel="license noopener noreferrer" lang="en">licence text</a></p>
-sequence	packages/status/src/analysis/source-reach.test.ts	l-on_demand"><span class="dot" aria-hidden="true"></span>${pt(lang, "light.on_demand")}
-sequence	packages/status/src/analysis/source-reach.test.ts	l-loaded"><span class="dot" aria-hidden="true"></span>${pt(lang, "light.loaded")}
-sequence	packages/status/src/presentation/render.test.ts	4 <span class=\"muted\">(28.6 %)</span>
-sequence	packages/status/src/presentation/render.test.ts	<code>viafrei-smoke</code> 6 <span class=\"muted\">(ours)</span>
-sequence	packages/status/src/presentation/render.test.ts	<code>claude-ai</code> 22 <span class=\"muted\">(ours)</span>
-sequence	packages/status/src/presentation/render.test.ts	<td>7 days<br><span class=\"muted usage-since\">ledger since 2026-09-17 12:00:00 UTC+02:00</span></td>
-sequence	packages/status/src/presentation/render.test.ts	<td>7 Tage<br><span class=\"muted usage-since\">Zählwerk seit 2026-09-17 12:00:00 UTC+02:00</span></td>
-sequence	packages/status/src/presentation/render.test.ts	${FEED_FAMILY_TITLES.kvb} <span class="muted">· 5 Quellen</span>
-sequence	packages/status/src/presentation/usage-panel.test.ts	<code>stateless</code> 9<
 sequence	packages/web/e2e/motorway-amenities.e2e.ts	<span class="mw-key mw-key--amen" aria-hidden="true"></span>${legend}</li>
 sequence	packages/web/e2e/site.e2e.ts	class="credit__licence" href="${licenceTextFor(r.license)!.url}"
 sequence	packages/web/test/place-stations.test.ts	<span class="pcard__sub pcard__fac">Aufzüge: 5 von 6 in Betrieb · Fahrtreppen: 6 von 6 in Betrieb · Parkhaus oder Parkplatz <span translate="no">Parkhaus Dom</span> (200 m, 520 Plätze)
@@ -92,4 +32,3 @@ source	packages/web/test/home-990.test.ts	<script is:inline set:html={fillScript
 source	packages/web/test/motorway-716.test.ts	<form class="tpf" id="tpf" method="get"
 source	packages/web/test/topic-filter-1050.test.ts	`<article class="pcard pcard--${c.verdict}" id="pcard-${c.id}"
 source	packages/web/test/topic-filter-1050.test.ts	<h3 class="pcard__title" id="pcard-${c.id}-t"><span class="pcard__icon" aria-hidden="true">
-own-escaping	packages/digest/src/presentation/station-board-edges-1083.test.ts	<span class="stlive__cap-name" translate="no">&lt;b&gt;X&lt;/b&gt;</span>

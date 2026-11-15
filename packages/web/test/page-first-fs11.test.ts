@@ -6,13 +6,13 @@
 import { readFileSync } from "node:fs";
 import { all, text } from "@viafrei/design/testing";
 import { describe, expect, it, vi } from "vitest";
-import { buildPlaceCards } from "../../digest/src/analysis/place-cards.js";
-import { fromGoldenText } from "../../digest/src/cards/golden.test.support.js";
-import { renderPlace } from "../../digest/src/presentation/place-tiles.js";
-import type { PlaceAmpel } from "../../digest/src/analysis/place-ampel.js";
-import { DWD_SUMMARY_LINE } from "../../digest/src/cards/warnings/html.js";
-import { placeFirstHtml } from "../../digest/src/presentation/place-first-html.js";
-import { stationFirstHtml } from "../../digest/src/presentation/station-first-html.js";
+import { buildPlaceCards } from "../../../.pinned/app/packages/digest/dist/src/analysis/place-cards.js";
+import { fromGoldenText } from "./digest-support/golden.test.support.js";
+import { renderPlace } from "../../../.pinned/app/packages/digest/dist/src/presentation/place-tiles.js";
+import type { PlaceAmpel } from "../../../.pinned/app/packages/digest/dist/src/analysis/place-ampel.js";
+import { DWD_SUMMARY_LINE } from "../../../.pinned/app/packages/digest/dist/src/cards/warnings/html.js";
+import { placeFirstHtml } from "../../../.pinned/app/packages/digest/dist/src/presentation/place-first-html.js";
+import { stationFirstHtml } from "../../../.pinned/app/packages/digest/dist/src/presentation/station-first-html.js";
 import { liftPlaceFirst, placeNowOf, stationNowOf } from "../src/lib/place-head.js";
 
 const AT = new Date("2026-11-05T20:59:00Z");
@@ -73,7 +73,7 @@ describe("FS11 on the place page: the block's credits are lifted with it", () =>
 
 describe("FS11d on a recorded green place: the lamp's cards judged clear stand in the ✓ list, and still guard the block", () => {
   it("nuernberg-full: the warnings and roads cards are clear; the block is guarded, names their publishers, and the head reads no now", () => {
-    const input = fromGoldenText(readFileSync(new URL("../../digest/src/cards/__golden__/nuernberg-full.input.json", import.meta.url), "utf8")) as Parameters<typeof buildPlaceCards>[0];
+    const input = fromGoldenText(readFileSync(new URL("./digest-support/nuernberg-full.input.json", import.meta.url), "utf8")) as Parameters<typeof buildPlaceCards>[0];
     vi.useFakeTimers({ toFake: ["Date"], now: new Date("2026-10-23T10:00:00Z") });
     let html: string;
     try {

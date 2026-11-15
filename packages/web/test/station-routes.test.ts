@@ -10,11 +10,11 @@
  */
 import { beforeEach, describe, expect, it } from "vitest";
 import { all, text } from "@viafrei/design/testing";
-import { stationIndexPath as digestIndexPath, stationPath as digestPath } from "../../digest/src/cards/shared/paths.js";
-import { renderStationIndex, renderStationPage } from "../../digest/src/presentation/station-page-html.js";
-import { stationPageOf } from "../../digest/src/analysis/station-page.js";
-import type { StationRecordRow } from "../../digest/src/queries/station-page.sql.js";
-import { STATION_RESERVED_SLUGS } from "../../ingest/src/domain/transit/station-slug.js";
+import { stationIndexPath as digestIndexPath, stationPath as digestPath } from "../../../.pinned/app/packages/digest/dist/src/cards/shared/paths.js";
+import { renderStationIndex, renderStationPage } from "../../../.pinned/app/packages/digest/dist/src/presentation/station-page-html.js";
+import { stationPageOf } from "../../../.pinned/app/packages/digest/dist/src/analysis/station-page.js";
+import type { StationRecordRow } from "../../../.pinned/app/packages/digest/dist/src/queries/station-page.sql.js";
+import { STATION_RESERVED_SLUGS } from "../../../.pinned/app/packages/ingest/dist/domain/transit/station-slug.js";
 import { clearStationFragments, fetchStationList, fetchStationPage, stationFragmentsKept, stationIndexChoice, type StationFetchLike } from "../src/lib/station.js";
 import { resolveStationIndex, resolveStationPage } from "../src/lib/station-page.js";
 import { stationHeadOf } from "../src/lib/station-head.js";

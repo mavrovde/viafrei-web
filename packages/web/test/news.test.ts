@@ -52,7 +52,8 @@ describe("the entries (#588)", () => {
     for (const id of CREDITS_BEFORE_NEWS) expect(CREDIT_IDS, `${id} in the baseline is no longer a credits id`).toContain(id);
   });
 
-  it("ids are unique permalinks, dates are YYYY-MM-DD, kinds known, tools registered; a NEW entry's issue and release are named in the CHANGELOG", () => {
+  // cross-repo(viafrei): reads viafrei's CHANGELOG.md, the MCP server's release history; the catalogue it checks is generated in viafrei (scripts/generate-catalogue.ts) and arrives here as src/generated/*.json (viafrei-web#2, docs/moved-from-viafrei.md)
+  it.skip("ids are unique permalinks, dates are YYYY-MM-DD, kinds known, tools registered; a NEW entry's issue and release are named in the CHANGELOG", () => {
     const md = readFileSync(join(ROOT, "CHANGELOG.md"), "utf8");
     const tools = new Set(catalogue.tools.map((x) => x.name));
     expect(new Set(NEWS_ENTRIES.map((e) => e.id)).size).toBe(NEWS_ENTRIES.length);
@@ -179,7 +180,8 @@ describe("the CHANGELOG drafts (#588)", () => {
     expect(out).toContain('ask: "TODO"');
   });
 
-  it("reads the real CHANGELOG", () => {
+  // cross-repo(viafrei): reads viafrei's CHANGELOG.md, the MCP server's release history; the catalogue it checks is generated in viafrei (scripts/generate-catalogue.ts) and arrives here as src/generated/*.json (viafrei-web#2, docs/moved-from-viafrei.md)
+  it.skip("reads the real CHANGELOG", () => {
     const real = releaseBlock(readFileSync(join(ROOT, "CHANGELOG.md"), "utf8"), "1.9.15");
     expect(draftsFrom(real!).map((d) => d.issue)).toEqual(expect.arrayContaining([492, 491, 490, 488, 456]));
   });

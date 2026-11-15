@@ -1,0 +1,13 @@
+{
+  // viafrei-web#2: the site's tests, browser harness and scripts. They import the released
+  // viafrei-app's compiled packages (scripts/pinned-app.sh), which ship no declarations: what
+  // they are checked against is inferred from JavaScript, and a name that was only ever a TYPE
+  // is `any` (scripts/pinned-types.mjs). A callback typed by such a name has no parameter types
+  // to give, so implicit any is allowed HERE and nowhere else; the site's runtime code
+  // (tsconfig.json) keeps the full strict set. viafrei-app shipping its .d.ts closes this.
+  "extends": "../../tsconfig.base.json",
+  "compilerOptions": { "rootDir": ".", "outDir": "build/consumers", "verbatimModuleSyntax": true, "types": ["node", "astro/client"], "noImplicitAny": false },
+  "include": ["src/**/*.ts", "src/pages/.well-known/**/*.ts", "src/**/*.json", "test/**/*.ts", "e2e/**/*.ts", "scripts/**/*.ts"],
+  "exclude": ["dist", "build", "node_modules"],
+  "references": [{ "path": "../design" }]
+}

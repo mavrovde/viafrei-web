@@ -7,7 +7,7 @@
 import { Script } from "node:vm";
 import { describe, expect, it, vi } from "vitest";
 import { all, first, text } from "@viafrei/design/testing";
-import { renderSiteSearch } from "../../digest/src/presentation/site-search-html.js";
+import { renderSiteSearch } from "../../../.pinned/app/packages/digest/dist/src/presentation/site-search-html.js";
 import { siteSearchRoute, suggestRoute } from "../src/lib/fragment-route.js";
 import { resolveSearchPage } from "../src/lib/search-page.js";
 import { DIGEST_KINDS, fold, pageHits, parseDigest, ranked, renderNone, renderResults, score, siteSearch, type Group, type Results } from "../src/lib/site-search.js";

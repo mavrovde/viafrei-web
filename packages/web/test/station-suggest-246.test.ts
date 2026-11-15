@@ -8,8 +8,8 @@
  *    list through, a 502 when the digest does not answer — never stored.
  */
 import { describe, expect, it } from "vitest";
-import { stationSearchForm } from "../../digest/src/presentation/station-top-html.js";
-import { renderStationSuggest } from "../../digest/src/presentation/station-page-html.js";
+import { stationSearchForm } from "../../../.pinned/app/packages/digest/dist/src/presentation/station-top-html.js";
+import { renderStationSuggest } from "../../../.pinned/app/packages/digest/dist/src/presentation/station-page-html.js";
 import { stationSuggestRoute } from "../src/lib/fragment-route.js";
 import { stationTopError } from "../src/lib/station-top.js";
 import { LIVE_LANGS } from "../src/site/pages.js";

@@ -24,7 +24,8 @@ const WEB = join(dirname(fileURLToPath(import.meta.url)), "..");
 const ROOT = join(WEB, "..", "..");
 
 describe("connect page questions (#142, #449)", () => {
-  it("are five, each a golden prompt in its OWN tool's file with that expect_tool and lang, for every graded language", () => {
+  // cross-repo(viafrei): reads viafrei's evals/prompts/, the MCP server's golden-prompt corpus (viafrei-web#2, docs/moved-from-viafrei.md)
+  it.skip("are five, each a golden prompt in its OWN tool's file with that expect_tool and lang, for every graded language", () => {
     expect(CONNECT_PROMPTS).toHaveLength(5);
     for (const lang of GRADED_PROMPT_LANGS) {
       for (const { tool, key } of CONNECT_PROMPTS) {
@@ -109,7 +110,8 @@ describe("quotation marks are the page language's own (#449)", () => {
 });
 
 describe("developer page catalogue (#143)", () => {
-  it("equals what the booted server lists, so a tool added or renamed is not missed", async () => {
+  // cross-repo(viafrei): reads viafrei's CHANGELOG.md, the MCP server's release history; the catalogue it checks is generated in viafrei (scripts/generate-catalogue.ts) and arrives here as src/generated/*.json (viafrei-web#2, docs/moved-from-viafrei.md)
+  it.skip("equals what the booted server lists, so a tool added or renamed is not missed", async () => {
     const live = await buildCatalogue();
     // whole objects — a changed title or description makes the committed page stale too
     expect(catalogue).toEqual(live);

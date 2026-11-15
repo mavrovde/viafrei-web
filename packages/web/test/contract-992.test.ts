@@ -7,11 +7,12 @@
 import { describe, expect, it } from "vitest";
 import contract from "../src/generated/contract.json" with { type: "json" };
 import catalogue from "../src/generated/catalogue.json" with { type: "json" };
-import { connectInMemory } from "../../mcp/src/server/testing.js";
+import { connectInMemory } from "../../../.pinned/app/packages/mcp/dist/src/server/testing.js";
 import { buildContract } from "../scripts/generate-catalogue.js";
 
 describe("contract.json (#992)", () => {
-  it("equals a fresh build: no drift between the server and the page", async () => {
+  // cross-repo(viafrei): reads viafrei's CHANGELOG.md, the MCP server's release history; the catalogue it checks is generated in viafrei (scripts/generate-catalogue.ts) and arrives here as src/generated/*.json (viafrei-web#2, docs/moved-from-viafrei.md)
+  it.skip("equals a fresh build: no drift between the server and the page", async () => {
     expect(JSON.parse(JSON.stringify(await buildContract()))).toEqual(contract);
   });
 

@@ -11,8 +11,8 @@
 import { readFileSync } from "node:fs";
 import { describe, expect, it } from "vitest";
 import { all, text as nodeText } from "@viafrei/design/testing";
-import { projectSiteExample, type SiteExampleKey } from "../../mcp/src/presentation/site-examples.js";
-import { PLACE_CARD_IDS } from "../../digest/src/analysis/place.js";
+import { projectSiteExample, type SiteExampleKey } from "../../../.pinned/app/packages/mcp/dist/src/presentation/site-examples.js";
+import { PLACE_CARD_IDS } from "../../../.pinned/app/packages/digest/dist/src/analysis/place.js";
 import catalogue from "../src/generated/catalogue.json" with { type: "json" };
 import { t } from "../src/i18n/index.js";
 import { answerCreditsHtml, answerHtml, offerHtml } from "../src/lib/answer-html.js";
@@ -22,9 +22,10 @@ import { fetchLocalAsks, LOCAL_ASKS_PATH, PLACE_ASKS_FILL_MS, PLACE_ASKS_SSR_MS,
 import { resolvePlacePage } from "../src/lib/place-page.js";
 import { LIVE_LANGS, pathFor } from "../src/site/pages.js";
 import type { FetchLike } from "../src/lib/tiles.js";
+import { pinnedPath } from "./pinned-source.js";
 
 const REPO = new URL("../../../", import.meta.url);
-const read = (rel: string): string => readFileSync(new URL(rel, REPO), "utf8");
+const read = (rel: string): string => readFileSync(new URL(pinnedPath(rel), REPO), "utf8");
 const fixture = JSON.parse(read("packages/mcp/src/server/site-examples.fixture.json")) as { answers: Record<string, { structuredContent: unknown; _meta: unknown }> };
 const TOOL: Readonly<Record<string, string>> = {
   weather: "check_weather_warnings",
@@ -104,8 +105,8 @@ describe("production's local answers, rendered (#745)", () => {
   });
 
   it("the offers are the digest's own sentences, so a place card and its answer make the same offer", async () => {
-    const { PLACE_COPY } = await import("../../digest/src/presentation/i18n-place.js");
-    const { PLACE_MORE_COPY } = await import("../../digest/src/presentation/i18n-place-more.js");
+    const { PLACE_COPY } = await import("../../../.pinned/app/packages/digest/dist/src/presentation/i18n-place.js");
+    const { PLACE_MORE_COPY } = await import("../../../.pinned/app/packages/digest/dist/src/presentation/i18n-place-more.js");
     const tile = read("packages/digest/src/cards/parking/html.ts");
     expect(tile).toContain('const SHARE_ALIKE_DATABASE_NAME = { trucklounge: "Trucklounge Ecopark"');
     for (const lang of LIVE_LANGS) {

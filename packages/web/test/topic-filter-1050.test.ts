@@ -10,7 +10,7 @@ import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
 import { all, text as nodeText } from "@viafrei/design/testing";
 import { describe, expect, it } from "vitest";
-import { PLACE_CARD_IDS as DIGEST_IDS } from "../../digest/src/analysis/place.js";
+import { PLACE_CARD_IDS as DIGEST_IDS } from "../../../.pinned/app/packages/digest/dist/src/analysis/place.js";
 import { PLACE_CARD_IDS, RETIRED_BOARD_KEY, TOPICS_JS, TOPICS_STORE, applyTopics, barAfterFirst, isFilteredView, topicBarHtml, topicCardsOf, topicSumHtml, topicsOf, topicsQuery, topicsScript } from "../src/lib/topic-filter.js";
 import { filterCopy } from "../src/lib/motorway-filter.js";
 import { LIVE_LANGS } from "../src/site/pages.js";
@@ -30,7 +30,7 @@ describe("the topics are the digest's cards", () => {
     expect([...PLACE_CARD_IDS]).toEqual([...DIGEST_IDS]);
   });
   it("the digest still prints the shape the filter reads: the article's class and id, the h3 title and its icon span", () => {
-    const tiles = readFileSync(join(HERE, "..", "..", "digest", "src", "presentation", "place-tiles.ts"), "utf8");
+    const tiles = readFileSync(join(HERE, "..", "..", "..", ".pinned", "app", "packages", "digest", "dist", "src", "presentation", "place-tiles.js"), "utf8");
     expect(tiles).toContain('`<article class="pcard pcard--${c.verdict}" id="pcard-${c.id}"');
     expect(tiles).toContain('<h3 class="pcard__title" id="pcard-${c.id}-t"><span class="pcard__icon" aria-hidden="true">');
   });

@@ -7,9 +7,10 @@
  */
 import { readFileSync } from "node:fs";
 import { describe, expect, it } from "vitest";
+import { pinnedPath } from "./pinned-source.js";
 
 const REPO = new URL("../../../", import.meta.url);
-const read = (rel: string): string => readFileSync(new URL(rel, REPO), "utf8");
+const read = (rel: string): string => readFileSync(new URL(pinnedPath(rel), REPO), "utf8");
 const flat = (s: string): string => s.replace(/<[^>]+>/gu, "").replace(/\s+/gu, " ");
 const src = read("packages/web/src/components/LegalPrivacy.astro");
 const sec = flat(src.slice(src.indexOf('<h3 id="statusseite">'), src.indexOf('<h3 id="live-abfragen">')));
@@ -43,7 +44,8 @@ describe("the privacy notice on the status page and the console (2.0.2)", () => 
     expect(read("packages/status/src/server/app.ts")).not.toMatch(/readonly googleTag/);
   });
 
-  it("the audit log's addresses are deleted after twelve months (#692) — and the migration and the job say so", () => {
+  // cross-repo(viafrei): reads db/migrations/0111 and the retention job: the status console stays in viafrei, and viafrei-database ships a squashed baseline (viafrei-web#2, docs/moved-from-viafrei.md)
+  it.skip("the audit log's addresses are deleted after twelve months (#692) — and the migration and the job say so", () => {
     expect(sec).not.toContain("ohne Löschfrist");
     // the data steward's wording of 2026-10-12 (#692 C1), verbatim
     expect(sec).toContain(
@@ -60,7 +62,8 @@ describe("the privacy notice on the status page and the console (2.0.2)", () => 
     expect(read("the rollup job")).toContain("ops_audit_forget_ips()");
   });
 
-  it("the cookie lasts eight hours and the audit log cannot be changed — and the code says so", () => {
+  // cross-repo(viafrei): reads db/migrations/0104: the status console stays in viafrei, and viafrei-database ships a squashed baseline (viafrei-web#2, docs/moved-from-viafrei.md)
+  it.skip("the cookie lasts eight hours and the audit log cannot be changed — and the code says so", () => {
     expect(sec).toContain("acht Stunden");
     expect(read("packages/status/src/server/console-auth.ts")).toContain("SESSION_TTL_MS = 8 * 3_600_000");
     expect(sec).toContain("kann nachträglich nicht geändert werden");
@@ -88,7 +91,8 @@ describe("the privacy notice on the status page and the console (2.0.2)", () => 
     expect(sec).not.toContain("falschem Zugangsschlüssel");
   });
 
-  it("says the console sets a session cookie and audits the address — and both exist", () => {
+  // cross-repo(viafrei): reads db/migrations/0104: the status console stays in viafrei, and viafrei-database ships a squashed baseline (viafrei-web#2, docs/moved-from-viafrei.md)
+  it.skip("says the console sets a session cookie and audits the address — and both exist", () => {
     expect(sec).toContain("Sitzungs-Cookie");
     expect(sec).toContain("Prüfprotokoll");
     expect(read("packages/status/src/server/console-auth.ts")).toContain('SESSION_COOKIE = "__Host-vf_console"');

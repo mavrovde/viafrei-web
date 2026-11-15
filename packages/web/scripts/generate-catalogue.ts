@@ -19,11 +19,11 @@ import { readFileSync, writeFileSync } from "node:fs";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
 import { conditionAsRegistered, creditParts } from "@viafrei/ingest";
-import { ATTRIBUTION, holdsNoData, licenceTextOf } from "../../mcp/src/presentation/attribution.js";
-import { RATE_LIMITED_CODE, SESSION_NOT_FOUND } from "../../mcp/src/server/app.js";
-import { serverCard, type ServerCard } from "../../mcp/src/server/server-card.js";
+import { ATTRIBUTION, holdsNoData, licenceTextOf } from "../../../.pinned/app/packages/mcp/dist/src/presentation/attribution.js";
+import { RATE_LIMITED_CODE, SESSION_NOT_FOUND } from "../../../.pinned/app/packages/mcp/dist/src/server/app.js";
+import { serverCard, type ServerCard } from "../../../.pinned/app/packages/mcp/dist/src/server/server-card.js";
 import { licenceClassOf, type LicenceClass } from "../src/site/licence-classes.js";
-import { connectInMemory } from "../../mcp/src/server/testing.js";
+import { connectInMemory } from "../../../.pinned/app/packages/mcp/dist/src/server/testing.js";
 import { berlinDay } from "../src/site/lastmod-map.js";
 
 export type Catalogue = {

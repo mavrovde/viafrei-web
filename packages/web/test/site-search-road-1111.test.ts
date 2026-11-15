@@ -4,9 +4,9 @@
  * renderer's over its own `roadHits`, so the shape the shell parses cannot drift from the one the digest writes.
  */
 import { describe, expect, it } from "vitest";
-import { roadHits, SEARCH_KINDS } from "../../digest/src/analysis/site-search.js";
-import { landOf } from "../../digest/src/cards/shared/html.js";
-import { renderSiteSearch } from "../../digest/src/presentation/site-search-html.js";
+import { roadHits, SEARCH_KINDS } from "../../../.pinned/app/packages/digest/dist/src/analysis/site-search.js";
+import { landOf } from "../../../.pinned/app/packages/digest/dist/src/cards/shared/html.js";
+import { renderSiteSearch } from "../../../.pinned/app/packages/digest/dist/src/presentation/site-search-html.js";
 import { HEADER_SITE_KINDS, mergeSuggest } from "../src/lib/header-suggest.js";
 import { DIGEST_KINDS, parseDigest, renderResults } from "../src/lib/site-search.js";
 import { t } from "../src/i18n/index.js";

@@ -11,7 +11,7 @@ export default defineConfig({
   test: {
     include: ["packages/web/e2e/**/*.e2e.ts"],
     environment: "node",
-    setupFiles: ["./packages/ingest/src/platform/offline-setup.ts"],
+    setupFiles: ["./.pinned/app/packages/ingest/dist/platform/offline-setup.js"],
     testTimeout: 60_000,
     hookTimeout: 60_000,
     fileParallelism: false,

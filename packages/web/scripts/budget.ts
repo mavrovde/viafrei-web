@@ -81,7 +81,7 @@ import { motorwayPath } from "../src/site/motorways.js";
 import { startRealDigest } from "../e2e/real-digest.js";
 import { AUTOHOF_CHARGING_SLUG, AUTOHOF_FUEL_SLUG, AUTOHOF_POINTS } from "../e2e/energy-autohof.js";
 import { energyPath } from "../src/site/energy.js";
-import { ENERGY_POINTS_SHOWN } from "../../digest/src/presentation/energy-page-html.js";
+import { ENERGY_POINTS_SHOWN } from "../../../.pinned/app/packages/digest/dist/src/presentation/energy-page-html.js";
 import { startShell } from "../e2e/server.js";
 import { startAsksStub } from "../e2e/asks-stub.js";
 import { execFileSync } from "node:child_process";

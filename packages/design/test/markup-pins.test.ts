@@ -27,11 +27,10 @@ export const REASONS = {
   escaping: "proves a value was escaped, or an injected tag is absent, in the bytes sent — a parsed document would read the tag as an element and hide the defect",
   csp: "the nonce on a script tag is the CSP contract on the exact bytes the middleware rewrites",
   feed: "a sitemap or Atom element, an external contract its crawlers read byte for byte",
-  provider: "a provider's XML request or reply, or a redaction marker in an error message — not our markup",
   source: "the subject is SOURCE text (an Astro template, a TypeScript file), not rendered markup",
-  "own-escaping": "the expected value carries its own escaping or markup (`&#39;`, a `<span>` inside an interpolation), so a text read would compare different things",
   sequence: "pins the order or adjacency of several elements and text in one run (a table row, a swatch and its label, a literal cut inside a tag), which presence of each part does not express",
 } as const;
+// viafrei-web#2: `provider` and `own-escaping` are reasons only the digest, ingest and mcp pins used; they stay in viafrei
 type Reason = keyof typeof REASONS;
 
 /** `git grep` in its portable ERE: the two patterns of #922 B2. */
@@ -44,7 +43,7 @@ type Pin = { readonly file: string; readonly line: number; readonly literal: str
 function census(pattern: string): readonly Pin[] {
   let out = "";
   try {
-    out = execFileSync("git", ["-c", "color.ui=false", "grep", "-nE", pattern, "--", "packages"], { cwd: ROOT, encoding: "utf8" });
+    out = execFileSync("git", ["-c", "color.ui=false", "grep", "-nE", pattern, "--", "packages/web", "packages/design"] /* viafrei-web#2: the two packages that live here */, { cwd: ROOT, encoding: "utf8" });
   } catch (e) {
     // git grep exits 1 on no match; anything else is a failed read, not "no pins"
     if ((e as { status?: number }).status !== 1) throw e;
@@ -100,7 +99,7 @@ describe("#922 B2: markup is pinned as structure", () => {
 
   it("every literal pin that remains is listed with a reason, and every listed one still exists", () => {
     const found = pins();
-    expect(found.length, "the census read nothing — git grep pointed at the wrong tree?").toBeGreaterThanOrEqual(50);
+    expect(found.length, "the census read nothing — git grep pointed at the wrong tree?").toBeGreaterThanOrEqual(25) /* viafrei-web#2: 32 pins in packages/web and packages/design at the move (viafrei: 50 over five packages) */;
     expect(found.filter((p) => p.literal === "<unparsed>")).toEqual([]);
     expect(judge(found, allowList())).toEqual({ unlisted: [], stale: [] });
   });

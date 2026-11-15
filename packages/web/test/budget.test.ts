@@ -4,9 +4,9 @@ import { readFileSync } from "node:fs";
 import { AROUND_BLOCK, BOARD_STATIONS, ENERGY_PAGES, EXIT_PAGE, ENERGY_RAW_MAX, LIMITS, MOTORWAY_PROFILE, MOTORWAY_ROADS, PLACE_FILTER_QUERY, PLACE_PAGE, PLACE_PAGE_FILTERED, RUNGS, SHELL_SWITCHES, STATION_PAGE, crossingsOffProfile, crossingsShape, inspect, judge, lighterThanProfile, motorwayCards, motorwayPlan, subresources, type Measured } from "../scripts/budget.js";
 import { LIVE_LANGS } from "../src/site/pages.js";
 import { AUTOHOF_POINTS, autohofChargingPage, autohofFuelPage } from "../e2e/energy-autohof.js";
-import { ENERGY_POINTS_SHOWN, renderChargingPage, renderFuelPage } from "../../digest/src/presentation/energy-page-html.js";
-import { chargingFilterBarHtml, chargingFilterSummaryHtml, chargingNoMatchHtml } from "../../digest/src/cards/charging/filter-html.js";
-import { chargingCard } from "../../digest/src/cards/charging/judge.js";
+import { ENERGY_POINTS_SHOWN, renderChargingPage, renderFuelPage } from "../../../.pinned/app/packages/digest/dist/src/presentation/energy-page-html.js";
+import { chargingFilterBarHtml, chargingFilterSummaryHtml, chargingNoMatchHtml } from "../../../.pinned/app/packages/digest/dist/src/cards/charging/filter-html.js";
+import { chargingCard } from "../../../.pinned/app/packages/digest/dist/src/cards/charging/judge.js";
 import { chargingFilterOf, type ChargingFacetRow } from "@viafrei/ingest";
 import { all } from "@viafrei/design/testing";
 

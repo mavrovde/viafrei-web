@@ -18,8 +18,8 @@ import { fileURLToPath } from "node:url";
 import { describe, expect, it } from "vitest";
 import { C, CONNECT_SOURCES } from "@viafrei/design";
 import { all, first, text } from "@viafrei/design/testing";
-import { MOTORWAY_EXTRAS_COPY } from "../../digest/src/presentation/i18n-motorway-extras.js";
-import { MCP_ENDPOINT_URL, askNoteHtml } from "../../digest/src/presentation/ask-note.js";
+import { MOTORWAY_EXTRAS_COPY } from "../../../.pinned/app/packages/digest/dist/src/presentation/i18n-motorway-extras.js";
+import { MCP_ENDPOINT_URL, askNoteHtml } from "../../../.pinned/app/packages/digest/dist/src/presentation/ask-note.js";
 import { t } from "../src/i18n/index.js";
 import { connectNoteHtml, endpointChipHtml } from "../src/lib/connect-note.js";
 import { COPIED_CLASS, ENDPOINT_COPY_EVENT, endpointCopyScript } from "../src/lib/endpoint-copy.js";
@@ -28,7 +28,7 @@ import { LIVE_LANGS } from "../src/site/pages.js";
 
 const SRC = join(dirname(fileURLToPath(import.meta.url)), "..", "src");
 const read = (p: string): string => readFileSync(join(SRC, p), "utf8");
-const DIGEST = join(dirname(fileURLToPath(import.meta.url)), "..", "..", "digest", "src", "presentation");
+const DIGEST = join(dirname(fileURLToPath(import.meta.url)), "..", "..", "..", ".pinned", "app", "packages", "digest", "dist", "src", "presentation");
 
 describe("one chip on every surface that shows the address (#1003)", () => {
   it("the shell's chip and note, in every language: the address, the copy name and the 'copied' word of the page's language", () => {
@@ -64,7 +64,7 @@ describe("one chip on every surface that shows the address (#1003)", () => {
     expect(read("layouts/ConnectPage.astro")).toContain('set:html={endpointChipHtml(lang, "connect")}');
     expect(read("components/Start.astro")).toContain("set:html={endpointChipHtml(lang, source)}");
     for (const f of ["layouts/ConnectPage.astro", "components/Start.astro", "components/Hero.astro", "components/Footer.astro"]) expect(read(f), f).not.toContain("{MCP_ENDPOINT}");
-    const extras = readFileSync(join(DIGEST, "motorway-extras-html.ts"), "utf8");
+    const extras = readFileSync(join(DIGEST, "motorway-extras-html.js"), "utf8");
     expect(extras).toContain('${endpointChipOf(lang, "motorway")}');
     expect(extras).not.toMatch(/safe\(MCP_ENDPOINT_URL\)/u);
   });

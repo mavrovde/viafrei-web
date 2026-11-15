@@ -13,10 +13,10 @@ import { afterAll, beforeAll, describe, expect, it } from "vitest";
 import { createServer, type ViteDevServer } from "vite";
 import { getViteConfig } from "astro/config";
 import { experimental_AstroContainer as AstroContainer } from "astro/container";
-import { chargingPageKeyedSlug, fuelPageKeyedSlug } from "../../ingest/src/index.js";
-import { renderChargingPage, renderFuelPage } from "../../digest/src/presentation/energy-page-html.js";
-import type { ChargingPage, FuelPage } from "../../digest/src/server/energy-page-service.js";
-import type { TileLang } from "../../digest/src/presentation/i18n.js";
+import { chargingPageKeyedSlug, fuelPageKeyedSlug } from "../../../.pinned/app/packages/ingest/dist/index.js";
+import { renderChargingPage, renderFuelPage } from "../../../.pinned/app/packages/digest/dist/src/presentation/energy-page-html.js";
+import type { ChargingPage, FuelPage } from "../../../.pinned/app/packages/digest/dist/src/server/energy-page-service.js";
+import type { TileLang } from "../../../.pinned/app/packages/digest/dist/src/presentation/i18n.js";
 import { SITE_ORIGIN } from "../src/site/endpoints.js";
 import { LIVE_LANGS, type Lang } from "../src/site/pages.js";
 

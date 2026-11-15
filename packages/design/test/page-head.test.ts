@@ -88,7 +88,8 @@ describe("one implementation (#1173 AC 10)", () => {
   }
   it("no package writes the pattern's markup itself", () => {
     const own: string[] = [];
-    for (const pkg of ["digest/src", "web/src", "status/src"])
+    for (const pkg of ["web/src"]) // viafrei-web#2: the digest and the status console are judged in viafrei
+     
       for (const f of files(join(ROOT, pkg))) if (/class="(?:statusline|topitems|jumps)(?:__[a-z]+)?[ "]/u.test(readFileSync(f, "utf8"))) own.push(f.slice(ROOT.length));
     expect(own).toEqual([]);
   });

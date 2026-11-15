@@ -5,10 +5,10 @@
  * not ours; and the page's own graph carries no live figure. Every fetch here is a stub.
  */
 import { describe, expect, it } from "vitest";
-import { roadRefOfId, parseRoadRef, roadPageId, type RoadRef } from "../../ingest/src/domain/roads/road-ref.js";
-import { renderRoadPage } from "../../digest/src/presentation/road-page-html.js";
-import { roadPageOf, roadPageSources } from "../../digest/src/analysis/road-page.js";
-import { ROAD_AT, roadRow } from "../../digest/src/server/road-service.test.support.js";
+import { roadRefOfId, parseRoadRef, roadPageId, type RoadRef } from "../../../.pinned/app/packages/ingest/dist/domain/roads/road-ref.js";
+import { renderRoadPage } from "../../../.pinned/app/packages/digest/dist/src/presentation/road-page-html.js";
+import { roadPageOf, roadPageSources } from "../../../.pinned/app/packages/digest/dist/src/analysis/road-page.js";
+import { ROAD_AT, roadRow } from "./digest-support/road-service.test.support.js";
 import { fetchRoadList, fetchRoadPage, resolveRoadPage, roadHeadOf, ROAD_HEAD_DESCRIPTION_LIMIT, ROAD_HEAD_TITLE_LIMIT } from "../src/lib/road-page.js";
 import { ROAD_LAND_SLUGS, isRoadId, roadAddress, roadLabelOfId, roadPath } from "../src/site/roads.js";
 import { roadJsonLd } from "../src/site/structured-data.js";

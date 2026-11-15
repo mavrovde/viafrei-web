@@ -12,8 +12,8 @@ import { describe, expect, it } from "vitest";
 const STYLES = join(import.meta.dirname, "..", "src", "styles");
 const site = readFileSync(join(STYLES, "site.css"), "utf8");
 const base = readFileSync(join(import.meta.dirname, "..", "src", "layouts", "Base.astro"), "utf8");
-const L10N = join(import.meta.dirname, "..", "..", "digest", "src", "presentation", "l10n");
-const MAP = readFileSync(join(import.meta.dirname, "..", "..", "digest", "src", "presentation", "map-context.ts"), "utf8");
+const L10N = join(import.meta.dirname, "..", "..", "..", ".pinned", "app", "packages", "digest", "dist", "src", "presentation", "l10n");
+const MAP = readFileSync(join(import.meta.dirname, "..", "..", "..", ".pinned", "app", "packages", "digest", "dist", "src", "presentation", "map-context.js"), "utf8");
 
 /** Each catalogue's map caption after #1099: the old "without the street network" phrase is false wherever streets are drawn. */
 const CAPTIONS: Readonly<Record<string, string>> = {
@@ -55,11 +55,11 @@ describe("#1099: the streets are stroked lines, never filled shapes", () => {
   });
 
   it("every catalogue's map caption is exactly its own schematic-map sentence, with no claim about streets", () => {
-    const files = readdirSync(L10N).filter((f) => /^[a-z]{2}\.ts$/.test(f));
+    const files = readdirSync(L10N).filter((f) => /^[a-z]{2}\.js$/.test(f));
     expect(files.length).toBe(22);
     expect(Object.keys(CAPTIONS).sort()).toEqual(files.map((f) => f.slice(0, 2)).sort());
     for (const [lang, caption] of Object.entries(CAPTIONS)) {
-      const text = readFileSync(join(L10N, `${lang}.ts`), "utf8");
+      const text = readFileSync(join(L10N, `${lang}.js`), "utf8");
       const found = /map: \{ title: "[^"]*", desc: "[^"]*", caption: "([^"]*)"/u.exec(text)?.[1];
       expect(found, lang).toBe(caption);
     }

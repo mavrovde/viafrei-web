@@ -12,9 +12,9 @@ import { clearHomeKept } from "../src/lib/home-kept.js";
 import type { FetchLike } from "../src/lib/tiles.js";
 import { LIVE_LANGS, pathFor } from "../src/site/pages.js";
 import { t } from "../src/i18n/index.js";
-import { STATION_TOP_STALE_S } from "../../digest/src/server/station-service.js";
-import { STATION_COPY } from "../../digest/src/presentation/i18n-station.js";
-import { renderStationTop } from "../../digest/src/presentation/station-top-html.js";
+import { STATION_TOP_STALE_S } from "../../../.pinned/app/packages/digest/dist/src/server/station-service.js";
+import { STATION_COPY } from "../../../.pinned/app/packages/digest/dist/src/presentation/i18n-station.js";
+import { renderStationTop } from "../../../.pinned/app/packages/digest/dist/src/presentation/station-top-html.js";
 
 const BLOCK = renderStationTop("de", { newest: new Date("2026-10-27T19:38:00Z"), rows: [{ slug: "koeln-hbf", name: "Köln Hbf", cancelled: 2, late: 0, alerts: 0, lifts_out: 0 }], alertSources: [] }, new Date("2026-10-27T19:40:00Z"), 6482);
 const answer = (status: number, body: string): FetchLike => () => Promise.resolve(new Response(body, { status, headers: { "content-type": "text/html; charset=utf-8" } }));

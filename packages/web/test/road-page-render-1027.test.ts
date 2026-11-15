@@ -17,10 +17,10 @@ import { createServer, type ViteDevServer } from "vite";
 import { getViteConfig } from "astro/config";
 import { experimental_AstroContainer as AstroContainer } from "astro/container";
 import { all, text as nodeText } from "@viafrei/design/testing";
-import { roadRefOfId, type RoadRef } from "../../ingest/src/domain/roads/road-ref.js";
-import { renderRoadPage } from "../../digest/src/presentation/road-page-html.js";
-import { roadPageOf, roadPageSources } from "../../digest/src/analysis/road-page.js";
-import { ROAD_AT, roadRow } from "../../digest/src/server/road-service.test.support.js";
+import { roadRefOfId, type RoadRef } from "../../../.pinned/app/packages/ingest/dist/domain/roads/road-ref.js";
+import { renderRoadPage } from "../../../.pinned/app/packages/digest/dist/src/presentation/road-page-html.js";
+import { roadPageOf, roadPageSources } from "../../../.pinned/app/packages/digest/dist/src/analysis/road-page.js";
+import { ROAD_AT, roadRow } from "./digest-support/road-service.test.support.js";
 import { SITE_ORIGIN } from "../src/site/endpoints.js";
 import { LIVE_LANGS, type Lang } from "../src/site/pages.js";
 

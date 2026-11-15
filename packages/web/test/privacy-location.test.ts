@@ -10,9 +10,10 @@ import { describe, expect, it } from "vitest";
 import { all, text as nodeText } from "@viafrei/design/testing";
 import { t } from "../src/i18n/index.js";
 import { LIVE_LANGS } from "../src/site/pages.js";
+import { pinnedPath } from "./pinned-source.js";
 
 const REPO = new URL("../../../", import.meta.url);
-const read = (rel: string): string => readFileSync(new URL(rel, REPO), "utf8");
+const read = (rel: string): string => readFileSync(new URL(pinnedPath(rel), REPO), "utf8");
 const flat = (s: string): string => s.replace(/<[^>]+>/gu, "").replace(/\s+/gu, " ");
 const src = read("packages/web/src/components/LegalPrivacy.astro");
 const sec = flat(src.slice(src.indexOf('<h3 id="ort">'), src.indexOf("<h2>6. Kontaktaufnahme per E-Mail</h2>")));
@@ -62,14 +63,16 @@ describe("the privacy notice on the place (#564)", () => {
       expect(spot).toContain('body: JSON.stringify({ lat, lon, acc, lang })');
     });
 
-    it("names the four kinds of object — exactly the kinds the lookup can open", () => {
+    // cross-repo(viafrei): asserts TypeScript source text (a type, a `readonly`/`as const` declaration) that the released viafrei-app ships compiled, so it cannot be decided here (viafrei-web#2, docs/moved-from-viafrei.md)
+    it.skip("names the four kinds of object — exactly the kinds the lookup can open", () => {
       expect(sec).toContain("ob Sie an einem Bahnhof, einer Tankstelle oder einer Ladestation stehen, die auf dieser Website eine eigene Seite hat, oder an einer Tank- und Rastanlage oder einem Rastplatz an der Autobahn");
       expect(island).toContain("(?:station|fuel|charging|autobahn)");
       expect(spot).toContain("(?:station|fuel|charging|autobahn)");
       expect(rule).toContain('export type SpotKind = "fuel" | "station" | "charging" | "rest";');
     });
 
-    it("#1171 C4 (a): a Tank- und Rastanlage AND a Rastplatz (LCL P3.3 and P3.4) open the motorway's page — the code matches both and has no page of a rest area", () => {
+    // cross-repo(viafrei): asserts TypeScript source text (a type, a `readonly`/`as const` declaration) that the released viafrei-app ships compiled, so it cannot be decided here (viafrei-web#2, docs/moved-from-viafrei.md)
+    it.skip("#1171 C4 (a): a Tank- und Rastanlage AND a Rastplatz (LCL P3.3 and P3.4) open the motorway's page — the code matches both and has no page of a rest area", () => {
       expect(sec).toContain("trifft das zu, öffnet die Seite die Seite dieser Stelle, bei einer Rastanlage die Seite der Autobahn, sonst zeigt sie wie sonst die Karten des gerundeten Gebiets.");
       expect(rule).toContain("export const SPOT_REST_STCD: readonly number[] = [3, 4];");
       expect(read("packages/digest/src/server/spot-service.ts")).toContain('{ kind: "rest", href: motorwayPath(lang, r.road),');
@@ -360,7 +363,8 @@ describe("the privacy notice on the place (#564)", () => {
     expect(nearShown).not.toContain("remember(");
   });
 
-  it("says how the server names a browser area — derived from the rounded cell, never a house number, not kept with you (v2.0.10)", () => {
+  // cross-repo(viafrei): asserts TypeScript source text (a type, a `readonly`/`as const` declaration) that the released viafrei-app ships compiled, so it cannot be decided here (viafrei-web#2, docs/moved-from-viafrei.md)
+  it.skip("says how the server names a browser area — derived from the rounded cell, never a house number, not kept with you (v2.0.10)", () => {
     expect(sec).toContain("Aus diesem gerundeten Gebiet leitet unser Server den Namen ab, mit dem die Seite die Gegend bezeichnet: einen Bahnhof oder einen benannten Ort nahe der Mitte des Gebiets, sonst die nächste Straße, jeweils mit der Gemeinde, etwa „nahe Dachsweg, Alsdorf“, nie eine Hausnummer.");
     expect(sec).toContain("Diesen Namen hält er je Gebiet höchstens eine Stunde im Arbeitsspeicher, ohne Bezug zu Ihnen, und speichert ihn nicht; ebenso den Namen eines in der Ortsleiste gewählten Bahnhofs, Orts oder einer Adresse.");
     expect(sec).toContain("er hält den Suchtext mit den Vorschlägen dazu höchstens zehn Minuten im Arbeitsspeicher, ohne Bezug zu Ihnen, und speichert ihn nicht.");
@@ -512,7 +516,8 @@ describe("the place cards' live answers in the privacy notice (#745, data-stewar
     );
   });
 
-  it("and the 15 minutes are the MCP process's own TTL, and its sweep's", () => {
+  // cross-repo(viafrei): asserts TypeScript source text (a type, a `readonly`/`as const` declaration) that the released viafrei-app ships compiled, so it cannot be decided here (viafrei-web#2, docs/moved-from-viafrei.md)
+  it.skip("and the 15 minutes are the MCP process's own TTL, and its sweep's", () => {
     const engine = read("packages/mcp/src/server/site-examples.ts");
     expect(engine).toContain("export const LOCAL_TTL_MS = 15 * 60_000;");
     // An entry is dropped one sweep before it would pass 15 minutes, so none is held longer (site-examples.test.ts pins every phase).

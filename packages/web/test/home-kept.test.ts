@@ -16,7 +16,7 @@ import { MOTORWAY_FRAGMENT_CACHE_BYTES, clearMotorwayFragments, fetchMotorwayPag
 import { MOTORWAY_TOP_KEPT_SECONDS, clearHomeKept, homeKeptCapacity, homeKeptSize } from "../src/lib/home-kept.js";
 import { PANEL_DEADLINE_MS } from "../src/lib/fill.js";
 import { LIVE_LANGS } from "../src/site/pages.js";
-import { MOTORWAY_STALE_MAX_SECONDS } from "../../digest/src/server/motorway-service.js";
+import { MOTORWAY_STALE_MAX_SECONDS } from "../../../.pinned/app/packages/digest/dist/src/server/motorway-service.js";
 
 const CADENCE_S = 60;
 const tile = (id: string, state = "ok", n = "1"): string =>

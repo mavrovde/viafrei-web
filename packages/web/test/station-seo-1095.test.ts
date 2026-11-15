@@ -12,9 +12,9 @@
  *    robots.txt blocks no station page in any group (the fuel stays behind `/fragment/`).
  */
 import { describe, expect, it } from "vitest";
-import { stationPageOf } from "../../digest/src/analysis/station-page.js";
-import { stationFactsHeader } from "../../digest/src/presentation/station-page-html.js";
-import type { StationRecordRow } from "../../digest/src/queries/station-page.sql.js";
+import { stationPageOf } from "../../../.pinned/app/packages/digest/dist/src/analysis/station-page.js";
+import { stationFactsHeader } from "../../../.pinned/app/packages/digest/dist/src/presentation/station-page-html.js";
+import type { StationRecordRow } from "../../../.pinned/app/packages/digest/dist/src/queries/station-page.sql.js";
 import { t } from "../src/i18n/index.js";
 import { stationFactsOf } from "../src/lib/station.js";
 import { FRAGMENT_DISALLOW, llmsFullTxt, llmsTxt, robotsTxt, serverCard } from "../src/site/discovery.js";

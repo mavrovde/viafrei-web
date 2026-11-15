@@ -15,9 +15,10 @@
  */
 import { readFileSync } from "node:fs";
 import { describe, expect, it } from "vitest";
+import { pinnedPath } from "./pinned-source.js";
 
 const REPO = new URL("../../../", import.meta.url);
-const read = (rel: string): string => readFileSync(new URL(rel, REPO), "utf8");
+const read = (rel: string): string => readFileSync(new URL(pinnedPath(rel), REPO), "utf8");
 
 const privacy = read("packages/web/src/components/LegalPrivacy.astro");
 const start = privacy.indexOf('<p id="nutzungsstatistik">');
@@ -100,7 +101,8 @@ describe("the recipient sentence, per render (#536, steward condition d)", () =>
     expect(common).toContain("Soweit dabei überhaupt personenbezogene Daten verarbeitet werden");
   });
 
-  it("the no-tag sentence is true because the export is off without GOOGLE_TAG", () => {
+  // cross-repo(viafrei): asserts TypeScript source text (a type, a `readonly`/`as const` declaration) that the released viafrei-app ships compiled, so it cannot be decided here (viafrei-web#2, docs/moved-from-viafrei.md)
+  it.skip("the no-tag sentence is true because the export is off without GOOGLE_TAG", () => {
     expect(read("packages/ingest/src/cli/usage-analytics.ts")).toMatch(/c\.measurementId === undefined \|\| c\.measurementId\.trim\(\) === ""\) return "GOOGLE_TAG is unset/u);
   });
 });

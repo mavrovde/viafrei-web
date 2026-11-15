@@ -5,8 +5,8 @@
  */
 import { runInNewContext } from "node:vm";
 import { afterAll, beforeAll, describe, expect, it } from "vitest";
-import { renderSuggestions } from "../../digest/src/presentation/place-suggest-html.js";
-import { resetStationSlugs, setStationSlugs } from "../../digest/src/analysis/station-slugs.js";
+import { renderSuggestions } from "../../../.pinned/app/packages/digest/dist/src/presentation/place-suggest-html.js";
+import { resetStationSlugs, setStationSlugs } from "../../../.pinned/app/packages/digest/dist/src/analysis/station-slugs.js";
 import { cellKey } from "../src/location/ladder.js";
 import { INLINE_SCRIPTS } from "../src/lib/inline-scripts.js";
 import { RECENT_KINDS_JS, RECENT_STATION_M, recentKindsScript } from "../src/lib/recent-kinds.js";

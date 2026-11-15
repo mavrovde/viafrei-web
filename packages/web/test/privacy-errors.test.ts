@@ -8,7 +8,7 @@
  * Read as text (tests may read the register; the web runtime imports nothing
  * from the database-holding workspaces — check_web_boundary.sh).
  */
-import { readFileSync } from "node:fs";
+import { readdirSync, readFileSync } from "node:fs";
 import { describe, expect, it } from "vitest";
 import { MESSAGE_MAX_CHARS, STACK_MAX_BYTES } from "../src/lib/log-mask.js";
 
@@ -19,7 +19,8 @@ const privacy = read("packages/web/src/components/LegalPrivacy.astro");
 const start = privacy.indexOf('<h3 id="fehlermeldungen">');
 const section = privacy.slice(start, privacy.indexOf('<h2 id="besucherzaehlung">', start));
 const collector = read("the host error collector");
-const migration = read("db/migrations/0132_error_events.sql");
+// viafrei-web#2: migration 0132 as the pinned viafrei-database release carries it — squashed into its baseline
+const migration = read(`.pinned/database/db/baseline/${readdirSync(new URL(".pinned/database/db/baseline/", REPO)).find((f) => f.endsWith("_baseline.sql")) ?? "missing"}`);
 
 describe("Fehlermeldungen unserer Dienste (#741 T12)", () => {
   it("exists once, at the end of section 3, and the MCP paragraph points at it", () => {

@@ -14,7 +14,7 @@ import { fileURLToPath } from "node:url";
 import { describe, expect, it } from "vitest";
 import { C, CONNECT_SOURCES } from "@viafrei/design";
 import { all, first, text, wellFormed } from "@viafrei/design/testing";
-import { MOTORWAY_EXTRAS_COPY } from "../../digest/src/presentation/i18n-motorway-extras.js";
+import { MOTORWAY_EXTRAS_COPY } from "../../../.pinned/app/packages/digest/dist/src/presentation/i18n-motorway-extras.js";
 import { t } from "../src/i18n/index.js";
 import { connectGuideHref, connectNoteHtml } from "../src/lib/connect-note.js";
 import { CONNECT_CLIENT_IDS, NOTE_CLIENTS, clientAnchor, connectClients } from "../src/site/connect-clients.js";

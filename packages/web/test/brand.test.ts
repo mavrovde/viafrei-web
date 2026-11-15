@@ -44,7 +44,8 @@ describe("one brand line, held equal everywhere (#935 AC 4, AC 9)", () => {
     await client.close();
   });
 
-  it("the README: H1 ViaFrei, the tagline as the subtitle, the pitch as the first paragraph, then the connect snippet", () => {
+  // cross-repo(viafrei): viafrei's README.md is the product's front page; this repository's README is the site's (viafrei-web#2, docs/moved-from-viafrei.md)
+  it.skip("the README: H1 ViaFrei, the tagline as the subtitle, the pitch as the first paragraph, then the connect snippet", () => {
     const lines = read("README.md").split("\n");
     expect(lines[0]).toBe("# ViaFrei");
     expect(lines[2]).toBe(`**${TAGLINE_EN}**`);
@@ -54,12 +55,14 @@ describe("one brand line, held equal everywhere (#935 AC 4, AC 9)", () => {
 
   it("the package descriptions carry the tagline — the root's with the pitch", () => {
     const desc = (rel: string): string => (JSON.parse(read(rel)) as { description?: string }).description ?? "";
-    expect(desc("package.json")).toBe(`${TAGLINE_EN}. ${PITCH_EN}`);
+    // viafrei-web#2: the root package.json and the digest, ingest, mcp and status packages are viafrei's (its brand.test.ts
+    // holds them); the one package description this repository owns is the site's
     const tail = TAGLINE_EN.replace(/^The /, "the ");
-    for (const p of ["digest", "ingest", "mcp", "status", "web"]) expect(desc(`packages/${p}/package.json`), p).toMatch(new RegExp(`^ViaFrei, ${tail}: \\S`));
+    for (const p of ["web"]) expect(desc(`packages/${p}/package.json`), p).toMatch(new RegExp(`^ViaFrei, ${tail}: \\S`));
   });
 
-  it("the project briefs open with it", () => {
+  // cross-repo(viafrei): viafrei's CLAUDE.md and .claude/PLAYBOOK.md (viafrei-web#2, docs/moved-from-viafrei.md)
+  it.skip("the project briefs open with it", () => {
     expect(read("CLAUDE.md").split("\n")[2]).toContain(TAGLINE_EN);
     // The PLAYBOOK's §0 opens with it — found by its heading, not by a line
     // number, so a paragraph added above §0 (#1059) does not move the check.

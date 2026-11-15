@@ -40,13 +40,14 @@ describe("#1158 allNone: the one all/none control", () => {
   });
 
   it("no runtime file writes an all/none hook in markup of its own — every surface goes through allNone", () => {
-    const files = tracked(["packages/digest/src/**/*.ts", "packages/web/src/**/*.ts", "packages/web/src/**/*.astro", "packages/web/src/**/*.svelte", "packages/status/src/**/*.ts"]).filter((f) => !/\.test\.ts$|\/generated\//.test(f));
+    const files = // viafrei-web#2: the site is the one surface in this repository; viafrei sweeps the digest and the status console
+    tracked(["packages/web/src/**/*.ts", "packages/web/src/**/*.astro", "packages/web/src/**/*.svelte"]).filter((f) => !/\.test\.ts$|\/generated\//.test(f));
     expect(files.length).toBeGreaterThan(50);
     const hooks = new RegExp(`class="[^"]*\\b(?:${ALL_NONE_HOOKS.join("|")}|motorway__layeracts)\\b`);
     const found = files.filter((f) => hooks.test(readFileSync(join(ROOT, f), "utf8")));
     expect(found).toEqual([]);
     // and each surface does call it
-    for (const f of ["packages/web/src/lib/topic-filter.ts", "packages/web/src/lib/motorway-filter.ts", "packages/digest/src/presentation/motorway-layers-html.ts"]) expect(readFileSync(join(ROOT, f), "utf8"), f).toMatch(/\ballNone\(/);
+    for (const f of ["packages/web/src/lib/topic-filter.ts", "packages/web/src/lib/motorway-filter.ts"]) expect(readFileSync(join(ROOT, f), "utf8"), f).toMatch(/\ballNone\(/);
   });
 
   it("no stylesheet styles a hook, and exactly one rule set styles the shared control", () => {

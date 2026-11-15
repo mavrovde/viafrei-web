@@ -6,7 +6,7 @@
  */
 import { describe, expect, it } from "vitest";
 import { MOTORWAY_KINDS } from "@viafrei/digest";
-import { PLACE_CARD_IDS } from "../../digest/src/analysis/place.js";
+import { PLACE_CARD_IDS } from "../../../.pinned/app/packages/digest/dist/src/analysis/place.js";
 import { CARD_EVENT_IDS, CARD_STEP_MAX } from "../src/analytics/events.js";
 import { cardMoreEvent } from "../src/analytics/listener.js";
 import { PAGER_JS } from "../src/lib/card-more.js";

@@ -11,10 +11,10 @@
  * OWN renderer (`renderChargingPage` / `renderFuelPage`) behind its own routes; only the page service is planted.
  */
 import { chargingPageKeyedSlug, fuelPageKeyedSlug } from "@viafrei/ingest";
-import type { ChargingPage, EnergyPageService, FuelPage } from "../../digest/src/server/energy-page-service.js";
-import type { ChargingPointSqlJson } from "../../digest/src/cards/shared/sql-charging.js";
-import { ENERGY_POINTS_SHOWN } from "../../digest/src/presentation/energy-page-html.js";
-import { failed } from "../../digest/src/queries/read-result.js";
+import type { ChargingPage, EnergyPageService, FuelPage } from "../../../.pinned/app/packages/digest/dist/src/server/energy-page-service.js";
+import type { ChargingPointSqlJson } from "../../../.pinned/app/packages/digest/dist/src/cards/shared/sql-charging.js";
+import { ENERGY_POINTS_SHOWN } from "../../../.pinned/app/packages/digest/dist/src/presentation/energy-page-html.js";
+import { failed } from "../../../.pinned/app/packages/digest/dist/src/queries/read-result.js";
 
 /** The hub's charge points: well past 20 (the AC's "20+") and past the page's one-by-one list. */
 export const AUTOHOF_POINTS = ENERGY_POINTS_SHOWN + 20;

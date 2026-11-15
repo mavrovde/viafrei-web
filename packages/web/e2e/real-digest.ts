@@ -65,8 +65,8 @@ import {
   LIVE_FEEDS_CHECKED_SQL,
 } from "@viafrei/ingest";
 import { LIVE_MAP_STATIONS_SQL, LIVE_MAP_WARNINGS_SQL } from "@viafrei/digest";
-import { CHARGING_FACETS_SQL, CHARGING_NEAR_FILTERED_SQL } from "../../digest/src/cards/charging/sql.js";
-import { createFilteredCharging } from "../../digest/src/server/charging-filter-service.js";
+import { CHARGING_FACETS_SQL, CHARGING_NEAR_FILTERED_SQL } from "../../../.pinned/app/packages/digest/dist/src/cards/charging/sql.js";
+import { createFilteredCharging } from "../../../.pinned/app/packages/digest/dist/src/server/charging-filter-service.js";
 import {
   CHARGING_LIVENESS_SQL,
   CHARGING_NEAR_SQL,
@@ -130,11 +130,11 @@ import { MAP_TOWNS } from "./real-towns.js";
 import { MOTORWAY_CITIES_SQL, PLACES_MOTORWAYS_SQL, PLACE_NEIGHBOURS_SQL, crossingLamp, type MotorwayCityRow, type PlaceMotorwayRow, type PlaceNeighbourRow } from "@viafrei/digest";
 import { STATION_INDEX_SQL, STATION_RECORD_SQL, STATION_SLUG_OWNER_SQL, STATION_TOP_ALERTS_SQL, STATION_TOP_DHIDS_SQL, STATION_TOP_DISRUPTION_SQL, STATION_TOP_SQL, STATION_VERSION_SQL, createStationService, type StationIndexRow, type StationRecordRow, type StationTopRow } from "@viafrei/digest";
 // the board's plan statement and its group: not part of the digest's public surface, so read from its source (as motorway-routes.test.ts does)
-import { BOARD_GROUP, STATION_ARRIVALS_PLAN_SQL, STATION_BOARD_PLAN_SQL, STATION_BOARD_URBAN_PLAN_SQL, STATION_LINES_SQL, URBAN_GROUP } from "../../digest/src/queries/station-board.sql.js";
-import { STATION_KVB_UNITS_SQL } from "../../digest/src/queries/station-lifts.sql.js";
-import { STATION_NEIGHBOURS_SQL } from "../../digest/src/queries/station-page.sql.js";
-import { STATION_NEARBY_M, STATION_ROADS_OUT_M } from "../../digest/src/queries/station-nearby-read.js";
-import { STREET_NEAR_EACH_SQL } from "../../digest/src/queries/place-label.sql.js";
+import { BOARD_GROUP, STATION_ARRIVALS_PLAN_SQL, STATION_BOARD_PLAN_SQL, STATION_BOARD_URBAN_PLAN_SQL, STATION_LINES_SQL, URBAN_GROUP } from "../../../.pinned/app/packages/digest/dist/src/queries/station-board.sql.js";
+import { STATION_KVB_UNITS_SQL } from "../../../.pinned/app/packages/digest/dist/src/queries/station-lifts.sql.js";
+import { STATION_NEIGHBOURS_SQL } from "../../../.pinned/app/packages/digest/dist/src/queries/station-page.sql.js";
+import { STATION_NEARBY_M, STATION_ROADS_OUT_M } from "../../../.pinned/app/packages/digest/dist/src/queries/station-nearby-read.js";
+import { STREET_NEAR_EACH_SQL } from "../../../.pinned/app/packages/digest/dist/src/queries/place-label.sql.js";
 import { ROAD_PAGE_LIST_SQL, ROAD_PAGE_SQL, createRoadService, type RoadPageListRow, type RoadPageRow } from "@viafrei/digest";
 import { buildDigest, createApp, createExitWalker, setPlaceSlugs, type CityAutobahnJamRow, type CityPoliceJamRow, type CityJamsRows, type DigestService, type DigestSnapshot, type StationRow } from "@viafrei/digest";
 
@@ -1848,7 +1848,7 @@ export async function startRealDigest(
 // Land's largest towns. Kept to this one block and one spread on the `createApp` line, so the lanes that also extend
 // this fixture merge without touching each other's lines. (An `import` is hoisted wherever it is written.)
 import { createStateService } from "@viafrei/digest";
-import { stateDb } from "../../digest/src/server/state-service.test.support.js";
+import { stateDb } from "../test/digest-support/state-service.test.support.js";
 
 function stateDeps(): { readonly states: ReturnType<typeof createStateService> } {
   const db = stateDb({ tick: new Date(NOW.getTime() - 120_000), cities: POPULAR_PLACES.map((p) => ({ ags: p.ags, name: p.name })) });
@@ -1870,9 +1870,9 @@ function energyDeps(kind: "autohof" | undefined): { readonly energy: EnergyPageS
 }
 
 import { chargingPageKeyedSlug } from "@viafrei/ingest";
-import type { ChargingPage, EnergyPageService } from "../../digest/src/server/energy-page-service.js";
-import { chargingNearRowOf } from "../../digest/src/cards/shared/sql-charging.js";
-import { ENERGY_SITEMAP_PART } from "../../digest/src/queries/energy-pages.sql.js";
+import type { ChargingPage, EnergyPageService } from "../../../.pinned/app/packages/digest/dist/src/server/energy-page-service.js";
+import { chargingNearRowOf } from "../../../.pinned/app/packages/digest/dist/src/cards/shared/sql-charging.js";
+import { ENERGY_SITEMAP_PART } from "../../../.pinned/app/packages/digest/dist/src/queries/energy-pages.sql.js";
 
 type PlantedSite = (typeof CHARGING_SITES)[number];
 const siteSlug = (x: PlantedSite): string => chargingPageKeyedSlug({ sourceFeed: x.source_feed, siteId: x.site_id, operator: x.operator, name: x.name, city: x.city, street: x.street });

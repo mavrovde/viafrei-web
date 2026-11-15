@@ -14,9 +14,9 @@
  *  - a Land's English name altered in `site/states.ts` → "the table is the ingest's" red.
  */
 import { describe, expect, it } from "vitest";
-import { LAENDER, LAND_SLUGS, landBySlug, landIndexPath, landPagePath, type Land } from "../../ingest/src/domain/places/laender.js";
-import { statePageOf, stateIndexOf, stateListOf, type StateRead } from "../../digest/src/analysis/state-page.js";
-import { renderStateIndex, renderStatePage, stateListText } from "../../digest/src/presentation/state-page-html.js";
+import { LAENDER, LAND_SLUGS, landBySlug, landIndexPath, landPagePath, type Land } from "../../../.pinned/app/packages/ingest/dist/domain/places/laender.js";
+import { statePageOf, stateIndexOf, stateListOf, type StateRead } from "../../../.pinned/app/packages/digest/dist/src/analysis/state-page.js";
+import { renderStateIndex, renderStatePage, stateListText } from "../../../.pinned/app/packages/digest/dist/src/presentation/state-page-html.js";
 import { fetchStateList, resolveStateIndex, resolveStatePage, stateHeadOf, STATE_HEAD_DESCRIPTION_LIMIT, STATE_HEAD_TITLE_LIMIT } from "../src/lib/state-page.js";
 import { STATES, isStateSlug, stateAddress, statePath } from "../src/site/states.js";
 import { statesLangXml } from "../src/site/sitemaps.js";

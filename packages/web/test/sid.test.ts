@@ -11,7 +11,7 @@
  */
 import { SID_ACCEPT_TOKEN } from "@viafrei/ingest";
 import { describe, expect, it } from "vitest";
-import { SID_ROUTE as DIGEST_SID_ROUTE } from "../../digest/src/server/app.js";
+import { SID_ROUTE as DIGEST_SID_ROUTE } from "../../../.pinned/app/packages/digest/dist/src/server/app.js";
 import { INLINE_SCRIPTS } from "../src/lib/inline-scripts.js";
 import { carriesSid, SID_ACCEPT, SID_DEADLINE_MS, SID_DIGEST_PATH, SID_JS, SID_ROUTE, sidRoute } from "../src/lib/sid.js";
 import type { FetchLike } from "../src/lib/tiles.js";

@@ -8,7 +8,7 @@
  *  - `card_refresh` (card, manual|auto, changed|unchanged) is in the consented event list (C4).
  */
 import { describe, expect, it } from "vitest";
-import { CARD_REFRESH_SECONDS } from "../../digest/src/cards/refresh.js";
+import { CARD_REFRESH_SECONDS } from "../../../.pinned/app/packages/digest/dist/src/cards/refresh.js";
 import { CARD_REFRESH_HEADERS, REFRESH_JS, cardRefreshRoute, cardRefreshScript, cardRefreshTarget, carriesRefresh } from "../src/lib/card-refresh.js";
 import { INLINE_SCRIPTS } from "../src/lib/inline-scripts.js";
 import { cardRefreshEvent } from "../src/analytics/listener.js";

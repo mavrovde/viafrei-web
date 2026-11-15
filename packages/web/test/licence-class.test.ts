@@ -5,7 +5,7 @@
  */
 import { describe, expect, it } from "vitest";
 import contract from "../src/generated/contract.json" with { type: "json" };
-import { ATTRIBUTION, holdsNoData } from "../../mcp/src/presentation/attribution.js";
+import { ATTRIBUTION, holdsNoData } from "../../../.pinned/app/packages/mcp/dist/src/presentation/attribution.js";
 import { LICENCE_CLASSES, licenceClassOf } from "../src/site/licence-classes.js";
 
 const credited = Object.entries(ATTRIBUTION).filter(([, row]) => !holdsNoData(row));

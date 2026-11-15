@@ -1,6 +1,6 @@
 {
   "name": "@viafrei/web",
-  "version": "2.6.17",
+  "version": "0.0.0",
   "description": "ViaFrei, the German Real-Time Mobility Context Platform for AI: the viafrei.de site shell (Astro SSR with Svelte islands). Reads no database — tiles come from packages/digest as HTML fragments.",
   "private": true,
   "type": "module",
@@ -17,9 +17,6 @@
     "@axe-core/playwright": "4.13.0",
     "@types/pngjs": "6.0.5",
     "@viafrei/design": "*",
-    "@viafrei/digest": "*",
-    "@viafrei/ingest": "*",
-    "@viafrei/mcp": "*",
     "astro": "7.4.7",
     "chrome-launcher": "1.2.2",
     "lighthouse": "13.5.0",

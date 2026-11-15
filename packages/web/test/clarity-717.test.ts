@@ -34,11 +34,12 @@ import { readEnv } from "../src/lib/env.js";
 import { CLARITY_ORIGINS, contentSecurityPolicy } from "../src/security/csp.js";
 import { MOTORWAY_REGISTER, motorwayPath } from "../src/site/motorways.js";
 import { ANALYTICS_PAGES, CLARITY_DYNAMIC_PAGES, LIVE_LANGS, measurementOf } from "../src/site/pages.js";
+import { pinnedPath } from "./pinned-source.js";
 
 const WEB = new URL("../", import.meta.url).pathname;
 const ROOT = join(WEB, "..", "..");
 const read = (p: string): string => readFileSync(join(WEB, p), "utf8");
-const readRoot = (p: string): string => readFileSync(join(ROOT, p), "utf8");
+const readRoot = (p: string): string => readFileSync(join(ROOT, pinnedPath(p)), "utf8");
 /** A fixture id: the right shape, never the real project's. */
 const FIXTURE = "vfprobe717";
 const NONCE = "abcdefghijklmnopqrstuv";

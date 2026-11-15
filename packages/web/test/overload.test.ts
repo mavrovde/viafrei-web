@@ -20,9 +20,10 @@ import { DEGRADED_HEADER, DEGRADED_REFRESH_MAX_S, DEGRADED_WAIT_PARAM, degradedP
 import { clearHeldSitemaps, sitemapAnswer } from "../src/lib/sitemap-held.js";
 import { withAgentClass } from "../src/lib/agent-class.js";
 import { NGINX_RANGE_CHECKED, requestAgentClass, VERIFIED_BOT_HEADER } from "../src/overload/verified-class.js";
+import { pinnedPath } from "./pinned-source.js";
 
 const REPO = fileURLToPath(new URL("../../../", import.meta.url));
-const read = (rel: string): string => readFileSync(join(REPO, rel), "utf8");
+const read = (rel: string): string => readFileSync(join(REPO, pinnedPath(rel)), "utf8");
 const walk = (dir: string, out: string[] = []): string[] => {
   for (const e of readdirSync(dir)) {
     if (e === "node_modules" || e === "dist" || e === "build" || e === "generated" || e.startsWith(".")) continue;
@@ -289,7 +290,7 @@ describe("crawlers by address, not by user agent (P7, P8, P9)", () => {
   });
 
   it("P8: no public resolver and no setServers in web, digest or deploy", () => {
-    const files = [...walk(join(REPO, "packages/web/src")), ...walk(join(REPO, "packages/digest/src")), ...walk(join(REPO, "deploy")), ...walk(join(REPO, "the infra copy"))];
+    const files = [...walk(join(REPO, "packages/web/src")), ...walk(join(REPO, ".pinned/app/packages/digest/dist/src")), ...walk(join(REPO, "the infra copy"))];
     const bad = /setServers|(?<![\w.])(?:8\.8\.8\.8|8\.8\.4\.4|1\.1\.1\.1|1\.0\.0\.1|9\.9\.9\.9)(?![\w.])|dns\.google|cloudflare-dns|dns\.quad9/;
     expect(files.length).toBeGreaterThan(100);
     expect(files.filter((f) => bad.test(readFileSync(f, "utf8"))).map((f) => f.slice(REPO.length))).toEqual([]);
@@ -531,12 +532,12 @@ describe("one purpose, no record (P1, P5)", () => {
   /** A file outside the challenge that names the pass cookie. */
   const readers = (files: string[]): string[] => files.filter((f) => /vf_pass(?![a-z])/.test(readFileSync(f, "utf8")));
   it("no module outside src/overload reads the pass cookie's name", () => {
-    const runtime = [...walk(join(REPO, "packages/web/src")), ...walk(join(REPO, "packages/digest/src")), ...walk(join(REPO, "packages/status/src")), ...walk(join(REPO, "packages/ingest/src")), ...walk(join(REPO, "packages/mcp/src"))];
+    const runtime = [...walk(join(REPO, "packages/web/src")), ...walk(join(REPO, ".pinned/app/packages/digest/dist/src")), ...walk(join(REPO, ".pinned/app/packages/status/dist/src")), ...walk(join(REPO, ".pinned/app/packages/ingest/dist")), ...walk(join(REPO, ".pinned/app/packages/mcp/dist/src"))];
     const allowed = new Set([join(REPO, "packages/web/src/overload/pass.ts"), join(REPO, "packages/web/src/components/LegalPrivacy.astro")]);
     expect(readers(runtime).filter((f) => !allowed.has(f)).map((f) => f.slice(REPO.length))).toEqual([]);
     // deploy: the edge forwards it and nothing else names it — the compose edge and its k3s twin (#1245), read from
     //  since the infra split (mavrovde/viafrei-infra#1); viafrei-infra holds the whole edge
-    expect(readers([...walk(join(REPO, "deploy")), ...walk(join(REPO, "the infra copy"))]).map((f) => f.slice(REPO.length)).sort()).toEqual(["the cluster manifests", "the cluster manifests", "the edge shell proxy rules", "the edge configuration"]);
+    expect(readers([...walk(join(REPO, "the infra copy"))]).map((f) => f.slice(REPO.length)).sort()).toEqual(["the cluster manifests", "the cluster manifests", "the edge shell proxy rules", "the edge configuration"]);
   });
   it("the scan can say no: a planted reader is found", () => {
     expect(/vf_pass(?![a-z])/.test('const p = cookies.get("__Host-vf_pass");')).toBe(true);
