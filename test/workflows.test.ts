@@ -32,7 +32,8 @@ const SIBLING_PINS: Record<string, string> = {
   "googleapis/release-please-action": "45996ed1f6d02564a971a2fa1b5860e934307cf7",
   "ossf/scorecard-action": "fa7117db83c52d787ae5a89f350999701505d78e",
   "sigstore/cosign-installer": "756fe2d284c7292c4e9b62c8a28f1e5629c59532",
-  "SonarSource/sonarqube-scan-action": "4d1dc0c91ee400dcf8a6dddf2f705ac36542e304",
+  // v8.4.1, the commit of the upstream tag v8.4.1, newer than viafrei-api main's v8.4.0 (4d1dc0c…).
+  "SonarSource/sonarqube-scan-action": "e805d875275f728fac1885b413934be6d7c63f65",
 };
 
 describe("the workflows", () => {
