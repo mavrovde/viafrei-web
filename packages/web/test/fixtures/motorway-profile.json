@@ -1,0 +1,45 @@
+{
+  "about": "#1064: the production profile of the motorway pages, read off https://viafrei.de read-only on 2026-10-25 (/de/autobahn/a1, /de/autobahn/a3, /de/autobahn/a7). `cards` is each card's entry count (the card header's <data class=\"mwk__n\">), the MAXIMUM over the three pages. The page budget (packages/web/scripts/budget.ts) refuses, as 'could not check', a measured motorway page any of whose cards carries fewer entries than this: a fixture lighter than production is a budget over markup that never rendered. Counts only, no production row: the fixture's rows are invented (e2e/real-digest.ts, e2e/real-motorway.ts, scale 'production'). Raise a count when production grows; never lower one to make the gate pass.",
+  "measured": "2026-10-25",
+  "pages": [
+    "/de/autobahn/a1",
+    "/de/autobahn/a3",
+    "/de/autobahn/a7"
+  ],
+  "cards": {
+    "closures": 8,
+    "jams": 8,
+    "weather": 20,
+    "roadweather": 12,
+    "roadworks": 46,
+    "planned": 49,
+    "crossings": 29,
+    "messages": 31,
+    "parking": 84,
+    "charging": 40,
+    "cities": 160,
+    "cameras": 8,
+    "detours": 8
+  },
+  "calibration": {
+    "about": "The fixture's heaviest page against production's heaviest at the commit that introduced this file: A1 with a location (the IP rung), Node gzip at its default level, as the gate measures. Production's figure is the median of four reads that day; it moves with the traffic. Recorded, not enforced: the gate's floor is the entry counts above, because a byte floor would refuse every legitimate reduction.",
+    "production": {
+      "page": "/de/autobahn/a1",
+      "raw": 615609,
+      "gzip": 99566
+    },
+    "fixture": {
+      "page": "/de/autobahn/a1 [A1] [ip]",
+      "raw": 639920,
+      "gzip": 95944
+    }
+  },
+  "crossings": {
+    "about": "#1061: the crossings card's motorway links, read off https://viafrei.de/de/autobahn/a1 read-only on 2026-10-25 (section#mwk-crossings: 29 rows, 31 links to the motorway met there, 24,366 B). A crossing meets one or two motorways; the gate refuses, as 'could not check', a measured motorway page whose shown crossing rows carry fewer links than production's rate (links / rows, rounded down over the rows shown) or any row with more than `maxPerRow` — a fixture whose interchanges meet every motorway is a budget over markup production never renders. Raise a count when production grows; never lower one to make the gate pass.",
+    "measured": "2026-10-25",
+    "page": "/de/autobahn/a1",
+    "rows": 29,
+    "links": 31,
+    "maxPerRow": 3
+  }
+}

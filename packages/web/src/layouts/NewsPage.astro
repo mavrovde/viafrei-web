@@ -1,0 +1,106 @@
+---
+/**
+ * The News page (#588): `/<lang>/news` in every language (#892; `/de/neuigkeiten` before it).
+ *
+ * Three kinds of entry, each under its own type badge:
+ *   - "New on ViaFrei": approved entries of `src/news/entries.ts`, drafted from
+ *     the CHANGELOG and the credits registry (`scripts/news-draft.ts`), each with
+ *     one sentence, a real question and its sources' lines from the register;
+ *   - "Plans": the open issues the owner labelled `planned`, as `kind: "plan"`
+ *     entries — "planned", no date, a question the tool will answer once it
+ *     ships, no source lines (the section and its chip are left out while it is
+ *     empty);
+ *   - traffic: long closures in force with a stated end, embedded server-side
+ *     from the digest's `/internal/news/traffic` fragment — our own rows under
+ *     their own source's line, gone once their end has passed (the digest
+ *     judges that with its clock at every render). The shell reads no database.
+ *
+ * The filter chips are in-page anchors (no script). One language per page
+ * (#449): an entry without text in this language is not shown here.
+ */
+import Base from "./Base.astro";
+import PageHead from "../components/PageHead.astro";
+import NewsItem from "../components/NewsItem.astro";
+import { t } from "../i18n/index.js";
+import { readEnv } from "../lib/env.js";
+import { fetchNewsTraffic } from "../lib/news.js";
+import { feedPath } from "../news/atom.js";
+import { PAGE_HEAD_COPY } from "@viafrei/design";
+import { entriesFor } from "../news/entries.js";
+import type { Lang } from "../site/pages.js";
+
+interface Props {
+  lang: Lang;
+}
+const { lang } = Astro.props;
+const env = readEnv();
+const traffic = await fetchNewsTraffic(lang, { baseUrl: env.digestUrl, timeoutMs: env.tileTimeoutMs });
+const all = entriesFor(lang);
+const fresh = all.filter((e) => e.kind === "new");
+const plans = all.filter((e) => e.kind === "plan");
+/** #1179: how many entries stand before the fold. Every other one stays in the page, reachable with no script. */
+const SHOWN = 10;
+const older = fresh.slice(SHOWN);
+---
+
+<Base lang={lang} page="news" feed={{ href: feedPath(lang), title: `${t(lang, "newsPage.title")} — ${t(lang, "meta.siteName")}` }}>
+  {/* #1180: from 1024 px a dashboard — the head over the whole width, the news on the left, the plans and the long
+      closures on the right; no script, below 1024 px nothing moves */}
+  <div class="desk desk--news">
+  <section class="block page-head">
+    <div class="wrap">
+      <PageHead as="div" wrap={false} h1={t(lang, "newsPage.title")}>
+        <p class="lead">{t(lang, "newsPage.lead")}</p>
+      </PageHead>
+      <nav aria-label={t(lang, "newsPage.filterLabel")}>
+        <ul class="chips news-chips">
+          <li><a class="chip" href="#new">{t(lang, "newsPage.chipNew")}</a></li>
+          {plans.length > 0 && <li><a class="chip" href="#plans">{t(lang, "newsPage.chipPlans")}</a></li>}
+          <li><a class="chip" href="#traffic">{t(lang, "newsPage.chipTraffic")}</a></li>
+        </ul>
+      </nav>
+      <p class="news-feed"><a href={feedPath(lang)} type="application/atom+xml">{t(lang, "newsPage.feed")}</a></p>
+    </div>
+  </section>
+
+  <section class="block" id="new" aria-labelledby="new-h">
+    <div class="wrap">
+      <h2 id="new-h">{t(lang, "newsPage.newHeading")}</h2>
+      {fresh.length === 0 && <p>{t(lang, "newsPage.noEntries")}</p>}
+      <div class="news-list">
+        {
+          fresh.slice(0, SHOWN).map((e) => <NewsItem e={e} lang={lang} />)
+        }
+      </div>
+      {
+        older.length > 0 && (
+          <details class="news-older">
+            <summary>{PAGE_HEAD_COPY[lang].showAll.replace("{n}", String(fresh.length))}</summary>
+            <div class="news-list">{older.map((e) => <NewsItem e={e} lang={lang} />)}</div>
+          </details>
+        )
+      }
+    </div>
+  </section>
+
+  {
+    plans.length > 0 && (
+      <section class="block" id="plans" aria-labelledby="plans-h">
+        <div class="wrap">
+          <h2 id="plans-h">{t(lang, "newsPage.plansHeading")}</h2>
+          <p class="lead">{t(lang, "newsPage.plansLead")}</p>
+          <div class="news-list">{plans.map((e) => <NewsItem e={e} lang={lang} />)}</div>
+        </div>
+      </section>
+    )
+  }
+
+  <section class="block" id="traffic" aria-labelledby="traffic-h">
+    <div class="wrap">
+      <h2 id="traffic-h">{t(lang, "newsPage.trafficHeading")}</h2>
+      <p>{t(lang, "newsPage.trafficLead")}</p>
+      {traffic === null ? <p class="news-traffic news-traffic--error">{t(lang, "newsPage.trafficError")}</p> : <Fragment set:html={traffic} />}
+    </div>
+  </section>
+  </div>
+</Base>

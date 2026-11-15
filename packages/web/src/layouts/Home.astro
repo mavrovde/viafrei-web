@@ -1,0 +1,120 @@
+---
+/**
+ * The home, composed of its blocks in the order `HOME_BLOCKS` fixes (#375,
+ * reshaped by the owner's 2026-10-03 instructions on #379: the "Heute" strip
+ * and "Ihr Tag mit ViaFrei" replace the proof strip, the prompts and the
+ * "Was ViaFrei weiß" cards; #990, owner 2026-10-24: one topic in one place —
+ * the h1 first, the place's cards, every national figure in "Deutschland
+ * jetzt", the questions, the news, one "Loslegen" block). The live tiles are
+ * fetched here, ONCE per render, in parallel, each with its own deadline —
+ * a dead or slow digest costs one deadline and renders error tiles, never a
+ * missing page (#378 isolation).
+ */
+import { commuteScript } from "../lib/star.js";
+import Base from "./Base.astro";
+import EndpointCopy from "../components/EndpointCopy.astro";
+import Hero from "../components/Hero.astro";
+import Day from "../components/Day.astro";
+import Tools from "../components/Tools.astro";
+import Start from "../components/Start.astro";
+import Sources from "../components/Sources.astro";
+import Audience from "../components/Audience.astro";
+import PlaceBlock from "../components/PlaceBlock.astro";
+import NewsTeaser from "../components/NewsTeaser.astro";
+import NationalBand from "../components/NationalBand.astro";
+import { PANEL_DEADLINE_MS, fillScript } from "../lib/fill.js";
+import { readEnv } from "../lib/env.js";
+import { fetchTiles } from "../lib/tiles.js";
+import { fetchAsks } from "../lib/ask.js";
+import { fetchMotorwayTop } from "../lib/motorway.js";
+import { fetchStationTop } from "../lib/station-top.js";
+import { homePlace } from "../location/server.js";
+import { HOME_REFRESH_S, HOME_REFRESH_URL, pathFor, type Lang } from "../site/pages.js";
+import { isFilteredView, topicsOf, topicsQuery } from "../lib/topic-filter.js";
+import { chargingFilterForTopics, hasChargingFilter } from "../lib/charging-filter.js";
+import { blockHeaderPlace } from "../lib/header-place.js";
+import { deskScript, homeDesk } from "../lib/desk.js";
+import { liveMapLoaderScript } from "../lib/live-map.js";
+
+interface Props {
+  lang: Lang;
+}
+const { lang } = Astro.props;
+Astro.locals.hasScript = true;
+// #1050: the topic choice is the address's — a filtered view is kept out of every index (its canonical is the home's) and its reload keeps it.
+const topics = topicsOf(Astro.url.searchParams);
+// #1081: the charging card's filter (`ev_*`) is a choice too — noindex, forwarded to the place's cards, kept by the reload.
+const ev = chargingFilterForTopics(Astro.url.searchParams, topics);
+const filtered = isFilteredView(Astro.url.searchParams) || hasChargingFilter(Astro.url.searchParams);
+const choice = topicsQuery(topics);
+const refreshTo = `${choice === "" ? HOME_REFRESH_URL : `${HOME_REFRESH_URL}&${choice.slice(1)}`}${ev === "" ? "" : `&${ev}`}`;
+const env = readEnv();
+const o = { baseUrl: env.digestUrl, timeoutMs: env.tileTimeoutMs, mapPlatform: Astro.locals.mapPlatform };
+// The tiles and the IP rung's place in parallel, each under the panel deadline (#564, render-then-fill): a panel that
+// misses it is a placeholder the fill script (`lib/fill.ts`) fetches in the background, so the page answers in about half a second
+// whatever a source is doing. The IP rung asks for the place's fresh fuel prices too (owner 2026-10-12).
+// 2.1.16 (#716 C1): the motorways most affected now, the digest's fragment under the same deadline — a slow or failed
+// one is simply left out (the index link in RoadLinks stays), never a broken page.
+// 2.1.17: the digest answers it from its last good render while the new one renders (`fragmentFresh`), and renders every language
+// before it listens, so the deadline no longer drops it after each Autobahn sweep.
+// #744: the live assistant answers, held in the MCP process's memory, under the same deadline — none is simply no answer.
+// #1087 part 2: the stations most affected now, under the same deadline; a miss is the kept block or its error state.
+const [tiles, here, top, asks, stationTop] = await Promise.all([
+  fetchTiles(lang, { ...o, deadlineMs: PANEL_DEADLINE_MS }),
+  homePlace(Astro.request.headers, lang, { ...o, geoipFile: env.geoipFile, asksUrl: env.mcpInternalUrl, method: Astro.request.method, url: Astro.request.url, ev }),
+  fetchMotorwayTop(lang, { ...o, timeoutMs: Math.min(o.timeoutMs, PANEL_DEADLINE_MS) }),
+  fetchAsks({ baseUrl: env.mcpInternalUrl, timeoutMs: Math.min(o.timeoutMs, PANEL_DEADLINE_MS) }),
+  fetchStationTop(lang, { ...o, timeoutMs: Math.min(o.timeoutMs, PANEL_DEADLINE_MS) }),
+]);
+// The home differs by visitor now: no shared cache may keep one person's place for another.
+Astro.locals.perVisitor = true;
+Astro.response.headers.set("Cache-Control", "private, no-store");
+Astro.response.headers.set("Vary", "Accept-Language, X-Forwarded-For");
+// #1153: the header's place row says what the place block found.
+const headerPlace = blockHeaderPlace(lang, { source: here.source, place: here.place, deferred: here.deferred ?? null, path: pathFor("start", lang) });
+---
+
+<Base lang={lang} page="start" place={headerPlace} refresh={HOME_REFRESH_S} refreshTo={refreshTo} robots={filtered ? "noindex, follow" : undefined}>
+  {/* #990: the h1 first, then the visitor's place ("Für <Ort>", local), then every national figure in one band ("Deutschland jetzt"), the questions, the news, and one "Loslegen" block */}
+  {/* #1088: the place block in the first screen — the hero's head (tagline, pitch, connect), the place, then the hero's rest */}
+  {/* #1180: from 1024 px a dashboard of three columns — the hero's head and the place on the left, the heat strip in the
+      middle and the connect block sticky on the right; "Deutschland jetzt" and the rest under those two
+      (`site.css`, "desktop"; `homeDesk`). Each column is a box the phone does not see (`display: contents` below
+      1024 px), so its order is the HTML's, as before. */}
+  <div class="desk desk--home">
+  <div class="desk__col desk__col--place">
+  {/* #1181 feature 4: the starred road's status card first, filled by the commute script from the device's own star (nothing without one) */}
+  <div class="wrap commute-slot" id="commute" hidden></div>
+  <script is:inline set:html={commuteScript(lang)} />
+  <Hero lang={lang} asks={asks} part="head" />
+  <PlaceBlock lang={lang} source={here.source} place={here.place} deferred={here.deferred ?? null} usedGeoIp={here.usedGeoIp} topics={topics} path={pathFor("start", lang)} />
+  </div>
+  {/* #1177: the place, Germany now, connecting in a minute, your day, the news, the tools, the sources */}
+  <div class="desk__heat" id="desk-heat"></div>
+  <div class="desk__col desk__col--now">
+  <NationalBand lang={lang} tiles={tiles} motorwayTop={top.kind === "ok" ? top.html : null} stationTop={stationTop.html} />
+  </div>
+  <div class="desk__col desk__col--ask">
+  {/* #1195: the column stretches over its row and this inner box sticks in it, so it ends with the row */}
+  <div class="desk__stick">
+  <Start lang={lang} />
+  </div>
+  </div>
+  <div class="desk__col desk__col--rest">
+  <Hero lang={lang} asks={asks} part="rest" />
+  <Day lang={lang} asks={asks} />
+  <NewsTeaser lang={lang} />
+  <Tools lang={lang} />
+  <Audience lang={lang} />
+  <Sources lang={lang} tiles={tiles} />
+  </div>
+  </div>
+  {/* #1180: the desktop's collapse, the heat strip and the row ↔ marker pairing (nothing below 1024 px) */}
+  <script is:inline set:html={deskScript(homeDesk(lang))} />
+  {/* #564 render-then-fill: the panels that missed the first render's deadline are fetched in the background */}
+  <script is:inline set:html={fillScript()} />
+  {/* #1183 part 5: the national live map in "Deutschland jetzt", asked by the browser (the home's byte budget) */}
+  {top.kind === "ok" && <script is:inline set:html={liveMapLoaderScript(lang)} />}
+  {/* #1003: the endpoint chip's copy script, once for every chip on the page */}
+  <EndpointCopy />
+</Base>

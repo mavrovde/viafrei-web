@@ -1,0 +1,185 @@
+---
+/**
+ * A motorway page (#715, 2.1.13): `/<lang>/autobahn/<road>` (#892), and its
+ * stretches as paths below it (`/<lang>/autobahn/a7/nesselwang-to-kempten`). The header line and the lists are the digest's
+ * fragment (`/internal/motorway/<road>`), which reads the per-motorway summary
+ * for the header and `check_road_status {road}`'s pinned statement for the
+ * lists, and puts the "ask your assistant" block AFTER the information.
+ *
+ * Reads no database (A2). Measured since #716 (G1): with consent, by the
+ * explicit `measure` flag, a page view of the canonical path only (G3). A
+ * variant (a stretch, direction or layer choice in the query) is `noindex`
+ * with the bare page as its canonical, and carries the filter's GET form
+ * (`form-action 'self'`) and the one fuel script under the nonce. `no-store`: the page carries a
+ * per-request CSP nonce, so it is never cached whole — the fragment is cached
+ * by its ETag one level down (`lib/motorway.ts`). The language switcher points
+ * at the SAME motorway in every language (`dynamic.alternates`).
+ */
+import { chargingSubmitScript, keepChoicesInChargingForm, needsChargingSubmit } from "../lib/charging-filter.js";
+import Base from "./Base.astro";
+import EndpointCopy from "../components/EndpointCopy.astro";
+import { hasSearchBox, motorwaySearchScript } from "../lib/motorway-search.js";
+import RoadLinks from "../components/RoadLinks.astro";
+import NextStep from "../components/NextStep.astro";
+import AskBox from "../components/AskBox.astro";
+import Star from "../components/Star.astro";
+import { nextRoads, type AskAbout } from "../lib/next-step.js";
+import { t } from "../i18n/index.js";
+import { LIVE_LANGS, type Lang } from "../site/pages.js";
+import { canonicalMotorway, motorwayPath } from "../site/motorways.js";
+import { fitDescription, fitTitle, motorwayMeta } from "../site/meta.js";
+import { exitJsonLd, motorwayCrumbs, motorwayJsonLd } from "../site/structured-data.js";
+import Crumbs from "../components/Crumbs.astro";
+import { MOTORWAY_FUEL_FRAGMENT_ON, motorwayFuelScript } from "../lib/motorway-fuel.js";
+import { EXIT_SEGMENT, carriesMotorwayForm } from "../lib/motorway.js";
+import { motorwayHeadOf } from "../lib/motorway-head.js";
+import MotorwayPlace from "../components/MotorwayPlace.astro";
+import PageHead from "../components/PageHead.astro";
+import { aroundFirstRender, aroundReadVisitor, rebindOnMainSwap } from "../lib/motorway-around.js";
+import { readEnv } from "../lib/env.js";
+import { motorwayHeaderPlace } from "../lib/header-place.js";
+import { ampelSwapScript, liftAmpel, liftAroundAmpel } from "../lib/motorway-ampel.js";
+import { filterCardsOf, motorwayFilterHtml, motorwayFilterScript, showOf } from "../lib/motorway-filter.js";
+import { cardPagerScript, carriesPager } from "../lib/card-more.js";
+import { sidScript } from "../lib/sid.js";
+import { deskScript, roadDesk } from "../lib/desk.js";
+import AroundBlock from "../components/AroundBlock.astro";
+import type { ObjectArea } from "../lib/object-area.js";
+import { cardRefreshScript } from "../lib/card-refresh.js";
+import { topicsOf } from "../lib/topic-filter.js";
+import motorwayPageCss from "../styles/motorway-page.css?raw";
+import freshnessCss from "../styles/freshness.css?raw";
+
+interface Props {
+  lang: Lang;
+  road: string;
+  html: string;
+  /** A stretch, direction or layer choice in the address (#716). */
+  variant?: boolean;
+  /**
+   * The page's own address (#892): the road's, or a stretch's below it. Its
+   * canonical and its alternates: the junction slugs are the same in every
+   * language, so the other languages' address is the same tail under their prefix.
+   */
+  path?: `/${string}`;
+  /**
+   * #1188: an exit page's "In der Nähe" — the place cards around its junction (`lib/object-area.ts`), rendered after
+   * the junction itself through THE around block of every object page. Absent: the road's page, a stretch.
+   */
+  area?: ObjectArea;
+}
+const { lang, road, html: fragment, variant = false, path: own, area: exitArea } = Astro.props;
+// 2.1.17 (#716 search): the digest's per-motorway title, description and factual intro, read off the fragment; the catalogue's when it carries none.
+const head = motorwayHeadOf(road, fragment, lang);
+// #895: the Ampel goes to the top of the page, above the position bar (the digest renders it; the shell only moves it).
+const lifted = liftAmpel(head.html);
+const html = lifted.html;
+const fallback = motorwayMeta(road, lang);
+const meta = { title: fitTitle(head.title ?? fallback.title), description: fitDescription(head.description ?? fallback.description) };
+// #1028: the H1 is the search phrasing the title carries (without the brand suffix); the catalogue's when the fragment names none.
+// #1173: the H1 is the object's name (`PageHead`): the road, or the junction on an exit page; the title carries the search words.
+const h1 = head.exit !== null ? head.exit.name : road;
+// #716: the page allows a form to this origin exactly when the fragment it embeds carries the filter form; while the switch is on, the fuel view script.
+Astro.locals.hasForm = carriesMotorwayForm(html);
+// The page's scripts: the fuel view (while the switch is on), the Ampel swap and, since #1003, the endpoint chips' copy (EndpointCopy).
+Astro.locals.hasScript = true;
+const bare = motorwayPath(lang, road);
+const path = own ?? bare;
+const tail = path.slice(bare.length);
+// #1025: an exit page is the bare `exit-<no>-<name>` segment with no query; its robots are the digest's exit rule
+// (indexable only over live content), `noindex` when the fragment carries no verdict. Every other variant stays noindex.
+const exitPage = EXIT_SEGMENT.test(tail.replace(/^\//, "")) && [...Astro.url.searchParams.keys()].length === 0 && head.exit !== null;
+// #1188: the junction's block with its fuel card (or still loading, which may bring it) keeps the page out of every
+// archive, as on a station page
+// (the block's own topic choice is a query, so the junction is read off the segment, not off `exitPage`)
+const aroundArea = EXIT_SEGMENT.test(tail.replace(/^\//, "")) && head.exit !== null ? exitArea : undefined;
+const archive = aroundArea !== undefined && ((aroundArea.kind === "ok" && aroundArea.html.includes('id="pcard-fuel"')) || aroundArea.kind === "loading");
+const indexable = exitPage ? head.robots === "index, follow" : !variant;
+const robots = indexable ? (archive ? "noarchive" : undefined) : archive ? "noindex, follow, noarchive" : "noindex, follow";
+const refills = aroundArea?.kind === "loading";
+const exitRef = exitPage && head.exit !== null ? { name: head.exit.name, path, lat: head.exit.lat, lon: head.exit.lon } : null;
+const crumbs = motorwayCrumbs(lang, road, exitRef ?? undefined);
+// #1110 item 3: the "Weiter" row — an exit (or interchange) page leads with its own road, then the roads its cards name;
+// a road page names the roads its cards name but itself. The AI link asks about the junction, else the road.
+const nextAbout: AskAbout = exitRef !== null ? { kind: "exit", road, exit: exitRef.name } : { kind: "road", road };
+const next = nextRoads(lang, fragment, exitRef !== null ? { first: road } : { except: road });
+// #1110 item 1: an interchange page under any of its motorways names ONE address — the digest's `data-canonical`, the
+// same Kreuz under the motorway first in the register's order; its canonical, alternates and graph are that address's.
+const canonical = exitRef !== null && head.canonical !== null ? head.canonical : path;
+// 2.4.1 review S3: the exit graph reads the title of the meta only — its description is the motorway's deck line, never the live one.
+// The graph describes the canonical page, its crumbs under its own motorway.
+const canonicalRoad = canonical === path ? road : (canonicalMotorway(canonical.split("/")[3] ?? "") ?? road);
+const jsonLd = exitRef !== null ? exitJsonLd(lang, canonicalRoad, meta, { ...exitRef, path: canonical }) : motorwayJsonLd(lang, road, path);
+const alternates = Object.fromEntries(LIVE_LANGS.map((l) => [l, canonical !== path ? (canonical.replace(/^\/[a-z]{2}\//, `/${l}/`) as `/${string}`) : `${motorwayPath(l, road)}${tail}`])) as Record<Lang, `/${string}`>;
+Astro.response.headers.set("Cache-Control", "no-store");
+// #890: "around you" — while the switch is on (G5, `motorwayAroundOn`): the IP rung's approximate cell is answered in
+// the first HTML (never stored); the browser's rounded cell and a remembered choice are asked by the island after load.
+const env = readEnv();
+// The view tail of the path, without its leading slash: a stretch segment (it wins over the radius for the lists, and the
+// block says so, #890 § 4), a direction (`towards-…`, which orders the block and makes "Ihre Fahrt", #894), or both.
+const chosenStretch = tail.replace(/^\//, "") === "" ? null : tail.replace(/^\//, "");
+// The block is an extra on a page that must not wait for it (review 2.3.6): each of its reads waits at most the tile
+// deadline AND only what is left of the request's two seconds after the page's own read (#1166, `endsAt`) — too little
+// left and it is not asked at all. A slow or dead digest renders the page without it; the island still offers the position.
+// #1188: an exit page's "around" is its junction's (the block below the junction), never the visitor's position as well
+const around = await aroundFirstRender(Astro.request.headers, road, lang, Astro.url.searchParams, { baseUrl: env.digestUrl, timeoutMs: env.tileTimeoutMs, geoipFile: env.geoipFile, mapPlatform: Astro.locals.mapPlatform, endsAt: Astro.locals.budgetEndsAt }, undefined, chosenStretch);
+// #1205 review B1: a block placed by the visitor's address is about one client — the page is then never held for a crawler
+if (aroundReadVisitor(around)) Astro.locals.perVisitor = true;
+// #895: with a position the top shows ITS Ampel (radius, direction); the page's waits in a template for when the position goes.
+const aroundLift = around?.block == null ? null : liftAroundAmpel(around.block.html);
+const aroundHtml = aroundLift?.html ?? around?.block?.html ?? null;
+const topAmpel = aroundLift?.ampel ?? lifted.ampel;
+// #901 D3/D4/D9: the type filter, one box per card the fragment holds; `?show=` checks the boxes as asked. Rendered
+// hidden and shown by the script right after it, which runs before the cards below are parsed (no shift, D10).
+const filterBar = motorwayFilterHtml(lang, filterCardsOf(html), showOf(Astro.url.searchParams));
+// #901: the cards' and the filter's rules ride on this page only (the shared stylesheet is the home's budget too);
+// the middleware writes the request's nonce onto this <style> like onto every other.
+// 2.4.4 review B2: the charging block's filter sends itself on change (its Apply is in <noscript>); this page carries no
+// refresh script, so the rule rides alone — also when the around block may bring a charging card after the first render.
+const evSubmit = needsChargingSubmit({ refresh: false, html, swaps: around !== null });
+// #1153: what the around block found — the island's first state, and the header's place row ("Live für A7 · Ort").
+const aroundServer =
+  around === null
+    ? null
+    : ({ source: around.ip.source === "germany" ? "germany" : around.block === null ? (around.ip.source === "outside" ? "outside" : "none") : around.ip.source === "chosen" ? "chosen" : "ip", at: around.block?.key ?? null, label: around.block?.label ?? null } as const);
+const headerPlace = aroundServer === null ? undefined : motorwayHeaderPlace(lang, { road, server: aroundServer, html: aroundHtml, path: Astro.url.pathname });
+const pageCss = (motorwayPageCss + freshnessCss).replace(/\/\*[\s\S]*?\*\//g, "").replace(/\s+/g, " ").trim();
+---
+
+<Base lang={lang} page="motorways" measure={true} place={headerPlace} robots={robots} dynamic={{ ...meta, path: canonical, alternates, jsonLd }}>
+  <style is:inline slot="head" set:html={pageCss}></style>
+  <Crumbs lang={lang} crumbs={crumbs} />
+  {/* #1180: the desktop dashboard — one grid from 1024 px, the page's own blocks in the left column in their DOM order and
+      the road's map sticky in the right (`site.css`, "desktop"); below 1024 px the grid is not there and nothing moves. */}
+  <div class="desk desk--road">
+  <PageHead class="motorway-page__head" h1={h1} first={head.first}>
+    {head.intro !== null ? <p class="lead motorway__intro" set:html={head.intro} /> : <p class="lead">{exitRef !== null ? meta.description : t(lang, "seo.motorwayLead", { road })}</p>}
+    {head.note !== null && <p class="motorway__note" set:html={head.note} />}
+  </PageHead>
+  <Star lang={lang} path={bare} label={road} road={road} />
+  <NextStep lang={lang} roads={next} about={nextAbout} />
+  {topAmpel !== null && <div class="wrap ampel-slot" id="ampel-slot" set:html={topAmpel} />}
+  {around !== null && lifted.ampel !== null && <template id="ampel-whole" set:html={lifted.ampel} />}
+  {around !== null && <MotorwayPlace lang={lang} road={road} radiusKm={around.radiusKm} server={aroundServer!} html={aroundHtml} usedGeoIp={around.ip.usedGeoIp} stretch={chosenStretch} layers={around.layers} />}
+  {filterBar !== "" && <Fragment set:html={filterBar} />}
+  {(filterBar !== "" || carriesMotorwayForm(html)) && <script is:inline set:html={motorwayFilterScript(lang)} />}
+  <div class="wrap motorway-page" id="motorway-main" set:html={keepChoicesInChargingForm(html, Astro.url.searchParams)} />
+  {aroundArea !== undefined && <AroundBlock lang={lang} area={aroundArea} path={path} topics={topicsOf(Astro.url.searchParams)} slot="exit-around-slot" sid={false} />}
+  {refills && <script is:inline set:html={cardRefreshScript()} />}
+  {evSubmit && <script is:inline set:html={chargingSubmitScript()} />}
+  <RoadLinks lang={lang} here={bare} />
+  <AskBox lang={lang} about={nextAbout} />
+  </div>
+  {/* #1180: the desktop's collapse and the row ↔ marker pairing (nothing below 1024 px) */}
+  <script is:inline set:html={deskScript(roadDesk(lang))} />
+  {/* the fuel view (while its switch is on) and the Ampel swap; no element when neither is on (#1003 moved the copy out) */}
+  {(MOTORWAY_FUEL_FRAGMENT_ON || around !== null) && <script is:inline set:html={rebindOnMainSwap(MOTORWAY_FUEL_FRAGMENT_ON ? motorwayFuelScript() : "") + (around !== null ? ampelSwapScript() : "")} />}
+  {/* #996: the search as you type, when the fragment carries the box (the box is the GET form without it) */}
+  {hasSearchBox(html) && <script is:inline set:html={motorwaySearchScript()} />}
+  {/* #1061: the card pager — a fold opened loads the next entries (the fold keeps a no-script link) */}
+  {carriesPager(html) && <script is:inline set:html={cardPagerScript()} />}
+  {/* #707: the SID click — on every motorway page, because the filter swaps the parking card in after the first render */}
+  <script is:inline set:html={sidScript()} />
+  {/* #1003: the endpoint chip's copy script, once for every chip on the page */}
+  <EndpointCopy />
+</Base>

@@ -1,0 +1,26 @@
+---
+/** `/<lang>/place/<slug>` — a place page (#564 § 5, #892: the stored slug in every language): 404 for an unknown place; a name alone (#739) is a 302 to its one page or the 404 page listing its several. */
+import NotFound from "../../../layouts/NotFound.astro";
+import PlacePage from "../../../layouts/PlacePage.astro";
+import { isLang } from "../../../i18n/index.js";
+import { readEnv } from "../../../lib/env.js";
+import { unavailableAnswer } from "../../../lib/degraded.js";
+import { resolvePlacePage } from "../../../lib/place-page.js";
+import { placeOpenOf } from "../../../lib/card-more.js";
+import { isFilteredView, topicsOf } from "../../../lib/topic-filter.js";
+import { chargingFilterForTopics, hasChargingFilter } from "../../../lib/charging-filter.js";
+
+const lang = Astro.params["lang"] ?? "";
+if (!isLang(lang)) return Astro.rewrite("/404");
+const env = readEnv();
+// #1061: the no-script "?<card>=N" opens that card's first N pages in place; such a page is noindex, its canonical the page's own
+const open = placeOpenOf(Astro.url.searchParams);
+// #1081: the charging card's filter (`ev_*`), forwarded to the digest; any such key makes the page noindex (D2)
+const ev = chargingFilterForTopics(Astro.url.searchParams, topicsOf(Astro.url.searchParams));
+const a = await resolvePlacePage(lang, Astro.params["slug"] ?? "", { baseUrl: env.digestUrl, timeoutMs: env.placeTimeoutMs, mapPlatform: Astro.locals.mapPlatform, asksUrl: env.mcpInternalUrl, request: Astro.request, open, ev, endsAt: Astro.locals.budgetEndsAt });
+if (a.kind === "missing") return Astro.rewrite("/404");
+if (a.kind === "unavailable") return unavailableAnswer(lang, Astro.request);
+if (a.kind === "redirect") return Astro.redirect(a.to, a.temporary === true ? 302 : 301);
+---
+
+{a.kind === "choice" ? <NotFound lang={lang} choices={a.options} /> : <PlacePage lang={lang} place={a.place} slug={a.slug} opened={open !== null} topics={topicsOf(Astro.url.searchParams)} filtered={isFilteredView(Astro.url.searchParams) || hasChargingFilter(Astro.url.searchParams)} />}

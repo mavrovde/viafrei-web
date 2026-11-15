@@ -1,0 +1,22 @@
+---
+/**
+ * One credit line of the register (catalogue.json), German, as an `<li>`: the
+ * line linked to its source and the licence text linked beside it — or, for a
+ * licensor that prescribes WHICH words link WHERE (GN250: "BKG" and
+ * "dl-de/by-2-0", data-steward ruling 2026-10-07), exactly those links and
+ * nothing else; the text is the register's either way. A publisher's
+ * condition of use stands under it (#454).
+ */
+import catalogue from "../generated/catalogue.json" with { type: "json" };
+import { t } from "../i18n/index.js";
+import { datedCredit } from "../site/attribution-year.js";
+import type { Lang } from "../site/pages.js";
+
+type Credit = (typeof catalogue.credits)[number];
+type Props = { readonly c: Credit; readonly lang: Lang };
+const { c, lang } = Astro.props;
+// #804: a line naming the year of retrieval says the reader's Berlin year, by this request's clock.
+const text = datedCredit(c.text, new Date());
+---
+
+<li lang="de">{c.parts !== null ? c.parts.map((p) => (p.href === null ? p.text : <a href={p.href} rel="license noopener noreferrer">{p.text}</a>)) : <><a href={c.url} rel="noopener noreferrer">{text}</a>{c.licence !== null && <> · <a class="credit__licence" href={c.licence.url} rel="license noopener noreferrer" lang={lang}>{t(lang, "sources.licenceText")}</a></>}</>}{c.condition !== null && <><br /><span class="credit__condition">{c.condition}</span></>}</li>

@@ -1,0 +1,62 @@
+---
+/**
+ * What production answered to ONE example question (owner 2026-10-05: "All
+ * example requests must have the right response! Not only first."), rendered
+ * directly under the question it answers — the home's moments, the connect
+ * page's five questions and the fuel requests all use this one block, so
+ * `test/answers.test.ts` and `e2e/answers.e2e.ts` can hold every question to
+ * the same rule: a question element is followed by its `.qa-answer`.
+ *
+ * The WORDS come from the copy deck (`msg`), one per language; the figures and
+ * the proper names are the answer's (`site/examples.ts`), the same in every
+ * language, the names rendered `translate="no"` (#449). The head dates the
+ * answer — "Stand" in the page's words — or, for a fuel price, says it is an
+ * example of that evening ("Preise heute anders"). The credit lines are the
+ * register's, verbatim and German, with the licence-text link; a Tankerkönig
+ * answer carries the MTS-K note under them. Under the card stands the "works
+ * only with ViaFrei connected" note (#1001, `lib/connect-note.ts`).
+ */
+import CreditItem from "./CreditItem.astro";
+import type { ConnectSource } from "@viafrei/design";
+import catalogue from "../generated/catalogue.json" with { type: "json" };
+import register from "../generated/register.json" with { type: "json" };
+import { t, type MessageKey } from "../i18n/index.js";
+import { connectNoteHtml } from "../lib/connect-note.js";
+import type { MomentAnswer } from "../site/examples.js";
+import type { Lang } from "../site/pages.js";
+
+interface Props {
+  lang: Lang;
+  /** The deck key of the answer's words. */
+  msg: MessageKey;
+  answer: MomentAnswer;
+  /** Extra classes (the moments keep their own look). */
+  class?: string;
+  /** The surface, for the "works only with ViaFrei connected" note under the answer (#1001) and its click's `source`. */
+  source: ConnectSource;
+}
+const { lang, msg, answer, class: cls, source } = Astro.props;
+const HOLE = "\u0000";
+type Part = { readonly text: string; readonly name: boolean };
+const keys = Object.keys(answer.names);
+const holes = Object.fromEntries(keys.map((k, i) => [k, `${HOLE}${i}${HOLE}`]));
+const parts: readonly Part[] = t(lang, msg, { ...answer.values, ...holes })
+  .split(HOLE)
+  .map((s, i) => (i % 2 === 0 ? { text: s, name: false } : { text: answer.names[keys[Number(s)] ?? ""] ?? "", name: true }))
+  .filter((p) => p.text !== "");
+type Credit = (typeof catalogue.credits)[number];
+const credits = answer.credits.map((id) => catalogue.credits.find((c) => c.id === id)).filter((c): c is Credit => c !== undefined);
+const fuel = answer.credits.includes("tankerkoenig");
+---
+
+<div class:list={["qa-answer", cls]}>
+  <p class="qa-answer__head">
+    <strong>{t(lang, "day.answer.label")}</strong> · {fuel ? <strong class="qa-answer__fuel">{t(lang, "connectPage.live.fuelExample", answer.values)}</strong> : <span class="qa-answer__when">{t(lang, "day.answer.asOf", answer.values)}</span>}
+  </p>
+  <p class="qa-answer__text">{parts.map((p) => (p.name ? <span translate="no">{p.text}</span> : p.text))}</p>
+  <ul class="credits qa-answer__credits">
+    {credits.map((c) => <CreditItem c={c} lang={lang} />)}
+  </ul>
+  {fuel && <p class="qa-answer__note" lang="de">{register.mtskNote}</p>}
+</div>
+<Fragment set:html={connectNoteHtml(lang, source)} />

@@ -1,0 +1,114 @@
+/*
+ * #901: the motorway page's own rules — its cards (D5, D13) and its type filter (D3, D4, D10). Carried INLINE on the
+ * motorway page only (`layouts/MotorwayPage.astro`, under the request's nonce like every <style>), because site.css is
+ * the one stylesheet of every page and the home's 60 KB gzip budget pays for each byte of it.
+ *
+ * #1051 — THE CASCADE: this sheet is parsed BEFORE site.css. `Base.astro` renders the head slot (this <style>) and
+ * Astro appends the shared stylesheet's <link> (`renderHead()`) after it, just before </head>; so at EQUAL specificity
+ * the shared sheet wins (`.pcard` at site.css beat `.mwk--fold` and `.mwk--compact`, framing what was meant frameless).
+ * Every rule here that overrides a site.css rule on the same element is therefore scoped under the page's container,
+ * `.motorway-page` (#motorway-main): one class more, so it wins by construction — never `!important`, never by order.
+ * `test/motorway-page-css.test.ts` holds that rule.
+ */
+/* 2.4.1 (owner: "No more 2 seconds!"): an in-page jump on a motorway page — a search result, a junction or detour end — is
+   instant. site.css scrolls smoothly, and across a 17 000 px page that took over a second; :root out-specifies its html. */
+:root { scroll-behavior: auto; }
+/* #901 D3/D4/D10: the type filter — real checkboxes as 44 px chips (.btn for the actions), the live summary. */
+.mwf { margin-block: var(--s-3); }
+.mwf__set { margin: 0; padding: 0; border: 0; min-width: 0; }
+.mwf__legend, .mwf__sum { font-weight: var(--weight-strong); }
+.mwf__opts, .mwf__acts { display: flex; flex-wrap: wrap; align-items: center; gap: var(--s-2); margin: var(--s-2) 0; }
+.mwf__opt { min-height: var(--target); }
+.mwf__opt:has(:not(:checked)) { background: var(--surface); box-shadow: inset 0 0 0 1px var(--line); }
+.mwf__sum, .mwf__ampel { margin: 0; }
+/* #901 D5: the motorway page's cards — the home's pcard grid (.place__cards), several per row on a desktop, one column on a phone; the Ampel
+   stands above the grid at full width. A card hidden by the type filter carries the `hidden` attribute (D10). */
+.mwk-grid { margin-block: var(--s-3); }
+.mwk[hidden] { display: none; }
+.mwk p { margin: 0; }
+.mwk__n { font-size: var(--fs-0); color: var(--fg-muted); white-space: nowrap; }
+.mwk .motorway__list { margin: 0; grid-template-columns: minmax(0, 1fr); }
+/* D13: the person's place in the list — the --you swatch, a rule above and below, the items' badges. */
+.mwk__you .mw-key { margin-inline-end: var(--s-2); vertical-align: -0.1em; }
+.mwk__you { list-style: none; margin-inline-start: calc(-1 * var(--s-4)); padding: var(--s-2) 0; border-block: 2px solid var(--you); font-weight: var(--weight-strong); }
+.mwk__herelist { margin: var(--s-1) 0 0; padding-inline-start: var(--s-4); font-weight: normal; }
+.mwk__rel { display: inline-block; padding: 0 var(--s-2); border-radius: var(--r-pill); border: 1px solid var(--line); font-size: var(--fs-0); font-weight: var(--weight-strong); }
+.mwk__rel--ahead, .mwk__rel--here { border-color: var(--you); }
+.mwk__behind, .mwk__rel--behind { color: var(--fg-muted); }
+.mwk__behindbox .pcard__moresum { color: var(--fg-muted); }
+/* D13: the map's stretch ahead (the --you violet, soft) and behind (muted), under the line; their legend keys. */
+.mw-ahead, .mw-behind { fill: none; stroke-linejoin: round; stroke-linecap: round; }
+.mw-ahead { stroke: var(--you); stroke-opacity: 0.35; }
+.mw-behind { stroke: var(--fg-muted); stroke-opacity: 0.25; }
+.mw-key--ahead, .mw-key--behind { border-radius: 2px; }
+.mw-key--ahead { background: var(--you); opacity: 0.55; }
+.mw-key--behind { background: var(--fg-muted); opacity: 0.4; }
+/* #901 D6: the motorway parking card's lead chips (site.css holds the amenity ones), and the divider "Sie sind hier",
+   which no chip hides (its own rows inside it are judged one by one). */
+.amchips:has([value="truck"]:checked) ~ * li:not(:has(.pk-truck)),
+.amchips:has([value="free"]:checked) ~ * li:not(:has(.pk-free)) { display: none; }
+.amchips:has(:checked) ~ * li.mwk__you, .nbchips:has(:checked) ~ * li.mwk__you { display: list-item !important; }
+/* #901 D7 (N1-N8): "In der Nähe laut OpenStreetMap", its own group; CSS only over the nearby lines already shown.
+   While a chip is on, the share-alike and OSM car-park blocks are hidden (N7); the OSM line and the offer
+   (.pcard__nearsrc) never are (N4). */
+.nbchips { border: 0; margin-block-end: var(--s-2); }
+.nbchips legend, .nbchips p { margin: 0 0 var(--s-1); padding: 0; font-size: var(--fs-0); color: var(--fg-muted); }
+.nbchips p { display: none; flex-basis: 100%; }
+.nbchips:has(:checked) p { display: block; }
+.nbchips:has(:checked) ~ .pcard__osm,
+.nbchips:has([value="toilet"]:checked) ~ * li:not(:has(.nb-toilet)),
+.nbchips:has([value="shower"]:checked) ~ * li:not(:has(.nb-shower)),
+.nbchips:has([value="restaurant"]:checked) ~ * li:not(:has(.nb-restaurant)),
+.nbchips:has([value="snack"]:checked) ~ * li:not(:has(.nb-snack)),
+.nbchips:has([value="cafe"]:checked) ~ * li:not(:has(.nb-cafe)),
+.nbchips:has([value="shop"]:checked) ~ * li:not(:has(.nb-shop)),
+.nbchips:has([value="drinking_water"]:checked) ~ * li:not(:has(.nb-drinking-water)) { display: none; }
+/* #987: the kinds' icons (one sprite per page, currentColor, aria-hidden) beside each panel's title and the legend's and
+   the filter's labels; #986: every panel's freshness sign on its own line of the head (the sign itself: freshness.css). */
+.mwi { width: 1.15em; height: 1.15em; flex: none; vertical-align: -0.2em; margin-inline-end: 0.3em; color: var(--fg-muted); }
+.motorway-page .mwk__head { justify-content: flex-start; align-items: center; column-gap: var(--s-1); }
+.mwk__head .mwk__t { flex: 1 1 auto; }
+.mwk__head .fresh { flex-basis: 100%; }
+/* #987, #1051: the topics that hold nothing — ONE wrapped line at the END of the lists: the lead, a chip per topic (icon
+   and word, no frame, no count; each opens its coverage note with no script), one "checked" time. Baseline-aligned. */
+.motorway-page .mwk-quiet { margin-block: var(--s-3); display: flex; flex-wrap: wrap; align-items: baseline; gap: 0 var(--s-3); }
+.motorway-page .mwk-quiet__lead { margin: 0; font-weight: var(--weight-strong); }
+.motorway-page .mwk-chip { flex: 0 1 auto; min-width: 0; margin: 0; padding: 0; border: 0; box-shadow: none; background: none; }
+.motorway-page .mwk-chip[open] { flex-basis: 100%; }
+.motorway-page .mwk-chip > summary { display: inline-flex; flex-wrap: wrap; align-items: baseline; gap: 0 0.3em; cursor: pointer; list-style: none; }
+.motorway-page .mwk-chip__t { text-decoration: underline dotted; text-underline-offset: 0.2em; }
+.motorway-page .mwk-chip > summary::-webkit-details-marker { display: none; }
+.motorway-page .mwk-quiet__checked { margin: 0; font-size: var(--fs-0); color: var(--fg-muted); }
+/* 2.4.3: on a phone the quiet line is set at the label size, so a quiet motorway's seven chips stay within four lines at
+   390 px with the reference fonts (#1051; DejaVu at body size wrapped them to five). */
+/* 2.5.4 (owner 2026-11-02, "compact it"): with the messages and bridges panels answered a quiet road has up to nine
+   chips, five to six lines at 390 px — so on a phone the line is set at the caption size, the chips drop their icons
+   (the word stays; the icon stands on the grid's cards) and the gaps tighten: four lines on Linux/DejaVu, measured. */
+@media (max-width: 600px) {
+  .motorway-page .mwk-quiet { font-size: var(--fs-0); gap: 0 var(--s-2); }
+  .motorway-page .mwk-chip__s > .mwi { display: none; }
+}
+.mwk__foldbody { padding: var(--s-2) var(--s-3); border-inline-start: 2px solid var(--line); margin-block-start: var(--s-2); }
+/* #987: the reference panels (bridges, borders), compact at the end: one line per item, no card frame */
+.mwk-ref { margin-block: var(--s-4); border-block-start: 1px solid var(--line); padding-block-start: var(--s-3); }
+.mwk-ref__t { margin: 0 0 var(--s-2); font-weight: var(--weight-strong); }
+.motorway-page .mwk--compact { background: none; box-shadow: none; border: 0; padding: 0; margin-block-end: var(--s-3); }
+.mwk--compact .mwk__t { font-size: var(--fs-1); }
+.motorway-page .mwk__compact { padding-inline-start: var(--s-4); }
+/* #996–#999 (2.3.23): the search box and its grouped results, the links of the description, the crossings' lamps, the
+   cities' external marker and class, the junction list's Land and gap markers. */
+.mws { margin-block: var(--s-3); }
+.mws__form { display: flex; flex-wrap: wrap; align-items: center; gap: var(--s-2); }
+.mws__form input { min-height: var(--target); flex: 1 1 14em; }
+.mws__g { margin-block: var(--s-3) var(--s-1); font-size: var(--fs-1); }
+.mws__list { margin: 0; padding-inline-start: var(--s-4); }
+.mws__hit { margin-block: var(--s-1); }
+.mws__n, .mws__stand, .motorway__km, .mwc__stand { color: var(--fg-muted); font-size: var(--fs-0); }
+.mw-in { text-decoration-style: dotted; }
+.mwc__other { display: inline-flex; align-items: center; gap: var(--s-1); margin-inline-end: var(--s-2); }
+.mw-ext__mark { margin-inline-start: 0.2em; }
+.motorway__landmark { display: block; font-weight: var(--weight-strong); margin-block-start: var(--s-2); }
+.motorway__landmark:empty { display: none; }
+.motorway__gap { display: block; color: var(--fg-muted); font-style: italic; }
+/* #1180: the dashboard's filter chips are 32 px tall (WCAG 2.5.8 asks 24), so the bar takes fewer lines beside the map. */
+@media (min-width: 1024px) { .desk .mwf__opt { min-height: 32px; } .desk .mwf__opts { gap: var(--s-1) var(--s-2); } }

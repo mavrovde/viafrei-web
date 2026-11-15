@@ -1,0 +1,1274 @@
+{
+  "meta": {
+    "tagline": "Die Echtzeit-Mobilitätsplattform für KI in Deutschland",
+    "pitch": "ViaFrei gibt KI-Assistenten Echtzeit-Wissen über Deutschland. Bahn und Bus, Verkehr und Baustellen, Sprit, Laden, Parken und Wetter. Ein MCP. Kein API-Schlüssel. Keine Anmeldung.",
+    "description": "Stau, Sperrungen, Baustellen, Bahn, Parken, Laden und Tanken in Deutschland – live aus offenen Daten, als Antwort Ihres KI-Assistenten, jede Zahl mit Quelle.",
+    "siteName": "ViaFrei"
+  },
+  "a11y": {
+    "skip": "Zum Inhalt springen",
+    "mainNav": "Hauptnavigation",
+    "langNav": "Sprache wählen",
+    "currentLang": "aktuelle Sprache",
+    "sample": "Beispielwerte, keine Live-Daten",
+    "crumbs": "Sie sind hier"
+  },
+  "nav": {
+    "brand": "ViaFrei",
+    "claim": "Verkehrsdaten, gesprochen",
+    "tools": "Für Entwickler",
+    "cta": "Mit Ihrer KI verbinden",
+    "day": "Ihr Tag",
+    "start": "Startklar",
+    "ctaShort": "KI verbinden",
+    "ctaLabel": "ViaFrei mit Ihrem KI-Assistenten verbinden ({clients})"
+  },
+  "beta": {
+    "label": "Beta",
+    "short": "ViaFrei ist in der Beta: Antworten und Abdeckung können sich ändern, und die KI kann Fehler machen. Wichtige Angaben bitte bei der genannten Quelle prüfen.",
+    "more": "Was das heißt",
+    "sign": "Verkehrszeichen 101: Gefahrstelle",
+    "line": "Angaben bei der Quelle prüfen"
+  },
+  "hero": {
+    "lead": "Wie einen gut informierten Freund: Fährt mein Zug? Ist die Autobahn frei? Wo ist eine Ladesäule frei? ViaFrei liefert Ihrem Assistenten die Zahlen von heute, jede mit Quelle.",
+    "primary": "In einer Minute mit Ihrer KI verbinden",
+    "secondary": "Ihr Tag mit ViaFrei",
+    "clients": "Für:",
+    "phase": "Aufbauphase: Antworten sind Information, keine Rechtsauskunft.",
+    "trust": {
+      "free": "Kostenlos",
+      "account": "Kein Konto bei uns",
+      "app": "Keine extra App",
+      "sources": "Jede Zahl mit Quelle"
+    },
+    "connected": "Diese Live-Daten nutzt Ihr KI-Assistent nur, wenn ViaFrei mit ihm verbunden ist – ohne Verbindung antwortet er aus seinem Trainingswissen."
+  },
+  "sign": {
+    "label": "Beispielantwort, gekürzt",
+    "question": "Ist die A8 Richtung München frei?",
+    "answerBefore": "Zwischen Stuttgart und Ulm zwei Baustellen, keine Sperrung — die Strecke ist",
+    "answerHighlight": "frei",
+    "answerAfter": ".",
+    "meta": "Beispiel: So antwortet Ihr Assistent mit ViaFrei — gekürzt, mit Beispielwerten.",
+    "badge": "{road} – Autobahnseite"
+  },
+  "proof": {
+    "tiles": {
+      "reports": {
+        "title": "Meldungen auf Autobahnen"
+      },
+      "charging": {
+        "title": "Ladepunkte"
+      },
+      "lorry": {
+        "title": "Lkw-Stellplätze"
+      },
+      "lifts": {
+        "title": "Aufzüge und Fahrtreppen"
+      }
+    }
+  },
+  "tile": {
+    "error": "gerade nicht lesbar",
+    "errorNote": "Diese Quelle antwortet gerade nicht. Wir zeigen lieber nichts als eine alte Zahl als neue.",
+    "loading": "wird geladen …",
+    "loadingNote": "Diese Zahl kommt gleich. Sie wird nachgeladen, sobald die Quelle antwortet."
+  },
+  "tools": {
+    "heading": "Werkzeuge nach Thema",
+    "lead": "Ihr Assistent wählt das passende Werkzeug selbst. Die Liste kommt vom Server, nicht aus einem Prospekt.",
+    "showAll": "Alle {n} Werkzeuge anzeigen",
+    "groups": {
+      "roads": "Autobahn und Straße",
+      "rail": "Bahn",
+      "transit": "Nahverkehr",
+      "energy": "Laden und Tanken",
+      "places": "Orte und Adressen",
+      "rules": "Regeln und Wetter"
+    },
+    "count": "{n} Werkzeuge"
+  },
+  "connect": {
+    "heading": "In 60 Sekunden verbunden",
+    "lead": "Ein Endpunkt, kein Konto, kein Schlüssel. Wählen Sie Ihren Client und folgen Sie den Schritten.",
+    "endpointLabel": "MCP-Endpunkt (Streamable HTTP)",
+    "legacyLabel": "Für ältere Clients (HTTP + SSE)",
+    "clients": {
+      "claude": "Claude (Desktop und claude.ai)",
+      "chatgpt": "ChatGPT",
+      "other": "Andere MCP-Clients"
+    },
+    "draft": "Entwurf — diese Schritte sind noch nicht auf dem Client geprüft.",
+    "steps": {
+      "claude": {
+        "s1": "Einstellungen → Connectors → „Benutzerdefinierten Connector hinzufügen“.",
+        "s2": "Den Endpunkt oben einfügen und speichern.",
+        "s3": "Fragen Sie: „Ist die A8 Richtung München frei?“"
+      },
+      "chatgpt": {
+        "s1": "Einstellungen → Connectors → „Erstellen“ (Entwicklermodus).",
+        "s2": "Den Endpunkt oben als MCP-Server eintragen.",
+        "s3": "Im Chat den Connector auswählen und fragen."
+      },
+      "other": {
+        "s1": "Streamable HTTP auf dem Endpunkt oben; ältere Clients nutzen den SSE-Pfad.",
+        "s2": "Keine Authentifizierung in der Aufbauphase.",
+        "s3": "tools/list liefert den Katalog; jede Antwort trägt ihre Quelle."
+      }
+    },
+    "cta": "Zur Anleitung für Entwickler",
+    "showClients": "Schritte für Ihren Client anzeigen"
+  },
+  "sources": {
+    "heading": "Quellen und Vertrauen",
+    "lead": "Jede Kennzahl trägt die Quelle, die sie erlaubt — wörtlich und unübersetzt, auf der Kachel, die sie zeigt.",
+    "creditsLabel": "Die Quellen der Zahlen auf dieser Seite",
+    "creditsShow": "Alle {n} Quellenzeilen anzeigen",
+    "licenceText": "Lizenztext",
+    "notAnswered": {
+      "heading": "Was wir nicht beantworten",
+      "routing": "Keine Routenberechnung — wir sagen, was auf der Strecke los ist, nicht welche Sie fahren sollen.",
+      "legal": "Keine Rechtsauskunft — die Regelantworten nennen Quelle und Prüfdatum und sind Information.",
+      "fuelFeed": "Keine Preisdaten zum Weiterverwenden — Kraftstoffpreise sind Verbraucherinformation, keine Schnittstelle."
+    },
+    "privacy": {
+      "heading": "Datenschutz in drei Sätzen",
+      "s1": "Vor Ihrer Zustimmung lädt diese Seite keine fremde Schrift, kein fremdes Skript und kein fremdes Bild.",
+      "s2": "Besuche zählen wir ohne Cookies, nur als Tagessummen auf unserem eigenen Server; Google Analytics läuft nur, wenn Sie zustimmen.",
+      "s2Clarity": "Besuche zählen wir ohne Cookies, nur als Tagessummen auf unserem eigenen Server; Google Analytics und Microsoft Clarity laufen nur, wenn Sie zustimmen.",
+      "s3": "Ihr Assistent spricht mit unserem Server — wir speichern keine Konten und keine Profile."
+    }
+  },
+  "audience": {
+    "heading": "Für wen",
+    "travellers": {
+      "title": "Für Reisende",
+      "text": "Fragen Sie Ihren Assistenten vor der Fahrt, am Bahnsteig oder an der Ladesäule — und bekommen Sie eine Antwort mit Quelle.",
+      "cta": "So verbinden Sie sich"
+    },
+    "developers": {
+      "title": "Für Entwickler",
+      "text": "Ein MCP-Server über Streamable HTTP, ein öffentlicher Katalog, eine stdio-Bridge auf npm. Kein Schlüssel in der Aufbauphase.",
+      "cta": "Zur Dokumentation"
+    },
+    "business": {
+      "title": "Für Unternehmen",
+      "text": "Historie jeder Echtzeitmeldung, Flotten- und Standortfragen, klare Lizenzlage. Sprechen Sie mit uns, bevor Sie bauen.",
+      "cta": "Kontakt aufnehmen"
+    },
+    "show": "Für wen ViaFrei ist"
+  },
+  "footer": {
+    "imprint": "Impressum",
+    "privacy": "Datenschutz",
+    "privacySettings": "Datenschutz-Einstellungen",
+    "terms": "Nutzungsbedingungen",
+    "languages": "Sprachen",
+    "refresh": "Diese Seite lädt sich alle 20 Minuten neu; jede Kachel zeigt, wie alt ihre Zahl ist.",
+    "openData": "Gebaut aus offenen Daten. Jede Zahl nennt ihre Quelle."
+  },
+  "consent": {
+    "title": "Dürfen wir Google Analytics verwenden?",
+    "titleClarity": "Dürfen wir Google Analytics und Microsoft Clarity verwenden?",
+    "body": "Erst nach Ihrer Zustimmung wird Google Analytics geladen. Ablehnen ist genauso ein Klick und wird gespeichert. Unsere eigene Besucherzählung ohne Cookies läuft unabhängig davon (siehe Datenschutz).",
+    "bodyClarity": "Erst nach Ihrer Zustimmung werden Google Analytics und Microsoft Clarity geladen. Clarity zeichnet Klicks, Scrollen und Mausbewegungen auf dieser Seite auf; alle Texte und Eingaben bleiben dabei verdeckt. Microsoft nutzt diese Daten auch für eigene Zwecke, auch für Werbung. Ablehnen ist genauso ein Klick und wird gespeichert. Unsere eigene Besucherzählung ohne Cookies läuft unabhängig davon (siehe Datenschutz).",
+    "accept": "Einverstanden",
+    "decline": "Ablehnen",
+    "more": "Datenschutz",
+    "state": {
+      "none": "Sie haben noch keine Entscheidung getroffen.",
+      "denied": "Ihre aktuelle Entscheidung: abgelehnt am {date}.",
+      "granted": "Ihre aktuelle Entscheidung: eingewilligt am {date}."
+    }
+  },
+  "notFound": {
+    "title": "Diese Seite gibt es nicht",
+    "text": "Die Adresse führt ins Leere. Der Startpunkt ist einen Klick entfernt.",
+    "choiceTitle": "Mehrere Orte tragen diesen Namen",
+    "choiceText": "Welchen meinen Sie?",
+    "back": "Zur Startseite",
+    "connect": "Mit Ihrem Assistenten verbinden",
+    "developers": "Für Entwickler",
+    "business": "Für Unternehmen"
+  },
+  "now": {
+    "heading": "Ganz Deutschland",
+    "lead": "Alle bundesweiten Zahlen an einem Ort, nach Thema – jede mit Stand und Quelle.",
+    "stationTop": {
+      "head": "Bahnhöfe jetzt: Ausfälle, Verspätungen, Störungsmeldungen, Aufzüge",
+      "all": "Alle Bahnhöfe",
+      "search": "Bahnhof suchen",
+      "go": "Suchen"
+    }
+  },
+  "tiles": {
+    "punctuality": "Pünktlichkeit, Bus und Bahn",
+    "lifts": "Aufzüge und Fahrtreppen",
+    "reports": "Die wichtigsten Meldungen",
+    "jams": "Stau in den Städten, jetzt",
+    "station": "Live an großen Bahnhöfen",
+    "lorry": "Lkw-Parken und Rastanlagen",
+    "carparks": "Parkhäuser und P+R in Städten",
+    "charging": "Ladepunkte",
+    "fuel": "Kraftstoffpreise, beobachtet"
+  },
+  "day": {
+    "heading": "Ihr Tag mit ViaFrei",
+    "lead": "Neun Momente, in denen eine kurze Frage Zeit spart — mit der Zahl von heute, die zeigt, dass die Antwort stimmt.",
+    "howTo": "So fragen Sie Ihren Assistenten",
+    "howToText": "Frage antippen und gedrückt halten (oder markieren), kopieren, im Chat einfügen. Ihr Assistent wählt das passende Werkzeug selbst.",
+    "more": "2 weitere Fragen und eine Grenze",
+    "answer": {
+      "label": "ViaFrei antwortete",
+      "asOf": "Stand: {asOf}"
+    },
+    "limitLabel": "Ehrlich gesagt",
+    "cta": "Startklar machen",
+    "moments": {
+      "commute": {
+        "title": "Morgens zur Arbeit",
+        "scene": "7:10 Uhr, Kaffee in der Hand: Läuft der Nahverkehr normal — und fährt mein Zug?",
+        "q1": "Fahren Busse und Bahnen in Hamburg gerade pünktlich?",
+        "a1": "{share} % der beobachteten Fahrten der letzten Stunde mehr als 5 Minuten zu spät – etwa so viele wie in der Stunde davor ({before} %).",
+        "limit": "Pünktlichkeit zeigen wir je Region, nicht je Linie.",
+        "q2": "Wann fährt der nächste Zug ab Hannover Hbf, und hat er Verspätung?",
+        "q3": "Fallen an der Abfahrtstafel vom Kölner Hauptbahnhof in der nächsten Stunde Züge aus?",
+        "a2": "Als Nächstes {l1} nach {d1} (planmäßig {t1}, Gleis {p1}) mit +{delay} Min., gegen {exp}; danach pünktlich {l2} nach {d2} um {t2}.",
+        "a3": "Keine fällt aus: {n} Abfahrten bis {last}; die größte Verspätung hat {l1} nach {d1} mit +{delay} Min."
+      },
+      "bus": {
+        "title": "Mit Bus und Tram",
+        "scene": "Unterwegs in der Stadt: Wo ist der nächste Bahnhof, und rollt der Verkehr?",
+        "q1": "Welcher Bahnhof ist dem Kölner Dom am nächsten?",
+        "q2": "Wann fährt die nächste S-Bahn ab Frankfurt Hauptwache?",
+        "a1": "{s1}, {km},{kmd} km entfernt; danach {s2} und {s3}.",
+        "limit": "Den Fahrplan jeder Bus- und Tramhaltestelle zeigen wir, sobald er geladen ist — bis dahin Bahnhöfe und die Lage in Ihrer Region.",
+        "board": "Fahrplan an Ihrer Haltestelle",
+        "a2": "Als Nächstes die {l1} nach {d1} um {t1} von Gleis {p1}, pünktlich; die {l2} nach {d2} von {t2} kommt mit +{delay2} Min. gegen {exp2}.",
+        "q3": "Fahren am Leipziger Hauptbahnhof gerade Züge mit Verspätung ab?",
+        "a3": "Ja, zwei: der {l1} nach {d1} mit +{dl1} Min. von Gleis {p1} und die {l2} nach {d2} mit +{dl2} Min.; die übrigen {n} der nächsten Abfahrten sind pünktlich."
+      },
+      "station": {
+        "title": "Am Bahnhof",
+        "scene": "Mit Kinderwagen, Rollstuhl oder Koffer: Geht der Aufzug zum Gleis?",
+        "q1": "Funktioniert der Aufzug am Kölner Hauptbahnhof?",
+        "a1": "In {station} sind {working} von {total} gemeldeten Aufzügen in Betrieb; einer ist außer Betrieb, für einen meldet die Bahn keinen Status.",
+        "limit": "Aufzüge und Fahrtreppen der Bahnhöfe der Deutschen Bahn; andere Betreiber noch nicht.",
+        "q2": "Sind am Bahnhof Erlangen alle Aufzüge in Betrieb?",
+        "a2": "Ja: Der eine gemeldete Aufzug in {station}, zu Gleis {platforms}, ist in Betrieb.",
+        "q3": "Von welchem Gleis fährt der nächste ICE ab Nürnberg Hbf?",
+        "a3": "Der {train} nach {dest} um {t} von Gleis {p}, pünktlich."
+      },
+      "driving": {
+        "title": "Mit dem Auto",
+        "scene": "Vor der Fahrt: Staus, Sperrungen, Baustellen — und wo der Sprit gerade günstig ist.",
+        "q1": "Ist die A8 Richtung München gerade frei?",
+        "a1": "Nicht ganz: Zwischen {a} und {b} Richtung München meldet die Polizei einen Unfall, der Standstreifen ist blockiert.",
+        "a1more": "Auf der ganzen A8 sind außerdem {closures} Sperrungen und {works} Baustellen-Einträge gelistet.",
+        "limit": "Keine Routenberechnung: Wir sagen, was auf der Autobahn los ist, nicht welche Strecke Sie fahren sollen.",
+        "q2": "Welche Baustellen gibt es gerade an der A7?",
+        "a2": "{count} Arbeitsstellen bis {to}, zum Beispiel zwischen {a} und {b}: Brückenneubau, einer von drei Fahrstreifen gesperrt, Tempo {speed}, bis {until}.",
+        "q3": "Ich fahre am Wochenende auf der A2 – mit welchen Baustellen muss ich rechnen?",
+        "a3": "{count} Arbeitsstellen vom {from} bis {to}, zum Beispiel an der Anschlussstelle {a}: Erneuerung des Oberbaus, die Rampe ist voll gesperrt, bis {until}."
+      },
+      "jam": {
+        "title": "Im Stau",
+        "scene": "Stau auf der Autobahn und rund um die Städte: wo es steht, wie viel Zeit es kostet — und ob heute Nacht gesperrt wird.",
+        "q1": "Wie viel Zeit kostet der Stau auf der A3 zwischen Frankfurt und Würzburg gerade?",
+        "a1": "Zwischen {a} und {b} Richtung Frankfurt etwa +{delay} Min., nach einem Unfall; auf der ganzen A3 sind {jams} Staus gemeldet.",
+        "a1more": "Gelistet sind {closures} Sperrungen und {works} Baustellen-Einträge.",
+        "limit": "In der Stadt sehen wir die Stadtautobahnen und in Berlin, Köln und Hannover auch die Verkehrsmeldungen der Stadt – noch nicht die Lage auf jeder Straße. Die Meldungen für Hamburg und die Verkehrslage für Köln sind bei den Anbietern beantragt.",
+        "q2": "Staut es sich in Köln gerade auf dem Autobahnring — A1, A3 oder A4?",
+        "q3": "Ist die A7 in Hamburg heute gesperrt?",
+        "a3": "Gemeldet ist eine Sperrung zwischen den Anschlussstellen {a} und {b} (achtstreifiger Ausbau, Neubau {tunnel}); auf der ganzen A7 sind es {n} Sperrungen.",
+        "a2": "Ja, auf der A4: Zwischen {a} und {b} Richtung Köln stockt der Verkehr, etwa +{delay} Min.; auf den gefragten Autobahnen sind {n} Staus gemeldet."
+      },
+      "parking": {
+        "title": "Parken",
+        "scene": "Das Auto am Bahnhof abstellen — oder als Lkw-Fahrer die Pause planen.",
+        "q1": "Wo finde ich ein Parkhaus in der Nähe vom Kölner Hauptbahnhof?",
+        "a1": "{p1}: zuletzt {f1} von {t1} Plätzen frei gemeldet; {p2}: {f2} von {t2} – beide höchstens 300 m entfernt.",
+        "limit": "Freie Plätze nur, wo der Betreiber sie veröffentlicht — sonst die Zahl der Plätze, nicht wie voll sie sind.",
+        "q2": "Wo gibt es an der A9 Parkplätze für Lkw?",
+        "a2": "Zum Beispiel {p1} mit {n1} Lkw-Stellplätzen, {p2} mit {n2} und {p3} mit {n3}; freie Plätze veröffentlicht dort niemand.",
+        "q3": "Wo gibt es Park-and-Ride in der Nähe vom Essener Hauptbahnhof?",
+        "a3": "{p1}, {k1},{k1d} km entfernt, und {p2}, {k2},{k2d} km; die Belegung übernimmt ViaFrei aus dieser Quelle nicht."
+      },
+      "charging": {
+        "title": "Laden",
+        "scene": "Elektrisch unterwegs: Wo ist die nächste Ladesäule, und ist ein Punkt frei?",
+        "q1": "Wo kann ich in der Nähe von Leipzig schnell laden?",
+        "q2": "Welche Schnelllader gibt es bei Ingolstadt?",
+        "a1": "Mit mindestens 150 kW zum Beispiel: {site}, {address} – bis {kw} kW.",
+        "a1more": "Der Betreiber veröffentlicht keinen Live-Status, also sagt ViaFrei „unbekannt“, nicht „frei“.",
+        "limit": "Verfügbarkeit für die Netze, die sie veröffentlichen; für alle anderen zeigen wir den Standort, nicht den Status.",
+        "a2": "Am nächsten {op1}, {a1}, bis {kw1} kW: {free1} von {total1} Ladepunkten frei; außerdem {s2}, {a2}, bis {kw2} kW, ohne aktuellen Status.",
+        "q3": "Ist am Supercharger Hilden gerade etwas frei?",
+        "a3": "{brand} meldete den letzten Status am {t} – zu alt, um „frei“ zu sagen; am Standort {address}, bis {kw} kW."
+      },
+      "places": {
+        "title": "Orte finden",
+        "scene": "Ein Name genügt: das Konzerthaus, die Apotheke, die Firma — mit Adresse und Koordinate für die nächste Frage.",
+        "q1": "Mein Navi zeigt 50.1109, 8.6821 — welche Adresse ist das, und wo ist die nächste Autobahnauffahrt?",
+        "a1": "{address}, {m} m entfernt. Nächste Anschlussstelle: {junction}, {km},{kmd} km entfernt.",
+        "limit": "Orte und Adressen kommen aus OpenStreetMap; der Datenstand steht in jeder Antwort. Was dort nicht kartiert ist, finden wir nicht — Öffnungszeiten und Bewertungen gehören nicht dazu.",
+        "q2": "Welche Apotheken gibt es in Fulda — mit Adresse?",
+        "a2": "Zum Beispiel {p1}, {a1}; {p2}, {a2}; {p3}, {a3} (OpenStreetMap-Stand {osm}).",
+        "q3": "Wie lautet die Adresse der Elbphilharmonie in Hamburg?",
+        "a3": "{poi}: {address} (OpenStreetMap-Stand {osm})."
+      },
+      "watch": {
+        "title": "Bescheid sagen",
+        "scene": "Nicht ständig nachschauen: ViaFrei beobachtet für Sie und hält jede Änderung im Gespräch bereit — Ihr Assistent zeigt sie, sobald Sie nachfragen, oder von selbst, wenn er Benachrichtigungen unterstützt.",
+        "q1": "Sag mir Bescheid, sobald auf der A7 eine Sperrung aufgehoben wird.",
+        "limit": "Nur dieses Gespräch, solange es offen ist — keine E-Mail, keine SMS. Bis zu 10 Beobachtungen je Gespräch, jede bis zu 24 Stunden; eine Straße wird als Ganzes beobachtet, nicht ein Abschnitt.",
+        "a1": "Beobachtung angelegt: die {road}, bis {until}. ViaFrei meldet sich in diesem Chat, sobald dort eine Sperrung aufgehoben wird; {used} von 10 belegt.",
+        "q2": "Sag Bescheid, wenn in Köln ein Viertel oder mehr der Bus- und Bahnfahrten zu spät ist.",
+        "a2": "Beobachtung angelegt: Region {ags} ({city}), gemeldet wird ab {pct} % verspäteter Fahrten, bis {until} – nur in diesem Chat.",
+        "q3": "Warn mich, wenn für Köln eine Unwetterwarnung des Deutschen Wetterdienstes in Kraft tritt.",
+        "a3": "Beobachtung angelegt: DWD-Warngebiet {cell} ({city}), bis {until} – ViaFrei meldet sich hier, sobald sich die Lage ändert."
+      }
+    },
+    "fuelAsks": {
+      "heading": "Eine Frage, die beim Tanken Geld sparen kann",
+      "whyLabel": "Warum fragen",
+      "goerlitz": {
+        "q": "Wo tanke ich in Görlitz gerade Diesel am günstigsten?",
+        "why": "Preise ändern sich mehrmals am Tag und unterscheiden sich schon zwischen wenigen Tankstellen einer Stadt: ViaFrei nennt die günstigste mit ihrem Preis und der Uhrzeit, zu der sie ihn gemeldet hat.",
+        "a": "Noch kein neuer Preis – zuletzt am günstigsten: {euro},{cent} €/l bei {station}, {address}, gemeldet am {reported}; ViaFrei fragt gerade neu ab."
+      },
+      "muenchen": {
+        "q": "Wo ist Super E10 in München gerade am günstigsten?",
+        "why": "Ein Preis kann vom Morgen sein: Für München hatte ViaFrei an diesem Nachmittag nur Preise vom Morgen, nannte jeden mit seiner Uhrzeit und fragte neue ab.",
+        "a": "Noch kein neuer Preis – zuletzt am günstigsten: {euro},{cent} €/l bei {station}, {address}, gemeldet am {reported}; ViaFrei fragt gerade neu ab."
+      },
+      "leipzig": {
+        "q": "Wo gibt es in Leipzig gerade das günstigste Super E5?",
+        "why": "Ein Preis kann Stunden alt sein: ViaFrei nennt zu jedem Preis, wann die Tankstelle ihn gemeldet hat – die günstigsten in Leipzig stammten an diesem Nachmittag noch vom Vormittag.",
+        "a": "Noch kein neuer Preis – zuletzt am günstigsten: {euro},{cent} €/l bei {station}, {address}, gemeldet am {reported}."
+      },
+      "nuernberg": {
+        "q": "Wo ist Diesel in Nürnberg gerade am günstigsten?",
+        "why": "Die nächste Tankstelle ist nicht immer die günstigste: ViaFrei nennt zu jedem Preis die Entfernung.",
+        "a": "{euro},{cent} €/l bei {station}, {address} – gemeldet um {reported}."
+      }
+    },
+    "fuelAll": "Je Bundesland bis zu drei Tankstellen mit Adresse und Preis",
+    "allExamples": "Alle Beispielfragen mit ihren Antworten"
+  },
+  "start": {
+    "heading": "In einer Minute startklar",
+    "lead": "ViaFrei steckt in dem Assistenten, den Sie schon haben. Drei Schritte, einmal:",
+    "s1": "In Claude oder ChatGPT: Einstellungen → „Connectors“.",
+    "s2": "ViaFrei mit der Adresse unten hinzufügen.",
+    "s3": "Fragen Sie: „Ist die A8 Richtung München gerade frei?“",
+    "draft": "Entwurf — diese Schritte sind noch nicht in jedem Assistenten geprüft."
+  },
+  "legal": {
+    "bindingNote": "Die verbindliche Fassung dieser Seite ist die deutsche."
+  },
+  "connectPage": {
+    "moreExamples": "Mehr Beispiele",
+    "title": "ViaFrei mit Ihrem Assistenten verbinden",
+    "lead": "Eine Adresse, kein Konto, kein Schlüssel. Fügen Sie ViaFrei einmal als Connector hinzu – danach fragen Sie einfach.",
+    "askHeading": "So fragen Sie",
+    "askLead": "Fünf Fragen, wie Ihr Assistent sie heute beantwortet:",
+    "asks": {
+      "train": "Wann fährt der nächste Zug ab Köln Hbf?",
+      "parking": "Wo ist ein Parkhaus in der Kölner Innenstadt?",
+      "charging": "Wo kann ich in Leipzig mein E-Auto laden?",
+      "road": "Ist die A3 Richtung Frankfurt gerade frei?",
+      "weather": "Gibt es gerade eine Unwetterwarnung für Dresden?"
+    },
+    "live": {
+      "heading": "Antworten, wie sie gekommen sind",
+      "lead": "Gekürzt, mit dem Zeitpunkt der Daten und ihren Quellen. Die Zahlen sind ein Schnappschuss dieses Zeitpunkts, keine Live-Anzeige.",
+      "asOf": "Stand: {asOf}",
+      "fuelExample": "Beispielantwort vom {asOf} — Preise heute anders",
+      "stadtbahn": {
+        "title": "Aufzüge und Fahrtreppen der Stadtbahn",
+        "q": "Was ist an der Stadtbahn-Haltestelle {stop} in Köln gerade außer Betrieb?",
+        "a": "{out} von {total} gemeldeten Anlagen: die Fahrtreppen {e1} und {e2}, gemeldet seit {since}, {e3} seit {since3} und {e4} seit {since4}; beide Aufzüge in Betrieb. Die {publisher} stellt die Daten ohne jede Gewähr bereit.",
+        "note": "Für die Haltestellen der Kölner Stadtbahn, aus der veröffentlichten Störungsliste – mit der Uhrzeit, seit der eine Anlage gemeldet ist."
+      },
+      "bikes": {
+        "title": "Leihräder am Bahnhof, live",
+        "q": "Wo finde ich in der Nähe von {station} ein freies Leihrad?",
+        "a": "Station {dock} von {operator}: {free} Räder frei – und {docks} Stationen im Umkreis von {radius} km, jede mit ihrem Bestand.",
+        "note": "Die freien Räder kommen live aus den offenen Daten der Verleihsysteme; ViaFrei nennt nur, was eine Station gerade meldet."
+      },
+      "lift": {
+        "title": "Aufzüge am Bahnhof",
+        "q": "Welche Aufzüge sind am Bahnhof {station} gerade außer Betrieb?",
+        "a": "Einer ist als außer Betrieb gemeldet, ein Aufzug zu Gleis {platforms}: {working} von {total} Aufzügen in Betrieb. Der andere Aufzug zu Gleis {platforms} wird nicht überwacht – sein Status ist unbekannt.",
+        "note": "Für die Bahnhöfe der Deutschen Bahn, alle 20 Minuten neu gelesen. Was die letzte Meldung nicht nennt, heißt „unbekannt“ – nie „in Betrieb“."
+      },
+      "alert": {
+        "title": "Störungsmeldungen für Bus und Bahn",
+        "q": "Gibt es gerade Störungsmeldungen für Bus und Bahn in Niedersachsen?",
+        "a": "{count} Meldungen gelten gerade, darunter: Die Linien {lines} fahren nach Baustellenfahrplan, weil die {road} zwischen {a} und {b} gesperrt ist – gültig vom {from} bis {to}.",
+        "note": "Meldungen der Verkehrsverbünde über DELFI, nur solange sie gelten. Eine Meldung ohne Haltestelle ordnet ViaFrei über ihr Verkehrsnetz einem Land zu und sagt dazu, dass sie auch ein Nachbarland betreffen kann."
+      },
+      "enbw": {
+        "title": "Schnelllader mit Live-Belegung",
+        "q": "Ist an der {brand}-Ladestation {address} gerade ein Ladepunkt frei?",
+        "a": "Bis {kw} kW, {euro},{cent} €/kWh – doch für keinen der {n} Ladepunkte liegt ein Status vor, also sagt ViaFrei nicht „frei“.",
+        "note": "Standorte und Belegung meldet der Betreiber selbst; der Stand ist die Zeit seiner letzten Meldung."
+      },
+      "ecomove": {
+        "title": "Live-Belegung über einen Datensammler",
+        "q": "Ist am Schnelllader {address} gerade ein Ladepunkt frei?",
+        "a": "{site}: bis {kw} kW, {euro},{cent} €/kWh; der letzte Status stammt vom {t} – zu alt, um „frei“ zu sagen.",
+        "note": "Die Belegung kommt hier von einem Dienst, der die Meldungen vieler Betreiber bündelt. Ein Punkt ohne Meldung zählt nie als frei."
+      },
+      "ocpdb": {
+        "title": "Live frei oder belegt – mitten in Köln",
+        "q": "Ist an der Ladesäule {address} gerade ein Ladepunkt frei?",
+        "a": "Ja, einer: Typ 2 bis {kw2} kW ist frei, der CCS-Ladepunkt bis {kw} kW außer Betrieb – {euro},{cent} €/kWh netto.",
+        "note": "Die Belegung kommt live über das Datenportal Baden-Württembergs, das auch Säulen weit außerhalb des Landes führt."
+      },
+      "lsr": {
+        "title": "Auch dort, wo niemand live meldet",
+        "q": "Wo kann ich in der Nähe von {address} laden?",
+        "a": "{m} m entfernt: Typ 2, bis {kw} kW – laut Ladesäulenregister der Bundesnetzagentur (Stand {register}), ohne Live-Status und ohne Gewähr für Richtigkeit und Vollständigkeit.",
+        "note": "Wo kein Betreiber Live-Daten veröffentlicht, nennt ViaFrei die Säulen aus dem amtlichen Register – ohne Belegung, denn unbekannt heißt nie „frei“."
+      },
+      "hamburg": {
+        "title": "Parkhaus in der Hamburger Innenstadt",
+        "q": "Wo finde ich am {stop} in Hamburg einen Parkplatz?",
+        "a": "{park}: {free} von {total} Plätzen frei. Die Stadt Hamburg sagt selbst: „Diese Echtzeitdaten sind ungeprüft.“",
+        "note": "Die Belegung der Hamburger Parkhäuser kommt live von der Stadt; ViaFrei gibt ihren Hinweis auf ungeprüfte Daten immer mit."
+      },
+      "hhworks": {
+        "title": "Stadtbaustelle in Hamburg",
+        "q": "Welche Baustellen sind an der {street} in Hamburg geplant?",
+        "a": "{street}, {b} / Straßenumbau, vom {from} bis {to}; eine Vollsperrung ist voraussichtlich im Frühjahr 2027.",
+        "note": "Hamburgs Stadtbaustellen kommen aus dem Bauweiser der Stadt: nur freigegebene Baustellen, nach Kalendertagen; „geplant“ heißt Baubeginn nach heute. Meldungen der Polizei bleiben eigene Einträge."
+      },
+      "muenster": {
+        "title": "Münsters Parkleitsystem, live",
+        "q": "Wie viele Plätze sind im {name} in Münster frei?",
+        "a": "{free} von {total} Plätzen frei – dazu {more} weitere Parkhäuser in der Nähe, jedes mit seiner Belegung.",
+        "note": "Die Belegung kommt live aus dem Parkleitsystem der Stadt Münster. Ein Parkhaus, das nichts meldet, heißt bei ViaFrei nie „voll“."
+      },
+      "motorway": {
+        "title": "Gesperrte Auffahrt an der Autobahn",
+        "q": "Ist an der A6 bei {place} gerade etwas gesperrt?",
+        "a": "Ja: Die Auffahrt {place} auf die A6 ist gesperrt, ein Bauwerk wird neu gebaut – diese Bauphase vom {from} bis {to}. Für die ganze A6 nennt die Antwort {count} Sperrungen.",
+        "note": "Sperrungen und Baustellen auf den Autobahnen kommen von der Autobahn GmbH, mit dem Zeitraum jeder Bauphase. Gefragt nach einer Autobahn, nennt ViaFrei die Sperrungen zuerst."
+      },
+      "citywork": {
+        "title": "Baustelle in der Stadt",
+        "q": "Ist am {street} in Berlin etwas gesperrt?",
+        "a": "Ja: in beiden Richtungen zwischen {a} und {b} Leitungsbau, laut Senatsverwaltung voll gesperrt für den Kfz-Verkehr, vom {from} bis {to}.",
+        "note": "Berliner Meldungen nennen Straße und Abschnitt, aber keine Straßennummer. ViaFrei findet sie über den Ort, im Umkreis von 25 km, die nächste zuerst."
+      },
+      "landroad": {
+        "title": "Baustelle auf einer Landesstraße",
+        "q": "Gibt es diese Woche Baustellen auf der L1025 in Thüringen?",
+        "a": "{count} Arbeitsstellen, darunter: {site}, eine Engstelle mit Ampel, vom {from} bis {to}.",
+        "note": "Landesstraßen kennen wir in Baden-Württemberg, Niedersachsen und Thüringen, Staatsstraßen in Sachsen – aus den Daten der Straßenbauverwaltungen: Abschnitt und Zeitraum, keine Koordinaten und keine Live-Verzögerung."
+      },
+      "saxony": {
+        "title": "Baustelle auf einer Bundesstraße in Sachsen",
+        "q": "Gibt es diese Woche Baustellen auf der B6 in Sachsen?",
+        "a": "{count} Arbeitsstellen diese Woche, darunter: Bei {place} in Dresden wird die Straße ausgebaut, vom {from} bis {to}.",
+        "note": "Das sächsische Landesamt für Straßenbau und Verkehr veröffentlicht seine Arbeitsstellen längerer Dauer alle drei Stunden neu. ViaFrei beantwortet daraus Bundes- und Staatsstraßen nach Abschnitt und Zeitraum – ohne Koordinaten und ohne Live-Verzögerung."
+      },
+      "bwroad": {
+        "title": "Baustelle auf einer Bundesstraße in Baden-Württemberg",
+        "q": "Sind nächste Woche Baustellen auf der B27 in Baden-Württemberg geplant?",
+        "a": "{count} von {all} Arbeitsstellen in Baden-Württemberg, etwa {a} – {b}: neue Fahrbahndecke vom {from} bis {to}.",
+        "note": "Das Verkehrsministerium Baden-Württemberg veröffentlicht seine Baustellen (BEMaS) über MobiData BW. ViaFrei beantwortet daraus Bundes- und Landesstraßen nach Abschnitt und Zeitraum – Geplantes als geplant, ohne Live-Verzögerung."
+      },
+      "kiel": {
+        "title": "Eine Baustelle in Kiel",
+        "q": "Ist der {street} in Kiel gerade befahrbar?",
+        "a": "Nein: Der {street} ist zwischen Hausnummer {no} und {b} wegen Kanalbauarbeiten gesperrt, vom {from} bis zum {to}. (Beispiel, zusammengefasst; im Werkzeug ungekürzt)",
+        "note": "Die Landeshauptstadt Kiel veröffentlicht ihre Baustellen mit Ort, Grund und Zeitraum. Diese Karte fasst eine Meldung zusammen; das Werkzeug zeigt ihre Meldungen ungekürzt und findet eine Meldung über den Ort – im Umkreis von 25 km, die nächste zuerst."
+      },
+      "truckstop": {
+        "title": "Gesicherter Lkw-Parkplatz an der A7",
+        "q": "Ist heute Nacht bei {name} an der A7 ein Lkw-Platz frei?",
+        "a": "{free} von {total} Plätzen frei, so wie der Betreiber sie meldet.",
+        "note": "Der Betreiber dieser gesicherten Lkw-Parkplätze veröffentlicht die freien Plätze; ViaFrei zeigt sie neben den Rastanlagen, die keine Belegung melden, und rechnet beides nie zusammen."
+      },
+      "parkride": {
+        "title": "Park and Ride vor dem Zug",
+        "q": "Wo kann ich in Dortmund das Auto abstellen und in den Zug umsteigen?",
+        "a": "{p1} mit {t1} Plätzen und {p2} mit {t2} Plätzen – für diese Anlagen ohne Belegung.",
+        "note": "P+R-Anlagen in Nordrhein-Westfalen stammen aus den gebündelten Daten des Landes und stehen in einem eigenen Block, nie mit anderen Quellen abgeglichen. Ihre Belegung übernehmen wir nicht."
+      },
+      "platform": {
+        "title": "Eine Verspätung, live",
+        "q": "Fährt der {train} nach {dest} in {station} pünktlich ab?",
+        "a": "+{delay} min, erwartet um {expected} statt {planned} – von Gleis {platform} wie geplant.",
+        "note": "Verspätungen und Gleiswechsel kommen aus der Fahrplanschnittstelle der Deutschen Bahn, für alle Teile des Bahnhofs – auch die Tief- und S-Bahn-Gleise des Berliner Hauptbahnhofs."
+      },
+      "region": {
+        "title": "Pünktlichkeit im Ballungsraum",
+        "q": "Fahren Busse und Bahnen im Raum Rhein-Ruhr gerade pünktlich?",
+        "a": "{share} % der beobachteten Fahrten der letzten Stunde mehr als 5 Minuten zu spät – mehr als in der Stunde davor ({before} %).",
+        "note": "Rhein-Ruhr antwortet als eine Region: 30 Kreise und kreisfreie Städte zusammen. ViaFrei nennt Summen je Region, nicht je Linie."
+      },
+      "tomorrow": {
+        "title": "Baustellen auf der Strecke von morgen",
+        "q": "Welche Baustellen sind morgen auf der A7 geplant?",
+        "a": "{count} Arbeitsstellen, {started} davon schon laufend. Eine davon: zwischen {a} und {b} wird eine Brücke neu gebaut, auf {km} km, Tempo {speed}, bis {until}.",
+        "note": "Geplante Arbeitsstellen der Bundesanstalt für Straßenwesen: Abschnitt und Zeitraum, keine Koordinaten und keine Live-Verzögerung – was gerade los ist, beantwortet ViaFrei aus den Autobahn-Meldungen."
+      },
+      "closure": {
+        "title": "Eine Sperrung voraus",
+        "q": "Ist auf der A7 bei Hamburg gerade etwas gesperrt?",
+        "a": "Ja: die Autobahn GmbH meldet eine gesperrte Rampe an der Anschlussstelle {at} – auf der Baustrecke zwischen {a} und {b}. Diese Bauphase endet am {until} um {end} Uhr.",
+        "note": "Sperrungen und Baustellen auf den Autobahnen kommen von der Autobahn GmbH, mit dem Zeitraum jeder Bauphase."
+      },
+      "weather": {
+        "title": "Wettercheck vor den Bergen",
+        "q": "Gibt es heute eine Wetterwarnung für {name}?",
+        "a": "Ja, für die kommende Nacht: Der Deutsche Wetterdienst warnt vor leichtem Frost bis {temp} °C, gültig am {day} von {from} bis {to} Uhr – Warnstufe {level}, die niedrigste.",
+        "note": "Warnungen werden alle 5 Minuten gelesen und gelten je Gebiet; eine neue kann kurzfristig herausgegeben werden."
+      },
+      "fuelcity": {
+        "title": "Das günstigste E10 in der Stadt",
+        "q": "Wo ist Super E10 in Köln gerade am günstigsten?",
+        "a": "{euro},{cent} €/l bei {station}, {address} – gemeldet um {reported}.",
+        "note": "Spritpreise ändern sich alle paar Minuten: Diese Zahl ist ein Beispiel von diesem Nachmittag, nicht der heutige Preis. ViaFrei nennt zu jedem Preis, wann die Tankstelle ihn gemeldet hat."
+      },
+      "charger": {
+        "a": "Im {site}: {points} Ladepunkte, Typ 2, bis {kw},{kwd} kW, {euro},{cent} €/kWh netto. Keiner meldet sich belegt; für {stale} stammt der letzte Status vom {t}, für {unknown} liegt keiner vor – also nicht „frei“.",
+        "title": "Live-Status an der Ladesäule",
+        "q": "Ist am {address} gerade ein Ladepunkt frei?",
+        "note": "Live-Belegung nennen wir nur, wo der Betreiber sie veröffentlicht – hier über e-clearing.net. Ohne Meldung heißt es „keine Statusdaten“, nie „frei“."
+      },
+      "roadworks": {
+        "a": "In Niedersachsen {count}, alle schon begonnen; die erste: {section}, vom {start} bis {end}.",
+        "note": "Bundesstraßen kennen wir in Niedersachsen, Sachsen, Thüringen und Baden-Württemberg, aus den Daten der Straßenbauverwaltungen: Abschnitt und Zeitraum, keine Live-Verzögerung. Für eine Bundesstraße anderswo antwortet ViaFrei „nicht abgedeckt“ – nicht „frei“.",
+        "title": "Baustellen auf einer Bundesstraße",
+        "q": "Welche Baustellen sind diese Woche auf der B3 in Niedersachsen geplant?"
+      },
+      "train": {
+        "title": "Pünktlichkeit im Regionalverkehr",
+        "q": "Fährt der nächste Regionalzug von {station} nach {dest} pünktlich?",
+        "a": "Ja: {line} um {planned} von Gleis {platform}, pünktlich – wie {n} von {all} Regionalzügen bis {last}.",
+        "note": "Liefert die Fahrplanschnittstelle der Deutschen Bahn keine Echtzeit, nennt ViaFrei Regional- und S-Bahn-Züge aus DELFI SIRI ET – in einem eigenen Block, nie in die Zeilen der Bahn gemischt."
+      },
+      "fuelroad": {
+        "a": "Noch kein neuer Preis – zuletzt am günstigsten: {euro},{cent} €/l bei {station}, {address}, gemeldet am {reported}; ViaFrei fragt gerade neu ab.",
+        "title": "Diesel unterwegs an der Autobahn",
+        "q": "Ich fahre heute Abend die A3 an Würzburg vorbei: Wo ist Diesel in der Nähe am günstigsten?",
+        "note": "Spritpreise ändern sich alle paar Minuten: Diese Zahl ist ein Beispiel von diesem Nachmittag, nicht der heutige Preis. ViaFrei nennt zu jedem Preis, wann die Tankstelle ihn gemeldet hat."
+      },
+      "fuelland": {
+        "a": "Noch kein neuer Preis – zuletzt am günstigsten: {euro},{cent} €/l bei {station}, {address}, gemeldet am {reported}; ViaFrei fragt gerade neu ab.",
+        "title": "Der günstigste Preis in einer Landeshauptstadt",
+        "q": "Wo tanke ich E10 in Stuttgart in Baden-Württemberg gerade am günstigsten?",
+        "note": "Spritpreise ändern sich alle paar Minuten: Diese Zahl ist ein Beispiel von diesem Nachmittag, nicht der heutige Preis. ViaFrei nennt zu jedem Preis, wann die Tankstelle ihn gemeldet hat."
+      },
+      "carpark": {
+        "title": "Parkhaus mit freien Plätzen",
+        "q": "Wie viele Plätze sind im Parkhaus {name} in Köln frei?",
+        "a": "Zuletzt {free} von {total} Plätzen frei gemeldet – eine ältere Meldung, kein aktueller Stand.",
+        "note": "Name, Lage und Platzzahl aus der Parkhaus-Tabelle der Stadt Köln, die Belegung aus ihrem Live-Feed. Ist die letzte Meldung zu alt, sagt ViaFrei „zuletzt gemeldet“ statt „frei“."
+      },
+      "lorry": {
+        "title": "Lkw-Parken mit freien Plätzen",
+        "q": "Wie viele Lkw-Stellplätze sind bei {name} gerade frei?",
+        "a": "{free} Lkw-Stellplätze frei, so wie der Betreiber sie meldet.",
+        "note": "Freie Plätze nennen wir nur, wo der Betreiber sie veröffentlicht – hier alle 15 Minuten. Bleibt ein Wert sechs Stunden gleich, sagt ViaFrei „zuletzt gemeldet“ statt „frei“."
+      }
+    },
+    "betaHeading": "Beta: was das für Sie heißt",
+    "beta1": "ViaFrei befindet sich in der Stabilisierungsphase: Datenquellen kommen hinzu, Antworten und Abdeckung können sich ändern.",
+    "beta2": "Die Antworten formuliert ein KI-Assistent auf Grundlage unserer Daten – KI kann Fehler machen.",
+    "beta3": "Prüfen Sie wichtige Angaben (Sperrungen, Abfahrten, Preise) bei der genannten Quelle.",
+    "endpointHeading": "Die Adresse",
+    "endpointNote": "Streamable HTTP. Kostenlos in der Aufbauphase, ohne Konto; die Zahl der Anfragen ist begrenzt, damit es für alle reicht.",
+    "legacyNote": "Ältere Clients ohne Streamable HTTP nutzen die SSE-Adresse:",
+    "clientsHeading": "Schritt für Schritt",
+    "claudeAi": "claude.ai (Web)",
+    "claudeAiSteps": "Anpassen (Customize) → Connectors → „+ Add“ → „Add custom connector“. Name ViaFrei, die Adresse oben als MCP-Server-URL einfügen, dann „Continue“. Fragen Sie zum Beispiel: „Ist die A8 Richtung München frei?“ Beim ersten Mal das ViaFrei-Werkzeug erlauben.",
+    "claudeDesktop": "Claude Desktop",
+    "claudeDesktopSteps": "Derselbe Connector wie auf claude.ai, er gehört zu Ihrem Claude-Konto: dort wie oben hinzufügen, dann steht er auch in der Desktop-App bereit.",
+    "claudeCode": "Claude Code",
+    "claudeCodeSteps": "Im Terminal einmal ausführen:",
+    "chatgpt": "ChatGPT",
+    "chatgptSteps": "Plugins → „+“ → „Add custom MCP server“. Name ViaFrei, die Adresse oben unter „Connection“ einfügen, Authentifizierung: keine; „I understand and want to continue“ ankreuzen, dann „Create as a plugin“. In einem neuen Chat @ tippen, ViaFrei wählen, dann fragen.",
+    "editorsSteps": "In die MCP-Konfiguration (mcp.json) eintragen:",
+    "copilotSteps": "Befehlspalette → „MCP: Add Server“ → „HTTP“ → die Adresse oben einfügen → Server-ID viafrei → „Global“ → „Copilot Global“. Das schreibt in ~/.copilot/mcp-config.json; von Hand eingetragen:",
+    "copilotSandbox": "Antwortet Copilot mit 403 und dem Header „x-ms-block-by: sandbox-broker“, hat seine Sandbox die Adresse gesperrt: mcp.viafrei.de freigeben (für den Cloud-Agenten: Repository-Einstellungen → Copilot → Internet access → Custom allowlist).",
+    "geminiTrust": "Gemini CLI startet MCP-Server nur in einem Ordner, dem Sie vertrauen; beim ersten Start dort fragt es danach.",
+    "windsurfSteps": "Cascade-Bereich → „…“ → MCPs → die MCP-Konfigurationsdatei (mcp_config.json) öffnen und eintragen:",
+    "leChatSteps": "Connectors → „+ Add Connector“ → „Custom MCP Connector“ → Name viafrei, Server-URL: die Adresse oben → Connect, ohne Authentifizierung. Hinzufügen darf ein Administrator – in den Tarifen Free und Pro sind das Sie.",
+    "generic": "Jeder andere MCP-Client",
+    "genericSteps": "Jeder Client, der Streamable HTTP spricht, verbindet sich mit der Adresse oben – ohne Kopfzeilen, ohne Schlüssel.",
+    "stdio": "Clients nur mit stdio",
+    "stdioSteps": "Die Brücke aus dem öffentlichen npm-Paket startet einen lokalen stdio-Server, der an die Adresse oben weiterreicht:",
+    "notCoveredHeading": "Was ViaFrei nicht beantwortet",
+    "notCoveredLead": "Damit Sie nicht suchen, was es nicht gibt:",
+    "notCovered": {
+      "routing": "Keine Routenplanung von Tür zu Tür – ViaFrei antwortet zu Orten, Straßen und Datenquellen, nie auf „Wie komme ich dahin?“.",
+      "cityStreets": "Kein Verkehr auf Stadtstraßen außerhalb der Stadt- und Landesquellen, die wir führen: Baustellen, Sperrungen und Verkehrsmeldungen für Berlin, Köln (Sperrungen zu Veranstaltungen), Hannover (sobald seine Quelle Meldungen veröffentlicht), Schleswig-Holstein mit Kiel und Baden-Württemberg mit Stuttgart. Andere Städte sind nicht abgedeckt; sonst haben wir Live-Verkehr für das Netz der Bundesautobahnen (Autobahn GmbH) und, wo eine Quelle sie führt, für Bundesstraßen, dazu Baustellen auf Landes- und Staatsstraßen in Baden-Württemberg, Niedersachsen, Sachsen und Thüringen.",
+      "fares": "Keine Fahrpreise, keine Tickets und keine Buchung jeder Art.",
+      "lineRealtime": "Keine Pünktlichkeitszahl für eine einzelne Linie – „Ist die S1 pünktlich?“ beantwortet ViaFrei Zug für Zug an einem Bahnhof (die Live-Verspätung jedes abfahrenden Zugs, auch der S-Bahn) und je Region mit den Störungsmeldungen der Linie; an einer Bus-, Tram- oder U-Bahn-Haltestelle gibt es nur den Fahrplan.",
+      "forecast": "Keine Wettervorhersage – nur amtliche DWD-Warnungen, und nur solange sie gelten.",
+      "parkingTariffs": "Keine Parkgebühren, und kein Versprechen, dass ein Platz frei ist, sofern der Betreiber die Belegung nicht veröffentlicht."
+    },
+    "privacyHeading": "Datenschutz in drei Sätzen",
+    "privacy1": "Sie brauchen bei uns kein Konto, und wir speichern keine Fragen unter Ihrem Namen.",
+    "privacy2": "Fremde Messdienste laufen nur, wenn Sie zustimmen; vorher wird nichts von Dritten geladen. Besuche zählen wir ohne Cookies als Tagessummen auf unserem eigenen Server.",
+    "privacy3": "Server-Protokolle werden nach spätestens sieben Tagen gelöscht – alles Weitere steht in der",
+    "privacyLink": "Datenschutzerklärung",
+    "sourcesHeading": "Woher die Daten kommen",
+    "sourcesLead": "Jede Antwort nennt ihre Quelle. Das sind alle Quellen, aus denen ViaFrei heute antwortet – mit ihrer Quellenangabe, wie die Lizenz sie verlangt:",
+    "askAnswers": {
+      "train": "Um {t1} die {l1} nach {d1} von Gleis {p1}, um {t2} die {l2} nach {d2} von Gleis {p2} – beide pünktlich.",
+      "parking": "{p1}: {f1} von {t1} Plätzen frei; {p2}: {f2} von {t2} frei.",
+      "charging": "Am nächsten: {a1}, {m} m entfernt, Typ 2 bis {kw1} kW; dann {a2}, {m2} m, bis {kw2} kW – ohne Live-Status.",
+      "road": "Ja: Auf der ganzen A3 ist gerade kein Stau gemeldet; gelistet sind {closures} Sperrungen und {works} Baustellen-Einträge.",
+      "weather": "Für {place} liegt keine amtliche Wetterwarnung des DWD vor – geprüft für jetzt und die nächsten {hours} Stunden."
+    },
+    "allExamples": "Alle Beispielfragen mit ihren Antworten, nach Bereichen",
+    "claudeFlow": {
+      "s1": "Anpassen (Customize) → Connectors → „+ Add“ → „Add custom connector“.",
+      "s2": "Name ViaFrei, die Adresse oben als MCP-Server-URL einfügen, dann „Continue“.",
+      "s3": "Fragen Sie zum Beispiel: „Ist die A8 Richtung München frei?“ Beim ersten Mal das ViaFrei-Werkzeug erlauben."
+    },
+    "chatgptFlow": {
+      "s1": "Plugins → „+“ → „Add custom MCP server“.",
+      "s2": "Name ViaFrei, die Adresse oben unter „Connection“ einfügen, Authentifizierung: keine; „I understand and want to continue“ ankreuzen, dann „Create as a plugin“.",
+      "s3": "In einem neuen Chat @ tippen, ViaFrei wählen, dann fragen.",
+      "avail": "Eigene MCP-Server gehen in ChatGPT im Web: in Business- und Enterprise/Edu-Arbeitsbereichen, wo Admins und Owner sie anlegen, und für Pro-Nutzer mit Lese- und Abrufrechten – ViaFrei liest nur, also geht Pro. Nicht in den Mobil-Apps; in Free und Plus nicht verfügbar.",
+      "d1": "Plugins → + → Add custom MCP server",
+      "d2": "Name ViaFrei · Connection: die Adresse · Authentifizierung: keine · Create as a plugin",
+      "d3": "Neuer Chat: @ViaFrei, dann fragen",
+      "dtitle": "Die drei Schritte in ChatGPT"
+    },
+    "shot": {
+      "claude1": "claude.ai, Customize → Connectors: das Menü „+ Add“ geöffnet, mit „Add custom connector“.",
+      "claude2": "Der Dialog „Add custom connector“: Name ViaFrei, MCP-Server-URL https://mcp.viafrei.de/mcp und die Schaltfläche „Continue“.",
+      "claude3": "Claude fragt, ob es das ViaFrei-Werkzeug für die A8 nutzen darf – ablehnen, immer erlauben oder einmal erlauben.",
+      "claude4": "Claudes Antwort auf die Frage nach der A8 Richtung München, als Nutzung von ViaFrei markiert, mit der Quellenzeile am Ende.",
+      "phone1": "claude.ai im Browser eines Telefons, Customize → Connectors: das Menü „+ Add“ geöffnet, mit „Add custom connector“.",
+      "phone2": "Der Dialog „Add custom connector“: Name ViaFrei, MCP-Server-URL https://mcp.viafrei.de/mcp und die Schaltfläche „Continue“.",
+      "phone3": "Ein Chat in claude.ai: „+“ → Connectors, ViaFrei eingeschaltet; die anderen Connectors sind unkenntlich gemacht.",
+      "phone4": "Claudes Antwort auf die Frage, ob es auf der A7 gerade Stau gibt, als Nutzung von ViaFrei markiert.",
+      "phone4b": "Dieselbe Antwort an ihrem Ende: die Quellenzeile, die die Autobahn GmbH des Bundes nennt.",
+      "phoneCaption": "Screenshot: claude.ai im Browser eines Telefons, {date}",
+      "caption": "Screenshot: claude.ai, {date}",
+      "diagram": "Schema, kein Screenshot",
+      "claudeCode1": "Terminal: claude mcp add mit der Adresse von ViaFrei, danach meldet claude mcp list „viafrei … ✔ Connected“.",
+      "geminiCli1": "Terminal: gemini mcp add --scope user mit der Adresse von ViaFrei, danach meldet gemini mcp list „viafrei … Connected“.",
+      "generic1": "Terminal: Der MCP Inspector fragt die Adresse von ViaFrei nach ihren Werkzeugen (tools/list) und erhält deren Namen.",
+      "stdio1": "Terminal: Claude Code trägt die Brücke npx -y viafrei ein, danach meldet claude mcp list „viafrei: npx -y viafrei – ✔ Connected“.",
+      "terminal": "Terminal-Mitschnitt unseres Testlaufs: {what}, {date}",
+      "open": "Bild in voller Größe öffnen",
+      "close": "Großansicht schließen"
+    },
+    "guide": "Offizielle Anleitung",
+    "otherGuides": "Deren eigene Anleitungen:",
+    "check": {
+      "verified": "Im Client geprüft am {date} mit {version}.",
+      "docs": "Schritte am {date} gegen die offizielle Anleitung geprüft, im Client noch nicht. {reason}",
+      "pending": {
+        "account": "Dafür braucht es ein angemeldetes Konto; diese Prüfung steht noch aus.",
+        "app": "Es ist eine Desktop-App mit eigener Anmeldung; diese Prüfung steht noch aus.",
+        "signIn": "Eine Sitzung braucht eine Anmeldung oder einen API-Schlüssel; diese Prüfung steht noch aus."
+      }
+    },
+    "about": {
+      "lead": "Diese Frage können Sie kopieren und Ihrem Assistenten stellen, sobald ViaFrei verbunden ist:",
+      "place": "Wie ist die Verkehrslage in {place} gerade – Straßen, Bus und Bahn, Wetter?",
+      "road": "Ist die {road} gerade frei?",
+      "exit": "Ist die {road} bei {exit} gerade frei?"
+    },
+    "phone": {
+      "heading": "Auf dem Telefon (Android, iPhone)",
+      "jump": "Auf dem Telefon? So geht es auf Android und iPhone",
+      "lead": "In den meisten Assistenten-Apps lässt sich ViaFrei nicht in der App selbst hinzufügen. Sie richten die Verbindung einmal im Browser ein – auch auf dem Telefon – und die App nutzt sie, sobald Sie mit demselben Konto angemeldet sind.",
+      "where": "Laut Anthropic mit jedem Claude-Tarif (Free: ein eigener Connector). Das Hinzufügen in der App ist noch Beta, deshalb führen die Schritte über claude.ai im Browser.",
+      "claude": {
+        "s1": "Im Browser des Telefons (oder am Computer) claude.ai öffnen und anmelden. Dann Anpassen (Customize) → Connectors → „+ Add“ → „Add custom connector“.",
+        "s2": "Name: ViaFrei. URL: {url}. Auf „Continue“ tippen.",
+        "s3": "Die Claude-App öffnen und mit demselben Konto anmelden. Im Chat auf „+“ → Connectors tippen und ViaFrei einschalten.",
+        "s4": "Fragen Sie: „Ist die A7 bei Kassel frei?“ und erlauben Sie beim ersten Mal das ViaFrei-Werkzeug. Richtig ist eine Antwort, die die A7 bei Kassel jetzt beschreibt und mit der Quellenzeile endet, die den Herausgeber der Daten nennt."
+      },
+      "unclear": "{name}: Die offizielle Anleitung fügt einen eigenen MCP-Server nur im Web hinzu und sagt nicht, ob die App auf dem Telefon ihn dann nutzt – deshalb hier keine Schritte. Stand {date}.",
+      "gemini": "Gemini: Eigene Apps (MCP-Server) lassen sich nur in der Web-App hinzufügen, und nur mit einem privaten Konto in den USA, ab 18 Jahren, auf Englisch – aus Deutschland also nicht. Stand {date}.",
+      "copilot": "Microsoft Copilot: Die offizielle Dokumentation beschreibt eigene MCP-Server nur für Microsoft 365 Copilot (eingerichtet von der Verwaltung eines Unternehmens) und Copilot Studio, nicht für die Copilot-App. Stand {date}.",
+      "checked": "Am {date} gegen die offizielle Anleitung geprüft; auf einem Telefon noch nicht ausprobiert.",
+      "device": "Am {date} auf einem Telefon verbunden, mit {app}."
+    }
+  },
+  "devPage": {
+    "title": "ViaFrei für Entwickler",
+    "lead": "Ein MCP-Server über Streamable HTTP, offene Daten aus Deutschland, jede Antwort mit ihrer Quelle. Hier steht, was er heute kann – vom Server selbst gelesen, nicht abgeschrieben.",
+    "releaseHeading": "Aktuelle Version",
+    "releaseLine": "Version {version}",
+    "releaseDate": "veröffentlicht am {date}",
+    "toolsHeading": "Werkzeuge",
+    "toolsLead": "{n} Werkzeuge, so wie der Server sie meldet:",
+    "promptsHeading": "Prompts",
+    "resourcesHeading": "Ressourcen",
+    "codeHeading": "Code und Mitmachen",
+    "closed": "Der Server ist ein gehosteter Dienst; sein Quellcode ist nicht öffentlich. Öffentlich ist die Brücke – und dort ist jede Hilfe willkommen.",
+    "bridge": "Die öffentliche Brücke auf GitHub",
+    "discussions": "Diskussionen",
+    "goodFirst": "Gute erste Issues",
+    "contributing": "So tragen Sie bei",
+    "security": "Sicherheitslücke melden",
+    "licence": "Lizenz: Apache-2.0",
+    "contractHeading": "Der Vertrag jedes Werkzeugs",
+    "contract1": "Ein Werkzeug tut eine Sache und heißt danach (Verb_Substantiv).",
+    "contract2": "Jede Antwort trägt ihre Quellenzeile wörtlich; wo die Lizenz einen Zweckhinweis verlangt, steht er dabei.",
+    "contract3": "Zeiten sind Europe/Berlin, gespeichert wird in UTC.",
+    "contract4": "Tests rufen nie einen echten Anbieter auf; jeder Beitrag wird unabhängig geprüft.",
+    "npmHeading": "npm",
+    "npmLead": "Für Clients, die nur stdio sprechen:",
+    "npmReserved": "Der Namensraum @viafrei ist für spätere SDK-Pakete reserviert.",
+    "listingsHeading": "Verzeichnisse",
+    "listingsLead": "ViaFrei ist hier gelistet:",
+    "listingNpm": "npm – das Paket viafrei, die stdio-Brücke für Clients ohne HTTP",
+    "listingSmithery": "Smithery – gehostete Verbindung, ohne lokale Installation",
+    "listingGlama": "Glama – Eintrag im MCP-Serververzeichnis",
+    "statusHeading": "Status",
+    "statusText": "Ein Statusbild der Datenquellen gibt es auf Anfrage.",
+    "tools": {
+      "check_autobahn_traffic": "Verkehr auf der Autobahn",
+      "find_cheapest_fuel": "Günstigster Kraftstoff in der Nähe",
+      "find_fuel_station": "Tankstelle finden",
+      "find_parking": "Parken in der Nähe",
+      "check_road_status": "Straßenzustand und Sperrungen",
+      "find_roadworks_ahead": "Geplante Baustellen",
+      "find_sharing": "Leihräder in der Nähe",
+      "find_charging_station": "Laden in der Nähe",
+      "find_hydrogen_station": "Wasserstofftankstellen in der Nähe",
+      "find_speed_cameras": "Blitzer-Standorte für die Planung",
+      "find_place": "Einen Ort nachschlagen",
+      "find_poi": "Einen benannten Ort finden",
+      "find_address": "Eine Adresse nachschlagen",
+      "describe_location": "Eine Koordinate beschreiben",
+      "find_nearby": "Was ist in der Nähe",
+      "get_driving_rules": "Verkehrsregeln in Deutschland",
+      "check_transit_disruption": "Störungen im Nahverkehr einer Region",
+      "check_weather_warnings": "Amtliche Unwetterwarnungen",
+      "get_train_departures": "Zugabfahrten",
+      "get_departures": "Fahrplanabfahrten (Bus, Tram, Zug)",
+      "check_station_facilities": "Aufzüge und Rolltreppen am Bahnhof",
+      "describe_station": "Bahnhof im Überblick",
+      "watch_situation": "Auf eine Änderung achten",
+      "stop_watch": "Beobachtung beenden"
+    },
+    "prompts": {
+      "plan_departure": "Brieft eine Fahrt kurz vor dem Start: Unwetterwarnungen an beiden Enden, offene Autobahnen und aktuelle Staus, am Ende ein Satz: fahren oder warten.",
+      "compare_travel_options": "Wägt eine Fahrt mit dem Auto gegen dieselbe Fahrt mit der Bahn ab: Sperrungen und Staus auf der einen Seite, Abfahrten und Pünktlichkeit auf der anderen.",
+      "prepare_car_trip": "Sammelt, was man in Deutschland und für eine bestimmte Stadt dabeihaben und wissen muss: Umweltplakette, Tempolimits, Winterreifen, Promillegrenze, Maut, Pflichtausstattung.",
+      "plan_fuel_stop": "Findet, wo man unterwegs tankt oder lädt: die günstigsten Tankstellen für eine Sorte oder Ladepunkte mit passendem Stecker und Leistung, und die Rastanlage daneben.",
+      "plan_commute": "Plant eine Fahrt mit Bus oder Bahn am selben Tag: die nächsten Abfahrten mit Verspätungen, Gleisen und Ausfällen, und ob die Region normal fährt.",
+      "plan_arrival_parking": "Findet, wo das Auto am Ende der Fahrt bleibt: ein Parkhaus in der Stadt, Park-and-Ride am Rand mit Anschlussabfahrten oder eine Rastanlage, wenn man zu früh ist.",
+      "find_a_place": "Löst einen bloßen Namen in einen Ort, einen benannten Ort oder eine Adresse auf und probiert eins nach dem anderen.",
+      "plan_local_errand": "Beantwortet „Was ist hier in der Nähe?“ für einen Ort: die nächste Tankstelle, Ladesäule, Parkmöglichkeit, den nächsten Bahnhof und die nächste Autobahnauffahrt auf einen Blick.",
+      "explain_this_coordinate": "Macht aus bloßen Koordinaten einen Satz, den Reisende verstehen: nächste Adresse, Ort, Kreis und Autobahnauffahrt, jeweils mit Entfernung."
+    },
+    "quickHeading": "In einer Minute verbunden",
+    "quickLead": "Client wählen, das hier einfügen und die erste Frage stellen.",
+    "quickTabs": "Anwendungen",
+    "quickWhere": "Wohin damit:",
+    "quickFirst": "Ihr erster Aufruf",
+    "quickFirstLead": "Einmal verbunden, fragen Sie in einfachen Worten; das Werkzeug wählt der Assistent selbst:",
+    "copy": "Kopieren",
+    "copyCurl": "Als curl kopieren",
+    "tryHeading": "Ausprobieren",
+    "tryLead": "Ein echter Aufruf am öffentlichen Endpunkt: erst die Sitzung, dann das Werkzeug. Darunter die Antwort, die unser Server vor wenigen Minuten genau auf diesen Aufruf gab.",
+    "tryRequest": "Anfrage",
+    "tryResponse": "Antwort",
+    "tryAsOf": "Beantwortet um {time}",
+    "tryError": "Gerade liegt keine frische Antwort vor. Führen Sie die Anfrage oben aus, um eine live zu sehen.",
+    "argsLabel": "Argumente",
+    "askLabel": "So fragen Sie:",
+    "schemaLabel": "Eingabeschema",
+    "otherGroup": "Weitere Werkzeuge",
+    "newHeading": "Neu im Vertrag",
+    "newLine": "Version {version}, {date}",
+    "newTools": "geändert:",
+    "contract5": "Zu viele Anfragen werden mit dem JSON-RPC-Fehler {code} abgewiesen; kurz warten und erneut senden.",
+    "contract6": "Eine abgelaufene Sitzung wird mit dem Fehler {code} abgewiesen; mit initialize eine neue beginnen.",
+    "ask": {
+      "check_autobahn_traffic": "Gibt es gerade Stau auf der A9 zwischen München und Nürnberg?",
+      "find_cheapest_fuel": "Wo ist Diesel bei Kassel gerade am günstigsten?",
+      "find_fuel_station": "Welche Tankstelle hat am Würzburger Hauptbahnhof geöffnet?",
+      "find_parking": "Gibt es ein Parkhaus mit freien Plätzen am Kölner Hauptbahnhof?",
+      "check_road_status": "Gibt es Sperrungen auf den Straßen rund um Dresden?",
+      "find_roadworks_ahead": "Welche Baustellen sind nächste Woche auf der A3 geplant?",
+      "find_charging_station": "Wo kann ich in Leipzig mit 150 kW schnellladen?",
+      "find_hydrogen_station": "Wo ist die nächste Wasserstofftankstelle bei Stuttgart?",
+      "find_speed_cameras": "Wo stehen feste Blitzer auf meinem Weg durch Bielefeld?",
+      "find_place": "Wo genau liegt Garmisch-Partenkirchen?",
+      "find_poi": "Gibt es eine Apotheke am Erfurter Hauptbahnhof?",
+      "find_address": "Wo ist Unter den Linden 77 in Berlin?",
+      "describe_location": "Was ist bei 50,94, 6,96?",
+      "find_nearby": "Was ist in der Nähe des Münsteraner Hauptbahnhofs: Laden, Parken, Haltestellen?",
+      "find_sharing": "Gibt es ein Leihrad am Hamburger Dammtor?",
+      "get_driving_rules": "Wann gilt das Sonntagsfahrverbot für Lkw?",
+      "check_transit_disruption": "Wie pünktlich fahren Busse und Bahnen in Bayern gerade?",
+      "check_weather_warnings": "Gibt es heute eine Unwetterwarnung für Hamburg?",
+      "get_train_departures": "Wann fahren die nächsten Züge ab Hannover Hauptbahnhof?",
+      "get_departures": "Wann fährt die nächste Straßenbahn am Leipziger Augustusplatz?",
+      "check_station_facilities": "Funktionieren die Aufzüge am Frankfurter Hauptbahnhof?",
+      "describe_station": "Wie ist der Nürnberger Hauptbahnhof: Gleise, Aufzüge, Abfahrten?",
+      "watch_situation": "Sag mir Bescheid, wenn die A7 bei Hamburg wieder frei ist.",
+      "stop_watch": "Beobachte die A7 nicht mehr."
+    }
+  },
+  "bizPage": {
+    "title": "ViaFrei für Unternehmen",
+    "lead": "Offene Mobilitätsdaten aus ganz Deutschland, sauber zusammengeführt und mit Quelle – als ein Endpunkt, den Ihre Systeme und Ihre Assistenten fragen können.",
+    "casesHeading": "Wofür Unternehmen ViaFrei nutzen",
+    "u1t": "Logistik und Flotten",
+    "u1": "Baustellen und Sperrungen auf den Autobahnen der geplanten Strecke, Lkw-Parkplätze an der Route und das Sonntagsfahrverbot aus den Fahrregeln.",
+    "u1q": "Welche Sperrungen gibt es auf der A7 zwischen Würzburg und Ulm?",
+    "u1a": "{n} Sperrungen auf der A7 bis {to}; zwischen Würzburg und Ulm darunter {a} – {b} und {b} – {c}, in beiden Richtungen.",
+    "u2t": "Ladeinfrastruktur",
+    "u2": "Wo im Netz Ladepunkte dünn sind und welche gerade frei sind – aus den Betreiber-Feeds, deren Herkunft wir geprüft haben. Die gespeicherte Verfügbarkeits-Historie ist als Teil einer Zusammenarbeit in Planung.",
+    "u2q": "Wo gibt es Schnellladepunkte mit mindestens 150 kW in der Nähe von Kassel?",
+    "u2a": "Ja: {s1}, {a1}, {m} m entfernt, bis {kw1} kW, {free} von {total} Punkten mit Status frei; dazu {s2}, {a2}, bis {kw2} kW, ohne Live-Status.",
+    "u3t": "Tourismus, Hotels und Veranstaltungsorte",
+    "u3": "Eine Anreise-Information für Gäste in ihrer Sprache: Autobahnlage, Bahnabfahrten, Parken und Laden am Ziel.",
+    "u3q": "Mein Hotel liegt in Garmisch-Partenkirchen – müssen Gäste heute mit einer Wetterwarnung rechnen?",
+    "u3a": "Nein: Für {place} liegt keine amtliche Warnung des DWD vor, geprüft für jetzt und die nächsten {hours} Stunden – für die übrige Anreise ist das keine Entwarnung.",
+    "u4t": "Navigations-, Karten- und Mobilitäts-Apps",
+    "u4": "Ein MCP-Endpunkt statt vieler einzelner Anbieter-Anbindungen – und, als Teil einer Zusammenarbeit in Planung, die gespeicherte Historie der Quellen, deren Lizenz eine Auswertung erlaubt.",
+    "u4q": "Welche Baustellen gelten in den nächsten Tagen auf der A3?",
+    "u4a": "Vom {from} bis {to} sind auf der A3 {n} Arbeitsstellen geplant, darunter {a} – {b}: 1 von 4 Fahrstreifen gesperrt, Tempo {speed}, bis {until}.",
+    "u5t": "Versicherungen und Mobilitätsforschung",
+    "u5": "Das Archiv der Messwerte jener Quellen, deren Lizenz es erlaubt: Wie war die Lage auf einem Abschnitt zu einem bestimmten Zeitpunkt? Abfragen der Historie sind als Teil einer Zusammenarbeit in Planung; was gerade gilt, etwa die amtlichen Warnungen eines Landes, beantwortet der öffentliche Dienst schon heute.",
+    "u5q": "Welche Sperrungen gelten gerade auf der A8?",
+    "u5a": "{n} Sperrungen auf der A8 bis {to}, darunter {a} – {b} Richtung München und am Anschluss {c} zur A81.",
+    "u6t": "Kommunen und Länder",
+    "u6": "Ein bundesweiter Blick auf die eigenen veröffentlichten Daten – und ein Weg, Feeds vorzuschlagen, die wir aufnehmen sollten.",
+    "u6q": "Liegt für Köln gerade eine amtliche Wetterwarnung vor?",
+    "u6a": "Nein: Für {place} gilt keine amtliche Warnung des DWD, weder jetzt noch in den nächsten {hours} Stunden.",
+    "futureLabel": "in Planung",
+    "coopHeading": "Was Zusammenarbeit heißt",
+    "price": "Preise auf Anfrage.",
+    "contactHeading": "Sprechen wir",
+    "contactLead": "Schreiben Sie uns – Antwort innerhalb von zwei Werktagen.",
+    "postal": "Postanschrift: siehe Impressum.",
+    "noForm": "Kein Formular, keine Datenbank: nur eine E-Mail.",
+    "licenceScope": "Was wir Unternehmen anbieten, richtet sich nach der Lizenz jeder Quelle: Daten, die nur zur Verbraucherinformation freigegeben sind, gehören nicht dazu, und Daten unter Share-Alike-Lizenz geben wir nur unter derselben Lizenz weiter.",
+    "licenceScopeCredits": "Alle Quellenangaben stehen unter",
+    "heroPilot": "Pilotprojekt starten",
+    "heroLive": "Live ansehen",
+    "heroSteps": "Wie ein Assistent mit ViaFrei antwortet",
+    "proofHeading": "Live aus der Datenbank, jetzt gerade",
+    "proofLead": "Jede Zahl unten wurde für diese Seite aus unserer Datenbank gelesen, mit dem Zeitpunkt, auf den sie sich bezieht. Was sich nicht lesen lässt, steht als fehlend da, nie als ältere Zahl.",
+    "proofError": "Diese Zahl ließ sich gerade nicht lesen.",
+    "proofCatalogue": "Zählung zum Release {version}.",
+    "proofSources": "Datenquellen mit Quellenangabe",
+    "proofTools": "Werkzeuge für Assistenten",
+    "proofMotorways": "Autobahnen mit eigener Seite",
+    "proofLanguages": "Sprachen",
+    "caseShow": "Ansehen, was es gerade zeigt",
+    "howHeading": "So funktioniert es",
+    "how1": "Behörden und Betreiber veröffentlichen offene Daten: Verkehr, Fahrpläne, Ladesäulen, Parken, Unwetterwarnungen.",
+    "how2": "Wir sammeln sie rund um die Uhr, führen sie zu einem Bild von Deutschland zusammen und bewahren jeden Messwert mit Zeit und Quelle.",
+    "how3": "Ihre Systeme und Ihre Assistenten fragen einen Endpunkt und erhalten eine Antwort, die ihre Quelle nennt.",
+    "howData": "Offene Daten",
+    "howYou": "Ihr Assistent oder System",
+    "licenceHeading": "Welche Daten ein Unternehmen nutzen darf – und wie",
+    "licenceColClass": "Lizenzklasse",
+    "licenceColCount": "Quellen",
+    "licenceColUse": "Was ein Unternehmen darf",
+    "lic": {
+      "open": {
+        "name": "Offen",
+        "use": "Frei nutzen und weitergeben."
+      },
+      "attribution": {
+        "name": "Namensnennung",
+        "use": "Nutzen und weitergeben, mit der Quellenangabe dazu."
+      },
+      "shareAlike": {
+        "name": "Weitergabe unter gleichen Bedingungen",
+        "use": "Nutzen; abgeleitete Daten nur unter derselben Lizenz weitergeben."
+      },
+      "terms": {
+        "name": "Noch nicht für Unternehmen geklärt",
+        "use": "Noch nicht Teil eines Angebots für Unternehmen: Der Herausgeber veröffentlicht keine Nutzungsbedingungen, oder seine Bedingungen verlangen einen Vertrag, den wir noch nicht anbieten."
+      },
+      "consumerOnly": {
+        "name": "Nur Verbraucherinformation",
+        "use": "Nicht Teil eines Angebots für Unternehmen."
+      },
+      "own": {
+        "name": "Inhalte von ViaFrei",
+        "use": "In einer Zusammenarbeit enthalten."
+      }
+    },
+    "coopPilotTitle": "Pilotprojekt",
+    "coopPilot": "Einige Wochen an Ihrer eigenen Frage: eigener API-Schlüssel, höhere Grenzen und ein direkter Draht zu uns.",
+    "coopDataTitle": "Datenpartnerschaft",
+    "coopData": "Exporte aus der gespeicherten Historie – für die Quellen, deren Lizenz es erlaubt – und eigene Beobachtungen und Kanäle.",
+    "coopPublisherTitle": "Herausgeber",
+    "coopPublisher": "Sie veröffentlichen Mobilitätsdaten: Wir bringen sie zu jedem KI-Assistenten, mit Ihrem Namen als Quelle, und bauen gemeinsam neue Werkzeuge darauf."
+  },
+  "fuelPage": {
+    "title": "Tankstellen je Bundesland – eine Auswahl mit Preisen",
+    "lead": "Je Bundesland bis zu drei Tankstellen, das günstigste Super E10 zuerst. Ausgewählt aus den Tankstellen, die wir beobachten – also nicht unbedingt die günstigsten im Land. Jeder Preis steht mit der Uhrzeit, zu der wir ihn beobachtet haben. Eine Information für Verbraucherinnen und Verbraucher, keine Liste aller Tankstellen.",
+    "back": "Zur Startseite",
+    "unavailable": "Die Liste der Tankstellen je Bundesland ist gerade nicht verfügbar.",
+    "boardHead": "Je Bundesland bis zu drei Tankstellen",
+    "hereHead": "Die günstigsten offenen Tankstellen in {place}",
+    "hereHeadNone": "Die günstigsten offenen Tankstellen an Ihrem Ort",
+    "hereNone": "Ihr Ort ist uns gerade nicht bekannt. Wählen Sie unten eine Stadt oder auf der Startseite Ihren Ort; dort stehen seine Preise.",
+    "hereNoScript": "Die Preise werden mit JavaScript geladen, sobald dieser Abschnitt sichtbar ist. Ohne JavaScript stehen sie auf der Seite des Ortes.",
+    "hereLoading": "Preise werden geladen …",
+    "hereFailed": "Die Preise sind gerade nicht abrufbar.",
+    "cities": "Städte",
+    "citiesLead": "Die Preise jeder Stadt stehen auf ihrer Seite."
+  },
+  "quote": {
+    "open": "„",
+    "close": "“"
+  },
+  "place": {
+    "change": "Ort ändern",
+    "how": {
+      "exact": "gerundet, ca. 500 m",
+      "approx": "ungefähr (über Ihre Internetverbindung)",
+      "chosen": "gewählt",
+      "saved": "gespeichert",
+      "rough": "ungefähr (Browser)"
+    },
+    "germany": "Ganz Deutschland",
+    "outsideFar": "Ihr Standort liegt außerhalb Deutschlands. Wir zeigen ganz Deutschland – wählen Sie einen Ort, um seine Karten zu sehen.",
+    "choose": "Ort wählen",
+    "loaded": "Karten für {place} geladen",
+    "failed": "Dieser Ort ließ sich gerade nicht laden.",
+    "noGeo": "Kein Standort vom Browser – wählen Sie einen Ort.",
+    "locating": "Standort wird ermittelt …",
+    "geoNo": "Kein Standort vom Browser: {why}. Angezeigt wird weiter: {place}.",
+    "geoDenied": "Freigabe blockiert – erlauben Sie sie über das Symbol neben der Adresse",
+    "geoUnavailable": "Ihr Gerät konnte ihn nicht bestimmen",
+    "geoTimeout": "keiner innerhalb von 15 s",
+    "geoApprox": "Ihr Browser kennt Ihren Standort nur ungefähr (über 1 km).",
+    "why": "Für Ladesäulen, Tankstellen und Warnungen direkt bei Ihnen – Ihr genauer Standort bleibt auf Ihrem Gerät.",
+    "kept": "Ihr Browser merkt sich diesen Ort",
+    "sheet": {
+      "useLocation": "Meinen Standort verwenden",
+      "forget": "Ort vergessen"
+    },
+    "privacy": {
+      "title": "Ihr Ort bleibt bei Ihnen.",
+      "body": "ViaFrei legt kein Konto und kein Profil an und speichert Ihren Ort nicht. Ihr Browser merkt sich einen Ort auf diesem Gerät nur, wenn Sie ihn in der Ortsleiste wählen – einen Ort oder eine Adresse, „Meinen Standort verwenden“ oder „Ganz Deutschland“ –, dazu die zuletzt gewählten Orte; solange diese Seite einen gemerkten Ort verwendet, steht das unter der Ortsleiste, und „Ort vergessen“ löscht ihn sofort. Nach Ihrem Standort fragt die Seite nur, wenn Sie „Meinen Standort verwenden“ wählen; haben Sie ihn in Ihrem Browser bereits dauerhaft freigegeben, liest diese Seite ihn ohne Frage und speichert nichts. Ihr Standort wird auf Ihrem Gerät auf ein Gebiet von etwa 500 m gerundet; den Straßen- oder Ortsnamen dazu leitet unser Server aus diesem Gebiet ab; er hält ihn je Gebiet höchstens eine Stunde im Arbeitsspeicher, ohne Bezug zu Ihnen, und speichert ihn nicht. Nur direkt nach diesem Klick und wenn Ihr Browser den Standort auf höchstens 150 m genau angibt, sendet die Seite die genaue Position einmal an unseren Server, um zu prüfen, ob Sie an einem Bahnhof, einer Tankstelle, einer Ladestation oder einer Raststätte stehen; dort wird sie weder gespeichert noch protokolliert. Ebenso hält er den Namen eines hier gewählten Bahnhofs, Orts oder einer Adresse höchstens eine Stunde im Arbeitsspeicher. Ihre IP-Adresse dient nur der ungefähren Ortsbestimmung im Arbeitsspeicher und wird dafür nicht gespeichert. Das gilt auf jeder Seite mit der Ortsleiste, auch auf der Bahnhofsübersicht. Auf der Bahnhofsübersicht dient der so bestimmte Ort nur dazu, die nächstgelegenen Bahnhöfe und Haltestellen zu zeigen.",
+      "more": "Mehr dazu im Datenschutz"
+    },
+    "geoipCredit": "Ungefährer Ort aus der IP-Adresse:",
+    "pageTitle": "{place}: Sperrungen, Baustellen, Verkehr aktuell – ViaFrei",
+    "pageDescription": "Stau, Baustellen und Sperrungen in {place}, dazu Parken, Ladesäulen, Tankpreise und Unwetterwarnungen – live aus offenen Daten, jede Zahl mit Quelle.",
+    "pageLead": "Alles, was ViaFrei für {place} gerade weiß – aus offenen Daten, mit Quelle an jeder Zahl.",
+    "pageMissing": "Diesen Ort kennen wir nicht.",
+    "geoipModified": "Auszug bearbeitet",
+    "loadingCards": "Die Karten für diesen Ort werden geladen …",
+    "reloadCards": "Seite neu laden, um die Karten zu sehen",
+    "fuelUnavailable": "Die Preise konnten gerade nicht neu abgefragt werden. Hier steht der zuletzt bekannte Stand mit Uhrzeit.",
+    "motorway": {
+      "why": "Für das, was rund um Sie auf dieser Autobahn liegt – Ihr genauer Standort bleibt auf Ihrem Gerät.",
+      "radius": "Umkreis",
+      "radiusOther": "Umkreis frei wählen (1–100 km)",
+      "updating": "wird aktualisiert …",
+      "failed": "Konnte nicht aktualisiert werden – die vorige Ansicht bleibt.",
+      "zoomGroup": "Karte zoomen – jeder Schritt ist ein Umkreis",
+      "zoomIn": "Karte vergrößern – Umkreis {r} km",
+      "zoomOut": "Karte verkleinern – Umkreis {r} km",
+      "zoomInEnd": "Karte vergrößern – kleinster Umkreis erreicht",
+      "zoomOutEnd": "Karte verkleinern – größter Umkreis erreicht",
+      "filter": {
+        "legend": "Anzeigen",
+        "all": "Alle anzeigen",
+        "none": "Keine anzeigen",
+        "allLabel": "Alle anzeigen – alle Arten auswählen",
+        "noneLabel": "Keine anzeigen – alle Arten abwählen",
+        "save": "Auswahl merken",
+        "saved": "Auswahl auf diesem Gerät gemerkt.",
+        "forget": "Nicht mehr merken",
+        "everything": "Alle Daten",
+        "nothing": "Nichts ausgewählt – wählen Sie mindestens eine Art.",
+        "sum": "{kinds}: {n}",
+        "sumR": "{kinds} im Umkreis von {r} km: {n}",
+        "entriesOne": "{n} Eintrag",
+        "entriesFew": "{n} Einträge",
+        "entriesMany": "{n} Einträge",
+        "entriesOther": "{n} Einträge",
+        "entriesZero": "{n} Einträge",
+        "ampel": "Die Ampel bewertet weiterhin alles – einige ihrer Gründe sind gerade ausgeblendet."
+      }
+    },
+    "pageDescriptionRoads": "{place}: Sperrungen und Baustellen aktuell auf {roads} – dazu Stau, Parken, Ladesäulen und Warnungen, live aus offenen Daten mit Quelle.",
+    "topics": {
+      "legend": "Themen",
+      "apply": "Anwenden",
+      "none": "Keine Themen gewählt.",
+      "shown": "{n} von {total} Themen angezeigt",
+      "attention": "Ausgeblendet, aber jetzt wichtig: {topic} – anzeigen"
+    },
+    "head": {
+      "live": "Live für",
+      "scope": "Bereich",
+      "search": "Ort suchen",
+      "searchHint": "Adresse, PLZ, Stadtteil oder Bahnhof",
+      "locate": "Meinen Standort verwenden",
+      "confirmQ": "Stimmt der Ort?",
+      "yes": "Ja",
+      "other": "Anderer Ort",
+      "confirmed": "bestätigt",
+      "updated": "aktualisiert für {place}",
+      "outside": "Standort außerhalb Deutschlands",
+      "germanyHow": "ganz Deutschland gewählt",
+      "germanyNote": "Ganz Deutschland gewählt: alle bundesweiten Zahlen stehen gleich darunter – mit Stand und Quelle."
+    },
+    "bar": {
+      "label": "Standort wählen oder suchen",
+      "close": "Schließen",
+      "hint": "Ort, Adresse, Autobahn, Bahnhof suchen …",
+      "recent": "Zuletzt",
+      "popular": "Beliebt",
+      "drop": "{place} entfernen",
+      "found": "Vorschläge: {n}",
+      "how": "Ein Ort, eine Adresse oder ein Bahnhof aus der Liste zeigt die Karten dort; Enter durchsucht die ganze Seite."
+    }
+  },
+  "newsPage": {
+    "readMore": "Weiterlesen",
+    "title": "Neuigkeiten",
+    "lead": "Was neu bei ViaFrei ist, was als Nächstes kommt, und die langen Sperrungen, die wir gerade führen — jede mit ihrer Quelle.",
+    "filterLabel": "Zeigen",
+    "chipNew": "Neu",
+    "chipPlans": "Pläne",
+    "chipTraffic": "Verkehr",
+    "newHeading": "Neu bei ViaFrei",
+    "plansHeading": "Pläne",
+    "plansLead": "Was wir als Nächstes aufnehmen wollen. Geplant heißt geplant: Nichts davon ist schon in ViaFrei, und wir nennen keine Termine.",
+    "trafficHeading": "Lange Sperrungen",
+    "trafficLead": "Aus unseren eigenen Daten: Sperrungen mit angegebenem Ende, mindestens einen Tag lang. Jede verschwindet, sobald ihr Ende erreicht ist.",
+    "badgeNew": "Neu",
+    "badgePlan": "Geplant",
+    "askLabel": "Fragen Sie Ihren Assistenten",
+    "askLabelPlan": "Wenn es da ist, fragen Sie Ihren Assistenten",
+    "plannedNote": "noch ohne Termin",
+    "connect": "ViaFrei verbinden",
+    "sources": "Quelle",
+    "feed": "Neuigkeiten als Atom-Feed",
+    "released": "Version {v} · {d}",
+    "teaserHeading": "Neu bei ViaFrei",
+    "teaserAll": "Alle Neuigkeiten",
+    "trafficError": "Die Verkehrsmeldungen konnten gerade nicht geladen werden.",
+    "noEntries": "Noch keine Einträge in dieser Sprache."
+  },
+  "examplesPage": {
+    "title": "Alle Beispielfragen",
+    "lead": "Jede Frage, die ViaFrei auf dieser Website als Beispiel zeigt – mit dem Werkzeug, das sie beantwortet, und der Antwort, nach Bereichen geordnet.",
+    "live": "Wo ViaFrei die Frage selbst regelmäßig stellt, steht hier die neueste Antwort; sonst die aufgezeichnete Antwort mit ihrem Datum.",
+    "toc": "Bereiche",
+    "domain": {
+      "transit": "Bus, Bahn und Bahnhof",
+      "roads": "Straßen und Autobahnen",
+      "parking": "Parken",
+      "charging": "Laden",
+      "fuel": "Tanken",
+      "more": "Orte und Beobachtungen"
+    },
+    "question": "Frage {n}",
+    "fuelNote": "Beispielantworten zu Kraftstoffpreisen zeigen wir nur datiert und nur an zwei Stellen: {home} und {connect}.",
+    "fuelHome": "auf der Startseite",
+    "fuelConnect": "auf der Verbinden-Seite"
+  },
+  "seo": {
+    "connectTitle": "Verkehrsdaten in ChatGPT und Claude: MCP verbinden – ViaFrei",
+    "connectDescription": "Eine Adresse, kein Schlüssel: ViaFrei in Claude, ChatGPT, Copilot, Cursor, Gemini CLI oder Le Chat verbinden und live nach Stau, Bahn und Parken fragen.",
+    "motorwayTitle": "{road} Stau aktuell: Baustellen, Sperrungen – ViaFrei",
+    "motorwayDescription": "{road} Stau aktuell: Sperrungen und Baustellen je Richtung, live aus offenen Daten, dazu geplante Vollsperrungen und die Regeln auf jeder Autobahn.",
+    "motorwaysTitle": "Autobahn Stau, Baustellen & Sperrungen aktuell – Deutschland – ViaFrei",
+    "motorwaysDescription": "Alle Autobahnen live: Stau, Sperrungen, Baustellen, Umleitungen, Parken und Laden, nach Nummer oder Lage sortiert, mit Karte und einer Seite je Autobahn.",
+    "motorwayH1": "{road} aktuell",
+    "motorwayLead": "Stau, Sperrungen und Baustellen auf der {road}, live aus offenen Daten, mit Quelle und Stand.",
+    "motorwaysH1": "Autobahnen in Deutschland",
+    "motorwaysLead": "Jede Autobahn mit ihren aktuellen Meldungen. Wählen Sie eine für Stau, Sperrungen, Baustellen und ihren Verlauf.",
+    "stationsTitle": "Bahnhöfe in Deutschland: Bahnsteige, Ausstattung – ViaFrei",
+    "stationsDescription": "Jeder Bahnhof der Deutschen Bahn: Bahnsteige mit Höhe und Stufenfreiheit, Ausstattung, Mobilitätsservice und was im Umkreis von 300 m liegt – aus offenen Daten.",
+    "stationsH1": "Bahnhöfe in Deutschland",
+    "crumbStations": "Bahnhöfe",
+    "stationTitle": "{name}: Abfahrten, Gleise, Aufzüge, Störungen – ViaFrei",
+    "stationDescription": "{name}: die nächsten Abfahrten live mit Gleis, welche Aufzüge und Fahrtreppen jetzt gehen, Bahnsteige mit Stufenfreiheit, Ausstattung und Umgebung – aus offenen Daten, mit Quelle und Stand.",
+    "crumbHome": "Start",
+    "crumbMotorways": "Autobahnen",
+    "linksMotorways": "Autobahnen live",
+    "linksPlaces": "Städte live",
+    "allMotorways": "Alle Autobahnen",
+    "allPlaces": "Weitere Städte",
+    "imprintDescription": "Impressum von viafrei.de: wer ViaFrei betreibt, die Echtzeit-Mobilitätsplattform für KI-Assistenten, und wie Sie den Betreiber erreichen.",
+    "privacyDescription": "Datenschutzerklärung von viafrei.de: was ViaFrei speichert und was nicht, wie die Einwilligung funktioniert und welche Rechte Sie haben – ohne Konto.",
+    "termsDescription": "Nutzungsbedingungen von ViaFrei: unter welchen Bedingungen Sie Daten wie die Lkw-Stellplatzbelegung der Toll Collect GmbH nutzen dürfen.",
+    "businessTitle": "Live-Mobilitätsdaten als API für Unternehmen",
+    "businessDescription": "Verkehr, ÖPNV, Laden und Parken in ganz Deutschland als ein Live-Endpunkt mit Quellen. Starten Sie ein Pilotprojekt oder eine Datenpartnerschaft.",
+    "developersTitle": "MCP-Server für deutsche Mobilitätsdaten",
+    "developersDescription": "Jeden MCP-Client in einer Minute verbinden: Schnellstart je Client, ein echter Aufruf mit Antwort und jedes Werkzeug mit seinem Schema."
+  },
+  "ask": {
+    "live": "Live-Antwort von ViaFrei",
+    "asOf": "Datenstand {time} Uhr",
+    "tool": "Werkzeug",
+    "question": "Frage",
+    "answer": "Antwort",
+    "cta": "In Ihrem Assistenten fragen",
+    "roads": {
+      "question": "Gibt es gerade Stau auf der A8?",
+      "clear": "Auf der {road} ist gerade kein Stau gemeldet. In Kraft – Sperrungen: {closures}, Baustellen: {works}.",
+      "jams": "Auf der {road} gemeldete Staus: {jams}, der längste kostet {delay} Min. Sperrungen: {closures}, Baustellen: {works}.",
+      "jamsNoDelay": "Auf der {road} gemeldete Staus: {jams}. Sperrungen: {closures}, Baustellen: {works}."
+    },
+    "lorryPark": {
+      "question": "Wie viele Lkw-Parkplätze hat die A3, und wie viele veröffentlichen ihre Belegung?",
+      "listed": "Lkw-Parkplätze an der {road}: {total}; mit veröffentlichter Belegung: {live}."
+    },
+    "hydrogen": {
+      "question": "Wo kann ein Wasserstoff-Lkw bei Frankfurt am Main tanken?",
+      "near": "{name}, {address}: 350 bar für Lkw und Busse, {km} km entfernt.",
+      "none": "Im Umkreis von {km} km ist keine Wasserstofftankstelle für Lkw verzeichnet."
+    },
+    "weatherLand": {
+      "question": "Gilt in Bayern gerade eine amtliche Wetterwarnung?",
+      "none": "{place}: Keine amtliche DWD-Warnung in Kraft, geprüft für jetzt und die nächsten {hours} Stunden.",
+      "warn": "{place}: Amtliche Warnungen in Kraft: {count}, höchste Stufe {level} von 4, darunter „{event}“."
+    },
+    "transit": {
+      "question": "Wie pünktlich sind Bus und Bahn in Nordrhein-Westfalen gerade?",
+      "share": "{region}: {pct} % der Fahrten der letzten {minutes} Minuten sind verspätet ({late} von {trips}).",
+      "thin": "{region}: in den letzten {minutes} Minuten beobachtete Fahrten: {trips} – zu wenige für einen Anteil."
+    },
+    "charging": {
+      "question": "Wo kann ich in Leipzig mit mindestens 150 kW laden?",
+      "live": "{operator}, {address}: bis {kw} kW, {km} km entfernt – {free} von {total} Ladepunkten frei.",
+      "liveNoOp": "{address}: bis {kw} kW, {km} km entfernt – {free} von {total} Ladepunkten frei.",
+      "noStatus": "{operator}, {address}: bis {kw} kW, {km} km entfernt. Einen aktuellen Belegungsstatus meldet der Betreiber gerade nicht.",
+      "noStatusNoOp": "{address}: bis {kw} kW, {km} km entfernt. Einen aktuellen Belegungsstatus meldet der Betreiber gerade nicht.",
+      "none": "Im Umkreis ist keine Ladestation mit mindestens 150 kW verzeichnet."
+    },
+    "parking": {
+      "question": "Wo ist am Hauptbahnhof Münster gerade ein Parkhaus frei?",
+      "free": "{name}: {free} von {total} Plätzen frei, {km} km entfernt.",
+      "none": "Gerade meldet kein Parkhaus in der Nähe freie Plätze.",
+      "unpublished": "Für die Parkhäuser in der Nähe veröffentlicht der Betreiber keine Live-Belegung — ob Plätze frei sind, ist nicht bekannt."
+    },
+    "roadsNear": {
+      "question": "Was ist auf den Straßen hier gerade los?",
+      "clear": "Im Umkreis von {km} km ist gerade nichts gemeldet: kein Stau, keine Sperrung.",
+      "noJams": "Im Umkreis von {km} km kein Stau. In Kraft – Sperrungen: {closed}, Einschränkungen: {restricted}.",
+      "jams": "Im Umkreis von {km} km – Staus: {jams}, Sperrungen: {closed}, Einschränkungen: {restricted}."
+    },
+    "weather": {
+      "question": "Gibt es hier eine amtliche Wetterwarnung?",
+      "none": "Keine amtliche DWD-Warnung in Kraft, geprüft für jetzt und die nächsten {hours} Stunden.",
+      "warn": "Amtliche Warnungen in Kraft: {count}, höchste Stufe {level} von 4, darunter „{event}“."
+    },
+    "nearby": {
+      "question": "Was gibt es hier in der Nähe?",
+      "near": "Bis {km} km: Bahnhof {station}; Ladestationen: {charging}, Parkplätze: {parking} (je höchstens drei gezeigt).",
+      "noStation": "Bis {km} km kein Bahnhof; Ladestationen: {charging}, Parkplätze: {parking} (je höchstens drei gezeigt).",
+      "none": "Bis {km} km ist weder ein Bahnhof noch eine Ladestation oder ein Parkplatz verzeichnet."
+    },
+    "poi": {
+      "question": "Wo ist die nächste Apotheke?",
+      "found": "{name}, {street} – {km} km entfernt.",
+      "foundNoStreet": "{name} – {km} km entfernt.",
+      "none": "Im Umkreis von 5 km ist keine Apotheke verzeichnet."
+    },
+    "chargingNear": {
+      "question": "Wo ist die nächste Ladesäule?",
+      "live": "{operator}, {address}: bis {kw} kW, {km} km entfernt – {free} von {total} Ladepunkten frei.",
+      "liveNoOp": "{address}: bis {kw} kW, {km} km entfernt – {free} von {total} Ladepunkten frei.",
+      "noStatus": "{operator}, {address}: bis {kw} kW, {km} km entfernt. Einen aktuellen Belegungsstatus meldet der Betreiber gerade nicht.",
+      "noStatusNoOp": "{address}: bis {kw} kW, {km} km entfernt. Einen aktuellen Belegungsstatus meldet der Betreiber gerade nicht.",
+      "none": "Im Umkreis ist keine Ladestation verzeichnet."
+    },
+    "offerOsm": "Diese Einträge stammen aus unserer von OpenStreetMap abgeleiteten Datenbank. Eine vollständige, maschinenlesbare Kopie (CSV) unter der ODbL 1.0 senden wir auf Anfrage kostenlos – Kontakt im {link}.",
+    "offerDb": "Diese Einträge stammen aus unserer aus „{db}“ abgeleiteten Datenbank. Die Datenbank, die wir öffentlich nutzen – ohne die Einträge, die der Herausgeber als vertraulich kennzeichnet –, senden wir als maschinenlesbare Kopie (CSV) unter der ODbL 1.0 auf Anfrage kostenlos – Kontakt im {link}.",
+    "offerLink": "Impressum"
+  },
+  "connectNote": {
+    "text": "Diese Antwort gibt Ihr KI-Assistent nur, wenn ViaFrei verbunden ist.",
+    "link": "So verbinden Sie ViaFrei",
+    "guide": "Vollständige Anleitung für alle Clients",
+    "clients": "Schritt für Schritt für",
+    "copy": "Adresse kopieren",
+    "copied": "Kopiert"
+  },
+  "next": {
+    "label": "Weiter",
+    "ask": "Fragen Sie Ihre KI zu {place}",
+    "motorways": "Alle Autobahnen"
+  },
+  "search": {
+    "label": "Suche auf ViaFrei",
+    "placeholder": "Ort, Autobahn, Bahnhof, Seite …",
+    "submit": "Suchen",
+    "title": "Suche",
+    "description": "Orte, Autobahnen, Anschlussstellen, Bahnhöfe und Seiten von ViaFrei finden.",
+    "hint": "Geben Sie mindestens zwei Zeichen ein.",
+    "alt": "Karten hier zeigen",
+    "partial": "Einige Ergebnisse werden nicht gezeigt: eine Quelle hat nicht rechtzeitig geantwortet.",
+    "allResults": "Alle Ergebnisse",
+    "showAll": "Alle Ergebnisse dieser Art",
+    "prev": "Zurück",
+    "next": "Weiter",
+    "pageOf": "Seite {page} von {pages}",
+    "pager": "Seiten der Ergebnisse",
+    "none": "Zu „{q}“ haben wir nichts gefunden.",
+    "nearest": "Ähnlich geschrieben:",
+    "motorwayIndex": "Alle Autobahnen",
+    "kind": {
+      "motorway": "Autobahnen",
+      "road": "Bundes- und Landesstraßen",
+      "place": "Orte",
+      "station": "Bahnhöfe",
+      "exit": "Anschlussstellen und Kreuze",
+      "area": "Gebiete und Adressen",
+      "poi": "Orte von Interesse",
+      "page": "Seiten",
+      "news": "Neuigkeiten"
+    }
+  },
+  "header": {
+    "how": "Ein Ort, eine Adresse oder ein Punkt aus der Liste wird Ihr Ort auf allen Seiten; eine Autobahn, ein Bahnhof oder eine Seite öffnet sich. Enter durchsucht die ganze Seite.",
+    "makeMine": "Als meinen Ort merken"
+  },
+  "statePages": {
+    "title": "Bundesländer: Autobahnen jetzt, Städte und Fakten – ViaFrei",
+    "description": "Alle 16 Bundesländer auf einen Blick: Vollsperrungen, Staus und Baustellen auf den Autobahnen jetzt, Fläche, Hauptstadt, Nachbarländer und größte Städte.",
+    "h1": "Die 16 Bundesländer",
+    "crumb": "Bundesländer"
+  },
+  "ai": {
+    "placeWarn": "Gibt es für {place} gerade Unwetterwarnungen?",
+    "placePark": "Wo kann ich in {place} gerade parken oder laden?",
+    "landRoads": "Welche Autobahnen in {place} sind gerade am stärksten betroffen?",
+    "roadUsual": "Wie lange dauern Staus auf der {road} meistens?",
+    "roadPlans": "Welche Baustellen und Sperrungen sind auf der {road} geplant?",
+    "open": "In {app} fragen",
+    "copy": "Frage kopieren",
+    "copied": "Kopiert"
+  },
+  "star": {
+    "add": "Seite merken",
+    "remove": "Gemerkt",
+    "neu": "neu",
+    "gone": "Aufgehoben seit Ihrem letzten Besuch: {list}",
+    "longer": "länger",
+    "install": "Zum Startbildschirm hinzufügen",
+    "commute": "Ihre Strecke"
+  },
+  "pwa": {
+    "offline": "Stand {t}, offline"
+  }
+}

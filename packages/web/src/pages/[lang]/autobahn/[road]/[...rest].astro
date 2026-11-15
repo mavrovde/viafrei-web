@@ -1,0 +1,27 @@
+---
+/**
+ * `/<lang>/autobahn/<road>` — a motorway page (#715), and since #892 its stretches as paths below it:
+ * `/<lang>/autobahn/a7/nesselwang-to-kempten[/towards-wuerzburg]`, `/<lang>/autobahn/a7/exit-138-nesselwang`.
+ * No 404: a spelling is a 301 to the page, anything else a 301 to the index; the filter form is a 303 to its stretch;
+ * a trailing slash is a 301 to the address without it (#1026).
+ */
+import MotorwayPage from "../../../../layouts/MotorwayPage.astro";
+import { isLang } from "../../../../i18n/index.js";
+import { readEnv } from "../../../../lib/env.js";
+import { unavailableAnswer } from "../../../../lib/degraded.js";
+import { resolveMotorwayPage } from "../../../../lib/motorway-page.js";
+import { withinBudget } from "../../../../lib/page-budget.js";
+
+const lang = Astro.params["lang"] ?? "";
+if (!isLang(lang)) return Astro.rewrite("/404");
+// #1026: one address per page — a trailing slash is a 301 to the page without it (a duplicate for a crawler, and the
+// strip's exit links are relative to the page's own address, `exitHrefFrom`)
+if (Astro.url.pathname.endsWith("/")) return Astro.redirect(`${Astro.url.pathname.replace(/\/+$/, "")}${Astro.url.search}`, 301);
+const env = readEnv();
+// #1166: the request's two-second budget, shared with a legacy lookup before it and the "around you" block after it
+const a = await resolveMotorwayPage(lang, Astro.params["road"] ?? "", Astro.params["rest"], withinBudget({ baseUrl: env.digestUrl, timeoutMs: env.placeTimeoutMs, mapPlatform: Astro.locals.mapPlatform }, Astro.locals.budgetEndsAt), Astro.url.searchParams);
+if (a.kind === "redirect") return Astro.redirect(a.to, a.status ?? 301);
+if (a.kind === "unavailable") return unavailableAnswer(lang, Astro.request);
+---
+
+<MotorwayPage lang={lang} road={a.road} html={a.html} variant={a.variant} path={a.path} area={a.area} />

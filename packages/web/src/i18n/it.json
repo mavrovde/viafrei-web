@@ -1,0 +1,1274 @@
+{
+  "meta": {
+    "tagline": "La piattaforma tedesca di mobilità in tempo reale per l’IA",
+    "pitch": "ViaFrei offre agli assistenti IA una conoscenza in tempo reale della Germania. Treni e autobus, traffico e cantieri, carburante, ricarica, parcheggi e meteo. Un solo MCP. Nessuna chiave API. Nessuna registrazione.",
+    "description": "Code, chiusure, lavori, treni, parcheggi, ricarica e carburante in Germania – live da dati aperti, come risposta del suo assistente IA, ogni dato con la fonte.",
+    "siteName": "ViaFrei"
+  },
+  "a11y": {
+    "skip": "Vai al contenuto",
+    "mainNav": "Navigazione principale",
+    "langNav": "Scegli la lingua",
+    "currentLang": "lingua attuale",
+    "sample": "Valori di esempio, non dati in tempo reale",
+    "crumbs": "Sei qui"
+  },
+  "nav": {
+    "brand": "ViaFrei",
+    "claim": "Dati sul traffico, a voce",
+    "tools": "Per sviluppatori",
+    "cta": "Collega alla tua IA",
+    "day": "La sua giornata",
+    "start": "Per iniziare",
+    "ctaShort": "Collega IA",
+    "ctaLabel": "Collega ViaFrei al tuo assistente IA ({clients})"
+  },
+  "beta": {
+    "label": "Beta",
+    "short": "ViaFrei è in versione beta: risposte e copertura possono cambiare e l’IA può sbagliare. Verifichi le informazioni importanti presso la fonte indicata.",
+    "more": "Che cosa significa",
+    "sign": "Segnale stradale di pericolo: pericolo generico",
+    "line": "Verifichi alla fonte"
+  },
+  "hero": {
+    "lead": "Come un amico ben informato: il mio treno parte? L’autostrada è libera? C’è una colonnina libera? ViaFrei fornisce al suo assistente i dati di oggi, ognuno con la sua fonte.",
+    "primary": "Collega la tua IA in un minuto",
+    "secondary": "La sua giornata con ViaFrei",
+    "clients": "Per:",
+    "phase": "Fase iniziale: le risposte sono informazioni, non consulenza legale.",
+    "trust": {
+      "free": "Gratuito",
+      "account": "Nessun account da noi",
+      "app": "Nessuna app in più",
+      "sources": "Ogni dato con la fonte"
+    },
+    "connected": "Il tuo assistente IA usa questi dati in tempo reale solo quando ViaFrei è collegato – senza collegamento risponde in base ai dati di addestramento."
+  },
+  "sign": {
+    "label": "Risposta di esempio, abbreviata",
+    "question": "L’A8 in direzione Monaco di Baviera è libera?",
+    "answerBefore": "Due cantieri tra Stoccarda e Ulma, nessuna chiusura — il tratto è",
+    "answerHighlight": "libero",
+    "answerAfter": ".",
+    "meta": "Esempio: ecco come risponde il suo assistente con ViaFrei — abbreviato, con valori di esempio.",
+    "badge": "{road} – pagina dell’autostrada"
+  },
+  "proof": {
+    "tiles": {
+      "reports": {
+        "title": "Segnalazioni in autostrada"
+      },
+      "charging": {
+        "title": "Punti di ricarica"
+      },
+      "lorry": {
+        "title": "Parcheggi per mezzi pesanti"
+      },
+      "lifts": {
+        "title": "Ascensori e scale mobili"
+      }
+    }
+  },
+  "tile": {
+    "error": "al momento non leggibile",
+    "errorNote": "Questa fonte al momento non risponde. Preferiamo non mostrare nulla piuttosto che spacciare un dato vecchio per nuovo.",
+    "loading": "caricamento …",
+    "loadingNote": "Questo dato sta arrivando. Compare non appena la fonte risponde."
+  },
+  "tools": {
+    "heading": "Strumenti per tema",
+    "lead": "Il suo assistente sceglie da solo lo strumento giusto. L’elenco viene dal server, non da un opuscolo.",
+    "showAll": "Mostra tutti i {n} strumenti",
+    "groups": {
+      "roads": "Autostrade e strade",
+      "rail": "Treni",
+      "transit": "Trasporto pubblico locale",
+      "energy": "Ricarica e carburante",
+      "places": "Luoghi e indirizzi",
+      "rules": "Regole e meteo"
+    },
+    "count": "{n, plural, one {# strumento} other {# strumenti}}"
+  },
+  "connect": {
+    "heading": "Collegato in sessanta secondi",
+    "lead": "Un endpoint, nessun account, nessuna chiave. Scelga il suo client e segua i passaggi.",
+    "endpointLabel": "Endpoint MCP (Streamable HTTP)",
+    "legacyLabel": "Per client meno recenti (HTTP + SSE)",
+    "clients": {
+      "claude": "Claude (desktop e claude.ai)",
+      "chatgpt": "ChatGPT",
+      "other": "Altri client MCP"
+    },
+    "draft": "Bozza — questi passaggi non sono ancora stati verificati sul client.",
+    "steps": {
+      "claude": {
+        "s1": "Impostazioni → Connectors → «Add custom connector».",
+        "s2": "Incolli l’endpoint qui sopra e salvi.",
+        "s3": "Chieda: «L’A8 in direzione Monaco di Baviera è libera?»"
+      },
+      "chatgpt": {
+        "s1": "Impostazioni → Connectors → «Create» (modalità sviluppatore).",
+        "s2": "Inserisca l’endpoint qui sopra come server MCP.",
+        "s3": "Scelga il connettore nella chat e faccia la sua domanda."
+      },
+      "other": {
+        "s1": "Streamable HTTP sull’endpoint qui sopra; i client meno recenti usano il percorso SSE.",
+        "s2": "Nessuna autenticazione nella fase di avvio.",
+        "s3": "tools/list restituisce il catalogo; ogni risposta riporta la sua fonte."
+      }
+    },
+    "cta": "Alla guida per sviluppatori",
+    "showClients": "Mostra i passaggi per il suo client"
+  },
+  "sources": {
+    "heading": "Fonti e affidabilità",
+    "lead": "Ogni dato riporta la fonte che ne consente l’uso — alla lettera e non tradotta, sul riquadro che lo mostra.",
+    "creditsLabel": "Le fonti dei dati di questa pagina",
+    "creditsShow": "Mostra tutte le {n} righe delle fonti",
+    "licenceText": "testo della licenza",
+    "notAnswered": {
+      "heading": "A che cosa non rispondiamo",
+      "routing": "Nessun calcolo del percorso — diciamo che cosa succede sulla strada, non quale deve prendere.",
+      "legal": "Nessuna consulenza legale — le risposte sulle regole indicano fonte e data di verifica e sono informazioni.",
+      "fuelFeed": "Nessun dato sui prezzi da riutilizzare — i prezzi dei carburanti sono un’informazione per i consumatori, non un’interfaccia."
+    },
+    "privacy": {
+      "heading": "La privacy in tre frasi",
+      "s1": "Prima del suo consenso questa pagina non carica caratteri, script o immagini di terzi.",
+      "s2": "Contiamo le visite senza cookie, solo come totali giornalieri sul nostro server; Google Analytics funziona solo se lei acconsente.",
+      "s2Clarity": "Contiamo le visite senza cookie, solo come totali giornalieri sul nostro server; Google Analytics e Microsoft Clarity funzionano solo se lei acconsente.",
+      "s3": "Il suo assistente parla con il nostro server — non conserviamo né account né profili."
+    }
+  },
+  "audience": {
+    "heading": "Per chi è",
+    "travellers": {
+      "title": "Per chi viaggia",
+      "text": "Chieda al suo assistente prima di partire, sul binario o alla colonnina — e riceva una risposta con la sua fonte.",
+      "cta": "Come collegarsi"
+    },
+    "developers": {
+      "title": "Per sviluppatori",
+      "text": "Un server MCP su Streamable HTTP, un catalogo pubblico, un bridge stdio su npm. Nessuna chiave nella fase di avvio.",
+      "cta": "Alla documentazione"
+    },
+    "business": {
+      "title": "Per le aziende",
+      "text": "Lo storico di ogni segnalazione in tempo reale, domande su flotte e sedi, una posizione chiara sulle licenze. Ne parli con noi prima di sviluppare.",
+      "cta": "Ci contatti"
+    },
+    "show": "Per chi è ViaFrei"
+  },
+  "footer": {
+    "imprint": "Note legali",
+    "privacy": "Privacy",
+    "privacySettings": "Impostazioni privacy",
+    "terms": "Condizioni d'uso",
+    "languages": "Lingue",
+    "refresh": "Questa pagina si ricarica ogni venti minuti; ogni riquadro indica quanto è vecchio il suo dato.",
+    "openData": "Realizzato con dati aperti. Ogni dato indica la sua fonte."
+  },
+  "consent": {
+    "title": "Possiamo usare Google Analytics?",
+    "titleClarity": "Possiamo usare Google Analytics e Microsoft Clarity?",
+    "body": "Google Analytics viene caricato solo dopo il suo consenso. Rifiutare richiede altrettanto un solo clic e viene ricordato. Il nostro conteggio dei visitatori senza cookie funziona comunque (vedi Privacy).",
+    "bodyClarity": "Google Analytics e Microsoft Clarity vengono caricati solo dopo il suo consenso. Clarity registra clic, scorrimento e movimenti del mouse su questa pagina, con tutti i testi e gli input oscurati. Microsoft utilizza questi dati anche per scopi propri, anche per la pubblicità. Rifiutare è altrettanto un solo clic e viene ricordato. Il nostro conteggio dei visitatori senza cookie funziona comunque (vedi Privacy).",
+    "accept": "Accetto",
+    "decline": "Rifiuto",
+    "more": "Privacy",
+    "state": {
+      "none": "Non ha ancora fatto una scelta.",
+      "denied": "La sua scelta attuale: rifiutato il {date}.",
+      "granted": "La sua scelta attuale: accettato il {date}."
+    }
+  },
+  "notFound": {
+    "title": "Questa pagina non esiste",
+    "text": "L’indirizzo non porta da nessuna parte. La pagina iniziale è a un clic di distanza.",
+    "choiceTitle": "Più località hanno questo nome",
+    "choiceText": "Quale intende?",
+    "back": "Alla pagina iniziale",
+    "connect": "Colleghi il suo assistente",
+    "developers": "Per sviluppatori",
+    "business": "Per le aziende"
+  },
+  "now": {
+    "heading": "Tutta la Germania",
+    "lead": "Tutti i dati nazionali in un unico posto, per tema, ciascuno con orario e fonte.",
+    "stationTop": {
+      "head": "Stazioni ora: soppressioni, ritardi, avvisi di perturbazione, ascensori",
+      "all": "Tutte le stazioni",
+      "search": "Cerca una stazione",
+      "go": "Cerca"
+    }
+  },
+  "tiles": {
+    "punctuality": "Puntualità di autobus e treni",
+    "lifts": "Ascensori e scale mobili",
+    "reports": "Le segnalazioni più importanti",
+    "jams": "Code in città, adesso",
+    "station": "In tempo reale nelle grandi stazioni",
+    "lorry": "Parcheggi per mezzi pesanti e aree di servizio",
+    "carparks": "Parcheggi multipiano e P+R in città",
+    "charging": "Punti di ricarica",
+    "fuel": "Prezzi dei carburanti, rilevati"
+  },
+  "day": {
+    "heading": "La sua giornata con ViaFrei",
+    "lead": "Nove momenti in cui una breve domanda fa risparmiare tempo — con il dato di oggi che dimostra che la risposta è giusta.",
+    "howTo": "Come chiedere al suo assistente",
+    "howToText": "Tenga premuta una domanda (o la selezioni), la copi e la incolli nella chat. Il suo assistente sceglie da solo lo strumento giusto.",
+    "more": "Altre 2 domande e un limite",
+    "answer": {
+      "label": "ViaFrei ha risposto",
+      "asOf": "Aggiornato a: {asOf}"
+    },
+    "limitLabel": "A dire il vero",
+    "cta": "Inizia",
+    "moments": {
+      "commute": {
+        "title": "Al lavoro la mattina",
+        "scene": "Le 7:10, caffè in mano: il trasporto pubblico funziona regolarmente — e il mio treno parte?",
+        "q1": "Autobus e treni ad Amburgo sono puntuali in questo momento?",
+        "a1": "Il {share}% delle corse osservate nell’ultima ora aveva più di 5 minuti di ritardo — più o meno come nell’ora precedente ({before}%).",
+        "limit": "Mostriamo la puntualità per regione, non per linea.",
+        "q2": "Quando parte il prossimo treno dalla stazione centrale di Hannover, ed è in ritardo?",
+        "q3": "Ci sono treni soppressi nella prossima ora sul tabellone delle partenze della stazione centrale di Colonia?",
+        "a2": "Il prossimo è il {l1} per {d1} (previsto alle {t1}, binario {p1}), con +{delay} min, partenza verso le {exp}; poi il {l2} per {d2} alle {t2}, in orario.",
+        "a3": "Nessuno è soppresso: {n} partenze fino alle {last}; il ritardo maggiore è del {l1} per {d1}, +{delay} min."
+      },
+      "bus": {
+        "title": "In autobus e tram",
+        "scene": "In giro per la città: dov’è la stazione più vicina, e i mezzi circolano?",
+        "q1": "Qual è la stazione ferroviaria più vicina al Duomo di Colonia?",
+        "q2": "Quando parte la prossima S-Bahn da Frankfurt Hauptwache?",
+        "a1": "{s1}, a {km},{kmd} km; poi vengono {s2} e {s3}.",
+        "limit": "Mostreremo l’orario di ogni fermata di autobus e tram non appena sarà caricato — fino ad allora, le stazioni e la situazione nella sua regione.",
+        "board": "Orario alla sua fermata",
+        "a2": "La prossima è la {l1} per {d1} alle {t1} dal binario {p1}, in orario; la {l2} per {d2} prevista alle {t2} ha +{delay2} min, partenza verso le {exp2}.",
+        "q3": "Ci sono treni in partenza in ritardo dalla stazione centrale di Lipsia in questo momento?",
+        "a3": "Sì, due: il {l1} per {d1}, +{dl1} min, dal binario {p1}, e la {l2} per {d2}, +{dl2} min; le altre {n} prossime partenze sono in orario."
+      },
+      "station": {
+        "title": "In stazione",
+        "scene": "Con il passeggino, la sedia a rotelle o le valigie: l’ascensore per il binario funziona?",
+        "q1": "L’ascensore della stazione centrale di Colonia funziona?",
+        "a1": "Stazione {station}: ascensori segnalati in funzione {working} su {total}; uno è fuori servizio, per un altro la ferrovia non comunica alcuno stato.",
+        "limit": "Ascensori e scale mobili delle stazioni della Deutsche Bahn; altri gestori non ancora.",
+        "q2": "Alla stazione di Erlangen tutti gli ascensori sono in funzione?",
+        "a2": "Sì: l’unico ascensore segnalato nella stazione {station}, verso il binario {platforms}, è in funzione.",
+        "q3": "Da quale binario parte il prossimo ICE dalla stazione centrale di Norimberga?",
+        "a3": "Il {train} per {dest} alle {t} dal binario {p}, in orario."
+      },
+      "driving": {
+        "title": "In auto",
+        "scene": "Prima di partire: code, chiusure, cantieri — e dove il carburante costa poco in questo momento.",
+        "q1": "L’A8 in direzione Monaco di Baviera è libera in questo momento?",
+        "a1": "Non del tutto: tra {a} e {b} in direzione Monaco di Baviera la polizia segnala un incidente; la corsia d’emergenza è bloccata.",
+        "a1more": "Su tutta l’A8 risultano inoltre chiusure: {closures}, voci di lavori: {works}.",
+        "limit": "Nessun calcolo del percorso: diciamo che cosa succede in autostrada, non quale strada deve prendere.",
+        "q2": "Quali lavori ci sono sull’A7 in questo momento?",
+        "a2": "{count, plural, one {# cantiere} other {# cantieri}} fino al {to}; ad esempio tra {a} e {b}: costruzione di un nuovo ponte, una corsia su tre chiusa, {speed} km/h, fino al {until}.",
+        "q3": "Nel fine settimana percorro l’A2 — quali lavori devo aspettarmi?",
+        "a3": "{count, plural, one {# cantiere} other {# cantieri}} dal {from} al {to}; ad esempio allo svincolo {a}: rifacimento della pavimentazione, la rampa è chiusa del tutto, fino al {until}."
+      },
+      "jam": {
+        "title": "In coda",
+        "scene": "Code in autostrada e intorno alle città: dove il traffico è fermo, quanto tempo si perde — e se stanotte c’è una chiusura.",
+        "q1": "Quanto tempo fa perdere in questo momento la coda sull’A3 tra Francoforte e Würzburg?",
+        "a1": "Tra {a} e {b} in direzione Francoforte circa +{delay} min, dopo un incidente; su tutta l’A3 sono segnalate code: {jams}.",
+        "a1more": "Sull’A3 risultano chiusure: {closures}, voci di lavori: {works}.",
+        "limit": "In città vediamo le autostrade urbane e, a Berlino, Colonia e Hannover, anche le segnalazioni sul traffico della città stessa — non ancora la situazione su ogni strada. Le segnalazioni di Amburgo e lo stato del traffico di Colonia sono stati richiesti ai fornitori.",
+        "q2": "C’è coda in questo momento sull’anello autostradale di Colonia — A1, A3 o A4?",
+        "q3": "L’A7 è chiusa oggi ad Amburgo?",
+        "a3": "È segnalata una chiusura tra gli svincoli {a} e {b} (ampliamento a otto corsie, nuova galleria {tunnel}); lungo tutta l’A7 le chiusure sono: {n}.",
+        "a2": "Sì, sull’A4: tra {a} e {b} in direzione Colonia il traffico è rallentato, circa +{delay} min; sulle autostrade richieste sono segnalate code: {n}."
+      },
+      "parking": {
+        "title": "Parcheggio",
+        "scene": "Lasciare l’auto in stazione — oppure, da camionista, pianificare la pausa.",
+        "q1": "Dove trovo un parcheggio multipiano vicino alla stazione centrale di Colonia?",
+        "a1": "{p1}: ultimi posti liberi segnalati {f1} su {t1}; {p2}: {f2} su {t2} — entrambi entro 300 m.",
+        "limit": "Posti liberi solo dove il gestore li pubblica — altrimenti il numero di posti, non quanto sono occupati.",
+        "q2": "Dove ci sono parcheggi per mezzi pesanti sull’A9?",
+        "a2": "Ad esempio {p1} con {n1} posti per mezzi pesanti, {p2} con {n2} e {p3} con {n3}; lì nessuno pubblica i posti liberi.",
+        "q3": "Dove c’è un parcheggio di interscambio vicino alla stazione centrale di Essen?",
+        "a3": "{p1}, a {k1},{k1d} km, e {p2}, a {k2},{k2d} km; ViaFrei non riprende l’occupazione da questa fonte."
+      },
+      "charging": {
+        "title": "Ricarica",
+        "scene": "In auto elettrica: dov’è la colonnina più vicina, e c’è un punto libero?",
+        "q1": "Dove posso ricaricare velocemente vicino a Lipsia?",
+        "q2": "Quali colonnine rapide ci sono vicino a Ingolstadt?",
+        "a1": "Con almeno 150 kW, ad esempio: {site}, {address} — fino a {kw} kW.",
+        "a1more": "Il gestore non pubblica uno stato in tempo reale, quindi ViaFrei dice «sconosciuto», non «libero».",
+        "limit": "Disponibilità per le reti che la pubblicano; per tutte le altre mostriamo l’ubicazione, non lo stato.",
+        "a2": "La più vicina è {op1}, {a1}, fino a {kw1} kW: punti di ricarica liberi {free1} su {total1}; inoltre {s2}, {a2}, fino a {kw2} kW, senza stato attuale.",
+        "q3": "C’è qualcosa di libero al Supercharger di Hilden in questo momento?",
+        "a3": "{brand} ha comunicato l’ultimo stato il {t} — troppo vecchio per dire «libero»; ubicazione {address}, fino a {kw} kW."
+      },
+      "places": {
+        "title": "Trovare luoghi",
+        "scene": "Basta un nome: la sala concerti, la farmacia, l’azienda — con indirizzo e coordinate per la domanda successiva.",
+        "q1": "Il mio navigatore indica 50.1109, 8.6821 — che indirizzo è, e dov’è lo svincolo autostradale più vicino?",
+        "a1": "{address}, a {m} m. Svincolo autostradale più vicino: {junction}, a {km},{kmd} km.",
+        "limit": "Luoghi e indirizzi provengono da OpenStreetMap; ogni risposta indica la data dei dati. Ciò che lì non è mappato non lo troviamo — orari di apertura e recensioni non ne fanno parte.",
+        "q2": "Quali farmacie ci sono a Fulda — con il loro indirizzo?",
+        "a2": "Ad esempio {p1}, {a1}; {p2}, {a2}; {p3}, {a3} (dati OpenStreetMap del {osm}).",
+        "q3": "Qual è l’indirizzo della Elbphilharmonie di Amburgo?",
+        "a3": "{poi}: {address} (dati OpenStreetMap del {osm})."
+      },
+      "watch": {
+        "title": "Avvisami",
+        "scene": "Niente controlli continui: ViaFrei osserva al posto suo e conserva ogni cambiamento nella conversazione — il suo assistente lo mostra non appena lei lo chiede, o da solo se supporta le notifiche.",
+        "q1": "Avvisami non appena viene revocata una chiusura sull’A7.",
+        "limit": "Solo questa conversazione, finché è aperta — niente e-mail, niente SMS. Fino a 10 monitoraggi per conversazione, ciascuno fino a 24 ore; una strada viene monitorata nel suo insieme, non un singolo tratto.",
+        "a1": "Monitoraggio attivato: {road}, fino alle {until}. ViaFrei scrive in questa chat non appena lì viene revocata una chiusura; monitoraggi in uso: {used} su 10.",
+        "q2": "Avvisami quando a Colonia un quarto o più delle corse di autobus e treni è in ritardo.",
+        "a2": "Monitoraggio attivato: regione {ags} ({city}), segnalazione a partire dal {pct}% di corse in ritardo, fino alle {until} — solo in questa chat.",
+        "q3": "Avvisami quando per Colonia entra in vigore un’allerta meteo del Servizio meteorologico tedesco.",
+        "a3": "Monitoraggio attivato: area di allerta DWD {cell} ({city}), fino alle {until} — ViaFrei scrive qui non appena la situazione cambia."
+      }
+    },
+    "fuelAsks": {
+      "heading": "Una domanda che può far risparmiare al distributore",
+      "whyLabel": "Perché chiedere",
+      "goerlitz": {
+        "q": "Dove costa meno il gasolio a Görlitz in questo momento?",
+        "why": "I prezzi cambiano più volte al giorno e variano anche tra pochi distributori della stessa città: ViaFrei indica il più economico con il suo prezzo e l’ora in cui il distributore l’ha comunicato.",
+        "a": "Ancora nessun prezzo nuovo — il più basso finora noto: {euro},{cent} €/l presso {station}, {address}, comunicato il {reported}; ViaFrei sta richiedendo un prezzo nuovo."
+      },
+      "muenchen": {
+        "q": "Dove costa meno la benzina E10 a Monaco di Baviera in questo momento?",
+        "why": "Un prezzo può essere del mattino: per Monaco di Baviera quel pomeriggio ViaFrei aveva solo i prezzi del mattino, li ha indicati ciascuno con il suo orario e ne ha richiesti di nuovi.",
+        "a": "Ancora nessun prezzo nuovo — il più basso finora noto: {euro},{cent} €/l presso {station}, {address}, comunicato il {reported}; ViaFrei sta richiedendo un prezzo nuovo."
+      },
+      "leipzig": {
+        "q": "Dove costa meno la benzina E5 a Lipsia in questo momento?",
+        "why": "Un prezzo può avere qualche ora: ViaFrei dice quando il distributore ha comunicato ogni prezzo — quel pomeriggio i più economici di Lipsia risalivano ancora al mattino.",
+        "a": "Ancora nessun prezzo nuovo — il più basso finora noto: {euro},{cent} €/l presso {station}, {address}, comunicato il {reported}."
+      },
+      "nuernberg": {
+        "q": "Dove costa meno il gasolio a Norimberga in questo momento?",
+        "why": "Il distributore più vicino non è sempre il più economico: ViaFrei indica la distanza accanto a ogni prezzo.",
+        "a": "{euro},{cent} €/l presso {station}, {address} — comunicato alle {reported}."
+      }
+    },
+    "fuelAll": "Fino a tre distributori per Land, con indirizzo e prezzo",
+    "allExamples": "Tutte le domande di esempio con le loro risposte"
+  },
+  "start": {
+    "heading": "Pronto in un minuto",
+    "lead": "ViaFrei vive dentro l’assistente che ha già. Tre passaggi, una sola volta:",
+    "s1": "In Claude o ChatGPT: impostazioni → «Connectors».",
+    "s2": "Aggiunga ViaFrei con l’indirizzo qui sotto.",
+    "s3": "Chieda: «L’A8 in direzione Monaco di Baviera è libera in questo momento?»",
+    "draft": "Bozza — questi passaggi non sono ancora verificati in ogni assistente."
+  },
+  "legal": {
+    "bindingNote": "Questa pagina è un’informativa legale secondo il diritto tedesco. Il testo tedesco riportato sotto è l’unica versione vincolante."
+  },
+  "connectPage": {
+    "moreExamples": "Altri esempi",
+    "title": "Colleghi ViaFrei al suo assistente",
+    "lead": "Un indirizzo, nessun account, nessuna chiave. Aggiunga ViaFrei una volta come connettore – poi basta chiedere.",
+    "askHeading": "Come chiedere",
+    "askLead": "Cinque domande, come il suo assistente risponde oggi:",
+    "asks": {
+      "train": "Quando parte il prossimo treno dalla stazione centrale di Colonia?",
+      "parking": "Dov’è un parcheggio multipiano nel centro di Colonia?",
+      "charging": "Dove posso ricaricare la mia auto elettrica a Lipsia?",
+      "road": "L’A3 in direzione Francoforte è libera in questo momento?",
+      "weather": "C’è un’allerta maltempo per Dresda in questo momento?"
+    },
+    "live": {
+      "heading": "Risposte, così come sono arrivate",
+      "lead": "Abbreviate, con l’orario dei dati e le loro fonti. I dati sono un’istantanea di quel momento, non una visualizzazione in tempo reale.",
+      "asOf": "Aggiornato a: {asOf}",
+      "fuelExample": "Risposta di esempio del {asOf} — oggi i prezzi sono diversi",
+      "stadtbahn": {
+        "title": "Ascensori e scale mobili della metropolitana leggera",
+        "q": "Che cosa è fuori servizio in questo momento alla fermata {stop} della metropolitana leggera di Colonia?",
+        "a": "Impianti segnalati fuori servizio: {out} su {total}: le scale mobili {e1} e {e2}, segnalate dal {since}, {e3} dal {since3} e {e4} dal {since4}; entrambi gli ascensori in funzione. {publisher} fornisce i dati senza alcuna garanzia.",
+        "note": "Per le fermate della metropolitana leggera di Colonia, dall’elenco dei guasti pubblicato – con l’ora da cui ogni impianto è segnalato."
+      },
+      "bikes": {
+        "title": "Bici condivise in stazione, in tempo reale",
+        "q": "Dove trovo una bici a noleggio libera vicino a {station}?",
+        "a": "Postazione {dock} di {operator}: bici libere: {free} – e altre postazioni entro {radius} km: {docks}, ognuna con la sua disponibilità.",
+        "note": "Le bici libere arrivano in tempo reale dai dati aperti dei sistemi di noleggio; ViaFrei indica solo ciò che una postazione segnala in quel momento."
+      },
+      "lift": {
+        "title": "Ascensori in stazione",
+        "q": "Quali ascensori della stazione di {station} sono fuori servizio in questo momento?",
+        "a": "Uno è segnalato fuori servizio, un ascensore verso il binario {platforms}: ascensori in funzione {working} su {total}. L’altro ascensore verso il binario {platforms} non è monitorato – il suo stato è sconosciuto.",
+        "note": "Per le stazioni della Deutsche Bahn, letto ogni venti minuti. Ciò che l’ultima segnalazione non menziona è «sconosciuto» – mai «in funzione»."
+      },
+      "alert": {
+        "title": "Avvisi di disservizio per autobus e treni",
+        "q": "Ci sono avvisi di disservizio per autobus e treni in Bassa Sassonia in questo momento?",
+        "a": "{count, plural, one {È in vigore # avviso} other {Sono in vigore # avvisi}}, tra cui: le linee {lines} viaggiano con un orario per lavori perché la {road} è chiusa tra {a} e {b} – valido dal {from} al {to}.",
+        "note": "Avvisi delle comunità tariffarie tramite DELFI, solo finché sono in vigore. ViaFrei assegna un avviso senza fermata a un Land in base alla sua rete e precisa che può riguardare anche un Land vicino."
+      },
+      "enbw": {
+        "title": "Colonnina rapida con occupazione in tempo reale",
+        "q": "C’è un punto di ricarica libero in questo momento alla stazione {brand} in {address}?",
+        "a": "Fino a {kw} kW, {euro},{cent} €/kWh — ma per nessuno dei {n} punti di ricarica c’è uno stato, quindi ViaFrei non dice «libero».",
+        "note": "Il gestore pubblica da sé le sue stazioni e l’occupazione; l’orario indicato è quello della sua ultima segnalazione."
+      },
+      "ecomove": {
+        "title": "Occupazione in tempo reale tramite un aggregatore",
+        "q": "C’è un punto di ricarica libero in questo momento alla colonnina rapida in {address}?",
+        "a": "{site}: fino a {kw} kW, {euro},{cent} €/kWh; l’ultimo stato risale al {t} — troppo vecchio per dire «libero».",
+        "note": "Qui l’occupazione proviene da un servizio che raccoglie le segnalazioni di molti gestori. Un punto senza segnalazione non conta mai come libero."
+      },
+      "ocpdb": {
+        "title": "Libero o occupato in tempo reale – nel cuore di Colonia",
+        "q": "C’è un punto di ricarica libero in questo momento alla colonnina in {address}?",
+        "a": "Sì, uno: il Tipo 2 fino a {kw2} kW è libero, il punto CCS fino a {kw} kW è fuori servizio — {euro},{cent} €/kWh IVA esclusa.",
+        "note": "L’occupazione arriva in tempo reale tramite il portale dati del Baden-Württemberg, che elenca anche colonnine ben oltre i confini del Land."
+      },
+      "lsr": {
+        "title": "Anche dove nessuno segnala in tempo reale",
+        "q": "Dove posso ricaricare vicino a {address}?",
+        "a": "A {m} m: Tipo 2, fino a {kw} kW – registro dell’Agenzia federale delle reti ({register}), senza stato in tempo reale e senza garanzia di esattezza e completezza.",
+        "note": "Dove nessun gestore pubblica dati in tempo reale, ViaFrei indica le colonnine del registro ufficiale – senza occupazione, perché sconosciuto non significa mai «libero»."
+      },
+      "hamburg": {
+        "title": "Un parcheggio multipiano nel centro di Amburgo",
+        "q": "Dove posso parcheggiare vicino a {stop} ad Amburgo?",
+        "a": "{park}: posti liberi {free} su {total}. La Città di Amburgo stessa dichiara: «Questi dati in tempo reale non sono verificati.»",
+        "note": "L’occupazione dei parcheggi multipiano di Amburgo arriva in tempo reale dalla città; ViaFrei riporta sempre la sua avvertenza sui dati non verificati."
+      },
+      "hhworks": {
+        "title": "Cantiere urbano ad Amburgo",
+        "q": "Quali lavori sono previsti in {street} ad Amburgo?",
+        "a": "{street}, {b} / rifacimento della strada, dal {from} al {to}; una chiusura totale è prevista per la primavera del 2027.",
+        "note": "I cantieri urbani di Amburgo provengono dal Bauweiser della città: solo cantieri autorizzati, per giorni di calendario; «previsto» significa che i lavori iniziano dopo oggi. Le segnalazioni della polizia restano voci separate."
+      },
+      "muenster": {
+        "title": "Il sistema di guida al parcheggio di Münster, in tempo reale",
+        "q": "Quanti posti sono liberi al {name} di Münster?",
+        "a": "Posti liberi {free} su {total} – e altri parcheggi multipiano nelle vicinanze: {more}, ognuno con la sua occupazione.",
+        "note": "L’occupazione arriva in tempo reale dal sistema di guida al parcheggio della Città di Münster. Un parcheggio che non segnala nulla non viene mai definito «pieno» da ViaFrei."
+      },
+      "motorway": {
+        "title": "Un’entrata chiusa in autostrada",
+        "q": "C’è qualcosa di chiuso in questo momento sull’A6 vicino a {place}?",
+        "a": "Sì: l’entrata di {place} sull’A6 è chiusa, un’opera viene ricostruita – questa fase dei lavori va dal {from} al {to}. Per tutta l’A6 la risposta indica chiusure: {count}.",
+        "note": "Chiusure e lavori sulle autostrade provengono dalla Autobahn GmbH, con il periodo di ogni fase dei lavori. Se si chiede di un’autostrada, ViaFrei indica prima le chiusure."
+      },
+      "citywork": {
+        "title": "Un cantiere in città",
+        "q": "C’è qualcosa di chiuso in {street} a Berlino?",
+        "a": "Sì: in entrambe le direzioni tra {a} e {b} lavori sulle condutture, chiusura totale al traffico motorizzato secondo l’amministrazione del Senato, dal {from} al {to}.",
+        "note": "Le segnalazioni di Berlino indicano la via e il tratto, non un numero di strada: ViaFrei le trova in base al luogo, entro 25 km, prima la più vicina."
+      },
+      "landroad": {
+        "title": "Lavori su una strada regionale",
+        "q": "Ci sono lavori questa settimana sulla L1025 in Turingia?",
+        "a": "{count, plural, one {# cantiere} other {# cantieri}}, tra cui: {site}, un restringimento regolato da semaforo, dal {from} al {to}.",
+        "note": "Conosciamo le strade regionali del Baden-Württemberg, della Bassa Sassonia, della Turingia e della Sassonia, dai dati delle amministrazioni stradali: tratto e periodo, niente coordinate e nessun ritardo in tempo reale."
+      },
+      "saxony": {
+        "title": "Lavori su una strada federale in Sassonia",
+        "q": "Ci sono lavori questa settimana sulla B6 in Sassonia?",
+        "a": "{count, plural, one {# cantiere} other {# cantieri}} questa settimana, tra cui: vicino a {place}, a Dresda, la strada viene ampliata, dal {from} al {to}.",
+        "note": "L’ufficio regionale sassone per le strade e i trasporti ripubblica i suoi cantieri di lunga durata ogni tre ore. ViaFrei ne risponde per le strade federali e regionali, per tratto e periodo – senza coordinate e senza ritardo in tempo reale."
+      },
+      "bwroad": {
+        "title": "Lavori su una strada federale nel Baden-Württemberg",
+        "q": "Sono previsti lavori la prossima settimana sulla B27 nel Baden-Württemberg?",
+        "a": "Cantieri nel Baden-Württemberg: {count} su {all}, ad esempio {a} – {b}: nuovo manto stradale dal {from} al {to}.",
+        "note": "Il ministero dei trasporti del Baden-Württemberg pubblica i suoi cantieri (BEMaS) tramite MobiData BW. ViaFrei ne risponde per le strade federali e regionali, per tratto e periodo – ciò che è previsto come previsto, senza ritardo in tempo reale."
+      },
+      "kiel": {
+        "title": "Un cantiere a Kiel",
+        "q": "Il {street} a Kiel è percorribile in questo momento?",
+        "a": "No: il {street} è chiuso tra il civico {no} e la {b} per lavori alla fognatura, dal {from} al {to}. (Esempio, riassunto; nello strumento è completo)",
+        "note": "La città di Kiel pubblica i suoi cantieri con luogo, motivo e periodo. Questa scheda riassume una segnalazione; lo strumento le mostra per intero e trova una segnalazione in base al luogo – entro 25 km, prima la più vicina."
+      },
+      "truckstop": {
+        "title": "Parcheggio sorvegliato per mezzi pesanti sull’A7",
+        "q": "Stanotte c’è un posto libero per mezzi pesanti a {name} sull’A7?",
+        "a": "Posti liberi {free} su {total}, così come li segnala il gestore.",
+        "note": "Il gestore di questi parcheggi sorvegliati per mezzi pesanti pubblica i posti liberi; ViaFrei li mostra accanto alle aree di servizio, che non segnalano l’occupazione, e non somma mai le due cose."
+      },
+      "parkride": {
+        "title": "Parcheggio di interscambio prima del treno",
+        "q": "Dove posso lasciare l’auto a Dortmund e prendere il treno?",
+        "a": "{p1} con {t1} posti e {p2} con {t2} posti – per queste strutture senza occupazione.",
+        "note": "I parcheggi di interscambio della Renania Settentrionale-Vestfalia provengono dai dati raccolti dal Land e compaiono in un blocco a parte, mai confrontati con altre fonti. La loro occupazione non viene ripresa."
+      },
+      "platform": {
+        "title": "Un ritardo, in tempo reale",
+        "q": "Il {train} per {dest} parte in orario da {station}?",
+        "a": "+{delay} min, previsto alle {expected} invece che alle {planned} – dal binario {platform}, come previsto.",
+        "note": "Ritardi e cambi di binario provengono dall’interfaccia orari della Deutsche Bahn, per tutte le parti della stazione – compresi i binari sotterranei e della S-Bahn della stazione centrale di Berlino."
+      },
+      "region": {
+        "title": "Puntualità in un’area metropolitana",
+        "q": "Autobus e treni nell’area Reno-Ruhr sono puntuali in questo momento?",
+        "a": "Il {share}% delle corse osservate nell’ultima ora aveva più di 5 minuti di ritardo – più che nell’ora precedente ({before}%).",
+        "note": "L’area Reno-Ruhr risponde come un’unica regione: 30 circondari e città extracircondariali insieme. ViaFrei indica totali per regione, non per linea."
+      },
+      "tomorrow": {
+        "title": "Lavori sul percorso di domani",
+        "q": "Quali lavori sono previsti domani sull’A7?",
+        "a": "{count, plural, one {# cantiere} other {# cantieri}}, {started} già in corso. Uno di questi: tra {a} e {b} si costruisce un nuovo ponte, per {km} km, limite di velocità {speed} km/h, fino al {until}.",
+        "note": "Cantieri programmati dell’Istituto federale di ricerca stradale: tratto e periodo, niente coordinate e nessun ritardo in tempo reale – su ciò che succede in questo momento ViaFrei risponde con le segnalazioni autostradali."
+      },
+      "closure": {
+        "title": "Una chiusura più avanti",
+        "q": "C’è qualcosa di chiuso in questo momento sull’A7 vicino ad Amburgo?",
+        "a": "Sì: la Autobahn GmbH segnala una rampa chiusa allo svincolo {at} – sul tratto in lavori tra {a} e {b}. Questa fase dei lavori termina il {until} alle {end}.",
+        "note": "Chiusure e lavori sulle autostrade provengono dalla Autobahn GmbH, con il periodo di ogni fase dei lavori."
+      },
+      "weather": {
+        "title": "Un controllo meteo prima delle montagne",
+        "q": "C’è un’allerta meteo per {name} oggi?",
+        "a": "Sì, per la prossima notte: il Servizio meteorologico tedesco avverte di gelo debole fino a {temp} °C, valido il {day} dalle {from} alle {to} – livello di allerta {level}, il più basso.",
+        "note": "Le allerte vengono lette ogni cinque minuti e valgono per area; una nuova può essere emessa con breve preavviso."
+      },
+      "fuelcity": {
+        "title": "La E10 più economica in città",
+        "q": "Dove costa meno la Super E10 a Colonia in questo momento?",
+        "a": "{euro},{cent} €/l presso {station}, {address} — comunicato alle {reported}.",
+        "note": "I prezzi dei carburanti cambiano ogni pochi minuti: questo dato è un esempio di quel pomeriggio, non il prezzo di oggi. ViaFrei indica per ogni prezzo quando il distributore l’ha comunicato."
+      },
+      "charger": {
+        "a": "Presso {site}: punti di ricarica {points}, Tipo 2, fino a {kw},{kwd} kW, {euro},{cent} €/kWh IVA esclusa. Nessuno risulta occupato; per {stale} l’ultimo stato risale al {t}, per {unknown} non ce n’è – quindi non «libero».",
+        "title": "Stato in tempo reale a una colonnina",
+        "q": "C’è un punto di ricarica libero in questo momento in {address}?",
+        "note": "Indichiamo l’occupazione in tempo reale solo dove il gestore la pubblica – qui tramite e-clearing.net. Senza segnalazione la risposta è «nessun dato di stato», mai «libero»."
+      },
+      "roadworks": {
+        "a": "In Bassa Sassonia: {count}, tutti già iniziati; il primo: {section}, dal {start} al {end}.",
+        "note": "Conosciamo le strade federali in Bassa Sassonia, Sassonia, Turingia e Baden-Württemberg, dai dati delle loro amministrazioni stradali: tratto e periodo, nessun ritardo in tempo reale. Per una strada federale altrove ViaFrei risponde «non coperto» – non «libero».",
+        "title": "Lavori su una strada federale",
+        "q": "Quali lavori sono previsti questa settimana sulla B3 in Bassa Sassonia?"
+      },
+      "train": {
+        "title": "Puntualità nel trasporto regionale",
+        "q": "Il prossimo treno regionale da {station} a {dest} è in orario?",
+        "a": "Sì: {line} alle {planned} dal binario {platform}, in orario – come {n} treni regionali su {all} fino alle {last}.",
+        "note": "Quando l’interfaccia orari della Deutsche Bahn non fornisce orari in tempo reale, ViaFrei aggiunge treni regionali e della S-Bahn da DELFI SIRI ET – in un blocco a parte, mai mescolati alle righe della ferrovia."
+      },
+      "fuelroad": {
+        "a": "Ancora nessun prezzo nuovo — il più basso finora noto: {euro},{cent} €/l presso {station}, {address}, comunicato il {reported}; ViaFrei sta richiedendo un prezzo nuovo.",
+        "title": "Gasolio lungo il viaggio, vicino all’autostrada",
+        "q": "Stasera percorro l’A3 passando per Würzburg: dove costa meno il gasolio nelle vicinanze?",
+        "note": "I prezzi dei carburanti cambiano ogni pochi minuti: questo dato è un esempio di quel pomeriggio, non il prezzo di oggi. ViaFrei indica per ogni prezzo quando il distributore l’ha comunicato."
+      },
+      "fuelland": {
+        "a": "Ancora nessun prezzo nuovo — il più basso finora noto: {euro},{cent} €/l presso {station}, {address}, comunicato il {reported}; ViaFrei sta richiedendo un prezzo nuovo.",
+        "title": "Il prezzo più basso in un capoluogo di Land",
+        "q": "Dove costa meno la E10 a Stoccarda, nel Baden-Württemberg, in questo momento?",
+        "note": "I prezzi dei carburanti cambiano ogni pochi minuti: questo dato è un esempio di quel pomeriggio, non il prezzo di oggi. ViaFrei indica per ogni prezzo quando il distributore l’ha comunicato."
+      },
+      "carpark": {
+        "title": "Un parcheggio multipiano con posti liberi",
+        "q": "Quanti posti sono liberi nel parcheggio multipiano {name} di Colonia?",
+        "a": "Ultimi posti liberi segnalati {free} su {total} — una segnalazione meno recente, non lo stato attuale.",
+        "note": "Nome, posizione e numero di posti provengono dalla tabella dei parcheggi della Città di Colonia, l’occupazione dal suo flusso in tempo reale. Se l’ultima segnalazione è troppo vecchia, ViaFrei dice «ultima segnalazione» invece di «libero»."
+      },
+      "lorry": {
+        "title": "Parcheggio per mezzi pesanti con posti liberi",
+        "q": "Quanti posti per mezzi pesanti sono liberi in questo momento a {name}?",
+        "a": "Posti liberi per mezzi pesanti: {free}, così come li segnala il gestore.",
+        "note": "Indichiamo i posti liberi solo dove il gestore li pubblica – qui ogni quindici minuti. Se un valore resta invariato per sei ore, ViaFrei dice «ultima segnalazione» invece di «libero»."
+      }
+    },
+    "betaHeading": "Beta: che cosa significa per lei",
+    "beta1": "ViaFrei è in fase di stabilizzazione: si aggiungono fonti di dati, e risposte e copertura possono cambiare.",
+    "beta2": "Le risposte sono formulate da un assistente IA sulla base dei nostri dati – l’IA può sbagliare.",
+    "beta3": "Verifichi le informazioni importanti (chiusure, partenze, prezzi) presso la fonte indicata nella risposta.",
+    "endpointHeading": "L’indirizzo",
+    "endpointNote": "Streamable HTTP. Gratuito durante la fase di avvio, senza account; il numero di richieste è limitato perché ce ne sia per tutti.",
+    "legacyNote": "I client meno recenti senza Streamable HTTP usano l’indirizzo SSE:",
+    "clientsHeading": "Passo dopo passo",
+    "claudeAi": "claude.ai (web)",
+    "claudeAiSteps": "Personalizza (Customize) → Connectors → «+ Add» → «Add custom connector». Chiamalo ViaFrei, incolla l’indirizzo sopra come URL del server MCP, poi «Continue». Chiedi, per esempio: «L’A8 verso Monaco è libera?» Al primo uso, consenti lo strumento ViaFrei.",
+    "claudeDesktop": "Claude Desktop",
+    "claudeDesktopSteps": "Lo stesso connettore di claude.ai, legato al tuo account Claude: aggiungilo lì come sopra e compare anche nell’app desktop.",
+    "claudeCode": "Claude Code",
+    "claudeCodeSteps": "Esegua una volta in un terminale:",
+    "chatgpt": "ChatGPT",
+    "chatgptSteps": "Plugins → «+» → «Add custom MCP server». Chiamalo ViaFrei, incolla l’indirizzo sopra in «Connection», autenticazione: nessuna; spunta «I understand and want to continue», poi «Create as a plugin». In una nuova chat digita @, scegli ViaFrei, poi chiedi.",
+    "editorsSteps": "Aggiunga alla configurazione MCP (mcp.json):",
+    "copilotSteps": "Riquadro comandi → «MCP: Add Server» → «HTTP» → incolli l’indirizzo qui sopra → ID del server viafrei → «Global» → «Copilot Global». Questo scrive in ~/.copilot/mcp-config.json; a mano, aggiunga:",
+    "copilotSandbox": "Se Copilot risponde 403 con l’intestazione «x-ms-block-by: sandbox-broker», la sua sandbox ha bloccato l’indirizzo: consenta mcp.viafrei.de (per l’agente cloud: impostazioni del repository → Copilot → Internet access → Custom allowlist).",
+    "geminiTrust": "Gemini CLI avvia server MCP solo in una cartella di cui si fida; lo chiede al primo avvio in quella cartella.",
+    "windsurfSteps": "Pannello Cascade → «…» → MCPs → apra il file di configurazione MCP (mcp_config.json) e aggiunga:",
+    "leChatSteps": "Connectors → «+ Add Connector» → «Custom MCP Connector» → nome viafrei, URL del server: l’indirizzo qui sopra → Connect, senza autenticazione. Lo aggiunge un amministratore – nei piani Free e Pro è lei.",
+    "generic": "Qualsiasi altro client MCP",
+    "genericSteps": "Qualsiasi client che parla Streamable HTTP si collega all’indirizzo qui sopra – senza intestazioni, senza chiave.",
+    "stdio": "Client solo stdio",
+    "stdioSteps": "Il bridge del pacchetto npm pubblico avvia un server stdio locale che inoltra all’indirizzo qui sopra:",
+    "notCoveredHeading": "A che cosa ViaFrei non risponde",
+    "notCoveredLead": "Così non cerca ciò che non c’è:",
+    "notCovered": {
+      "routing": "Nessuna pianificazione del percorso porta a porta – ViaFrei risponde su luoghi, strade e fonti di dati, mai su «come ci arrivo?».",
+      "cityStreets": "Nessun dato sul traffico delle strade urbane al di fuori delle fonti cittadine e regionali che gestiamo: cantieri, chiusure e segnalazioni sul traffico per Berlino, Colonia (chiusure per eventi), Hannover (non appena la sua fonte pubblicherà segnalazioni), lo Schleswig-Holstein con Kiel e il Baden-Württemberg con Stoccarda. Le altre città non sono coperte; per il resto abbiamo il traffico in tempo reale della rete autostradale federale (Autobahn GmbH) e, dove una fonte le riporta, delle strade federali, oltre ai cantieri sulle strade regionali del Baden-Württemberg, della Bassa Sassonia, della Sassonia e della Turingia.",
+      "fares": "Nessuna tariffa, nessun biglietto e nessuna prenotazione di alcun tipo.",
+      "lineRealtime": "Nessun dato di puntualità per una singola linea – a «la S1 è puntuale?» ViaFrei risponde treno per treno in una stazione ferroviaria (il ritardo in tempo reale di ogni treno in partenza, anche della S-Bahn) e per regione con gli avvisi di disservizio della linea; a una fermata di autobus, tram o metropolitana c’è solo l’orario.",
+      "forecast": "Nessuna previsione meteo – solo le allerte ufficiali del DWD, e solo finché sono in vigore.",
+      "parkingTariffs": "Nessuna tariffa di parcheggio, e nessuna promessa che un posto sia libero se il gestore non pubblica l’occupazione."
+    },
+    "privacyHeading": "La privacy in tre frasi",
+    "privacy1": "Non le serve alcun account da noi, e non conserviamo domande a suo nome.",
+    "privacy2": "I servizi di misurazione di terzi funzionano solo se lei acconsente; prima non viene caricato nulla da terzi. Contiamo le visite senza cookie, come totali giornalieri sul nostro server.",
+    "privacy3": "I log del server vengono cancellati al più tardi dopo sette giorni – tutto il resto è descritto nella",
+    "privacyLink": "nostra informativa sulla privacy (in tedesco)",
+    "sourcesHeading": "Da dove provengono i dati",
+    "sourcesLead": "Ogni risposta indica la sua fonte. Queste sono tutte le fonti da cui ViaFrei risponde oggi, con l’attribuzione richiesta dalla loro licenza (in tedesco, così come è scritta):",
+    "askAnswers": {
+      "train": "Alle {t1} il {l1} per {d1} dal binario {p1}, alle {t2} il {l2} per {d2} dal binario {p2} – entrambi in orario.",
+      "parking": "{p1}: posti liberi {f1} su {t1}; {p2}: liberi {f2} su {t2}.",
+      "charging": "Il più vicino: {a1}, a {m} m, Tipo 2 fino a {kw1} kW; poi {a2}, a {m2} m, fino a {kw2} kW – senza stato in tempo reale.",
+      "road": "Sì: su tutta l’A3 al momento non è segnalata alcuna coda; risultano chiusure: {closures}, voci di lavori: {works}.",
+      "weather": "Per {place} non c’è alcuna allerta meteo ufficiale del DWD – verificato per adesso e per le prossime {hours} ore."
+    },
+    "allExamples": "Tutte le domande di esempio con le loro risposte, per tema",
+    "claudeFlow": {
+      "s1": "Personalizza (Customize) → Connectors → «+ Add» → «Add custom connector».",
+      "s2": "Chiamalo ViaFrei, incolla l’indirizzo sopra come URL del server MCP, poi «Continue».",
+      "s3": "Chiedi, per esempio: «L’A8 verso Monaco è libera?» Al primo uso, consenti lo strumento ViaFrei."
+    },
+    "chatgptFlow": {
+      "s1": "Plugins → «+» → «Add custom MCP server».",
+      "s2": "Chiamalo ViaFrei, incolla l’indirizzo sopra in «Connection», autenticazione: nessuna; spunta «I understand and want to continue», poi «Create as a plugin».",
+      "s3": "In una nuova chat digita @, scegli ViaFrei, poi chiedi.",
+      "avail": "I server MCP personalizzati funzionano in ChatGPT sul web: negli spazi Business ed Enterprise/Edu, dove li creano amministratori e proprietari, e per gli utenti Pro con permessi di lettura e recupero – ViaFrei legge soltanto, quindi Pro funziona. Non nelle app mobili; non disponibile su Free e Plus.",
+      "d1": "Plugins → + → Add custom MCP server",
+      "d2": "Nome ViaFrei · Connection: l’indirizzo · autenticazione: nessuna · Create as a plugin",
+      "d3": "Nuova chat: @ViaFrei, poi chiedi",
+      "dtitle": "I tre passi in ChatGPT"
+    },
+    "shot": {
+      "claude1": "claude.ai, Customize → Connectors: il menu «+ Add» aperto su «Add custom connector».",
+      "claude2": "La finestra «Add custom connector»: il nome ViaFrei, l’URL del server MCP https://mcp.viafrei.de/mcp e il pulsante «Continue».",
+      "claude3": "Claude chiede di usare lo strumento ViaFrei per l’A8: rifiutare, consentire sempre o consentire una volta.",
+      "claude4": "La risposta di Claude alla domanda sull’A8 verso Monaco, segnata come uso di ViaFrei, con la riga della fonte in fondo.",
+      "phone1": "claude.ai nel browser di un telefono, Customize → Connectors: il menu «+ Add» aperto su «Add custom connector».",
+      "phone2": "La finestra «Add custom connector»: il nome ViaFrei, l’URL del server MCP https://mcp.viafrei.de/mcp e il pulsante «Continue».",
+      "phone3": "Una chat in claude.ai: «+» → Connectors, con ViaFrei attivato; gli altri connettori sono sfocati.",
+      "phone4": "La risposta di Claude alla domanda se c’è una coda sulla A7 in questo momento, segnata come uso di ViaFrei.",
+      "phone4b": "La stessa risposta alla fine: la riga della fonte che nomina Autobahn GmbH des Bundes.",
+      "phoneCaption": "Screenshot: claude.ai nel browser di un telefono, {date}",
+      "caption": "Screenshot: claude.ai, {date}",
+      "diagram": "Schema, non uno screenshot",
+      "claudeCode1": "Terminale: claude mcp add con l’indirizzo di ViaFrei, poi claude mcp list segnala «viafrei … ✔ Connected».",
+      "geminiCli1": "Terminale: gemini mcp add --scope user con l’indirizzo di ViaFrei, poi gemini mcp list segnala «viafrei … Connected».",
+      "generic1": "Terminale: MCP Inspector chiede all’indirizzo di ViaFrei i suoi strumenti (tools/list) e riceve i loro nomi.",
+      "stdio1": "Terminale: Claude Code aggiunge il ponte npx -y viafrei, poi claude mcp list segnala «viafrei: npx -y viafrei – ✔ Connected».",
+      "terminal": "Trascrizione del terminale del nostro test: {what}, {date}",
+      "open": "Apri l’immagine a grandezza intera",
+      "close": "Chiudi l’immagine ingrandita"
+    },
+    "guide": "Guida ufficiale",
+    "otherGuides": "Le loro guide:",
+    "check": {
+      "verified": "Verificato nel client il {date} con {version}.",
+      "docs": "Passaggi verificati sulla guida ufficiale il {date}, nel client non ancora. {reason}",
+      "pending": {
+        "account": "Serve un account con accesso effettuato; questa verifica è ancora da fare.",
+        "app": "È un’app desktop con un proprio accesso; questa verifica è ancora da fare.",
+        "signIn": "Una sessione richiede un accesso o una chiave API; questa verifica è ancora da fare."
+      }
+    },
+    "about": {
+      "lead": "Copi questa domanda e la ponga al suo assistente quando ViaFrei è collegato:",
+      "place": "{place}: com’è la situazione adesso – strade, trasporto pubblico, meteo?",
+      "road": "La {road} è libera in questo momento?",
+      "exit": "{road}, {exit}: la strada è libera in questo momento?"
+    },
+    "phone": {
+      "heading": "Sul telefono (Android, iPhone)",
+      "jump": "Sul telefono? Come funziona su Android e iPhone",
+      "lead": "Nella maggior parte delle app di assistenti non si può aggiungere ViaFrei nell’app stessa. Configuri la connessione una volta nel browser – funziona anche sul telefono – e l’app la usa appena accedi con lo stesso account.",
+      "where": "Secondo Anthropic funziona con tutti i piani Claude (Free: un connettore personalizzato). L’aggiunta di un connettore nell’app è ancora in beta, quindi i passaggi passano da claude.ai nel browser.",
+      "claude": {
+        "s1": "Nel browser del telefono (o su un computer) apri claude.ai e accedi. Poi Customize → Connectors → «+ Add» → «Add custom connector».",
+        "s2": "Nome: ViaFrei. URL: {url}. Tocca «Continue».",
+        "s3": "Apri l’app Claude e accedi con lo stesso account. In una chat tocca «+» → Connectors e attiva ViaFrei.",
+        "s4": "Chiedi: «L’A7 vicino a Kassel è libera?» e consenti lo strumento ViaFrei la prima volta. Una risposta corretta descrive l’A7 vicino a Kassel adesso e termina con la riga della fonte che indica chi pubblica i dati."
+      },
+      "unclear": "{name}: la guida ufficiale aggiunge un server MCP personalizzato solo sul web e non dice se l’app sul telefono poi lo usa – quindi qui nessun passaggio. Aggiornato al {date}.",
+      "gemini": "Gemini: le app personalizzate (server MCP) si possono aggiungere solo nell’app web e solo con un account personale negli Stati Uniti, dai 18 anni, in inglese – quindi non dalla Germania. Aggiornato al {date}.",
+      "copilot": "Microsoft Copilot: la documentazione ufficiale descrive server MCP personalizzati solo per Microsoft 365 Copilot (configurati dall’amministrazione di un’organizzazione) e Copilot Studio, non per l’app Copilot. Aggiornato al {date}.",
+      "checked": "Verificato il {date} sulla guida ufficiale; non ancora provato su un telefono.",
+      "device": "Collegato su un telefono il {date} con {app}."
+    }
+  },
+  "devPage": {
+    "title": "ViaFrei per sviluppatori",
+    "lead": "Un server MCP su Streamable HTTP, dati aperti dalla Germania, ogni risposta con la sua fonte. Ecco che cosa sa fare oggi – letto dal server stesso, non ricopiato.",
+    "releaseHeading": "Versione attuale",
+    "releaseLine": "Versione {version}",
+    "releaseDate": "pubblicata il {date}",
+    "toolsHeading": "Strumenti",
+    "toolsLead": "{n, plural, one {# strumento} other {# strumenti}}, così come li riporta il server:",
+    "promptsHeading": "Prompt",
+    "resourcesHeading": "Risorse",
+    "codeHeading": "Codice e contributi",
+    "closed": "Il server è un servizio ospitato e il suo codice sorgente non è pubblico. Pubblico è il bridge – e lì ogni aiuto è benvenuto.",
+    "bridge": "Il bridge pubblico su GitHub",
+    "discussions": "Discussioni",
+    "goodFirst": "Primi contributi consigliati",
+    "contributing": "Come contribuire",
+    "security": "Segnala una vulnerabilità",
+    "licence": "Licenza: Apache-2.0",
+    "contractHeading": "Il contratto che ogni strumento rispetta",
+    "contract1": "Uno strumento fa una cosa sola e si chiama di conseguenza (verbo_sostantivo).",
+    "contract2": "Ogni risposta riporta alla lettera la sua riga di attribuzione; dove la licenza richiede una nota sullo scopo, c’è anche quella.",
+    "contract3": "Gli orari sono in Europe/Berlin; la memorizzazione è in UTC.",
+    "contract4": "I test non chiamano mai un fornitore reale; ogni contributo viene esaminato in modo indipendente.",
+    "npmHeading": "npm",
+    "npmLead": "Per i client che parlano solo stdio:",
+    "npmReserved": "Lo spazio dei nomi @viafrei è riservato a futuri pacchetti SDK.",
+    "listingsHeading": "Elenchi",
+    "listingsLead": "ViaFrei è presente qui:",
+    "listingNpm": "npm – il pacchetto viafrei, il bridge stdio per i client senza HTTP",
+    "listingSmithery": "Smithery – connessione ospitata, senza installazione locale",
+    "listingGlama": "Glama – la scheda nell’elenco dei server MCP",
+    "statusHeading": "Stato",
+    "statusText": "Un quadro dello stato delle fonti di dati è disponibile su richiesta.",
+    "tools": {
+      "check_autobahn_traffic": "Traffico in autostrada",
+      "find_cheapest_fuel": "Carburante più economico nelle vicinanze",
+      "find_fuel_station": "Trovare un distributore",
+      "find_parking": "Parcheggi nelle vicinanze",
+      "check_road_status": "Stato delle strade e chiusure",
+      "find_roadworks_ahead": "Lavori programmati",
+      "find_sharing": "Bici a noleggio nelle vicinanze",
+      "find_charging_station": "Ricarica nelle vicinanze",
+      "find_hydrogen_station": "Distributori di idrogeno nelle vicinanze",
+      "find_speed_cameras": "Autovelox per pianificare",
+      "find_place": "Cercare una località",
+      "find_poi": "Trovare un luogo con un nome",
+      "find_address": "Cercare un indirizzo",
+      "describe_location": "Descrivere una coordinata",
+      "find_nearby": "Che cosa c’è nelle vicinanze",
+      "get_driving_rules": "Regole della strada in Germania",
+      "check_transit_disruption": "Disagi nel trasporto pubblico di una regione",
+      "check_weather_warnings": "Allerte meteo ufficiali",
+      "get_train_departures": "Partenze dei treni",
+      "get_departures": "Partenze da orario (autobus, tram, treno)",
+      "check_station_facilities": "Ascensori e scale mobili in stazione",
+      "describe_station": "Panoramica di una stazione ferroviaria",
+      "watch_situation": "Tenere d’occhio un cambiamento",
+      "stop_watch": "Terminare un monitoraggio"
+    },
+    "prompts": {
+      "plan_departure": "Prepara un viaggio in auto poco prima della partenza: allerte meteo a entrambe le estremità, autostrade aperte e code attuali, e alla fine una frase: partire o aspettare.",
+      "compare_travel_options": "Confronta lo stesso viaggio in auto e in treno: chiusure e code da una parte, partenze e puntualità dall’altra.",
+      "prepare_car_trip": "Raccoglie ciò che bisogna avere con sé e sapere per guidare in Germania e in una determinata città: bollino ambientale, limiti di velocità, pneumatici invernali, limite di alcol, pedaggi, dotazioni obbligatorie.",
+      "plan_fuel_stop": "Trova dove fare rifornimento o ricaricare lungo il percorso: i distributori più economici per un tipo di carburante oppure punti di ricarica con la presa e la potenza giuste, e l’area di servizio accanto.",
+      "plan_commute": "Pianifica un tragitto in autobus o treno nella stessa giornata: le prossime partenze con ritardi, binari e soppressioni, e se nella regione il servizio è regolare.",
+      "plan_arrival_parking": "Trova dove lasciare l’auto alla fine del viaggio: un parcheggio multipiano in città, un parcheggio di interscambio in periferia con le partenze in coincidenza, oppure un’area di servizio se si è in anticipo.",
+      "find_a_place": "Risolve un semplice nome in una località, un luogo con un nome o un indirizzo, provando uno dopo l’altro.",
+      "plan_local_errand": "Risponde a «che cosa c’è qui vicino?» per un luogo: il distributore, la colonnina, il parcheggio, la stazione e lo svincolo autostradale più vicini, a colpo d’occhio.",
+      "explain_this_coordinate": "Trasforma semplici coordinate in una frase comprensibile per chi viaggia: indirizzo, località, circondario e svincolo autostradale più vicini, ciascuno con la sua distanza."
+    },
+    "quickHeading": "Connessi in un minuto",
+    "quickLead": "Scegliete il client, incollate questo e fate la prima domanda.",
+    "quickTabs": "Programmi client",
+    "quickWhere": "Dove va:",
+    "quickFirst": "La vostra prima chiamata",
+    "quickFirstLead": "Una volta connessi, chiedete con parole semplici; l'assistente sceglie da solo lo strumento:",
+    "copy": "Copia",
+    "copyCurl": "Copia come curl",
+    "tryHeading": "Provatelo",
+    "tryLead": "Una vera chiamata al punto di accesso pubblico: la sessione, poi lo strumento. Sotto, la risposta che il nostro server ha dato proprio a questa chiamata pochi minuti fa.",
+    "tryRequest": "Richiesta",
+    "tryResponse": "Risposta",
+    "tryAsOf": "Risposto alle {time}",
+    "tryError": "Al momento non c'è una risposta recente. Eseguite la richiesta qui sopra per vederne una dal vivo.",
+    "argsLabel": "Argomenti",
+    "askLabel": "Chiedete così:",
+    "schemaLabel": "Schema di input",
+    "otherGroup": "Altri strumenti",
+    "newHeading": "Novità nel contratto",
+    "newLine": "Versione {version}, {date}",
+    "newTools": "modificato:",
+    "contract5": "Troppe richieste vengono respinte con l'errore JSON-RPC {code}; attendete e inviate di nuovo.",
+    "contract6": "Una sessione scaduta viene respinta con l'errore {code}; apritene una nuova con initialize.",
+    "ask": {
+      "check_autobahn_traffic": "C'è coda in questo momento sulla A9 tra Monaco e Norimberga?",
+      "find_cheapest_fuel": "Dove costa meno il gasolio vicino a Kassel in questo momento?",
+      "find_fuel_station": "Quale distributore è aperto vicino alla stazione centrale di Würzburg?",
+      "find_parking": "C'è un posto libero in un parcheggio vicino alla stazione centrale di Colonia?",
+      "check_road_status": "Ci sono chiusure sulle strade intorno a Dresda?",
+      "find_roadworks_ahead": "Quali cantieri sono previsti sulla A3 la prossima settimana?",
+      "find_charging_station": "Dove posso ricaricare veloce a 150 kW a Lipsia?",
+      "find_hydrogen_station": "Dov'è il distributore di idrogeno più vicino a Stoccarda?",
+      "find_speed_cameras": "Dove sono gli autovelox fissi sul mio percorso attraverso Bielefeld?",
+      "find_place": "Dove si trova esattamente Garmisch-Partenkirchen?",
+      "find_poi": "C'è una farmacia vicino alla stazione centrale di Erfurt?",
+      "find_address": "Dov'è Unter den Linden 77 a Berlino?",
+      "describe_location": "Cosa c'è a 50,94, 6,96?",
+      "find_nearby": "Cosa c'è vicino alla stazione centrale di Münster: ricarica, parcheggi, fermate?",
+      "find_sharing": "C'è una bici in condivisione vicino ad Amburgo Dammtor?",
+      "get_driving_rules": "Quando vale il divieto di circolazione domenicale per i camion?",
+      "check_transit_disruption": "Quanto sono puntuali autobus e treni in Baviera in questo momento?",
+      "check_weather_warnings": "C'è un'allerta meteo per Amburgo oggi?",
+      "get_train_departures": "Quando partono i prossimi treni dalla stazione centrale di Hannover?",
+      "get_departures": "Quando parte il prossimo tram da Lipsia Augustusplatz?",
+      "check_station_facilities": "Gli ascensori della stazione centrale di Francoforte funzionano?",
+      "describe_station": "Com'è la stazione centrale di Norimberga: binari, ascensori, partenze?",
+      "watch_situation": "Avvisami quando la A7 vicino ad Amburgo è di nuovo libera.",
+      "stop_watch": "Smetti di sorvegliare la A7."
+    }
+  },
+  "bizPage": {
+    "title": "ViaFrei per le aziende",
+    "lead": "Dati aperti sulla mobilità da tutta la Germania, integrati con cura e sempre con la loro fonte – come un unico endpoint che i suoi sistemi e i suoi assistenti possono interrogare.",
+    "casesHeading": "Per che cosa le aziende usano ViaFrei",
+    "u1t": "Logistica e flotte",
+    "u1": "Lavori e chiusure sulle autostrade del percorso previsto, parcheggi per mezzi pesanti lungo il tragitto e il divieto di circolazione domenicale dalle regole della strada.",
+    "u1q": "Quali chiusure ci sono sull’A7 tra Würzburg e Ulma?",
+    "u1a": "Chiusure sull’A7 fino al {to}: {n}; tra Würzburg e Ulma, tra le altre, {a} – {b} e {b} – {c}, in entrambe le direzioni.",
+    "u2t": "Infrastruttura di ricarica",
+    "u2": "Dove la rete è scarsa e quali punti sono liberi in questo momento – dai flussi dei gestori di cui abbiamo verificato l’origine. Lo storico memorizzato della disponibilità è previsto nell’ambito di una collaborazione.",
+    "u2q": "Dove ci sono colonnine rapide con almeno 150 kW vicino a Kassel?",
+    "u2a": "Sì: {s1}, {a1}, a {m} m, fino a {kw1} kW, punti con stato libero: {free} su {total}; inoltre {s2}, {a2}, fino a {kw2} kW, senza stato in tempo reale.",
+    "u3t": "Turismo, hotel e luoghi di eventi",
+    "u3": "Un’informazione di arrivo per gli ospiti nella loro lingua: situazione in autostrada, partenze dei treni, parcheggio e ricarica a destinazione.",
+    "u3q": "Il mio hotel è a Garmisch-Partenkirchen – gli ospiti devono aspettarsi un’allerta meteo oggi?",
+    "u3a": "No: per {place} non è in vigore alcuna allerta ufficiale del DWD, verificato per adesso e per le prossime {hours} ore – il che non è un cessato allarme per il resto del viaggio.",
+    "u4t": "App di navigazione, mappe e mobilità",
+    "u4": "Un unico endpoint MCP invece di tante integrazioni separate con i fornitori – e, previsto nell’ambito di una collaborazione, lo storico memorizzato delle fonti la cui licenza consente l’analisi.",
+    "u4q": "Quali lavori sono previsti sull’A3 nei prossimi giorni?",
+    "u4a": "Dal {from} al {to} sull’A3 sono previsti cantieri: {n}, tra cui {a} – {b}: una corsia su quattro chiusa, {speed} km/h, fino al {until}.",
+    "u5t": "Assicurazioni e ricerca sulla mobilità",
+    "u5": "L’archivio delle misurazioni delle fonti la cui licenza lo consente: qual era la situazione su un tratto in un dato momento? La consultazione dello storico è prevista nell’ambito di una collaborazione; a ciò che è in vigore in questo momento, come le allerte ufficiali di un Land, il servizio pubblico risponde già oggi.",
+    "u5q": "Quali chiusure sono in vigore sull’A8 in questo momento?",
+    "u5a": "Chiusure sull’A8 fino al {to}: {n}, tra cui {a} – {b} in direzione Monaco di Baviera e allo svincolo {c} verso l’A81.",
+    "u6t": "Comuni e Länder",
+    "u6": "Una visione nazionale dei propri dati pubblicati – e un modo per proporre flussi di dati che dovremmo aggiungere.",
+    "u6q": "È in vigore in questo momento un’allerta meteo ufficiale per Colonia?",
+    "u6a": "No: per {place} non vale alcuna allerta ufficiale del DWD, né ora né nelle prossime {hours} ore.",
+    "futureLabel": "previsto",
+    "coopHeading": "Che cosa significa collaborare",
+    "price": "Prezzi su richiesta.",
+    "contactHeading": "Parliamone",
+    "contactLead": "Ci scriva – rispondiamo entro due giorni lavorativi.",
+    "postal": "Indirizzo postale: vedere le note legali.",
+    "noForm": "Nessun modulo, nessun database: solo un’e-mail.",
+    "licenceScope": "Ciò che offriamo alle aziende segue la licenza di ogni fonte: i dati rilasciati solo per l’informazione dei consumatori non ne fanno parte, e i dati con licenza share-alike li trasmettiamo solo con la stessa licenza.",
+    "licenceScopeCredits": "Tutte le attribuzioni delle fonti si trovano in",
+    "heroPilot": "Avviare un progetto pilota",
+    "heroLive": "Vederlo rispondere dal vivo",
+    "heroSteps": "Come risponde un assistente con ViaFrei",
+    "proofHeading": "Dal vivo dalla banca dati",
+    "proofLead": "Ogni cifra qui sotto è stata letta dalla nostra banca dati per questa pagina, con il momento a cui si riferisce. Una cifra che non si può leggere appare come mancante, mai come una cifra più vecchia.",
+    "proofError": "Questa cifra non è stata leggibile in questo momento.",
+    "proofCatalogue": "Conteggio della versione {version}.",
+    "proofSources": "fonti di dati citate",
+    "proofTools": "strumenti per assistenti",
+    "proofMotorways": "autostrade con una pagina propria",
+    "proofLanguages": "lingue",
+    "caseShow": "Vedere cosa mostra adesso",
+    "howHeading": "Come funziona",
+    "how1": "Enti pubblici e gestori pubblicano dati aperti: traffico, orari, ricarica, parcheggi, allerte meteo.",
+    "how2": "Li raccogliamo giorno e notte, li uniamo in un'immagine della Germania e conserviamo ogni rilevazione con ora e fonte.",
+    "how3": "I vostri sistemi e i vostri assistenti interrogano un unico punto di accesso e ricevono una risposta che cita la fonte.",
+    "howData": "Dati aperti",
+    "howYou": "Il vostro assistente o sistema",
+    "licenceHeading": "Quali dati può usare un'azienda, e come",
+    "licenceColClass": "Classe di licenza",
+    "licenceColCount": "Fonti",
+    "licenceColUse": "Cosa può fare un'azienda",
+    "lic": {
+      "open": {
+        "name": "Aperta",
+        "use": "Usare e trasmettere liberamente."
+      },
+      "attribution": {
+        "name": "Attribuzione",
+        "use": "Usare e trasmettere, con la citazione della fonte."
+      },
+      "shareAlike": {
+        "name": "Condividi allo stesso modo",
+        "use": "Usare; i dati derivati si trasmettono solo con la stessa licenza."
+      },
+      "terms": {
+        "name": "Non ancora chiarito per le aziende",
+        "use": "Non fa ancora parte di un’offerta per le aziende: l’editore non pubblica condizioni d’uso, oppure le sue condizioni richiedono un contratto che non offriamo ancora."
+      },
+      "consumerOnly": {
+        "name": "Solo informazione ai consumatori",
+        "use": "Non fa parte di alcuna offerta alle aziende."
+      },
+      "own": {
+        "name": "Contenuti di ViaFrei",
+        "use": "Inclusi in una collaborazione."
+      }
+    },
+    "coopPilotTitle": "Progetto pilota",
+    "coopPilot": "Alcune settimane sulla vostra domanda: la vostra chiave API, limiti più alti e una linea diretta con noi.",
+    "coopDataTitle": "Partenariato sui dati",
+    "coopData": "Esportazioni dallo storico conservato, per le fonti la cui licenza lo consente, e vostri monitoraggi e canali.",
+    "coopPublisherTitle": "Editore di dati",
+    "coopPublisher": "Pubblicate dati di mobilità: li portiamo a ogni assistente di IA, citandovi come fonte, e costruiamo insieme nuovi strumenti."
+  },
+  "fuelPage": {
+    "title": "Distributori per Land – una selezione con i prezzi",
+    "lead": "Fino a tre distributori per Land, prima la Super E10 più economica. Scelti tra i distributori che osserviamo – quindi non necessariamente i più economici del Land. Ogni prezzo è riportato con l’ora in cui l’abbiamo rilevato. Un’informazione per i consumatori, non un elenco di tutti i distributori.",
+    "back": "Torna alla pagina iniziale",
+    "unavailable": "L’elenco dei distributori per Land al momento non è disponibile.",
+    "boardHead": "Fino a tre distributori per Land",
+    "hereHead": "I distributori aperti più economici a {place}",
+    "hereHeadNone": "I distributori aperti più economici dove si trova",
+    "hereNone": "Al momento non conosciamo il suo luogo. Scelga una città qui sotto o il suo luogo nella pagina iniziale; lì ne trova i prezzi.",
+    "hereNoScript": "I prezzi si caricano con JavaScript appena questa sezione è visibile. Senza JavaScript si trovano nella pagina del luogo.",
+    "hereLoading": "Caricamento dei prezzi …",
+    "hereFailed": "Al momento i prezzi non sono disponibili.",
+    "cities": "Città",
+    "citiesLead": "I prezzi di ogni città si trovano nella sua pagina."
+  },
+  "quote": {
+    "open": "«",
+    "close": "»"
+  },
+  "place": {
+    "change": "Cambia luogo",
+    "how": {
+      "exact": "arrotondata, circa 500 m",
+      "approx": "approssimativa (dalla sua connessione internet)",
+      "chosen": "scelto",
+      "saved": "salvato",
+      "rough": "approssimativa (browser)"
+    },
+    "germany": "Tutta la Germania",
+    "outsideFar": "La sua posizione è fuori dalla Germania. Mostriamo tutta la Germania: scelga un luogo per vederne le schede.",
+    "choose": "Scegli un luogo",
+    "loaded": "Schede per {place} caricate",
+    "failed": "Al momento non è stato possibile caricare questo luogo.",
+    "noGeo": "Nessuna posizione dal browser – scelga un luogo.",
+    "locating": "Rilevamento della posizione …",
+    "geoNo": "Nessuna posizione dal browser: {why}. Continua a essere mostrato: {place}.",
+    "geoDenied": "l’accesso è bloccato – lo consenta tramite l’icona accanto all’indirizzo",
+    "geoUnavailable": "il suo dispositivo non è riuscito a determinarla",
+    "geoTimeout": "nessuna entro 15 s",
+    "geoApprox": "Il suo browser conosce la sua posizione solo in modo approssimativo (oltre 1 km).",
+    "why": "Per colonnine, distributori e allerte proprio dove si trova – la sua posizione esatta resta sul suo dispositivo.",
+    "kept": "Il suo browser ricorda questo luogo",
+    "sheet": {
+      "useLocation": "Usa la mia posizione",
+      "forget": "Dimentica il luogo"
+    },
+    "privacy": {
+      "title": "Il suo luogo resta con lei.",
+      "body": "ViaFrei non crea alcun account né alcun profilo e non memorizza il suo luogo. Il suo browser ricorda un luogo su questo dispositivo solo se lei lo sceglie nella barra del luogo – un luogo o un indirizzo, «Usa la mia posizione» o «Tutta la Germania» – insieme ai luoghi scelti di recente; finché questa pagina usa un luogo ricordato, lo indica una riga sotto la barra del luogo, e «Dimentica il luogo» lo cancella subito. La pagina chiede la sua posizione solo quando lei sceglie «Usa la mia posizione»; se l’ha già consentita in modo permanente nel suo browser, questa pagina la legge senza chiedere e non memorizza nulla. La sua posizione viene arrotondata sul suo dispositivo a un’area di circa 500 m, e il nostro server ricava da quell’area il nome della via o della località; tiene quel nome in memoria al massimo per un’ora per area, senza alcun legame con lei, e non lo memorizza. Solo subito dopo quel clic, e solo se il browser indica la sua posizione con una precisione di al massimo 150 m, la pagina invia una volta la posizione esatta al nostro server per verificare se lei si trova presso una stazione, un distributore di carburante, una stazione di ricarica o un’area di servizio autostradale; lì non viene né memorizzata né registrata. Allo stesso modo tiene in memoria al massimo per un’ora il nome di una stazione, di una località o di un indirizzo scelti qui. Il suo indirizzo IP viene usato solo in memoria, per la posizione approssimativa, e a tale scopo non viene memorizzato. Ciò vale per ogni pagina con la barra del luogo, anche per l’indice delle stazioni. Nell’indice delle stazioni il luogo così determinato serve solo a mostrare le stazioni e le fermate più vicine.",
+      "more": "Maggiori informazioni nell’informativa sulla privacy"
+    },
+    "geoipCredit": "Luogo approssimativo dall’indirizzo IP:",
+    "pageTitle": "{place}: chiusure, cantieri, traffico ora – ViaFrei",
+    "pageDescription": "Traffico, code, lavori e chiusure a {place}, oltre a parcheggi, colonnine, prezzi dei carburanti e allerte meteo – in tempo reale da dati aperti, con la fonte.",
+    "pageLead": "Tutto ciò che ViaFrei sa in questo momento su {place} – da dati aperti, con la fonte di ogni dato.",
+    "pageMissing": "Non conosciamo questo luogo.",
+    "geoipModified": "estratto modificato",
+    "loadingCards": "Caricamento delle schede per questo luogo …",
+    "reloadCards": "Ricarica la pagina per vedere le schede",
+    "fuelUnavailable": "Al momento non è stato possibile richiedere di nuovo i prezzi. Qui c’è l’ultimo prezzo noto con il suo orario.",
+    "motorway": {
+      "why": "Per ciò che si trova intorno a lei su questa autostrada – la sua posizione esatta resta sul suo dispositivo.",
+      "radius": "Raggio",
+      "radiusOther": "Scegli un raggio qualsiasi (1–100 km)",
+      "updating": "aggiornamento …",
+      "failed": "Impossibile aggiornare – resta la vista precedente.",
+      "zoomGroup": "Zoom sulla mappa – ogni passo è un raggio",
+      "zoomIn": "Ingrandisci – raggio {r} km",
+      "zoomOut": "Riduci – raggio {r} km",
+      "zoomInEnd": "Ingrandisci – raggio minimo raggiunto",
+      "zoomOutEnd": "Riduci – raggio massimo raggiunto",
+      "filter": {
+        "legend": "Mostra",
+        "all": "Mostra tutto",
+        "none": "Nascondi tutto",
+        "allLabel": "Mostra tutto – seleziona tutti i tipi",
+        "noneLabel": "Nascondi tutto – deseleziona tutti i tipi",
+        "save": "Ricorda questa scelta",
+        "saved": "Scelta memorizzata su questo dispositivo.",
+        "forget": "Non ricordare più",
+        "everything": "Tutti i dati",
+        "nothing": "Nessuna selezione – scelga almeno un tipo.",
+        "sum": "{kinds}: {n}",
+        "sumR": "{kinds} entro {r} km: {n}",
+        "entriesOne": "{n} voce",
+        "entriesFew": "{n} voci",
+        "entriesMany": "{n} voci",
+        "entriesOther": "{n} voci",
+        "entriesZero": "{n} voci",
+        "ampel": "Il semaforo continua a valutare tutto – alcuni dei suoi motivi sono nascosti in questo momento."
+      }
+    },
+    "pageDescriptionRoads": "{place}: chiusure e cantieri ora su {roads} – più code, parcheggi, ricarica e allerte, in diretta con la fonte.",
+    "topics": {
+      "legend": "Temi",
+      "apply": "Applica",
+      "none": "Nessun tema scelto.",
+      "shown": "Temi mostrati: {n} su {total}",
+      "attention": "Nascosto, ma importante ora: {topic} – mostra"
+    },
+    "head": {
+      "live": "In diretta per",
+      "scope": "Zona",
+      "search": "Cerca un luogo",
+      "searchHint": "Indirizzo, CAP, quartiere o stazione",
+      "locate": "Usa la mia posizione",
+      "confirmQ": "È il luogo giusto?",
+      "yes": "Sì",
+      "other": "Altro luogo",
+      "confirmed": "confermato",
+      "updated": "aggiornato per {place}",
+      "outside": "posizione fuori dalla Germania",
+      "germanyHow": "tutta la Germania scelta",
+      "germanyNote": "Tutta la Germania scelta: tutti i dati nazionali sono qui sotto, ciascuno con ora e fonte."
+    },
+    "bar": {
+      "label": "Scegli o cerca un luogo",
+      "close": "Chiudi",
+      "hint": "Luogo, indirizzo, autostrada, stazione …",
+      "recent": "Recenti",
+      "popular": "Popolari",
+      "drop": "Rimuovi {place}",
+      "found": "Suggerimenti: {n}",
+      "how": "Un luogo, un indirizzo o una stazione dell'elenco mostra le schede di lì; Invio cerca in tutto il sito."
+    }
+  },
+  "newsPage": {
+    "readMore": "Continua a leggere",
+    "title": "Novità",
+    "lead": "Che cosa c’è di nuovo su ViaFrei, che cosa arriverà e le chiusure lunghe che registriamo in questo momento — ognuna con la sua fonte.",
+    "filterLabel": "Mostra",
+    "chipNew": "Nuovo",
+    "chipPlans": "Progetti",
+    "chipTraffic": "Traffico",
+    "newHeading": "Novità su ViaFrei",
+    "plansHeading": "Progetti",
+    "plansLead": "Che cosa vogliamo aggiungere prossimamente. Previsto significa previsto: nulla di tutto ciò è già in ViaFrei e non indichiamo date.",
+    "trafficHeading": "Chiusure lunghe",
+    "trafficLead": "Dai nostri dati: chiusure con una fine indicata, lunghe almeno un giorno. Ognuna scompare non appena viene raggiunta la sua fine.",
+    "badgeNew": "Nuovo",
+    "badgePlan": "Previsto",
+    "askLabel": "Chieda al suo assistente",
+    "askLabelPlan": "Quando sarà disponibile, chieda al suo assistente",
+    "plannedNote": "ancora senza data",
+    "connect": "Colleghi ViaFrei",
+    "sources": "Fonte",
+    "feed": "Novità come feed Atom",
+    "released": "Versione {v} · {d}",
+    "teaserHeading": "Novità su ViaFrei",
+    "teaserAll": "Tutte le novità",
+    "trafficError": "Al momento non è stato possibile caricare le segnalazioni sul traffico.",
+    "noEntries": "Ancora nessuna voce in questa lingua."
+  },
+  "examplesPage": {
+    "title": "Tutte le domande di esempio",
+    "lead": "Ogni domanda che ViaFrei mostra come esempio su questo sito – con lo strumento che risponde e la sua risposta, raggruppate per tema.",
+    "live": "Dove ViaFrei pone la domanda da solo a intervalli regolari, qui vede la risposta più recente; altrimenti la risposta registrata con la sua data.",
+    "toc": "Temi",
+    "domain": {
+      "transit": "Autobus, treno e stazione",
+      "roads": "Strade e autostrade",
+      "parking": "Parcheggio",
+      "charging": "Ricarica",
+      "fuel": "Carburante",
+      "more": "Luoghi e monitoraggi"
+    },
+    "question": "Domanda {n}",
+    "fuelNote": "Le risposte di esempio sui prezzi dei carburanti sono mostrate solo con la loro data e solo in due punti: {home} e {connect}.",
+    "fuelHome": "nella pagina iniziale",
+    "fuelConnect": "nella pagina per collegarsi"
+  },
+  "seo": {
+    "connectTitle": "Dati sul traffico in ChatGPT e Claude via MCP – ViaFrei",
+    "connectDescription": "Un indirizzo, nessuna chiave: collega ViaFrei in Claude, ChatGPT, Copilot, Cursor, Gemini CLI o Le Chat e chiedi in diretta di code, treni e parcheggi.",
+    "motorwayTitle": "Traffico {road} Germania: code, lavori, chiusure – ViaFrei",
+    "motorwayDescription": "Traffico {road} in Germania: code, incidenti, chiusure e lavori in tempo reale per direzione, da dati aperti, con le chiusure programmate e le regole.",
+    "motorwaysTitle": "Code e cantieri in autostrada ora – Germania – ViaFrei",
+    "motorwaysDescription": "Tutte le autostrade tedesche in diretta: code, chiusure, cantieri, deviazioni, parcheggi e ricarica, con una mappa e una pagina per autostrada.",
+    "motorwayH1": "Autostrada {road} adesso",
+    "motorwayLead": "Code, chiusure e lavori sulla {road}, in tempo reale da dati aperti, ognuno con fonte e orario.",
+    "motorwaysH1": "Autostrade in Germania",
+    "motorwaysLead": "Ogni autostrada con le sue segnalazioni attuali. Ne scelga una per code, chiusure, lavori e il suo tracciato.",
+    "stationsTitle": "Stazioni in Germania: binari, servizi – ViaFrei",
+    "stationsDescription": "Ogni stazione della Deutsche Bahn: marciapiedi con altezza e accesso senza gradini, servizi, assistenza alla mobilità e cosa c'è entro 300 m – da dati aperti.",
+    "stationsH1": "Stazioni ferroviarie in Germania",
+    "crumbStations": "Stazioni",
+    "stationTitle": "{name}: partenze, binari, ascensori, perturbazioni – ViaFrei",
+    "stationDescription": "{name}: le prossime partenze in tempo reale con il binario, quali ascensori e scale mobili funzionano ora, binari senza gradini, servizi e dintorni – da dati aperti, con fonte e data.",
+    "crumbHome": "Pagina iniziale",
+    "crumbMotorways": "Autostrade",
+    "linksMotorways": "Autostrade in tempo reale",
+    "linksPlaces": "Città in tempo reale",
+    "allMotorways": "Tutte le autostrade",
+    "allPlaces": "Altre città",
+    "imprintDescription": "Note legali di viafrei.de: chi gestisce ViaFrei, la piattaforma di mobilità in tempo reale per assistenti IA, e come contattare il gestore.",
+    "privacyDescription": "Informativa privacy di viafrei.de: cosa conserva ViaFrei e cosa no, come funziona il consenso e quali diritti hai – nessun account, nessun profilo.",
+    "termsDescription": "Condizioni d'uso di ViaFrei: a quali condizioni potete usare dati come l'occupazione dei parcheggi per camion di Toll Collect GmbH.",
+    "businessTitle": "API di dati di mobilità dal vivo per aziende",
+    "businessDescription": "Traffico, trasporto pubblico, ricarica e parcheggi in tutta la Germania, in un punto di accesso dal vivo con le fonti. Iniziate con un progetto pilota.",
+    "developersTitle": "Server MCP per i dati di mobilità tedeschi",
+    "developersDescription": "Collegate un client MCP in un minuto: avvio rapido per ogni client, una vera chiamata con la risposta e ogni strumento con il suo schema."
+  },
+  "ask": {
+    "live": "Risposta in tempo reale di ViaFrei",
+    "asOf": "Dati aggiornati alle {time}",
+    "tool": "Strumento",
+    "question": "Domanda",
+    "answer": "Risposta",
+    "cta": "Chieda al suo assistente",
+    "roads": {
+      "question": "C’è coda sull’A8 in questo momento?",
+      "clear": "Sulla {road} al momento non è segnalata alcuna coda. In vigore – chiusure: {closures}, lavori: {works}.",
+      "jams": "Code segnalate sulla {road}: {jams}; la più lunga fa perdere {delay} min. Chiusure: {closures}, lavori: {works}.",
+      "jamsNoDelay": "Code segnalate sulla {road}: {jams}. Chiusure: {closures}, lavori: {works}."
+    },
+    "lorryPark": {
+      "question": "Quanti parcheggi per camion ha la A3 e quanti pubblicano la loro occupazione?",
+      "listed": "Parcheggi per camion lungo la {road}: {total}; con occupazione pubblicata: {live}."
+    },
+    "hydrogen": {
+      "question": "Dove può fare rifornimento un camion a idrogeno vicino a Frankfurt am Main?",
+      "near": "{name}, {address}: 350 bar per camion e autobus, a {km} km.",
+      "none": "Nessuna stazione di idrogeno per camion risulta entro {km} km."
+    },
+    "weatherLand": {
+      "question": "È in vigore in questo momento un'allerta meteo ufficiale in Baviera (Bayern)?",
+      "none": "{place}: Nessuna allerta ufficiale del DWD in vigore, verificato per adesso e per le prossime {hours} ore.",
+      "warn": "{place}: Allerte ufficiali in vigore: {count}, livello massimo {level} su 4, tra cui «{event}»."
+    },
+    "transit": {
+      "question": "Quanto sono puntuali in questo momento autobus e treni nella Renania Settentrionale-Vestfalia?",
+      "share": "{region}: il {pct}% delle corse degli ultimi {minutes} minuti è in ritardo ({late} su {trips}).",
+      "thin": "{region}: corse osservate negli ultimi {minutes} minuti: {trips} – troppo poche per una percentuale."
+    },
+    "charging": {
+      "question": "Dove posso ricaricare a Lipsia con almeno 150 kW?",
+      "live": "{operator}, {address}: fino a {kw} kW, a {km} km – punti di ricarica liberi: {free} su {total}.",
+      "liveNoOp": "{address}: fino a {kw} kW, a {km} km – punti di ricarica liberi: {free} su {total}.",
+      "noStatus": "{operator}, {address}: fino a {kw} kW, a {km} km. Al momento il gestore non comunica alcuna disponibilità attuale.",
+      "noStatusNoOp": "{address}: fino a {kw} kW, a {km} km. Al momento il gestore non comunica alcuna disponibilità attuale.",
+      "none": "Nelle vicinanze non risulta alcuna stazione di ricarica con almeno 150 kW."
+    },
+    "parking": {
+      "question": "Dov’è in questo momento un parcheggio multipiano con posti liberi vicino alla stazione centrale di Münster (Münster Hbf)?",
+      "free": "{name}: posti liberi {free} su {total}, a {km} km.",
+      "none": "Al momento nessun parcheggio multipiano nelle vicinanze segnala posti liberi.",
+      "unpublished": "I gestori dei parcheggi multipiano vicini non pubblicano l’occupazione in tempo reale, quindi non si sa se ci sono posti liberi."
+    },
+    "roadsNear": {
+      "question": "Che cosa succede sulle strade qui in questo momento?",
+      "clear": "Al momento nulla di segnalato entro {km} km: nessuna coda, nessuna chiusura.",
+      "noJams": "Nessuna coda entro {km} km. In vigore – chiusure: {closed}, limitazioni: {restricted}.",
+      "jams": "Entro {km} km – code: {jams}, chiusure: {closed}, limitazioni: {restricted}."
+    },
+    "weather": {
+      "question": "C’è un’allerta meteo ufficiale qui?",
+      "none": "Nessuna allerta ufficiale del DWD in vigore, verificato per adesso e per le prossime {hours} ore.",
+      "warn": "Allerte ufficiali in vigore: {count}, livello massimo {level} su 4, tra cui «{event}»."
+    },
+    "nearby": {
+      "question": "Che cosa c’è qui vicino?",
+      "near": "Entro {km} km: stazione {station}; stazioni di ricarica: {charging}, parcheggi: {parking} (al massimo tre per tipo).",
+      "noStation": "Nessuna stazione entro {km} km; stazioni di ricarica: {charging}, parcheggi: {parking} (al massimo tre per tipo).",
+      "none": "Entro {km} km non risulta né una stazione né una stazione di ricarica né un parcheggio."
+    },
+    "poi": {
+      "question": "Dov’è la farmacia più vicina?",
+      "found": "{name}, {street} – a {km} km.",
+      "foundNoStreet": "{name} – a {km} km.",
+      "none": "Nel raggio di 5 km non risulta alcuna farmacia."
+    },
+    "chargingNear": {
+      "question": "Dov’è la colonnina di ricarica più vicina?",
+      "live": "{operator}, {address}: fino a {kw} kW, a {km} km – punti di ricarica liberi: {free} su {total}.",
+      "liveNoOp": "{address}: fino a {kw} kW, a {km} km – punti di ricarica liberi: {free} su {total}.",
+      "noStatus": "{operator}, {address}: fino a {kw} kW, a {km} km. Al momento il gestore non comunica alcuna disponibilità attuale.",
+      "noStatusNoOp": "{address}: fino a {kw} kW, a {km} km. Al momento il gestore non comunica alcuna disponibilità attuale.",
+      "none": "Nelle vicinanze non risulta alcuna stazione di ricarica."
+    },
+    "offerOsm": "Queste voci provengono dal nostro database derivato da OpenStreetMap. Su richiesta inviamo gratuitamente una copia completa leggibile da una macchina (CSV) con licenza ODbL 1.0 – i contatti sono nelle {link}.",
+    "offerDb": "Queste voci provengono dal nostro database derivato da «{db}». Su richiesta inviamo gratuitamente il database che usiamo pubblicamente – senza le voci che l’editore indica come riservate – come copia leggibile da una macchina (CSV) con licenza ODbL 1.0 – i contatti sono nelle {link}.",
+    "offerLink": "note legali"
+  },
+  "connectNote": {
+    "text": "Il tuo assistente IA dà questa risposta solo se ViaFrei è collegato.",
+    "link": "Come collegare ViaFrei",
+    "guide": "Guida completa per tutti i client",
+    "clients": "Passo per passo per",
+    "copy": "Copia l’indirizzo",
+    "copied": "Copiato"
+  },
+  "next": {
+    "label": "Avanti",
+    "ask": "Chieda alla sua IA: {place}",
+    "motorways": "Tutte le autostrade"
+  },
+  "search": {
+    "label": "Cerca su ViaFrei",
+    "placeholder": "Luogo, autostrada, stazione, pagina …",
+    "submit": "Cerca",
+    "title": "Ricerca",
+    "description": "Trova luoghi, autostrade, svincoli, stazioni e pagine di ViaFrei.",
+    "hint": "Digita almeno due caratteri.",
+    "alt": "Mostra le schede qui",
+    "partial": "Alcuni risultati non sono mostrati: una fonte non ha risposto in tempo.",
+    "allResults": "Tutti i risultati",
+    "showAll": "Tutti i risultati di questo tipo",
+    "prev": "Precedente",
+    "next": "Successiva",
+    "pageOf": "Pagina {page} di {pages}",
+    "pager": "Pagine dei risultati",
+    "none": "Non abbiamo trovato nulla per «{q}».",
+    "nearest": "Scritto in modo simile:",
+    "motorwayIndex": "Tutte le autostrade",
+    "kind": {
+      "motorway": "Autostrade",
+      "road": "Strade federali e regionali",
+      "place": "Luoghi",
+      "station": "Stazioni",
+      "exit": "Uscite e svincoli",
+      "area": "Zone e indirizzi",
+      "poi": "Punti di interesse",
+      "page": "Pagine",
+      "news": "Notizie"
+    }
+  },
+  "header": {
+    "how": "Un luogo, un indirizzo o un punto dell'elenco diventa il tuo luogo su tutte le pagine; un'autostrada, una stazione o una pagina si apre. Invio cerca in tutto il sito.",
+    "makeMine": "Rendi questo il mio luogo"
+  },
+  "statePages": {
+    "title": "Länder tedeschi: autostrade ora, città e dati – ViaFrei",
+    "description": "Tutti i 16 Länder tedeschi in un colpo d'occhio: chiusure, code e cantieri sulle autostrade ora, superficie, capoluogo, Länder confinanti e città più grandi.",
+    "h1": "I 16 Länder tedeschi",
+    "crumb": "Länder tedeschi"
+  },
+  "ai": {
+    "placeWarn": "Ci sono ora allerte meteo per {place}?",
+    "placePark": "Dove posso parcheggiare o ricaricare ora a {place}?",
+    "landRoads": "Quali autostrade a {place} sono più colpite in questo momento?",
+    "roadUsual": "Quanto durano di solito le code sulla {road}?",
+    "roadPlans": "Quali lavori e chiusure sono previsti sulla {road}?",
+    "open": "Chiedi in {app}",
+    "copy": "Copia la domanda",
+    "copied": "Copiato"
+  },
+  "star": {
+    "add": "Salva questa pagina",
+    "remove": "Salvata",
+    "neu": "nuovo",
+    "gone": "Revocato dalla sua ultima visita: {list}",
+    "longer": "più lungo",
+    "install": "Aggiungi alla schermata Home",
+    "commute": "Il suo percorso"
+  },
+  "pwa": {
+    "offline": "Stato {t}, offline"
+  }
+}

@@ -1,0 +1,281 @@
+---
+/**
+ * The position bar of a motorway page (#890): the home's place pill, sheet and
+ * location island (`location/island.ts`, the one ladder — remembered choice,
+ * the browser's position rounded to the ~500 m cell ON THE DEVICE after a click
+ * or a standing grant, the IP approximation), asking for "around you on this
+ * road" instead of the place cards, and the radius control.
+ *
+ * The radius: chips 5/10/25/50/100 km and a slider, one tap applies, no submit;
+ * the address carries it (`?r=`, `history.replaceState`, so Back leaves the
+ * page) and nothing stores it. A slider drag asks once it has rested 250 ms.
+ * While the new block loads the old one stays, dimmed, with "updating"; a failed
+ * load keeps it and says so (the island's `vf:loaded`).
+ *
+ * With no position the page is as it was: the slot is empty and nothing is asked.
+ *
+ * #1153: the pill, the search, "use my location", the chips and "Ort vergessen" are the header's (`PlaceBar.astro`,
+ * `lib/header-place.ts` `motorwayHeaderPlace`); this block keeps the radius, the slot and the island that fills it.
+ *
+ * 2.3.11 (owner 2026-10-21, "it must be visible only for the current position if the user wants to provide it"): the
+ * radius control and the map's zoom (which only steps the radius) are rendered `hidden` and shown by the island only
+ * while the page uses the visitor's own position — a browser fix, or the area a click on "use my location" kept. An IP
+ * guess, a chosen town and "all of Germany" keep them hidden; then `?r=` does not apply (the IP block is asked at the
+ * default radius, the main block stays the whole road's) and the island takes it off the address.
+ *
+ * 2.3.8 (owner 2026-10-21): the page FOLLOWS the radius — the around answer carries the page's main block rendered for
+ * the radius's stretch, which the island swaps in place (`#motorway-main`, dimmed while it loads like the block); since
+ * #901 D12 a stretch in the address narrows it inside the radius (and gives way to a smaller radius, said in the block). And the zoomed map ZOOMS the radius ("add
+ * zooming to the map and relate it to the radius component"): + and − buttons put on the map once a block is there,
+ * Ctrl/⌘ + wheel and a two-finger pinch on it, + and − keys while it has focus — each step is the next chip
+ * (100 → 50 → 25 → 10 → 5 and back), shown at once on the chips, the slider and the buttons' labels, and asked like
+ * a slider drag: once the gesture has rested 250 ms, one request (M7: the server re-frames the map and the lists; the
+ * browser filters nothing). No position, no block: no zoom buttons, the overview map as it is. The buttons carry no
+ * href and sit inside `.mwa` (`LIVE_BLOCKS`), so no zoom is ever an analytics event (G5.5); nothing is animated.
+ */
+import { t } from "../i18n/index.js";
+import GermanyNote from "./GermanyNote.astro";
+import { motorwayHeaderPlace } from "../lib/header-place.js";
+import { islandScript } from "../location/island.js";
+import { islandLabels } from "../location/labels.js";
+import type { Lang } from "../site/pages.js";
+import { AROUND_CHIPS_KM, AROUND_DEFAULT_KM, AROUND_MAX_KM, AROUND_MIN_KM } from "../lib/motorway-around.js";
+
+interface Props {
+  lang: Lang;
+  road: string;
+  radiusKm: number;
+  /** The IP rung: its cell and the block the server already rendered for it. */
+  /** 2.4.6: `chosen` — the address named the place (`?at=`), which the island keeps over any IP guess or remembered place. */
+  server: { readonly source: "ip" | "none" | "outside" | "germany" | "chosen"; readonly at: string | null; readonly label: string | null };
+  html: string | null;
+  usedGeoIp: boolean;
+  /**
+   * The address's view tail after the road, or null: a stretch segment, a direction segment (`towards-…`) or both,
+   * `/`-joined — the shell splits it (`viewSegments`); the block says which filter is in force (#890 § 4, #894).
+   */
+  stretch: string | null;
+  /** The address's layer choice (`?f=1&layer=…`), forwarded with every ask so the main block keeps it; null: every layer. */
+  layers?: readonly string[] | null;
+}
+const { lang, road, radiusKm, server, html, usedGeoIp, stretch, layers = null } = Astro.props;
+// #901 D12 (owner 2026-10-21): the main block follows the radius with a stretch in the address too — the digest
+// narrows the page to the stretch inside the radius, or, when the stretch reaches outside it, shows the radius and
+// says so. So every answer for the visitor's own position carries one.
+const follow = true;
+Astro.locals.hasScript = true;
+const shown = html !== null && server.at !== null;
+const script = islandScript({
+  lang,
+  server: shown ? server : { source: server.source === "outside" || server.source === "germany" ? server.source : "none", at: null, label: null },
+  labels: islandLabels(lang),
+  cell: { lat: 0, lon: 0 },
+  around: { road, r: radiusKm, s: stretch, l: layers, follow, rd: AROUND_DEFAULT_KM },
+});
+const labels = {
+  rd: AROUND_DEFAULT_KM,
+  upd: t(lang, "place.motorway.updating"),
+  fail: t(lang, "place.motorway.failed"),
+  follow,
+  steps: [...AROUND_CHIPS_KM],
+  zg: t(lang, "place.motorway.zoomGroup"),
+  // the template itself: the script fills {r} for each step
+  zin: t(lang, "place.motorway.zoomIn", { r: "{r}" }),
+  zout: t(lang, "place.motorway.zoomOut", { r: "{r}" }),
+  zinEnd: t(lang, "place.motorway.zoomInEnd"),
+  zoutEnd: t(lang, "place.motorway.zoomOutEnd"),
+};
+---
+
+<section class="placebar placebar--motorway vf-noclarity" id="place" aria-labelledby="place-head-lead">
+  <div class="wrap">
+    <fieldset class="mwr" id="mwr" hidden>
+      <legend class="mwr__label" id="mwr-l">{t(lang, "place.motorway.radius")}</legend>
+      <div class="mwr__chips">
+        {AROUND_CHIPS_KM.map((km) => (
+          <button type="button" class="chip mwr__chip" value={String(km)} aria-pressed={km === radiusKm ? "true" : "false"}>{km} km</button>
+        ))}
+      </div>
+      <label class="mwr__range"><span class="visually-hidden">{t(lang, "place.motorway.radiusOther")}</span><input type="range" id="mwr-range" min={AROUND_MIN_KM} max={AROUND_MAX_KM} step="1" value={radiusKm} aria-valuetext={`${String(radiusKm)} km`} /></label>
+      <output class="mwr__out" id="mwr-out" for="mwr-range">{radiusKm} km</output>
+      <p class="mwr__status" id="mwr-status" aria-live="polite" hidden></p>
+    </fieldset>
+    <GermanyNote lang={lang} place={motorwayHeaderPlace(lang, { road, server, html, path: Astro.url.pathname })} />
+    <div class="place-slot mwa-slot" id="place-slot">{shown && <Fragment set:html={html} />}</div>
+    {
+      usedGeoIp && (
+        <p class="placebar__credit">
+          {t(lang, "place.geoipCredit")} <a href="https://db-ip.com" lang="en" rel="noopener noreferrer">IP Geolocation by DB-IP</a> · <a href="https://creativecommons.org/licenses/by/4.0/" rel="license noopener noreferrer">CC BY 4.0</a>, {t(lang, "place.geoipModified")}
+        </p>
+      )
+    }
+  </div>
+  <script is:inline set:html={script} />
+  <script is:inline define:vars={labels}>
+    (function () {
+      var box = document.getElementById("mwr");
+      var range = document.getElementById("mwr-range");
+      var out = document.getElementById("mwr-out");
+      var st = document.getElementById("mwr-status");
+      var slot = document.getElementById("place-slot");
+      // the main block is below this script and not parsed yet: looked up when used
+      function main() { return document.getElementById("motorway-main"); }
+      if (!box || !range || !slot) return;
+      var chips = Array.prototype.slice.call(box.querySelectorAll(".mwr__chip"));
+      var cur = Number(range.value);
+      var shownR = cur;
+      var timer = null;
+      // The zoom steps are the chips: + is the next smaller radius, − the next larger; null at the ends.
+      function finer(r) { var n = null; steps.forEach(function (s) { if (s < r) n = s; }); return n; }
+      function coarser(r) { for (var i = 0; i < steps.length; i++) if (steps[i] > r) return steps[i]; return null; }
+      function zoomLabels(r) {
+        var zi = document.querySelector("#motorway-around .mwz__in");
+        var zo = document.querySelector("#motorway-around .mwz__out");
+        var a = finer(r), b = coarser(r);
+        // aria-disabled, not disabled: an end button stays focusable, so a keyboard user's focus survives the last step
+        if (zi) { zi.setAttribute("aria-disabled", String(a === null)); zi.setAttribute("aria-label", a === null ? zinEnd : zin.replace("{r}", String(a))); zi.title = zi.getAttribute("aria-label"); }
+        if (zo) { zo.setAttribute("aria-disabled", String(b === null)); zo.setAttribute("aria-label", b === null ? zoutEnd : zout.replace("{r}", String(b))); zo.title = zo.getAttribute("aria-label"); }
+      }
+      function mark(r) {
+        shownR = r;
+        chips.forEach(function (b) { b.setAttribute("aria-pressed", String(Number(b.value) === r)); });
+        range.value = String(r);
+        range.setAttribute("aria-valuetext", r + " km");
+        if (out) out.textContent = r + " km";
+        zoomLabels(r);
+      }
+      // The new block replaces the buttons and the map: which of them had the focus is put back when it arrives.
+      var refocus = null;
+      function focusedPart() {
+        var a = document.activeElement;
+        if (!a || !a.classList) return null;
+        if (a.classList.contains("mwz__in")) return ".mwz__in";
+        if (a.classList.contains("mwz__out")) return ".mwz__out";
+        if (a.classList.contains("mwa__map")) return ".mwa__map";
+        return null;
+      }
+      function apply(r) {
+        if (timer !== null) { clearTimeout(timer); timer = null; }
+        if (!(r >= 1 && r <= 100) || r === cur) return;
+        cur = r;
+        refocus = focusedPart();
+        try {
+          var u = new URL(window.location.href);
+          u.searchParams.set("r", String(r));
+          window.history.replaceState(window.history.state, "", u.pathname + u.search + u.hash);
+        } catch (e) { /* no history: the view still changes */ }
+        if (document.getElementById("motorway-around")) {
+          slot.classList.add("is-updating");
+          if (follow && main()) main().classList.add("is-updating");
+          if (st) { st.textContent = upd; st.hidden = false; }
+        }
+        document.dispatchEvent(new CustomEvent("vf:radius", { detail: { r: r } }));
+      }
+      // One ask per settled gesture: a drag, a run of zoom steps, a wheel or a pinch rests 250 ms first.
+      function later(r) {
+        mark(r);
+        if (timer !== null) clearTimeout(timer);
+        timer = setTimeout(function () { apply(r); }, 250);
+      }
+      chips.forEach(function (b) { b.addEventListener("click", function () { var r = Number(b.value); mark(r); apply(r); }); });
+      // A drag (input) and a key press (input AND change, in Chromium) alike ask once the slider has rested 250 ms.
+      function rest() { later(Number(range.value)); }
+      range.addEventListener("input", rest);
+      range.addEventListener("change", rest);
+      function zoom(dirIn) {
+        var r = dirIn ? finer(shownR) : coarser(shownR);
+        if (r !== null) later(r);
+      }
+      // The map's own zoom, put on each block as it arrives (the block is the digest's HTML and carries no script).
+      function equip() {
+        var fig = document.querySelector("#motorway-around .mwa__map");
+        // the zoom only steps the radius: no position (the control hidden), no zoom
+        if (!fig || box.hidden) return;
+        if (fig.querySelector(".mwz")) { zoomLabels(shownR); restore(fig); return; }
+        var g = document.createElement("div");
+        g.className = "mwz";
+        g.setAttribute("role", "group");
+        g.setAttribute("aria-label", zg);
+        [["mwz__in", "+"], ["mwz__out", "−"]].forEach(function (x) {
+          var b = document.createElement("button");
+          b.type = "button";
+          b.className = "mwz__btn " + x[0];
+          b.textContent = x[1];
+          b.addEventListener("click", function () { if (b.getAttribute("aria-disabled") !== "true") zoom(x[0] === "mwz__in"); });
+          g.appendChild(b);
+        });
+        fig.insertBefore(g, fig.firstChild);
+        fig.tabIndex = 0;
+        fig.setAttribute("aria-keyshortcuts", "Plus Minus");
+        fig.addEventListener("keydown", function (e) {
+          if (e.target !== fig) return;
+          if (e.key === "+" || e.key === "=") { e.preventDefault(); zoom(true); }
+          else if (e.key === "-" || e.key === "−" || e.key === "_") { e.preventDefault(); zoom(false); }
+        });
+        // The gestures are the MAP's only while it is focused or was tapped/clicked (a visible ring says so); otherwise
+        // a pinch or Ctrl/⌘ + wheel over it zooms the page, as everywhere else (WCAG 1.4.4). The buttons and keys always work.
+        function active() { var a = document.activeElement; return a !== null && (a === fig || fig.contains(a)); }
+        // Ctrl/⌘ + wheel (a trackpad pinch arrives as one too): a step per 60 units of travel, asked once it rests.
+        var acc = 0;
+        fig.addEventListener("wheel", function (e) {
+          if ((!e.ctrlKey && !e.metaKey) || !active()) return;
+          e.preventDefault();
+          acc += e.deltaY;
+          while (Math.abs(acc) >= 60) { zoom(acc < 0); acc += acc < 0 ? 60 : -60; }
+        }, { passive: false });
+        // Two fingers: spread is +, pinch is −, a step per 1.4× of distance; the ask waits for the gesture to rest.
+        var d0 = 0;
+        function dist(t) { var dx = t[0].clientX - t[1].clientX, dy = t[0].clientY - t[1].clientY; return Math.sqrt(dx * dx + dy * dy); }
+        fig.addEventListener("touchstart", function (e) { if (e.touches.length === 2 && active()) d0 = dist(e.touches); }, { passive: true });
+        fig.addEventListener("touchmove", function (e) {
+          if (e.touches.length !== 2 || d0 <= 0 || !active()) return;
+          var k = dist(e.touches) / d0;
+          if (k >= 1.4) { zoom(true); d0 = dist(e.touches); }
+          else if (k <= 1 / 1.4) { zoom(false); d0 = dist(e.touches); }
+        }, { passive: true });
+        fig.addEventListener("touchend", function () { d0 = 0; }, { passive: true });
+        zoomLabels(shownR);
+        restore(fig);
+      }
+      function restore(fig) {
+        if (refocus === null) return;
+        var a = document.activeElement;
+        // only when the swap took it (to <body>): a focus the person moved elsewhere meanwhile is theirs
+        if (a === null || a === document.body) {
+          var t = refocus === ".mwa__map" ? fig : fig.querySelector(refocus);
+          if (t) t.focus({ preventScroll: true });
+        }
+        refocus = null;
+      }
+      // 2.3.11: the island says whether the page uses the visitor's own position (`vf:pos`). Without one the control and
+      // the zoom are hidden (out of the tab order and the accessibility tree) and `?r=` leaves the address.
+      // The island may have run before this script, and its `vf:pos` gone unheard — "off", or already "on" when a kept
+      // position resolved first (#901 review 10): the script starts "off" and asks the island where it stands
+      // (`vf:pos-ask`, answered with a `vf:pos`); an island that has not run yet tells it on its own first `vf:pos`.
+      function setPos(on) {
+        box.hidden = !on;
+        if (!on) {
+          if (st) { st.hidden = true; st.textContent = ""; }
+          Array.prototype.forEach.call(document.querySelectorAll("#motorway-around .mwz"), function (z) { z.remove(); });
+        }
+        try {
+          var u = new URL(window.location.href);
+          if (on && cur !== rd) u.searchParams.set("r", String(cur)); else u.searchParams.delete("r");
+          if (u.search !== window.location.search) window.history.replaceState(window.history.state, "", u.pathname + u.search + u.hash);
+        } catch (x) { /* no history: the address stays */ }
+        if (on) equip();
+      }
+      document.addEventListener("vf:pos", function (e) { setPos(!!(e.detail && e.detail.on)); });
+      setPos(false);
+      document.dispatchEvent(new CustomEvent("vf:pos-ask"));
+      document.addEventListener("vf:loaded", function (e) {
+        slot.classList.remove("is-updating");
+        if (main()) main().classList.remove("is-updating");
+        equip();
+        if (!st) return;
+        if (e.detail && e.detail.ok) { st.hidden = true; st.textContent = ""; }
+        else if (document.getElementById("motorway-around")) { st.textContent = fail; st.hidden = false; }
+      });
+    })();
+  </script>
+</section>

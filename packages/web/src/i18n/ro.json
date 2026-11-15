@@ -1,0 +1,1274 @@
+{
+  "meta": {
+    "tagline": "Platforma germană de mobilitate în timp real pentru AI",
+    "pitch": "ViaFrei le oferă asistenților AI informații în timp real despre Germania. Trenuri și autobuze, trafic și lucrări rutiere, carburant, încărcare, parcare și vreme. Un singur MCP. Fără cheie API. Fără înregistrare.",
+    "description": "Blocaje, închideri, lucrări, trenuri, parcări, încărcare și carburant în toată Germania – din date deschise, răspunsul asistentului tău AI, cu sursă.",
+    "siteName": "ViaFrei"
+  },
+  "a11y": {
+    "skip": "Salt la conținut",
+    "mainNav": "Navigare principală",
+    "langNav": "Alege limba",
+    "currentLang": "limba curentă",
+    "sample": "Valori exemplu, nu date în timp real",
+    "crumbs": "Vă aflați aici"
+  },
+  "nav": {
+    "brand": "ViaFrei",
+    "claim": "Date de transport, spuse în cuvinte",
+    "tools": "Pentru dezvoltatori",
+    "cta": "Conectează la IA ta",
+    "day": "Ziua ta",
+    "start": "Începe",
+    "ctaShort": "Conectează IA",
+    "ctaLabel": "Conectează ViaFrei la asistentul tău IA ({clients})"
+  },
+  "beta": {
+    "label": "Beta",
+    "short": "ViaFrei este în versiune beta: răspunsurile și acoperirea se pot schimba, iar IA poate greși. Verificați informațiile importante la sursa indicată.",
+    "more": "Ce înseamnă",
+    "sign": "Indicator rutier de avertizare: pericol",
+    "line": "Verificați la sursă"
+  },
+  "hero": {
+    "lead": "Ca pe un prieten bine informat: circulă trenul meu? E liberă autostrada? E liberă o stație de încărcare? ViaFrei îi dă asistentului tău cifrele de azi, fiecare cu sursa ei.",
+    "primary": "Conectează-ți IA într-un minut",
+    "secondary": "Ziua ta cu ViaFrei",
+    "clients": "Pentru:",
+    "phase": "Fază incipientă: răspunsurile sunt informative, nu consultanță juridică.",
+    "trust": {
+      "free": "Gratuit",
+      "account": "Fără cont la noi",
+      "app": "Fără aplicație în plus",
+      "sources": "Fiecare cifră cu sursă"
+    },
+    "connected": "Asistentul AI folosește aceste date în timp real doar când ViaFrei este conectat la el – fără conexiune, răspunde din datele de antrenare."
+  },
+  "sign": {
+    "label": "Răspuns exemplu, prescurtat",
+    "question": "E liberă A8 spre München?",
+    "answerBefore": "Două șantiere între Stuttgart și Ulm, nicio închidere — drumul este",
+    "answerHighlight": "liber",
+    "answerAfter": ".",
+    "meta": "Exemplu: așa răspunde asistentul tău cu ViaFrei — prescurtat, cu valori exemplu.",
+    "badge": "{road} – pagina autostrăzii"
+  },
+  "proof": {
+    "tiles": {
+      "reports": {
+        "title": "Anunțuri pe autostrăzi"
+      },
+      "charging": {
+        "title": "Puncte de încărcare"
+      },
+      "lorry": {
+        "title": "Parcări pentru camioane"
+      },
+      "lifts": {
+        "title": "Lifturi și scări rulante"
+      }
+    }
+  },
+  "tile": {
+    "error": "momentan indisponibil",
+    "errorNote": "Această sursă nu răspunde acum. Preferăm să nu arătăm nimic decât să prezentăm o cifră veche drept nouă.",
+    "loading": "se încarcă …",
+    "loadingNote": "Această cifră vine imediat. Apare de îndată ce sursa răspunde."
+  },
+  "tools": {
+    "heading": "Instrumente pe domenii",
+    "lead": "Asistentul tău alege singur instrumentul potrivit. Lista vine de la server, nu dintr-o broșură.",
+    "showAll": "Arată toate cele {n} instrumente",
+    "groups": {
+      "roads": "Autostrăzi și drumuri",
+      "rail": "Cale ferată",
+      "transit": "Transport public",
+      "energy": "Încărcare și carburant",
+      "places": "Locuri și adrese",
+      "rules": "Reguli și vreme"
+    },
+    "count": "{n} instrumente"
+  },
+  "connect": {
+    "heading": "Conectat în 60 de secunde",
+    "lead": "O singură adresă, fără cont, fără cheie. Alege-ți clientul și urmează pașii.",
+    "endpointLabel": "Adresă MCP (Streamable HTTP)",
+    "legacyLabel": "Pentru clienți mai vechi (HTTP + SSE)",
+    "clients": {
+      "claude": "Claude (desktop și claude.ai)",
+      "chatgpt": "ChatGPT",
+      "other": "Alți clienți MCP"
+    },
+    "draft": "Ciornă — acești pași nu au fost încă verificați în client.",
+    "steps": {
+      "claude": {
+        "s1": "Setări → Connectors → „Add custom connector”.",
+        "s2": "Lipește adresa de mai sus și salvează.",
+        "s3": "Întreabă: „E liberă A8 spre München?”"
+      },
+      "chatgpt": {
+        "s1": "Setări → Connectors → „Create” (modul dezvoltator).",
+        "s2": "Introdu adresa de mai sus ca server MCP.",
+        "s3": "Alege conectorul în chat și întreabă."
+      },
+      "other": {
+        "s1": "Streamable HTTP pe adresa de mai sus; clienții mai vechi folosesc calea SSE.",
+        "s2": "Fără autentificare în faza de construcție.",
+        "s3": "tools/list întoarce catalogul; fiecare răspuns își poartă sursa."
+      }
+    },
+    "cta": "La ghidul pentru dezvoltatori",
+    "showClients": "Arată pașii pentru clientul tău"
+  },
+  "sources": {
+    "heading": "Surse și încredere",
+    "lead": "Fiecare cifră poartă sursa care permite afișarea ei — cuvânt cu cuvânt și netradusă, pe tabloul care o arată.",
+    "creditsLabel": "Sursele cifrelor de pe această pagină",
+    "creditsShow": "Arată toate cele {n} mențiuni ale sursei",
+    "licenceText": "textul licenței",
+    "notAnswered": {
+      "heading": "La ce nu răspundem",
+      "routing": "Nu planificăm rute — spunem ce se întâmplă pe drum, nu pe ce drum să mergi.",
+      "legal": "Nu oferim consultanță juridică — răspunsurile despre reguli își numesc sursa și data verificării și sunt informative.",
+      "fuelFeed": "Nu oferim date de preț pentru revânzare — prețurile carburanților sunt informații pentru consumatori, nu un API."
+    },
+    "privacy": {
+      "heading": "Confidențialitate în trei propoziții",
+      "s1": "Înainte de acordul tău, această pagină nu încarcă fonturi, scripturi sau imagini de la terți.",
+      "s2": "Vizitele le numărăm fără cookie-uri, doar ca totaluri zilnice pe propriul nostru server; Google Analytics rulează doar dacă ești de acord.",
+      "s2Clarity": "Vizitele le numărăm fără cookie-uri, doar ca totaluri zilnice pe propriul nostru server; Google Analytics și Microsoft Clarity rulează doar dacă ești de acord.",
+      "s3": "Asistentul tău vorbește cu serverul nostru — nu păstrăm conturi și nici profiluri."
+    }
+  },
+  "audience": {
+    "heading": "Pentru cine este",
+    "travellers": {
+      "title": "Pentru călători",
+      "text": "Întreabă-ți asistentul înainte de plecare, pe peron sau la stația de încărcare — și primești un răspuns cu sursă.",
+      "cta": "Cum te conectezi"
+    },
+    "developers": {
+      "title": "Pentru dezvoltatori",
+      "text": "Un server MCP prin Streamable HTTP, un catalog public, o punte stdio pe npm. Fără cheie în faza de construcție.",
+      "cta": "La documentație"
+    },
+    "business": {
+      "title": "Pentru companii",
+      "text": "Istoricul fiecărui anunț în timp real, întrebări despre flote și locații, o poziție clară privind licențele. Vorbește cu noi înainte să construiești.",
+      "cta": "Contactează-ne"
+    },
+    "show": "Pentru cine este ViaFrei"
+  },
+  "footer": {
+    "imprint": "Date legale",
+    "privacy": "Confidențialitate",
+    "privacySettings": "Setări de confidențialitate",
+    "terms": "Condiții de utilizare",
+    "languages": "Limbi",
+    "refresh": "Pagina se reîncarcă la fiecare 20 de minute; fiecare tablou arată cât de veche este cifra sa.",
+    "openData": "Construit din date deschise. Fiecare cifră își numește sursa."
+  },
+  "consent": {
+    "title": "Putem folosi Google Analytics?",
+    "titleClarity": "Putem folosi Google Analytics și Microsoft Clarity?",
+    "body": "Google Analytics se încarcă doar după acordul tău. Refuzul înseamnă tot un singur clic și este reținut. Numărarea noastră proprie a vizitatorilor, fără cookie-uri, funcționează oricum (vezi Confidențialitate).",
+    "bodyClarity": "Google Analytics și Microsoft Clarity se încarcă doar după ce vă dați acordul. Clarity înregistrează clicurile, derularea și mișcările mouse-ului pe această pagină, toate textele și datele introduse rămânând mascate. Microsoft folosește aceste date și în scopuri proprii, inclusiv pentru publicitate. Refuzul este la fel un singur clic și este reținut. Numărarea noastră proprie a vizitatorilor, fără cookie-uri, funcționează oricum (vezi Confidențialitate).",
+    "accept": "Sunt de acord",
+    "decline": "Refuz",
+    "more": "Confidențialitate",
+    "state": {
+      "none": "Nu ai făcut încă o alegere.",
+      "denied": "Alegerea ta actuală: refuzat la {date}.",
+      "granted": "Alegerea ta actuală: acord dat la {date}."
+    }
+  },
+  "notFound": {
+    "title": "Această pagină nu există",
+    "text": "Adresa nu duce nicăieri. Pagina de start e la un clic distanță.",
+    "choiceTitle": "Mai multe locuri poartă acest nume",
+    "choiceText": "La care dintre ele vă referiți?",
+    "back": "La pagina de start",
+    "connect": "Conectează-ți asistentul",
+    "developers": "Pentru dezvoltatori",
+    "business": "Pentru companii"
+  },
+  "now": {
+    "heading": "Toată Germania",
+    "lead": "Toate cifrele la nivel național într-un singur loc, pe teme – fiecare cu ora și sursa.",
+    "stationTop": {
+      "head": "Gări acum: anulări, întârzieri, anunțuri de perturbări, lifturi",
+      "all": "Toate gările",
+      "search": "Caută o gară",
+      "go": "Caută"
+    }
+  },
+  "tiles": {
+    "punctuality": "Punctualitatea autobuzelor și trenurilor",
+    "lifts": "Lifturi și scări rulante",
+    "reports": "Cele mai importante anunțuri",
+    "jams": "Ambuteiaje în orașe, acum",
+    "station": "În direct din gările mari",
+    "lorry": "Parcări pentru camioane și zone de odihnă",
+    "carparks": "Parcări și P+R în orașe",
+    "charging": "Puncte de încărcare",
+    "fuel": "Prețuri carburanți, observate"
+  },
+  "day": {
+    "heading": "Ziua ta cu ViaFrei",
+    "lead": "Nouă momente în care o întrebare scurtă îți economisește timp — cu cifra de azi care arată că răspunsul e corect.",
+    "howTo": "Cum îți întrebi asistentul",
+    "howToText": "Ține apăsat pe o întrebare (sau selecteaz-o), copiaz-o și lipește-o în chat. Asistentul alege singur instrumentul potrivit.",
+    "more": "Încă 2 întrebări și o limită",
+    "answer": {
+      "label": "Răspunsul ViaFrei",
+      "asOf": "Situația la {asOf}"
+    },
+    "limitLabel": "Sincer vorbind",
+    "cta": "Începe",
+    "moments": {
+      "commute": {
+        "title": "Dimineața spre serviciu",
+        "scene": "7:10, cafeaua în mână: transportul public circulă normal — și e trenul meu la timp?",
+        "q1": "Circulă acum la timp autobuzele și trenurile în Hamburg?",
+        "a1": "{share} % dintre cursele observate în ultima oră au întârziat peste 5 minute – cam la fel ca în ora dinainte ({before} %).",
+        "limit": "Arătăm punctualitatea pe regiuni, nu pe linii.",
+        "q2": "Când pleacă următorul tren din Gara Centrală din Hanovra și are întârziere?",
+        "q3": "Sunt trenuri anulate pe tabela Gării Centrale din Köln în următoarea oră?",
+        "a2": "{l1} spre {d1} (programat la {t1}, linia {p1}) are +{delay} min și pleacă pe la {exp}; apoi, la timp, {l2} spre {d2} la {t2}.",
+        "a3": "Niciuna anulată: {n} plecări până la {last}; cea mai mare întârziere o are {l1} spre {d1}, +{delay} min."
+      },
+      "bus": {
+        "title": "Cu autobuzul și tramvaiul",
+        "scene": "Prin oraș: unde e cea mai apropiată gară și circulă transportul?",
+        "q1": "Care gară e cea mai apropiată de Catedrala din Köln?",
+        "q2": "Când pleacă următorul tren suburban din stația Hauptwache din Frankfurt?",
+        "a1": "{s1}, la {km},{kmd} km; apoi {s2} și {s3}.",
+        "limit": "Mersul fiecărei stații de autobuz și tramvai îl vom arăta după ce va fi încărcat — până atunci, gările și situația din regiunea ta.",
+        "board": "Mersul la stația ta",
+        "a2": "Următorul este {l1} spre {d1} la {t1} de la linia {p1}, la timp; {l2} spre {d2} de la {t2} are +{delay2} min – pe la {exp2}.",
+        "q3": "Pleacă acum trenuri cu întârziere din Gara Centrală din Leipzig?",
+        "a3": "Da, două: {l1} spre {d1}, +{dl1} min, de la linia {p1}, și {l2} spre {d2}, +{dl2} min; celelalte {n} plecări următoare sunt la timp."
+      },
+      "station": {
+        "title": "La gară",
+        "scene": "Cu căruciorul, în scaun cu rotile sau cu bagaje: funcționează liftul spre peron?",
+        "q1": "Funcționează liftul în Gara Centrală din Köln?",
+        "a1": "La {station} funcționează {working} din {total} lifturi raportate; unul nu funcționează, pentru unul calea ferată nu raportează starea.",
+        "limit": "Lifturi și scări rulante în gările Deutsche Bahn; alți operatori încă nu.",
+        "q2": "Funcționează toate lifturile din gara Erlangen?",
+        "a2": "Da: singurul lift raportat în {station}, spre liniile {platforms}, funcționează.",
+        "q3": "De la ce linie pleacă următorul ICE din Gara Centrală din Nürnberg?",
+        "a3": "{train} spre {dest} la {t} de la linia {p}, la timp."
+      },
+      "driving": {
+        "title": "La volan",
+        "scene": "Înainte de plecare: ambuteiaje, închideri, lucrări — și unde e carburantul ieftin acum.",
+        "q1": "E liberă acum A8 spre München?",
+        "a1": "Nu chiar: între {a} și {b}, spre München, poliția raportează un accident; banda de urgență este blocată.",
+        "a1more": "Pe toată A8 mai sunt listate {closures} închideri și {works} înregistrări de lucrări.",
+        "limit": "Fără planificarea rutei: spunem ce se întâmplă pe autostradă, nu pe unde să conduci.",
+        "q2": "Ce lucrări sunt acum pe A7?",
+        "a2": "{count} șantiere până la {to}; de exemplu între {a} și {b}: pod nou, una din trei benzi închisă, {speed} km/h, până la {until}.",
+        "q3": "În weekend merg pe A2 — la ce lucrări să mă aștept?",
+        "a3": "{count} șantiere între {from} și {to}; de exemplu la nodul rutier {a}: refacerea structurii drumului, rampa este închisă complet, până la {until}."
+      },
+      "jam": {
+        "title": "În ambuteiaj",
+        "scene": "Ambuteiaje pe autostradă și în jurul orașelor: unde stă traficul, cât timp costă — și dacă se închide drumul la noapte.",
+        "q1": "Cât timp costă acum ambuteiajul de pe A3 între Frankfurt și Würzburg?",
+        "a1": "Între {a} și {b}, spre Frankfurt, cam +{delay} min, după un accident; pe toată A3 sunt raportate {jams} ambuteiaje.",
+        "a1more": "Pe listă: {closures} închideri și {works} înregistrări de lucrări.",
+        "limit": "În orașe vedem autostrăzile urbane, iar în Berlin, Köln și Hanovra și mesajele de trafic ale orașelor – încă nu situația de pe fiecare stradă. Mesajele pentru Hamburg și starea traficului pentru Köln au fost solicitate de la furnizori.",
+        "q2": "Este aglomerat acum inelul de autostrăzi din Köln — A1, A3 sau A4?",
+        "q3": "Este închisă azi A7 în Hamburg?",
+        "a3": "Este raportată o închidere între ieșirile {a} și {b} (lărgire la opt benzi, noul {tunnel}); pe toată A7 sunt {n} închideri.",
+        "a2": "Da, pe A4: între {a} și {b}, spre Köln, traficul e îngreunat, cam +{delay} min; pe autostrăzile întrebate sunt raportate {n} ambuteiaje."
+      },
+      "parking": {
+        "title": "Parcare",
+        "scene": "Lasă mașina la gară — sau, ca șofer de camion, planifică-ți pauza.",
+        "q1": "Unde e o parcare lângă Gara Centrală din Köln?",
+        "a1": "{p1}: ultima raportare, {f1} din {t1} locuri libere; {p2}: {f2} din {t2} – ambele la cel mult 300 m.",
+        "limit": "Locuri libere doar unde operatorul le publică — altfel numărul de locuri, nu cât de ocupate sunt.",
+        "q2": "Unde sunt parcări pentru camioane pe A9?",
+        "a2": "De exemplu {p1} cu {n1} locuri pentru camioane, {p2} cu {n2} și {p3} cu {n3}; locurile libere nu le publică nimeni acolo.",
+        "q3": "Unde există parcare de transfer lângă Gara Centrală din Essen?",
+        "a3": "{p1}, la {k1},{k1d} km, și {p2}, la {k2},{k2d} km; gradul de ocupare din această sursă ViaFrei nu îl preia."
+      },
+      "charging": {
+        "title": "Încărcare",
+        "scene": "Cu mașina electrică: unde e cea mai apropiată stație și e vreun punct liber?",
+        "q1": "Unde pot încărca rapid lângă Leipzig?",
+        "q2": "Ce stații de încărcare rapidă sunt lângă Ingolstadt?",
+        "a1": "Cu cel puțin 150 kW, de exemplu: {site}, {address} – până la {kw} kW.",
+        "a1more": "Operatorul nu publică starea în timp real, așa că ViaFrei spune „necunoscut”, nu „liber”.",
+        "limit": "Disponibilitate pentru rețelele care o publică; pentru celelalte arătăm locația, nu starea.",
+        "a2": "Cel mai aproape: {op1}, {a1}, până la {kw1} kW: {free1} din {total1} puncte libere; apoi {s2}, {a2}, până la {kw2} kW, fără stare actuală.",
+        "q3": "E ceva liber acum la Supercharger-ul din Hilden?",
+        "a3": "{brand} a raportat ultima stare pe {t} – prea veche ca să spunem „liber”; la {address}, până la {kw} kW."
+      },
+      "places": {
+        "title": "Găsește locuri",
+        "scene": "Un nume e de ajuns: sala de concerte, farmacia, firma — cu adresa și o coordonată pentru întrebarea următoare.",
+        "q1": "Navigația arată 50.1109, 8.6821 — ce adresă este aceasta și unde este cea mai apropiată intrare pe autostradă?",
+        "a1": "{address}, la {m} m. Cea mai apropiată intrare pe autostradă: {junction}, la {km},{kmd} km.",
+        "limit": "Locurile și adresele vin din OpenStreetMap; data datelor apare în fiecare răspuns. Ce nu e cartografiat acolo nu putem găsi — programul și recenziile nu fac parte din ele.",
+        "q2": "Ce farmacii sunt în Fulda — cu adresele lor?",
+        "a2": "De exemplu {p1}, {a1}; {p2}, {a2}; {p3}, {a3} (date OpenStreetMap din {osm}).",
+        "q3": "Care este adresa Filarmonicii de pe Elba din Hamburg?",
+        "a3": "{poi} se află la {address} (date OpenStreetMap din {osm})."
+      },
+      "watch": {
+        "title": "Anunță-mă",
+        "scene": "Nu trebuie să verifici mereu: ViaFrei urmărește pentru tine și păstrează fiecare schimbare în conversație — asistentul ți-o arată imediat ce întrebi, sau singur, dacă suportă notificări.",
+        "q1": "Anunță-mă imediat ce pe A7 este ridicată o închidere.",
+        "limit": "Doar această conversație, cât timp e deschisă — fără e-mail, fără SMS. Până la 10 urmăriri pe conversație, fiecare de până la 24 de ore; un drum este urmărit în întregime, nu un tronson.",
+        "a1": "Urmărire pornită: {road}, până la {until}. ViaFrei anunță în acest chat când acolo e ridicată o închidere; {used} din 10 folosite.",
+        "q2": "Anunță-mă când în Köln un sfert sau mai mult din călătoriile cu autobuzul și trenul întârzie.",
+        "a2": "Urmărire pornită: regiunea {ags} ({city}), anunț de la {pct} % curse întârziate, până la {until} – doar în acest chat.",
+        "q3": "Avertizează-mă când pentru Köln intră în vigoare o avertizare de vreme severă de la Serviciul Meteorologic German.",
+        "a3": "Urmărire pornită: zona de avertizare DWD {cell} ({city}), până la {until} – ViaFrei anunță aici de îndată ce se schimbă situația."
+      }
+    },
+    "fuelAsks": {
+      "heading": "O întrebare care poate economisi bani la pompă",
+      "whyLabel": "De ce să întrebați",
+      "goerlitz": {
+        "q": "Unde este acum cea mai ieftină motorină în Görlitz?",
+        "why": "Prețurile se schimbă de mai multe ori pe zi și diferă chiar între câteva benzinării din același oraș: ViaFrei o numește pe cea mai ieftină, cu prețul ei și ora la care benzinăria l-a raportat.",
+        "a": "Încă niciun preț nou – cel mai mic dintre ultimele cunoscute: {euro},{cent} €/l la {station}, {address}, raportat pe {reported}; ViaFrei cere acum unul nou."
+      },
+      "muenchen": {
+        "q": "Unde este acum cea mai ieftină benzină E10 în München?",
+        "why": "Un preț poate fi de dimineață: pentru München, în acea după-amiază, ViaFrei avea doar prețuri de dimineață, a dat fiecare cu ora lui și a cerut altele noi.",
+        "a": "Încă niciun preț nou – cel mai mic dintre ultimele cunoscute: {euro},{cent} €/l la {station}, {address}, raportat pe {reported}; ViaFrei cere acum unul nou."
+      },
+      "leipzig": {
+        "q": "Unde este acum cea mai ieftină benzină E5 în Leipzig?",
+        "why": "Un preț poate fi vechi de câteva ore: ViaFrei spune când a raportat benzinăria fiecare preț – în acea după-amiază, cele mai ieftine din Leipzig erau încă de dimineață.",
+        "a": "Încă niciun preț nou – cel mai mic dintre ultimele cunoscute: {euro},{cent} €/l la {station}, {address}, raportat pe {reported}."
+      },
+      "nuernberg": {
+        "q": "Unde e cea mai ieftină motorină în Nürnberg acum?",
+        "why": "Cea mai apropiată benzinărie nu e mereu cea mai ieftină: ViaFrei dă distanța la fiecare preț.",
+        "a": "{euro},{cent} €/l la {station}, {address} – raportat la {reported}."
+      }
+    },
+    "fuelAll": "Până la trei benzinării în fiecare land, cu adresă și preț",
+    "allExamples": "Toate întrebările exemplu, cu răspunsurile lor"
+  },
+  "start": {
+    "heading": "Gata într-un minut",
+    "lead": "ViaFrei trăiește în asistentul pe care îl ai deja. Trei pași, o singură dată:",
+    "s1": "În Claude sau ChatGPT: setări → „Connectors”.",
+    "s2": "Adaugă ViaFrei cu adresa de mai jos.",
+    "s3": "Întreabă: „E liberă acum A8 spre München?”",
+    "draft": "Ciornă — acești pași nu sunt încă verificați în fiecare asistent."
+  },
+  "legal": {
+    "bindingNote": "Aceasta este o informație juridică conform dreptului german. Doar textul german de mai jos este obligatoriu."
+  },
+  "connectPage": {
+    "moreExamples": "Mai multe exemple",
+    "title": "Conectează ViaFrei la asistentul tău",
+    "lead": "O singură adresă, fără cont, fără cheie. Adaugă ViaFrei o dată ca conector — apoi doar întreabă.",
+    "askHeading": "Cum întrebi",
+    "askLead": "Cinci întrebări, așa cum le răspunde asistentul tău chiar azi:",
+    "asks": {
+      "train": "Când pleacă următorul tren din Gara Centrală din Köln?",
+      "parking": "Unde găsesc o parcare etajată în centrul orașului Köln?",
+      "charging": "Unde îmi pot încărca mașina electrică în Leipzig?",
+      "road": "Este A3 liberă acum în direcția Frankfurt?",
+      "weather": "Există acum o avertizare de vreme severă pentru Dresda?"
+    },
+    "live": {
+      "heading": "Răspunsuri, așa cum au venit",
+      "lead": "Prescurtate, cu momentul datelor și sursele lor. Cifrele sunt o imagine a acelui moment, nu un afișaj în timp real.",
+      "asOf": "Situația la {asOf}",
+      "fuelExample": "Exemplu de răspuns din {asOf} — azi prețurile sunt altele",
+      "stadtbahn": {
+        "title": "Lifturi și scări rulante la metroul ușor",
+        "q": "Ce nu funcționează acum la stația de metrou ușor {stop} din Köln?",
+        "a": "{out} din {total} instalații raportate: scările rulante {e1} și {e2}, raportate din {since}, {e3} din {since3} și {e4} din {since4}; ambele lifturi funcționează. {publisher} furnizează datele fără nicio garanție.",
+        "note": "Pentru stațiile metroului ușor din Köln, din lista de defecțiuni publicată – cu ora de la care o instalație e raportată."
+      },
+      "bikes": {
+        "title": "Biciclete de închiriat la gară, în timp real",
+        "q": "Unde găsesc o bicicletă de închiriat liberă lângă {station}?",
+        "a": "Stația {dock} a {operator}: {free} biciclete libere și {docks} stații pe o rază de {radius} km, fiecare cu numărul ei.",
+        "note": "Bicicletele libere vin în timp real din datele deschise ale sistemelor de închiriere; ViaFrei spune doar ce raportează o stație în acest moment."
+      },
+      "lift": {
+        "title": "Lifturi în gară",
+        "q": "Ce lifturi din gara {station} nu funcționează acum?",
+        "a": "Unul este raportat defect, un lift spre liniile {platforms}: {working} din {total} lifturi funcționează. Celălalt lift spre liniile {platforms} nu este monitorizat – starea lui este necunoscută.",
+        "note": "Pentru gările Deutsche Bahn, citite la fiecare 20 de minute. Ce nu menționează ultimul raport înseamnă „necunoscut” – niciodată „funcționează”."
+      },
+      "alert": {
+        "title": "Avertizări pentru autobuze și trenuri",
+        "q": "Există acum avertizări pentru autobuze și trenuri în Saxonia Inferioară?",
+        "a": "Sunt în vigoare {count} anunțuri, printre ele: liniile {lines} circulă după un orar de șantier, pentru că drumul {road} dintre {a} și {b} este închis – valabil de la {from} la {to}.",
+        "note": "Anunțuri ale asociațiilor de transport prin DELFI, doar cât timp sunt în vigoare. Un anunț fără stație este atribuit unui land prin rețeaua sa, iar ViaFrei spune că poate privi și un land vecin."
+      },
+      "enbw": {
+        "title": "Încărcare rapidă cu ocupare live",
+        "q": "Există acum un punct de încărcare liber la stația {brand} de la {address}?",
+        "a": "Până la {kw} kW, {euro},{cent} €/kWh – dar pentru niciunul dintre cele {n} puncte de încărcare nu există o stare, așa că ViaFrei nu spune „liber”.",
+        "note": "Stațiile și ocuparea lor sunt publicate chiar de operator; ora „situația la” este ultimul său raport."
+      },
+      "ecomove": {
+        "title": "Ocupare live printr-un agregator",
+        "q": "Există acum un punct liber la încărcătorul rapid de la {address}?",
+        "a": "{site}: până la {kw} kW, {euro},{cent} €/kWh; ultima stare e din {t} – prea veche ca să spunem „liber”.",
+        "note": "Aici ocuparea vine de la un serviciu care adună rapoartele multor operatori. Un punct fără raport nu este niciodată socotit liber."
+      },
+      "ocpdb": {
+        "title": "Liber sau ocupat, live – în Köln",
+        "q": "Există acum un punct de încărcare liber la stația de la {address}?",
+        "a": "Da, unul: Tip 2 până la {kw2} kW e liber, punctul CCS până la {kw} kW e defect – {euro},{cent} €/kWh fără TVA.",
+        "note": "Ocuparea vine live prin portalul de date al landului Baden-Württemberg, care include și stații departe de granițele sale."
+      },
+      "lsr": {
+        "title": "Și acolo unde nimeni nu raportează live",
+        "q": "Unde pot încărca lângă {address}?",
+        "a": "La {m} m: Tip 2, până la {kw} kW, conform registrului Agenției Federale a Rețelelor (la {register}), fără stare live și fără garanție de exactitate sau completitudine.",
+        "note": "Unde niciun operator nu publică date live, ViaFrei numește stațiile din registrul oficial, fără ocupare, pentru că necunoscut nu înseamnă niciodată „liber”."
+      },
+      "hamburg": {
+        "title": "O parcare în centrul Hamburgului",
+        "q": "Unde pot parca lângă {stop} în Hamburg?",
+        "a": "{park}: {free} din {total} locuri libere. Orașul Hamburg avertizează chiar el că aceste date în timp real nu sunt verificate.",
+        "note": "Ocuparea parcărilor din Hamburg vine live de la oraș; ViaFrei transmite mereu avertismentul său despre datele neverificate."
+      },
+      "hhworks": {
+        "title": "Lucrări în oraș, la Hamburg",
+        "q": "Ce lucrări sunt planificate pe {street} în Hamburg?",
+        "a": "{street}, {b}: reconstrucția străzii, de la {from} până la {to}; o închidere completă este așteptată în primăvara lui 2027.",
+        "note": "Lucrările din Hamburg vin din registrul Bauweiser al orașului: doar șantierele aprobate, pe zile calendaristice; „planificat” înseamnă că lucrările încep după ziua de azi. Mesajele poliției rămân înregistrări separate."
+      },
+      "muenster": {
+        "title": "Sistemul de ghidare la parcare din Münster, live",
+        "q": "Câte locuri sunt libere în {name} din Münster?",
+        "a": "{free} din {total} locuri libere, plus încă {more} parcări în apropiere, fiecare cu ocuparea ei.",
+        "note": "Ocuparea vine live din sistemul de ghidare la parcare al orașului Münster. O parcare care nu raportează nimic nu este numită niciodată „plină” de ViaFrei."
+      },
+      "motorway": {
+        "title": "O intrare închisă pe autostradă",
+        "q": "E ceva închis acum pe A6 lângă {place}?",
+        "a": "Da: intrarea {place} pe A6 este închisă, o structură se reconstruiește – această etapă durează de la {from} la {to}. Pentru întreaga A6, răspunsul numește {count} închideri.",
+        "note": "Închiderile și lucrările de pe autostrăzi vin de la Autobahn GmbH, cu perioada fiecărei etape. Întrebat despre o autostradă, ViaFrei numește întâi închiderile."
+      },
+      "citywork": {
+        "title": "Lucrări pe o stradă din oraș",
+        "q": "Este ceva închis pe {street} în Berlin?",
+        "a": "Da: lucrări la rețele în ambele sensuri între {a} și {b}; potrivit administrației Senatului, închis pentru autovehicule între {from} și {to}.",
+        "note": "Mesajele din Berlin numesc strada și porțiunea, nu un număr de drum, așa că ViaFrei le găsește după loc – pe o rază de 25 km, cele mai apropiate primele."
+      },
+      "landroad": {
+        "title": "Lucrări pe un drum de land",
+        "q": "Sunt lucrări săptămâna aceasta pe L1025 în Turingia?",
+        "a": "{count} șantiere, printre ele: {site}, o îngustare cu semafor, între {from} și {to}.",
+        "note": "Cunoaștem drumurile de land din Baden-Württemberg, Saxonia Inferioară, Turingia și Saxonia, din datele administrațiilor rutiere: porțiune și perioadă, fără coordonate și fără întârziere în timp real."
+      },
+      "saxony": {
+        "title": "Lucrări pe un drum federal din Saxonia",
+        "q": "Sunt lucrări săptămâna aceasta pe B6 în Saxonia?",
+        "a": "{count} șantiere săptămâna aceasta, printre ele: lângă {place}, în Dresda, drumul este modernizat, între {from} și {to}.",
+        "note": "Autoritatea rutieră a Saxoniei își republică lucrările de lungă durată din trei în trei ore. ViaFrei răspunde din ele pentru drumurile federale și de land, pe porțiune și perioadă – fără coordonate și fără întârziere în timp real."
+      },
+      "bwroad": {
+        "title": "Lucrări pe un drum federal din Baden-Württemberg",
+        "q": "Sunt lucrări planificate săptămâna viitoare pe B27 în Baden-Württemberg?",
+        "a": "{count} din {all} șantiere sunt în Baden-Württemberg, de ex. {a} – {b}: carosabil nou între {from} și {to}.",
+        "note": "Ministerul Transporturilor din Baden-Württemberg își publică lucrările (BEMaS) prin MobiData BW. ViaFrei răspunde din ele pentru drumurile federale și de land, pe porțiune și perioadă – lucrările planificate ca planificate, fără întârziere în timp real."
+      },
+      "kiel": {
+        "title": "Lucrări pe o stradă din Kiel",
+        "q": "Se poate circula acum pe {street} din Kiel?",
+        "a": "Nu: {street} este închis între numărul {no} și {b} din cauza lucrărilor la canalizare, de la {from} până pe {to} (Exemplu, rezumat; instrumentul îl arată integral).",
+        "note": "Orașul Kiel își publică lucrările cu loc, motiv și perioadă. Acest card rezumă un mesaj; instrumentul le arată nescurtate și găsește un mesaj după loc – pe o rază de 25 km, cele mai apropiate primele."
+      },
+      "truckstop": {
+        "title": "Parcare securizată pentru camioane pe A7",
+        "q": "Este liber diseară un loc pentru camion la {name} pe A7?",
+        "a": "{free} din {total} locuri libere, după cum le raportează operatorul.",
+        "note": "Operatorul acestor parcări securizate publică locurile libere; ViaFrei le arată lângă zonele de odihnă, care nu publică gradul de ocupare, și nu le adună niciodată."
+      },
+      "parkride": {
+        "title": "Parcare de transfer înainte de tren",
+        "q": "Unde pot lăsa mașina în Dortmund ca să continui cu trenul?",
+        "a": "{p1} cu {t1} locuri și {p2} cu {t2} locuri – fără date de ocupare.",
+        "note": "Parcările de transfer din Renania de Nord-Westfalia vin din datele agregate ale landului și apar într-un bloc separat, niciodată comparate cu alte surse. Gradul lor de ocupare nu îl preluăm."
+      },
+      "platform": {
+        "title": "O întârziere, în timp real",
+        "q": "Pleacă la timp {train} spre {dest} din {station}?",
+        "a": "+{delay} min, așteptat la {expected} în loc de {planned} – de la linia {platform}, conform planului.",
+        "note": "Întârzierile și schimbările de linie vin din interfața de mers al trenurilor a Deutsche Bahn, pentru toate părțile gării – inclusiv peroanele subterane și cele ale trenului urban din Gara Centrală din Berlin."
+      },
+      "region": {
+        "title": "Punctualitate într-o aglomerare urbană",
+        "q": "Circulă acum la timp autobuzele și trenurile în regiunea Rin-Ruhr?",
+        "a": "{share} % dintre cursele observate în ultima oră au întârziat peste 5 minute – mai multe decât în ora dinainte ({before} %).",
+        "note": "Regiunea Rin-Ruhr răspunde ca o singură regiune: 30 de districte și orașe-district împreună. ViaFrei dă totaluri pe regiune, nu pe linie."
+      },
+      "tomorrow": {
+        "title": "Lucrări pe traseul de mâine",
+        "q": "Ce lucrări sunt planificate mâine pe A7?",
+        "a": "{count} șantiere, dintre care {started} deja în desfășurare. Unul dintre ele: între {a} și {b} se construiește un pod nou, pe {km} km, limită {speed} km/h, până la {until}.",
+        "note": "Lucrările planificate vin de la Institutul Federal de Cercetare Rutieră: tronson și perioadă, fără coordonate și fără întârziere în timp real. Ce se întâmplă chiar acum, ViaFrei răspunde din mesajele de pe autostrăzi."
+      },
+      "closure": {
+        "title": "O închidere în față",
+        "q": "E ceva închis acum pe A7 lângă Hamburg?",
+        "a": "Da: Autobahn GmbH anunță o rampă închisă la nodul {at} – pe porțiunea de lucrări dintre {a} și {b}. Această etapă de lucru se încheie pe {until} la ora {end}.",
+        "note": "Închiderile și lucrările de pe autostrăzi vin de la Autobahn GmbH, cu perioada fiecărei etape."
+      },
+      "weather": {
+        "title": "Verificarea vremii înainte de munte",
+        "q": "Există azi o avertizare meteo pentru {name}?",
+        "a": "Da, pentru noaptea care vine: Serviciul Meteorologic German avertizează de îngheț slab până la {temp} °C, valabil pe {day} de la {from} la {to} – nivelul {level}, cel mai scăzut.",
+        "note": "Avertizările sunt citite la fiecare 5 minute și se aplică pe zone; una nouă poate apărea oricând."
+      },
+      "fuelcity": {
+        "title": "Cel mai ieftin E10 din oraș",
+        "q": "Unde e acum cel mai ieftin Super E10 în Köln?",
+        "a": "{euro},{cent} €/l la {station}, {address} – raportat la {reported}.",
+        "note": "Prețurile carburanților se schimbă la câteva minute: cifra aceasta e un exemplu din acea după-amiază, nu prețul de azi. ViaFrei spune când a raportat stația fiecare preț."
+      },
+      "charger": {
+        "a": "În {site}: {points} puncte de încărcare, Tip 2, până la {kw},{kwd} kW, {euro},{cent} €/kWh fără TVA. Niciunul nu se raportează ocupat; pentru {stale}, ultima stare e din {t}, pentru {unknown} nu există – deci nu „liber”.",
+        "title": "Starea live a unei stații de încărcare",
+        "q": "Există acum un punct de încărcare liber la {address}?",
+        "note": "Ocuparea live o indicăm doar acolo unde operatorul o publică – aici prin e-clearing.net. Fără raport, răspunsul este „fără date de stare”, niciodată „liber”."
+      },
+      "roadworks": {
+        "a": "În Saxonia Inferioară, {count}, toate deja începute; primul: {section}, între {start} și {end}.",
+        "note": "Drumurile federale le acoperim în Saxonia Inferioară, Saxonia, Turingia și Baden-Württemberg, din datele autorităților rutiere ale acestor landuri: tronson și perioadă, fără întârzieri în timp real. Pentru un drum federal din altă parte, ViaFrei răspunde „neacoperit” – nu „liber”.",
+        "title": "Lucrări pe un drum federal",
+        "q": "Ce lucrări sunt planificate săptămâna aceasta pe B3 în Saxonia Inferioară?"
+      },
+      "train": {
+        "title": "Punctualitatea trenurilor regionale",
+        "q": "Pleacă la timp următorul tren regional din {station} spre {dest}?",
+        "a": "Da: {line} la {planned} de la linia {platform}, la timp – ca {n} din {all} trenuri regionale până la {last}.",
+        "note": "Când interfața de mers al trenurilor Deutsche Bahn nu dă timpi în timp real, ViaFrei adaugă trenurile regionale și S-Bahn din DELFI SIRI ET – într-un bloc separat, niciodată amestecate cu rândurile căii ferate."
+      },
+      "fuelroad": {
+        "a": "Încă niciun preț nou – cel mai mic dintre ultimele cunoscute: {euro},{cent} €/l la {station}, {address}, raportat pe {reported}; ViaFrei cere acum unul nou.",
+        "title": "Motorină pe drum, lângă autostradă",
+        "q": "Diseară trec pe A3 pe lângă Würzburg: unde e motorina cea mai ieftină în apropiere?",
+        "note": "Prețurile carburanților se schimbă la câteva minute: cifra aceasta e un exemplu din acea după-amiază, nu prețul de azi. ViaFrei spune când a raportat stația fiecare preț."
+      },
+      "fuelland": {
+        "a": "Încă niciun preț nou – cel mai mic dintre ultimele cunoscute: {euro},{cent} €/l la {station}, {address}, raportat pe {reported}; ViaFrei cere acum unul nou.",
+        "title": "Cel mai mic preț într-o capitală de land",
+        "q": "Unde e acum cel mai ieftin E10 în Stuttgart, Baden-Württemberg?",
+        "note": "Prețurile carburanților se schimbă la câteva minute: cifra aceasta e un exemplu din acea după-amiază, nu prețul de azi. ViaFrei spune când a raportat stația fiecare preț."
+      },
+      "carpark": {
+        "title": "O parcare cu locuri libere",
+        "q": "Câte locuri sunt libere în parcarea {name} din Köln?",
+        "a": "Ultima raportare: {free} din {total} locuri libere – o raportare mai veche, nu situația actuală.",
+        "note": "Numele, poziția și numărul de locuri provin din tabelul parcărilor orașului Köln, ocuparea din fluxul său live. Dacă ultimul raport este prea vechi, ViaFrei spune „ultima raportare” în loc de „liber”."
+      },
+      "lorry": {
+        "title": "Parcare pentru camioane cu locuri libere",
+        "q": "Câte locuri pentru camioane sunt libere acum la {name}?",
+        "a": "{free} locuri libere pentru camioane, după cum le raportează operatorul.",
+        "note": "Locurile libere le indicăm doar acolo unde operatorul le publică – aici la fiecare 15 minute. Dacă o valoare rămâne aceeași șase ore, ViaFrei spune „ultima raportare” în loc de „liber”."
+      }
+    },
+    "betaHeading": "Beta: ce înseamnă pentru dumneavoastră",
+    "beta1": "ViaFrei se află în faza de stabilizare: se adaugă surse de date, iar răspunsurile și acoperirea se pot schimba.",
+    "beta2": "Răspunsurile sunt formulate de un asistent IA pe baza datelor noastre – IA poate greși.",
+    "beta3": "Verificați informațiile importante (închideri de drumuri, plecări, prețuri) la sursa indicată în răspuns.",
+    "endpointHeading": "Adresa",
+    "endpointNote": "Streamable HTTP. Gratuit cât timp îl construim, fără cont; cererile sunt limitate ca să ajungă pentru toți.",
+    "legacyNote": "Clienții mai vechi, fără Streamable HTTP, folosesc adresa SSE:",
+    "clientsHeading": "Pas cu pas",
+    "claudeAi": "claude.ai (web)",
+    "claudeAiSteps": "Personalizare (Customize) → Connectors → „+ Add” → „Add custom connector”. Numiți-l ViaFrei, lipiți adresa de mai sus ca URL al serverului MCP, apoi „Continue”. Întrebați, de exemplu: „Este liberă A8 spre München?” La prima utilizare, permiteți instrumentul ViaFrei.",
+    "claudeDesktop": "Claude Desktop",
+    "claudeDesktopSteps": "Același conector ca pe claude.ai, păstrat în contul tău Claude: adaugă-l acolo ca mai sus și apare și în aplicația desktop.",
+    "claudeCode": "Claude Code",
+    "claudeCodeSteps": "Rulează o dată într-un terminal:",
+    "chatgpt": "ChatGPT",
+    "chatgptSteps": "Plugins → „+” → „Add custom MCP server”. Numiți-l ViaFrei, lipiți adresa de mai sus la „Connection”, autentificare: niciuna; bifați „I understand and want to continue”, apoi „Create as a plugin”. Într-un chat nou tastați @, alegeți ViaFrei, apoi întrebați.",
+    "editorsSteps": "Adaugă în configurația MCP (mcp.json):",
+    "copilotSteps": "Paleta de comenzi → „MCP: Add Server” → „HTTP” → lipește adresa de mai sus → ID-ul serverului viafrei → „Global” → „Copilot Global”. Asta scrie în ~/.copilot/mcp-config.json; manual, adaugă:",
+    "copilotSandbox": "Dacă Copilot răspunde cu 403 și antetul „x-ms-block-by: sandbox-broker”, sandboxul său a blocat adresa: permite mcp.viafrei.de (pentru agentul cloud: setările depozitului → Copilot → Internet access → Custom allowlist).",
+    "geminiTrust": "Gemini CLI pornește servere MCP doar într-un dosar în care ai încredere; te întreabă la prima pornire acolo.",
+    "windsurfSteps": "Panoul Cascade → „…” → MCPs → deschide fișierul de configurare MCP (mcp_config.json) și adaugă:",
+    "leChatSteps": "Connectors → „+ Add Connector” → „Custom MCP Connector” → nume viafrei, URL server: adresa de mai sus → Connect, fără autentificare. Îl adaugă un administrator – în planurile Free și Pro, acela ești tu.",
+    "generic": "Orice alt client MCP",
+    "genericSteps": "Orice client care vorbește Streamable HTTP se conectează la adresa de mai sus — fără antete, fără cheie.",
+    "stdio": "Clienți doar cu stdio",
+    "stdioSteps": "Puntea din pachetul public npm pornește un server stdio local care trimite mai departe către adresa de mai sus:",
+    "notCoveredHeading": "La ce nu răspunde ViaFrei",
+    "notCoveredLead": "Ca să nu cauți ce nu există:",
+    "notCovered": {
+      "routing": "Fără rute de la ușă la ușă și fără planificarea călătoriilor — ViaFrei răspunde despre locuri, drumuri și surse de date, niciodată la „cum ajung acolo”.",
+      "cityStreets": "Fără trafic pe străzile orașelor în afara surselor de oraș și de land pe care le preluăm: lucrări, închideri și mesaje de trafic pentru Berlin, Köln (închideri pentru evenimente), Hanovra (de îndată ce sursa sa publică mesaje), Schleswig-Holstein inclusiv Kiel și Baden-Württemberg inclusiv Stuttgart. Alte orașe nu sunt acoperite; în rest, traficul în timp real de care dispunem este al rețelei de autostrăzi federale (Autobahn GmbH) și, unde o sursă le include, al drumurilor federale, plus lucrări pe drumurile landurilor din Baden-Württemberg, Saxonia Inferioară, Saxonia și Turingia.",
+      "fares": "Fără tarife, bilete sau rezervări de orice fel.",
+      "lineRealtime": "Nicio cifră de punctualitate pentru o singură linie — la „este S1 la timp” ViaFrei răspunde tren cu tren într-o gară (întârzierea în timp real a fiecărui tren care pleacă, inclusiv trenurile urbane) și pe regiune, cu anunțurile de perturbări ale liniei; la o stație de autobuz, tramvai sau metrou există doar orarul.",
+      "forecast": "Fără prognoză meteo — doar avertizările oficiale DWD și doar cât timp sunt în vigoare.",
+      "parkingTariffs": "Fără tarife de parcare și fără promisiunea că un loc este liber, decât dacă operatorul publică gradul de ocupare."
+    },
+    "privacyHeading": "Confidențialitate în trei propoziții",
+    "privacy1": "Nu ai nevoie de cont la noi și nu păstrăm întrebări sub numele tău.",
+    "privacy2": "Măsurarea prin servicii terțe rulează doar dacă ești de acord; înainte de asta nu se încarcă nimic de la terți. Vizitele le numărăm fără cookie-uri, ca totaluri zilnice pe propriul nostru server.",
+    "privacy3": "Jurnalele serverului se șterg după cel mult șapte zile — restul e în",
+    "privacyLink": "declarația de confidențialitate (în germană)",
+    "sourcesHeading": "De unde vin datele",
+    "sourcesLead": "Fiecare răspuns își numește sursa. Acestea sunt toate sursele din care răspunde ViaFrei azi, cu mențiunea cerută de licența lor (în germană, așa cum este scrisă):",
+    "askAnswers": {
+      "train": "La {t1}, {l1} spre {d1} de la linia {p1}, la {t2}, {l2} spre {d2} de la linia {p2} – ambele la timp.",
+      "parking": "{p1}: {f1} din {t1} locuri libere; {p2}: {f2} din {t2} libere.",
+      "charging": "Cel mai aproape: {a1}, la {m} m, tip 2 până la {kw1} kW; apoi {a2}, la {m2} m, până la {kw2} kW – fără stare în timp real.",
+      "road": "Da: pe toată A3 nu este raportat acum niciun ambuteiaj; sunt listate {closures} închideri și {works} lucrări.",
+      "weather": "Pentru {place} nu există nicio avertizare oficială DWD – verificat pentru acum și următoarele {hours} ore."
+    },
+    "allExamples": "Toate întrebările exemplu, cu răspunsurile lor, pe domenii",
+    "claudeFlow": {
+      "s1": "Personalizare (Customize) → Connectors → „+ Add” → „Add custom connector”.",
+      "s2": "Numiți-l ViaFrei, lipiți adresa de mai sus ca URL al serverului MCP, apoi „Continue”.",
+      "s3": "Întrebați, de exemplu: „Este liberă A8 spre München?” La prima utilizare, permiteți instrumentul ViaFrei."
+    },
+    "chatgptFlow": {
+      "s1": "Plugins → „+” → „Add custom MCP server”.",
+      "s2": "Numiți-l ViaFrei, lipiți adresa de mai sus la „Connection”, autentificare: niciuna; bifați „I understand and want to continue”, apoi „Create as a plugin”.",
+      "s3": "Într-un chat nou tastați @, alegeți ViaFrei, apoi întrebați.",
+      "avail": "Serverele MCP proprii funcționează în ChatGPT pe web: în spațiile Business și Enterprise/Edu, unde le creează administratorii și proprietarii, și pentru utilizatorii Pro cu permisiuni de citire și preluare – ViaFrei doar citește, deci Pro funcționează. Nu în aplicațiile mobile; indisponibil în Free și Plus.",
+      "d1": "Plugins → + → Add custom MCP server",
+      "d2": "Nume ViaFrei · Connection: adresa · autentificare: niciuna · Create as a plugin",
+      "d3": "Chat nou: @ViaFrei, apoi întrebarea",
+      "dtitle": "Cei trei pași în ChatGPT"
+    },
+    "shot": {
+      "claude1": "claude.ai, Customize → Connectors: meniul „+ Add” deschis pe „Add custom connector”.",
+      "claude2": "Fereastra „Add custom connector”: numele ViaFrei, URL-ul serverului MCP https://mcp.viafrei.de/mcp și butonul „Continue”.",
+      "claude3": "Claude cere să folosească instrumentul ViaFrei pentru A8: refuzare, permitere mereu sau permitere o dată.",
+      "claude4": "Răspunsul lui Claude la întrebarea despre A8 spre München, marcat ca folosind ViaFrei, cu linia sursei la final.",
+      "phone1": "claude.ai în browserul unui telefon, Customize → Connectors: meniul „+ Add” deschis pe „Add custom connector”.",
+      "phone2": "Fereastra „Add custom connector”: numele ViaFrei, URL-ul serverului MCP https://mcp.viafrei.de/mcp și butonul „Continue”.",
+      "phone3": "Un chat în claude.ai: „+” → Connectors, cu ViaFrei activat; celelalte conectoare sunt estompate.",
+      "phone4": "Răspunsul lui Claude la întrebarea dacă acum este ambuteiaj pe A7, marcat ca folosind ViaFrei.",
+      "phone4b": "Același răspuns la final: linia sursei, care numește Autobahn GmbH des Bundes.",
+      "phoneCaption": "Captură de ecran: claude.ai în browserul unui telefon, {date}",
+      "caption": "Captură de ecran: claude.ai, {date}",
+      "diagram": "Schemă, nu o captură de ecran",
+      "claudeCode1": "Terminal: claude mcp add cu adresa ViaFrei, apoi claude mcp list raportează „viafrei … ✔ Connected”.",
+      "geminiCli1": "Terminal: gemini mcp add --scope user cu adresa ViaFrei, apoi gemini mcp list raportează „viafrei … Connected”.",
+      "generic1": "Terminal: MCP Inspector cere adresei ViaFrei uneltele sale (tools/list) și primește numele lor.",
+      "stdio1": "Terminal: Claude Code adaugă puntea npx -y viafrei, apoi claude mcp list raportează „viafrei: npx -y viafrei – ✔ Connected”.",
+      "terminal": "Transcrierea terminalului din testul nostru: {what}, {date}",
+      "open": "Deschide imaginea la dimensiune completă",
+      "close": "Închide imaginea mărită"
+    },
+    "guide": "Ghid oficial",
+    "otherGuides": "Ghidurile lor:",
+    "check": {
+      "verified": "Verificat în client pe {date} cu {version}.",
+      "docs": "Pași verificați după ghidul oficial pe {date}, în client încă nu. {reason}",
+      "pending": {
+        "account": "E nevoie de un cont conectat; această verificare urmează.",
+        "app": "E o aplicație desktop cu autentificare proprie; această verificare urmează.",
+        "signIn": "O sesiune cere autentificare sau o cheie API; această verificare urmează."
+      }
+    },
+    "about": {
+      "lead": "Copiați această întrebare și puneți-o asistentului după ce ViaFrei este conectat:",
+      "place": "{place}: cum este traficul acum – drumuri, transport public, vreme?",
+      "road": "Este {road} liberă acum?",
+      "exit": "{road}, {exit}: este drumul liber acum?"
+    },
+    "phone": {
+      "heading": "Pe telefon (Android, iPhone)",
+      "jump": "Pe telefon? Cum funcționează pe Android și iPhone",
+      "lead": "În majoritatea aplicațiilor de asistent nu puteți adăuga ViaFrei în aplicația însăși. Configurați conexiunea o dată în browser – merge și pe telefon – iar aplicația o folosește imediat ce vă conectați cu același cont.",
+      "where": "Potrivit Anthropic, funcționează cu orice abonament Claude (Free: un conector personalizat). Adăugarea unui conector în aplicație este încă în beta, de aceea pașii trec prin claude.ai în browser.",
+      "claude": {
+        "s1": "În browserul telefonului (sau pe un computer), deschideți claude.ai și conectați-vă. Apoi Customize → Connectors → „+ Add” → „Add custom connector”.",
+        "s2": "Nume: ViaFrei. URL: {url}. Atingeți „Continue”.",
+        "s3": "Deschideți aplicația Claude și conectați-vă cu același cont. Într-un chat, atingeți „+” → Connectors și porniți ViaFrei.",
+        "s4": "Întrebați: „Este liberă A7 lângă Kassel?” și permiteți prima dată instrumentul ViaFrei. Un răspuns corect descrie acum A7 lângă Kassel și se încheie cu rândul sursei care numește editorul datelor."
+      },
+      "unclear": "{name}: ghidul oficial adaugă un server MCP propriu doar pe web și nu spune dacă aplicația de pe telefon îl folosește apoi – de aceea aici nu sunt pași. Situația la {date}.",
+      "gemini": "Gemini: aplicațiile proprii (servere MCP) pot fi adăugate doar în aplicația web și doar cu un cont personal în SUA, de la 18 ani, în engleză – deci nu din Germania. Situația la {date}.",
+      "copilot": "Microsoft Copilot: documentația oficială descrie servere MCP proprii doar pentru Microsoft 365 Copilot (configurate de administrația unei organizații) și Copilot Studio, nu pentru aplicația Copilot. Situația la {date}.",
+      "checked": "Verificat la {date} după ghidul oficial; încă neîncercat pe un telefon.",
+      "device": "Conectat pe un telefon la {date} cu {app}."
+    }
+  },
+  "devPage": {
+    "title": "ViaFrei pentru dezvoltatori",
+    "lead": "Un server MCP prin Streamable HTTP, date deschise din Germania, fiecare răspuns cu sursa sa. Iată ce poate azi — citit chiar de la server, nu copiat.",
+    "releaseHeading": "Versiunea curentă",
+    "releaseLine": "Versiunea {version}",
+    "releaseDate": "publicată pe {date}",
+    "toolsHeading": "Instrumente",
+    "toolsLead": "{n} instrumente, așa cum le raportează serverul:",
+    "promptsHeading": "Prompturi",
+    "resourcesHeading": "Resurse",
+    "codeHeading": "Cod și contribuții",
+    "closed": "Serverul este un serviciu găzduit, iar codul său sursă este închis. Puntea este publică — și acolo orice ajutor e binevenit.",
+    "bridge": "Puntea publică pe GitHub",
+    "discussions": "Discuții",
+    "goodFirst": "Sarcini bune pentru început",
+    "contributing": "Cum contribui",
+    "security": "Raportează o vulnerabilitate",
+    "licence": "Licență: Apache-2.0",
+    "contractHeading": "Contractul pe care îl respectă fiecare instrument",
+    "contract1": "Un instrument face un singur lucru și poartă numele lui (verb_noun).",
+    "contract2": "Fiecare răspuns poartă mențiunea sursei cuvânt cu cuvânt; când licența cere o notă despre scop, ea e și ea acolo.",
+    "contract3": "Orele sunt Europe/Berlin; stocarea e în UTC.",
+    "contract4": "Testele nu apelează niciodată un furnizor real; fiecare contribuție este verificată independent.",
+    "npmHeading": "npm",
+    "npmLead": "Pentru clienții care vorbesc doar stdio:",
+    "npmReserved": "Spațiul @viafrei este rezervat pentru viitoare pachete SDK.",
+    "listingsHeading": "Cataloage",
+    "listingsLead": "ViaFrei este listat aici:",
+    "listingNpm": "npm – pachetul viafrei, puntea stdio pentru clienții fără HTTP",
+    "listingSmithery": "Smithery – conexiune găzduită, fără instalare locală",
+    "listingGlama": "Glama – intrarea din catalogul de servere MCP",
+    "statusHeading": "Stare",
+    "statusText": "O imagine a stării surselor de date este disponibilă la cerere.",
+    "tools": {
+      "check_autobahn_traffic": "Traficul pe autostrăzi",
+      "find_cheapest_fuel": "Cel mai ieftin carburant din apropiere",
+      "find_fuel_station": "Găsește o benzinărie",
+      "find_parking": "Parcare în apropiere",
+      "check_road_status": "Starea drumului și închideri",
+      "find_roadworks_ahead": "Lucrări planificate",
+      "find_sharing": "Biciclete de închiriat în apropiere",
+      "find_charging_station": "Încărcare electrică în apropiere",
+      "find_hydrogen_station": "Stații de hidrogen în apropiere",
+      "find_speed_cameras": "Radare de viteză pentru planificare",
+      "find_place": "Caută o localitate",
+      "find_poi": "Găsește un loc după nume",
+      "find_address": "Caută o adresă",
+      "describe_location": "Descrie o coordonată",
+      "find_nearby": "Ce este în apropiere",
+      "get_driving_rules": "Regulile de circulație din Germania",
+      "check_transit_disruption": "Perturbări ale transportului public într-o regiune",
+      "check_weather_warnings": "Avertizări meteo oficiale",
+      "get_train_departures": "Plecări de trenuri",
+      "get_departures": "Plecări conform orarului (autobuz, tramvai, tren)",
+      "check_station_facilities": "Lifturi și scări rulante în gări",
+      "describe_station": "Prezentarea unei gări",
+      "watch_situation": "Urmărește o schimbare",
+      "stop_watch": "Oprește o urmărire"
+    },
+    "prompts": {
+      "plan_departure": "Rezumat înainte de plecare: avertizări meteo la ambele capete, autostrăzi deschise și ambuteiaje actuale, încheiat cu o frază: pleci sau aștepți.",
+      "compare_travel_options": "Compară o călătorie cu mașina cu aceeași călătorie cu trenul: închideri și ambuteiaje de o parte, plecări și punctualitate de cealaltă.",
+      "prepare_car_trip": "Adună ce trebuie să aibă și să știe un șofer înainte de a conduce în Germania și într-un anumit oraș: vigneta de emisii, limitele de viteză, anvelopele de iarnă, limita de alcool, taxele de drum, echipamentul obligatoriu.",
+      "plan_fuel_stop": "Găsește unde alimentezi sau încarci pe drum: cele mai ieftine benzinării pentru un tip de carburant sau stații de încărcare cu conectorul și puterea potrivite, și zona de odihnă de lângă ele.",
+      "plan_commute": "Planifică o călătorie cu transportul public în aceeași zi: următoarele plecări cu întârzieri, linii și anulări și dacă transportul din regiune circulă normal.",
+      "plan_arrival_parking": "Găsește unde lași mașina la capătul drumului: o parcare în oraș, o parcare de transfer la margine cu plecări mai departe sau o zonă de odihnă dacă ajungi devreme.",
+      "find_a_place": "Transformă un simplu nume într-o localitate, un loc cu nume sau o adresă, încercându-le pe rând.",
+      "plan_local_errand": "Răspunde la „ce e prin preajmă” pentru un loc: cea mai apropiată benzinărie, stație de încărcare, parcare, gară și intrare pe autostradă, dintr-o privire.",
+      "explain_this_coordinate": "Transformă coordonatele simple într-o frază pe înțelesul călătorului: cea mai apropiată adresă, localitate, district și intrare pe autostradă, fiecare cu distanța sa."
+    },
+    "quickHeading": "Conectat într-un minut",
+    "quickLead": "Alegeți clientul, lipiți asta și puneți prima întrebare.",
+    "quickTabs": "Programe client",
+    "quickWhere": "Unde se pune:",
+    "quickFirst": "Primul dumneavoastră apel",
+    "quickFirstLead": "Odată conectat, întrebați cu cuvinte simple; asistentul alege singur instrumentul:",
+    "copy": "Copiere",
+    "copyCurl": "Copiere ca curl",
+    "tryHeading": "Încercați",
+    "tryLead": "Un apel real către punctul de acces public: sesiunea, apoi instrumentul. Dedesubt, răspunsul pe care serverul nostru l-a dat exact acestui apel acum câteva minute.",
+    "tryRequest": "Cerere",
+    "tryResponse": "Răspuns",
+    "tryAsOf": "Răspuns la {time}",
+    "tryError": "Acum nu există niciun răspuns recent. Rulați cererea de mai sus pentru a vedea unul în direct.",
+    "argsLabel": "Parametri",
+    "askLabel": "Întrebați așa:",
+    "schemaLabel": "Schema de intrare",
+    "otherGroup": "Mai multe instrumente",
+    "newHeading": "Noutăți în contract",
+    "newLine": "Versiunea {version}, {date}",
+    "newTools": "modificat:",
+    "contract5": "Prea multe cereri sunt respinse cu eroarea JSON-RPC {code}; așteptați și trimiteți din nou.",
+    "contract6": "O sesiune expirată este respinsă cu eroarea {code}; începeți una nouă cu initialize.",
+    "ask": {
+      "check_autobahn_traffic": "Este ambuteiaj acum pe A9 între München și Nürnberg?",
+      "find_cheapest_fuel": "Unde este motorina cea mai ieftină lângă Kassel acum?",
+      "find_fuel_station": "Ce benzinărie este deschisă lângă gara centrală din Würzburg?",
+      "find_parking": "Este un loc liber într-o parcare lângă gara centrală din Köln?",
+      "check_road_status": "Sunt drumuri închise în jurul Dresdei?",
+      "find_roadworks_ahead": "Ce lucrări sunt planificate pe A3 săptămâna viitoare?",
+      "find_charging_station": "Unde pot încărca rapid la 150 kW în Leipzig?",
+      "find_hydrogen_station": "Unde este cea mai apropiată stație de hidrogen lângă Stuttgart?",
+      "find_speed_cameras": "Unde sunt radarele fixe pe drumul meu prin Bielefeld?",
+      "find_place": "Unde se află exact Garmisch-Partenkirchen?",
+      "find_poi": "Este o farmacie lângă gara centrală din Erfurt?",
+      "find_address": "Unde este Unter den Linden 77 în Berlin?",
+      "describe_location": "Ce se află la 50,94, 6,96?",
+      "find_nearby": "Ce este lângă gara centrală din Münster: încărcare, parcare, stații?",
+      "find_sharing": "Este o bicicletă partajată lângă Hamburg Dammtor?",
+      "get_driving_rules": "Când se aplică interdicția de circulație duminica pentru camioane?",
+      "check_transit_disruption": "Cât de punctuale sunt acum autobuzele și trenurile în Bavaria?",
+      "check_weather_warnings": "Există azi o avertizare meteo pentru Hamburg?",
+      "get_train_departures": "Când pleacă următoarele trenuri din gara centrală din Hanovra?",
+      "get_departures": "Când pleacă următorul tramvai din Leipzig Augustusplatz?",
+      "check_station_facilities": "Funcționează lifturile în gara centrală din Frankfurt?",
+      "describe_station": "Cum este gara centrală din Nürnberg: linii, lifturi, plecări?",
+      "watch_situation": "Anunță-mă când A7 lângă Hamburg este din nou liberă.",
+      "stop_watch": "Nu mai urmări A7."
+    }
+  },
+  "bizPage": {
+    "title": "ViaFrei pentru companii",
+    "lead": "Date deschise de mobilitate din toată Germania, unite cu grijă și mereu cu sursa — ca o singură adresă pe care o pot întreba sistemele și asistenții tăi.",
+    "casesHeading": "Pentru ce folosesc companiile ViaFrei",
+    "u1t": "Logistică și flote",
+    "u1": "Lucrări și închideri pe autostrăzile rutei planificate, parcări pentru camioane de-a lungul ei și interdicția de circulație de duminică din regulile de circulație.",
+    "u1q": "Ce închideri sunt pe A7 între Würzburg și Ulm?",
+    "u1a": "{n} închideri pe A7 până la {to}; între Würzburg și Ulm, printre ele {a} – {b} și {b} – {c}, în ambele sensuri.",
+    "u2t": "Infrastructură de încărcare",
+    "u2": "Unde rețeaua e rară și care puncte sunt libere acum — din fluxurile operatorilor a căror origine am verificat-o. Istoricul disponibilității este planificat ca parte a unei colaborări.",
+    "u2q": "Unde sunt stații de încărcare rapidă de cel puțin 150 kW lângă Kassel?",
+    "u2a": "Da: {s1}, {a1}, la {m} m, până la {kw1} kW, {free} din {total} puncte cu stare libere; apoi {s2}, {a2}, până la {kw2} kW, fără stare în timp real.",
+    "u3t": "Turism, hoteluri și locuri de evenimente",
+    "u3": "O informare despre sosire pentru oaspeți, în limba lor: situația pe autostradă, plecările trenurilor, parcarea și încărcarea la destinație.",
+    "u3q": "Hotelul meu este în Garmisch-Partenkirchen – trebuie oaspeții să se aștepte azi la o avertizare meteo?",
+    "u3a": "Nu: pentru {place} nu există nicio avertizare oficială DWD, verificat pentru acum și următoarele {hours} ore – ceea ce nu înseamnă liber pe restul drumului.",
+    "u4t": "Aplicații de navigație, hărți și mobilitate",
+    "u4": "O singură adresă MCP în locul multor integrări separate cu furnizori — și, ca parte a unei colaborări planificate, istoricul surselor a căror licență permite analiza.",
+    "u4q": "Ce lucrări sunt planificate pe A3 în zilele următoare?",
+    "u4a": "Între {from} și {to} sunt planificate pe A3 {n} lucrări, printre ele {a} – {b}: 1 din 4 benzi închisă, {speed} km/h, până la {until}.",
+    "u5t": "Asigurători și cercetare în mobilitate",
+    "u5": "Arhiva măsurătorilor din sursele a căror licență o permite: care era situația pe un tronson într-un anumit moment? Interogarea istoricului este planificată ca parte a unei colaborări; la ceea ce este în vigoare chiar acum, de exemplu avertizările oficiale ale unui land, serviciul public răspunde deja azi.",
+    "u5q": "Ce închideri sunt în vigoare acum pe A8?",
+    "u5a": "{n} închideri pe A8 până la {to}, printre ele {a} – {b} spre München și la nodul {c} spre A81.",
+    "u6t": "Municipalități și landuri",
+    "u6": "O privire la nivel național asupra propriilor date publicate — și o cale de a propune fluxuri pe care ar trebui să le adăugăm.",
+    "u6q": "Există acum o avertizare meteo oficială pentru Köln?",
+    "u6a": "Nu: pentru {place} nu se aplică nicio avertizare oficială DWD, nici acum, nici în următoarele {hours} ore.",
+    "futureLabel": "planificat",
+    "coopHeading": "Ce înseamnă colaborarea",
+    "price": "Prețuri la cerere.",
+    "contactHeading": "Hai să vorbim",
+    "contactLead": "Scrie-ne — răspundem în două zile lucrătoare.",
+    "postal": "Adresa poștală: vezi datele legale.",
+    "noForm": "Fără formular, fără bază de date: doar un e-mail.",
+    "licenceScope": "Ce oferim companiilor depinde de licența fiecărei surse: datele permise doar pentru informarea consumatorilor nu fac parte din ofertă, iar datele sub licența „Distribuire în condiții identice” le transmitem doar sub aceeași licență.",
+    "licenceScopeCredits": "Toate mențiunile sursei sunt la",
+    "heroPilot": "Porniți un proiect pilot",
+    "heroLive": "Vedeți răspunsul în direct",
+    "heroSteps": "Cum răspunde un asistent cu ViaFrei",
+    "proofHeading": "În direct din baza de date",
+    "proofLead": "Fiecare cifră de mai jos a fost citită din baza noastră de date pentru această pagină, cu momentul la care se referă. O cifră care nu poate fi citită apare ca lipsă, niciodată ca o cifră mai veche.",
+    "proofError": "Această cifră nu a putut fi citită acum.",
+    "proofCatalogue": "Numărătoare la versiunea {version}.",
+    "proofSources": "surse de date menționate",
+    "proofTools": "instrumente pentru asistenți",
+    "proofMotorways": "autostrăzi cu pagină proprie",
+    "proofLanguages": "limbi",
+    "caseShow": "Vedeți ce arată acum",
+    "howHeading": "Cum funcționează",
+    "how1": "Autoritățile și operatorii publică date deschise: trafic, orare, încărcare, parcare, avertizări meteo.",
+    "how2": "Le colectăm zi și noapte, le reunim într-o imagine a Germaniei și păstrăm fiecare citire cu ora și sursa ei.",
+    "how3": "Sistemele și asistenții dumneavoastră întreabă un singur punct de acces și primesc un răspuns care își numește sursa.",
+    "howData": "Date deschise",
+    "howYou": "Asistentul sau sistemul dumneavoastră",
+    "licenceHeading": "Ce date poate folosi o firmă și cum",
+    "licenceColClass": "Clasa licenței",
+    "licenceColCount": "Surse",
+    "licenceColUse": "Ce poate face o firmă",
+    "lic": {
+      "open": {
+        "name": "Deschisă",
+        "use": "Folosire și transmitere liberă."
+      },
+      "attribution": {
+        "name": "Atribuire",
+        "use": "Folosire și transmitere, împreună cu mențiunea sursei."
+      },
+      "shareAlike": {
+        "name": "Distribuire în condiții identice",
+        "use": "Folosire; datele derivate se transmit doar sub aceeași licență."
+      },
+      "terms": {
+        "name": "Încă neclarificat pentru companii",
+        "use": "Nu face încă parte dintr-o ofertă pentru companii: editorul nu publică condiții de utilizare sau condițiile sale cer un contract pe care încă nu îl oferim."
+      },
+      "consumerOnly": {
+        "name": "Doar informarea consumatorilor",
+        "use": "Nu face parte din nicio ofertă pentru firme."
+      },
+      "own": {
+        "name": "Conținutul ViaFrei",
+        "use": "Inclus într-o colaborare."
+      }
+    },
+    "coopPilotTitle": "Proiect pilot",
+    "coopPilot": "Câteva săptămâni pe propria dumneavoastră întrebare: cheie API proprie, limite mai mari și o linie directă cu noi.",
+    "coopDataTitle": "Parteneriat de date",
+    "coopData": "Exporturi din istoricul păstrat, pentru sursele a căror licență o permite, și propriile monitorizări și canale.",
+    "coopPublisherTitle": "Editor de date",
+    "coopPublisher": "Publicați date de mobilitate: le ducem la fiecare asistent IA, cu dumneavoastră ca sursă, și construim împreună instrumente noi pe ele."
+  },
+  "fuelPage": {
+    "title": "Benzinării pe landuri – o selecție cu prețuri",
+    "lead": "Până la trei benzinării în fiecare land, întâi cea mai ieftină benzină E10. Alese dintre benzinăriile pe care le observăm – deci nu neapărat cele mai ieftine din land. Fiecare preț apare cu ora la care l-am observat. Informare pentru consumatori, nu o listă a tuturor benzinăriilor.",
+    "back": "Înapoi la pagina de start",
+    "unavailable": "Lista benzinăriilor pe landuri nu este disponibilă acum.",
+    "boardHead": "Până la trei benzinării în fiecare land",
+    "hereHead": "Cele mai ieftine benzinării deschise din {place}",
+    "hereHeadNone": "Cele mai ieftine benzinării deschise din zona dumneavoastră",
+    "hereNone": "Momentan nu vă cunoaștem localitatea. Alegeți un oraș mai jos sau localitatea pe pagina de start; acolo sunt prețurile.",
+    "hereNoScript": "Prețurile se încarcă cu JavaScript de îndată ce această secțiune este vizibilă. Fără JavaScript sunt pe pagina localității.",
+    "hereLoading": "Se încarcă prețurile …",
+    "hereFailed": "Prețurile nu pot fi obținute acum.",
+    "cities": "Orașe",
+    "citiesLead": "Prețurile fiecărui oraș sunt pe pagina lui."
+  },
+  "quote": {
+    "open": "„",
+    "close": "”"
+  },
+  "place": {
+    "change": "Schimbă locul",
+    "how": {
+      "exact": "rotunjit, circa 500 m",
+      "approx": "aproximativ (după conexiunea la internet)",
+      "chosen": "ales",
+      "saved": "salvat",
+      "rough": "aproximativ (browser)"
+    },
+    "germany": "Toată Germania",
+    "outsideFar": "Poziția dvs. este în afara Germaniei. Afișăm întreaga Germanie – alegeți un loc pentru a-i vedea cardurile.",
+    "choose": "Alegeți un loc",
+    "loaded": "Cardurile pentru {place} au fost încărcate",
+    "failed": "Acest loc nu a putut fi încărcat acum.",
+    "noGeo": "Browserul nu a transmis nicio locație – alegeți un loc.",
+    "locating": "Se determină locația …",
+    "geoNo": "Browserul nu a transmis nicio locație: {why}. Se afișează: {place}.",
+    "geoDenied": "accesul este blocat – permiteți-l din pictograma de lângă adresă",
+    "geoUnavailable": "dispozitivul nu a putut-o determina",
+    "geoTimeout": "niciun răspuns în 15 s",
+    "geoApprox": "Browserul vă cunoaște locația doar aproximativ (peste 1 km).",
+    "why": "Pentru stații de încărcare, benzinării și avertizări chiar lângă dumneavoastră – locația exactă rămâne pe dispozitivul dumneavoastră.",
+    "kept": "Browserul dumneavoastră reține acest loc",
+    "sheet": {
+      "useLocation": "Folosește locația mea",
+      "forget": "Uită locul"
+    },
+    "privacy": {
+      "title": "Locul dumneavoastră rămâne la dumneavoastră.",
+      "body": "ViaFrei nu creează niciun cont și niciun profil și nu vă stochează locul. Browserul dumneavoastră reține un loc pe acest dispozitiv numai când îl alegeți în bara de loc – un loc sau o adresă, „Folosește locația mea” sau „Toată Germania” –, împreună cu locurile alese recent; cât timp această pagină folosește un loc reținut, acest lucru este scris sub bara locului, iar „Uită locul” îl șterge imediat. Pagina vă cere locația numai când alegeți „Folosește locația mea”; dacă ați permis-o deja permanent în browser, această pagină o citește fără întrebare și nu stochează nimic. Locația este rotunjită pe dispozitivul dumneavoastră la o zonă de circa 500 m, iar numele străzii sau al locului pentru ea este dedus de serverul nostru din această zonă; acesta îl păstrează în memoria de lucru cel mult o oră pentru fiecare zonă, fără legătură cu dumneavoastră, și nu îl stochează. Doar imediat după acest clic și doar dacă browserul indică locația dvs. cu o precizie de cel mult 150 m, pagina trimite o singură dată poziția exactă către serverul nostru, pentru a verifica dacă vă aflați la o gară, o benzinărie, o stație de încărcare sau o parcare de odihnă pe autostradă; acolo nu este nici stocată, nici înregistrată în jurnal. La fel, păstrează în memoria de lucru cel mult o oră numele unei gări, al unui loc sau al unei adrese alese aici. Adresa IP este folosită doar în memoria de lucru, pentru locul aproximativ, și nu este stocată în acest scop. Acest lucru se aplică pe fiecare pagină cu bara de loc, inclusiv în prezentarea gărilor. În prezentarea gărilor, locul stabilit astfel servește doar pentru a afișa cele mai apropiate gări și stații.",
+      "more": "Mai multe în politica de confidențialitate"
+    },
+    "geoipCredit": "Loc aproximativ după adresa IP:",
+    "pageTitle": "{place}: închideri, lucrări, trafic acum – ViaFrei",
+    "pageDescription": "Blocaje, lucrări și închideri în {place}, plus parcări, stații de încărcare, prețuri la carburanți și avertizări meteo – în direct din date deschise, cu sursă.",
+    "pageLead": "Tot ce știe ViaFrei acum despre {place} – din date deschise, cu sursa fiecărei cifre.",
+    "pageMissing": "Nu cunoaștem acest loc.",
+    "geoipModified": "extras prelucrat",
+    "loadingCards": "Cardurile pentru acest loc se încarcă …",
+    "reloadCards": "Reîncărcați pagina pentru a vedea cardurile",
+    "fuelUnavailable": "Prețurile nu au putut fi cerute din nou acum. Aici este ultimul preț cunoscut, cu ora lui.",
+    "motorway": {
+      "why": "Pentru ce se află în jurul dvs. pe această autostradă – poziția dvs. exactă rămâne pe dispozitiv.",
+      "radius": "Rază",
+      "radiusOther": "Alegeți orice rază (1–100 km)",
+      "updating": "se actualizează …",
+      "failed": "Nu s-a putut actualiza – vizualizarea anterioară rămâne.",
+      "zoomGroup": "Zoom pe hartă – fiecare pas este o rază",
+      "zoomIn": "Mărește harta – rază {r} km",
+      "zoomOut": "Micșorează harta – rază {r} km",
+      "zoomInEnd": "Mărește harta – raza cea mai mică a fost atinsă",
+      "zoomOutEnd": "Micșorează harta – raza cea mai mare a fost atinsă",
+      "filter": {
+        "legend": "Afișare",
+        "all": "Afișează tot",
+        "none": "Ascunde tot",
+        "allLabel": "Afișează tot – selectează toate tipurile",
+        "noneLabel": "Ascunde tot – deselectează toate tipurile",
+        "save": "Ține minte alegerea",
+        "saved": "Alegerea este reținută pe acest dispozitiv.",
+        "forget": "Uită",
+        "everything": "Toate datele",
+        "nothing": "Nimic selectat – alegeți cel puțin un tip.",
+        "sum": "{kinds}: {n}",
+        "sumR": "{kinds} pe o rază de {r} km: {n}",
+        "entriesOne": "{n} intrare",
+        "entriesFew": "{n} intrări",
+        "entriesMany": "{n} de intrări",
+        "entriesOther": "{n} de intrări",
+        "entriesZero": "{n} de intrări",
+        "ampel": "Semaforul evaluează în continuare totul – unele dintre motivele sale sunt acum ascunse."
+      }
+    },
+    "pageDescriptionRoads": "{place}: închideri și lucrări acum pe {roads} – plus blocaje, parcare, încărcare și avertizări, live din date deschise, cu sursa.",
+    "topics": {
+      "legend": "Subiecte",
+      "apply": "Aplică",
+      "none": "Niciun subiect ales.",
+      "shown": "Subiecte afișate: {n} din {total}",
+      "attention": "Ascuns, dar important acum: {topic} – afișează"
+    },
+    "head": {
+      "live": "Live pentru",
+      "scope": "Zonă",
+      "search": "Caută un loc",
+      "searchHint": "Adresă, cod poștal, cartier sau gară",
+      "locate": "Folosește locația mea",
+      "confirmQ": "Este locul corect?",
+      "yes": "Da",
+      "other": "Alt loc",
+      "confirmed": "confirmat",
+      "updated": "actualizat pentru {place}",
+      "outside": "locație în afara Germaniei",
+      "germanyHow": "toată Germania aleasă",
+      "germanyNote": "Toată Germania aleasă: toate cifrele naționale sunt chiar mai jos – fiecare cu ora și sursa ei."
+    },
+    "bar": {
+      "label": "Alegeți sau căutați un loc",
+      "close": "Închide",
+      "hint": "Loc, adresă, autostradă, gară …",
+      "recent": "Recente",
+      "popular": "Populare",
+      "drop": "Elimină {place}",
+      "found": "Sugestii: {n}",
+      "how": "Un loc, o adresă sau o gară din listă arată cardurile de acolo; Enter caută în tot site-ul."
+    }
+  },
+  "newsPage": {
+    "readMore": "Citește mai departe",
+    "title": "Noutăți",
+    "lead": "Ce este nou la ViaFrei, ce urmează și închiderile lungi pe care le avem acum — fiecare cu sursa sa.",
+    "filterLabel": "Afișează",
+    "chipNew": "Nou",
+    "chipPlans": "Planuri",
+    "chipTraffic": "Trafic",
+    "newHeading": "Nou la ViaFrei",
+    "plansHeading": "Planuri",
+    "plansLead": "Ce intenționăm să adăugăm în continuare. Planificat înseamnă planificat: nimic din acestea nu este încă în ViaFrei și nu promitem termene.",
+    "trafficHeading": "Închideri lungi",
+    "trafficLead": "Din propriile noastre date: închideri cu un sfârșit declarat, de cel puțin o zi. Fiecare dispare imediat ce i se atinge sfârșitul.",
+    "badgeNew": "Nou",
+    "badgePlan": "Planificat",
+    "askLabel": "Întrebați-vă asistentul",
+    "askLabelPlan": "Când va fi disponibil, întrebați-vă asistentul",
+    "plannedNote": "încă fără termen",
+    "connect": "Conectați ViaFrei",
+    "sources": "Sursă",
+    "feed": "Noutățile ca flux Atom",
+    "released": "Versiunea {v} · {d}",
+    "teaserHeading": "Nou la ViaFrei",
+    "teaserAll": "Toate noutățile",
+    "trafficError": "Mesajele de trafic nu au putut fi încărcate acum.",
+    "noEntries": "Încă nu există intrări în această limbă."
+  },
+  "examplesPage": {
+    "title": "Toate întrebările exemplu",
+    "lead": "Fiecare întrebare pe care ViaFrei o arată ca exemplu pe acest site – cu instrumentul care îi răspunde și cu răspunsul, pe domenii.",
+    "live": "Acolo unde ViaFrei pune singur întrebarea la intervale regulate, aici apare cel mai nou răspuns; în rest, răspunsul înregistrat, cu data lui.",
+    "toc": "Domenii",
+    "domain": {
+      "transit": "Autobuz, tren și gară",
+      "roads": "Drumuri și autostrăzi",
+      "parking": "Parcare",
+      "charging": "Încărcare",
+      "fuel": "Carburant",
+      "more": "Locuri și urmăriri"
+    },
+    "question": "Întrebarea {n}",
+    "fuelNote": "Răspunsurile exemplu despre prețurile la carburant le arătăm doar datate și doar în două locuri: {home} și {connect}.",
+    "fuelHome": "pe pagina principală",
+    "fuelConnect": "pe pagina de conectare"
+  },
+  "seo": {
+    "connectTitle": "Date de trafic în ChatGPT și Claude prin MCP – ViaFrei",
+    "connectDescription": "O adresă, fără cheie: conectați ViaFrei în Claude, ChatGPT, Copilot, Cursor, Gemini CLI sau Le Chat și întrebați despre blocaje, trenuri și parcări.",
+    "motorwayTitle": "Autostrada {road}: trafic, ambuteiaje, lucrări – ViaFrei",
+    "motorwayDescription": "Trafic pe {road} în Germania: ambuteiaje, închideri și lucrări pe sensuri, în direct din date deschise, închideri planificate și regulile de pe autostradă.",
+    "motorwaysTitle": "Ambuteiaje și lucrări pe autostrăzi acum – Germania – ViaFrei",
+    "motorwaysDescription": "Toate autostrăzile Germaniei live: blocaje, închideri, lucrări, ocoliri, parcare și încărcare, după număr sau situație, cu hartă și o pagină pentru fiecare.",
+    "motorwayH1": "Autostrada {road} acum",
+    "motorwayLead": "Ambuteiaje, închideri și lucrări pe autostrada {road}, din date deschise, fiecare cu sursa și ora ei.",
+    "motorwaysH1": "Autostrăzi în Germania",
+    "motorwaysLead": "Fiecare autostradă cu mesajele actuale. Alege una pentru blocaje, închideri, lucrări și traseul ei.",
+    "stationsTitle": "Gări din Germania: peroane, dotări – ViaFrei",
+    "stationsDescription": "Fiecare gară Deutsche Bahn: peroane cu înălțime și acces fără trepte, dotări, serviciu de mobilitate și ce se află pe o rază de 300 m – din date deschise.",
+    "stationsH1": "Gări din Germania",
+    "crumbStations": "Gări",
+    "stationTitle": "{name}: plecări, linii, lifturi, perturbări – ViaFrei",
+    "stationDescription": "{name}: următoarele plecări în timp real cu linia, ce lifturi și scări rulante funcționează acum, peroane fără trepte, dotări și împrejurimi – din date deschise, cu sursă și dată.",
+    "crumbHome": "Acasă",
+    "crumbMotorways": "Autostrăzi",
+    "linksMotorways": "Autostrăzi în direct",
+    "linksPlaces": "Orașe în direct",
+    "allMotorways": "Toate autostrăzile",
+    "allPlaces": "Alte orașe",
+    "imprintDescription": "Informații legale viafrei.de: cine operează ViaFrei, platforma de mobilitate în timp real pentru asistenți AI, și cum îl contactați pe operator.",
+    "privacyDescription": "Politica de confidențialitate viafrei.de: ce stochează ViaFrei și ce nu, cum funcționează consimțământul și ce drepturi aveți – fără cont, fără profil.",
+    "termsDescription": "Condițiile de utilizare ViaFrei: în ce condiții puteți folosi date precum gradul de ocupare al parcărilor pentru camioane al Toll Collect GmbH.",
+    "businessTitle": "API de date de mobilitate în direct pentru firme",
+    "businessDescription": "Trafic, transport public, încărcare și parcare în toată Germania, într-un singur punct de acces în direct cu surse. Începeți cu un proiect pilot.",
+    "developersTitle": "Server MCP pentru datele de mobilitate din Germania",
+    "developersDescription": "Conectați orice client MCP într-un minut: pornire rapidă pentru fiecare client, un apel real cu răspunsul lui și fiecare instrument cu schema sa."
+  },
+  "ask": {
+    "live": "Răspuns live de la ViaFrei",
+    "asOf": "Date din {time}",
+    "tool": "Instrument",
+    "question": "Întrebare",
+    "answer": "Răspuns",
+    "cta": "Întrebați-vă asistentul",
+    "roads": {
+      "question": "Este acum ambuteiaj pe A8?",
+      "clear": "Pe {road} nu este semnalat acum niciun ambuteiaj. În vigoare: închideri – {closures}, lucrări – {works}.",
+      "jams": "Pe {road} sunt semnalate ambuteiaje: {jams}; cel mai lung costă {delay} min. În plus, închideri – {closures}, lucrări – {works}.",
+      "jamsNoDelay": "Pe {road} sunt semnalate ambuteiaje: {jams}. În plus, închideri – {closures}, lucrări – {works}."
+    },
+    "lorryPark": {
+      "question": "Câte parcări pentru camioane are A3 și câte își publică gradul de ocupare?",
+      "listed": "Parcări pentru camioane pe {road}: {total}; cu grad de ocupare publicat: {live}."
+    },
+    "hydrogen": {
+      "question": "Unde poate alimenta un camion cu hidrogen lângă Frankfurt am Main?",
+      "near": "{name}, {address}: 350 bar pentru camioane și autobuze, la {km} km.",
+      "none": "Nicio stație de hidrogen pentru camioane nu este listată pe o rază de {km} km."
+    },
+    "weatherLand": {
+      "question": "Este în vigoare acum o avertizare meteo oficială în Bavaria (Bayern)?",
+      "none": "{place}: Nicio avertizare oficială DWD în vigoare, verificat pentru acum și următoarele {hours} ore.",
+      "warn": "{place}: Avertizări oficiale în vigoare: {count}, nivelul cel mai ridicat {level} din 4, printre care „{event}”."
+    },
+    "transit": {
+      "question": "Cât de punctuale sunt acum autobuzele și trenurile în Renania de Nord-Westfalia (Nordrhein-Westfalen)?",
+      "share": "{region}: {pct} % dintre curse din ultimele {minutes} minute întârzie ({late} din {trips}).",
+      "thin": "{region}: curse observate în ultimele {minutes} minute: {trips} – prea puține pentru o pondere."
+    },
+    "charging": {
+      "question": "Unde pot încărca în Leipzig cu cel puțin 150 kW?",
+      "live": "{operator}, {address}: până la {kw} kW, la {km} km – libere {free} din {total} puncte de încărcare.",
+      "liveNoOp": "{address}: până la {kw} kW, la {km} km – libere {free} din {total} puncte de încărcare.",
+      "noStatus": "{operator}, {address}: până la {kw} kW, la {km} km. Operatorul nu raportează acum ocuparea actuală.",
+      "noStatusNoOp": "{address}: până la {kw} kW, la {km} km. Operatorul nu raportează acum ocuparea actuală.",
+      "none": "În apropiere nu este înregistrată nicio stație de încărcare de cel puțin 150 kW."
+    },
+    "parking": {
+      "question": "Unde este acum o parcare etajată cu locuri libere la gara centrală din Münster (Münster Hbf)?",
+      "free": "{name}: libere {free} din {total} locuri, la {km} km.",
+      "none": "Acum nicio parcare din apropiere nu raportează locuri libere.",
+      "unpublished": "Operatorii parcărilor din apropiere nu publică gradul de ocupare în timp real, așa că nu se știe dacă sunt locuri libere."
+    },
+    "roadsNear": {
+      "question": "Ce se întâmplă acum pe drumurile de aici?",
+      "clear": "Pe o rază de {km} km nu este semnalat acum nimic: niciun ambuteiaj, nicio închidere.",
+      "noJams": "Pe o rază de {km} km niciun ambuteiaj. În vigoare: închideri – {closed}, restricții – {restricted}.",
+      "jams": "Pe o rază de {km} km: ambuteiaje – {jams}, închideri – {closed}, restricții – {restricted}."
+    },
+    "weather": {
+      "question": "Există aici o avertizare meteo oficială?",
+      "none": "Nicio avertizare oficială DWD în vigoare, verificat pentru acum și următoarele {hours} ore.",
+      "warn": "Avertizări oficiale în vigoare: {count}, nivelul cel mai ridicat {level} din 4, printre care „{event}”."
+    },
+    "nearby": {
+      "question": "Ce este în apropiere?",
+      "near": "Până la {km} km: gara {station}; stații de încărcare: {charging}, parcări: {parking} (cel mult trei din fiecare afișate).",
+      "noStation": "Până la {km} km nicio gară; stații de încărcare: {charging}, parcări: {parking} (cel mult trei din fiecare afișate).",
+      "none": "Până la {km} km nu este înregistrată nicio gară, stație de încărcare sau parcare."
+    },
+    "poi": {
+      "question": "Unde este cea mai apropiată farmacie?",
+      "found": "{name}, {street} – la {km} km.",
+      "foundNoStreet": "{name} – la {km} km.",
+      "none": "Pe o rază de 5 km nu este înregistrată nicio farmacie."
+    },
+    "chargingNear": {
+      "question": "Unde este cea mai apropiată stație de încărcare?",
+      "live": "{operator}, {address}: până la {kw} kW, la {km} km – libere {free} din {total} puncte de încărcare.",
+      "liveNoOp": "{address}: până la {kw} kW, la {km} km – libere {free} din {total} puncte de încărcare.",
+      "noStatus": "{operator}, {address}: până la {kw} kW, la {km} km. Operatorul nu raportează acum ocuparea actuală.",
+      "noStatusNoOp": "{address}: până la {kw} kW, la {km} km. Operatorul nu raportează acum ocuparea actuală.",
+      "none": "În apropiere nu este înregistrată nicio stație de încărcare."
+    },
+    "offerOsm": "Aceste informații provin din baza noastră de date derivată din OpenStreetMap. Trimitem gratuit, la cerere, o copie completă, în format citibil automat (CSV), sub licența ODbL 1.0 – date de contact în {link}.",
+    "offerDb": "Aceste informații provin din baza noastră de date derivată din „{db}”. Trimitem gratuit, la cerere, baza de date pe care o folosim public – fără înregistrările pe care editorul le marchează drept confidențiale – ca o copie în format citibil automat (CSV), sub licența ODbL 1.0 – date de contact în {link}.",
+    "offerLink": "„Date legale”"
+  },
+  "connectNote": {
+    "text": "Asistentul dumneavoastră AI dă acest răspuns doar când ViaFrei este conectat.",
+    "link": "Cum conectați ViaFrei",
+    "guide": "Ghidul complet pentru toți clienții",
+    "clients": "Pas cu pas pentru",
+    "copy": "Copiază adresa",
+    "copied": "Copiat"
+  },
+  "next": {
+    "label": "Mai departe",
+    "ask": "Întrebați IA: {place}",
+    "motorways": "Toate autostrăzile"
+  },
+  "search": {
+    "label": "Căutare pe ViaFrei",
+    "placeholder": "Loc, autostradă, gară, pagină …",
+    "submit": "Caută",
+    "title": "Căutare",
+    "description": "Găsiți locuri, autostrăzi, noduri, gări și pagini pe ViaFrei.",
+    "hint": "Introduceți cel puțin două caractere.",
+    "alt": "Arată cardurile aici",
+    "partial": "Unele rezultate nu sunt afișate: o sursă nu a răspuns la timp.",
+    "allResults": "Toate rezultatele",
+    "showAll": "Toate rezultatele de acest tip",
+    "prev": "Înapoi",
+    "next": "Înainte",
+    "pageOf": "Pagina {page} din {pages}",
+    "pager": "Paginile rezultatelor",
+    "none": "Nu am găsit nimic pentru „{q}”.",
+    "nearest": "Scris asemănător:",
+    "motorwayIndex": "Toate autostrăzile",
+    "kind": {
+      "motorway": "Autostrăzi",
+      "road": "Drumuri federale și regionale",
+      "place": "Locuri",
+      "station": "Gări",
+      "exit": "Ieșiri și noduri",
+      "area": "Zone și adrese",
+      "poi": "Puncte de interes",
+      "page": "Pagini",
+      "news": "Noutăți"
+    }
+  },
+  "header": {
+    "how": "Un loc, o adresă sau un punct din listă devine locul dvs. pe toate paginile; o autostradă, o gară sau o pagină se deschide. Enter caută în tot site-ul.",
+    "makeMine": "Fă-l locul meu"
+  },
+  "statePages": {
+    "title": "Landurile germane: autostrăzi acum, orașe, date – ViaFrei",
+    "description": "Toate cele 16 landuri ale Germaniei: închideri, ambuteiaje și lucrări pe autostrăzi acum, suprafață, capitală, landuri vecine și cele mai mari orașe.",
+    "h1": "Cele 16 landuri",
+    "crumb": "Landuri"
+  },
+  "ai": {
+    "placeWarn": "Există acum avertizări meteo pentru {place}?",
+    "placePark": "Unde pot parca sau încărca acum în {place}?",
+    "landRoads": "Care autostrăzi din {place} sunt cele mai afectate acum?",
+    "roadUsual": "Cât durează de obicei ambuteiajele pe {road}?",
+    "roadPlans": "Ce lucrări și închideri sunt planificate pe {road}?",
+    "open": "Întreabă în {app}",
+    "copy": "Copiază întrebarea",
+    "copied": "Copiat"
+  },
+  "star": {
+    "add": "Salvează pagina",
+    "remove": "Salvată",
+    "neu": "nou",
+    "gone": "Ridicat de la ultima vizită: {list}",
+    "longer": "mai lung",
+    "install": "Adaugă pe ecranul principal",
+    "commute": "Ruta dvs."
+  },
+  "pwa": {
+    "offline": "La {t}, offline"
+  }
+}

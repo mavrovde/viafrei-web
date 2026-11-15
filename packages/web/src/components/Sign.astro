@@ -1,0 +1,79 @@
+---
+/**
+ * The Wegweiser: a true motorway direction sign — the blue field with its
+ * white inner border, a white arrow pointing the way, the yellow route badge
+ * — carrying ONE shortened tool answer. The route badge's yellow is
+ * `--sign-hi`; the yellow FIELD of the temporary (Baustelle) sign the beta
+ * panel uses is a token of its own, `--works-bg` (`.band--temporary`).
+ *
+ * #744: the answer on the sign is LIVE — what `check_autobahn_traffic` answered
+ * a few minutes ago (`lib/ask.ts`), with the data's time on the label and,
+ * under the sign, the same credit lines, licence links, conditions and notes
+ * every live answer carries (`answerCreditsHtml`, data-steward C3: the A8
+ * runs through BW, whose RVWD condition must stand). Only when no live answer is
+ * held does the sign fall back to the labelled sample it carried before, and
+ * then it still says "Beispielantwort": a sample is never shown as live.
+ */
+import { t } from "../i18n/index.js";
+import { answerCreditsHtml } from "../lib/answer-html.js";
+import { connectNoteHtml } from "../lib/connect-note.js";
+import { answerParts, answerState, answerTime, type AskEntry } from "../lib/ask.js";
+import type { Lang } from "../site/pages.js";
+import { MOTORWAY_REGISTER, motorwayPath } from "../site/motorways.js";
+import { C, esc, motorwayBadge } from "@viafrei/design";
+
+interface Props {
+  lang: Lang;
+  live?: AskEntry | undefined;
+}
+const { lang, live } = Astro.props;
+const parts = live === undefined ? null : answerParts(lang, live);
+const road = live?.projection.names["road"] ?? "A8";
+// The answer cards' own state (`answerState`): fresh while the ask is inside one refresh cycle, stale once one was
+// missed — the dot's shape differs, as on every card, so an older answer never reads as just asked.
+const state = live === undefined ? null : answerState(live, new Date());
+// #945: the route badge is the one motorway badge, a link to that motorway's page in this language when the site has one.
+const badge = motorwayBadge(esc(road), {
+  href: MOTORWAY_REGISTER.includes(road) ? motorwayPath(lang, road) : null,
+  label: t(lang, "sign.badge", { road }),
+  modifier: C.shieldRoute,
+});
+---
+
+<figure class:list={["sign", parts !== null && state]} data-live={parts !== null ? "1" : "0"}>
+  <div class="sign__panel">
+    <div class="sign__main">
+      <div class="sign__row">
+        <Fragment set:html={badge} />
+        <p class="sign__q">{parts !== null ? t(lang, "ask.roads.question") : t(lang, "sign.question")}</p>
+      </div>
+      {
+        parts !== null && live !== undefined ? (
+          <>
+            <p class="sign__a">{parts.map((p) => (p.name ? <span translate="no">{p.text}</span> : p.text))}</p>
+            <p class="sign__label">
+              <span class="age__dot" aria-hidden="true"></span> {t(lang, "ask.live")} · <time datetime={live.projection.asOf}>{t(lang, "ask.asOf", { time: answerTime(lang, live) })}</time> ·{" "}
+              <code translate="no">{live.tool}</code>
+            </p>
+          </>
+        ) : (
+          <>
+            <p class="sign__a">
+              {t(lang, "sign.answerBefore")}
+              <mark class="sign__hi">{t(lang, "sign.answerHighlight")}</mark>{t(lang, "sign.answerAfter")}
+            </p>
+            <p class="sign__label">{t(lang, "sign.label")}</p>
+          </>
+        )
+      }
+    </div>
+    <span class="sign__arrow" aria-hidden="true"></span>
+  </div>
+  {
+    parts !== null && live !== undefined ? (
+      <figcaption class="sign__meta" set:html={answerCreditsHtml(lang, live) + connectNoteHtml(lang, "home")} />
+    ) : (
+      <figcaption class="sign__meta">{t(lang, "sign.meta")}<Fragment set:html={connectNoteHtml(lang, "home")} /></figcaption>
+    )
+  }
+</figure>

@@ -1,0 +1,52 @@
+---
+/**
+ * #1088: the place headline — "Live für [📍 Kassel-Wehlheiden · 34121 ▾] [🇩🇪 Ganz Deutschland]" — since #1153 the
+ * first row of the header's place row (`PlaceBar.astro`) on every page; the page tells it what it knows
+ * (`lib/header-place.ts`).
+ *
+ * The two choices are ONE radio group named "Bereich" (`role="radiogroup"`): the place (it is also the location
+ * island's pill, `#place-pill` — on the place it opens the place window, on "Ganz Deutschland" it goes back to the
+ * place) and "Ganz Deutschland". Without JavaScript both are links: the place's own address and `?scope=de`.
+ *
+ * Under it: how the place was found (the island's source line), the IP guess's confirm row ("Stimmt der Ort? Ja ·
+ * Anderer Ort · ⌖") and the "aktualisiert für X" mark — since #1158 inside the source line, one line with it. The search, "Mein Standort" and the place chips follow it in the
+ * same header row (`PlaceBar.astro`, #1112, #1153 — inline, no dialog).
+ *
+ * #1174: the slot is the bar's opener (`PlaceBar.astro`), on the pill's line, so a folded bar on a phone is ONE line: the
+ * pill and the search symbol.
+ */
+import { t } from "../i18n/index.js";
+import type { Lang } from "../site/pages.js";
+
+interface Props {
+  lang: Lang;
+  /** The place's name as shown, or null for "Ganz Deutschland" (no place yet: the radio reads "Ort wählen"). */
+  label: string | null;
+  /** The source line's text (how the place was found). */
+  how: string;
+  /** The server's place is an IP guess: the confirm row is offered. */
+  ip: boolean;
+  /** The place radio's and "Ganz Deutschland"'s no-script targets. */
+  hrefs: { readonly place: string; readonly germany: string };
+  /** The line why a place is asked for. */
+  why: string;
+  /** The motorway page's pill names the road too: the label is shown as given. */
+  scopeOn?: "place" | "germany";
+}
+const { lang, label, how, ip, hrefs, why, scopeOn = label === null ? "germany" : "place" } = Astro.props;
+const onPlace = scopeOn === "place";
+---
+
+<div class="placehead">
+  <span class="placehead__lead" id="place-head-lead">{t(lang, "place.head.live")}</span>
+  <span class="placehead__scope" role="radiogroup" id="place-scope" aria-label={t(lang, "place.head.scope")}>
+    <a class="placehead__opt placepill" role="radio" id="place-pill" href={hrefs.place} aria-checked={onPlace ? "true" : "false"} tabindex={onPlace ? "0" : "-1"} aria-controls="place-hq" aria-describedby="place-why"><span class="placepill__pin" aria-hidden="true">📍</span> <span class="placepill__label" id="place-pill-label" translate="no">{label ?? t(lang, "place.choose")}</span> <span class="placehead__more" aria-hidden="true">▾</span><span class="visually-hidden"> — {t(lang, "place.change")}</span></a>
+    <a class="placehead__opt" role="radio" id="place-scope-de" href={hrefs.germany} aria-checked={onPlace ? "false" : "true"} tabindex={onPlace ? "-1" : "0"}><span aria-hidden="true">🇩🇪</span> {t(lang, "place.germany")}</a>
+  </span>
+  <slot />
+  <!-- #1158: ONE status line — how the place was found and, once a swap is done, "aktualisiert für X" beside it -->
+  <p class="placehead__src"><span class="placepill__how" id="place-pill-how">{how}</span><span class="placehead__upd" id="place-upd" role="status" hidden></span><span class="visually-hidden"> · </span><span class="placebar__why visually-hidden" id="place-why">{why}</span></p>
+</div>
+<p class="placehead__confirm" id="place-confirm" hidden>
+  {t(lang, "place.head.confirmQ")} <button type="button" class="btn btn--quiet" id="place-cyes">{t(lang, "place.head.yes")}</button> <button type="button" class="btn btn--quiet" id="place-cother">{t(lang, "place.head.other")}</button> <button type="button" class="btn btn--quiet" id="place-cgeo" aria-label={t(lang, "place.head.locate")}><span aria-hidden="true">⌖</span></button>
+</p>

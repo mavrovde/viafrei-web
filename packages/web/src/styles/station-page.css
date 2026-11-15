@@ -1,0 +1,144 @@
+/*
+ * #1041: the station pages' own rules — the catalogue and one station's cards. Carried INLINE on those pages only
+ * (`layouts/StationPage.astro`, `layouts/StationsPage.astro`, under the request's nonce like every <style>), because
+ * site.css is the one stylesheet of every page and the home's gzip budget pays for each byte of it. Every rule is
+ * scoped under the `stpage` blocks, so none reaches the punctuality tile's `.station` (site.css).
+ */
+.stpage { display: grid; gap: var(--s-3); }
+.stpage__head p { margin: 0 0 var(--s-1); }
+.stpage__kicker, .stpage__label, .stpage__stand, .stpage__note { color: var(--fg-muted); font-size: var(--fs-0); }
+.stpage__jump ul { list-style: none; padding: 0; margin: var(--s-2) 0 0; display: flex; flex-wrap: wrap; gap: var(--s-2) var(--s-3); }
+.stpage__jump a { display: inline-block; min-height: var(--target); line-height: var(--target); }
+.stpage__card { scroll-margin-top: var(--s-4); }
+.stpage__lead, .stpage__block { margin: 0 0 var(--s-2); }
+.stpage__h3 { font-size: var(--fs-1); margin: var(--s-3) 0 var(--s-1); }
+.stpage__scroll { position: relative; overflow-x: auto; max-width: 100%; }
+.stpage__table { border-collapse: collapse; width: 100%; font-size: var(--fs-0); }
+.stpage__table th, .stpage__table td { text-align: left; padding: var(--s-1) var(--s-2); border-bottom: 1px solid var(--line); vertical-align: top; }
+.stpage__fact--yes { font-weight: var(--weight-strong); }
+.stpage__fact--unknown { color: var(--fg-muted); }
+.stpage__flags, .stpage__list, .stpage__sources { list-style: none; padding: 0; margin: 0 0 var(--s-2); display: grid; gap: var(--s-1); }
+.stpage__flags { grid-template-columns: repeat(auto-fill, minmax(12rem, 1fr)); }
+.stpage__sym { display: inline-block; width: 1.6em; }
+.stpage__sources li { display: grid; gap: 2px; }
+.stpage-index .stpage-search { display: flex; flex-wrap: wrap; gap: var(--s-2); align-items: center; margin-block: var(--s-3); }
+.stpage-index .stpage-search input { min-height: var(--target); flex: 1 1 14rem; max-width: 24rem; }
+.stpage-list { list-style: none; padding: 0; margin: 0 0 var(--s-2); display: grid; grid-template-columns: repeat(auto-fill, minmax(14rem, 1fr)); gap: var(--s-1) var(--s-3); }
+.stpage-list a { display: inline-block; min-height: var(--target); line-height: var(--target); }
+.stpage-land h3 { font-size: var(--fs-1); margin: var(--s-3) 0 var(--s-1); }
+/* #1042: the live part — the chips, the board with Mein Gleis, the lifts, the step-free view. A state is a symbol AND a word, never colour alone. */
+.stlive { display: grid; gap: var(--s-3); }
+.stlive__chips ul { list-style: none; padding: 0; margin: 0; display: flex; flex-wrap: wrap; gap: var(--s-2); }
+.stlive__chip a { display: inline-flex; align-items: center; min-height: var(--target); padding: 0 var(--s-2); border: 1px solid var(--line); border-radius: 999px; text-decoration: none; }
+.stlive__chip--warn a { border: 2px solid var(--warn-rim); font-weight: var(--weight-strong); }
+.stlive__filter fieldset { border: 0; padding: 0; margin: 0 0 var(--s-2); display: flex; flex-wrap: wrap; gap: var(--s-2); align-items: center; }
+.stlive__filter legend { font-weight: var(--weight-strong); margin-bottom: var(--s-1); }
+.stlive__filter select, .stlive__filter input[type=search], .stlive__filter button { min-height: var(--target); }
+/* 2.4.6: the name box is the place search's field; its suggestions take the whole row under it */
+.stlive__filter .sheet__input { width: 16rem; max-width: 100%; }
+.stlive__filter .sheet__results { flex-basis: 100%; margin-block: 0; }
+.stlive__modes { display: flex; flex-wrap: wrap; gap: var(--s-2); align-items: center; border: 0; padding: 0; margin: 0; }
+.stlive__modes legend { float: left; margin: 0 var(--s-1) 0 0; font-weight: normal; }
+.stlive__modes .chip, .stlive__checks .chip { cursor: pointer; }
+.stlive__modes .chip input, .stlive__checks .chip input { margin: 0; accent-color: var(--fg); }
+/* #1147: the departures/arrivals tabs (shown by the shell's script), the chosen one as a chosen chip; each panel's heading
+   says its side where there are no tabs. #1092: the counts beside every option, the suggested names, the checkboxes, the reset */
+.stlive__tabs { margin: var(--s-2) 0; }
+/* #1175: the switch stays in reach through a long board */
+.stlive__tabs:not([hidden]) { position: sticky; top: 0; z-index: 2; padding-block: var(--s-1); background: var(--surface); }
+.stlive__tab { border: 1px solid var(--line); font: inherit; cursor: pointer; min-height: var(--target); }
+.stlive__tab[aria-selected="true"] { background: var(--surface-2); border-color: var(--fg); font-weight: var(--weight-strong); }
+.stlive__panelh { margin: var(--s-3) 0 var(--s-1); font-size: var(--fs-1); }
+.stlive__tabs:not([hidden]) ~ .stlive__panel > .stlive__panelh { display: none; }
+.stlive__n { color: var(--fg-muted); font-variant-numeric: tabular-nums; }
+.stlive__dests { display: flex; flex-wrap: wrap; gap: var(--s-2); align-items: center; margin: 0 0 var(--s-2); }
+.stlive__dests .chip { text-decoration: none; min-height: var(--target); }
+.stlive__dests .chip[aria-current="true"] { background: var(--surface-2); font-weight: var(--weight-strong); }
+.stlive__checks { display: flex; flex-wrap: wrap; gap: var(--s-2); margin: 0; }
+.stlive__reset { display: inline-block; min-height: var(--target); line-height: var(--target); }
+/* #1092: every travel mode has one look on every board (the word or the line name says it; the frame only groups) */
+.stlive__board del { color: var(--fg-muted); }
+.stlive__board ins { text-decoration: none; }
+.stlive__out, .stlive__moved { font-weight: var(--weight-strong); }
+.stlive__unknown { color: var(--fg-muted); }
+/* #1083: the board as the display on the platform — navy, white text, amber delays, the track in a white square; the
+   same in both themes (tokens.css --board-*). Our own navy and no operator's mark: no brand on the board. */
+.stlive__display { background: var(--board-bg); color: var(--board-fg); border-radius: 6px; padding: var(--s-1) var(--s-2) var(--s-2); }
+.stlive__display .stpage__table th, .stlive__display .stpage__table td { border-bottom-color: var(--board-rule); }
+.stlive__display th, .stlive__display .pcard__board th { color: var(--board-muted); font-weight: normal; } /* the second: the board's own `.pcard__board th` (site.css, loaded later) would put --fg-muted on the dark display — axe at 1440, #1180 AC 6 */
+.stlive__display a { color: var(--board-fg); }
+.stlive__display .stpage__note { color: var(--board-fg); margin: var(--s-1) 0 0; }
+.stlive__cap { caption-side: top; text-align: left; margin: 0; padding: var(--s-1) 0; font-weight: var(--weight-strong); }
+/* #1083: the head line — the side word, the station's name, "Stand HH:MM" (muted, tabular); it wraps on a phone */
+.stlive__display .stlive__cap-name { margin-left: var(--s-1); }
+.stlive__display .stlive__stand { font-variant-numeric: tabular-nums; color: var(--board-muted); font-weight: normal; margin-left: var(--s-1); white-space: nowrap; }
+/* owner 2026-11-02: the place card's row cells (one format everywhere) in the display's colours */
+.stlive__display .pcard__board, .stlive__display .pcard__in, .stlive__display ins { color: var(--board-fg); }
+/* #1147: the replacement-bus badge on the display takes the display's ink — the card's ink on the board's navy was 1.05:1 (axe) */
+.stlive__display .pcard__sev { color: var(--board-fg); border-color: var(--board-fg); }
+.stlive__display .pcard__clock, .stlive__display del, .stlive__display .stlive__unknown { color: var(--board-muted); }
+.stlive__display .pcard__state--late.pcard__state--strong, .stlive__display .pcard__state--cancelled, .stlive__display .stlive__moved { color: var(--board-amber); }
+.stlive__display .pcard__state--timetable, .stlive__display .pcard__state--noforecast { color: var(--board-muted); }
+.stlive__display .pcard__dep--cancelled td { color: var(--board-muted); }
+.stlive__display .pcard__dep--cancelled .pcard__state { color: var(--board-amber); }
+.stlive__gleis { display: inline-block; min-width: 1.6em; padding: 0 var(--s-1); text-align: center; background: var(--board-gleis-bg); color: var(--board-gleis-ink); border-radius: 3px; font-weight: var(--weight-strong); }
+.stlive__access a { display: inline-block; min-height: var(--target); line-height: var(--target); }
+.stlive__lift--inactive { font-weight: var(--weight-strong); }
+/* owner 2026-10-26: the interchange's U-Bahn, tram and bus lines, one line under the chips */
+.stlive__lines { margin: 0; }
+/* #1043: the station's pictograms, the board's own badges in a row */
+.stlive__served { margin: 0 0 var(--s-2); display: flex; flex-wrap: wrap; gap: var(--s-1); align-items: center; }
+.stlive__mode { font-weight: var(--weight-strong); }
+/* #1042 step 6: the parking and charging halves of the getting-there card */
+.stlive__around + .stlive__around { margin-top: var(--s-2); }
+.stlive__subhead { font-size: inherit; font-weight: var(--weight-strong); margin: var(--s-1) 0; }
+/* owner 2026-10-27: each block's freshness sign (freshness.css) on its own line under the title, as on the motorway cards */
+.pcard__head > .fresh { flex-basis: 100%; order: 3; }
+.stlive__fresh { margin: var(--s-2) 0 0; }
+/* #1109: the sources folded under the answer — a native <details>, small and muted*/
+.fresh__more { font-size: var(--fs-0); color: var(--fg-muted); }
+.fresh__more > summary { cursor: pointer; }
+.fresh__list { margin: var(--s-1) 0 0; }
+/* owner 2026-11-02 hotfix: the board carries the card's .pcard__board class (its cells keep one line, so no column
+   collapses to a letter a line); site.css's `.pcard__board del/ins` is parsed after this sheet, so the display's
+   planned and expected times are scoped one class higher here or they would be the card's dark ink on the navy. */
+.stlive__display .pcard__board del { color: var(--board-muted); }
+.stlive__display .pcard__board ins { color: var(--board-fg); }
+/* #1150 review: the card's board lets a destination wrap inside a to column of max-width 0, which on this scrolled
+   table squeezed it to a syllable a line (the page's `hyphens: auto` breaks inside a word). Here the column is as
+   wide as its longest word and wraps between words only; the table scrolls in its own box. */
+.stlive__display .stlive__board td.pcard__to { width: auto; max-width: none; overflow-wrap: normal; hyphens: manual; }
+.stlive__display .stlive__board .pcard__dest { overflow-wrap: normal; hyphens: manual; }
+/* #1043 (c): the stops around the station — a static map (inline SVG, no tile) beside the lettered list, and the roads */
+.stlive__nearby { display: grid; gap: var(--s-3); grid-template-columns: minmax(0, 1fr); }
+@media (min-width: 48rem) { .stlive__nearby { grid-template-columns: 15rem minmax(0, 1fr); align-items: start; } }
+.stmap { width: 100%; max-width: 15rem; height: auto; background: var(--map-land); border-radius: var(--s-1); }
+.stmap__ring { fill: none; stroke: var(--line); stroke-width: 1.5; stroke-dasharray: 4 3; }
+.stmap__scale { fill: var(--fg-muted); font-size: 11px; }
+.stmap__station { fill: var(--fg); }
+.stmap__stop circle { fill: var(--accent); stroke: var(--bg); stroke-width: 2; }
+.stmap__stop text { fill: var(--on-accent); font-size: 12px; font-weight: 700; }
+.stmap__stop:focus-visible circle, .stmap__stop:hover circle { stroke: var(--fg); }
+/* The container of the nearby stops' boards (#1190). The card holding them is `.stlive__card`, which is deliberately no
+   container, for the main board's sake, and that board scrolls in its own box. These have none: with no container their
+   queries never matched, they stayed five-column tables, and their least width (345-361 px in /ru, /uk, /pl, /pt, /el) pushed
+   the page 4-20 px sideways at 375 px and 3-5 px at 390 px. A stop's own page has the same table in no card at all, so
+   `.stlive--stop` is that one's container. */
+.stlive__stops { list-style: none; padding: 0; margin: 0; display: grid; gap: var(--s-3); container-type: inline-size; }
+.stlive--stop { container-type: inline-size; }
+.stlive__stop { scroll-margin-top: var(--s-4); }
+.stlive__letter { display: inline-grid; place-items: center; min-width: 1.5em; height: 1.5em; border-radius: 50%; background: var(--accent); color: var(--on-accent); font-weight: var(--weight-strong); font-size: var(--fs-0); }
+.stlive__stopmeta, .stlive__roads .stlive__stand { color: var(--fg-muted); font-size: var(--fs-0); margin: 0 0 var(--s-1); }
+.stlive__all, .stlive__back { margin: var(--s-1) 0 0; }
+.stlive__all a, .stlive__back a { display: inline-block; min-height: var(--target); line-height: var(--target); }
+.stlive__roads { margin-top: var(--s-3); }
+.stlive__ring { font-size: var(--fs-0); margin: var(--s-2) 0 var(--s-1); }
+/* #988: the rail Ampel's line lamps under the station's status line, each a link that filters the board */
+.railampel { display: flex; flex-wrap: wrap; gap: var(--s-1) var(--s-2); list-style: none; margin: 0; padding: 0; font-size: var(--fs-0); }
+.railampel__line a { display: inline-flex; align-items: center; gap: var(--s-1); }
+@media (pointer: coarse) { .railampel__line a { min-height: var(--target); } }
+.railampel__why { color: inherit; }
+/* #1182: the stations near the visitor, between the search and the stations most delayed now */
+.station-near-slot { margin: var(--s-3) 0; }
+.station-near { display: flex; flex-direction: column; gap: var(--s-2); }
+.station-near .stpage__list a { display: inline-block; min-height: var(--target); line-height: var(--target); }

@@ -1,0 +1,10 @@
+---
+/** `/de/developers` and `/en/developers` (#379); any other first segment is the 404 (A4). */
+import DevelopersPage from "../../layouts/DevelopersPage.astro";
+import { isLang } from "../../i18n/index.js";
+
+const lang = Astro.params["lang"] ?? "";
+if (!isLang(lang)) return Astro.rewrite("/404");
+---
+
+<DevelopersPage lang={lang} />

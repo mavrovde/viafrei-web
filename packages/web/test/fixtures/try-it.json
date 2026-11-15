@@ -1,0 +1,238 @@
+{
+ "_recorded": "find_charging_station {place: Leipzig, min_power_kw: 150, language: de, limit: 3} asked of mcp.viafrei.de on 2026-11-04 at 03:16 Europe/Berlin (#992); the recording client returned the result's structuredContent, so content holds no text block. e2e/asks-stub.ts resets askedAt to the stub's age.",
+ "call": {
+  "key": "charging",
+  "tool": "find_charging_station",
+  "args": {
+   "place": "Leipzig",
+   "min_power_kw": 150,
+   "language": "de",
+   "limit": 3
+  },
+  "askedAt": "2026-11-04T02:16:10.422Z",
+  "result": {
+   "content": [],
+   "structuredContent": {
+    "place": "Leipzig",
+    "radiusKm": 10,
+    "sitesInRadius": 656,
+    "sitesExamined": 12,
+    "onlyAvailable": false,
+    "droppedNoStatus": 0,
+    "droppedNotFree": 0,
+    "droppedStale": 0,
+    "registerReleasedOn": "2026-09-01",
+    "registerCaveat": "Stand des Ladesäulenregisters: 01.09.2026 — von den Betreibern an die Bundesnetzagentur gemeldete Ladepunkte, ohne Live-Belegung und ohne Gewähr für Richtigkeit und Vollständigkeit.",
+    "sites": [
+     {
+      "siteId": "JOLT Energy-2aa5a762-4e08-496b-b985-1954665ca487",
+      "siteIds": [
+       "JOLT Energy-2aa5a762-4e08-496b-b985-1954665ca487"
+      ],
+      "sourceFeed": "mobilithek_afir_ecomovement",
+      "source": "mobilithek_afir_ecomovement",
+      "name": "JOLT LEJ00440",
+      "operator": "JOLT Energy",
+      "pageUrl": "https://viafrei.de/de/charging/jolt-energy-leipzig-leplaystrasse-9-lipuahmbod",
+      "address": {
+       "street": "Leplaystraße 9",
+       "houseNumber": null,
+       "postcode": "04103",
+       "city": "Leipzig"
+      },
+      "lat": 51.334453,
+      "lon": 12.378556,
+      "distanceKm": 0.4,
+      "connectors": [
+       "CCS2"
+      ],
+      "maxPowerKw": 300,
+      "powerClass": "hpc",
+      "pricePerKwh": 0.785,
+      "currency": "EUR",
+      "priceIncludesVat": true,
+      "availability": {
+       "available": 0,
+       "occupied": 0,
+       "outOfOrder": 0,
+       "unknown": 1,
+       "stale": 1,
+       "total": 2
+      },
+      "statusAsOf": null,
+      "staleStatusAsOf": "2026-10-31T17:08:10.000Z",
+      "staleStatusBacklogReceivedAt": null,
+      "points": [
+       {
+        "pointKey": "DE*JEG*ELEJ004401",
+        "siteId": "JOLT Energy-2aa5a762-4e08-496b-b985-1954665ca487",
+        "evseId": "DE*JEG*ELEJ004401",
+        "connectors": [
+         "CCS2"
+        ],
+        "maxPowerKw": 300,
+        "state": "unknown",
+        "statusFeed": null,
+        "observedAt": null,
+        "statusAsOf": null,
+        "statedAt": null
+       },
+       {
+        "pointKey": "DE*JEG*ELEJ004402",
+        "siteId": "JOLT Energy-2aa5a762-4e08-496b-b985-1954665ca487",
+        "evseId": "DE*JEG*ELEJ004402",
+        "connectors": [
+         "CCS2"
+        ],
+        "maxPowerKw": 300,
+        "state": "stale",
+        "statusFeed": "mobilithek_afir_ecomovement_dyn",
+        "observedAt": "2026-10-31T17:09:05.961+00:00",
+        "statusAsOf": "2026-10-31T17:08:10.000Z",
+        "statedAt": "2026-10-31T17:08:10.000Z"
+       }
+      ]
+     },
+     {
+      "siteId": "51.338641,12.362287:38ac3c12ea29",
+      "siteIds": [
+       "51.338641,12.362287:38ac3c12ea29"
+      ],
+      "sourceFeed": "bnetza_lsr",
+      "source": "bnetza_lsr",
+      "name": null,
+      "operator": "Stadtwerke Leipzig GmbH",
+      "pageUrl": "https://viafrei.de/de/charging/stadtwerke-leipzig-gmbh-leipzig-friedrich-ebert-str-ttbtfdkzkp",
+      "address": {
+       "street": "Friedrich-Ebert-Str.",
+       "houseNumber": "51",
+       "postcode": "04109",
+       "city": "Leipzig"
+      },
+      "lat": 51.338641,
+      "lon": 12.362287,
+      "distanceKm": 1.1,
+      "connectors": [
+       "CCS2"
+      ],
+      "maxPowerKw": 170,
+      "powerClass": "hpc",
+      "availability": {
+       "available": 0,
+       "occupied": 0,
+       "outOfOrder": 0,
+       "unknown": 2,
+       "stale": 0,
+       "total": 2
+      },
+      "statusAsOf": null,
+      "staleStatusAsOf": null,
+      "staleStatusBacklogReceivedAt": null,
+      "points": [
+       {
+        "pointKey": "1120570:1",
+        "siteId": "51.338641,12.362287:38ac3c12ea29",
+        "evseId": "DE*961*E0341*1317",
+        "connectors": [
+         "CCS2"
+        ],
+        "maxPowerKw": 170,
+        "state": "unknown",
+        "statusFeed": null,
+        "observedAt": null,
+        "statusAsOf": null,
+        "statedAt": null
+       },
+       {
+        "pointKey": "1120570:2",
+        "siteId": "51.338641,12.362287:38ac3c12ea29",
+        "evseId": "DE*961*E0341*1317*2",
+        "connectors": [
+         "CCS2"
+        ],
+        "maxPowerKw": 170,
+        "state": "unknown",
+        "statusFeed": null,
+        "observedAt": null,
+        "statusAsOf": null,
+        "statedAt": null
+       }
+      ]
+     },
+     {
+      "siteId": "JOLT Energy-885889db-2fcb-48db-855b-d7421cdcbdae",
+      "siteIds": [
+       "JOLT Energy-885889db-2fcb-48db-855b-d7421cdcbdae"
+      ],
+      "sourceFeed": "mobilithek_afir_ecomovement",
+      "source": "mobilithek_afir_ecomovement",
+      "name": "LEJ00380",
+      "operator": "JOLT Energy",
+      "pageUrl": "https://viafrei.de/de/charging/jolt-energy-leipzig-gerichtsweg-5-tkpurblalo",
+      "address": {
+       "street": "Gerichtsweg 5",
+       "houseNumber": null,
+       "postcode": "04103",
+       "city": "Leipzig"
+      },
+      "lat": 51.337574,
+      "lon": 12.394107,
+      "distanceKm": 1.1,
+      "connectors": [
+       "CCS2"
+      ],
+      "maxPowerKw": 300,
+      "powerClass": "hpc",
+      "pricePerKwh": 0.785,
+      "currency": "EUR",
+      "priceIncludesVat": true,
+      "availability": {
+       "available": 0,
+       "occupied": 0,
+       "outOfOrder": 0,
+       "unknown": 1,
+       "stale": 1,
+       "total": 2
+      },
+      "statusAsOf": null,
+      "staleStatusAsOf": "2026-11-01T13:35:59.000Z",
+      "staleStatusBacklogReceivedAt": null,
+      "points": [
+       {
+        "pointKey": "DE*JEG*ELEJ003801",
+        "siteId": "JOLT Energy-885889db-2fcb-48db-855b-d7421cdcbdae",
+        "evseId": "DE*JEG*ELEJ003801",
+        "connectors": [
+         "CCS2"
+        ],
+        "maxPowerKw": 300,
+        "state": "stale",
+        "statusFeed": "mobilithek_afir_ecomovement_dyn",
+        "observedAt": "2026-11-01T13:36:48.328+00:00",
+        "statusAsOf": "2026-11-01T13:35:59.000Z",
+        "statedAt": "2026-11-01T13:35:59.000Z"
+       },
+       {
+        "pointKey": "DE*JEG*ELEJ003802",
+        "siteId": "JOLT Energy-885889db-2fcb-48db-855b-d7421cdcbdae",
+        "evseId": "DE*JEG*ELEJ003802",
+        "connectors": [
+         "CCS2"
+        ],
+        "maxPowerKw": 300,
+        "state": "unknown",
+        "statusFeed": null,
+        "observedAt": null,
+        "statusAsOf": null,
+        "statedAt": null
+       }
+      ]
+     }
+    ],
+    "asOf": "2026-11-04T02:16:10.422Z",
+    "attribution": "Ladepunkte: Eco-Movement via Mobilithek, CC BY 4.0, bearbeitet (https://mobilithek.info/offers/954064102947180544; Lizenz: CC BY 4.0, https://creativecommons.org/licenses/by/4.0/) · Ladepunkt-Verfügbarkeit: Eco-Movement via Mobilithek, CC BY 4.0, bearbeitet (https://mobilithek.info/offers/955166494396665856; Lizenz: CC BY 4.0, https://creativecommons.org/licenses/by/4.0/) · Ladesäulenregister: Bundesnetzagentur.de, CC BY 4.0, bearbeitet (https://www.bundesnetzagentur.de/DE/Fachthemen/ElektrizitaetundGas/E-Mobilitaet/Ladesaeulenkarte/start.htm; Lizenz: CC BY 4.0, https://creativecommons.org/licenses/by/4.0/) · Verwaltungseinheiten: © BKG (2026) dl-de/by-2-0, Datenquellen: https://sgx.geodatenzentrum.de/web_public/gdz/datenquellen/datenquellen_gn250.pdf (Daten verändert) (https://gdz.bkg.bund.de/index.php/default/open-data/geographische-namen-1-250-000-gn250.html; Lizenz: dl-de/by-2-0, https://www.govdata.de/dl-de/by-2-0)",
+    "license": "CC BY 4.0, dl-de/by-2-0"
+   }
+  }
+ }
+}

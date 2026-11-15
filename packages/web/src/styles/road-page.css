@@ -1,0 +1,16 @@
+/*
+ * #1027: the road pages' own rules. Carried INLINE on those pages only (`layouts/RoadPage.astro`, under the request's
+ * nonce like every <style>), because site.css is the one stylesheet of every page and the home's gzip budget pays for
+ * each byte of it. Every rule is scoped under `.roadpage`.
+ */
+.roadpage { display: grid; gap: var(--s-2); }
+.roadpage p { margin: 0; }
+.roadpage__counts, .roadpage__none { font-weight: var(--weight-strong); }
+.roadpage__stand, .roadpage__when, .roadpage__note { color: var(--fg-muted); font-size: var(--fs-0); font-weight: normal; }
+.roadpage__group { font-size: var(--fs-1); margin: var(--s-3) 0 0; }
+.roadpage__list, .roadpage__places { list-style: none; padding: 0; margin: 0; display: grid; gap: var(--s-2); }
+.roadpage__places { display: flex; flex-wrap: wrap; gap: var(--s-1) var(--s-3); }
+.roadpage__item { display: grid; gap: var(--s-1); padding: var(--s-2) 0; border-bottom: 1px solid var(--line); scroll-margin-top: var(--s-4); }
+.roadpage__item--ended { color: var(--fg-muted); }
+.roadpage__text { overflow-wrap: anywhere; }
+.roadpage__where a, .roadpage__places a { display: inline-block; min-height: var(--target); line-height: var(--target); }

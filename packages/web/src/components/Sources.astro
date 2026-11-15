@@ -1,0 +1,80 @@
+---
+/**
+ * Block "sources": the credit list here is a DUPLICATE of the lines on the
+ * tiles (#377 D4 rule 9) — never the only carrier of any line, and it states
+ * no licence for the page as a whole. BECAUSE it is a duplicate it may fold on
+ * a phone (`.fold`, forced open from 601 px up); the lines on the tiles stay
+ * in the default view at every width (rule 3). Then what we do not answer,
+ * and privacy in three sentences.
+ *
+ * A line whose licence owes a link to its text (CC BY 4.0 § 3(a)(1)(C) and
+ * its siblings, owner 2026-10-05) carries one beside it: the address from the
+ * one map in `@viafrei/ingest` (`register.json`'s `licence`), the two words in
+ * the page language — the same markup the ConnectPage credits and the digest's
+ * tile lines use.
+ */
+import register from "../generated/register.json" with { type: "json" };
+import { t } from "../i18n/index.js";
+import { shownCredits } from "../site/attribution-year.js";
+import { EMBEDDED_TILES, type PageTiles } from "../lib/tiles.js";
+import type { Lang } from "../site/pages.js";
+
+interface Props {
+  lang: Lang;
+  tiles: PageTiles;
+}
+const { lang, tiles } = Astro.props;
+// #717 C-3: with Clarity on, the second of the three privacy sentences names it beside Google Analytics.
+const clarityOn = Astro.locals.googleTag !== undefined && Astro.locals.clarityId !== undefined;
+// Only the sources whose data is ON this page (#378 review): a register line
+// is listed when a tile the digest actually answered carries it, so the list
+// is a duplicate of the tiles' lines and never a claim about data not shown.
+const answered = [...EMBEDDED_TILES.map((id) => tiles[id]), ...tiles.facts, ...Object.values(tiles.pending)];
+const shown = answered.map((r) => (r !== null && r.fetched === "ok" ? r.html : "")).join("");
+// A line naming the year of retrieval is matched and printed DATED, as the tiles print it (#804, 2.2.6).
+const lines = shownCredits(Object.values(register.sources), shown, new Date());
+---
+
+<section class="block" id="sources" aria-labelledby="sources-heading">
+  <div class="wrap">
+    <div class="block__head">
+      <h2 id="sources-heading">{t(lang, "sources.heading")}</h2>
+      <p class="lead mobile-hide">{t(lang, "sources.lead")}</p>
+    </div>
+    <div class="sources__grid">
+      <div>
+        <h3>{t(lang, "sources.creditsLabel")}</h3>
+        {lines.length > 0 && <details class="fold">
+          <summary class="fold__summary btn btn--sm">{t(lang, "sources.creditsShow", { n: lines.length })}</summary>
+          <ul class="credits">
+            {
+              lines.map((l) => (
+                <li class="credit" lang="de">
+                  <a href={l.url} rel="license noopener noreferrer">{l.attribution}</a>{l.licence !== null && <> · <a class="credit__licence" href={l.licence.url} rel="license noopener noreferrer" lang={lang}>{t(lang, "sources.licenceText")}</a></>}
+                </li>
+              ))
+            }
+          </ul>
+        </details>}
+      </div>
+      <details class="fold">
+        <summary class="fold__summary btn btn--sm">{t(lang, "sources.notAnswered.heading")}</summary>
+        <h3>{t(lang, "sources.notAnswered.heading")}</h3>
+        <ul class="plainlist">
+          <li>{t(lang, "sources.notAnswered.routing")}</li>
+          <li>{t(lang, "sources.notAnswered.legal")}</li>
+          <li>{t(lang, "sources.notAnswered.fuelFeed")}</li>
+        </ul>
+      </details>
+      <details class="fold">
+        <summary class="fold__summary btn btn--sm">{t(lang, "sources.privacy.heading")}</summary>
+        <h3>{t(lang, "sources.privacy.heading")}</h3>
+        <ul class="plainlist">
+          <li>{t(lang, "sources.privacy.s1")}</li>
+          <li>{t(lang, clarityOn ? "sources.privacy.s2Clarity" : "sources.privacy.s2")}</li>
+          <li>{t(lang, "sources.privacy.s3")}</li>
+        </ul>
+      </details>
+    </div>
+  </div>
+</section>

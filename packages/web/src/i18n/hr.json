@@ -1,0 +1,1274 @@
+{
+  "meta": {
+    "tagline": "Njemačka platforma za mobilnost u stvarnom vremenu za AI",
+    "pitch": "ViaFrei daje AI asistentima znanje o Njemačkoj u stvarnom vremenu. Vlakovi i autobusi, promet i radovi na cesti, gorivo, punjenje, parkiranje i vrijeme. Jedan MCP. Bez API ključa. Bez registracije.",
+    "description": "Gužve, zatvaranja, radovi na cesti, vlakovi, parking, punjenje i gorivo u Njemačkoj – uživo iz otvorenih podataka, kao odgovor AI asistenta, uz izvor.",
+    "siteName": "ViaFrei"
+  },
+  "a11y": {
+    "skip": "Preskoči na sadržaj",
+    "mainNav": "Glavna navigacija",
+    "langNav": "Odaberite jezik",
+    "currentLang": "trenutačni jezik",
+    "sample": "Primjeri vrijednosti, nisu podaci uživo",
+    "crumbs": "Nalazite se ovdje"
+  },
+  "nav": {
+    "brand": "ViaFrei",
+    "claim": "Prometni podaci, izgovoreni",
+    "tools": "Za programere",
+    "cta": "Poveži sa svojom UI",
+    "day": "Vaš dan",
+    "start": "Početak",
+    "ctaShort": "Poveži UI",
+    "ctaLabel": "Povežite ViaFrei sa svojim UI asistentom ({clients})"
+  },
+  "beta": {
+    "label": "Beta",
+    "short": "ViaFrei je u beta fazi: odgovori i pokrivenost mogu se mijenjati, a AI može pogriješiti. Važne podatke provjerite kod navedenog izvora.",
+    "more": "Što to znači",
+    "sign": "Prometni znak upozorenja: opasnost na cesti",
+    "line": "Provjerite kod izvora"
+  },
+  "hero": {
+    "lead": "Kao dobro obaviješten prijatelj: vozi li moj vlak? Je li autocesta prohodna? Ima li slobodna punionica? ViaFrei vašem asistentu daje današnje brojke, svaku s izvorom.",
+    "primary": "Povežite svoju UI za minutu",
+    "secondary": "Vaš dan s ViaFrei",
+    "clients": "Za:",
+    "phase": "Rana faza: odgovori su informacija, a ne pravni savjet.",
+    "trust": {
+      "free": "Besplatno",
+      "account": "Bez računa kod nas",
+      "app": "Bez dodatne aplikacije",
+      "sources": "Svaka brojka s izvorom"
+    },
+    "connected": "Vaš AI asistent koristi ove podatke uživo samo kada je ViaFrei povezan s njim – bez veze odgovara iz podataka na kojima je treniran."
+  },
+  "sign": {
+    "label": "Primjer odgovora, skraćeno",
+    "question": "Je li A8 prema Münchenu prohodna?",
+    "answerBefore": "Dva radilišta između Stuttgarta i Ulma, bez zatvaranja — cesta je",
+    "answerHighlight": "prohodna",
+    "answerAfter": ".",
+    "meta": "Primjer: ovako vaš asistent odgovara uz ViaFrei — skraćeno, s primjerima vrijednosti.",
+    "badge": "{road} – stranica autoceste"
+  },
+  "proof": {
+    "tiles": {
+      "reports": {
+        "title": "Obavijesti na autocestama"
+      },
+      "charging": {
+        "title": "Priključci za punjenje"
+      },
+      "lorry": {
+        "title": "Parkirališta za kamione"
+      },
+      "lifts": {
+        "title": "Dizala i pokretne stepenice"
+      }
+    }
+  },
+  "tile": {
+    "error": "trenutačno nečitljivo",
+    "errorNote": "Ovaj izvor trenutačno ne odgovara. Radije ne pokazujemo ništa nego staru brojku kao novu.",
+    "loading": "učitava se …",
+    "loadingNote": "Ova brojka stiže. Pojavit će se čim izvor odgovori."
+  },
+  "tools": {
+    "heading": "Alati po temama",
+    "lead": "Vaš asistent sam bira pravi alat. Popis dolazi s poslužitelja, a ne iz brošure.",
+    "showAll": "Prikaži sve alate ({n})",
+    "groups": {
+      "roads": "Autoceste i ceste",
+      "rail": "Željeznica",
+      "transit": "Javni prijevoz",
+      "energy": "Punjenje i gorivo",
+      "places": "Mjesta i adrese",
+      "rules": "Propisi i vrijeme"
+    },
+    "count": "{n, plural, one {# alat} few {# alata} other {# alata}}"
+  },
+  "connect": {
+    "heading": "Povezano za 60 sekundi",
+    "lead": "Jedna krajnja točka, bez računa, bez ključa. Odaberite svoj klijent i slijedite korake.",
+    "endpointLabel": "MCP krajnja točka (Streamable HTTP)",
+    "legacyLabel": "Za starije klijente (HTTP + SSE)",
+    "clients": {
+      "claude": "Claude (desktop i claude.ai)",
+      "chatgpt": "ChatGPT",
+      "other": "Ostali MCP klijenti"
+    },
+    "draft": "Nacrt — ovi koraci još nisu provjereni u klijentu.",
+    "steps": {
+      "claude": {
+        "s1": "Settings → Connectors → „Add custom connector“.",
+        "s2": "Zalijepite gornju krajnju točku i spremite.",
+        "s3": "Pitajte: „Je li A8 prema Münchenu prohodna?“"
+      },
+      "chatgpt": {
+        "s1": "Settings → Connectors → „Create“ (developer mode).",
+        "s2": "Unesite gornju krajnju točku kao MCP poslužitelj.",
+        "s3": "Odaberite konektor u chatu i pitajte."
+      },
+      "other": {
+        "s1": "Streamable HTTP na gornjoj krajnjoj točki; stariji klijenti koriste SSE putanju.",
+        "s2": "Bez autentikacije tijekom faze izgradnje.",
+        "s3": "tools/list vraća katalog; svaki odgovor nosi svoj izvor."
+      }
+    },
+    "cta": "Na vodič za programere",
+    "showClients": "Prikaži korake za svoj klijent"
+  },
+  "sources": {
+    "heading": "Izvori i povjerenje",
+    "lead": "Svaka brojka nosi izvor koji je dopušta — doslovno i neprevedeno, na pločici koja je prikazuje.",
+    "creditsLabel": "Izvori brojki na ovoj stranici",
+    "creditsShow": "Prikaži sve retke izvora ({n})",
+    "licenceText": "tekst licence",
+    "notAnswered": {
+      "heading": "Na što ne odgovaramo",
+      "routing": "Bez planiranja rute — kažemo što se događa na cesti, a ne kojom biste trebali voziti.",
+      "legal": "Bez pravnog savjeta — odgovori o propisima navode izvor i datum provjere i služe kao informacija.",
+      "fuelFeed": "Bez podataka o cijenama za daljnju upotrebu — cijene goriva su informacija za potrošače, a ne API."
+    },
+    "privacy": {
+      "heading": "Privatnost u tri rečenice",
+      "s1": "Prije vašeg pristanka ova stranica ne učitava ni tuđi font, ni skriptu, ni sliku.",
+      "s2": "Posjete brojimo bez kolačića, samo kao dnevne zbrojeve na vlastitom poslužitelju; Google Analytics radi samo uz vaš pristanak.",
+      "s2Clarity": "Posjete brojimo bez kolačića, samo kao dnevne zbrojeve na vlastitom poslužitelju; Google Analytics i Microsoft Clarity rade samo uz vaš pristanak.",
+      "s3": "Vaš asistent razgovara s našim poslužiteljem — ne čuvamo ni račune ni profile."
+    }
+  },
+  "audience": {
+    "heading": "Za koga je",
+    "travellers": {
+      "title": "Za putnike",
+      "text": "Pitajte asistenta prije polaska, na peronu ili kod punionice — i dobijte odgovor s izvorom.",
+      "cta": "Kako se povezati"
+    },
+    "developers": {
+      "title": "Za programere",
+      "text": "Jedan MCP poslužitelj preko Streamable HTTP, javni katalog, stdio most na npm. Bez ključa tijekom faze izgradnje.",
+      "cta": "Na dokumentaciju"
+    },
+    "business": {
+      "title": "Za tvrtke",
+      "text": "Povijest svake obavijesti u stvarnom vremenu, pitanja o voznom parku i lokacijama, jasan licencni položaj. Javite nam se prije nego što počnete graditi.",
+      "cta": "Stupite u kontakt"
+    },
+    "show": "Za koga je ViaFrei"
+  },
+  "footer": {
+    "imprint": "Impresum",
+    "privacy": "Privatnost",
+    "privacySettings": "Postavke privatnosti",
+    "terms": "Uvjeti korištenja",
+    "languages": "Jezici",
+    "refresh": "Ova se stranica ponovno učitava svakih 20 minuta; svaka pločica pokazuje koliko je stara njezina brojka.",
+    "openData": "Izrađeno iz otvorenih podataka. Svaka brojka navodi svoj izvor."
+  },
+  "consent": {
+    "title": "Smijemo li koristiti Google Analytics?",
+    "titleClarity": "Smijemo li koristiti Google Analytics i Microsoft Clarity?",
+    "body": "Google Analytics učitava se tek nakon vašeg pristanka. Odbijanje je jednako jedan klik i bit će zapamćeno. Naše vlastito brojanje posjetitelja bez kolačića radi neovisno o tome (vidi Privatnost).",
+    "bodyClarity": "Google Analytics i Microsoft Clarity učitavaju se tek nakon vašeg pristanka. Clarity bilježi klikove, pomicanje i pokrete miša na ovoj stranici, pri čemu svi tekstovi i unosi ostaju skriveni. Microsoft te podatke koristi i za vlastite svrhe, uključujući oglašavanje. Odbijanje je također samo jedan klik i bit će zapamćeno. Naše vlastito brojanje posjetitelja bez kolačića radi neovisno o tome (vidi Privatnost).",
+    "accept": "Slažem se",
+    "decline": "Odbij",
+    "more": "Privatnost",
+    "state": {
+      "none": "Još niste donijeli odluku.",
+      "denied": "Vaša trenutačna odluka: odbijeno {date}.",
+      "granted": "Vaša trenutačna odluka: pristanak {date}."
+    }
+  },
+  "notFound": {
+    "title": "Ova stranica ne postoji",
+    "text": "Adresa ne vodi nikamo. Početna stranica udaljena je jedan klik.",
+    "choiceTitle": "Više mjesta nosi ovo ime",
+    "choiceText": "Koje mislite?",
+    "back": "Na početnu stranicu",
+    "connect": "Povežite svog asistenta",
+    "developers": "Za programere",
+    "business": "Za tvrtke"
+  },
+  "now": {
+    "heading": "Cijela Njemačka",
+    "lead": "Svi podaci za cijelu zemlju na jednom mjestu, po temama – svaki s vremenom i izvorom.",
+    "stationTop": {
+      "head": "Kolodvori sada: otkazivanja, kašnjenja, obavijesti o smetnjama, dizala",
+      "all": "Svi kolodvori",
+      "search": "Traži kolodvor",
+      "go": "Traži"
+    }
+  },
+  "tiles": {
+    "punctuality": "Točnost, autobusi i vlakovi",
+    "lifts": "Dizala i pokretne stepenice",
+    "reports": "Najvažnije obavijesti",
+    "jams": "Zastoji u gradovima, sada",
+    "station": "Uživo na velikim kolodvorima",
+    "lorry": "Parkiranje kamiona i odmorišta",
+    "carparks": "Garaže i P+R u gradovima",
+    "charging": "Priključci za punjenje",
+    "fuel": "Cijene goriva, praćene"
+  },
+  "day": {
+    "heading": "Vaš dan s ViaFrei",
+    "lead": "Devet trenutaka u kojima jedno kratko pitanje štedi vrijeme — s današnjom brojkom koja pokazuje da odgovor vrijedi.",
+    "howTo": "Kako pitati svog asistenta",
+    "howToText": "Dodirnite i držite pitanje (ili ga označite), kopirajte, zalijepite u chat. Vaš asistent sam bira pravi alat.",
+    "more": "Još dva pitanja i jedno ograničenje",
+    "answer": {
+      "label": "ViaFrei je odgovorio",
+      "asOf": "Stanje: {asOf}"
+    },
+    "limitLabel": "Iskreno rečeno",
+    "cta": "Krenite",
+    "moments": {
+      "commute": {
+        "title": "Jutarnji put na posao",
+        "scene": "7:10, kava u ruci: vozi li javni prijevoz normalno — i vozi li moj vlak na vrijeme?",
+        "q1": "Voze li autobusi i vlakovi u Hamburgu trenutačno na vrijeme?",
+        "a1": "{share} % vožnji praćenih u posljednjih sat vremena kasnilo je više od 5 minuta — otprilike kao i sat prije ({before} %).",
+        "limit": "Točnost prikazujemo po regiji, a ne po liniji.",
+        "q2": "Kada polazi sljedeći vlak s glavnog kolodvora u Hannoveru i kasni li?",
+        "q3": "Je li neki vlak na ploči polazaka glavnog kolodvora u Kölnu otkazan u sljedećih sat vremena?",
+        "a2": "Sljedeći je {l1} za {d1} (po voznom redu {t1}, kolosijek {p1}), kasni +{delay} min, polazi oko {exp}; zatim {l2} za {d2} u {t2}, na vrijeme.",
+        "a3": "Nijedan nije otkazan: {n, plural, one {# polazak} few {# polaska} other {# polazaka}} do {last}; najviše kasni {l1} za {d1}, +{delay} min."
+      },
+      "bus": {
+        "title": "Autobusom i tramvajem",
+        "scene": "U gradu: gdje je najbliži kolodvor i vozi li prijevoz?",
+        "q1": "Koji je željeznički kolodvor najbliži kölnskoj katedrali?",
+        "q2": "Kada polazi sljedeći S-Bahn sa stanice Frankfurt Hauptwache?",
+        "a1": "{s1}, udaljen {km},{kmd} km; zatim {s2} i {s3}.",
+        "limit": "Vozni red svake autobusne i tramvajske stanice prikazat ćemo čim bude učitan — do tada kolodvore i stanje u vašoj regiji.",
+        "board": "Vozni red na vašoj stanici",
+        "a2": "Sljedeća je {l1} za {d1} u {t1} s kolosijeka {p1}, na vrijeme; {l2} za {d2} u {t2} kasni +{delay2} min, polazi oko {exp2}.",
+        "q3": "Polaze li vlakovi s glavnog kolodvora u Leipzigu trenutačno s kašnjenjem?",
+        "a3": "Da, dva: {l1} za {d1}, +{dl1} min, s kolosijeka {p1}, i {l2} za {d2}, +{dl2} min; ostali sljedeći polasci ({n}) su na vrijeme."
+      },
+      "station": {
+        "title": "Na kolodvoru",
+        "scene": "S dječjim kolicima, invalidskim kolicima ili prtljagom: radi li dizalo do perona?",
+        "q1": "Radi li dizalo na glavnom kolodvoru u Kölnu?",
+        "a1": "Kolodvor {station}: u pogonu je {working} od {total} prijavljenih dizala; jedno je izvan pogona, za jedno željeznica ne javlja stanje.",
+        "limit": "Dizala i pokretne stepenice na kolodvorima Deutsche Bahna; drugi operateri još ne.",
+        "q2": "Jesu li sva dizala na kolodvoru Erlangen u pogonu?",
+        "a2": "Da: jedino prijavljeno dizalo na kolodvoru {station}, do kolosijeka {platforms}, u pogonu je.",
+        "q3": "S kojeg kolosijeka polazi sljedeći ICE s glavnog kolodvora u Nürnbergu?",
+        "a3": "{train} za {dest} u {t} s kolosijeka {p}, na vrijeme."
+      },
+      "driving": {
+        "title": "Na cesti",
+        "scene": "Prije polaska: zastoji, zatvaranja, radovi na cesti — i gdje je gorivo trenutačno jeftino.",
+        "q1": "Je li A8 prema Münchenu trenutačno prohodna?",
+        "a1": "Ne posve: između {a} i {b} prema Münchenu policija javlja prometnu nesreću; zaustavna traka je blokirana.",
+        "a1more": "Na cijeloj A8 navedeno je i ovo — zatvaranja: {closures}, unosi o radovima na cesti: {works}.",
+        "limit": "Bez planiranja rute: kažemo što se događa na autocesti, a ne kojim putem biste trebali voziti.",
+        "q2": "Koji su radovi na cesti trenutačno na A7?",
+        "a2": "{count, plural, one {# radilište} few {# radilišta} other {# radilišta}} do {to}; primjerice između {a} i {b}: novi most, zatvorena jedna od tri trake, {speed} km/h, do {until}.",
+        "q3": "Za vikend vozim A2 — na koje radove na cesti trebam računati?",
+        "a3": "{count, plural, one {# radilište} few {# radilišta} other {# radilišta}} od {from} do {to}; primjerice na čvoru {a}: obnova kolničke konstrukcije, rampa je potpuno zatvorena, do {until}."
+      },
+      "jam": {
+        "title": "U zastoju",
+        "scene": "Zastoji na autocesti i oko gradova: gdje promet stoji, koliko vremena to košta — i hoće li noćas biti zatvaranja.",
+        "q1": "Koliko vremena trenutačno oduzima zastoj na A3 između Frankfurta i Würzburga?",
+        "a1": "Između {a} i {b} prema Frankfurtu oko +{delay} min, nakon prometne nesreće; na cijeloj A3 prijavljeni zastoji: {jams}.",
+        "a1more": "Na A3 navedeno je — zatvaranja: {closures}, unosi o radovima na cesti: {works}.",
+        "limit": "U gradovima vidimo gradske autoceste, a u Berlinu, Kölnu i Hannoveru i gradske prometne obavijesti — još ne stanje na svakoj ulici. Obavijesti za Hamburg i stanje prometa za Köln zatražene su od pružatelja.",
+        "q2": "Ima li trenutačno zastoja na kölnskom autocestovnom prstenu — A1, A3 ili A4?",
+        "q3": "Je li A7 danas zatvorena u Hamburgu?",
+        "a3": "Prijavljeno je zatvaranje između čvorova {a} i {b} (proširenje na osam traka, novi {tunnel}); na cijeloj A7 {n, plural, one {je # zatvaranje} few {su # zatvaranja} other {je # zatvaranja}}.",
+        "a2": "Da, na A4: između {a} i {b} prema Kölnu promet je usporen, oko +{delay} min; na upitanim autocestama prijavljeni zastoji: {n}."
+      },
+      "parking": {
+        "title": "Parkiranje",
+        "scene": "Ostavite auto na kolodvoru — ili kao vozač kamiona isplanirajte pauzu.",
+        "q1": "Gdje je garaža blizu glavnog kolodvora u Kölnu?",
+        "a1": "{p1}: posljednje javljeno slobodno {f1} od {t1} mjesta; {p2}: {f2} od {t2} — obje unutar 300 m.",
+        "limit": "Slobodna mjesta samo ondje gdje ih operater objavljuje — inače broj mjesta, a ne koliko su popunjena.",
+        "q2": "Gdje na A9 ima parkirališta za kamione?",
+        "a2": "Primjerice {p1} s mjestima za kamione: {n1}, {p2}: {n2} i {p3}: {n3}; slobodna mjesta ondje nitko ne objavljuje.",
+        "q3": "Gdje je park-and-ride blizu glavnog kolodvora u Essenu?",
+        "a3": "{p1}, udaljen {k1},{k1d} km, i {p2}, {k2},{k2d} km; popunjenost iz ovog izvora ViaFrei ne preuzima."
+      },
+      "charging": {
+        "title": "Punjenje",
+        "scene": "Električnim autom: gdje je najbliža punionica i je li neki priključak slobodan?",
+        "q1": "Gdje mogu brzo napuniti auto blizu Leipziga?",
+        "q2": "Koje brze punionice postoje kod Ingolstadta?",
+        "a1": "S najmanje 150 kW, na primjer: {site}, {address} — do {kw} kW.",
+        "a1more": "Operater ne objavljuje stanje uživo, pa ViaFrei kaže „nepoznato“, a ne „slobodno“.",
+        "limit": "Dostupnost za mreže koje je objavljuju; za sve ostale prikazujemo lokaciju, a ne stanje.",
+        "a2": "Najbliža je {op1}, {a1}, do {kw1} kW: slobodno {free1} od {total1} priključaka; tu je i {s2}, {a2}, do {kw2} kW, bez trenutačnog stanja.",
+        "q3": "Je li trenutačno nešto slobodno na Superchargeru u Hildenu?",
+        "a3": "{brand} je posljednje stanje javio {t} — prestaro da bi se reklo „slobodno“; lokacija {address}, do {kw} kW."
+      },
+      "places": {
+        "title": "Pronalaženje mjesta",
+        "scene": "Dovoljno je ime: koncertna dvorana, ljekarna, tvrtka — s adresom i koordinatom za sljedeće pitanje.",
+        "q1": "Moja navigacija pokazuje 50.1109, 8.6821 — koja je to adresa i gdje je najbliži priključak na autocestu?",
+        "a1": "{address}, udaljeno {m} m. Najbliži priključak na autocestu: {junction}, udaljen {km},{kmd} km.",
+        "limit": "Mjesta i adrese dolaze iz OpenStreetMapa; svaki odgovor navodi datum podataka. Što ondje nije ucrtano, ne možemo pronaći — radno vrijeme i ocjene nisu dio toga.",
+        "q2": "Koje ljekarne postoje u Fuldi — s adresama?",
+        "a2": "Primjerice {p1}, {a1}; {p2}, {a2}; {p3}, {a3} (podaci OpenStreetMapa od {osm}).",
+        "q3": "Koja je adresa Elbphilharmonie u Hamburgu?",
+        "a3": "{poi}: {address} (podaci OpenStreetMapa od {osm})."
+      },
+      "watch": {
+        "title": "Javi mi kad",
+        "scene": "Nema potrebe stalno provjeravati: ViaFrei prati umjesto vas i svaku promjenu drži u razgovoru — asistent je pokazuje čim pitate ili sam, ako podržava obavijesti.",
+        "q1": "Javi mi čim se ukine zatvaranje na A7.",
+        "limit": "Samo u ovom razgovoru, dok je otvoren — bez e-pošte, bez SMS-a. Do 10 praćenja po razgovoru, svako do 24 sata; cesta se prati kao cjelina, a ne jedna dionica.",
+        "a1": "Praćenje postavljeno: {road}, do {until}. ViaFrei se javlja u ovom chatu čim se ondje ukine zatvaranje; zauzeto praćenja: {used} od 10.",
+        "q2": "Javi mi kad u Kölnu četvrtina ili više vožnji autobusa i vlakova kasni.",
+        "a2": "Praćenje postavljeno: regija {ags} ({city}), javlja se od {pct} % vožnji s kašnjenjem, do {until} — samo u ovom chatu.",
+        "q3": "Upozori me kad za Köln stupi na snagu upozorenje na nevrijeme Njemačke meteorološke službe.",
+        "a3": "Praćenje postavljeno: područje upozorenja DWD {cell} ({city}), do {until} — ViaFrei se javlja ovdje čim se stanje promijeni."
+      }
+    },
+    "fuelAsks": {
+      "heading": "Pitanje koje na benzinskoj postaji može uštedjeti novac",
+      "whyLabel": "Zašto pitati",
+      "goerlitz": {
+        "q": "Gdje je dizel u Görlitzu trenutačno najjeftiniji?",
+        "why": "Cijene se mijenjaju nekoliko puta dnevno i razlikuju se čak i među nekoliko postaja u istom gradu: ViaFrei navodi najjeftiniju s cijenom i vremenom kad ju je postaja javila.",
+        "a": "Nove cijene još nema — zadnja najniža: {euro},{cent} €/l kod {station}, {address}, javljeno {reported}; ViaFrei upravo traži novu."
+      },
+      "muenchen": {
+        "q": "Gdje je benzin E10 u Münchenu trenutačno najjeftiniji?",
+        "why": "Cijena može biti jutarnja: za München je ViaFrei tog poslijepodneva imao samo jutarnje cijene, naveo svaku s vremenom i zatražio nove.",
+        "a": "Nove cijene još nema — zadnja najniža: {euro},{cent} €/l kod {station}, {address}, javljeno {reported}; ViaFrei upravo traži novu."
+      },
+      "leipzig": {
+        "q": "Gdje je benzin E5 u Leipzigu trenutačno najjeftiniji?",
+        "why": "Cijena može biti stara satima: ViaFrei za svaku cijenu kaže kad ju je postaja javila — tog su poslijepodneva najjeftinije u Leipzigu još bile od prijepodneva.",
+        "a": "Nove cijene još nema — zadnja najniža: {euro},{cent} €/l kod {station}, {address}, javljeno {reported}."
+      },
+      "nuernberg": {
+        "q": "Gdje je dizel u Nürnbergu trenutačno najjeftiniji?",
+        "why": "Najbliža postaja nije uvijek najjeftinija: ViaFrei uz svaku cijenu navodi udaljenost.",
+        "a": "{euro},{cent} €/l na postaji {station}, {address} — javljeno u {reported}."
+      }
+    },
+    "fuelAll": "Do tri benzinske postaje po saveznoj zemlji, s adresom i cijenom",
+    "allExamples": "Svi primjeri pitanja s odgovorima"
+  },
+  "start": {
+    "heading": "Spremno za minutu",
+    "lead": "ViaFrei živi u asistentu koji već imate. Tri koraka, jednom:",
+    "s1": "U Claudeu ili ChatGPT-u: postavke → „Connectors“.",
+    "s2": "Dodajte ViaFrei s adresom ispod.",
+    "s3": "Pitajte: „Je li A8 prema Münchenu trenutačno prohodna?“",
+    "draft": "Nacrt — ovi koraci još nisu provjereni u svakom asistentu."
+  },
+  "legal": {
+    "bindingNote": "Ova je stranica pravna obavijest prema njemačkom pravu. Jedina obvezujuća verzija je njemački tekst u nastavku."
+  },
+  "connectPage": {
+    "moreExamples": "Više primjera",
+    "title": "Povežite ViaFrei sa svojim asistentom",
+    "lead": "Jedna adresa, bez računa, bez ključa. Dodajte ViaFrei jednom kao konektor – a zatim samo pitajte.",
+    "askHeading": "Kako pitati",
+    "askLead": "Pet pitanja, onako kako ih vaš asistent danas odgovara:",
+    "asks": {
+      "train": "Kada polazi sljedeći vlak s glavnog kolodvora u Kölnu?",
+      "parking": "Gdje je garaža u središtu Kölna?",
+      "charging": "Gdje u Leipzigu mogu napuniti svoj električni auto?",
+      "road": "Je li A3 prema Frankfurtu trenutačno prohodna?",
+      "weather": "Postoji li trenutačno upozorenje na nevrijeme za Dresden?"
+    },
+    "live": {
+      "heading": "Odgovori, onakvi kakvi su stigli",
+      "lead": "Skraćeno, s vremenom podataka i njihovim izvorima. Brojke su snimka tog trenutka, a ne prikaz uživo.",
+      "asOf": "Stanje: {asOf}",
+      "fuelExample": "Primjer odgovora od {asOf} — cijene su danas drukčije",
+      "stadtbahn": {
+        "title": "Dizala i pokretne stepenice gradske željeznice",
+        "q": "Što je trenutačno izvan pogona na stanici gradske željeznice {stop} u Kölnu?",
+        "a": "{out} od {total} prijavljenih uređaja: pokretne stepenice {e1} i {e2} od {since}, {e3} od {since3} te {e4} od {since4}; oba dizala rade. {publisher} daje podatke bez ikakvog jamstva.",
+        "note": "Za stanice kölnske gradske željeznice, iz objavljenog popisa kvarova – s vremenom od kada je uređaj prijavljen."
+      },
+      "bikes": {
+        "title": "Bicikli za najam na kolodvoru, uživo",
+        "q": "Gdje blizu stanice {station} mogu naći slobodan bicikl za najam?",
+        "a": "Stanica {dock} operatera {operator}: slobodnih bicikala: {free} – i još stanica u krugu od {radius} km: {docks}, svaka sa svojim stanjem.",
+        "note": "Slobodni bicikli dolaze uživo iz otvorenih podataka sustava za najam; ViaFrei navodi samo ono što stanica upravo javlja."
+      },
+      "lift": {
+        "title": "Dizala na kolodvoru",
+        "q": "Koja su dizala na kolodvoru {station} trenutačno izvan pogona?",
+        "a": "Jedno je prijavljeno kao izvan pogona, dizalo do kolosijeka {platforms}: u pogonu je {working} od {total} dizala. Drugo dizalo do kolosijeka {platforms} nije nadzirano – stanje mu je nepoznato.",
+        "note": "Za kolodvore Deutsche Bahna, čita se svakih 20 minuta. Što posljednja obavijest ne spominje, to je „nepoznato“ – nikad „u pogonu“."
+      },
+      "alert": {
+        "title": "Obavijesti o smetnjama za autobuse i vlakove",
+        "q": "Postoje li trenutačno obavijesti o smetnjama za autobuse i vlakove u Donjoj Saskoj?",
+        "a": "Vrijedi {count, plural, one {# obavijest} few {# obavijesti} other {# obavijesti}}, među njima: linije {lines} voze po voznom redu zbog radova jer je {road} zatvorena između {a} i {b} – od {from} do {to}.",
+        "note": "Obavijesti prometnih udruženja preko DELFI-ja, samo dok vrijede. Obavijest bez stanice ViaFrei svrstava u saveznu zemlju prema njezinoj prometnoj mreži i kaže da se može odnositi i na susjednu saveznu zemlju."
+      },
+      "enbw": {
+        "title": "Brza punionica s popunjenošću uživo",
+        "q": "Je li na punionici {brand}, {address}, trenutačno slobodan priključak?",
+        "a": "Do {kw} kW, {euro},{cent} €/kWh – ali ni za jedno od {n} mjesta punjenja nema stanja, pa ViaFrei ne kaže „slobodno“.",
+        "note": "Lokacije i popunjenost operater objavljuje sam; vrijeme stanja je vrijeme njegove posljednje obavijesti."
+      },
+      "ecomove": {
+        "title": "Popunjenost uživo preko skupljača podataka",
+        "q": "Je li na brzoj punionici {address} trenutačno slobodan priključak?",
+        "a": "{site}: do {kw} kW, {euro},{cent} €/kWh; posljednje stanje je od {t} – prestaro da bi se reklo „slobodno“.",
+        "note": "Ovdje popunjenost dolazi od usluge koja skuplja obavijesti mnogih operatera. Priključak bez obavijesti nikad se ne računa kao slobodan."
+      },
+      "ocpdb": {
+        "title": "Uživo slobodno ili zauzeto – usred Kölna",
+        "q": "Je li na punionici {address} trenutačno slobodan priključak?",
+        "a": "Da, jedan: Tip 2 do {kw2} kW je slobodan, priključak CCS do {kw} kW je izvan pogona – {euro},{cent} €/kWh bez PDV-a.",
+        "note": "Popunjenost dolazi uživo preko podatkovnog portala Baden-Württemberga, koji navodi i punionice daleko izvan te savezne zemlje."
+      },
+      "lsr": {
+        "title": "I ondje gdje nitko ne javlja uživo",
+        "q": "Gdje mogu napuniti auto blizu adrese {address}?",
+        "a": "Udaljeno {m} m: Tip 2, do {kw} kW – prema registru punionica Savezne agencije za mreže (stanje {register}), bez stanja uživo i bez jamstva točnosti i potpunosti.",
+        "note": "Gdje nijedan operater ne objavljuje podatke uživo, ViaFrei navodi punionice iz službenog registra – bez popunjenosti, jer nepoznato nikad nije „slobodno“."
+      },
+      "hamburg": {
+        "title": "Garaža u središtu Hamburga",
+        "q": "Gdje mogu parkirati blizu stanice {stop} u Hamburgu?",
+        "a": "{park}: slobodno {free} od {total} mjesta. Grad Hamburg sam kaže: „Ovi podaci u stvarnom vremenu su neprovjereni.“",
+        "note": "Popunjenost hamburških garaža dolazi uživo od grada; ViaFrei uvijek prenosi njegovu napomenu da su podaci neprovjereni."
+      },
+      "hhworks": {
+        "title": "Gradsko gradilište u Hamburgu",
+        "q": "Koji su radovi na cesti planirani u ulici {street} u Hamburgu?",
+        "a": "{street}, {b}: preuređenje ulice od {from} do {to}; potpuno zatvaranje očekuje se u proljeće 2027.",
+        "note": "Hamburška gradska gradilišta dolaze iz gradskog sustava Bauweiser: samo odobrena gradilišta, po kalendarskim danima; „planirano“ znači da radovi počinju nakon današnjeg dana. Policijske obavijesti ostaju zasebni unosi."
+      },
+      "muenster": {
+        "title": "Sustav za navođenje na parkiranje u Münsteru, uživo",
+        "q": "Koliko je slobodnih mjesta u {name} u Münsteru?",
+        "a": "Slobodno {free} od {total} mjesta – a u blizini još garaža: {more}, svaka sa svojom popunjenošću.",
+        "note": "Popunjenost dolazi uživo iz sustava za navođenje na parkiranje grada Münstera. Garažu koja ništa ne javlja ViaFrei nikad ne naziva „punom“."
+      },
+      "motorway": {
+        "title": "Zatvoren ulaz na autocestu",
+        "q": "Je li na A6 kod mjesta {place} trenutačno nešto zatvoreno?",
+        "a": "Da: ulaz {place} na A6 zatvoren je jer se gradi novi objekt – ova faza radova traje od {from} do {to}. Za cijelu A6 odgovor navodi zatvaranja: {count}.",
+        "note": "Zatvaranja i radovi na cesti na autocestama dolaze od Autobahn GmbH, s razdobljem svake faze radova. Kad je riječ o autocesti, ViaFrei prvo navodi zatvaranja."
+      },
+      "citywork": {
+        "title": "Radovi na cesti u gradu",
+        "q": "Je li u ulici {street} u Berlinu nešto zatvoreno?",
+        "a": "Da: u oba smjera između {a} i {b} radovi na vodovima, prema Senatskoj upravi potpuno zatvoreno za motorna vozila, od {from} do {to}.",
+        "note": "Berlinske obavijesti navode ulicu i dionicu, ali ne i broj ceste, pa ih ViaFrei pronalazi prema mjestu – u krugu od 25 km, najbliže prvo."
+      },
+      "landroad": {
+        "title": "Radovi na cesti na zemaljskoj cesti",
+        "q": "Ima li ovaj tjedan radova na cesti L1025 u Tiringiji?",
+        "a": "{count, plural, one {# radilište} few {# radilišta} other {# radilišta}}, među njima: {site}, suženje regulirano semaforom, od {from} do {to}.",
+        "note": "Zemaljske ceste pokrivamo u Baden-Württembergu, Donjoj Saskoj, Tiringiji i Saskoj, iz podataka cestovnih uprava: dionica i razdoblje, bez koordinata i bez kašnjenja uživo."
+      },
+      "saxony": {
+        "title": "Radovi na saveznoj cesti u Saskoj",
+        "q": "Ima li ovaj tjedan radova na cesti B6 u Saskoj?",
+        "a": "Ovaj tjedan {count, plural, one {# radilište} few {# radilišta} other {# radilišta}}, među njima: kod mjesta {place} u Dresdenu cesta se proširuje, od {from} do {to}.",
+        "note": "Saska cestovna uprava svaka tri sata ponovno objavljuje svoja dugotrajna radilišta. ViaFrei iz njih odgovara za savezne i zemaljske ceste, po dionici i razdoblju – bez koordinata i bez kašnjenja uživo."
+      },
+      "bwroad": {
+        "title": "Radovi na saveznoj cesti u Baden-Württembergu",
+        "q": "Jesu li sljedeći tjedan planirani radovi na cesti B27 u Baden-Württembergu?",
+        "a": "{count} od {all} radilišta u Baden-Württembergu, npr. {a} – {b}: novi kolnički zastor od {from} do {to}.",
+        "note": "Ministarstvo prometa Baden-Württemberga objavljuje svoja radilišta (BEMaS) preko MobiData BW. ViaFrei iz njih odgovara za savezne i zemaljske ceste, po dionici i razdoblju – planirano kao planirano, bez kašnjenja uživo."
+      },
+      "kiel": {
+        "title": "Radovi na cesti u Kielu",
+        "q": "Je li {street} u Kielu trenutačno prohodan?",
+        "a": "Ne: {street} je zatvoren između kućnog broja {no} i {b} zbog radova na kanalizaciji, od {from} do {to}. (Primjer, sažeto; alat ga prikazuje u cijelosti)",
+        "note": "Grad Kiel objavljuje svoje radove s mjestom, razlogom i razdobljem. Ova kartica sažima jednu obavijest; alat ih prikazuje neskraćeno i pronalazi obavijest prema mjestu – u krugu od 25 km, najbliže prvo."
+      },
+      "truckstop": {
+        "title": "Osigurano parkiralište za kamione na A7",
+        "q": "Ima li noćas slobodno mjesto za kamion kod {name} na A7?",
+        "a": "Slobodno {free} od {total} mjesta, onako kako ih operater javlja.",
+        "note": "Operater ovih osiguranih parkirališta za kamione objavljuje slobodna mjesta; ViaFrei ih prikazuje uz odmorišta, koja ne javljaju popunjenost, i nikad ih ne zbraja."
+      },
+      "parkride": {
+        "title": "Park and ride prije vlaka",
+        "q": "Gdje u Dortmundu mogu ostaviti auto i presjesti na vlak?",
+        "a": "{p1} s mjestima: {t1}, i {p2} s mjestima: {t2} – za ova parkirališta bez popunjenosti.",
+        "note": "P+R parkirališta u Sjevernoj Rajni-Vestfaliji dolaze iz objedinjenih podataka te savezne zemlje i stoje u vlastitom bloku, nikad usklađena s drugim izvorima. Njihovu popunjenost ne preuzimamo."
+      },
+      "platform": {
+        "title": "Kašnjenje, uživo",
+        "q": "Polazi li {train} za {dest} s kolodvora {station} na vrijeme?",
+        "a": "+{delay} min, očekuje se u {expected} umjesto u {planned} – s kolosijeka {platform}, prema planu.",
+        "note": "Kašnjenja i promjene kolosijeka dolaze iz sučelja voznog reda Deutsche Bahna, za sve dijelove kolodvora – uključujući podzemne i S-Bahn kolosijeke berlinskog glavnog kolodvora."
+      },
+      "region": {
+        "title": "Točnost u gradskom području",
+        "q": "Voze li autobusi i vlakovi u području Rajna-Ruhr trenutačno na vrijeme?",
+        "a": "{share} % vožnji praćenih u posljednjih sat vremena kasnilo je više od 5 minuta — više nego sat prije ({before} %).",
+        "note": "Rajna-Ruhr odgovara kao jedna regija: 30 okruga i gradova zajedno. ViaFrei navodi zbrojeve po regiji, a ne po liniji."
+      },
+      "tomorrow": {
+        "title": "Radovi na cesti na sutrašnjoj ruti",
+        "q": "Koji su radovi na cesti planirani sutra na A7?",
+        "a": "{count, plural, one {# radilište} few {# radilišta} other {# radilišta}}, od toga {started} već u tijeku. Jedno od njih: između {a} i {b} gradi se novi most, na {km} km, ograničenje {speed} km/h, do {until}.",
+        "note": "Planirani radovi Saveznog instituta za ceste (BASt): dionica i razdoblje, bez koordinata i bez kašnjenja uživo – što se upravo događa, ViaFrei odgovara iz obavijesti o autocestama."
+      },
+      "closure": {
+        "title": "Zatvaranje ispred vas",
+        "q": "Je li na A7 kod Hamburga trenutačno nešto zatvoreno?",
+        "a": "Da: Autobahn GmbH javlja zatvorenu rampu na čvoru {at} – na dionici radova između {a} i {b}. Ova faza radova završava {until} u {end}.",
+        "note": "Zatvaranja i radovi na cesti na autocestama dolaze od Autobahn GmbH, s razdobljem svake faze radova."
+      },
+      "weather": {
+        "title": "Provjera vremena prije planina",
+        "q": "Postoji li danas upozorenje na vremenske uvjete za {name}?",
+        "a": "Da, za nadolazeću noć: Njemačka meteorološka služba upozorava na slab mraz do {temp} °C, vrijedi {day} od {from} do {to} – stupanj {level}, najniži.",
+        "note": "Upozorenja se čitaju svakih 5 minuta i vrijede po području; novo se može izdati u kratkom roku."
+      },
+      "fuelcity": {
+        "title": "Najjeftiniji E10 u gradu",
+        "q": "Gdje je Super E10 u Kölnu trenutačno najjeftiniji?",
+        "a": "{euro},{cent} €/l na postaji {station}, {address} — javljeno u {reported}.",
+        "note": "Cijene goriva mijenjaju se svakih nekoliko minuta: ova je brojka primjer od tog poslijepodneva, a ne današnja cijena. ViaFrei za svaku cijenu kaže kad ju je postaja javila."
+      },
+      "charger": {
+        "a": "{site}: priključaka {points}, Tip 2, do {kw},{kwd} kW, {euro},{cent} €/kWh bez PDV-a. Nijedan se ne javlja kao zauzet; za {stale} posljednje stanje je od {t}, za {unknown} ga nema, pa ne „slobodno“.",
+        "title": "Stanje uživo na punionici",
+        "q": "Je li na adresi {address} trenutačno slobodan priključak?",
+        "note": "Popunjenost uživo navodimo samo ondje gdje je operater objavljuje – ovdje preko e-clearing.net. Bez obavijesti odgovor je „nema podataka o stanju“, nikad „slobodno“."
+      },
+      "roadworks": {
+        "a": "U Donjoj Saskoj radilišta: {count}, sva već počela; prvo: {section}, od {start} do {end}.",
+        "note": "Savezne ceste pokrivamo u Donjoj Saskoj, Saskoj, Tiringiji i Baden-Württembergu, iz podataka njihovih cestovnih uprava: dionica i razdoblje, bez kašnjenja uživo. Za saveznu cestu drugdje ViaFrei odgovara „nije pokriveno“ – a ne „prohodno“.",
+        "title": "Radovi na saveznoj cesti",
+        "q": "Koji su radovi na cesti planirani ovaj tjedan na B3 u Donjoj Saskoj?"
+      },
+      "train": {
+        "title": "Regionalni vlakovi, na vrijeme ili ne",
+        "q": "Vozi li sljedeći regionalni vlak od {station} do {dest} na vrijeme?",
+        "a": "Da: {line} u {planned} s kolosijeka {platform}, na vrijeme – kao i {n} od {all} regionalnih vlakova do {last}.",
+        "note": "Kad sučelje voznog reda Deutsche Bahna ne daje vremena uživo, ViaFrei dodaje regionalne i S-Bahn vlakove iz DELFI SIRI ET – u vlastitom bloku, nikad pomiješane s linijama željeznice."
+      },
+      "fuelroad": {
+        "a": "Nove cijene još nema — zadnja najniža: {euro},{cent} €/l kod {station}, {address}, javljeno {reported}; ViaFrei upravo traži novu.",
+        "title": "Dizel na putu, uz autocestu",
+        "q": "Večeras vozim A3 pokraj Würzburga: gdje je u blizini dizel najjeftiniji?",
+        "note": "Cijene goriva mijenjaju se svakih nekoliko minuta: ova je brojka primjer od tog poslijepodneva, a ne današnja cijena. ViaFrei za svaku cijenu kaže kad ju je postaja javila."
+      },
+      "fuelland": {
+        "a": "Nove cijene još nema — zadnja najniža: {euro},{cent} €/l kod {station}, {address}, javljeno {reported}; ViaFrei upravo traži novu.",
+        "title": "Najjeftinija cijena u glavnom gradu savezne zemlje",
+        "q": "Gdje je E10 u Stuttgartu, Baden-Württemberg, trenutačno najjeftiniji?",
+        "note": "Cijene goriva mijenjaju se svakih nekoliko minuta: ova je brojka primjer od tog poslijepodneva, a ne današnja cijena. ViaFrei za svaku cijenu kaže kad ju je postaja javila."
+      },
+      "carpark": {
+        "title": "Garaža sa slobodnim mjestima",
+        "q": "Koliko je slobodnih mjesta u garaži {name} u Kölnu?",
+        "a": "Posljednje javljeno slobodno {free} od {total} mjesta — starija dojava, a ne trenutačno stanje.",
+        "note": "Ime, lokacija i broj mjesta dolaze iz tablice garaža grada Kölna, popunjenost iz njegovog izvora uživo. Ako je posljednja obavijest prestara, ViaFrei kaže „posljednje javljeno“ umjesto „slobodno“."
+      },
+      "lorry": {
+        "title": "Parkiranje kamiona sa slobodnim mjestima",
+        "q": "Koliko je mjesta za kamione trenutačno slobodno kod {name}?",
+        "a": "Slobodnih mjesta za kamione: {free}, onako kako ih operater javlja.",
+        "note": "Slobodna mjesta navodimo samo ondje gdje ih operater objavljuje – ovdje svakih 15 minuta. Ako vrijednost ostane ista šest sati, ViaFrei kaže „posljednje javljeno“ umjesto „slobodno“."
+      }
+    },
+    "betaHeading": "Beta: što to znači za vas",
+    "beta1": "ViaFrei je u fazi stabilizacije: dodaju se izvori podataka, a odgovori i pokrivenost mogu se mijenjati.",
+    "beta2": "Odgovore formulira AI asistent na temelju naših podataka – AI može pogriješiti.",
+    "beta3": "Važne podatke (zatvaranja, polaske, cijene) provjerite kod izvora koji odgovor navodi.",
+    "endpointHeading": "Adresa",
+    "endpointNote": "Streamable HTTP. Besplatno dok ga izgrađujemo, bez računa; broj zahtjeva je ograničen kako bi bilo dovoljno za sve.",
+    "legacyNote": "Stariji klijenti bez Streamable HTTP koriste SSE adresu:",
+    "clientsHeading": "Korak po korak",
+    "claudeAi": "claude.ai (web)",
+    "claudeAiSteps": "Prilagodi (Customize) → Connectors → „+ Add” → „Add custom connector”. Nazovite ga ViaFrei, zalijepite adresu iznad kao URL MCP poslužitelja, zatim „Continue”. Pitajte, na primjer: „Je li A8 prema Münchenu prohodna?” Pri prvoj upotrebi dopustite alat ViaFrei.",
+    "claudeDesktop": "Claude Desktop",
+    "claudeDesktopSteps": "Isti konektor kao na claude.ai, spremljen u vašem Claude računu: dodajte ga tamo kao gore i pojavit će se i u desktop aplikaciji.",
+    "claudeCode": "Claude Code",
+    "claudeCodeSteps": "Jednom pokrenite u terminalu:",
+    "chatgpt": "ChatGPT",
+    "chatgptSteps": "Plugins → „+” → „Add custom MCP server”. Nazovite ga ViaFrei, zalijepite adresu iznad pod „Connection”, autentifikacija: nema; označite „I understand and want to continue”, zatim „Create as a plugin”. U novom razgovoru upišite @, odaberite ViaFrei, zatim pitajte.",
+    "editorsSteps": "Dodajte u MCP konfiguraciju (mcp.json):",
+    "copilotSteps": "Paleta naredbi → „MCP: Add Server“ → „HTTP“ → zalijepite gornju adresu → ID poslužitelja viafrei → „Global“ → „Copilot Global“. To se upisuje u ~/.copilot/mcp-config.json; ručno dodajte:",
+    "copilotSandbox": "Ako Copilot odgovori s 403 i zaglavljem „x-ms-block-by: sandbox-broker“, njegov je sandbox blokirao adresu: dopustite mcp.viafrei.de (za agenta u oblaku: postavke repozitorija → Copilot → Internet access → Custom allowlist).",
+    "geminiTrust": "Gemini CLI pokreće MCP poslužitelje samo u mapi kojoj vjerujete; to pita pri prvom pokretanju u njoj.",
+    "windsurfSteps": "Ploča Cascade → „…“ → MCPs → otvorite konfiguracijsku datoteku MCP-a (mcp_config.json) i dodajte:",
+    "leChatSteps": "Connectors → „+ Add Connector“ → „Custom MCP Connector“ → naziv viafrei, URL poslužitelja: gornja adresa → Connect, bez autentifikacije. Dodaje ga administrator – u paketima Free i Pro to ste vi.",
+    "generic": "Bilo koji drugi MCP klijent",
+    "genericSteps": "Svaki klijent koji govori Streamable HTTP povezuje se na gornju adresu – bez zaglavlja, bez ključa.",
+    "stdio": "Klijenti samo sa stdio",
+    "stdioSteps": "Most iz javnog npm paketa pokreće lokalni stdio poslužitelj koji prosljeđuje na gornju adresu:",
+    "notCoveredHeading": "Na što ViaFrei ne odgovara",
+    "notCoveredLead": "Da ne tražite ono čega nema:",
+    "notCovered": {
+      "routing": "Bez planiranja rute od vrata do vrata – ViaFrei odgovara o mjestima, cestama i izvorima podataka, nikad na „kako da stignem onamo?“.",
+      "cityStreets": "Bez prometa na gradskim ulicama izvan gradskih i zemaljskih izvora koje vodimo: radovi, zatvaranja i prometne obavijesti za Berlin, Köln (zatvaranja zbog događanja), Hannover (čim njegov izvor počne objavljivati), Schleswig-Holstein s Kielom i Baden-Württemberg sa Stuttgartom. Drugi gradovi nisu pokriveni; inače promet uživo imamo za mrežu saveznih autocesta (Autobahn GmbH) i, gdje ih izvor vodi, za savezne ceste, uz radove na zemaljskim cestama u Baden-Württembergu, Donjoj Saskoj, Saskoj i Tiringiji.",
+      "fares": "Bez cijena prijevoza, prodaje karata i bilo kakvih rezervacija.",
+      "lineRealtime": "Bez brojke o točnosti za jednu liniju – na „vozi li S1 na vrijeme?“ ViaFrei odgovara vlak po vlak na kolodvoru (kašnjenje uživo svakog vlaka koji polazi, i S-Bahna) i po regiji s obavijestima o smetnjama na liniji; autobusna, tramvajska ili U-Bahn stanica ima samo vozni red.",
+      "forecast": "Bez vremenske prognoze – samo službena upozorenja DWD-a, i to samo dok vrijede.",
+      "parkingTariffs": "Bez cijena parkiranja i bez obećanja da je mjesto slobodno ako operater ne objavljuje popunjenost."
+    },
+    "privacyHeading": "Privatnost u tri rečenice",
+    "privacy1": "Kod nas vam ne treba račun i ne čuvamo pitanja pod vašim imenom.",
+    "privacy2": "Tuđe usluge mjerenja rade samo uz vaš pristanak; prije toga ništa se ne učitava od trećih strana. Posjete brojimo bez kolačića, kao dnevne zbrojeve na vlastitom poslužitelju.",
+    "privacy3": "Zapisnici poslužitelja brišu se najkasnije nakon sedam dana – sve ostalo piše u",
+    "privacyLink": "izjavi o privatnosti (na njemačkom)",
+    "sourcesHeading": "Odakle dolaze podaci",
+    "sourcesLead": "Svaki odgovor navodi svoj izvor. Ovo su svi izvori iz kojih ViaFrei danas odgovara, s navodom izvora koji njihova licenca traži (na njemačkom, kako je napisan):",
+    "askAnswers": {
+      "train": "U {t1} {l1} za {d1} s kolosijeka {p1}, u {t2} {l2} za {d2} s kolosijeka {p2} – oba na vrijeme.",
+      "parking": "{p1}: slobodno {f1} od {t1} mjesta; {p2}: slobodno {f2} od {t2}.",
+      "charging": "Najbliže: {a1}, udaljeno {m} m, Tip 2 do {kw1} kW; zatim {a2}, {m2} m, do {kw2} kW – bez stanja uživo.",
+      "road": "Da: na cijeloj A3 trenutačno nije prijavljen zastoj; navedeno je — zatvaranja: {closures}, unosi o radovima na cesti: {works}.",
+      "weather": "Za {place} nema službenog upozorenja DWD-a na vremenske uvjete – provjereno za sada i sljedećih {hours} sati."
+    },
+    "allExamples": "Svi primjeri pitanja s odgovorima, po područjima",
+    "claudeFlow": {
+      "s1": "Prilagodi (Customize) → Connectors → „+ Add” → „Add custom connector”.",
+      "s2": "Nazovite ga ViaFrei, zalijepite adresu iznad kao URL MCP poslužitelja, zatim „Continue”.",
+      "s3": "Pitajte, na primjer: „Je li A8 prema Münchenu prohodna?” Pri prvoj upotrebi dopustite alat ViaFrei."
+    },
+    "chatgptFlow": {
+      "s1": "Plugins → „+” → „Add custom MCP server”.",
+      "s2": "Nazovite ga ViaFrei, zalijepite adresu iznad pod „Connection”, autentifikacija: nema; označite „I understand and want to continue”, zatim „Create as a plugin”.",
+      "s3": "U novom razgovoru upišite @, odaberite ViaFrei, zatim pitajte.",
+      "avail": "Vlastiti MCP poslužitelji rade u ChatGPT-u na webu: u radnim prostorima Business i Enterprise/Edu, gdje ih stvaraju administratori i vlasnici, te za korisnike Pro s pravima čitanja i dohvaćanja – ViaFrei samo čita, pa Pro radi. Ne u mobilnim aplikacijama; nije dostupno u Free i Plus.",
+      "d1": "Plugins → + → Add custom MCP server",
+      "d2": "Naziv ViaFrei · Connection: adresa · autentifikacija: nema · Create as a plugin",
+      "d3": "Novi razgovor: @ViaFrei, zatim pitanje",
+      "dtitle": "Tri koraka u ChatGPT-u"
+    },
+    "shot": {
+      "claude1": "claude.ai, Customize → Connectors: otvoren izbornik „+ Add” sa stavkom „Add custom connector”.",
+      "claude2": "Prozor „Add custom connector”: naziv ViaFrei, URL MCP poslužitelja https://mcp.viafrei.de/mcp i gumb „Continue”.",
+      "claude3": "Claude traži dopuštenje za alat ViaFrei za A8: odbiti, uvijek dopustiti ili dopustiti jednom.",
+      "claude4": "Claudeov odgovor na pitanje o A8 prema Münchenu, označen kao upotreba ViaFreija, s retkom izvora na kraju.",
+      "phone1": "claude.ai u pregledniku telefona, Customize → Connectors: otvoren izbornik „+ Add” sa stavkom „Add custom connector”.",
+      "phone2": "Prozor „Add custom connector”: naziv ViaFrei, URL MCP poslužitelja https://mcp.viafrei.de/mcp i gumb „Continue”.",
+      "phone3": "Razgovor u claude.ai: „+” → Connectors s uključenim ViaFrei; ostali konektori su zamućeni.",
+      "phone4": "Claudeov odgovor na pitanje ima li sada gužve na A7, označen kao korištenje ViaFrei.",
+      "phone4b": "Isti odgovor na kraju: redak izvora koji navodi Autobahn GmbH des Bundes.",
+      "phoneCaption": "Snimka zaslona: claude.ai u pregledniku telefona, {date}",
+      "caption": "Snimka zaslona: claude.ai, {date}",
+      "diagram": "Dijagram, ne snimka zaslona",
+      "claudeCode1": "Terminal: claude mcp add s adresom za ViaFrei, zatim claude mcp list javlja „viafrei … ✔ Connected“.",
+      "geminiCli1": "Terminal: gemini mcp add --scope user s adresom za ViaFrei, zatim gemini mcp list javlja „viafrei … Connected“.",
+      "generic1": "Terminal: MCP Inspector traži od adrese za ViaFrei popis alata (tools/list) i dobiva njihove nazive.",
+      "stdio1": "Terminal: Claude Code dodaje most npx -y viafrei, zatim claude mcp list javlja „viafrei: npx -y viafrei – ✔ Connected“.",
+      "terminal": "Zapis terminala iz našeg testa: {what}, {date}",
+      "open": "Otvori sliku u punoj veličini",
+      "close": "Zatvori uvećanu sliku"
+    },
+    "guide": "Službeni vodič",
+    "otherGuides": "Njihovi vlastiti vodiči:",
+    "check": {
+      "verified": "Provjereno u klijentu {date} s {version}.",
+      "docs": "Koraci provjereni prema službenim uputama {date}, u klijentu još ne. {reason}",
+      "pending": {
+        "account": "Za to treba prijavljeni račun; ta provjera još predstoji.",
+        "app": "To je desktop aplikacija s vlastitom prijavom; ta provjera još predstoji.",
+        "signIn": "Sesija traži prijavu ili API ključ; ta provjera još predstoji."
+      }
+    },
+    "about": {
+      "lead": "Kopirajte ovo pitanje i postavite ga asistentu kada je ViaFrei povezan:",
+      "place": "{place}: kakvo je sada stanje na cestama, u prijevozu i s vremenom?",
+      "road": "Je li {road} sada prohodna?",
+      "exit": "{road}, {exit}: je li cesta sada prohodna?"
+    },
+    "phone": {
+      "heading": "Na mobitelu (Android, iPhone)",
+      "jump": "Na mobitelu? Ovako ide na Androidu i iPhoneu",
+      "lead": "U većini aplikacija asistenata ViaFrei se ne može dodati u samoj aplikaciji. Vezu postavite jednom u pregledniku – može i na mobitelu – a aplikacija je koristi čim se prijavite istim računom.",
+      "where": "Prema Anthropicu radi sa svakim Claude paketom (Free: jedan vlastiti konektor). Dodavanje konektora u aplikaciji još je u beta fazi, pa koraci idu preko claude.ai u pregledniku.",
+      "claude": {
+        "s1": "U pregledniku mobitela (ili na računalu) otvorite claude.ai i prijavite se. Zatim Customize → Connectors → „+ Add” → „Add custom connector”.",
+        "s2": "Naziv: ViaFrei. URL: {url}. Dodirnite „Continue”.",
+        "s3": "Otvorite aplikaciju Claude i prijavite se istim računom. U razgovoru dodirnite „+” → Connectors i uključite ViaFrei.",
+        "s4": "Pitajte: „Je li A7 kod Kassela prohodna?” i prvi put dopustite alat ViaFrei. Ispravan odgovor opisuje A7 kod Kassela upravo sada i završava retkom izvora koji navodi izdavača podataka."
+      },
+      "unclear": "{name}: službene upute dodaju vlastiti MCP poslužitelj samo na webu i ne kažu koristi li ga aplikacija na mobitelu nakon toga – zato ovdje nema koraka. Stanje {date}",
+      "gemini": "Gemini: vlastite aplikacije (MCP poslužitelji) mogu se dodati samo u web-aplikaciji i samo s osobnim računom u SAD-u, od 18 godina, na engleskom – dakle ne iz Njemačke. Stanje {date}",
+      "copilot": "Microsoft Copilot: službena dokumentacija opisuje vlastite MCP poslužitelje samo za Microsoft 365 Copilot (postavlja ih uprava organizacije) i Copilot Studio, ne za aplikaciju Copilot. Stanje {date}",
+      "checked": "Provjereno {date} prema službenim uputama; na mobitelu još nije isprobano.",
+      "device": "Povezano na mobitelu {date} s {app}."
+    }
+  },
+  "devPage": {
+    "title": "ViaFrei za programere",
+    "lead": "MCP poslužitelj preko Streamable HTTP, otvoreni podaci iz Njemačke, svaki odgovor s izvorom. Ovdje piše što danas može – pročitano s poslužitelja, a ne prepisano.",
+    "releaseHeading": "Trenutačna verzija",
+    "releaseLine": "Verzija {version}",
+    "releaseDate": "objavljeno {date}",
+    "toolsHeading": "Alati",
+    "toolsLead": "{n, plural, one {# alat} few {# alata} other {# alata}}, onako kako ih poslužitelj javlja:",
+    "promptsHeading": "Upiti",
+    "resourcesHeading": "Resursi",
+    "codeHeading": "Kod i sudjelovanje",
+    "closed": "Poslužitelj je hostirana usluga, a njegov izvorni kod nije javan. Most je javan – i ondje je svaka pomoć dobrodošla.",
+    "bridge": "Javni most na GitHubu",
+    "discussions": "Rasprave",
+    "goodFirst": "Dobri prvi zadaci",
+    "contributing": "Kako doprinijeti",
+    "security": "Prijavite sigurnosni propust",
+    "licence": "Licenca: Apache-2.0",
+    "contractHeading": "Ugovor koji svaki alat poštuje",
+    "contract1": "Alat radi jednu stvar i nazvan je po njoj (glagol_imenica).",
+    "contract2": "Svaki odgovor doslovno nosi svoj navod izvora; gdje licenca traži napomenu o svrsi, i ona je tu.",
+    "contract3": "Vremena su Europe/Berlin; pohranjuje se u UTC-u.",
+    "contract4": "Testovi nikad ne pozivaju stvarnog pružatelja; svaki doprinos neovisno se pregledava.",
+    "npmHeading": "npm",
+    "npmLead": "Za klijente koji govore samo stdio:",
+    "npmReserved": "Imenski prostor @viafrei rezerviran je za buduće SDK pakete.",
+    "listingsHeading": "Imenici",
+    "listingsLead": "ViaFrei je naveden ovdje:",
+    "listingNpm": "npm – paket viafrei, stdio most za klijente bez HTTP-a",
+    "listingSmithery": "Smithery – hostirana veza, bez lokalne instalacije",
+    "listingGlama": "Glama – unos u imeniku MCP poslužitelja",
+    "statusHeading": "Stanje",
+    "statusText": "Pregled stanja izvora podataka dostupan je na zahtjev.",
+    "tools": {
+      "check_autobahn_traffic": "Promet na autocesti",
+      "find_cheapest_fuel": "Najjeftinije gorivo u blizini",
+      "find_fuel_station": "Pronađi benzinsku postaju",
+      "find_parking": "Parkiranje u blizini",
+      "check_road_status": "Stanje cesta i zatvaranja",
+      "find_roadworks_ahead": "Planirani radovi na cesti",
+      "find_sharing": "Bicikli za najam u blizini",
+      "find_charging_station": "Punjenje električnih vozila u blizini",
+      "find_hydrogen_station": "Punionice vodika u blizini",
+      "find_speed_cameras": "Kamere za brzinu za planiranje",
+      "find_place": "Potraži mjesto",
+      "find_poi": "Pronađi imenovano mjesto",
+      "find_address": "Potraži adresu",
+      "describe_location": "Opiši koordinatu",
+      "find_nearby": "Što je u blizini",
+      "get_driving_rules": "Prometni propisi u Njemačkoj",
+      "check_transit_disruption": "Smetnje u javnom prijevozu u regiji",
+      "check_weather_warnings": "Službena upozorenja na vremenske uvjete",
+      "get_train_departures": "Polasci vlakova",
+      "get_departures": "Polasci po voznom redu (autobus, tramvaj, vlak)",
+      "check_station_facilities": "Dizala i pokretne stepenice na kolodvoru",
+      "describe_station": "Pregled željezničkog kolodvora",
+      "watch_situation": "Prati promjenu",
+      "stop_watch": "Završi praćenje"
+    },
+    "prompts": {
+      "plan_departure": "Priprema vožnju neposredno prije polaska: upozorenja na vremenske uvjete na oba kraja, otvorene autoceste i trenutačni zastoji, a na kraju jedna rečenica: kreni ili pričekaj.",
+      "compare_travel_options": "Uspoređuje isto putovanje autom i vlakom: zatvaranja i zastoje s jedne strane, polaske i točnost s druge.",
+      "prepare_car_trip": "Skuplja ono što vozač mora imati i znati prije vožnje u Njemačkoj i u određenom gradu: ekološka naljepnica, ograničenja brzine, zimske gume, granica alkohola, cestarine, obvezna oprema.",
+      "plan_fuel_stop": "Pronalazi gdje na putu natočiti gorivo ili napuniti auto: najjeftinije postaje za jednu vrstu goriva ili priključke s odgovarajućim utikačem i snagom, i odmorište pokraj njih.",
+      "plan_commute": "Planira jednu vožnju autobusom ili vlakom istoga dana: sljedeći polasci s kašnjenjima, kolosijecima i otkazivanjima, i vozi li regija normalno.",
+      "plan_arrival_parking": "Pronalazi gdje ostaviti auto na kraju vožnje: garažu u gradu, park-and-ride na rubu s nastavnim polascima ili odmorište ako ste preuranili.",
+      "find_a_place": "Pretvara golo ime u mjesto, imenovani objekt ili adresu, isprobavajući jedno po jedno.",
+      "plan_local_errand": "Odgovara na „što je ovdje u blizini?“ za jedno mjesto: najbliža benzinska postaja, punionica, parkiranje, kolodvor i priključak na autocestu na prvi pogled.",
+      "explain_this_coordinate": "Pretvara gole koordinate u rečenicu koju putnik razumije: najbliža adresa, naselje, okrug i priključak na autocestu, svako s udaljenošću."
+    },
+    "quickHeading": "Povezano u minuti",
+    "quickLead": "Odaberite klijent, zalijepite ovo i postavite prvo pitanje.",
+    "quickTabs": "Klijentski programi",
+    "quickWhere": "Kamo ide:",
+    "quickFirst": "Vaš prvi poziv",
+    "quickFirstLead": "Kad ste povezani, pitajte običnim riječima; asistent sam bira alat:",
+    "copy": "Kopiraj",
+    "copyCurl": "Kopiraj kao curl",
+    "tryHeading": "Isprobajte",
+    "tryLead": "Pravi poziv javne krajnje točke: sesija, zatim alat. Ispod je odgovor koji je naš poslužitelj dao upravo na ovaj poziv prije nekoliko minuta.",
+    "tryRequest": "Zahtjev",
+    "tryResponse": "Odgovor",
+    "tryAsOf": "Odgovoreno u {time}",
+    "tryError": "Trenutačno nema svježeg odgovora. Pokrenite zahtjev iznad da biste ga vidjeli uživo.",
+    "argsLabel": "Argumenti",
+    "askLabel": "Pitajte ovako:",
+    "schemaLabel": "Ulazna shema",
+    "otherGroup": "Još alata",
+    "newHeading": "Novo u ugovoru",
+    "newLine": "Verzija {version}, {date}",
+    "newTools": "promijenjeno:",
+    "contract5": "Previše zahtjeva odbija se s pogreškom JSON-RPC {code}; pričekajte i pošaljite ponovno.",
+    "contract6": "Istekla sesija odbija se s pogreškom {code}; započnite novu s initialize.",
+    "ask": {
+      "check_autobahn_traffic": "Ima li sada gužve na A9 između Münchena i Nürnberga?",
+      "find_cheapest_fuel": "Gdje je dizel kod Kassela sada najjeftiniji?",
+      "find_fuel_station": "Koja je benzinska postaja otvorena kod glavnog kolodvora u Würzburgu?",
+      "find_parking": "Ima li slobodnog mjesta u garaži kod glavnog kolodvora u Kölnu?",
+      "check_road_status": "Ima li zatvaranja na cestama oko Dresdena?",
+      "find_roadworks_ahead": "Koji su radovi planirani na A3 sljedeći tjedan?",
+      "find_charging_station": "Gdje u Leipzigu mogu brzo puniti sa 150 kW?",
+      "find_hydrogen_station": "Gdje je najbliža vodikova postaja kod Stuttgarta?",
+      "find_speed_cameras": "Gdje su fiksni radari na mom putu kroz Bielefeld?",
+      "find_place": "Gdje se točno nalazi Garmisch-Partenkirchen?",
+      "find_poi": "Ima li ljekarne kod glavnog kolodvora u Erfurtu?",
+      "find_address": "Gdje je Unter den Linden 77 u Berlinu?",
+      "describe_location": "Što se nalazi na 50,94, 6,96?",
+      "find_nearby": "Što je u blizini glavnog kolodvora u Münsteru: punjenje, parkiranje, stajališta?",
+      "find_sharing": "Ima li bicikla za dijeljenje kod Hamburg Dammtor?",
+      "get_driving_rules": "Kada vrijedi nedjeljna zabrana vožnje za kamione?",
+      "check_transit_disruption": "Koliko su točni autobusi i vlakovi u Bavarskoj trenutačno?",
+      "check_weather_warnings": "Ima li danas upozorenja o vremenu za Hamburg?",
+      "get_train_departures": "Kada polaze sljedeći vlakovi s glavnog kolodvora u Hannoveru?",
+      "get_departures": "Kada polazi sljedeći tramvaj s Leipzig Augustusplatz?",
+      "check_station_facilities": "Rade li dizala na glavnom kolodvoru u Frankfurtu?",
+      "describe_station": "Kakav je glavni kolodvor u Nürnbergu: peroni, dizala, polasci?",
+      "watch_situation": "Javi mi kad A7 kod Hamburga opet bude prohodna.",
+      "stop_watch": "Prestani pratiti A7."
+    }
+  },
+  "bizPage": {
+    "title": "ViaFrei za tvrtke",
+    "lead": "Otvoreni podaci o mobilnosti iz cijele Njemačke, uredno spojeni i uvijek s izvorom – kao jedna krajnja točka koju vaši sustavi i vaši asistenti mogu pitati.",
+    "casesHeading": "Za što tvrtke koriste ViaFrei",
+    "u1t": "Logistika i vozni parkovi",
+    "u1": "Radovi na cesti i zatvaranja na autocestama planirane rute, parkirališta za kamione uz nju i nedjeljna zabrana vožnje iz prometnih propisa.",
+    "u1q": "Koja su zatvaranja na A7 između Würzburga i Ulma?",
+    "u1a": "Zatvaranja na A7 do {to}: {n}; između Würzburga i Ulma među njima {a} – {b} i {b} – {c}, u oba smjera.",
+    "u2t": "Infrastruktura za punjenje",
+    "u2": "Gdje je mreža rijetka i koji su priključci upravo slobodni – iz izvora operatera čije smo podrijetlo provjerili. Pohranjena povijest dostupnosti planirana je kao dio suradnje.",
+    "u2q": "Gdje su brze punionice s najmanje 150 kW blizu Kassela?",
+    "u2a": "Da: {s1}, {a1}, udaljeno {m} m, do {kw1} kW, slobodno {free} od {total} priključaka sa stanjem; tu je i {s2}, {a2}, do {kw2} kW, bez stanja uživo.",
+    "u3t": "Turizam, hoteli i mjesta događanja",
+    "u3": "Informacije o dolasku za goste na njihovu jeziku: stanje na autocesti, polasci vlakova, parkiranje i punjenje na odredištu.",
+    "u3q": "Moj hotel je u Garmisch-Partenkirchenu – trebaju li gosti danas očekivati upozorenje na vremenske uvjete?",
+    "u3a": "Ne: za {place} ne vrijedi službeno upozorenje DWD-a, provjereno za sada i sljedećih {hours} sati – što ne znači da je opasnost prošla za ostatak puta.",
+    "u4t": "Aplikacije za navigaciju, karte i mobilnost",
+    "u4": "Jedna MCP krajnja točka umjesto mnogo zasebnih integracija pružatelja – i, planirano kao dio suradnje, pohranjena povijest izvora čija licenca dopušta analizu.",
+    "u4q": "Koji su radovi na cesti planirani na A3 sljedećih dana?",
+    "u4a": "Od {from} do {to} na A3 {n, plural, one {planirano je # radilište} few {planirana su # radilišta} other {planirano je # radilišta}}, među njima {a} – {b}: zatvorena 1 od 4 trake, {speed} km/h, do {until}.",
+    "u5t": "Osiguravatelji i istraživanje mobilnosti",
+    "u5": "Arhiv mjerenja onih izvora čija to licenca dopušta: kakvo je bilo stanje na dionici u određenom trenutku? Upiti nad poviješću planirani su kao dio suradnje; na ono što vrijedi upravo sada, primjerice službena upozorenja neke savezne zemlje, javna usluga odgovara već danas.",
+    "u5q": "Koja zatvaranja trenutačno vrijede na A8?",
+    "u5a": "Zatvaranja na A8 do {to}: {n}, među njima {a} – {b} prema Münchenu i kod čvora {c} prema A81.",
+    "u6t": "Općine i savezne zemlje",
+    "u6": "Pogled na razini cijele zemlje na vlastite objavljene podatke – i način da predložite izvore koje bismo trebali dodati.",
+    "u6q": "Vrijedi li za Köln trenutačno službeno upozorenje na vremenske uvjete?",
+    "u6a": "Ne: za {place} ne vrijedi službeno upozorenje DWD-a, ni sada ni u sljedećih {hours} sati.",
+    "futureLabel": "planirano",
+    "coopHeading": "Što znači suradnja",
+    "price": "Cijene na upit.",
+    "contactHeading": "Razgovarajmo",
+    "contactLead": "Pišite nam – odgovaramo u roku od dva radna dana.",
+    "postal": "Poštanska adresa: vidi impresum.",
+    "noForm": "Bez obrasca, bez baze podataka: samo e-pošta.",
+    "licenceScope": "Ono što nudimo tvrtkama slijedi licencu svakog izvora: podaci objavljeni samo za informiranje potrošača nisu dio toga, a podatke pod licencom share-alike prosljeđujemo samo pod istom licencom.",
+    "licenceScopeCredits": "Svi navodi izvora nalaze se na",
+    "heroPilot": "Pokrenite pilot-projekt",
+    "heroLive": "Pogledajte odgovor uživo",
+    "heroSteps": "Kako asistent odgovara uz ViaFrei",
+    "proofHeading": "Uživo iz baze podataka",
+    "proofLead": "Svaki broj u nastavku pročitan je iz naše baze podataka za ovu stranicu, s trenutkom na koji se odnosi. Broj koji se ne može pročitati prikazan je kao nedostajući, nikad kao stariji broj.",
+    "proofError": "Ovaj broj trenutačno se nije mogao pročitati.",
+    "proofCatalogue": "Stanje izdanja {version}.",
+    "proofSources": "navedenih izvora podataka",
+    "proofTools": "alata za asistente",
+    "proofMotorways": "autocesta s vlastitom stranicom",
+    "proofLanguages": "jezika",
+    "caseShow": "Pogledajte što sada prikazuje",
+    "howHeading": "Kako to radi",
+    "how1": "Javna tijela i operateri objavljuju otvorene podatke: promet, vozne redove, punjenje, parkiranje, upozorenja o vremenu.",
+    "how2": "Prikupljamo ih danonoćno, spajamo u jednu sliku Njemačke i čuvamo svako očitanje s vremenom i izvorom.",
+    "how3": "Vaši sustavi i asistenti pitaju jednu krajnju točku i dobivaju odgovor koji navodi svoj izvor.",
+    "howData": "Otvoreni podaci",
+    "howYou": "Vaš asistent ili sustav",
+    "licenceHeading": "Koje podatke tvrtka smije koristiti i kako",
+    "licenceColClass": "Razred licence",
+    "licenceColCount": "Izvori",
+    "licenceColUse": "Što tvrtka smije",
+    "lic": {
+      "open": {
+        "name": "Otvorena",
+        "use": "Slobodno koristiti i prosljeđivati."
+      },
+      "attribution": {
+        "name": "Imenovanje",
+        "use": "Koristiti i prosljeđivati, uz navod izvora."
+      },
+      "shareAlike": {
+        "name": "Dijeli pod istim uvjetima",
+        "use": "Koristiti; izvedene podatke prosljeđivati samo pod istom licencom."
+      },
+      "terms": {
+        "name": "Još nije razjašnjeno za tvrtke",
+        "use": "Još nije dio ponude za tvrtke: izdavač ne objavljuje uvjete korištenja ili njegovi uvjeti zahtijevaju ugovor koji još ne nudimo."
+      },
+      "consumerOnly": {
+        "name": "Samo informacije za potrošače",
+        "use": "Nije dio nijedne ponude za tvrtke."
+      },
+      "own": {
+        "name": "Sadržaj ViaFrei",
+        "use": "Uključen u suradnju."
+      }
+    },
+    "coopPilotTitle": "Pilot-projekt",
+    "coopPilot": "Nekoliko tjedana na vašem vlastitom pitanju: vlastiti API ključ, viša ograničenja i izravna veza s nama.",
+    "coopDataTitle": "Podatkovno partnerstvo",
+    "coopData": "Izvozi iz pohranjene povijesti, za izvore čija licenca to dopušta, te vlastita praćenja i kanali.",
+    "coopPublisherTitle": "Izdavač podataka",
+    "coopPublisher": "Objavljujete podatke o mobilnosti: donosimo ih svakom AI asistentu, s vama kao izvorom, i zajedno gradimo nove alate na njima."
+  },
+  "fuelPage": {
+    "title": "Benzinske postaje po saveznim zemljama – izbor s cijenama",
+    "lead": "Do tri benzinske postaje po saveznoj zemlji, najjeftiniji Super E10 prvi. Odabrane među postajama koje pratimo – dakle ne nužno najjeftinije u saveznoj zemlji. Svaka cijena stoji uz vrijeme kad smo je zabilježili. Informacija za potrošače, a ne popis svih benzinskih postaja.",
+    "back": "Na početnu stranicu",
+    "unavailable": "Popis benzinskih postaja po saveznim zemljama sada nije dostupan.",
+    "boardHead": "Do tri benzinske postaje po saveznoj zemlji",
+    "hereHead": "Najjeftinije otvorene benzinske postaje: {place}",
+    "hereHeadNone": "Najjeftinije otvorene benzinske postaje u vašoj blizini",
+    "hereNone": "Trenutačno ne znamo vaše mjesto. Odaberite grad u nastavku ili svoje mjesto na početnoj stranici; tamo su cijene.",
+    "hereNoScript": "Cijene se učitavaju JavaScriptom čim je ovaj dio vidljiv. Bez JavaScripta nalaze se na stranici mjesta.",
+    "hereLoading": "Učitavanje cijena …",
+    "hereFailed": "Cijene se trenutačno ne mogu dohvatiti.",
+    "cities": "Gradovi",
+    "citiesLead": "Cijene svakog grada nalaze se na njegovoj stranici."
+  },
+  "quote": {
+    "open": "„",
+    "close": "“"
+  },
+  "place": {
+    "change": "Promijeni mjesto",
+    "how": {
+      "exact": "zaokruženo, oko 500 m",
+      "approx": "približno (prema vašoj internetskoj vezi)",
+      "chosen": "odabrano",
+      "saved": "spremljeno",
+      "rough": "približno (preglednik)"
+    },
+    "germany": "Cijela Njemačka",
+    "outsideFar": "Vaš je položaj izvan Njemačke. Prikazujemo cijelu Njemačku – odaberite mjesto da biste vidjeli njegove kartice.",
+    "choose": "Odaberite mjesto",
+    "loaded": "Kartice za {place} su učitane",
+    "failed": "Ovo mjesto trenutačno se nije moglo učitati.",
+    "noGeo": "Preglednik nije dao lokaciju – odaberite mjesto.",
+    "locating": "Traži se vaša lokacija …",
+    "geoNo": "Preglednik nije dao lokaciju: {why}. I dalje se prikazuje: {place}.",
+    "geoDenied": "pristup je blokiran – dopustite ga preko ikone pokraj adrese",
+    "geoUnavailable": "vaš uređaj nije mogao odrediti lokaciju",
+    "geoTimeout": "nije stigla u roku od 15 s",
+    "geoApprox": "Vaš preglednik zna vašu lokaciju samo približno (više od 1 km).",
+    "why": "Za punionice, benzinske postaje i upozorenja upravo ondje gdje jeste – vaša točna lokacija ostaje na vašem uređaju.",
+    "kept": "Vaš preglednik pamti ovo mjesto",
+    "sheet": {
+      "useLocation": "Koristi moju lokaciju",
+      "forget": "Zaboravi mjesto"
+    },
+    "privacy": {
+      "title": "Vaše mjesto ostaje kod vas.",
+      "body": "ViaFrei ne stvara račun ni profil i ne sprema vaše mjesto. Vaš preglednik pamti mjesto na ovom uređaju samo kad ga odaberete u traci s mjestom – mjesto ili adresu, „Koristi moju lokaciju“ ili „Cijela Njemačka“ – zajedno s nedavno odabranim mjestima; dok ova stranica koristi zapamćeno mjesto, to piše ispod trake s mjestom, a „Zaboravi mjesto“ ga odmah briše. Stranica traži vašu lokaciju samo kad odaberete „Koristi moju lokaciju“; ako ste je u pregledniku već trajno dopustili, ova je stranica čita bez pitanja i ništa ne sprema. Vaša lokacija na vašem se uređaju zaokružuje na područje od oko 500 m, a naš poslužitelj iz tog područja izvodi ime ulice ili mjesta; to ime drži u memoriji najviše sat vremena po području, bez ikakve veze s vama, i ne sprema ga. Samo neposredno nakon tog klika i samo ako preglednik navodi vašu lokaciju s točnošću od najviše 150 m, stranica jednom šalje točan položaj našem poslužitelju kako bi provjerio jeste li na kolodvoru, benzinskoj postaji, punionici ili odmorištu na autocesti; ondje se ne sprema niti bilježi. Na isti način najviše sat vremena drži u memoriji ime kolodvora, mjesta ili adrese koje ovdje odaberete. Vaša IP adresa koristi se samo u memoriji, za približnu lokaciju, i za to se ne sprema. To vrijedi na svakoj stranici s trakom s mjestom, pa i na pregledu kolodvora. Na pregledu kolodvora tako određeno mjesto služi samo za prikaz najbližih kolodvora i stajališta.",
+      "more": "Više u izjavi o privatnosti"
+    },
+    "geoipCredit": "Približno mjesto prema IP adresi:",
+    "pageTitle": "{place}: zatvaranja, radovi, promet sada – ViaFrei",
+    "pageDescription": "Gužve, radovi na cesti i zatvaranja u mjestu {place}, uz parking, punionice, cijene goriva i upozorenja na nevrijeme – uživo iz otvorenih podataka, s izvorom.",
+    "pageLead": "Sve što ViaFrei upravo zna o mjestu {place} – iz otvorenih podataka, s izvorom svake brojke.",
+    "pageMissing": "Ovo mjesto ne poznajemo.",
+    "geoipModified": "izvadak izmijenjen",
+    "loadingCards": "Kartice za ovo mjesto se učitavaju …",
+    "reloadCards": "Ponovno učitajte stranicu da biste vidjeli kartice",
+    "fuelUnavailable": "Cijene se trenutačno nisu mogle ponovno zatražiti. Ovo je posljednja poznata cijena s vremenom.",
+    "motorway": {
+      "why": "Za ono što je oko vas na ovoj autocesti – vaša točna lokacija ostaje na vašem uređaju.",
+      "radius": "Polumjer",
+      "radiusOther": "Odaberite bilo koji polumjer (1–100 km)",
+      "updating": "ažurira se …",
+      "failed": "Nije se moglo ažurirati – prethodni prikaz ostaje.",
+      "zoomGroup": "Zumiranje karte – svaki korak je jedan polumjer",
+      "zoomIn": "Približi – polumjer {r} km",
+      "zoomOut": "Udalji – polumjer {r} km",
+      "zoomInEnd": "Približi – dosegnut najmanji polumjer",
+      "zoomOutEnd": "Udalji – dosegnut najveći polumjer",
+      "filter": {
+        "legend": "Prikaži",
+        "all": "Prikaži sve",
+        "none": "Sakrij sve",
+        "allLabel": "Prikaži sve – odaberi sve vrste",
+        "noneLabel": "Sakrij sve – poništi odabir svih vrsta",
+        "save": "Zapamti odabir",
+        "saved": "Odabir je zapamćen na ovom uređaju.",
+        "forget": "Zaboravi",
+        "everything": "Svi podaci",
+        "nothing": "Ništa nije odabrano – odaberite barem jednu vrstu.",
+        "sum": "{kinds}: {n}",
+        "sumR": "{kinds} u krugu od {r} km: {n}",
+        "entriesOne": "{n} zapis",
+        "entriesFew": "{n} zapisa",
+        "entriesMany": "{n} zapisa",
+        "entriesOther": "{n} zapisa",
+        "entriesZero": "{n} zapisa",
+        "ampel": "Semafor i dalje ocjenjuje sve – neki od njegovih razloga sada su skriveni."
+      }
+    },
+    "pageDescriptionRoads": "{place}: zatvaranja i radovi sada na {roads} – uz gužve, parkiranje, punjenje i upozorenja, uživo s izvorom.",
+    "topics": {
+      "legend": "Teme",
+      "apply": "Primijeni",
+      "none": "Nije odabrana nijedna tema.",
+      "shown": "Prikazane teme: {n} od {total}",
+      "attention": "Skriveno, ali sada važno: {topic} – prikaži"
+    },
+    "head": {
+      "live": "Uživo za",
+      "scope": "Područje",
+      "search": "Traži mjesto",
+      "searchHint": "Adresa, poštanski broj, četvrt ili kolodvor",
+      "locate": "Koristi moju lokaciju",
+      "confirmQ": "Je li ovo pravo mjesto?",
+      "yes": "Da",
+      "other": "Drugo mjesto",
+      "confirmed": "potvrđeno",
+      "updated": "ažurirano za {place}",
+      "outside": "lokacija izvan Njemačke",
+      "germanyHow": "odabrana cijela Njemačka",
+      "germanyNote": "Odabrana cijela Njemačka: svi nacionalni podaci nalaze se odmah ispod – svaki s vremenom i izvorom."
+    },
+    "bar": {
+      "label": "Odaberite ili potražite mjesto",
+      "close": "Zatvori",
+      "hint": "Mjesto, adresa, autocesta, kolodvor …",
+      "recent": "Nedavno",
+      "popular": "Popularno",
+      "drop": "Ukloni {place}",
+      "found": "Prijedlozi: {n}",
+      "how": "Mjesto, adresa ili kolodvor s popisa prikazuje kartice ondje; Enter pretražuje cijelu stranicu."
+    }
+  },
+  "newsPage": {
+    "readMore": "Čitaj dalje",
+    "title": "Novosti",
+    "lead": "Što je novo u ViaFrei, što slijedi i duga zatvaranja koja trenutačno vodimo — svako s izvorom.",
+    "filterLabel": "Prikaži",
+    "chipNew": "Novo",
+    "chipPlans": "Planovi",
+    "chipTraffic": "Promet",
+    "newHeading": "Novo u ViaFrei",
+    "plansHeading": "Planovi",
+    "plansLead": "Što namjeravamo dodati sljedeće. Planirano znači planirano: ništa od toga još nije u ViaFrei i ne obećavamo datume.",
+    "trafficHeading": "Duga zatvaranja",
+    "trafficLead": "Iz naših vlastitih podataka: zatvaranja s navedenim završetkom, duga barem jedan dan. Svako nestaje čim dođe njegov kraj.",
+    "badgeNew": "Novo",
+    "badgePlan": "Planirano",
+    "askLabel": "Pitajte svog asistenta",
+    "askLabelPlan": "Kad bude dostupno, pitajte svog asistenta",
+    "plannedNote": "još bez datuma",
+    "connect": "Povežite ViaFrei",
+    "sources": "Izvor",
+    "feed": "Novosti kao Atom feed",
+    "released": "Verzija {v} · {d}",
+    "teaserHeading": "Novo u ViaFrei",
+    "teaserAll": "Sve novosti",
+    "trafficError": "Prometne obavijesti trenutačno se nisu mogle učitati.",
+    "noEntries": "Na ovom jeziku još nema unosa."
+  },
+  "examplesPage": {
+    "title": "Svi primjeri pitanja",
+    "lead": "Svako pitanje koje ViaFrei na ovoj stranici prikazuje kao primjer – s alatom koji na njega odgovara i s odgovorom, po područjima.",
+    "live": "Gdje ViaFrei samo redovito postavlja pitanje, ovdje vidite najnoviji odgovor; drugdje zabilježeni odgovor s datumom.",
+    "toc": "Područja",
+    "domain": {
+      "transit": "Autobus, vlak i kolodvor",
+      "roads": "Ceste i autoceste",
+      "parking": "Parkiranje",
+      "charging": "Punjenje",
+      "fuel": "Gorivo",
+      "more": "Mjesta i praćenja"
+    },
+    "question": "Pitanje {n}",
+    "fuelNote": "Primjere odgovora o cijenama goriva prikazujemo samo s datumom i samo na dva mjesta: {home} i {connect}.",
+    "fuelHome": "na početnoj stranici",
+    "fuelConnect": "na stranici za povezivanje"
+  },
+  "seo": {
+    "connectTitle": "Prometni podaci u ChatGPT-u i Claudeu preko MCP-a – ViaFrei",
+    "connectDescription": "Jedna adresa, bez ključa: povežite ViaFrei u Claude, ChatGPT, Copilot, Cursor, Gemini CLI ili Le Chat i pitajte uživo o gužvama, vlakovima i parkingu.",
+    "motorwayTitle": "Gužva {road}: radovi na cesti, zatvaranja – ViaFrei",
+    "motorwayDescription": "Gužva {road} i promet u Njemačkoj: zatvaranja i radovi na cesti po smjeru, uživo iz otvorenih podataka, planirana zatvaranja i pravila.",
+    "motorwaysTitle": "Gužve i radovi na autocestama sada – Njemačka – ViaFrei",
+    "motorwaysDescription": "Sve njemačke autoceste uživo: gužve, zatvaranja, radovi, obilasci, parkiranje i punjenje, s kartom i stranicom za svaku autocestu.",
+    "motorwayH1": "{road} sada",
+    "motorwayLead": "Zastoji, zatvaranja i radovi na cesti na {road}, uživo iz otvorenih podataka, svaki s izvorom i vremenom.",
+    "motorwaysH1": "Autoceste u Njemačkoj",
+    "motorwaysLead": "Svaka autocesta s trenutačnim obavijestima. Odaberite jednu za zastoje, zatvaranja, radove na cesti i njezinu trasu.",
+    "stationsTitle": "Željezničke stanice u Njemačkoj: peroni, oprema – ViaFrei",
+    "stationsDescription": "Svaka stanica Deutsche Bahna: peroni s visinom i pristupom bez stuba, oprema, usluga pomoći pri kretanju i što se nalazi unutar 300 m – iz otvorenih podataka.",
+    "stationsH1": "Željezničke stanice u Njemačkoj",
+    "crumbStations": "Stanice",
+    "stationTitle": "{name}: polasci, peroni, dizala, smetnje – ViaFrei",
+    "stationDescription": "{name}: sljedeći polasci uživo s kolosijekom, koja dizala i pokretne stepenice sada rade, peroni bez stepenica, oprema i okolica – iz otvorenih podataka, s izvorom i datumom.",
+    "crumbHome": "Početna",
+    "crumbMotorways": "Autoceste",
+    "linksMotorways": "Autoceste uživo",
+    "linksPlaces": "Gradovi uživo",
+    "allMotorways": "Sve autoceste",
+    "allPlaces": "Još gradova",
+    "imprintDescription": "Impresum viafrei.de: tko upravlja ViaFrei, platformom za mobilnost u stvarnom vremenu za AI asistente, i kako kontaktirati operatera.",
+    "privacyDescription": "Pravila privatnosti viafrei.de: što ViaFrei pohranjuje, a što ne, kako funkcionira privola i koja su vaša prava – bez računa i profila.",
+    "termsDescription": "Uvjeti korištenja ViaFreija: pod kojim uvjetima smijete koristiti podatke poput popunjenosti parkirališta za kamione tvrtke Toll Collect GmbH.",
+    "businessTitle": "API podataka o mobilnosti uživo za tvrtke",
+    "businessDescription": "Promet, javni prijevoz, punjenje i parkiranje u cijeloj Njemačkoj kao jedna krajnja točka uživo s izvorima. Započnite pilot-projektom.",
+    "developersTitle": "MCP poslužitelj za njemačke podatke o mobilnosti",
+    "developersDescription": "Povežite bilo koji MCP klijent u minuti: brzi početak za svaki klijent, pravi poziv s odgovorom i svaki alat s njegovom shemom."
+  },
+  "ask": {
+    "live": "Odgovor ViaFrei uživo",
+    "asOf": "Stanje podataka: {time}",
+    "tool": "Alat",
+    "question": "Pitanje",
+    "answer": "Odgovor",
+    "cta": "Pitajte svog asistenta",
+    "roads": {
+      "question": "Ima li trenutačno zastoja na A8?",
+      "clear": "Na {road} trenutačno nije prijavljen zastoj. Na snazi – zatvaranja: {closures}, radovi na cesti: {works}.",
+      "jams": "Prijavljeni zastoji na {road}: {jams}; najduži oduzima {delay} min. Zatvaranja: {closures}, radovi na cesti: {works}.",
+      "jamsNoDelay": "Prijavljeni zastoji na {road}: {jams}. Zatvaranja: {closures}, radovi na cesti: {works}."
+    },
+    "lorryPark": {
+      "question": "Koliko parkirališta za kamione ima A3 i koliko ih objavljuje svoju popunjenost?",
+      "listed": "Parkirališta za kamione uz {road}: {total}; s objavljenom popunjenošću: {live}."
+    },
+    "hydrogen": {
+      "question": "Gdje kamion na vodik može natočiti gorivo u blizini grada Frankfurt am Main?",
+      "near": "{name}, {address}: 350 bara za kamione i autobuse, udaljeno {km} km.",
+      "none": "U krugu od {km} km nije navedena nijedna vodikova postaja za kamione."
+    },
+    "weatherLand": {
+      "question": "Je li trenutno na snazi službeno upozorenje na vrijeme u Bavarskoj (Bayern)?",
+      "none": "{place}: Nema službenog upozorenja DWD-a na snazi, provjereno za sada i sljedećih {hours} sati.",
+      "warn": "{place}: Službena upozorenja na snazi: {count}, najviši stupanj {level} od 4, među njima „{event}“."
+    },
+    "transit": {
+      "question": "Koliko su autobusi i vlakovi u Sjevernoj Rajni-Vestfaliji trenutačno točni?",
+      "share": "{region}: {pct} % vožnji u posljednjih {minutes} minuta kasni ({late} od {trips}).",
+      "thin": "{region}: vožnje praćene u posljednjih {minutes} minuta: {trips} – premalo za udio."
+    },
+    "charging": {
+      "question": "Gdje u Leipzigu mogu puniti sa 150 kW ili više?",
+      "live": "{operator}, {address}: do {kw} kW, udaljeno {km} km – slobodno {free} od {total} priključaka.",
+      "liveNoOp": "{address}: do {kw} kW, udaljeno {km} km – slobodno {free} od {total} priključaka.",
+      "noStatus": "{operator}, {address}: do {kw} kW, udaljeno {km} km. Operater trenutačno ne javlja dostupnost.",
+      "noStatusNoOp": "{address}: do {kw} kW, udaljeno {km} km. Operater trenutačno ne javlja dostupnost.",
+      "none": "U blizini nije navedena nijedna punionica sa 150 kW ili više."
+    },
+    "parking": {
+      "question": "Gdje je trenutačno garaža sa slobodnim mjestima kod glavnog kolodvora u Münsteru?",
+      "free": "{name}: slobodno {free} od {total} mjesta, udaljeno {km} km.",
+      "none": "Nijedna garaža u blizini trenutačno ne javlja slobodna mjesta.",
+      "unpublished": "Operateri garaža u blizini ne objavljuju popunjenost uživo, pa se ne zna ima li slobodnih mjesta."
+    },
+    "roadsNear": {
+      "question": "Što se trenutačno događa na cestama ovdje?",
+      "clear": "U krugu od {km} km trenutačno ništa nije prijavljeno: nema zastoja ni zatvaranja.",
+      "noJams": "U krugu od {km} km nema zastoja. Na snazi – zatvaranja: {closed}, ograničenja: {restricted}.",
+      "jams": "U krugu od {km} km – zastoji: {jams}, zatvaranja: {closed}, ograničenja: {restricted}."
+    },
+    "weather": {
+      "question": "Postoji li ovdje službeno upozorenje na vremenske uvjete?",
+      "none": "Nema službenog upozorenja DWD-a na snazi, provjereno za sada i sljedećih {hours} sati.",
+      "warn": "Službena upozorenja na snazi: {count}, najviši stupanj {level} od 4, među njima „{event}“."
+    },
+    "nearby": {
+      "question": "Što je ovdje u blizini?",
+      "near": "Do {km} km: kolodvor {station}; punionice: {charging}, parkirališta: {parking} (prikazano najviše po tri).",
+      "noStation": "Do {km} km nema kolodvora; punionice: {charging}, parkirališta: {parking} (prikazano najviše po tri).",
+      "none": "Do {km} km nije naveden ni kolodvor, ni punionica, ni parkiralište."
+    },
+    "poi": {
+      "question": "Gdje je najbliža ljekarna?",
+      "found": "{name}, {street} – udaljeno {km} km.",
+      "foundNoStreet": "{name} – udaljeno {km} km.",
+      "none": "U krugu od 5 km nije navedena nijedna ljekarna."
+    },
+    "chargingNear": {
+      "question": "Gdje je najbliža punionica?",
+      "live": "{operator}, {address}: do {kw} kW, udaljeno {km} km – slobodno {free} od {total} priključaka.",
+      "liveNoOp": "{address}: do {kw} kW, udaljeno {km} km – slobodno {free} od {total} priključaka.",
+      "noStatus": "{operator}, {address}: do {kw} kW, udaljeno {km} km. Operater trenutačno ne javlja dostupnost.",
+      "noStatusNoOp": "{address}: do {kw} kW, udaljeno {km} km. Operater trenutačno ne javlja dostupnost.",
+      "none": "U blizini nije navedena nijedna punionica."
+    },
+    "offerOsm": "Ovi unosi dolaze iz naše baze podataka izvedene iz OpenStreetMapa. Cjelovitu strojno čitljivu kopiju (CSV) pod licencom ODbL 1.0 šaljemo besplatno na zahtjev – kontakt je u {link}.",
+    "offerDb": "Ovi unosi dolaze iz naše baze podataka izvedene iz „{db}“. Bazu podataka koju javno koristimo – bez unosa koje izdavač označava kao povjerljive – šaljemo kao strojno čitljivu kopiju (CSV) pod licencom ODbL 1.0, besplatno na zahtjev – kontakt je u {link}.",
+    "offerLink": "impresumu"
+  },
+  "connectNote": {
+    "text": "Ovaj odgovor vaš AI asistent daje samo kada je ViaFrei povezan.",
+    "link": "Kako povezati ViaFrei",
+    "guide": "Potpune upute za sve klijente",
+    "clients": "Korak po korak za",
+    "copy": "Kopiraj adresu",
+    "copied": "Kopirano"
+  },
+  "next": {
+    "label": "Dalje",
+    "ask": "Pitajte svoju UI: {place}",
+    "motorways": "Sve autoceste"
+  },
+  "search": {
+    "label": "Pretraži ViaFrei",
+    "placeholder": "Mjesto, autocesta, kolodvor, stranica …",
+    "submit": "Traži",
+    "title": "Pretraživanje",
+    "description": "Pronađite mjesta, autoceste, čvorove, kolodvore i stranice ViaFreija.",
+    "hint": "Upišite barem dva znaka.",
+    "alt": "Prikaži kartice ovdje",
+    "partial": "Neki rezultati nisu prikazani: izvor nije odgovorio na vrijeme.",
+    "allResults": "Svi rezultati",
+    "showAll": "Svi rezultati ove vrste",
+    "prev": "Natrag",
+    "next": "Dalje",
+    "pageOf": "Stranica {page} od {pages}",
+    "pager": "Stranice rezultata",
+    "none": "Za „{q}” nismo ništa pronašli.",
+    "nearest": "Slično napisano:",
+    "motorwayIndex": "Sve autoceste",
+    "kind": {
+      "motorway": "Autoceste",
+      "road": "Savezne i zemaljske ceste",
+      "place": "Mjesta",
+      "station": "Kolodvori",
+      "exit": "Izlazi i čvorovi",
+      "area": "Područja i adrese",
+      "poi": "Zanimljiva mjesta",
+      "page": "Stranice",
+      "news": "Novosti"
+    }
+  },
+  "header": {
+    "how": "Mjesto, adresa ili točka s popisa postaje vaše mjesto na svim stranicama; autocesta, kolodvor ili stranica se otvara. Enter pretražuje cijelu stranicu.",
+    "makeMine": "Postavi kao moje mjesto"
+  },
+  "statePages": {
+    "title": "Njemačke savezne zemlje: autoceste sada, gradovi – ViaFrei",
+    "description": "Svih 16 njemačkih saveznih zemalja na jednom mjestu: zatvaranja, gužve i radovi na autocestama sada, površina, glavni grad, susjedne zemlje i najveći gradovi.",
+    "h1": "16 saveznih zemalja",
+    "crumb": "Savezne zemlje"
+  },
+  "ai": {
+    "placeWarn": "Postoje li sada upozorenja na nevrijeme za {place}?",
+    "placePark": "Gdje sada mogu parkirati ili puniti u {place}?",
+    "landRoads": "Koje su autoceste u {place} trenutačno najviše pogođene?",
+    "roadUsual": "Koliko obično traju gužve na {road}?",
+    "roadPlans": "Koji su radovi i zatvaranja planirani na {road}?",
+    "open": "Pitaj u {app}",
+    "copy": "Kopiraj pitanje",
+    "copied": "Kopirano"
+  },
+  "star": {
+    "add": "Spremi stranicu",
+    "remove": "Spremljeno",
+    "neu": "novo",
+    "gone": "Ukinuto od vašeg posljednjeg posjeta: {list}",
+    "longer": "dulje",
+    "install": "Dodaj na početni zaslon",
+    "commute": "Vaša ruta"
+  },
+  "pwa": {
+    "offline": "Stanje {t}, izvan mreže"
+  }
+}

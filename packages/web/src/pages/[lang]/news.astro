@@ -1,0 +1,10 @@
+---
+/** `/<lang>/news` (#588), every language (#892: `/de/neuigkeiten` until then, a temporary 301 in `lib/legacy-redirects.ts`). */
+import NewsPage from "../../layouts/NewsPage.astro";
+import { isLang } from "../../i18n/index.js";
+
+const lang = Astro.params["lang"] ?? "";
+if (!isLang(lang)) return Astro.rewrite("/404");
+---
+
+<NewsPage lang={lang} />

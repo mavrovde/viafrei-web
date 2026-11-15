@@ -1,0 +1,310 @@
+---
+/**
+ * "Für Entwickler" (#143, #379 PR-09; rebuilt by #992 as a page that converts): the endpoint and a quickstart for
+ * each client first, then a real call with its real response, then the catalogue as cards.
+ *
+ * Nothing is typed that the server can say itself:
+ *   - every tool, prompt and resource is the booted server's (`generated/catalogue.json`), and each tool's arguments
+ *     and whole input schema are its own (`generated/contract.json`, the same run) — a tool the server adds appears
+ *     here with no page edit, in the group `site/examples.ts` puts it in or under "more tools"; the deck says each
+ *     tool's purpose and one example question in the page's language (`devPage.tools.<name>`, `devPage.ask.<name>`),
+ *     and `test/developers-992.test.ts` fails on a tool without them;
+ *   - the quickstart's configurations are built from the one endpoint constant and the release (`site/dev-quickstart.ts`);
+ *   - "try it" is one whole `tools/call` result our server received minutes ago (`lib/try-it.ts`), with its time, or
+ *     the error state — never a recorded sample;
+ *   - "what's new" is the newest releases whose CHANGELOG block names a tool, version and date only;
+ *   - the error codes in the guarantees are the server's constants.
+ *
+ * The version shown in the release block is the one the HOST reports (`APP_VERSION`); a process told none renders no
+ * release block (PLAYBOOK rule 14). Code links go to the PUBLIC bridge only. Two scripts, the copy buttons'
+ * (`CodeCopy.astro`) and the endpoint chip's (`EndpointCopy.astro`), both under the nonce.
+ */
+import Base from "./Base.astro";
+import PageHead from "../components/PageHead.astro";
+import Ask from "../components/Ask.astro";
+import CodeBox from "../components/CodeBox.astro";
+import CodeCopy from "../components/CodeCopy.astro";
+import EndpointCopy from "../components/EndpointCopy.astro";
+import RoadSign from "../components/RoadSign.astro";
+import catalogue from "../generated/catalogue.json" with { type: "json" };
+import contract from "../generated/contract.json" with { type: "json" };
+import { t, type MessageKey } from "../i18n/index.js";
+import { answerHtml } from "../lib/answer-html.js";
+import { fetchAsks, withinDay, type AskEntry } from "../lib/ask.js";
+import { endpointChipHtml } from "../lib/connect-note.js";
+import { berlinDateTime, calendarDay } from "../lib/dates.js";
+import { readEnv } from "../lib/env.js";
+import { PANEL_DEADLINE_MS } from "../lib/fill.js";
+import { fetchTryIt, tryItResponse } from "../lib/try-it.js";
+import { BRIDGE_REPO, GLAMA_LISTING, NPM_PACKAGE, SMITHERY_LISTING } from "../site/connect-prompts.js";
+import { TRY_IT_FALLBACK, curlSession, quickTabs, stdioPackage } from "../site/dev-quickstart.js";
+import { TOOL_GROUPS, TOOL_GROUP_SIGNS } from "../site/examples.js";
+import type { Lang } from "../site/pages.js";
+
+interface Props {
+  lang: Lang;
+}
+const { lang } = Astro.props;
+const env = readEnv();
+const now = new Date();
+const deadline = Math.min(env.tileTimeoutMs, PANEL_DEADLINE_MS);
+const [held, call] = await Promise.all([fetchAsks({ baseUrl: env.mcpInternalUrl, timeoutMs: deadline }), fetchTryIt({ baseUrl: env.mcpInternalUrl, timeoutMs: deadline, now })]);
+/** #992: no example older than a day — an older answer is left out, never shown as stale. */
+const asks = withinDay(held, now);
+const deployed = (process.env["APP_VERSION"] ?? "").trim().replace(/^v/, "");
+const version = deployed === "" ? null : deployed;
+const date = version !== null && version === catalogue.release.version && catalogue.release.date !== null ? calendarDay(catalogue.release.date, lang) : null;
+const links: readonly { readonly href: string; readonly label: string }[] = [
+  { href: BRIDGE_REPO, label: t(lang, "devPage.bridge") },
+  { href: `${BRIDGE_REPO}/discussions`, label: t(lang, "devPage.discussions") },
+  { href: `${BRIDGE_REPO}/labels/good%20first%20issue`, label: t(lang, "devPage.goodFirst") },
+  { href: `${BRIDGE_REPO}/blob/main/CONTRIBUTING.md`, label: t(lang, "devPage.contributing") },
+  { href: `${BRIDGE_REPO}/blob/main/SECURITY.md`, label: t(lang, "devPage.security") },
+  { href: `${BRIDGE_REPO}/blob/main/LICENSE`, label: t(lang, "devPage.licence") },
+];
+const tabs = quickTabs();
+type Group = keyof typeof TOOL_GROUPS | "other";
+const groupOf = (name: string): Group => (Object.keys(TOOL_GROUPS) as (keyof typeof TOOL_GROUPS)[]).find((g) => TOOL_GROUPS[g].includes(name)) ?? "other";
+const schemaOf = new Map(contract.tools.map((x) => [x.name, x]));
+const groups: readonly Group[] = [...(Object.keys(TOOL_GROUPS) as Group[]), "other"];
+const toolsIn = (g: Group) => catalogue.tools.filter((x) => groupOf(x.name) === g);
+/** A tool's live answer: a national example the server asked itself, when it can be said in this language. */
+const liveFor = (name: string): AskEntry | undefined => [...asks.values()].find((a) => a.tool === name && ["roads", "transit", "charging", "parking"].includes(a.key));
+const tryCurl = curlSession({ method: "tools/call", params: call === null ? TRY_IT_FALLBACK : { name: call.tool, arguments: call.args } });
+---
+
+<Base lang={lang} page="developers">
+  <section class="block page-head dev-hero" id="quickstart" aria-labelledby="dev-h">
+    <div class="wrap">
+      <PageHead as="div" wrap={false} h1={t(lang, "devPage.title")} h1Id="dev-h">
+        <p class="lead">{t(lang, "devPage.lead")}</p>
+        {/* #1182: the page's one action — the endpoint to copy — stands right under the lead */}
+        <p class="dev-hero__endpoint" set:html={endpointChipHtml(lang, "developers")} />
+      </PageHead>
+      <div class="dev-hero__grid">
+        <div class="qs">
+          <h2>{t(lang, "devPage.quickHeading")}</h2>
+          <p>{t(lang, "devPage.quickLead")}</p>
+          <div class="qs__tabs" role="radiogroup" aria-label={t(lang, "devPage.quickTabs")}>
+            {
+              tabs.map((tab, i) => (
+                <>
+                  <input type="radio" class="qs__radio" name="qs" id={`qs-${tab.id}`} checked={i === 0} />
+                  <label class="qs__tab" for={`qs-${tab.id}`} translate="no">
+                    {tab.name}
+                  </label>
+                </>
+              ))
+            }
+          </div>
+          {
+            tabs.map((tab) => (
+              <section class="qs__panel" id={`qs-panel-${tab.id}`} data-format={tab.format} aria-label={tab.name}>
+                <p class="muted">
+                  {t(lang, "devPage.quickWhere")} <code translate="no">{tab.where}</code>
+                </p>
+                <CodeBox lang={lang} code={tab.code} what="config" client={tab.id} />
+              </section>
+            ))
+          }
+        </div>
+        <aside class="dev-first" aria-labelledby="first-h">
+          <h2 id="first-h">{t(lang, "devPage.quickFirst")}</h2>
+          <p>{t(lang, "devPage.quickFirstLead")}</p>
+          <blockquote class="tool-card__prompt">
+            <Ask lang={lang} text={t(lang, "devPage.ask.find_charging_station")} />
+          </blockquote>
+          <p><a class="btn btn--primary" href="#try">{t(lang, "devPage.tryHeading")}</a></p>
+        </aside>
+      </div>
+    </div>
+  </section>
+
+  <section class="block" id="try" aria-labelledby="try-h">
+    <div class="wrap">
+      <h2 id="try-h">{t(lang, "devPage.tryHeading")}</h2>
+      <p>{t(lang, "devPage.tryLead")}</p>
+      <h3>{t(lang, "devPage.tryRequest")}</h3>
+      <CodeBox lang={lang} code={tryCurl} what="curl" client="tryit" label={t(lang, "devPage.copyCurl")} />
+      <h3>{t(lang, "devPage.tryResponse")}</h3>
+      {
+        call !== null ? (
+          <div class="try__response" data-try="ok">
+            <p class="age is-ok">
+              <span class="age__dot" aria-hidden="true" />
+              <time datetime={call.askedAt}>{t(lang, "devPage.tryAsOf", { time: berlinDateTime(new Date(call.askedAt), lang) })}</time>
+            </p>
+            <pre tabindex="0"><code translate="no">{tryItResponse(call)}</code></pre>
+          </div>
+        ) : (
+          <p class="try__response is-error" data-try="error" role="status">
+            {t(lang, "devPage.tryError")}
+          </p>
+        )
+      }
+    </div>
+  </section>
+
+  <section class="block" id="catalogue" aria-labelledby="tools-h">
+    <div class="wrap">
+      <h2 id="tools-h">{t(lang, "devPage.toolsHeading")}</h2>
+      <p>{t(lang, "devPage.toolsLead", { n: catalogue.tools.length })}</p>
+      {
+        groups
+          .filter((g) => toolsIn(g).length > 0)
+          .map((g) => (
+            <section class="toolset" aria-labelledby={`tg-${g}`}>
+              <h3 id={`tg-${g}`}>
+                {g !== "other" && TOOL_GROUP_SIGNS[g].map((k) => <RoadSign kind={k} />)}
+                {g === "other" ? t(lang, "devPage.otherGroup") : t(lang, `tools.groups.${g}`)}
+              </h3>
+              <div class="cards">
+                {toolsIn(g).map((x) => {
+                  const c = schemaOf.get(x.name);
+                  const live = liveFor(x.name);
+                  const answer = live === undefined ? null : answerHtml(lang, live, now, "developers");
+                  return (
+                    <article class="card tool-card" id={`tool-${x.name}`} data-tool={x.name}>
+                      <h4>
+                        <code translate="no">{x.name}</code>
+                      </h4>
+                      <p>{t(lang, `devPage.tools.${x.name}` as MessageKey)}</p>
+                      {c !== undefined && c.args.length > 0 && (
+                        <p class="tool-card__args">
+                          <span class="muted">{t(lang, "devPage.argsLabel")}:</span>{" "}
+                          {c.args.slice(0, 6).map((a) => (
+                            <code translate="no" title={a.type}>
+                              {a.required ? `${a.name}*` : a.name}
+                            </code>
+                          ))}
+                        </p>
+                      )}
+                      <p class="muted">{t(lang, "devPage.askLabel")}</p>
+                      <blockquote class="tool-card__prompt">
+                        <Ask lang={lang} text={t(lang, `devPage.ask.${x.name}` as MessageKey)} />
+                      </blockquote>
+                      {answer !== null && <Fragment set:html={answer} />}
+                      {c !== undefined && (
+                        <details class="tool-card__schema">
+                          <summary>{t(lang, "devPage.schemaLabel")}</summary>
+                          <pre tabindex="0"><code translate="no">{JSON.stringify(c.schema, null, 2)}</code></pre>
+                        </details>
+                      )}
+                    </article>
+                  );
+                })}
+              </div>
+            </section>
+          ))
+      }
+      <h3>{t(lang, "devPage.promptsHeading")} · {catalogue.prompts.length}</h3>
+      <div class="cards">
+        {
+          catalogue.prompts.map((x) => (
+            <article class="card tool-card" data-prompt={x.name}>
+              <h4>
+                <code translate="no">{x.name}</code>
+              </h4>
+              <p>{t(lang, `devPage.prompts.${x.name}` as MessageKey)}</p>
+            </article>
+          ))
+        }
+      </div>
+      <h3>{t(lang, "devPage.resourcesHeading")} · {catalogue.resources.length}</h3>
+      <ul class="catalogue">
+        {
+          catalogue.resources.map((x) => (
+            <li>
+              <code translate="no">{x.uri}</code>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </section>
+
+  {
+    contract.contractReleases.length > 0 && (
+      <section class="block" id="new" aria-labelledby="new-h">
+        <div class="wrap">
+          <h2 id="new-h">{t(lang, "devPage.newHeading")}</h2>
+          <ul class="releases">
+            {contract.contractReleases.map((r) => (
+              <li data-release={r.version}>
+                <strong>{t(lang, "devPage.newLine", { version: r.version, date: calendarDay(r.date, lang) })}</strong> — <span class="muted">{t(lang, "devPage.newTools")}</span>{" "}
+                {r.tools.map((n) => (
+                  <a href={`#tool-${n}`}>
+                    <code translate="no">{n}</code>
+                  </a>
+                ))}
+              </li>
+            ))}
+          </ul>
+        </div>
+      </section>
+    )
+  }
+
+  {
+    version !== null && (
+      <section class="block" id="release" aria-labelledby="rel-h">
+        <div class="wrap">
+          <h2 id="rel-h">{t(lang, "devPage.releaseHeading")}</h2>
+          <p>
+            <strong>{t(lang, "devPage.releaseLine", { version })}</strong>
+            {date !== null && <span> · {t(lang, "devPage.releaseDate", { date })}</span>}
+          </p>
+        </div>
+      </section>
+    )
+  }
+
+  <section class="block" id="contract" aria-labelledby="ct-h">
+    <div class="wrap">
+      <h2 id="ct-h">{t(lang, "devPage.contractHeading")}</h2>
+      <ul>
+        <li>{t(lang, "devPage.contract1")}</li>
+        <li>{t(lang, "devPage.contract2")}</li>
+        <li>{t(lang, "devPage.contract3")}</li>
+        <li>{t(lang, "devPage.contract4")}</li>
+        <li>{t(lang, "devPage.contract5", { code: String(contract.errors.rateLimited) })}</li>
+        <li>{t(lang, "devPage.contract6", { code: String(contract.errors.sessionNotFound) })}</li>
+      </ul>
+      <h3>{t(lang, "devPage.statusHeading")}</h3>
+      <p>{t(lang, "devPage.statusText")}</p>
+    </div>
+  </section>
+
+  <section class="block" id="code" aria-labelledby="code-h">
+    <div class="wrap">
+      <h2 id="code-h">{t(lang, "devPage.codeHeading")}</h2>
+      <p>{t(lang, "devPage.closed")}</p>
+      <ul>
+        {
+          links.map((l) => (
+            <li>
+              <a href={l.href} rel="noopener noreferrer">
+                {l.label}
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+      <h3>{t(lang, "devPage.npmHeading")}</h3>
+      <p>
+        {t(lang, "devPage.npmLead")} <a href={NPM_PACKAGE} rel="noopener noreferrer">viafrei</a>
+      </p>
+      <CodeBox lang={lang} code={`npx -y ${stdioPackage()}`} what="config" client="stdio" />
+      <p class="muted">{t(lang, "devPage.npmReserved")}</p>
+      <h3 id="listings">{t(lang, "devPage.listingsHeading")}</h3>
+      <p>{t(lang, "devPage.listingsLead")}</p>
+      <ul class="badges">
+        <li><a class="badge" href={NPM_PACKAGE} rel="noopener noreferrer">{t(lang, "devPage.listingNpm")}</a></li>
+        <li><a class="badge" href={SMITHERY_LISTING} rel="noopener noreferrer">{t(lang, "devPage.listingSmithery")}</a></li>
+        <li><a class="badge" href={GLAMA_LISTING} rel="noopener noreferrer">{t(lang, "devPage.listingGlama")}</a></li>
+      </ul>
+    </div>
+  </section>
+  <CodeCopy />
+  <EndpointCopy />
+</Base>

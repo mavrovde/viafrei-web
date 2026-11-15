@@ -1,0 +1,10 @@
+---
+/** `/de/fuel`, `/en/fuel`, … (owner 2026-10-06): the per-Land fuel station board; any other first segment is the 404 (A4). */
+import FuelPage from "../../layouts/FuelPage.astro";
+import { isLang } from "../../i18n/index.js";
+
+const lang = Astro.params["lang"] ?? "";
+if (!isLang(lang)) return Astro.rewrite("/404");
+---
+
+<FuelPage lang={lang} />

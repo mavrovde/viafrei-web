@@ -1,0 +1,17 @@
+---
+/** `/<lang>/autobahn` — the motorway index (#715), every language (#892; `/<lang>/motorway` until then, a temporary 301 in `site/legacy-redirects.ts`). */
+import MotorwaysPage from "../../layouts/MotorwaysPage.astro";
+import { isLang } from "../../i18n/index.js";
+import { readEnv } from "../../lib/env.js";
+import { unavailableAnswer } from "../../lib/degraded.js";
+import { resolveMotorwayIndex } from "../../lib/motorway-page.js";
+
+const lang = Astro.params["lang"] ?? "";
+if (!isLang(lang)) return Astro.rewrite("/404");
+const env = readEnv();
+const a = await resolveMotorwayIndex(lang, { baseUrl: env.digestUrl, timeoutMs: env.placeTimeoutMs, mapPlatform: Astro.locals.mapPlatform }, new URL(Astro.request.url).searchParams);
+if (a.kind === "redirect") return Astro.redirect(a.to, 301);
+if (a.kind === "unavailable") return unavailableAnswer(lang, Astro.request);
+---
+
+<MotorwaysPage lang={lang} html={a.html} variant={a.variant} />

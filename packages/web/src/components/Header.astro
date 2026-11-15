@@ -1,0 +1,107 @@
+---
+/**
+ * Block 1 of the home and the top of every page: brand, four anchors, one
+ * filled "Mit Ihrer KI verbinden" (#1089: it says what is connected to what; its
+ * accessible name names the assistants the hero lists, and below the width where
+ * the long label would wrap the short form "KI verbinden" stands in), the
+ * language list. No JavaScript: below 720 px the
+ * anchors are hidden and the fixed bottom bar carries the one action
+ * (`.actionbar`); the consent bar replaces it rather than covering it.
+ *
+ * #1153 (owner 2026-11-03): the header is the site's one search and location dispatcher — under the brand row the beta
+ * notice (#471, moved here from the top of <main>) and the place row (`PlaceBar.astro`): "Live für <Ort>", "Ganz
+ * Deutschland", the ONE search field (no button; it suggests as you type), "Mein Standort", the recent places and,
+ * while a place is stored, "Ihr Browser merkt sich diesen Ort · Ort vergessen". No page body carries any of it.
+ * The headline's script runs here, before any island; a page without cards of its own (`place.island` false) gets the
+ * location island here too, in its header-only form (it names the remembered place, it loads no cards). The fuel
+ * board runs no script at all (v1.8.18): there the row is its no-script self — links and a GET form.
+ */
+import LanguageList from "./LanguageList.astro";
+import PlaceBar from "./PlaceBar.astro";
+import RoadSign from "./RoadSign.astro";
+import { t } from "../i18n/index.js";
+import { HOME_ANCHORS, pathFor, type Lang, type PageId } from "../site/pages.js";
+import { NOTE_CLIENTS } from "../site/connect-clients.js";
+import { headerPlaceFor, type HeaderPlace } from "../lib/header-place.js";
+import { placeHeadScript } from "../lib/place-scope.js";
+import { recentKindsScript } from "../lib/recent-kinds.js";
+import { actionBarScript } from "../lib/action-bar.js";
+import { islandScript } from "../location/island.js";
+import { islandLabels } from "../location/labels.js";
+
+interface Props {
+  lang: Lang;
+  page: PageId;
+  hrefs?: Readonly<Record<Lang, string>> | undefined;
+  /** #1153: what the server knows of the page's place (`lib/header-place.ts`); none: a page that shows no place's figures. */
+  place?: HeaderPlace | undefined;
+  /** #1153: the search page's query, shown in the one search field. */
+  q?: string | undefined;
+  /** #1153: the page may carry scripts (every page but the fuel board's). */
+  scripts?: boolean;
+  /**
+   * The page IS the home, which holds the blocks the anchors name (`HOME_ANCHORS`); absent: `page === "start"`. A place
+   * page is a "start" page without them (2.4.5 review: its "#day"/"#tools" linked nothing) — its anchors go to the home;
+   * "#start" stays in-page on every "start" page, because the place page carries its own Start block.
+   */
+  onHome?: boolean;
+}
+const { lang, page, hrefs, place: given, q, scripts = true, onHome = page === "start" } = Astro.props;
+const place = given ?? headerPlaceFor(lang);
+const home = pathFor("start", lang);
+const connect = pathFor("connect", lang);
+const anchorLabel: Record<(typeof HOME_ANCHORS)[number], string> = {
+  day: t(lang, "nav.day"),
+  start: t(lang, "nav.start"),
+  tools: t(lang, "nav.tools"),
+};
+// #1089: the accessible name says WHAT is connected and to which assistants — the hero's own list ("Für: Claude · …")
+const ctaLabel = t(lang, "nav.ctaLabel", { clients: `${NOTE_CLIENTS.slice(0, 2).map((c) => c.name).join(", ")}, …` });
+// #1111, #1153: the one search on every page — a GET form to this origin's `/<lang>/search` (it works without script),
+// so every page allows one (`form-action 'self'`); with script it suggests as you type (the location island).
+Astro.locals.hasForm = true;
+if (scripts) Astro.locals.hasScript = true;
+// #1174 (#1190, #1173): every page but the home folds the place bar to one line on a phone, so the page's own head is the
+// first screen. On the search page the search IS the page's content. #1177: the home folds when it knows a place, because
+// then the place's lamp belongs on the first screen; without one the bar is how a visitor tells it, and it stays open
+// (a place kept on this device folds it through `lib/place-scope.ts`, when the island names it).
+const fold = q === undefined;
+const foldClosed = fold && (!onHome || (place.label !== null && place.label !== undefined));
+// The headline's script, before any island so it hears the island's first `vf:place` (`lib/place-scope.ts`).
+const headScript = placeHeadScript(lang, place.head);
+// The header's own island on a page that prints none in its body: the remembered place, no cards (`location/island.ts`).
+const ownIsland = scripts && !place.island ? islandScript({ lang, server: { source: "none", at: null, label: null }, labels: islandLabels(lang), cell: { lat: 0, lon: 0 }, ...(place.spot === false ? { spot: false as const } : {}) }) : null;
+---
+
+<header class="site-head">
+  <div class="wrap site-head__row">
+    <a class="brand" href={home}>
+      <span class="brand__mark" aria-hidden="true"></span>
+      <span>{t(lang, "nav.brand")}</span>
+      <span class="brand__claim">{t(lang, "nav.claim")}</span>
+    </a>
+    <nav class="site-nav" aria-label={t(lang, "a11y.mainNav")}>
+      {HOME_ANCHORS.map((a) => <a href={onHome || (a === "start" && page === "start") ? `#${a}` : `${home}#${a}`}>{anchorLabel[a]}</a>)}
+    </nav>
+    <a class="btn btn--primary btn--sm site-head__cta" href={connect} aria-label={ctaLabel}><span class="site-head__cta-long">{t(lang, "nav.cta")}</span><span class="site-head__cta-short" aria-hidden="true">{t(lang, "nav.ctaShort")}</span></a>
+    <LanguageList lang={lang} page={page} variant="menu" hrefs={hrefs} />
+  </div>
+  {/*
+    The beta notice (#471), in the page's own language, on every page — since #1153 in the header, once, never in
+    <main>; since #1174 one line, the full text behind the link (the connect page's #beta paragraph, same language). Owner 2026-10-05: drawn as
+    a temporary (yellow) Autobahn sign panel carrying VZ 101 "Gefahrstelle".
+  */}
+  <div class="beta" role="note" id="beta-notice">
+    <div class="wrap"><div class="band band--temporary band--slim"><div class="sign__row"><RoadSign kind="warning" label={t(lang, "beta.sign")} class="beta__sign" /><p class="beta__text">
+      <strong class="beta__label">{t(lang, "beta.label")}</strong> <span class="beta__line">{t(lang, "beta.line")}</span> <span aria-hidden="true">·</span> <a href={`${pathFor("connect", lang)}#beta`}>{t(lang, "beta.more")}</a>
+    </p></div></div></div>
+  </div>
+  <PlaceBar lang={lang} place={place} q={q} scripts={scripts} fold={fold} closed={foldClosed} />
+  {scripts && <script is:inline set:html={headScript} />}{ownIsland !== null && <script is:inline set:html={ownIsland} />}
+  {/* #1186: a recent place stored before the types is upgraded once (`lib/recent-kinds.ts`) */}
+  {scripts && <script is:inline set:html={recentKindsScript()} />}
+  {scripts && <script is:inline set:html={actionBarScript()} />}
+</header>
+<div class="actionbar">
+  <a class="btn btn--primary" href={page === "start" ? "#start" : connect}><span class="cta-long">{t(lang, "hero.primary")}</span><span class="cta-short">{t(lang, "nav.cta")}</span></a>
+</div>

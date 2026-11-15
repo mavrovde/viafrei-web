@@ -1,0 +1,26 @@
+---
+/**
+ * The visible breadcrumb trail (#1026 § 4) on the motorway, exit and place pages: the SAME list the page's JSON-LD
+ * BreadcrumbList is built from (`site/structured-data.ts` `motorwayCrumbs` / `placeCrumbs`), so the trail a person
+ * sees and the one a search engine reads cannot differ. Every step but the last is a plain link; the last is the
+ * page itself, marked `aria-current`. Proper names (a motorway number, a junction, a place) are `translate="no"`.
+ */
+import { t } from "../i18n/index.js";
+import type { Lang } from "../site/pages.js";
+import type { Crumb } from "../site/structured-data.js";
+
+interface Props {
+  lang: Lang;
+  crumbs: readonly Crumb[];
+  /** From which step on the names are proper names (the steps before are the site's own words). */
+  namesFrom?: number;
+}
+const { lang, crumbs, namesFrom = 2 } = Astro.props;
+const last = crumbs.length - 1;
+---
+
+<nav class="wrap crumbs" aria-label={t(lang, "a11y.crumbs")}>
+  <ol>
+    {crumbs.map((c, i) => (i === last ? <li><span aria-current="page" translate={i >= namesFrom ? "no" : undefined}>{c.name}</span></li> : <li><a href={c.path} translate={i >= namesFrom ? "no" : undefined}>{c.name}</a></li>))}
+  </ol>
+</nav>

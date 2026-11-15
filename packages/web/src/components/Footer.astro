@@ -1,0 +1,41 @@
+---
+/** The footer: legal links one click from every page, the language list, the refresh note. No version, no sha (#375 rules). */
+import LanguageList from "./LanguageList.astro";
+import { t } from "../i18n/index.js";
+import { pathFor, type Lang, type PageId } from "../site/pages.js";
+import { PRIVACY_SETTINGS_ANCHOR } from "../analytics/consent-store.js";
+
+interface Props {
+  lang: Lang;
+  page: PageId;
+  hrefs?: Readonly<Record<Lang, string>> | undefined;
+  /**
+   * Whether this page reloads itself (the home does, D3). Base passes whether
+   * it set the reload: the sentence follows the mechanism, never the page id —
+   * a place page is `start` too and does not reload (#564).
+   */
+  refreshes: boolean;
+  /**
+   * #1185 R3: the "Privacy settings" link, exactly when a `GOOGLE_TAG` is configured (Base passes `tag !== undefined`):
+   * without a tag there is nothing to set. The consent island of the page opens its dialog on the click; the fuel board
+   * runs no script, so there the link simply goes to the Datenschutz page's settings anchor, which opens it.
+   */
+  settings: boolean;
+}
+const { lang, page, refreshes, hrefs, settings } = Astro.props;
+
+---
+
+<footer class="site-foot">
+  <div class="wrap">
+    <div class="site-foot__row">
+      <a href={pathFor("impressum", lang)}>{t(lang, "footer.imprint")}</a>
+      <a href={pathFor("datenschutz", lang)}>{t(lang, "footer.privacy")}</a>
+      {settings && <a href={`${pathFor("datenschutz", lang)}#${PRIVACY_SETTINGS_ANCHOR}`} data-vf-consent-settings>{t(lang, "footer.privacySettings")}</a>}
+      <a href={pathFor("terms", lang)}>{t(lang, "footer.terms")}</a>
+      {/* no status link: the status page is allow-listed to the operator since 2026-10-13 (owner) */}
+      <LanguageList lang={lang} page={page} variant="menu" hrefs={hrefs} />
+    </div>
+    <p>{t(lang, "footer.openData")}{refreshes ? ` ${t(lang, "footer.refresh")}` : ""}</p>
+  </div>
+</footer>

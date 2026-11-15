@@ -1,0 +1,11 @@
+---
+/**
+ * The developers page's copy script (#992, `lib/code-copy.ts`), once per page that shows a code box. It DECLARES the
+ * script (`Astro.locals.hasScript`), so the middleware sends the nonce policy and writes the nonce onto it.
+ */
+import { codeCopyScript } from "../lib/code-copy.js";
+
+Astro.locals.hasScript = true;
+---
+
+<script is:inline set:html={codeCopyScript()} />

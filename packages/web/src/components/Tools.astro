@@ -1,0 +1,53 @@
+---
+/**
+ * The tools by domain. On a phone the catalogue folds into a <details>
+ * (summary: "Alle N Werkzeuge anzeigen", N the catalogue's count); from 601 px up the same <details>
+ * is forced open by the stylesheet (`.fold`), so there is one markup and no
+ * script. The groups list every tool the server serves (held equal to the
+ * generated catalogue by a test), so the count is the server's.
+ */
+import { t } from "../i18n/index.js";
+import RoadSign from "./RoadSign.astro";
+import { TOOL_GROUPS, TOOL_GROUP_SIGNS } from "../site/examples.js";
+import type { Lang } from "../site/pages.js";
+
+interface Props {
+  lang: Lang;
+}
+const { lang } = Astro.props;
+const groups = Object.keys(TOOL_GROUPS) as (keyof typeof TOOL_GROUPS)[];
+const total = groups.reduce((n, g) => n + TOOL_GROUPS[g].length, 0);
+---
+
+<section class="block" id="tools" aria-labelledby="tools-heading">
+  <div class="wrap">
+    <div class="block__head">
+      <h2 id="tools-heading">{t(lang, "tools.heading")} <span class="muted">· {t(lang, "tools.count", { n: total })}</span></h2>
+      <p class="lead mobile-hide">{t(lang, "tools.lead")}</p>
+    </div>
+    <details class="fold">
+      <summary class="fold__summary btn btn--sm">{t(lang, "tools.showAll", { n: total })}</summary>
+      <div class="toolgroups">
+        {
+          groups.map((g) => (
+            <div class="toolgroup">
+              <h3>
+                {TOOL_GROUP_SIGNS[g].map((k) => (
+                  <RoadSign kind={k} />
+                ))}
+                {t(lang, `tools.groups.${g}`)}
+              </h3>
+              <ul>
+                {TOOL_GROUPS[g].map((name) => (
+                  <li>
+                    <code class="tool">{name}</code>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ))
+        }
+      </div>
+    </details>
+  </div>
+</section>

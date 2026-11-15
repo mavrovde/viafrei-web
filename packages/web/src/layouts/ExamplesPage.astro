@@ -1,0 +1,161 @@
+---
+/**
+ * The examples page (#747): `/<lang>/examples` in every language (#892; `/de/beispiele` before it).
+ *
+ * Every example question the site carries — the "Your day" moments' three
+ * questions, the connect page's answer cards and the business page's six
+ * former questions — with the tool that answers it and its answer, grouped by
+ * domain (`site/example-archive.ts`). An example that leaves the home or the
+ * connect page stays here: `site/example-ledger.ts` lists every key ever
+ * added and `test/example-ledger.test.ts` holds this page to it.
+ *
+ * A moment whose first question the MCP engine asks itself (`Moment.live`)
+ * shows that LIVE answer when the engine holds one that can be said in this
+ * language (`LiveAsk`, the home's rule), and otherwise the recorded answer
+ * with its date. Every other example is the recorded answer, dated.
+ *
+ * No fuel example is here: the data steward's Verdict 2 (2026-10-05) allows at most
+ * three dated Tankerkönig examples, on /connect and the home only, so the fuel
+ * section is one sentence linking to them (`isTankerkoenig`, `RETIRED_FUEL`).
+ * Robots as on the home: no directive (the fuel page and the place pages are
+ * the `noarchive` ones, because they carry the station boards).
+ */
+import Base from "./Base.astro";
+import PageHead from "../components/PageHead.astro";
+import EndpointCopy from "../components/EndpointCopy.astro";
+import Answer from "../components/Answer.astro";
+import Ask from "../components/Ask.astro";
+import LiveAsk from "../components/LiveAsk.astro";
+import LiveCard from "../components/LiveCard.astro";
+import RoadSign from "../components/RoadSign.astro";
+import { t, type MessageKey } from "../i18n/index.js";
+import { readEnv } from "../lib/env.js";
+import { PANEL_DEADLINE_MS } from "../lib/fill.js";
+import { answerParts, fetchAsks } from "../lib/ask.js";
+import { ARCHIVE_DOMAINS, archiveEntries, creditsOf, type ArchiveDomain, type ArchiveEntry } from "../site/example-archive.js";
+import { EXAMPLES_OPEN, foldSourcesFor, splitFold } from "../lib/fold-credits.js";
+import { answerKey, questionKey } from "../site/examples.js";
+import { pathFor, type Lang } from "../site/pages.js";
+
+interface Props {
+  lang: Lang;
+}
+const { lang } = Astro.props;
+const env = readEnv();
+const asks = await fetchAsks({ baseUrl: env.mcpInternalUrl, timeoutMs: Math.min(env.tileTimeoutMs, PANEL_DEADLINE_MS) });
+const now = new Date();
+const entries = archiveEntries();
+const of = (d: ArchiveDomain): readonly ArchiveEntry[] => entries.filter((e) => e.domain === d);
+/** The live answer an entry shows, or undefined: the first question of a live moment, and only one said in this language. */
+const liveOf = (e: ArchiveEntry) => {
+  if (e.kind !== "moment" || e.n !== 1 || e.moment.live === undefined) return undefined;
+  const a = asks.get(e.moment.live);
+  return a !== undefined && answerParts(lang, a) !== null ? a : undefined;
+};
+/** The register ids an entry's shown answer credits: the live answer's sources where it shows one, else the recorded answer's. */
+const idsOf = (e: ArchiveEntry): readonly string[] => liveOf(e)?.projection.sources ?? creditsOf(e);
+const connect = pathFor("connect", lang);
+/** The fuel section's one sentence, split around its two links (sentinels no deck text carries). */
+const FUEL_HOME = "\u0000home\u0000";
+const FUEL_CONNECT = "\u0000connect\u0000";
+const fuelNote = t(lang, "examplesPage.fuelNote", { home: FUEL_HOME, connect: FUEL_CONNECT }).split(/(\u0000home\u0000|\u0000connect\u0000)/).filter((p) => p !== "");
+---
+
+<Base lang={lang} page="examples">
+  <section class="block page-head">
+    <div class="wrap">
+      <PageHead as="div" wrap={false} h1={t(lang, "examplesPage.title")}>
+        <p class="lead">{t(lang, "examplesPage.lead")}</p>
+        {/* #1182: the page's one action first — connect your AI — then what the examples are */}
+        <p class="biz-hero__cta"><a class="btn btn--primary" href={connect}>{t(lang, "hero.primary")}</a></p>
+        <p>{t(lang, "examplesPage.live")}</p>
+      </PageHead>
+      <nav aria-label={t(lang, "examplesPage.toc")}>
+        <ul class="chips">
+          {ARCHIVE_DOMAINS.map((d) => <li><a class="chip" href={`#examples-${d}`}>{t(lang, `examplesPage.domain.${d}` as MessageKey)}</a></li>)}
+        </ul>
+      </nav>
+    </div>
+  </section>
+
+  {
+    ARCHIVE_DOMAINS.map((d) => {
+      // #1182 AC 3 (page ≤ 25 screens, owner 2026-11-06) under FS-2026-11-06: each domain's first EXAMPLES_OPEN stand
+      // open, and so does every one that may not fold (FS5, FS8); the rest are one fold the wide stylesheet opens from
+      // 601 px up, its summary naming every publisher inside (FS3). Every example stays in the HTML under its anchor. The
+      // fold stands in the open cards' grid, so from 601 px up its cards are the same grid's (`.examples-more`).
+      const split = splitFold(of(d), EXAMPLES_OPEN, idsOf);
+      const one = (e: ArchiveEntry) => {
+        if (e.kind === "card") return <div class="example" id={e.id}><LiveCard lang={lang} e={e.card} source="examples" /></div>;
+        // archiveEntries() holds no Tankerkönig example (the data steward's Verdict 2): the fuel section points to the home and /connect
+        if (e.kind === "fuel") return null;
+        if (e.kind === "business") {
+          const n = String(e.ask.n);
+          return (
+            <article class="card example" id={e.id} aria-labelledby={`${e.id}-h`}>
+              <h3 id={`${e.id}-h`}>{t(lang, `bizPage.u${n}t` as MessageKey)}</h3>
+              <blockquote class="ask">
+                <Ask lang={lang} text={t(lang, `bizPage.u${n}q` as MessageKey)} />
+                <p class="ask__tool">
+                  <code>{e.ask.tool}</code>
+                </p>
+              </blockquote>
+              <Answer lang={lang} msg={e.ask.answerKey} answer={e.ask.answer} class="moment__answer" source="examples" />
+            </article>
+          );
+        }
+        const live = liveOf(e);
+        const m = e.moment;
+        return (
+          <article class="card example" id={e.id} aria-labelledby={`${e.id}-h`}>
+            <h3 id={`${e.id}-h`}>
+              <RoadSign kind={m.sign} />
+              {t(lang, `day.moments.${m.key}.title` as MessageKey)} · {t(lang, "examplesPage.question", { n: String(e.n) })}
+            </h3>
+            {m.live !== undefined && live !== undefined ? (
+              <LiveAsk lang={lang} key={m.live} entry={live} ctaHref={connect} now={now} source="examples" />
+            ) : (
+              <>
+                <blockquote class="ask">
+                  <Ask lang={lang} text={t(lang, questionKey(m, e.n))} />
+                  <p class="ask__tool">
+                    <code>{m.tools[e.n - 1]}</code>
+                  </p>
+                </blockquote>
+                <Answer lang={lang} msg={answerKey(m, e.n)} answer={m.answers[e.n - 1]!} class="moment__answer" source="examples" />
+              </>
+            )}
+          </article>
+        );
+      };
+      return (
+        <section class="block" id={`examples-${d}`} aria-labelledby={`examples-${d}-h`}>
+          <div class="wrap">
+            <h2 id={`examples-${d}-h`}>{t(lang, `examplesPage.domain.${d}` as MessageKey)}</h2>
+            {d === "fuel" ? (
+              <p class="examples__fuelnote">
+                {fuelNote.map((part) =>
+                  part === FUEL_HOME ? <a href={`${pathFor("start", lang)}#fuel-asks`}>{t(lang, "examplesPage.fuelHome")}</a>
+                  : part === FUEL_CONNECT ? <a href={`${connect}#answers`}>{t(lang, "examplesPage.fuelConnect")}</a>
+                  : part,
+                )}
+              </p>
+            ) : (
+              <div class="cards">
+                {split.open.map(one)}
+                {split.folded.length > 0 && (
+                  <details class="fold connect-more examples-more">
+                    <summary class="fold__summary"><span class="fold__label">{t(lang, "connectPage.moreExamples")}</span><Fragment set:html={foldSourcesFor(lang, split.folded.flatMap(idsOf))} /></summary>
+                    <div class="cards">{split.folded.map(one)}</div>
+                  </details>
+                )}
+              </div>
+            )}
+          </div>
+        </section>
+      );
+    })
+  }
+  {/* #1003: the endpoint chip's copy script, once for every chip on the page */}
+  <EndpointCopy />
+</Base>

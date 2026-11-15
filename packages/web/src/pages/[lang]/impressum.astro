@@ -1,0 +1,17 @@
+---
+/**
+ * `/<lang>/impressum` for every live language except German — the binding German
+ * text under one sentence in the page language (#379 PR-07, #235, A4). German
+ * itself is `/impressum` at the root, so `/de/impressum` is the 404.
+ */
+import Legal from "../../layouts/Legal.astro";
+import { isLang } from "../../i18n/index.js";
+import { identityOrError } from "../../lib/identity.js";
+
+const lang = Astro.params["lang"] ?? "";
+if (!isLang(lang) || lang === "de") return Astro.rewrite("/404");
+const id = identityOrError();
+if (id instanceof Response) return id;
+---
+
+<Legal lang={lang} which="impressum" id={id} />

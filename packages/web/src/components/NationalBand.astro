@@ -1,0 +1,97 @@
+---
+/**
+ * "Deutschland jetzt" (#990, owner 2026-10-24: "information about similar things and the statistics sit in different
+ * places"): EVERY national live figure of the home in one band — the four facts of the former "Heute" strip, every
+ * tile the "Ihr Tag" moments carried, the motorways most affected and the links to the roads and the places — grouped
+ * by domain, each domain once. The moments below keep their questions and answers only; the place cards above are the
+ * local scope. Each figure is the digest's fragment as it arrived (its Stand, freshness pill and credit lines verbatim).
+ *
+ * The groups are a grid whose columns follow the number of panels (`auto-fit`), so no cell is ever empty: a fact or a
+ * tile that did not answer is simply not there, and a group with nothing in it is not printed.
+ */
+import { PAGE_HEAD_COPY, foldTile, foldWhole } from "@viafrei/design";
+import RoadLinks from "./RoadLinks.astro";
+import { HOME_LIVE_MAP_SLOT } from "../lib/live-map.js";
+import { catalogue, t } from "../i18n/index.js";
+import type { PageTiles, TileResult } from "../lib/tiles.js";
+import { pathFor, type Lang } from "../site/pages.js";
+
+interface Props {
+  lang: Lang;
+  tiles: PageTiles;
+  /** The motorways most affected now (the digest's fragment), or null when it missed its deadline. */
+  motorwayTop: string | null;
+  /** #1087 part 2: the stations most affected now (the digest's fragment, a kept one, or its error state); null leaves it out. */
+  stationTop: string | null;
+}
+const { lang, tiles, motorwayTop, stationTop } = Astro.props;
+const fact = (id: string): TileResult | undefined => tiles.facts.find((f) => f.id === `fact-${id}`);
+const live = (r: TileResult | null | undefined): r is TileResult => r !== null && r !== undefined;
+/** The domains, in the order of a journey: the road, the train, the energy, the parking. One heading each. */
+type NowGroup = { readonly key: "roads" | "rail" | "energy" | "parking"; readonly title: string; readonly panels: readonly TileResult[] };
+/**
+ * #1177 (owner 2026-11-05, decision 1): on a phone a group stands as its heading and its first panel (the fact); every other
+ * panel and the wide list are a `.fold` each, "… anzeigen", that the wide stylesheet opens from 601 px up with no script,
+ * so a wide screen keeps the one grid it had. Everything stays in the HTML. Data-steward ruling FS-2026-11-06
+ * (components.md, Fold: "a tile's or card's credit lines fold only WITH its data"): a panel folds whole inside its own
+ * tile — its head, figures and credit lines in one `<details>` (FS1), so none of its data stands outside the fold (FS4)
+ * — and its summary names every publisher of the lines inside (FS3); a fragment that is not one section folds whole the
+ * same way (`foldWhole`), and so do the wide lists. A credit line of a class the ruling did not read stays in view
+ * beside the fold (FS8). The fuel tile never folds (its sample, qualifier and MTS-K note may not, #423, FS5).
+ */
+const esc = (s: string): string => s.replace(/&/gu, "&amp;").replace(/</gu, "&lt;").replace(/>/gu, "&gt;");
+const folded = (html: string, label: string, cls: string): string => foldTile(lang, html, esc(label), cls) ?? foldWhole(lang, html, esc(label), cls);
+const folds = (p: TileResult, i: number): boolean => i > 0 && p.id !== "fuel" && !p.html.includes("credit--fuel");
+const words = catalogue(lang);
+const show = (title: string): string => PAGE_HEAD_COPY[lang].showCounted.replace("{x}", title);
+const panelTitle = (p: TileResult, g: NowGroup): string => words[`tiles.${p.id}`] ?? g.title;
+const groups: readonly NowGroup[] = [
+  { key: "roads", title: t(lang, "tools.groups.roads"), panels: [fact("roads"), tiles.reports, tiles.jams].filter(live) },
+  { key: "rail", title: `${t(lang, "tools.groups.rail")} · ${t(lang, "tools.groups.transit")}`, panels: [fact("punctuality"), tiles.punctuality, tiles.station, tiles.lifts, tiles.pending.transit].filter(live) },
+  { key: "energy", title: t(lang, "tools.groups.energy"), panels: [fact("charging"), tiles.charging, tiles.fuel].filter(live) },
+  { key: "parking", title: t(lang, "day.moments.parking.title"), panels: [fact("lorry"), tiles.lorry, tiles.carparks].filter(live) },
+];
+---
+
+<section class="block now" id="now" aria-labelledby="now-heading">
+  <div class="wrap">
+    <div class="block__head">
+      <h2 id="now-heading">{t(lang, "now.heading")}</h2>
+      <p class="lead">{t(lang, "now.lead")}</p>
+    </div>
+    {
+      groups
+        .filter((g) => g.panels.length > 0 || (g.key === "roads" && motorwayTop !== null) || (g.key === "rail" && stationTop !== null))
+        .map((g) => (
+          <section class={`now__group now__group--${g.key}`} id={`now-${g.key}`} aria-labelledby={`now-${g.key}-h`}>
+            <h3 class="now__title" id={`now-${g.key}-h`}>
+              {g.title}
+            </h3>
+            <div class="now__grid">
+              {g.panels.map((p, i) =>
+                !folds(p, i) ? (
+                  <div class={`now__cell${p.id.startsWith("fact-") ? " now__cell--fact" : ""}`} set:html={p.html} />
+                ) : (
+                  <div class="now__cell" set:html={folded(p.html, show(panelTitle(p, g)), "now__fold")} />
+                ),
+              )}
+            </div>
+            {g.key === "energy" && tiles.fuel !== undefined && (
+              <p class="fuel-all">
+                <a href={pathFor("fuel", lang)}>{t(lang, "day.fuelAll")}</a>
+              </p>
+            )}
+            {/* 2.1.16 (#716 C1): the motorways most affected now, from the motorway catalogue; a slow one is left out */}
+            {g.key === "roads" && motorwayTop !== null && (
+              <div class="now__widefold" set:html={folded(`<div class="motorway-page now__wide">${motorwayTop}<div class="lmap-slot" id="${HOME_LIVE_MAP_SLOT}" hidden></div></div>`, show(PAGE_HEAD_COPY[lang].top), "now__fold")} />
+            )}
+            {/* #1087: the stations most affected now, the station search and every station; a dead fragment is its error state */}
+            {g.key === "rail" && stationTop !== null && (
+              <div class="now__widefold" set:html={folded(`<div class="now__wide">${stationTop}</div>`, show(t(lang, "now.stationTop.head")), "now__fold")} />
+            )}
+          </section>
+        ))
+    }
+    <RoadLinks lang={lang} />
+  </div>
+</section>

@@ -1,0 +1,81 @@
+---
+/**
+ * #1076: one fuel station's page `/<lang>/fuel/<slug>` and one charging site's `/<lang>/charging/<slug>` — the digest's
+ * fragment (`/internal/<kind>/<slug>`), its title, description and name off the fragment's root (`lib/energy-page.ts`
+ * `energyHeadOf`). Unmeasured, like a station page. `no-store`: the page carries a per-request CSP nonce. The language
+ * switcher points at the SAME station in every language (the slug is the same in all).
+ *
+ * A FUEL STATION'S PAGE (data-steward #1065 PF1–PF5 for one station; #1167, the ruling of 2026-11-04 S1–S5):
+ * `noarchive`, off the corpus crawlers in robots.txt (`/<lang>/fuel` covers it, `site/discovery.ts` `CORPUS_DISALLOW`),
+ * in no sitemap, no price in the HTML and NO JSON-LD at all (S2: the WebPage and breadcrumb nodes would carry the name
+ * too); the prices are the person-gated `/fragment/fuel-station`, asked by the page's one script when the slot is in
+ * view (`lib/fuel-station.ts`). A charging site's page carries no fuel data (S3: the digest's charging page names no
+ * fuel station — no brand, street, slug or Tankerkönig credit) and no script of its own.
+ *
+ * #1188: under the object, "In der Nähe" — THE around block of every object page (`components/AroundBlock.astro`, the
+ * station page's), the place cards of the object's cell with the object itself left out (`lib/object-area.ts`). Its
+ * fuel card is the deferred frame (no price, no station name, no credit), filled for a person by the place pages' own
+ * gated script, so a charging page still carries no fuel data in its HTML; a block carrying that card (or still
+ * loading, which may bring it) keeps the page out of every archive, as on a station page. A block not ready inside the
+ * deadline is its loading state, filled in place by the refresh script (`lib/card-refresh.ts`).
+ */
+import Base from "./Base.astro";
+import Crumbs from "../components/Crumbs.astro";
+import { LIVE_LANGS, type Lang } from "../site/pages.js";
+import { energyPath, type EnergyKind } from "../site/energy.js";
+import { fitDescription, fitTitle } from "../site/meta.js";
+import { t } from "../i18n/index.js";
+import { energyCrumbs, energyJsonLd } from "../site/structured-data.js";
+import type { EnergyHead } from "../lib/energy-page.js";
+import { liftPlaceFirst } from "../lib/place-head.js";
+import PageHead from "../components/PageHead.astro";
+import { FUEL_STATION_FRAGMENT_ON, fuelStationScript } from "../lib/fuel-station.js";
+import energyPageCss from "../styles/energy-page.css?raw";
+import type { ObjectArea } from "../lib/object-area.js";
+import AroundBlock from "../components/AroundBlock.astro";
+import { topicsOf } from "../lib/topic-filter.js";
+import { cardRefreshScript } from "../lib/card-refresh.js";
+
+interface Props {
+  kind: EnergyKind;
+  lang: Lang;
+  slug: string;
+  head: EnergyHead;
+  /** #1188: the place cards around the object; absent or `none`: no block. */
+  area?: ObjectArea;
+}
+const { kind, lang, slug, head, area = { kind: "none" } } = Astro.props;
+const name = head.name ?? slug.replace(/-[a-z]{10}$/, "");
+const path = energyPath(kind, lang, slug);
+const title = head.title ?? `${name} – ViaFrei`;
+const board = kind === "fuel" ? t(lang, "fuelPage.title") : null;
+const meta = { title: fitTitle(title), description: fitDescription(head.description ?? title) };
+const h1 = head.h1 ?? title.replace(/\s[—–]\sViaFrei$/u, "");
+// #1178: what a person came for stands right under the heading
+const lifted = liftPlaceFirst(head.html);
+const alternates = Object.fromEntries(LIVE_LANGS.map((l) => [l, energyPath(kind, l, slug)])) as Record<Lang, `/${string}`>;
+Astro.response.headers.set("Cache-Control", "no-store");
+const pageCss = energyPageCss.replace(/\/\*[\s\S]*?\*\//g, "").replace(/\s+/g, " ").trim();
+const script = kind === "fuel" && FUEL_STATION_FRAGMENT_ON && head.html.includes('class="energypage__prices"');
+if (script) Astro.locals.hasScript = true;
+// #1188: the around block's fuel card (or a block still loading) keeps the page out of every archive, as a station page's
+const archive = kind === "fuel" || (area.kind === "ok" && area.html.includes('id="pcard-fuel"')) || area.kind === "loading";
+// a block still loading is filled in place by the shell's one refresh script
+const refills = area.kind === "loading";
+if (refills) Astro.locals.hasScript = true;
+---
+
+<Base
+  lang={lang}
+  page={kind === "fuel" ? "fuel" : "start"}
+  {...(archive ? { robots: "noarchive" as const } : {})}
+  dynamic={{ ...meta, path, alternates, ...(kind === "fuel" ? {} : { jsonLd: energyJsonLd(kind, lang, name, meta.title, meta.description, path, { street: head.street, postcode: head.postcode, city: head.city }) }) }}
+>
+  <style is:inline slot="head" set:html={pageCss}></style>
+  <Crumbs lang={lang} crumbs={energyCrumbs(kind, lang, name, path, board)} namesFrom={kind === "fuel" ? 2 : 1} />
+  <PageHead h1={h1} h1Translate={false} first={lifted.first} />
+  <div class="wrap" set:html={lifted.html} />
+  <AroundBlock lang={lang} area={area} path={path} topics={topicsOf(Astro.url.searchParams)} />
+  {script && <script is:inline set:html={fuelStationScript()} />}
+  {refills && <script is:inline set:html={cardRefreshScript()} />}
+</Base>

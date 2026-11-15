@@ -1,0 +1,33 @@
+---
+/**
+ * #1173: the head of every page type, in one order: the H1 (the object's name only), the first block (status line, top
+ * items, jump links: `@viafrei/design`'s `page-head.ts`, rendered by whoever holds the data), then the page's own slot.
+ * The breadcrumb stands above it, on one line. Nothing here needs a script.
+ *
+ * #1182: every page type renders it (`test/page-types-1182.test.ts` holds the layouts to that). A page whose hero is a
+ * grid (business, developers, examples, fuel) puts it inside its own `.wrap` as a `div` with `wrap={false}`, so the
+ * order H1 → first block → the page's one action is the same while the hero keeps its columns.
+ */
+interface Props {
+  h1: string;
+  /** The status block's markup, already escaped by its builder; none on a page with nothing live. */
+  first?: string | null | undefined;
+  class?: string | undefined;
+  /** False: a proper name no translator may touch (`translate="no"`). */
+  h1Translate?: boolean;
+  /** The H1's id, for an `aria-labelledby` on the page's hero. */
+  h1Id?: string | undefined;
+  /** The element: a `section` of its own, or a `div` inside a hero that is already one. */
+  as?: "section" | "div";
+  /** False inside a hero that already sets the page width. */
+  wrap?: boolean;
+}
+const { h1, first = null, class: cls, h1Translate = true, h1Id, as = "section", wrap = true } = Astro.props;
+const Tag = as;
+---
+
+<Tag class:list={[wrap && "wrap", "pagehead", cls]}>
+  {h1Translate ? <h1 id={h1Id}>{h1}</h1> : <h1 id={h1Id} translate="no">{h1}</h1>}
+  {first !== null && <div class="pagefirst" id="page-first" set:html={first} />}
+  <slot />
+</Tag>

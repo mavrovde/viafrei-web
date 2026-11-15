@@ -1,0 +1,117 @@
+---
+/**
+ * A station page (#1041): `/<lang>/station/<slug>` — the static cards of one
+ * DB station (platforms, facilities, around the station, connections, the
+ * sources), the digest's fragment (`/internal/station/<slug>`), each card with
+ * its licence line. The `<h1>` is the station's name, read off the fragment
+ * (`lib/station-head.ts`). Unmeasured, like a place page. `no-store`: the page
+ * carries a per-request CSP nonce; the fragment is cached by its ETag one level
+ * down (`lib/station.ts`). The language switcher points at the SAME station in
+ * every language (the slug is the same in all of them).
+ */
+import { carriesChargingFilterForm, chargingSubmitScript, keepChoicesInChargingForm, needsChargingSubmit } from "../lib/charging-filter.js";
+import Base from "./Base.astro";
+import Crumbs from "../components/Crumbs.astro";
+import { t } from "../i18n/index.js";
+import { LIVE_LANGS, type Lang } from "../site/pages.js";
+import { stationPath } from "../site/stations.js";
+import { stationLabel, stationMeta } from "../site/meta.js";
+import { stationCrumbs, stationJsonLd } from "../site/structured-data.js";
+import { stationHeadOf, withParkingJump } from "../lib/station-head.js";
+import { liftPlaceFirst, stationNowOf } from "../lib/place-head.js";
+import PageHead from "../components/PageHead.astro";
+import { cardRefreshScript, carriesRefresh } from "../lib/card-refresh.js";
+import type { StationFacts } from "../lib/station.js";
+import type { ObjectArea as Area } from "../lib/object-area.js";
+import AroundBlock from "../components/AroundBlock.astro";
+import type { PlaceCardId } from "../lib/topic-filter.js";
+import stationPageCss from "../styles/station-page.css?raw";
+import freshnessCss from "../styles/freshness.css?raw";
+import { freshAgesScript } from "../lib/motorway-filter.js";
+import { carriesSuggest } from "../lib/suggest.js";
+import { deskScript, stationDesk } from "../lib/desk.js";
+import AskBox from "../components/AskBox.astro";
+import Star from "../components/Star.astro";
+
+interface Props {
+  lang: Lang;
+  slug: string;
+  html: string;
+  /** #1044: StaDa's facts for the title, the description and the structured data. */
+  facts?: StationFacts | null;
+  /** #1042: a person's filter or the step-free view in the address — noindex, the canonical the bare page. */
+  variant?: boolean;
+  /** #1081 D2: a charging-filtered view is also kept out of every archive. */
+  noarchive?: boolean;
+  /** #1084: the place cards of the station's position (`lib/object-area.ts`); absent or `none`: no block. */
+  area?: Area;
+  /** #1084: the address's topic choice for those cards (`topicsOf`); null = every topic. */
+  topics?: readonly PlaceCardId[] | null;
+  /** 2.4.6: a part in its loading state (the refresh script fills it in place); `static`: the static part is its frame. */
+  loading?: { readonly any: boolean; readonly static: boolean };
+}
+const { lang, slug, html: fragment, facts = null, variant = false, noarchive = false, area = { kind: "none" }, topics = null, loading = { any: false, static: false } } = Astro.props;
+const whole = stationHeadOf(fragment);
+// #1175: the status block stands under the H1; the page's sentence goes to the end and the description
+const lifted = liftPlaceFirst(whole.html);
+const head = { ...whole, html: lifted.html };
+const first = withParkingJump(lifted.first, area.kind === "ok" ? area.html : null);
+const name = head.name ?? t(lang, "seo.crumbStations");
+const path = stationPath(lang, slug);
+const meta = stationMeta(name, lang, facts?.city ?? null, stationNowOf(first));
+// #1095: the H1 names the station AND its town (the title's label: "Kleinhalt (Görlitz)", "Köln Hbf" as it is), and a
+// visible lead says what the page shows for it, with its Land — the description's sentence, so what a search result
+// promises is the first thing the page says. The names are proper names (`translate="no"`); the rest is the page's language.
+const label = head.name === null ? name : stationLabel(name, facts?.city ?? null);
+const who = facts?.land != null && head.name !== null ? `${label}, ${facts.land}` : label;
+const MARK = "\u0000";
+const [leadBefore = "", leadAfter = ""] = t(lang, "seo.stationDescription", { name: MARK }).split(MARK);
+const alternates = Object.fromEntries(LIVE_LANGS.map((l) => [l, stationPath(l, slug)])) as Record<Lang, `/${string}`>;
+Astro.response.headers.set("Cache-Control", "no-store");
+// #1042: the live cards refresh in place (the shell's one refresh script); the board's filter is a GET form to this origin
+// owner 2026-10-27: the board's filter applies on change through the same script, so it rides along with the form too
+// #1084: and so do the place cards of its position — the one script for both
+// 2.4.6: and a part in its loading state is filled by the same script (it asks for the page again)
+const refreshes = loading.any || carriesRefresh(head.html) || head.html.includes('<form class="stlive__filter"') || (area.kind === "ok" && carriesRefresh(area.html));
+// 2.4.4 review B2: the charging filter sends itself on change — through the refresh script when the page carries it, else alone
+const evSubmit = needsChargingSubmit({ refresh: refreshes, html: head.html, swaps: false });
+if (refreshes || evSubmit) Astro.locals.hasScript = true;
+// #1081: and so is the charging filter of "Parken und Laden" (the place cards' topic bar says so itself, `AroundBlock`)
+Astro.locals.hasForm = head.html.includes('<form class="stlive__filter"') || carriesChargingFilterForm(head.html);
+// #1084: the place cards carry the fuel card, as a city page does — kept out of every archive like the place pages
+// 2.4.6: cards still loading may bring the fuel card in place: kept out of every archive as if they had
+const archive = noarchive || (area.kind === "ok" && area.html.includes('id="pcard-fuel"')) || area.kind === "loading";
+// owner 2026-10-27: every block carries the motorway panels' freshness sign — its style, and the script that keeps each
+// sign's relative age ("vor 3 Min.") current, as on the motorway pages
+const hasAges = head.html.includes('class="fresh__age"') || (area.kind === "ok" && area.html.includes('class="fresh__age"'));
+if (hasAges) Astro.locals.hasScript = true;
+// 2.4.6: the board's "Ziel"/"Von" box suggests the names the board knows as you type (`lib/suggest.ts`)
+const suggests = carriesSuggest(head.html);
+if (suggests) Astro.locals.hasScript = true;
+// #1180: the desktop dashboard's one script
+Astro.locals.hasScript = true;
+const pageCss = (stationPageCss + freshnessCss).replace(/\/\*[\s\S]*?\*\//g, "").replace(/\s+/g, " ").trim();
+---
+
+<Base lang={lang} page="stations" robots={variant || loading.static ? (archive ? "noindex, follow, noarchive" : "noindex, follow") : archive ? "noarchive" : undefined} dynamic={{ ...meta, path, alternates, jsonLd: stationJsonLd(lang, name, path, facts) }}>
+  <style is:inline slot="head" set:html={pageCss}></style>
+  <Crumbs lang={lang} crumbs={stationCrumbs(lang, name, path, facts)} />
+  {/* #1180: from 1024 px a dashboard — the board and the station's cards on the left, the nearby stops' map sticky on the right */}
+  <div class="desk desk--station">
+    {/* #1195: the station's part in a box of its own from 1024 px, so its sticky map ends with it, above the area */}
+    <div class="desk__top">
+    <PageHead h1={label} h1Translate={false} first={first} />
+    <Star lang={lang} path={path} label={label} />
+    <div class="wrap" set:html={keepChoicesInChargingForm(head.html, Astro.url.searchParams)} />
+    </div>
+    <AroundBlock lang={lang} area={area} path={path} topics={topics} />
+    {head.name !== null && <AskBox lang={lang} about={{ kind: "place", place: name }} />}
+  </div>
+  <script is:inline set:html={deskScript(stationDesk(lang))} />
+  <section class="wrap">
+    {head.name !== null && <p class="lead stpage__intro">{leadBefore}<span translate="no">{who}</span>{leadAfter}</p>}
+  </section>
+  {refreshes && <script is:inline set:html={cardRefreshScript()} />}
+  {evSubmit && <script is:inline set:html={chargingSubmitScript()} />}
+  {hasAges && <script is:inline set:html={freshAgesScript(lang)} />}
+</Base>

@@ -1,0 +1,10 @@
+---
+/** `/de/404` and `/en/404` — the not-found page in one named language, reachable on purpose (#379 PR-06). */
+import NotFound from "../../layouts/NotFound.astro";
+import { isLang } from "../../i18n/index.js";
+
+const lang = Astro.params["lang"] ?? "";
+if (!isLang(lang)) return Astro.rewrite("/404");
+---
+
+<NotFound lang={lang} />

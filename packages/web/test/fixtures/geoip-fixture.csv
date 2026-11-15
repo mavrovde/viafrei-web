@@ -1,0 +1,8 @@
+192.0.2.0,192.0.2.127,EU,DE,Nordrhein-Westfalen,Köln,50.9375,6.9603
+192.0.2.128,192.0.2.255,EU,DE,Nordrhein-Westfalen,Köln,50.9375,6.9603
+198.51.100.0,198.51.100.255,EU,CH,"Basel-Stadt",Basel,47.5596,7.5886
+203.0.113.0,203.0.113.255,NA,US,California,"Mountain View, CA",37.4,-122.1
+203.0.114.0,203.0.114.255,EU,ZZ,,,0,0
+not,a,line
+2001:db8::,2001:db8:0:ffff:ffff:ffff:ffff:ffff,EU,DE,Berlin,Berlin,52.52,13.405
+2001:db8:1::,2001:db8:1:ffff:ffff:ffff:ffff:ffff,EU,FR,Grand Est,Strasbourg,48.5734,7.7521

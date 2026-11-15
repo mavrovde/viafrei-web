@@ -1,0 +1,79 @@
+---
+/**
+ * One recorded answer card (#472, `site/live-examples.ts`): the question as a
+ * person asks it, what production answered, its Stand and tool, the card's
+ * honest limit and the credit lines verbatim — and, for an answer that came
+ * from an ODbL database of ours (the Trucklounge lorry park), the § 4.6 offer
+ * in the page's language (data-steward C2, the sentence the live answers
+ * print). Rendered by the connect page and, since #747, the examples page.
+ *
+ * A proper name (a park, a station, a stop, a street address) is split out of
+ * the deck's sentence and rendered `translate="no"` (#449).
+ */
+import CreditItem from "./CreditItem.astro";
+import RoadSign from "./RoadSign.astro";
+import catalogue from "../generated/catalogue.json" with { type: "json" };
+import register from "../generated/register.json" with { type: "json" };
+import { t } from "../i18n/index.js";
+import { connectNoteHtml } from "../lib/connect-note.js";
+import type { ConnectSource } from "@viafrei/design";
+import { ODBL_DATABASES, offerHtml } from "../lib/answer-html.js";
+import { namesOf, type LiveExample } from "../site/live-examples.js";
+import type { Lang } from "../site/pages.js";
+
+interface Props {
+  lang: Lang;
+  e: LiveExample;
+  /** The heading level: h3 on the connect page, h4 under a domain heading on the examples page. */
+  level?: 3 | 4;
+  /** The surface, for the "works only with ViaFrei connected" note under the answer (#1001) and its click's `source`. */
+  source: ConnectSource;
+}
+const { lang, e, level = 3, source } = Astro.props;
+const HOLE = "\u0000";
+type Part = { readonly text: string; readonly name: boolean };
+const withNames = (key: Parameters<typeof t>[1]): readonly Part[] => {
+  const names = namesOf(e);
+  const keys = Object.keys(names);
+  const holes = Object.fromEntries(keys.map((k, i) => [k, `${HOLE}${i}${HOLE}`]));
+  return t(lang, key, { ...e.values, ...holes })
+    .split(HOLE)
+    .map((s, i) => (i % 2 === 0 ? { text: s, name: false } : { text: names[keys[Number(s)] ?? ""] ?? "", name: true }))
+    .filter((p) => p.text !== "");
+};
+type Credit = (typeof catalogue.credits)[number];
+const credits = e.credits.map((id) => catalogue.credits.find((c) => c.id === id)).filter((c): c is Credit => c !== undefined);
+const question = withNames(e.question);
+const answer = withNames(`connectPage.live.${e.key}.a`);
+// the § 4.6 offer for our own ODbL databases only; an OSM line here credits an address lookup, not rows of the answer
+const offer = offerHtml(lang, e.credits.filter((id) => ODBL_DATABASES[id] !== undefined));
+const H = level === 4 ? "h4" : "h3";
+---
+
+<article class="card answer" aria-labelledby={`ans-${e.key}`}>
+  <H id={`ans-${e.key}`}><RoadSign kind={e.sign} />{t(lang, `connectPage.live.${e.key}.title`)}</H>
+  {/* one line on purpose: a line break here would be a space after the opening quotation mark */}
+  {/* #748: the assistant half (the question, the answer, its time and tool) and the card half (its limit, its credit
+      lines, the offer and the MTS-K note) — side by side when the card is wide enough, stacked on a phone */}
+  <div class="answer__talk">
+  <p class="answer__q"><span class="answer__mark" aria-hidden="true">{t(lang, "quote.open")}</span>{question.map((p) => (p.name ? <span translate="no">{p.text}</span> : p.text))}<span class="answer__mark" aria-hidden="true">{t(lang, "quote.close")}</span></p>
+  <div class="answer__a">
+    <p>
+      {e.name !== undefined && <strong translate="no">{e.name}: </strong>}
+      {answer.map((p) => (p.name ? <span translate="no">{p.text}</span> : p.text))}
+    </p>
+  </div>
+  <p class="answer__meta">
+    {e.credits.includes("tankerkoenig") ? <strong>{t(lang, "connectPage.live.fuelExample", e.values)}</strong> : t(lang, "connectPage.live.asOf", e.values)} · <code>{e.tool}</code>
+  </p>
+  <Fragment set:html={connectNoteHtml(lang, source)} />
+  </div>
+  <div class="answer__card">
+  <p class="answer__note">{t(lang, `connectPage.live.${e.key}.note`)}</p>
+  <ul class="credits">
+    {credits.map((c) => <CreditItem c={c} lang={lang} />)}
+  </ul>
+  {offer !== "" && <Fragment set:html={offer} />}
+  {e.credits.includes("tankerkoenig") && <p class="answer__note" lang="de">{register.mtskNote}</p>}
+  </div>
+</article>

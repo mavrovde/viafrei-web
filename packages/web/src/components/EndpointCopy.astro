@@ -1,0 +1,13 @@
+---
+/**
+ * The endpoint chip's copy script (#1003, `lib/endpoint-copy.ts`), once per
+ * page that shows a chip. It DECLARES the script (`Astro.locals.hasScript`), so
+ * the middleware sends the nonce policy and writes the nonce onto it; a page
+ * without a chip does not include this and keeps `script-src 'none'`.
+ */
+import { endpointCopyScript } from "../lib/endpoint-copy.js";
+
+Astro.locals.hasScript = true;
+---
+
+<script is:inline set:html={endpointCopyScript()} />

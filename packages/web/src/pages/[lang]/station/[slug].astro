@@ -1,0 +1,20 @@
+---
+/** `/<lang>/station/<slug>` — one station's page (#1041): 301 for another spelling or a renamed station's old slug, 404 for an unknown station. */
+import StationPage from "../../../layouts/StationPage.astro";
+import { isLang } from "../../../i18n/index.js";
+import { readEnv } from "../../../lib/env.js";
+import { unavailableAnswer } from "../../../lib/degraded.js";
+import { resolveStationPage } from "../../../lib/station-page.js";
+import { hasChargingFilter } from "../../../lib/charging-filter.js";
+import { topicsOf } from "../../../lib/topic-filter.js";
+
+const lang = Astro.params["lang"] ?? "";
+if (!isLang(lang)) return Astro.rewrite("/404");
+const env = readEnv();
+const a = await resolveStationPage(lang, Astro.params["slug"] ?? "", { baseUrl: env.digestUrl, timeoutMs: env.tileTimeoutMs, mapPlatform: Astro.locals.mapPlatform }, Astro.url.searchParams);
+if (a.kind === "missing") return Astro.rewrite("/404");
+if (a.kind === "unavailable") return unavailableAnswer(lang, Astro.request);
+if (a.kind === "redirect") return Astro.redirect(a.to, 301);
+---
+
+<StationPage lang={lang} slug={a.slug} html={a.html} facts={a.facts} variant={a.variant} noarchive={hasChargingFilter(Astro.url.searchParams)} area={a.area} topics={topicsOf(Astro.url.searchParams)} loading={a.loading} />

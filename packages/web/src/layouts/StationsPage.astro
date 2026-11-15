@@ -1,0 +1,54 @@
+---
+/**
+ * The station catalogue (#1041): `/<lang>/station` — a search, the Länder
+ * with their counts and full lists, and the largest stations of each Land,
+ * each linked to its page (the digest's `/internal/station/index`). A row of
+ * the page map ("stations"), so its title, alternates and JSON-LD come from
+ * the map like every page's. A search (`?q=`) or one Land's list (`?land=`) is
+ * `noindex` with the bare catalogue as its canonical and is never kept.
+ * Unmeasured (no row of `ANALYTICS_PAGES`). #1182: after the search, the stations near the visitor (`lib/station-near.ts`).
+ */
+import Base from "./Base.astro";
+import PageHead from "../components/PageHead.astro";
+import Crumbs from "../components/Crumbs.astro";
+import { t } from "../i18n/index.js";
+import type { Lang } from "../site/pages.js";
+import { stationsCrumbs } from "../site/structured-data.js";
+import stationPageCss from "../styles/station-page.css?raw";
+import { carriesSuggest } from "../lib/suggest.js";
+import { liftPlaceFirst } from "../lib/place-head.js";
+import { headerPlaceFor } from "../lib/header-place.js";
+import { STATION_NEAR_HEADERS, stationNearScript } from "../lib/station-near.js";
+
+interface Props {
+  lang: Lang;
+  html: string;
+  /** A search or a Land's list in the address. */
+  variant?: boolean;
+  /** #1182: the page carries the "stations near you" slot (the bare catalogue), and the script that fills it. */
+  near?: boolean;
+}
+const { lang, html: fragment, variant = false, near = false } = Astro.props;
+// #1182: a first block in the fragment stands under the H1 through PageHead
+const lifted = liftPlaceFirst(fragment);
+const html = lifted.html;
+// the catalogue carries its search form (a GET form to this origin), so the page allows one
+Astro.locals.hasForm = html.includes('<form class="stpage-search"');
+// 2.4.6: and its field suggests stations as you type (`lib/suggest.ts`), the page's one script
+const suggests = carriesSuggest(html);
+if (suggests) Astro.locals.hasScript = true;
+// #1182 (steward ruling 2026-11-08, point 2): the page may carry a visitor-derived list — never kept by a shared cache
+for (const [k, v] of Object.entries(STATION_NEAR_HEADERS)) Astro.response.headers.set(k, v);
+if (near) Astro.locals.hasScript = true;
+// the header's island asks no exact position here (ruling (c)): the ~500 m cell sorts the list
+const place = { ...headerPlaceFor(lang), spot: false as const };
+const pageCss = stationPageCss.replace(/\/\*[\s\S]*?\*\//g, "").replace(/\s+/g, " ").trim();
+---
+
+<Base lang={lang} page="stations" robots={variant ? "noindex, follow" : undefined} place={place}>
+  <style is:inline slot="head" set:html={pageCss}></style>
+  <Crumbs lang={lang} crumbs={stationsCrumbs(lang)} />
+  <PageHead h1={t(lang, "seo.stationsH1")} first={lifted.first} />
+  <div class="wrap" set:html={html} />
+  {near && <script is:inline set:html={stationNearScript(lang)} />}
+</Base>

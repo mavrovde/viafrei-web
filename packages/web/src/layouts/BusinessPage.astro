@@ -1,0 +1,243 @@
+---
+/**
+ * "Für Unternehmen" (#144, #379 PR-10; rebuilt by #992 as a page that converts): a value sentence with two calls to
+ * action, a band of LIVE figures, six use cases that each open onto what the platform shows for that case right now,
+ * how it works, which data a business may take under which licence, the three ways of working together, one mailto.
+ *
+ * Rules the data-steward reads before merge, kept from #144: no use case names fuel prices or MTS-K and no fuel tile
+ * is shown (consumer information only, data-steward C5), no restricted feed: a tile, a fact or an answer shows only if every
+ * source it credits is classed `open`, `attribution`, `shareAlike` or `own`, judged on the credits of that render, and a
+ * refused tile or fact is omitted and never the error state (`site/business-cases.ts`; data-steward 2026-11-05 B6-B8, #1190), pricing "on request", a feature that does not exist yet carries a "planned" label. Since #992 there is NO recorded answer on this page: every figure and every
+ * answer is read live (the digest's facts and tiles, the MCP process's own examples) under one deadline, and one that
+ * did not arrive is an error state, never an older number (`test/business-992.test.ts` reads the rendered page).
+ * The licence table's counts are the register's, classified by `site/licence-classes.ts` into the six classes of the
+ * data-steward's ruling; the classes and their uses are the deck's words. The contact is `CONTACT_EMAIL` from the
+ * host (falling back to the § 5 address); with neither, the page points at the Impressum instead of printing an
+ * empty link. No form, no backend. The CTAs carry `data-vf-cta`, the one listener's `cta_business_click`.
+ */
+import Base from "./Base.astro";
+import PageHead from "../components/PageHead.astro";
+import EndpointCopy from "../components/EndpointCopy.astro";
+import LiveAsk from "../components/LiveAsk.astro";
+import RoadSign from "../components/RoadSign.astro";
+import contract from "../generated/contract.json" with { type: "json" };
+import { t, type MessageKey } from "../i18n/index.js";
+import { answerHtml } from "../lib/answer-html.js";
+import { fetchAsks, withinDay } from "../lib/ask.js";
+import { readEnv } from "../lib/env.js";
+import { PANEL_DEADLINE_MS } from "../lib/fill.js";
+import { readContactEmail } from "../lib/identity.js";
+import { FACTS, fetchFact, fetchTile } from "../lib/tiles.js";
+import { BUSINESS_CASES, BUSINESS_HERO_ASK, businessAnswers, shownOnBusinessPage } from "../site/business-cases.js";
+import { LICENCE_CLASSES, type LicenceClass } from "../site/licence-classes.js";
+import { siteFacts } from "../site/facts.js";
+import { pathFor, type Lang } from "../site/pages.js";
+
+interface Props {
+  lang: Lang;
+}
+const { lang } = Astro.props;
+const contact = readContactEmail();
+const env = readEnv();
+const now = new Date();
+const deadline = Math.min(env.tileTimeoutMs, PANEL_DEADLINE_MS);
+const o = { baseUrl: env.digestUrl, timeoutMs: deadline, mapPlatform: Astro.locals.mapPlatform };
+
+const [held, factsRead, tilesRead] = await Promise.all([
+  fetchAsks({ baseUrl: env.mcpInternalUrl, timeoutMs: deadline }),
+  Promise.all(FACTS.map((id) => fetchFact(id, lang, o))),
+  Promise.all(BUSINESS_CASES.map((c) => fetchTile(c.tile, lang, o))),
+]);
+/** #1190, B6/B7: what crediting a refused source is left out; a case left with neither tile nor answer shows no disclosure. */
+const facts = factsRead.filter(shownOnBusinessPage);
+const tiles = tilesRead.map((r) => (shownOnBusinessPage(r) ? r : null));
+/** #992: no example older than a day: an older answer is left out, never shown as stale. #1190: nor one crediting a consumer-only or terms source. */
+const asks = businessAnswers(withinDay(held, now));
+/** The hero's steps, or none: another case's answer here would show the page the same answer twice. */
+const heroHeld = asks.get(BUSINESS_HERO_ASK);
+const heroAnswer = heroHeld === undefined ? null : answerHtml(lang, heroHeld, now, "business");
+const heroEntry = heroAnswer === null ? undefined : heroHeld;
+const site = siteFacts();
+const counts = new Map<LicenceClass, number>(LICENCE_CLASSES.map((c) => [c, Object.values(contract.licenceClasses).filter((x) => x === c).length]));
+const connect = pathFor("connect", lang);
+---
+
+<Base lang={lang} page="business">
+  <section class="block page-head biz-hero" aria-labelledby="biz-h">
+    <div class="wrap biz-hero__grid">
+      <PageHead as="div" wrap={false} h1={t(lang, "bizPage.title")} h1Id="biz-h">
+        <p class="lead">{t(lang, "bizPage.lead")}</p>
+        <p class="biz-hero__cta">
+          <a class="btn btn--primary" href={contact !== null ? `mailto:${contact}` : "#contact"} data-vf-cta="pilot">{t(lang, "bizPage.heroPilot")}</a>
+          <a class="btn" href="#cases" data-vf-cta="live">{t(lang, "bizPage.heroLive")}</a>
+        </p>
+      </PageHead>
+      {
+        heroEntry !== undefined && heroAnswer !== null && (
+          <ol class="biz-steps" aria-label={t(lang, "bizPage.heroSteps")}>
+            <li class="biz-steps__step">
+              <span class="muted">{t(lang, "ask.question")}</span>
+              <span>{t(lang, `ask.${heroEntry.key}.question` as MessageKey)}</span>
+            </li>
+            <li class="biz-steps__step">
+              <span class="muted">{t(lang, "ask.tool")}</span>
+              <code translate="no">{heroEntry.tool}</code>
+            </li>
+            <li class="biz-steps__step" data-example>
+              <span class="muted">{t(lang, "ask.answer")}</span>
+              <Fragment set:html={heroAnswer} />
+            </li>
+          </ol>
+        )
+      }
+    </div>
+  </section>
+
+  <section class="block" id="proof" aria-labelledby="proof-h">
+    <div class="wrap">
+      <h2 id="proof-h">{t(lang, "bizPage.proofHeading")}</h2>
+      <p>{t(lang, "bizPage.proofLead")}</p>
+      <div class="proof">
+        {
+          facts.map((f) =>
+            f.fetched === "ok" ? (
+              <div class="proof__cell" data-proof={f.id} data-example set:html={f.html} />
+            ) : (
+              <p class="proof__cell is-error" data-proof={f.id} role="status">
+                {t(lang, "bizPage.proofError")}
+              </p>
+            ),
+          )
+        }
+      </div>
+      <ul class="proof__catalogue">
+        <li><strong>{site.credits}</strong> {t(lang, "bizPage.proofSources")}</li>
+        <li><strong>{site.tools}</strong> {t(lang, "bizPage.proofTools")}</li>
+        <li><strong>{site.motorways}</strong> {t(lang, "bizPage.proofMotorways")}</li>
+        <li><strong>{site.languages}</strong> {t(lang, "bizPage.proofLanguages")}</li>
+      </ul>
+      <p class="muted">{t(lang, "bizPage.proofCatalogue", { version: site.release })}</p>
+    </div>
+  </section>
+
+  <section class="block" id="cases" aria-labelledby="cases-h">
+    <div class="wrap">
+      <h2 id="cases-h">{t(lang, "bizPage.casesHeading")}</h2>
+      <div class="cards">
+        {
+          BUSINESS_CASES.map((c, i) => {
+            const entry = c.ask === null ? undefined : asks.get(c.ask);
+            const tile = tiles[i] ?? null;
+            return (
+              <article class="card biz-case" data-case={String(c.n)}>
+                <h3>
+                  <RoadSign kind={c.sign} />
+                  {t(lang, `bizPage.u${String(c.n)}t` as MessageKey)}
+                </h3>
+                <p>{t(lang, `bizPage.u${String(c.n)}` as MessageKey)}</p>
+                {(tile !== null || entry !== undefined) && (
+                  <details class="biz-case__live">
+                    <summary>{t(lang, "bizPage.caseShow")}</summary>
+                    <div data-example>
+                      {tile !== null && <Fragment set:html={tile.html} />}
+                      {entry !== undefined && c.ask !== null && <LiveAsk lang={lang} key={c.ask} entry={entry} ctaHref={connect} now={now} source="business" />}
+                    </div>
+                  </details>
+                )}
+              </article>
+            );
+          })
+        }
+      </div>
+    </div>
+  </section>
+
+  <section class="block" id="how" aria-labelledby="how-h">
+    <div class="wrap">
+      <h2 id="how-h">{t(lang, "bizPage.howHeading")}</h2>
+      <ol class="biz-how">
+        <li class="biz-how__box">{t(lang, "bizPage.how1")}</li>
+        <li class="biz-how__box">{t(lang, "bizPage.how2")}</li>
+        <li class="biz-how__box">{t(lang, "bizPage.how3")}</li>
+      </ol>
+      <p class="biz-how__flow" aria-hidden="true">
+        <span>{t(lang, "bizPage.howData")}</span> → <span translate="no">{t(lang, "meta.siteName")}</span> → <span>{t(lang, "bizPage.howYou")}</span>
+      </p>
+    </div>
+  </section>
+
+  <section class="block" id="licences" aria-labelledby="lic-h">
+    <div class="wrap">
+      <h2 id="lic-h">{t(lang, "bizPage.licenceHeading")}</h2>
+      <p>{t(lang, "bizPage.licenceScope")}</p>
+      <div class="table-scroll" tabindex="0" role="region" aria-labelledby="lic-h">
+        <table class="biz-licences">
+          <thead>
+            <tr>
+              <th scope="col">{t(lang, "bizPage.licenceColClass")}</th>
+              <th scope="col">{t(lang, "bizPage.licenceColCount")}</th>
+              <th scope="col">{t(lang, "bizPage.licenceColUse")}</th>
+            </tr>
+          </thead>
+          <tbody>
+            {
+              LICENCE_CLASSES.filter((c) => (counts.get(c) ?? 0) > 0).map((c) => (
+                <tr data-licence={c}>
+                  <th scope="row">{t(lang, `bizPage.lic.${c}.name` as MessageKey)}</th>
+                  <td>{counts.get(c)}</td>
+                  <td>{t(lang, `bizPage.lic.${c}.use` as MessageKey)}</td>
+                </tr>
+              ))
+            }
+          </tbody>
+        </table>
+      </div>
+      <p class="muted">
+        {t(lang, "bizPage.licenceScopeCredits")} <a href={`${connect}#sources`}>{t(lang, "quote.open")}{t(lang, "connectPage.sourcesHeading")}{t(lang, "quote.close")}</a>.
+      </p>
+    </div>
+  </section>
+
+  <section class="block" id="cooperation" aria-labelledby="coop-h">
+    <div class="wrap">
+      <h2 id="coop-h">{t(lang, "bizPage.coopHeading")}</h2>
+      <div class="cards">
+        <article class="card" data-coop="pilot">
+          <h3>{t(lang, "bizPage.coopPilotTitle")}</h3>
+          <p>{t(lang, "bizPage.coopPilot")}</p>
+        </article>
+        <article class="card" data-coop="data">
+          <h3>{t(lang, "bizPage.coopDataTitle")} <span class="pill">{t(lang, "bizPage.futureLabel")}</span></h3>
+          <p>{t(lang, "bizPage.coopData")}</p>
+        </article>
+        <article class="card" data-coop="publisher">
+          <h3>{t(lang, "bizPage.coopPublisherTitle")}</h3>
+          <p>{t(lang, "bizPage.coopPublisher")}</p>
+        </article>
+      </div>
+      <p><strong>{t(lang, "bizPage.price")}</strong></p>
+    </div>
+  </section>
+
+  <section class="block" id="contact" aria-labelledby="contact-h">
+    <div class="wrap">
+      <h2 id="contact-h">{t(lang, "bizPage.contactHeading")}</h2>
+      <p>{t(lang, "bizPage.contactLead")}</p>
+      {
+        contact !== null && (
+          <p>
+            <a class="btn btn--primary" href={`mailto:${contact}`} data-vf-cta="contact">
+              {contact}
+            </a>
+          </p>
+        )
+      }
+      <p class="muted">
+        <a href={pathFor("impressum", "de")}>{t(lang, "bizPage.postal")}</a>
+        {t(lang, "bizPage.noForm")}
+      </p>
+    </div>
+  </section>
+  {/* #1003: the endpoint chip's copy script, once for every chip on the page */}
+  <EndpointCopy />
+</Base>

@@ -1,0 +1,19 @@
+---
+/**
+ * One example question, as a person would type it (#379, #449). The quotation
+ * marks are the PAGE language's own (`quote.open`/`quote.close` in the copy
+ * deck — «…» in Russian, „…“ in German, “…” in English), never a German pair
+ * typed into the stylesheet; they sit outside the selectable text, so one tap
+ * selects and copies the question alone.
+ */
+import { t } from "../i18n/index.js";
+import type { Lang } from "../site/pages.js";
+
+interface Props {
+  lang: Lang;
+  text: string;
+}
+const { lang, text } = Astro.props;
+---
+
+<p class="ask__q"><span class="ask__mark" aria-hidden="true">{t(lang, "quote.open")}</span><span class="ask__text">{text}</span><span class="ask__mark" aria-hidden="true">{t(lang, "quote.close")}</span></p>

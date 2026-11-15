@@ -1,0 +1,115 @@
+---
+/**
+ * #1153: the header's place row — the site's one search and location dispatcher, on every page (owner 2026-11-03:
+ * "The header must contain the 'live for' section, the search field, 'use my location' and the recent places. It is
+ * available from any page and affects all of them"). Nothing of it is rendered in any page body.
+ *
+ *  - "Live für [📍 Ort] [🇩🇪 Ganz Deutschland]": the place headline (`PlaceHead.astro`, #1088), one radio group — the
+ *    site-wide place, linked to its page, and the national scope;
+ *  - ONE search field (`#place-hq`): the place bar's (#1112) and the site search's (#1111) in one. It has no button: the
+ *    suggestions follow each keystroke (`/fragment/suggest`, `lib/header-suggest.ts`, grouped by kind) — a place, an
+ *    address or a point of interest becomes the site-wide place, a motorway, a junction, a station, a page or a News
+ *    entry opens its page; ↓/↑ walk them and Enter follows the highlighted one. Without JavaScript Enter submits the
+ *    form, a GET to `/<lang>/search`;
+ *  - "Mein Standort" (shown once the island runs), "make this my place" (a place page's own place, shown by the island
+ *    while it is not the remembered one), the recent places as chips (ordinary links, so they work without script;
+ *    "Beliebt" until there are any);
+ *  - "Ihr Browser merkt sich diesen Ort · Ort vergessen", shown only while a place is stored;
+ *  - the privacy note one click away.
+ *
+ * #1158 (owner 2026-11-03: "clear and understandable styles for both types of devices"), the rows top to bottom, the
+ * same on a phone and a desktop (a centred column of about 640 px there), focus order equal to the visual order:
+ *   1. "Live für" and the two radios, the status (how the place was found · "aktualisiert für X") ONE line under them;
+ *   2. "Mein Standort" as symbol AND words, a secondary action on a row of its own (with "make this my place");
+ *   3. the search, full width on a phone, capped on a desktop;
+ *   4. the recent places as a vertical list, newest first, at most five, each row full width and 44 px with its × at
+ *      the right and its kind's symbol (`data-kind`); "Beliebt" (no recent place yet) stays one row of chips;
+ *   5. ONE small foot line: "Ihr Browser merkt sich diesen Ort · Ort vergessen" and the privacy note, its lock never
+ *      without its words.
+ *
+ * #1174 (generalising #1190, the road pages' part of #1173): on every page but the home and the search page (`fold`) a
+ * phone shows ONE line, the pill ("📍 Köln ▾", "📍 Ort wählen ▾") and the search symbol (`#place-open`), and today's full
+ * bar opens in place when either of them, "Anderer Ort" or the island's way to the search is tapped (`PLACEHEAD_JS`).
+ * While folded the pill is the bar's opener, a button to assistive technology too; open, it is the place radio again and
+ * a scope switch keeps the bar open. "Schließen" (`#place-close`) and Escape fold it again. The fold is the server's
+ * markup and a phone's stylesheet only (`data-fold`, max-width 600 px), so nothing moves as the page starts, a desktop
+ * sees every row as before, and without script the symbol is a link to the search page. Two rows may stand under the
+ * line while they apply: the IP guess's confirm row, and "Ihr Browser merkt sich diesen Ort · Ort vergessen", which
+ * `place.privacy.body` promises under the bar. The page's own head then starts inside 200 px at 375×812 (e2e/first-screen-1174).
+ *
+ * The island (`location/island.ts`) drives it by these ids — in the page body where the page swaps cards (the home, a
+ * place page, a motorway page), else printed by the header itself (`Header.astro`).
+ */
+import { t } from "../i18n/index.js";
+import { pathFor, type Lang } from "../site/pages.js";
+import { POPULAR_PLACES, placePath, popularSlug } from "../site/places.js";
+import { SEARCH_MAX, searchPath } from "../site/search.js";
+import PlaceHead from "./PlaceHead.astro";
+import type { HeaderPlace } from "../lib/header-place.js";
+
+interface Props {
+  lang: Lang;
+  place: HeaderPlace;
+  /** What the search page was asked (`?q=`): the field shows it there. */
+  q?: string;
+  /** #1158: the page carries scripts — else (the fuel board) the "Mein Standort" row is not reserved. */
+  scripts?: boolean;
+  /** #1174: every page but the home and the search page — on a phone the bar is one line until tapped. */
+  fold?: boolean;
+  /** #1177: the bar starts as the one line. The home starts open until it knows a place. */
+  closed?: boolean;
+}
+const { lang, place, q = "", scripts = true, fold = false, closed = fold } = Astro.props;
+const chips = POPULAR_PLACES.map((p) => ({ name: p.name, href: placePath(lang, popularSlug(p)) }));
+---
+
+<div class="site-place vf-noclarity" id="place-bar">
+  <div class="wrap site-place__wrap" id="place-fold" data-fold={closed ? "closed" : undefined}>
+    <PlaceHead lang={lang} label={place.label} how={place.how} ip={place.ip} hrefs={place.hrefs} why={place.why} scopeOn={place.scopeOn}>
+      {/* #1174: the folded bar's search symbol on the pill's line — a link to the search page without script, the bar's opener with it */}
+      {fold && (
+        <a class="btn btn--quiet site-place__open" id="place-open" href={searchPath(lang)} aria-controls="place-rows" aria-expanded="false"><span aria-hidden="true">🔍</span> <span class="site-place__open-t">{t(lang, "place.bar.label")}</span></a>
+      )}
+    </PlaceHead>
+    {fold && (
+      <button type="button" class="btn btn--quiet site-place__close" id="place-close" aria-controls="place-rows"><span aria-hidden="true">×</span> <span>{t(lang, "place.bar.close")}</span></button>
+    )}
+    {/* the rows the fold reveals; `display: contents`, so they stay the column's own rows */}
+    <div class="site-place__rows" id="place-rows">
+    <!-- #1158: "Mein Standort" on its own row above the search, its symbol AND its words on every screen -->
+    <div class="site-place__geo" hidden={!scripts}>
+      <button type="button" class="btn btn--quiet placepos__geo" id="place-geo" hidden><span aria-hidden="true">◎</span> <span class="placepos__geo-t">{t(lang, "place.sheet.useLocation")}</span></button>
+      <button type="button" class="btn btn--quiet placepos__geo" id="place-mine" hidden><span aria-hidden="true">★</span> <span class="placepos__geo-t">{t(lang, "header.makeMine")}</span></button>
+    </div>
+    <p class="placebar__geo" id="place-geo-msg" hidden></p>
+    <form class="placepos__search site-place__search" id="place-head" role="search" action={searchPath(lang)} method="get" aria-label={t(lang, "search.label")}>
+      <label class="visually-hidden" for="place-hq">{t(lang, "search.label")}</label>
+      <input class="sheet__input placehead__input" id="place-hq" name="q" type="search" value={q} autocomplete="off" minlength="2" maxlength={String(SEARCH_MAX)} required role="combobox" aria-expanded="false" aria-autocomplete="list" aria-controls="place-hresults" aria-describedby="place-bar-how" placeholder={t(lang, "place.bar.hint")} />
+      <div class="sheet__results placehead__results" id="place-hresults"></div>
+      <!-- #1112: the suggestions' own status line (their count); the list is no live region, and the place's
+           announcement (`place-live`) never carries a suggestion -->
+      <p class="visually-hidden" id="place-hstatus" role="status"></p>
+    </form>
+    <p class="visually-hidden" id="place-bar-how">{t(lang, "header.how")}</p>
+    <div class="site-place__tools">
+      <div class="placepos__row">
+        <span class="placepos__lbl" id="place-chips-l">{t(lang, "place.bar.popular")}</span>
+        <ul class="place-chips placepos__chips" id="place-recent" aria-labelledby="place-chips-l">
+          {chips.map((c) => (
+            <li><a class="chip place-opt" href={c.href} aria-current={c.name === place.chip ? "true" : "false"}><span class="place-opt__name" translate="no">{c.name}</span></a></li>
+          ))}
+        </ul>
+      </div>
+    </div>
+    <p class="visually-hidden" id="place-live" aria-live="polite"></p>
+    <!-- #1158: one small foot line — what this browser keeps, and the lock with its words -->
+    <div class="site-place__foot">
+      <p class="placebar__kept" id="place-kept" hidden>{t(lang, "place.kept")} · <button type="button" class="placebar__forget" id="place-kept-forget">{t(lang, "place.sheet.forget")}</button></p>
+      <details class="placepos__privacy">
+        <summary><span aria-hidden="true">🔒</span> <span class="placepos__privacy-t">{t(lang, "place.privacy.title")}</span></summary>
+        <p>{t(lang, "place.privacy.body")} <a href={`${pathFor("datenschutz", lang)}#ort`}>{t(lang, "place.privacy.more")}</a></p>
+      </details>
+    </div>
+    </div>
+  </div>
+</div>

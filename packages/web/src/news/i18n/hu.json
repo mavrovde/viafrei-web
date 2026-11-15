@@ -1,0 +1,282 @@
+{
+  "blitzer-autobahnseiten": {
+    "title": "Sebességellenőrzési pontok az autópálya-oldalakon",
+    "body": "Egy autópálya oldala és csomópontjainak oldalai most már az útvonal mentén közzétett sebességellenőrzési pontokat is mutatják, mindegyiket azzal a csomóponttal, amelyhez hozzá van rendelve – a városok hivatalos listáiból, és ahol egy város sem tesz közzé listát, az OpenStreetMapből. Az adatok csak az utazás előtti vagy egy megálló alatti tervezésre szolgálnak; a kártya a § 23 Abs. 1c StVO szerinti figyelmeztetést tartalmazza.",
+    "ask": "Utat tervezek az A 5-ön Karlsruhénál: hol vannak ott fix traffipaxok?"
+  },
+  "flixbus-flixtrain-abfahrten": {
+    "title": "FlixBus és FlixTrain az indulások között",
+    "body": "A helyi közlekedés indulásai mellett a ViaFrei most a megálló közelében induló FlixBus-buszokat és FlixTrain-vonatokat is mutatja, a megállóban és az állomás kártyáján. Ahol a FlixBus aktuális előrejelzést ad, a várható idő látható, egyébként a menetrendi idő. Foglalás és árak csak a FlixBusnál.",
+    "ask": "Mikor indul a következő FlixBus a Berlin ZOB-ról?"
+  },
+  "blitzer-bottrop-essen-konstanz": {
+    "title": "Sebességmérési helyek Bottropban, Essenben és Konstanzban",
+    "body": "A ViaFrei mostantól azokat a sebességmérési helyeket is ismeri, amelyeket Bottrop, Essen és Konstanz közzétesz: Bottropban az aktuális mérési helyeket, Essenben a hét bejelentett mobil ellenőrzéseinek utcáit, Konstanzban a város rögzített mérőhelyeit. Az adatok csak az utazás előtti vagy egy megálló alatti tervezésre szolgálnak; minden válasz tartalmazza a § 23 Abs. 1c StVO szerinti figyelmeztetést.",
+    "ask": "Utat tervezek Essenbe: hol lesz ellenőrzés ezen a héten?"
+  },
+  "aufzuege-u-bahnhoefe-berlin-brandenburg": {
+    "title": "Berlin és Brandenburg: liftek és bejáratok a metró- és villamosállomásokon",
+    "body": "A ViaFrei mostantól olvassa a VBB állomásbejárat-jegyzékét. Minden berlini és brandenburgi állomásnál, ahol a jegyzék liftet tüntet fel, megmondja, hány lift és hány utcai bejárat van, és ezek közül hánynál van lift – a csak metróállomásoknál is, mint a Hermannplatz, amelyek nem DB-állomások. A jegyzék azt mondja meg, mi épült meg, nem azt, hogy egy lift éppen működik-e; a ViaFrei megadja a fájl dátumát.",
+    "ask": "Van lift a Hermannplatz metróállomáson?"
+  },
+  "stadtbahn-stationen-unter-der-erde": {
+    "title": "A föld alatti városi gyorsvasút-állomásoknak saját oldaluk van",
+    "body": "A ViaFrei mostantól a föld alatti városi gyorsvasút-állomásoknak (Stadtbahn) is saját állomásoldalt ad. A menetrend nem mondja meg, hogy egy villamosmegálló a föld alatt van-e; a ViaFrei ezt az OpenStreetMap adataiból ismeri fel, ha ott 300 méteren belül föld alatti állomás van feltérképezve. Az oldal megnevezi az ott megálló vonalakat és a következő indulásaikat, forrásként pedig az OpenStreetMapet nevezi meg.",
+    "ask": "Mi indul legközelebb a kölni Neumarktról?"
+  },
+  "blitzer-standorte-planung": {
+    "title": "Traffipaxok helye az utazás tervezéséhez",
+    "body": "A ViaFrei mostantól ismeri az Aachen, Düsseldorf, Karlsruhe és Köln által közzétett sebességellenőrzési helyeket. Ezek csak az utazás előtti vagy megálló közbeni tervezésre szolgálnak: a § 23 Abs. 1c StVO szerint a járművezető nem használhat olyan alkalmazást, amely a közlekedési ellenőrzéseket mutatja. Minden válasz tartalmazza ezt a figyelmeztetést.",
+    "ask": "Utat tervezek Düsseldorfba: hol vannak ott a fix traffipaxok?"
+  },
+  "parken-trier": {
+    "title": "Trieri parkolók szabad helyekkel",
+    "body": "A ViaFrei mostantól élőben olvassa a trieri városi közműcég (SWT) parkolóházait és parkolóit a szabad helyekkel együtt. Eddig a ViaFrei egyetlen trieri parkolót sem ismert; most 28 parkolóházat és parkolót nevez meg, és azt, hogy ott éppen hány hely szabad.",
+    "ask": "Hol van most szabad hely egy trieri parkolóban?"
+  },
+  "parken-konstanz": {
+    "title": "Konstanzi parkolóházak szabad helyekkel",
+    "body": "A ViaFrei mostantól élőben olvassa Konstanz város parkolóházait és parkolóit a szabad helyeikkel. Eddig a ViaFrei csak azt tudta, hol vannak Konstanz parkolóházai; most megmondja, hány hely szabad éppen. Egy parkolóház, amelyet két forrás tesz közzé, egyszer szerepel a válaszban, és mindkét kiadót megnevezi.",
+    "ask": "Hol van most szabad hely egy konstanzi parkolóházban?"
+  },
+  "parken-wiesbaden": {
+    "title": "Wiesbadeni parkolóházak és foglaltságuk",
+    "body": "A ViaFrei mostantól élőben olvassa Wiesbaden város parkolóházait és mélygarázsait, valamint foglaltságukat: mindegyiknél, hogy a város szerint most hány százalékban foglalt. Ha egy jelentés régebbi, a ViaFrei megmondja, mikor érkezett, ahelyett hogy aktuálisként mutatná.",
+    "ask": "Hol van most szabad hely egy wiesbadeni parkolóházban?"
+  },
+  "kurzzeitbaustellen-hessen": {
+    "title": "Éjszakai munkák az autópályákon és útépítések Hessenben",
+    "body": "A ViaFrei mostantól ismeri az Autobahn GmbH tervezett rövid idejű munkáit: éjszakai lezárásokat és egynapos sávlezárásokat, mindegyiket a saját időablakaival. Az ablakán kívül az ilyen munkát tervezettként jelzi, a dátumaival. Ezekhez társulnak a Hessen Mobil útépítései a szövetségi és tartományi utakon, valamint a hesseni járási utak egy részén.",
+    "ask": "Le van zárva ma éjjel az A3?"
+  },
+  "nrw-baustellen-landesstrassen": {
+    "title": "Észak-Rajna-Vesztfália: útépítések szövetségi, tartományi és járási utakon",
+    "body": "A ViaFrei mostantól olvassa a Straßen.NRW útépítéseit Észak-Rajna-Vesztfália szövetségi, tartományi és járási útjain. Kérdezzen egy útról vagy helyről, és a ViaFrei megnevezi az ottani munkákat. A még el nem kezdett munkákat tervezettként nevezi meg, a kezdés dátumával.",
+    "ask": "Van útépítés az L968-on?"
+  },
+  "ausfallsicherheit-verkehrsmeldungen": {
+    "title": "Nagyobb megbízhatóság a forgalmi hírekhez és a forgalmi helyzethez",
+    "body": "A ViaFrei mostantól a VIZ.NRW és a hamburgi tartományi forgalmi hírközpont forgalmi híreit is olvassa. Olvassa továbbá a tervezett útépítéseket Mecklenburg-Elő-Pomerániában és a sávonkénti forgalmat Észak-Rajna-Vesztfália autópályáin. Minden hír egyszer jelenik meg, és minden forrás, amely közli, meg van nevezve. Ha az egyik forrás kiesik, a ViaFrei a másikból válaszol.",
+    "ask": "Vannak most forgalmi hírek Hamburgban?"
+  },
+  "lkw-beschraenkungen-koeln": {
+    "title": "Köln tömeg- és magasságkorlátozásai",
+    "body": "A ViaFrei mostantól beolvassa a Köln városa által közzétett közúti korlátozásokat: a hidak tömegkorlátozásait, az aluljárók szabad magasságait és más tehergépjármű-tilalmakat. Egy kölni helyhez a ViaFrei megnevezi a legközelebbieket fajtájukkal, értékükkel és utcájukkal; ahol hiányzik egy érték, a ViaFrei ezt megmondja. A helyszíni táblák érvényesek.",
+    "ask": "Milyen szabad magasságok érvényesek a tehergépjárművekre a kölni dóm közelében?"
+  },
+  "parken-kiel": {
+    "title": "Parkolók, parkolóházak és P+R Kielben",
+    "body": "A ViaFrei mostantól beolvassa a Kiel városa által közzétett parkolókat, parkolóházakat, mélygarázsokat és P+R parkolókat: 194 helyszín helyével és fajtájával. A város sem a helyek számát, sem a foglaltságot nem teszi közzé, és a ViaFrei ezt megmondja ahelyett, hogy kitalálna egy számot.",
+    "ask": "Hol van parkolóház Kielben?"
+  },
+  "behindertenparkplaetze-frankfurt": {
+    "title": "Mozgáskorlátozott parkolóhelyek Frankfurt am Mainban",
+    "body": "A ViaFrei mostantól ismeri a mozgáskorlátozott parkolóhelyekkel rendelkező 458 helyszínt, amelyeket Frankfurt am Main városa közzétesz, összesen 615 fenntartott hellyel, mindegyiket a címével, a helyek számával és a fenntartás idejével. Egyetlen érzékelő sem jelenti, hogy egy hely szabad-e, és a ViaFrei ezt megmondja ahelyett, hogy találgatna.",
+    "ask": "Hol van mozgáskorlátozott parkolóhely a frankfurti Römer közelében?"
+  },
+  "lkw-netz-koeln": {
+    "title": "Köln saját tehergépjármű-hálózata",
+    "body": "A ViaFrei mostantól beolvassa a Köln városa által közzétett tehergépjármű-útvonalakat: azokat az utcákat, amelyeken a város a teherforgalmat vezeti, négy osztályban az autópályától az áruszállítási bekötésig. Egy kölni helyhez a ViaFrei megnevezi minden osztály legközelebbi szakaszát az utcáival és az adatok dátumával, a SEVAS tehergépjármű-korlátozásai mellett. A hálózat nem jelent veszélyelhárítást: a helyszíni táblák érvényesek.",
+    "ask": "Mely utcákon vezeti Köln a tehergépjárműveket a dóm közelében?"
+  },
+  "verkehrslage-hamburg-bonn": {
+    "title": "Hamburg és Bonn: a mért forgalmi állapot a városban",
+    "body": "A ViaFrei mostantól ötpercenként beolvassa a Hamburg és Bonn által az utcáikra közzétett forgalmi állapotot, és egy helyre megmondja, hány szakaszon sűrű, lassú vagy álló a forgalom 10 km-en belül, és milyen messze van a legközelebbi dugó. Csak a lassú vagy álló forgalom számít dugónak, a sűrű nem. Hamburg csak a nem szabadon haladó szakaszokat teszi közzé, ezért ott a ViaFrei nem ad számot a szabad szakaszokról. Ha a város adata 30 percnél régebbi, a ViaFrei semmit sem mond róla.",
+    "ask": "Milyen most a forgalom Hamburgban?"
+  },
+  "muenchen-baustellen-umweltzone": {
+    "title": "München: a város útépítései és saját környezetvédelmi övezetének határa",
+    "body": "A ViaFrei mostantól beolvassa a München városa által a következő négy hétre közzétett útépítéseket, valamint a környezetvédelmi övezet határát a felmentett átmeneti területekkel. A város az útépítéseket főleg a belső kerületekben és a főutakon rögzíti; minden válasz ezt megmondja. Egy ideiglenes megállási tilalmat nem számolunk az úttest korlátozásának. Az övezetnél a város saját határa dönt, mellette az Umweltbundesamt nyilvántartásával.",
+    "ask": "Milyen útépítések vannak ezen a héten Münchenben?"
+  },
+  "lang-lkw-positivnetz": {
+    "title": "Közlekedhet itt hosszú tehergépjármű? A BASt pozitív hálózata",
+    "body": "A ViaFrei mostantól beolvassa a Szövetségi Közúti Kutatóintézet kivonatát a hosszú tehergépjárművek pozitív hálózatáról, és egy útra megmondja, szerepel-e benne, egy helyre pedig, hogy mely közeli utak tartoznak hozzá. A BASt közli, hogy a kivonat sem teljes, sem jogilag kötelező, és nem navigációra való; a rendelet a kötelező, és a ViaFrei ezt minden válasszal megmondja. Hamburg kísérleti hálózatát a 2015-ös dátumával adjuk meg.",
+    "ask": "Mehetek hosszú tehergépjárművel az A7-en?"
+  },
+  "durchfahrtshoehen-bremen": {
+    "title": "Magasság- és tömegkorlátozások Brémában",
+    "body": "A ViaFrei mostantól beolvassa a Verkehrsmanagementzentrale Bremen által közzétett, tehergépjárművekre vonatkozó magasság- és tömegkorlátozásokat. Egy brémai helyhez a ViaFrei a legközelebbi bejegyzéseket pontosan úgy adja meg, ahogy a VMZ Bremen közzéteszi őket, a beolvasás napjával. Csak a helyszíni táblák kötelezőek; a bejegyzések nem útvonalvezetésre valók, és ahol nincs bejegyzés, az nem jelenti, hogy nincs korlátozás.",
+    "ask": "Milyen magasságkorlátozások vannak a tehergépjárművemre Bremen-Gröpelingenben?"
+  },
+  "lkw-beschraenkungen-nrw-rheinmain": {
+    "title": "Magasság- és tömegkorlátozások, tehergépjármű-tilalmak Észak-Rajna-Vesztfáliában és a Rajna–Majna-vidéken",
+    "body": "A ViaFrei mostantól beolvassa az észak-rajna-vesztfáliai települések tehergépjármű-adatait az NRW.Mobidromon (SEVAS) keresztül, valamint az ivm tehergépjármű-elsőbbségi hálózatát és tehergépjármű-tábláit a Frankfurt RheinMain régióra. Egy helyre a ViaFrei megmondja, milyen magasság-, tömeg- és szélességkorlátozások és tehergépjármű-tilalmak vannak a közelben, ki mentesül, és hol fut a legközelebbi tehergépjármű-elsőbbségi útvonal. Ahol egyetlen kiadó sem tesz közzé ilyen adatot, a ViaFrei ezt megmondja ahelyett, hogy veszélyelhárítást jelentene.",
+    "ask": "Vannak alacsony magasságkorlátozások a tehergépjárművemre Haanban?"
+  },
+  "barrierefreie-haltestellen-dresden-muenster": {
+    "title": "Drezda és Münster: melyik megálló akadálymentes?",
+    "body": "A ViaFrei mostantól beolvassa Landeshauptstadt Dresden 750 busz- és villamosmegállót tartalmazó nyilvántartását és a Stadtwerke Münster akadálymentes buszmegállóinak listáját. Egy drezdai megállónál megmondja, hány beszállási ponton szintbeli a beszállás, kell hozzá a jármű rámpája, korlátozott vagy nem akadálymentes, a szegély magasságával. Münsternél megmondja, hogy a megálló akadálymentes vagy részben az, a Stadtwerke Münster megjegyzésével. Egy listából hiányzó megállót nem jelentünk akadályosnak.",
+    "ask": "Akadálymentes a Theaterplatz megálló Drezdában?"
+  },
+  "barrierefreiheit-aus-openstreetmap": {
+    "title": "Akadálymentesség az OpenStreetMapből: szegélymagasságok, vezetősávok és liftek a megállókban szerte Németországban",
+    "body": "A ViaFrei mostantól beolvassa a TU Chemnitz exportját, amely az OpenStreetMapből összegyűjti, amit önkéntesek szerte Németországban a megállókban feltérképeztek: szegélymagasságokat, emelt szegélyeket, taktilis vezetősávokat, lifteket, rámpákat, lépcsőket és mozgólépcsőket, mintegy 4 000 megállóra. A ViaFrei ott mutatja ezeket a tényeket, ahol egyetlen hivatalos felmérés sem írja le a megállót, és megmondja, hogy feltérképezett, nem felmért adatokról van szó: ami senki sem vitt fel, az hiányzik.",
+    "ask": "Van emelt szegély a Lichtenauer Straße megállóban Chemnitzben?"
+  },
+  "auslastung-mvv-regionalbus": {
+    "title": "MVV regionális buszok: mennyire tele szokott lenni a busz",
+    "body": "A müncheni MVV közlekedési szövetség regionális buszainak indulásai mostantól megmondják, mennyire szokott tele lenni a busz abban az időpontban, a kevés utastól a nagyon zsúfoltig, csak állóhellyel. Az értékek az MVV automatikus utasszámlálásaiból származnak, és jellemző értékek, nem valós idejűek. Hétköznapokon a ViaFrei külön adja meg az iskolai napokat és a szüneteket, ha eltérnek.",
+    "ask": "Mennyire lesz tele holnap reggel a 210-es busz Ottobrunn, Jahnstraße megállóból?"
+  },
+  "ladestatus-hamburg": {
+    "title": "Hamburg: szabad-e most egy nyilvános töltő, a várostól is",
+    "body": "A ViaFrei mostantól beolvassa Hamburg mintegy 2 500 nyilvános töltőpontjának töltési állapotát, amelyet Hamburg Szabad és Hanza Város változás szerint tesz közzé. Ez kiegészíti a ViaFrei által már ismert töltőket: egy hamburgi töltő most megmutatja, hogy szabad, használatban vagy üzemen kívül van-e, és mióta, és forrásként a város szerepel.",
+    "ask": "Hol van most szabad töltő Hamburg-Altonában?"
+  },
+  "barrierefreiheit-baden-wuerttemberg": {
+    "title": "Baden-Württemberg: liftek, rámpák és vezetősávok az állomásokon és megállókban",
+    "body": "A ViaFrei mostantól beolvassa az NVBW akadálymentességi felmérését Baden-Württemberg 1 104 vasútállomására és 14 065 busz- és villamosmegállójára. Egy állomás liftjeinek állapota mellett most azt is mutatja, mit mértek fel a helyszínen: hány lift van, milyen ajtószélességgel és fülkemérettel, milyen meredekek a rámpák, és hány peronon van taktilis vezetősáv. Az adatok a felmérés ellenőrizetlen nyers adatai, és a ViaFrei ezt megmondja.",
+    "ask": "Mennyire akadálymentes a mannheimi főpályaudvar?"
+  },
+  "vrn-echtzeit-rhein-neckar": {
+    "title": "Buszok és villamosok a Rajna–Neckar-vidéken: valós idő a VRN-től is",
+    "body": "A ViaFrei mostantól beolvassa a Verkehrsverbund Rhein-Neckar valós idejű adatait buszokra és villamosokra Mannheimtől és Heidelbergtől Mainzig és Kaiserslauternig. Ha az országos adatok semmit sem jelentenek ezen járások valamelyikére, vagy elavultak, a ViaFrei a VRN adataiból mutatja a pontosságot, és megmondja, hogy vonatokat nem tartalmaz.",
+    "ask": "Mennyire pontosak most a buszok és vonatok Mannheimben?"
+  },
+  "vbn-echtzeit-niedersachsen-bremen": {
+    "title": "Bréma és Alsó-Szászország: valós idő a VBN-től is",
+    "body": "A ViaFrei mostantól beolvassa a Verkehrsverbund Bremen/Niedersachsen valós idejű előrejelzéseit buszokra, villamosokra és vonatokra, Brémától és Oldenburgtól Hannoveren és Braunschweigen át Göttingenig és Osnabrückig. Ha az országos adatok semmit sem jelentenek Brémára vagy ezen járások valamelyikére, vagy elavultak, a ViaFrei a VBN adataiból mutatja a pontosságot, és megnevezi a forrást.",
+    "ask": "Mennyire pontosak most a buszok és vonatok Brémában?"
+  },
+  "baustellen-staedte-laender": {
+    "title": "Útépítések városoktól és tartományoktól",
+    "body": "A ViaFrei mostantól azokat az útépítéseket is ismeri, amelyeket városok és tartományok maguk tesznek közzé — Kieltől és Schleswig-Holsteintól Brandenburgon, Berlinen, Kölnön, Dortmundon, Münsteren, Duisburgon és Aachenen át Frankfurtig, Karlsruhéig, Stuttgartig, Freiburgig és Ingolstadtig. Minden munkát egyszer sorolunk fel, minden forrással, amely jelenti.",
+    "ask": "Milyen útépítések vannak most Dortmundban?"
+  },
+  "umweltzone-am-punkt": {
+    "title": "Környezetvédelmi övezetben van ez a hely?",
+    "body": "A ViaFrei egy címet vagy pontot összevet a közzétett környezetvédelmi övezethatárokkal: belül, felmentett területen, kívül a távolsággal — vagy ismeretlen. Beolvassa a városok saját határait és az Umweltbundesamt nyilvántartását minden német övezetről, mindegyiket az adatai dátumával.",
+    "ask": "Az Alexanderplatz Berlin környezetvédelmi övezetén belül van?"
+  },
+  "dortmund-sensoren-behindertenparkplaetze-ladeplaetze": {
+    "title": "Dortmund: szabad mozgáskorlátozott parkolóhelyek és a töltő melletti hely",
+    "body": "Dortmundban az utcai érzékelők jelentik, hogy egy mozgáskorlátozott parkolóhely vagy egy töltőpont parkolóhelye éppen szabad-e. Ha parkolót keres, a ViaFrei megnevezi a legközelebbi mozgáskorlátozott helyeket, egy töltőpontnál pedig megmondja, foglalt-e a hozzá tartozó hely — mindegyiket az érzékelő utolsó jelentésének idejével.",
+    "ask": "Van szabad mozgáskorlátozott parkolóhely a dortmundi főpályaudvar közelében?"
+  },
+  "zweite-quelle-berlin-sachsen-autobahn": {
+    "title": "Útépítések és lezárások két forrásból: Berlin, Szászország és az autópályák",
+    "body": "A ViaFrei mostantól beolvassa Berlin forgalmi információs központját, a Landesmeldestelle Berlint, Szászország lezárási információs rendszerét és az Autobahn GmbH következő 14 napra szóló útépítéseit. Egy bejelentés, amelyet két forrás is hordoz, egyszer szerepel a válaszban, és mindkettőt megnevezzük; ha az egyik forrás nem aktuális, a másik egyedül válaszol, és a ViaFrei a szászországi terelőutakat táblázási összefüggésként adja meg, soha nem útvonalként.",
+    "ask": "Mely utak vannak most lezárva a közelemben Berlin-Mitte kerületben?"
+  },
+  "baustellen-bayern-mv-umleitungen-nrw": {
+    "title": "Útépítések Bajorországban és Mecklenburg-Elő-Pomerániában, terelőutak Észak-Rajna-Vesztfáliában",
+    "body": "A ViaFrei mostantól beolvassa a bajor forgalomirányító központ útépítéseit és forgalmi híreit, a mecklenburg-elő-pomerániai útügyi hatóság munkáit a szövetségi és tartományi utakon, valamint a Straßen.NRW kitáblázott terelőútjait. A ViaFrei egy terelőutat táblázási összefüggésként ad meg, soha nem útvonalajánlásként.",
+    "ask": "Vannak útépítések jövő héten a B14-en?"
+  },
+  "verkehrslage-autobahn-nrw": {
+    "title": "A forgalmi állapot az autópálya-mérőhelyeken Észak-Rajna-Vesztfáliában",
+    "body": "A ViaFrei mostantól beolvassa az Autobahn GmbH által Észak-Rajna-Vesztfáliában mintegy 2 000 helyen mért forgalmi állapotot, és egy autópályára megmondja, hol szabad, sűrű, lassú vagy álló a forgalom.",
+    "ask": "Milyen most a forgalom az A1-en Észak-Rajna-Vesztfáliában?"
+  },
+  "parken-wuppertal-leipzig-pr": {
+    "title": "Több parkolóház Wuppertalban és Lipcse P+R parkolói szabad helyekkel",
+    "body": "A ViaFrei mostantól beolvassa Wuppertal városának parkolóház-táblázatát, amely 33 parkolóházzal többet ismer, mint korábban, valamint a lipcsei Verkehrs- und Tiefbauamt P+R parkolóit élő szabad helyekkel, először a Völkerschlachtdenkmal szabad helyeivel. Egy helyszín, amelyet két forrás tesz közzé, egyszer szerepel a válaszban, és mindkét kiadót megnevezzük.",
+    "ask": "Hol vannak most szabad P+R helyek Lipcsében?"
+  },
+  "parken-freiburg-herrenberg-jena-vrr-karlsruhe": {
+    "title": "Parkolás Freiburgban, Herrenbergben, Jenában, a VRR területén és kamionhelyek Karlsruhe körül",
+    "body": "A ViaFrei mostantól további öt kiadót olvas közvetlenül: Freiburg városának parkolásirányító rendszerét és P+R parkolóit élő szabad helyekkel, Herrenberg városának parkolóházait, a Kommunalservice Jena parkolóházait, a Rajna–Ruhr közlekedési szövetség Park&Ride helyszíneit és a TechnologieRegion Karlsruhe kamionhelyeit. Ahol egy kiadó nem tesz közzé foglaltságot, a ViaFrei ezt megmondja ahelyett, hogy kitalálna egy számot.",
+    "ask": "Melyik freiburgi parkolóházban van most szabad hely?"
+  },
+  "live-antworten-auf-der-seite": {
+    "title": "MI-asszisztense élő válaszai a kezdőlapon és minden helyhez",
+    "body": "A kezdőlap minden száma mellett most ott van a kérdés, amelyet feltehet MI-asszisztensének, és az, amit a ViaFrei eszközei éppen most válaszolnak rá: az eszközzel, az adatok idejével és minden forrással. Egy hely kártyái is megmutatják az adott helyre vonatkozó válaszokat figyelmeztetésekről, utakról, közeli helyekről, töltésről és parkolásról. Ez ugyanaz a válasz, amelyet asszisztense kap, ha a ViaFreihez csatlakozik.",
+    "ask": "Le van most zárva valami az utakon Pulheim környékén?"
+  },
+  "autobahn-seiten": {
+    "title": "Élő oldal minden német autópályához",
+    "body": "Mind a 122 autópályának most saját oldala van, az út térképével, a mostani lezárásaival, dugóival és útépítéseivel, valamint a következő hét napra tervezett teljes útlezárásokkal és terelőútjaikkal. Vannak kamionparkolók szabad helyekkel, töltők teljesítmény szerint, útidőjárás és figyelmeztetések, kamerák, a teherforgalmi tilalom és az autópálya-csomópontok is. A kezdőlap azt a tíz autópályát mutatja, amelyeken most a legtöbb minden történik.",
+    "ask": "Milyen most a helyzet az A7-en?"
+  },
+  "wasserstoff-bruecken-bahnhoefe": {
+    "title": "Hidrogénkutak, Schleswig-Holstein hídjai és több adat minden állomásról",
+    "body": "A ViaFrei mostantól ismeri a H2 Mobility hidrogénkútjait a személyautó- és teherautó-töltőikkel, a nagy schleswig-holsteini hidak állapotát és Kassel városának parkolóházait a foglaltságukkal. A helyoldalakon most minden állomás megmondja, mely liftek és mozgólépcsők működnek, mely peronok akadálymentesek, és mely parkolóházak vannak közvetlenül mellette. Az időjárás-kártya a következő órákat mutatja a legközelebbi útmeteorológiai állomáson, és a pontosságot most járásonként adjuk meg.",
+    "ask": "Hol a legközelebbi hidrogénkút teherautónak Hamburg közelében?"
+  },
+  "baustellen-bremen-kassel-leipzig": {
+    "title": "Útépítések és lezárások Brémában, Kasselben, Lipcsében és Rüsselsheimben",
+    "body": "A ViaFrei mostantól beolvassa Bréma, Kassel, Lipcse és Rüsselsheim am Main városok forgalmi híreit, valamint az alsó-szászországi útügyi hatóság munkáit és lezárásait az autópályákon kívül. A városok hírei a helyoldalakon is megjelennek, akárcsak Kölné és Hannoveré.",
+    "ask": "Vannak most lezárások Bréma belvárosában?"
+  },
+  "ladepunkte-23-betreiber": {
+    "title": "Töltőpontok további 23 üzemeltetőtől",
+    "body": "A ViaFrei mostantól további 23 töltőpont-üzemeltető saját Mobilithek-közzétételeit olvassa be, köztük az EWE Go, a LichtBlick, a Qwello, a Wirelane, a chargecloud és a vaylens adatait. Ahol egy üzemeltető jelenti, hogy egy töltőpont szabad-e, megmutatjuk, de soha nem, ha a jelentés 30 percnél régebbi.",
+    "ask": "Hol van most szabad töltőállomás Münsterben?"
+  },
+  "autobahn-verkehrsmeldungen": {
+    "title": "Az Autobahn GmbH forgalmi hírei, helyhez rendelve",
+    "body": "A ViaFrei mostantól ötpercenként beolvassa az Autobahn GmbH lezárásokról és késésekről szóló forgalmi híreit. A híreket a BASt TMC helylistája alapján a saját autópályájukra és vonatkoztatási pontjaikra, például csomópontokra helyezzük.",
+    "ask": "Le van most zárva az A620 Saarbrücken közelében?"
+  },
+  "muenchen-pr-prognosen": {
+    "title": "Parkolóházak és P+R Münchenben, előrejelzésekkel",
+    "body": "A ViaFrei mostantól ismeri München parkolóházait és P+R parkolóit. Ahol egy P+R parkoló nem jelent élő foglaltságot, a város előrejelzését adjuk meg az aktuális órára, a dátumával, és soha nem szabad helyekként.",
+    "ask": "Hol parkolhatok le egy P+R parkolóban Münchenben, hogy U-Bahnnal menjek tovább?"
+  },
+  "parkapi-baden-wuerttemberg": {
+    "title": "Szabad parkolóhelyek Baden-Württembergben",
+    "body": "A parkolóházak élő foglaltsága egész Baden-Württembergben mostantól a MobiData BW ParkAPI-jából érkezik, ötpercenként, csak licencelt forrásokból. A kiadó órája szerint 30 percnél régebbi adatot nem mutatunk foglaltságként.",
+    "ask": "Hol találok most szabad helyet parkolóházban Karlsruhéban?"
+  },
+  "bw-bedarfsumleitungen": {
+    "title": "Kitáblázott terelőutak Baden-Württembergben",
+    "body": "Ha egy baden-württembergi autópálya-lezárás megfelel egy közzétett Bedarfsumleitungnak, a ViaFrei megnevezi az U-útvonalat — a táblázásra vonatkozó megjegyzésként, nem útvonalajánlásként.",
+    "ask": "Van kitáblázott terelőút az A8 lezárásához Stuttgart közelében?"
+  },
+  "hamburg-baustellen-kameras": {
+    "title": "Útépítések és forgalmi kamerák Hamburgban",
+    "body": "Hamburg városi utcáira a ViaFrei mostantól felsorolja a Bauweiser jóváhagyott útépítéseit, aktuálisakat vagy tervezetteket, óránként beolvasva, és legfeljebb két közeli forgalmi kamera helyét — csak helyeket, soha nem képet.",
+    "ask": "Milyen útépítések vannak most Hamburg-Eimsbüttelben?"
+  },
+  "bemas-baden-wuerttemberg": {
+    "title": "Útépítések a szövetségi és tartományi utakon Baden-Württembergben",
+    "body": "A ViaFrei mostantól ismeri Baden-Württemberg szövetségi és tartományi útjainak aktuális és tervezett útépítéseit, 15 percenként beolvasva a tartomány nyílt mobilitási adatszolgáltatásából. Azokat a munkaterületeket, amelyeket a kiadó nem enged közzétenni, soha nem mutatjuk.",
+    "ask": "Milyen útépítések várhatók a B27-en Stuttgart és Tübingen között?"
+  },
+  "dwd-strassenzustand": {
+    "title": "Útburkolat-előrejelzés a DWD-től",
+    "body": "Az időjárási figyelmeztetések mellett a ViaFrei mostantól megadja az előre jelzett útállapotot és útfelületi hőmérsékletet a legközelebbi útmeteorológiai állomásokon — modell-előrejelzésként jelölve, nem mérésként és nem hivatalos figyelmeztetésként.",
+    "ask": "Milyen lesz holnap reggel az útburkolat Kassel közelében?"
+  },
+  "rastanlagen-lkw-stellplaetze": {
+    "title": "Autópálya-pihenőhelyek kamionkapacitással",
+    "body": "Tervezzük, hogy felvesszük a Szövetségi Logisztikai és Mobilitási Hivatal adatait a német autópályák üzemeltetett pihenőhelyeiről: hely, név és a kamionhelyek becsült száma, egész Németországra. Ez a szám a hivatal becslése, nem élő foglaltság.",
+    "ask": "Az A2 melyik pihenőhelyén van a legtöbb kamionhely Hannover és Dortmund között?"
+  },
+  "autobahn-umleitungsempfehlungen": {
+    "title": "Az autópálya-üzemeltető ajánlott terelőútjai",
+    "body": "Tervezzük, hogy felvesszük a szövetségi autópálya-üzemeltető terelési ajánlásait: azt az útvonalat, amelyet a dinamikus útirányjelző táblák dugók és lezárások idején ajánlanak. A ViaFrei így egy lezárásnál megnevezhetné azt a terelőutat, amelyet maga az üzemeltető ajánl.",
+    "ask": "Hogyan kerülhetem ki az A3 lezárását?"
+  },
+  "viafrei-2-3": {
+    "title": "ViaFrei 2.3: autópálya-oldalak, több forrás, több asszisztens",
+    "body": "Minden autópályának saját oldala van forgalmi, útépítési, parkolási és töltési panelekkel, mindegyiken látszik, milyen frissek az adatok. Új: útépítések és forgalmi hírek további tartományokból, több töltőüzemeltető, és az Autobahn GmbH stratégiai terelési ajánlásai, amikor közzétesz ilyet. Az indulások az óraátállításkor is pontosak. Csatlakoztassa a ViaFreit a Claude, a ChatGPT és a csatlakozási oldal többi asszisztense alatt – csak akkor élők a válaszok.",
+    "ask": "Milyen most a helyzet az A3-on?"
+  },
+  "lkw-stellplatzbelegung": {
+    "title": "Kamionparkolók foglaltsága az autópályákon",
+    "body": "A ViaFrei mostantól megmutatja az autópálya-kamionparkolók foglaltságát a Toll Collect GmbH Stellplatz-Informationsdienst (SID) szolgáltatásából. A számok csak akkor jelennek meg, ha elfogadja a felhasználási feltételek 2. szakaszát: a viafrei.de oldalon a „Foglaltság megjelenítése” gombbal, MI-asszisztensében az általa feltett kérdéssel. Az adatok pontatlanok vagy elavultak lehetnek.",
+    "ask": "Hol van most szabad kamionparkoló az A9-esen Nürnberg közelében?"
+  },
+  "lkw-parken-thiersheim": {
+    "title": "Autohof Thiersheim az A93-on",
+    "body": "A ViaFrei most már ismeri az A93-on lévő Autohof Thiersheim kamionparkolóhelyeit a pihenő saját táblázatából: 55 kamionparkolóhely, a cím és a fekvés. A pihenő egyszer szerepel a válaszban, bár az országos kamionparkoló-táblázat is tartalmazza, és mindkét forrás meg van nevezve. Foglaltságot itt nem mutat a ViaFrei, mert a kiadó április óta nem jelentett ilyet.",
+    "ask": "Hol parkolhatok kamionnal az A93-on Thiersheim közelében?"
+  },
+  "echtzeit-vbn-connect": {
+    "title": "Valós idejű adatok buszokhoz és vonatokhoz a VBN területén",
+    "body": "A ViaFrei mostantól beolvassa a Bréma/Alsó-Szászország közlekedési szövetség (VBN, Connect adatkészlet) valós idejű adatait. Brémában és a VBN egész területén a megállókban az indulások ezekből az adatokból mutatnak késést ott, ahol más valós idejű forrás nem jelenti a járatot. Minden indulás egyszer jelenik meg, és minden forrás, amely továbbítja, meg van nevezve.",
+    "ask": "Mikor indul a következő busz a brémai főpályaudvarról?"
+  },
+  "strassen-auf-den-karten": {
+    "title": "Utcák a térképeken",
+    "body": "Az autópálya-oldalak és a helyoldalak térképei mostantól az OpenStreetMapből rajzolják ki kivágatuk utcáit: szövetségi, tartományi és járási utakat és lakóutcákat, általunk rajzolva, harmadik fél térképszolgáltatása nélkül; magukat az autópályákat a BASt helykódlistájából rajzoljuk. Így a térképen lévő bejelentés az utcájához köthető.",
+    "ask": "Milyen a helyzet az A7-esen Kassel közelében?"
+  },
+  "einzelmeldungen-viz-nrw": {
+    "title": "A VIZ.NRW egyedi közleményei további tartalékként",
+    "body": "A ViaFrei mostantól a VIZ.NRW észak-rajna-vesztfáliai közlekedési információinak egyedi közleményeit is olvassa. Ezek még egyszer biztosítják a közlekedési közleményeket Észak-Rajna-Vesztfáliában: ha az egyik forrás kiesik, a ViaFrei egy másikból válaszol. Minden közlemény csak egyszer jelenik meg, és minden forrást megnevezünk, amely továbbítja.",
+    "ask": "Vannak most közlekedési közlemények az A1-en Köln közelében?"
+  }
+}

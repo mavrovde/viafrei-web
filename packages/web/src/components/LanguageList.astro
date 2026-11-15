@@ -1,0 +1,96 @@
+---
+/**
+ * The language list: every REVIEWED language, each in its own script and its
+ * own `lang`, the current one marked `aria-current="page"` (#380, #235). Plain
+ * links to the same page in the other language, no JS.
+ *
+ * Two shapes. `list` shows all names in a row that wraps. `menu` (the header
+ * and the footer) is a `<details>` disclosure whose summary is the current
+ * language's badge (its code, or "UA" for Ukrainian, `badgeOf`); a
+ * `<details>` needs no script and is keyboard- and screen-reader-native
+ * (Tab to the badge, Enter or Space opens it, Tab walks the names).
+ *
+ * Twenty-two languages since 2.3.12 (#753) do not fit a 390 px phone as one
+ * column, so the open menu is a grid of two columns (three from 40 rem),
+ * scrolling inside itself past 70 % of the viewport, each name beside its
+ * badge. The names are ordered by the root collation of their own spelling,
+ * which groups them by script — the Latin-script languages A–Z, then Greek,
+ * then the Cyrillic ones (`menuGroups`) — so a reader finds their language
+ * where their alphabet puts it, whatever language the page is in. One `<ul>`
+ * per script keeps the groups apart without a heading in any one language.
+ *
+ * Each name carries its country's flag before it (#989; English two, the UK's
+ * then the USA's). Which flag is the locale registry's (`flagsOf`); the
+ * drawings are one sprite (`flags.ts`) that the FIRST list on a page draws,
+ * outside its `<details>`, and every flag is a fixed-size `<use>` of it,
+ * `aria-hidden` — the name stays the link's accessible name, and the name,
+ * its `lang` and its link are unchanged.
+ *
+ * Every link carries `?setlang=1` (2.4.4, "redirect once"): a visitor who
+ * enters on a German page is sent to their own language once, and this click
+ * is how they say otherwise — the middleware stores the choice in `vf_lang`
+ * and redirects to the address without the marker (`i18n/lang-redirect.ts`).
+ */
+import { t } from "../i18n/index.js";
+import { pathFor, type Lang, type PageId } from "../site/pages.js";
+import { badgeOf, flagsOf, htmlLangOf, labelOf, menuGroups, reviewedLocales } from "../i18n/locales.js";
+import { FLAG_HEIGHT, FLAG_WIDTH, flagSprite, flagSymbolId } from "../i18n/flags.js";
+import { withPickMarker } from "../i18n/lang-redirect.js";
+
+interface Props {
+  lang: Lang;
+  page: PageId;
+  variant?: "list" | "menu";
+  /** A page that is not a row of the map (a place page) names its own language versions. */
+  hrefs?: Readonly<Record<Lang, string>> | undefined;
+}
+const { lang, page, variant = "list", hrefs } = Astro.props;
+const langs = reviewedLocales().map((l) => l.code as Lang);
+// Every link carries the marker `?setlang=1` (2.4.4), and is rel="nofollow" so a crawler does not spend 21 requests per page on redirects (the head's hreflang names every language): following it is the visitor's explicit choice, which the
+// middleware keeps in the `vf_lang` cookie before it redirects to the clean address (`i18n/lang-redirect.ts`).
+const link = (l: Lang) => ({ l, href: withPickMarker(hrefs?.[l] ?? pathFor(page, l)), label: labelOf(l), badge: badgeOf(l), htmlLang: htmlLangOf(l), flags: flagsOf(l).map(flagSymbolId) });
+const links = langs.map(link);
+const groups = menuGroups(langs).map((g) => g.map(link));
+const sprite = Astro.locals.flagsDrawn === true ? null : flagSprite();
+Astro.locals.flagsDrawn = true;
+---
+
+{sprite && <Fragment set:html={sprite} />}
+
+{
+  variant === "list" ? (
+    <nav aria-label={t(lang, "a11y.langNav")}>
+      <ul class="langs">
+        {links.map((x) => (
+          <li>
+            <a href={x.href} rel="nofollow" hreflang={x.l} lang={x.htmlLang} aria-current={x.l === lang ? "page" : undefined}>
+              <span class="langs__flags" aria-hidden="true">{x.flags.map((id) => <svg class="flag" width={FLAG_WIDTH} height={FLAG_HEIGHT}><use href={`#${id}`}></use></svg>)}</span>
+              {x.label}
+            </a>
+          </li>
+        ))}
+      </ul>
+    </nav>
+  ) : (
+    <details class="langmenu">
+      <summary class="langmenu__summary" aria-label={`${t(lang, "a11y.langNav")}: ${labelOf(lang)}`}>
+        <span aria-hidden="true">{badgeOf(lang) /* the ISO code upper-cased, or the locale's own badge (uk → UA) */}</span>
+      </summary>
+      <nav class="langmenu__panel" aria-label={t(lang, "a11y.langNav")}>
+        {groups.map((g) => (
+          <ul class="langs langs--menu">
+            {g.map((x) => (
+              <li>
+                <a href={x.href} rel="nofollow" hreflang={x.l} lang={x.htmlLang} aria-current={x.l === lang ? "page" : undefined}>
+                  <span class="langs__flags" aria-hidden="true">{x.flags.map((id) => <svg class="flag" width={FLAG_WIDTH} height={FLAG_HEIGHT}><use href={`#${id}`}></use></svg>)}</span>
+                  <span class="langs__name">{x.label}</span>
+                  <span class="langs__code" aria-hidden="true">{x.badge}</span>
+                </a>
+              </li>
+            ))}
+          </ul>
+        ))}
+      </nav>
+    </details>
+  )
+}

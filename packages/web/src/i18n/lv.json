@@ -1,0 +1,1274 @@
+{
+  "meta": {
+    "tagline": "Vācijas reāllaika mobilitātes platforma mākslīgajam intelektam",
+    "pitch": "ViaFrei sniedz MI asistentiem reāllaika zināšanas par Vāciju. Vilcieni un autobusi, satiksme un ceļu darbi, degviela, uzlāde, stāvvietas un laikapstākļi. Viens MCP. Bez API atslēgas. Bez reģistrācijas.",
+    "description": "Sastrēgumi, slēgti posmi, ceļa darbi, vilcieni, stāvvietas, uzlāde un degviela visā Vācijā – tiešsaistē no atvērtajiem datiem, ar avotu, caur jūsu MI asistentu.",
+    "siteName": "ViaFrei"
+  },
+  "a11y": {
+    "skip": "Pāriet uz saturu",
+    "mainNav": "Galvenā navigācija",
+    "langNav": "Izvēlieties valodu",
+    "currentLang": "pašreizējā valoda",
+    "sample": "Parauga vērtības, nevis tiešsaistes dati",
+    "crumbs": "Jūs atrodaties šeit"
+  },
+  "nav": {
+    "brand": "ViaFrei",
+    "claim": "Satiksmes dati, izstāstīti",
+    "tools": "Izstrādātājiem",
+    "cta": "Savienot ar jūsu MI",
+    "day": "Jūsu diena",
+    "start": "Sākt",
+    "ctaShort": "Savienot MI",
+    "ctaLabel": "Savienojiet ViaFrei ar savu MI asistentu ({clients})"
+  },
+  "beta": {
+    "label": "Beta",
+    "short": "ViaFrei ir beta versijā: atbildes un pārklājums var mainīties, un MI var kļūdīties. Svarīgu informāciju pārbaudiet norādītajā avotā.",
+    "more": "Ko tas nozīmē",
+    "sign": "Brīdinājuma ceļa zīme: bīstams posms",
+    "line": "Pārbaudiet avotā"
+  },
+  "hero": {
+    "lead": "Kā labi informēts draugs: vai mans vilciens kursē? Vai autobāns ir brīvs? Vai ir brīva uzlādes stacija? ViaFrei jūsu asistentam sniedz šodienas skaitļus, katru ar avotu.",
+    "primary": "Savienojiet savu MI vienā minūtē",
+    "secondary": "Jūsu diena ar ViaFrei",
+    "clients": "Paredzēts:",
+    "phase": "Agrīna fāze: atbildes ir informācija, nevis juridiska konsultācija.",
+    "trust": {
+      "free": "Bez maksas",
+      "account": "Bez konta pie mums",
+      "app": "Bez papildu lietotnes",
+      "sources": "Katram skaitlim ir avots"
+    },
+    "connected": "Jūsu MI asistents šos tiešsaistes datus izmanto tikai tad, ja tam ir pievienots ViaFrei – bez savienojuma tas atbild, balstoties uz apmācības datiem."
+  },
+  "sign": {
+    "label": "Atbildes paraugs, saīsināts",
+    "question": "Vai A8 Minhenes virzienā ir brīvs?",
+    "answerBefore": "Divi ceļa darbu posmi starp Štutgarti un Ulmu, slēgtu posmu nav — ceļš ir",
+    "answerHighlight": "brīvs",
+    "answerAfter": ".",
+    "meta": "Piemērs: kā jūsu asistents atbild ar ViaFrei — saīsināti, ar parauga vērtībām.",
+    "badge": "{road} – automaģistrāles lapa"
+  },
+  "proof": {
+    "tiles": {
+      "reports": {
+        "title": "Autobānu ziņojumi"
+      },
+      "charging": {
+        "title": "Uzlādes punkti"
+      },
+      "lorry": {
+        "title": "Kravas automašīnu stāvvietas"
+      },
+      "lifts": {
+        "title": "Lifti un eskalatori"
+      }
+    }
+  },
+  "tile": {
+    "error": "pašlaik nav nolasāms",
+    "errorNote": "Šis avots pašlaik neatbild. Labāk nerādām neko, nekā vecu skaitli kā jaunu.",
+    "loading": "ielādē …",
+    "loadingNote": "Šis skaitlis jau ir ceļā. Tas parādīsies, tiklīdz avots atbildēs."
+  },
+  "tools": {
+    "heading": "Rīki pa jomām",
+    "lead": "Jūsu asistents pats izvēlas pareizo rīku. Saraksts nāk no servera, nevis no brošūras.",
+    "showAll": "Rādīt visus rīkus ({n})",
+    "groups": {
+      "roads": "Autobāni un ceļi",
+      "rail": "Dzelzceļš",
+      "transit": "Sabiedriskais transports",
+      "energy": "Uzlāde un degviela",
+      "places": "Vietas un adreses",
+      "rules": "Noteikumi un laikapstākļi"
+    },
+    "count": "{n, plural, zero {# rīki} one {# rīks} other {# rīki}}"
+  },
+  "connect": {
+    "heading": "Pievienots 60 sekundēs",
+    "lead": "Viens galapunkts, bez konta, bez atslēgas. Izvēlieties savu klientu un sekojiet soļiem.",
+    "endpointLabel": "MCP galapunkts (Streamable HTTP)",
+    "legacyLabel": "Vecākiem klientiem (HTTP + SSE)",
+    "clients": {
+      "claude": "Claude (darbvirsma un claude.ai)",
+      "chatgpt": "ChatGPT",
+      "other": "Citi MCP klienti"
+    },
+    "draft": "Melnraksts — šie soļi klientā vēl nav pārbaudīti.",
+    "steps": {
+      "claude": {
+        "s1": "Settings → Connectors → „Add custom connector“.",
+        "s2": "Ielīmējiet augstāk norādīto galapunktu un saglabājiet.",
+        "s3": "Pajautājiet: „Vai A8 Minhenes virzienā ir brīvs?“"
+      },
+      "chatgpt": {
+        "s1": "Settings → Connectors → „Create“ (izstrādātāja režīms).",
+        "s2": "Ievadiet augstāk norādīto galapunktu kā MCP serveri.",
+        "s3": "Sarunā izvēlieties savienotāju un jautājiet."
+      },
+      "other": {
+        "s1": "Streamable HTTP augstāk norādītajā galapunktā; vecāki klienti izmanto SSE ceļu.",
+        "s2": "Izstrādes fāzē bez autentifikācijas.",
+        "s3": "tools/list atgriež katalogu; katrai atbildei ir norādīts avots."
+      }
+    },
+    "cta": "Uz izstrādātāja ceļvedi",
+    "showClients": "Rādīt soļus jūsu klientam"
+  },
+  "sources": {
+    "heading": "Avoti un uzticamība",
+    "lead": "Katram skaitlim ir norādīts avots, kas atļauj to izmantot — burtiski un netulkots, tajā kartītē, kas to rāda.",
+    "creditsLabel": "Šajā lapā redzamo skaitļu avoti",
+    "creditsShow": "Rādīt visas avotu rindas ({n})",
+    "licenceText": "licences teksts",
+    "notAnswered": {
+      "heading": "Uz ko mēs neatbildam",
+      "routing": "Nekādas maršruta plānošanas — mēs sakām, kas notiek uz ceļa, nevis pa kuru ceļu jums braukt.",
+      "legal": "Nekādu juridisku konsultāciju — noteikumu atbildes nosauc savu avotu un pārskatīšanas datumu un ir informācija.",
+      "fuelFeed": "Nekādu cenu datu tālākai izmantošanai — degvielas cenas ir informācija patērētājiem, nevis API."
+    },
+    "privacy": {
+      "heading": "Privātums trīs teikumos",
+      "s1": "Kamēr neesat piekritis, šī lapa neielādē nevienu trešās puses fontu, skriptu vai attēlu.",
+      "s2": "Apmeklējumus skaitām bez sīkdatnēm, tikai kā dienas kopsummas savā serverī; Google Analytics darbojas tikai ar jūsu piekrišanu.",
+      "s2Clarity": "Apmeklējumus skaitām bez sīkdatnēm, tikai kā dienas kopsummas savā serverī; Google Analytics un Microsoft Clarity darbojas tikai ar jūsu piekrišanu.",
+      "s3": "Jūsu asistents sazinās ar mūsu serveri — mēs neglabājam ne kontus, ne profilus."
+    }
+  },
+  "audience": {
+    "heading": "Kam tas paredzēts",
+    "travellers": {
+      "title": "Ceļotājiem",
+      "text": "Pajautājiet asistentam pirms izbraukšanas, uz perona vai pie uzlādes stacijas — un saņemiet atbildi ar avotu.",
+      "cta": "Kā pievienot"
+    },
+    "developers": {
+      "title": "Izstrādātājiem",
+      "text": "Viens MCP serveris caur Streamable HTTP, publisks katalogs, stdio tilts npm. Izstrādes fāzē bez atslēgas.",
+      "cta": "Uz dokumentāciju"
+    },
+    "business": {
+      "title": "Uzņēmumiem",
+      "text": "Katra reāllaika ziņojuma vēsture, autoparka un objektu jautājumi, skaidra licenču situācija. Runājiet ar mums, pirms sākat būvēt.",
+      "cta": "Sazinieties ar mums"
+    },
+    "show": "Kam paredzēts ViaFrei"
+  },
+  "footer": {
+    "imprint": "Rekvizīti",
+    "privacy": "Privātums",
+    "privacySettings": "Privātuma iestatījumi",
+    "terms": "Lietošanas noteikumi",
+    "languages": "Valodas",
+    "refresh": "Šī lapa atjaunojas ik pēc 20 minūtēm; katra kartīte rāda, cik vecs ir tās skaitlis.",
+    "openData": "Veidots no atvērtajiem datiem. Katram skaitlim ir norādīts avots."
+  },
+  "consent": {
+    "title": "Vai drīkstam izmantot Google Analytics?",
+    "titleClarity": "Vai drīkstam izmantot Google Analytics un Microsoft Clarity?",
+    "body": "Google Analytics tiek ielādēts tikai pēc jūsu piekrišanas. Atteikties var tikpat vienkārši ar vienu klikšķi, un tas tiek atcerēts. Mūsu pašu apmeklētāju uzskaite bez sīkfailiem darbojas neatkarīgi no tā (skatīt Privātums).",
+    "bodyClarity": "Google Analytics un Microsoft Clarity tiek ielādēti tikai pēc jūsu piekrišanas. Clarity ieraksta klikšķus, ritināšanu un peles kustības šajā lapā, visiem tekstiem un ievadītajiem datiem paliekot slēptiem. Microsoft šos datus izmanto arī saviem mērķiem, arī reklāmai. Atteikties var tāpat ar vienu klikšķi, un tas tiek atcerēts. Mūsu pašu apmeklētāju uzskaite bez sīkfailiem darbojas neatkarīgi no tā (skatīt Privātums).",
+    "accept": "Piekrītu",
+    "decline": "Atsakos",
+    "more": "Privātums",
+    "state": {
+      "none": "Jūs vēl neesat izdarījis izvēli.",
+      "denied": "Jūsu pašreizējā izvēle: atteikts {date}.",
+      "granted": "Jūsu pašreizējā izvēle: piekrists {date}."
+    }
+  },
+  "notFound": {
+    "title": "Šī lapa neeksistē",
+    "text": "Šī adrese nekur neved. Sākums ir viena klikšķa attālumā.",
+    "choiceTitle": "Šis nosaukums ir vairākām vietām",
+    "choiceText": "Kuru jūs domājat?",
+    "back": "Uz sākumlapu",
+    "connect": "Pievienojiet savu asistentu",
+    "developers": "Izstrādātājiem",
+    "business": "Uzņēmumiem"
+  },
+  "now": {
+    "heading": "Visa Vācija",
+    "lead": "Visi valsts mēroga skaitļi vienuviet, pa tēmām – katrs ar laiku un avotu.",
+    "stationTop": {
+      "head": "Stacijas tagad: atcelti reisi, kavējumi, paziņojumi par traucējumiem, lifti",
+      "all": "Visas stacijas",
+      "search": "Meklēt staciju",
+      "go": "Meklēt"
+    }
+  },
+  "tiles": {
+    "punctuality": "Punktualitāte: autobusi un vilcieni",
+    "lifts": "Lifti un eskalatori",
+    "reports": "Svarīgākie ziņojumi",
+    "jams": "Sastrēgumi pilsētās tagad",
+    "station": "Tiešsaistē lielākajās stacijās",
+    "lorry": "Kravas automašīnu stāvvietas un atpūtas vietas",
+    "carparks": "Autostāvvietas un P+R pilsētās",
+    "charging": "Uzlādes punkti",
+    "fuel": "Degvielas cenas, novērotas"
+  },
+  "day": {
+    "heading": "Jūsu diena ar ViaFrei",
+    "lead": "Deviņi brīži, kad viens īss jautājums ietaupa laiku — ar šodienas skaitli, kas rāda, ka atbilde ir spēkā.",
+    "howTo": "Kā jautāt asistentam",
+    "howToText": "Pieskarieties jautājumam un turiet (vai iezīmējiet to), nokopējiet un ielīmējiet sarunā. Jūsu asistents pats izvēlas pareizo rīku.",
+    "more": "Vēl 2 jautājumi un viens ierobežojums",
+    "answer": {
+      "label": "ViaFrei atbildēja",
+      "asOf": "Dati uz: {asOf}"
+    },
+    "limitLabel": "Godīgi sakot",
+    "cta": "Sākt",
+    "moments": {
+      "commute": {
+        "title": "Rīta ceļš uz darbu",
+        "scene": "7:10, kafija rokā: vai sabiedriskais transports kursē kā parasti — un vai mans vilciens ir laikā?",
+        "q1": "Vai autobusi un vilcieni Hamburgā pašlaik kursē laikā?",
+        "a1": "{share} % pēdējā stundā novēroto braucienu kavējās vairāk nekā 5 minūtes — aptuveni tikpat, cik stundu iepriekš ({before} %).",
+        "limit": "Punktualitāti rādām pa reģioniem, nevis pa līnijām.",
+        "q2": "Kad atiet nākamais vilciens no Hannoveres centrālās stacijas, un vai tas kavējas?",
+        "q3": "Vai tuvākās stundas laikā kāds vilciens Ķelnes centrālās stacijas atiešanas tablo ir atcelts?",
+        "a2": "Nākamais ir {l1} uz {d1} (pēc saraksta {t1}, ceļš {p1}), kavējas +{delay} min, atiet ap {exp}; pēc tam {l2} uz {d2} {t2}, laikā.",
+        "a3": "Neviens nav atcelts: {n, plural, zero {# atiešanas} one {# atiešana} other {# atiešanas}} līdz {last}; visvairāk kavējas {l1} uz {d1}, +{delay} min."
+      },
+      "bus": {
+        "title": "Ar autobusu un tramvaju",
+        "scene": "Pilsētā: kur ir tuvākā stacija, un vai transports kursē?",
+        "q1": "Kura dzelzceļa stacija ir vistuvāk Ķelnes katedrālei?",
+        "q2": "Kad atiet nākamais S-Bahn vilciens no Frankfurtes Hauptwache pieturas?",
+        "a1": "{s1}, {km},{kmd} km attālumā; tālāk {s2} un {s3}.",
+        "limit": "Katras autobusu un tramvaju pieturas sarakstu rādīsim, tiklīdz tas būs ielādēts — līdz tam stacijas un situāciju jūsu reģionā.",
+        "board": "Saraksts jūsu pieturā",
+        "a2": "Nākamais ir {l1} uz {d1} {t1} no ceļa {p1}, laikā; {l2} uz {d2}, paredzēts {t2}, +{delay2} min, atiet ap {exp2}.",
+        "q3": "Vai vilcieni no Leipcigas centrālās stacijas pašlaik kavējas?",
+        "a3": "Jā, divi: {l1} uz {d1}, +{dl1} min, no ceļa {p1}, un {l2} uz {d2}, +{dl2} min; {n, plural, zero {pārējās # tuvākās atiešanas ir laikā} one {pārējā # tuvākā atiešana ir laikā} other {pārējās # tuvākās atiešanas ir laikā}}."
+      },
+      "station": {
+        "title": "Stacijā",
+        "scene": "Ar bērnu ratiņiem, ratiņkrēslu vai bagāžu: vai lifts uz peronu darbojas?",
+        "q1": "Vai lifts Ķelnes centrālajā stacijā darbojas?",
+        "a1": "{station}: darbojas {working} no {total} norādītajiem liftiem; viens nedarbojas, par vienu dzelzceļš statusu neziņo.",
+        "limit": "Lifti un eskalatori Deutsche Bahn stacijās; citu operatoru pagaidām nav.",
+        "q2": "Vai visi lifti Erlangenes stacijā darbojas?",
+        "a2": "Jā: vienīgais norādītais lifts stacijā {station}, uz peronu {platforms}, darbojas.",
+        "q3": "No kura ceļa atiet nākamais ICE no Nirnbergas centrālās stacijas?",
+        "a3": "{train} uz {dest} {t} no ceļa {p}, laikā."
+      },
+      "driving": {
+        "title": "Ceļā",
+        "scene": "Pirms izbraukšanas: sastrēgumi, slēgti posmi, ceļa darbi — un kur degviela pašlaik ir lēta.",
+        "q1": "Vai A8 Minhenes virzienā pašlaik ir brīvs?",
+        "a1": "Ne gluži: starp {a} un {b} Minhenes virzienā policija ziņo par negadījumu; nomale ir bloķēta.",
+        "a1more": "Visā A8 vēl norādīts: slēgšanas {closures}, ceļa darbu ieraksti {works}.",
+        "limit": "Nekādas maršruta plānošanas: mēs sakām, kas notiek uz autobāna, nevis pa kuru ceļu jums braukt.",
+        "q2": "Kādi ceļa darbi pašlaik notiek uz A7?",
+        "a2": "{count, plural, zero {# ceļa darbu posmi} one {# ceļa darbu posms} other {# ceļa darbu posmi}} līdz {to}; piemēram, starp {a} un {b}: jauns tilts, slēgta viena no trim joslām, {speed} km/h, līdz {until}.",
+        "q3": "Nedēļas nogalē braucu pa A2 — kādus ceļa darbus gaidīt?",
+        "a3": "{count, plural, zero {# ceļa darbu posmi} one {# ceļa darbu posms} other {# ceļa darbu posmi}} no {from} līdz {to}; piemēram, mezglā {a}: tiek atjaunota ceļa virskārta, nobrauktuve pilnībā slēgta, līdz {until}."
+      },
+      "jam": {
+        "title": "Sastrēgumā",
+        "scene": "Sastrēgumi uz autobāna un ap pilsētām: kur satiksme stāv, cik laika tas maksā — un vai šonakt būs slēgts posms.",
+        "q1": "Cik laika pašlaik maksā sastrēgums uz A3 starp Frankfurti un Vircburgu?",
+        "a1": "Starp {a} un {b} Frankfurtes virzienā ap +{delay} min pēc negadījuma; visā A3 ziņoto sastrēgumu skaits: {jams}.",
+        "a1more": "Uz A3 norādīts: slēgšanas {closures}, ceļa darbu ieraksti {works}.",
+        "limit": "Pilsētās mēs redzam pilsētas autobānus, bet Berlīnē, Ķelnē un Hannoverē arī pašu pilsētu satiksmes ziņojumus — pagaidām ne situāciju katrā ielā. Hamburgas ziņojumus un Ķelnes satiksmes stāvokli esam pieprasījuši no piegādātājiem.",
+        "q2": "Vai Ķelnes autobānu lokā pašlaik ir sastrēgumi — A1, A3 vai A4?",
+        "q3": "Vai A7 Hamburgā šodien ir slēgts?",
+        "a3": "Ziņots par slēgtu posmu starp {a} un {b} mezgliem (paplašināšana līdz astoņām joslām, jauns {tunnel}); visā A7 {n, plural, zero {# slēgti posmi} one {# slēgts posms} other {# slēgti posmi}}.",
+        "a2": "Jā, uz A4: starp {a} un {b} Ķelnes virzienā satiksme ir lēna, ap +{delay} min; uz jautātajiem autoceļiem ziņoto sastrēgumu skaits: {n}."
+      },
+      "parking": {
+        "title": "Stāvvieta",
+        "scene": "Atstājiet automašīnu pie stacijas — vai arī, ja vadāt kravas automašīnu, ieplānojiet pārtraukumu.",
+        "q1": "Kur ir autostāvvieta pie Ķelnes centrālās stacijas?",
+        "a1": "{p1}: pēdējās ziņas — brīvas vietas {f1} no {t1}; {p2}: {f2} no {t2} — abas 300 m rādiusā.",
+        "limit": "Brīvās vietas tikai tur, kur operators tās publicē — citur vietu skaits, nevis noslogojums.",
+        "q2": "Kur uz A9 ir kravas automašīnu stāvvietas?",
+        "a2": "Piemēram, {p1} (kravas automašīnu vietas: {n1}), {p2} ({n2}) un {p3} ({n3}); brīvās vietas tur neviens nepublicē.",
+        "q3": "Kur pie Esenes centrālās stacijas ir „Park and Ride“ stāvvieta?",
+        "a3": "{p1}, {k1},{k1d} km attālumā, un {p2}, {k2},{k2d} km; noslogojumu no šī avota ViaFrei neņem."
+      },
+      "charging": {
+        "title": "Uzlāde",
+        "scene": "Braucot ar elektroauto: kur ir tuvākā uzlādes stacija, un vai kāds punkts ir brīvs?",
+        "q1": "Kur netālu no Leipcigas var ātri uzlādēt?",
+        "q2": "Kādas ātrās uzlādes stacijas ir netālu no Ingolštates?",
+        "a1": "Ar vismaz 150 kW, piemēram: {site}, {address} — līdz {kw} kW.",
+        "a1more": "Operators nepublicē tiešsaistes statusu, tāpēc ViaFrei saka „nezināms“, nevis „brīvs“.",
+        "limit": "Pieejamība tiem tīkliem, kas to publicē; visiem pārējiem rādām atrašanās vietu, nevis statusu.",
+        "a2": "Tuvākā ir {op1}, {a1}, līdz {kw1} kW: brīvi uzlādes punkti {free1} no {total1}; arī {s2}, {a2}, līdz {kw2} kW, bez pašreizējā statusa.",
+        "q3": "Vai Hildenes Supercharger stacijā pašlaik kaut kas ir brīvs?",
+        "a3": "{brand} pēdējo reizi statusu ziņoja {t} — pārāk sen, lai teiktu „brīvs“; adrese {address}, līdz {kw} kW."
+      },
+      "places": {
+        "title": "Vietu meklēšana",
+        "scene": "Pietiek ar nosaukumu: koncertzāle, aptieka, uzņēmums — ar adresi un koordinātām nākamajam jautājumam.",
+        "q1": "Mana navigācija rāda 50.1109, 8.6821 — kāda tā ir adrese, un kur ir tuvākais autobāna mezgls?",
+        "a1": "{address}, {m} m attālumā. Tuvākais autobāna mezgls: {junction}, {km},{kmd} km attālumā.",
+        "limit": "Vietas un adreses nāk no OpenStreetMap; katra atbilde norāda datu datumu. Ko tur kartē nav, to mēs nevaram atrast — darba laiks un vērtējumi tajā neietilpst.",
+        "q2": "Kādas aptiekas ir Fuldā — ar adresēm?",
+        "a2": "Piemēram, {p1}, {a1}; {p2}, {a2}; {p3}, {a3} (OpenStreetMap dati: {osm}).",
+        "q3": "Kāda ir Elbas filharmonijas adrese Hamburgā?",
+        "a3": "{poi}: adrese {address} (OpenStreetMap dati: {osm})."
+      },
+      "watch": {
+        "title": "Paziņojiet, kad…",
+        "scene": "Nav jāpārbauda atkal un atkal: ViaFrei vēro jūsu vietā un katru izmaiņu saglabā sarunā — asistents to parāda, tiklīdz jautājat, vai pats, ja atbalsta paziņojumus.",
+        "q1": "Paziņo man, tiklīdz slēgtais posms uz A7 tiek atvērts.",
+        "limit": "Tikai šajā sarunā, kamēr tā ir atvērta — bez e-pasta, bez SMS. Līdz 10 vērošanām vienā sarunā, katra līdz 24 stundām; ceļu vēro visu kopumā, nevis vienu posmu.",
+        "a1": "Vērošana iestatīta: {road}, līdz {until}. ViaFrei ziņos šajā sarunā, tiklīdz tur slēgtais posms tiks atvērts; izmantotās vērošanas: {used} no 10.",
+        "q2": "Paziņo man, kad Ķelnē kavēsies ceturtā daļa vai vairāk autobusu un vilcienu braucienu.",
+        "a2": "Vērošana iestatīta: reģions {ags} ({city}), ziņojums no {pct} % kavētu braucienu, līdz {until} — tikai šajā sarunā.",
+        "q3": "Brīdini mani, kad Ķelnei stāsies spēkā Vācijas Meteoroloģiskā dienesta brīdinājums par bīstamiem laikapstākļiem.",
+        "a3": "Vērošana iestatīta: DWD brīdinājumu zona {cell} ({city}), līdz {until} — ViaFrei ziņos šeit, tiklīdz situācija mainīsies."
+      }
+    },
+    "fuelAsks": {
+      "heading": "Jautājums, kas degvielas uzpildes stacijā var ietaupīt naudu",
+      "whyLabel": "Kāpēc jautāt",
+      "goerlitz": {
+        "q": "Kur Gerlicā pašlaik ir vislētākā dīzeļdegviela?",
+        "why": "Cenas mainās vairākas reizes dienā un atšķiras pat starp dažām stacijām vienā pilsētā: ViaFrei nosauc lētāko ar cenu un laiku, kad stacija to ziņoja.",
+        "a": "Jaunas cenas vēl nav — zemākā pēdējā zināmā: {euro},{cent} €/l stacijā {station}, {address}, ziņots {reported}; ViaFrei pieprasa jaunu."
+      },
+      "muenchen": {
+        "q": "Kur Minhenē pašlaik ir vislētākais benzīns E10?",
+        "why": "Cena var būt rīta: tajā pēcpusdienā ViaFrei Minhenē bija tikai rīta cenas, katru sniedza ar laiku un pieprasīja jaunas.",
+        "a": "Jaunas cenas vēl nav — zemākā pēdējā zināmā: {euro},{cent} €/l stacijā {station}, {address}, ziņots {reported}; ViaFrei pieprasa jaunu."
+      },
+      "leipzig": {
+        "q": "Kur Leipcigā pašlaik ir vislētākais benzīns E5?",
+        "why": "Cena var būt vairākas stundas veca: ViaFrei saka, kad stacija ziņoja katru cenu — tajā pēcpusdienā lētākā Leipcigā joprojām bija no rīta.",
+        "a": "Jaunas cenas vēl nav — zemākā pēdējā zināmā: {euro},{cent} €/l stacijā {station}, {address}, ziņots {reported}."
+      },
+      "nuernberg": {
+        "q": "Kur Nirnbergā pašlaik ir vislētākā dīzeļdegviela?",
+        "why": "Tuvākā stacija ne vienmēr ir lētākā: ViaFrei pie katras cenas norāda attālumu.",
+        "a": "{euro},{cent} €/l stacijā {station}, {address} — ziņots {reported}."
+      }
+    },
+    "fuelAll": "Līdz trim degvielas uzpildes stacijām katrā federālajā zemē, ar adresi un cenu",
+    "allExamples": "Visi parauga jautājumi ar atbildēm"
+  },
+  "start": {
+    "heading": "Gatavs vienā minūtē",
+    "lead": "ViaFrei dzīvo asistentā, kas jums jau ir. Trīs soļi, vienreiz:",
+    "s1": "Claude vai ChatGPT: iestatījumi → „Connectors“.",
+    "s2": "Pievienojiet ViaFrei ar zemāk norādīto adresi.",
+    "s3": "Pajautājiet: „Vai A8 Minhenes virzienā pašlaik ir brīvs?“",
+    "draft": "Melnraksts — šie soļi vēl nav pārbaudīti visos asistentos."
+  },
+  "legal": {
+    "bindingNote": "Šī lapa ir juridisks paziņojums saskaņā ar Vācijas tiesībām. Saistošs ir tikai zemāk sniegtais teksts vācu valodā."
+  },
+  "connectPage": {
+    "moreExamples": "Vairāk piemēru",
+    "title": "Pievienojiet ViaFrei savam asistentam",
+    "lead": "Viena adrese, bez konta, bez atslēgas. Vienreiz pievienojiet ViaFrei kā savienotāju – un tad vienkārši jautājiet.",
+    "askHeading": "Kā jautāt",
+    "askLead": "Pieci jautājumi un tas, kā jūsu asistents uz tiem atbild šodien:",
+    "asks": {
+      "train": "Kad atiet nākamais vilciens no Ķelnes centrālās stacijas?",
+      "parking": "Kur ir autostāvvieta Ķelnes centrā?",
+      "charging": "Kur Leipcigā varu uzlādēt savu elektroauto?",
+      "road": "Vai A3 Frankfurtes virzienā pašlaik ir brīvs?",
+      "weather": "Vai Drēzdenei pašlaik ir brīdinājums par bīstamiem laikapstākļiem?"
+    },
+    "live": {
+      "heading": "Atbildes, kādas tās pienāca",
+      "lead": "Saīsināti, ar datu laiku un to avotiem. Skaitļi ir tā brīža momentuzņēmums, nevis tiešsaistes displejs.",
+      "asOf": "Dati uz: {asOf}",
+      "fuelExample": "Atbildes piemērs, {asOf} — šodien cenas ir citas",
+      "stadtbahn": {
+        "title": "Vieglā metro (Stadtbahn) lifti un eskalatori",
+        "q": "Kas pašlaik nedarbojas Ķelnes vieglā metro pieturā {stop}?",
+        "a": "Nedarbojas {out} no {total} iekārtām: eskalatori {e1} un {e2} kopš {since}, {e3} kopš {since3} un {e4} kopš {since4}; abi lifti darbojas. {publisher} sniedz datus bez jebkādas garantijas.",
+        "note": "Ķelnes vieglā metro pieturām, no publicētā bojājumu saraksta – ar laiku, kad ziņots par katru bojājumu."
+      },
+      "bikes": {
+        "title": "Koplietošanas velosipēdi pie stacijas, tiešsaistē",
+        "q": "Kur netālu no {station} atrast brīvu nomas velosipēdu?",
+        "a": "{dock} stacija, operators {operator}: brīvi velosipēdi {free}, un {radius} km rādiusā vēl stacijas: {docks}, katrai savs skaits.",
+        "note": "Brīvie velosipēdi nāk tiešsaistē no velonomas sistēmu atvērtajiem datiem; ViaFrei saka tikai to, ko stacija ziņo pašlaik."
+      },
+      "lift": {
+        "title": "Lifti stacijā",
+        "q": "Kuri lifti stacijā {station} pašlaik nedarbojas?",
+        "a": "Par vienu ziņots, ka tas nedarbojas — lifts uz peroniem {platforms}: darbojas {working} no {total} liftiem. Otrs lifts uz peroniem {platforms} netiek uzraudzīts – tā statuss nav zināms.",
+        "note": "Deutsche Bahn stacijām, nolasa ik pēc 20 minūtēm. Tas, ko jaunākais ziņojums nemin, ir „nezināms“ – nekad „darbojas“."
+      },
+      "alert": {
+        "title": "Autobusu un dzelzceļa satiksmes paziņojumi",
+        "q": "Vai Lejassaksijā pašlaik ir autobusu un dzelzceļa satiksmes paziņojumi?",
+        "a": "Paziņojumi spēkā: {count}, starp tiem: līnijas {lines} kursē pēc ceļa darbu saraksta, jo {road} ir slēgts starp {a} un {b}, no {from} līdz {to}.",
+        "note": "Transporta apvienību paziņojumi caur DELFI, tikai kamēr tie ir spēkā. Paziņojumu, kurā nav nosaukta pietura, pēc tīkla piesaista federālajai zemei, un ViaFrei saka, ka tas var attiekties arī uz kaimiņu zemi."
+      },
+      "enbw": {
+        "title": "Ātrās uzlādes stacija ar tiešsaistes noslogojumu",
+        "q": "Vai {brand} stacijā adresē {address} pašlaik ir brīvs uzlādes punkts?",
+        "a": "Līdz {kw} kW, {euro},{cent} €/kWh — bet nevienam no {n} uzlādes punktiem nav statusa, tāpēc ViaFrei nesaka „brīvs“.",
+        "note": "Operators pats publicē savas stacijas un noslogojumu; laiks „dati uz“ ir tā jaunākais ziņojums."
+      },
+      "ecomove": {
+        "title": "Tiešsaistes noslogojums caur agregatoru",
+        "q": "Vai ātrās uzlādes stacijā adresē {address} pašlaik ir brīvs uzlādes punkts?",
+        "a": "{site}: līdz {kw} kW, {euro},{cent} €/kWh; pēdējais statuss ir no {t} — pārāk vecs, lai teiktu „brīvs“.",
+        "note": "Šeit noslogojums nāk no pakalpojuma, kas apkopo daudzu operatoru ziņojumus. Punkts bez ziņojuma nekad netiek uzskatīts par brīvu."
+      },
+      "ocpdb": {
+        "title": "Tiešsaistē brīvs vai aizņemts, pašā Ķelnē",
+        "q": "Vai uzlādes stacijā adresē {address} pašlaik ir brīvs uzlādes punkts?",
+        "a": "Jā, viens: 2. tipa līdz {kw2} kW ir brīvs, CCS punkts līdz {kw} kW nedarbojas — {euro},{cent} €/kWh bez PVN.",
+        "note": "Noslogojums nāk tiešsaistē caur Bādenes-Virtembergas datu portālu, kurā norādītas arī stacijas tālu ārpus šīs zemes."
+      },
+      "lsr": {
+        "title": "Pat tur, kur neviens neziņo tiešsaistē",
+        "q": "Kur varu uzlādēt netālu no adreses {address}?",
+        "a": "{m} m attālumā: 2. tipa, līdz {kw} kW, pēc Federālās tīklu aģentūras uzlādes staciju reģistra ({register}), bez tiešā statusa, bez precizitātes vai pilnīguma garantijas.",
+        "note": "Kur neviens operators nepublicē tiešsaistes datus, ViaFrei nosauc uzlādes stacijas no oficiālā reģistra, bez noslogojuma, jo nezināms nekad nav „brīvs“."
+      },
+      "hamburg": {
+        "title": "Autostāvvieta Hamburgas centrā",
+        "q": "Kur Hamburgā varu novietot automašīnu netālu no {stop}?",
+        "a": "{park}: brīvas vietas {free} no {total}. Pati Hamburgas pilsēta saka, ka šie reāllaika dati nav pārbaudīti.",
+        "note": "Hamburgas autostāvvietu noslogojums nāk tiešsaistē no pilsētas; ViaFrei vienmēr nodod tās piezīmi, ka dati nav pārbaudīti."
+      },
+      "hhworks": {
+        "title": "Pilsētas ceļa darbi Hamburgā",
+        "q": "Kādi ceļa darbi plānoti Hamburgā, ielā {street}?",
+        "a": "{street}, {b}: ielas pārbūve no {from} līdz {to}; pilnīga slēgšana gaidāma 2027. gada pavasarī.",
+        "note": "Hamburgas pilsētas ceļa darbi nāk no pilsētas sistēmas Bauweiser: tikai apstiprināti posmi, pa kalendāra dienām, un „plānots“ nozīmē, ka darbi sākas pēc šodienas. Policijas ziņojumi paliek atsevišķi ieraksti."
+      },
+      "muenster": {
+        "title": "Minsteres stāvvietu vadības sistēma, tiešsaistē",
+        "q": "Cik brīvu vietu ir {name} Minsterē?",
+        "a": "Brīvas vietas {free} no {total}, un tuvumā vēl autostāvvietas: {more}, katrai savs skaits.",
+        "note": "Noslogojums nāk tiešsaistē no Minsteres pilsētas stāvvietu vadības sistēmas. Autostāvvietu, kas neko neziņo, ViaFrei nekad nesauc par „pilnu“."
+      },
+      "motorway": {
+        "title": "Slēgta nobrauktuve uz autobāna",
+        "q": "Vai uz A6 netālu no {place} pašlaik kaut kas ir slēgts?",
+        "a": "Jā: uzbrauktuve uz A6 pie {place} ir slēgta, kamēr pārbūvē inženierbūvi – šis būvdarbu posms ilgst no {from} līdz {to}. Visam A6 atbilde min slēgšanas: {count}.",
+        "note": "Autobānu slēgšanas un ceļa darbi nāk no Autobahn GmbH, ar katra būvdarbu posma periodu. Jautāts par autobānu, ViaFrei vispirms uzskaita slēgšanas."
+      },
+      "citywork": {
+        "title": "Ceļa darbi pilsētā",
+        "q": "Vai Berlīnē, ielā {street}, kaut kas ir slēgts?",
+        "a": "Jā: inženiertīklu darbi abos virzienos starp {a} un {b}, saskaņā ar Senāta departamentu slēgts autotransportam no {from} līdz {to}.",
+        "note": "Berlīnes ziņojumos ir nosaukta iela un posms, nevis ceļa numurs, tāpēc ViaFrei tos atrod pēc vietas – 25 km rādiusā, tuvākos vispirms."
+      },
+      "landroad": {
+        "title": "Ceļa darbi uz reģionālā ceļa",
+        "q": "Vai šonedēļ uz ceļa L1025 Tīringenē notiek ceļa darbi?",
+        "a": "{count, plural, zero {# ceļa darbu posmi} one {# ceļa darbu posms} other {# ceļa darbu posmi}}, starp tiem: {site}, sašaurinājums ar luksoforu, no {from} līdz {to}.",
+        "note": "Reģionālos ceļus aptveram Bādenē-Virtembergā, Lejassaksijā, Tīringenē un Saksijā, pēc ceļu iestāžu datiem: posms un periods, bez koordinātām un bez tiešsaistes kavējuma."
+      },
+      "saxony": {
+        "title": "Ceļa darbi uz federālā ceļa Saksijā",
+        "q": "Vai šonedēļ uz ceļa B6 Saksijā notiek ceļa darbi?",
+        "a": "Šonedēļ ceļa darbu posmi: {count}, starp tiem: Drēzdenē, pie {place}, ceļu modernizē, no {from} līdz {to}.",
+        "note": "Saksijas ceļu iestāde savus ilgtermiņa ceļa darbus atkārtoti publicē ik pēc trim stundām. ViaFrei uz tiem atbild federālajiem un reģionālajiem ceļiem, pa posmiem un periodiem – bez koordinātām un bez tiešsaistes kavējuma."
+      },
+      "bwroad": {
+        "title": "Ceļa darbi uz federālā ceļa Bādenē-Virtembergā",
+        "q": "Vai nākamnedēļ uz ceļa B27 Bādenē-Virtembergā plānoti ceļa darbi?",
+        "a": "Posmi Bādenē-Virtembergā: {count} no {all}, piem., {a} – {b}: jauns ceļa segums no {from} līdz {to}.",
+        "note": "Bādenes-Virtembergas transporta ministrija savus ceļa darbus (BEMaS) publicē caur MobiData BW. ViaFrei uz tiem atbild federālajiem un reģionālajiem ceļiem, pa posmiem un periodiem – plānotie darbi kā plānoti, bez tiešsaistes kavējuma."
+      },
+      "kiel": {
+        "title": "Ceļa darbi Ķīlē",
+        "q": "Vai pa {street} Ķīlē pašlaik var braukt?",
+        "a": "Nē: {street} ir slēgts starp namu Nr. {no} un {b} kanalizācijas būvdarbu dēļ, no {from} līdz {to} (Piemērs, apkopots; rīks to rāda pilnībā).",
+        "note": "Ķīles pilsēta publicē savus ceļa darbus ar vietu, iemeslu un laikposmu. Šī kartīte apkopo vienu ziņojumu; rīks tos rāda nesaīsinātus un atrod ziņojumu pēc vietas – 25 km rādiusā, tuvāko vispirms."
+      },
+      "truckstop": {
+        "title": "Apsargātas kravas automašīnu stāvvietas pie A7",
+        "q": "Vai šonakt {name} pie A7 ir brīva vieta kravas automašīnai?",
+        "a": "Brīvas vietas {free} no {total}, kā ziņo operators.",
+        "note": "Šo apsargāto kravas automašīnu stāvvietu operators publicē brīvās vietas; ViaFrei tās rāda blakus atpūtas vietām, kas noslogojumu nepublicē, un nekad tās nesaskaita kopā."
+      },
+      "parkride": {
+        "title": "„Park and Ride“ pirms vilciena",
+        "q": "Kur Dortmundē varu atstāt automašīnu un pārsēsties vilcienā?",
+        "a": "{p1} (vietas: {t1}) un {p2} (vietas: {t2}) — šīm stāvvietām noslogojuma nav.",
+        "note": "„Park and Ride“ stāvvietas Ziemeļreinā-Vestfālenē nāk no federālās zemes apkopotajiem datiem un ir uzskaitītas atsevišķā blokā, nekad nesaskaņotas ar citiem avotiem. To noslogojums netiek pārņemts."
+      },
+      "platform": {
+        "title": "Kavēšanās, tiešsaistē",
+        "q": "Vai {train} uz {dest} no {station} atiet laikā?",
+        "a": "+{delay} min, gaidāms {expected}, nevis {planned} — no ceļa {platform}, kā plānots.",
+        "note": "Kavējumi un ceļu maiņas nāk no Deutsche Bahn sarakstu saskarnes, visām stacijas daļām — ieskaitot Berlīnes centrālās stacijas pazemes un piepilsētas vilcienu peronus."
+      },
+      "region": {
+        "title": "Punktualitāte visā aglomerācijā",
+        "q": "Vai autobusi un vilcieni Reinas–Rūras reģionā pašlaik kursē laikā?",
+        "a": "{share} % pēdējā stundā novēroto braucienu kavējās vairāk nekā 5 minūtes — vairāk nekā stundu iepriekš ({before} %).",
+        "note": "Reinas–Rūras reģions atbild kā viens reģions: 30 apriņķi un pilsētas kopā. ViaFrei sniedz kopsummas pa reģioniem, nevis pa līnijām."
+      },
+      "tomorrow": {
+        "title": "Ceļa darbi rītdienas maršrutā",
+        "q": "Kādi ceļa darbi rīt plānoti uz A7?",
+        "a": "Ceļa darbu posmi: {count}, no tiem jau notiek {started}. Piemēram, starp {a} un {b} būvē jaunu tiltu, {km} km garumā, maks. ātrums {speed} km/h, līdz {until}.",
+        "note": "Plānotie ceļa darbi no Federālā ceļu pētniecības institūta: posms un periods, bez koordinātām un bez tiešsaistes kavējuma — par to, kas notiek pašlaik, ViaFrei atbild no autobānu ziņojumiem."
+      },
+      "closure": {
+        "title": "Slēgts posms priekšā",
+        "q": "Vai uz A7 netālu no Hamburgas pašlaik kaut kas ir slēgts?",
+        "a": "Jā: Autobahn GmbH ziņo par slēgtu nobrauktuvi mezglā {at} — būvdarbu posmā starp {a} un {b}. Šis būvdarbu posms beidzas {until} {end}.",
+        "note": "Autobānu slēgšanas un ceļa darbi nāk no Autobahn GmbH, ar katra būvdarbu posma periodu."
+      },
+      "weather": {
+        "title": "Laikapstākļu pārbaude pirms kalniem",
+        "q": "Vai šodien vietai {name} ir brīdinājums par laikapstākļiem?",
+        "a": "Jā, nākamajai naktij: Vācijas Meteoroloģiskais dienests brīdina par vāju salu līdz {temp} °C, spēkā {day} no {from} līdz {to} — brīdinājuma līmenis {level}, zemākais.",
+        "note": "Brīdinājumus nolasa ik pēc 5 minūtēm, un tie attiecas uz zonām; jaunu var izsludināt pēkšņi."
+      },
+      "fuelcity": {
+        "title": "Lētākais E10 pilsētā",
+        "q": "Kur Ķelnē pašlaik ir lētākais Super E10?",
+        "a": "{euro},{cent} €/l stacijā {station}, {address} — ziņots {reported}.",
+        "note": "Degvielas cenas mainās ik pēc dažām minūtēm: šis skaitlis ir tās pēcpusdienas piemērs, nevis šodienas cena. ViaFrei saka, kad stacija ziņoja katru sniegto cenu."
+      },
+      "charger": {
+        "a": "{site}: uzlādes punkti {points}, 2. tipa, līdz {kw},{kwd} kW, {euro},{cent} €/kWh bez PVN. Neviens neziņo, ka aizņemts; {stale} pēdējais statuss no {t}, {unknown} tā nav — tāpēc ne „brīvs“.",
+        "title": "Tiešsaistes statuss uzlādes stacijā",
+        "q": "Vai adresē {address} pašlaik ir brīvs uzlādes punkts?",
+        "note": "Tiešsaistes noslogojumu sniedzam tikai tur, kur operators to publicē – šeit caur e-clearing.net. Bez ziņojuma atbilde ir „nav statusa datu“, nekad „brīvs“."
+      },
+      "roadworks": {
+        "a": "Lejassaksijā: {count}, visi jau sākušies; pirmais: {section}, no {start} līdz {end}.",
+        "note": "Federālos ceļus aptveram Lejassaksijā, Saksijā, Tīringenē un Bādenē-Virtembergā, pēc to ceļu iestāžu datiem: posms un periods, bez tiešsaistes kavējuma. Par federālo ceļu citur ViaFrei atbild „netiek aptverts“, nevis „brīvs“.",
+        "title": "Ceļa darbi uz federālā ceļa",
+        "q": "Kādi ceļa darbi šonedēļ plānoti uz ceļa B3 Lejassaksijā?"
+      },
+      "train": {
+        "title": "Reģionālie vilcieni: laikā vai ne",
+        "q": "Vai nākamais reģionālais vilciens no {station} uz {dest} ir laikā?",
+        "a": "Jā: {line} {planned} no ceļa {platform}, laikā — tāpat kā {n} no {all} reģionālajiem vilcieniem līdz {last}.",
+        "note": "Kad Deutsche Bahn sarakstu saskarne nesniedz tiešsaistes laikus, ViaFrei pievieno reģionālos un S-Bahn vilcienus no DELFI SIRI ET – atsevišķā blokā, nekad nesajauktus ar dzelzceļa līnijām."
+      },
+      "fuelroad": {
+        "a": "Jaunas cenas vēl nav — zemākā pēdējā zināmā: {euro},{cent} €/l stacijā {station}, {address}, ziņots {reported}; ViaFrei pieprasa jaunu.",
+        "title": "Dīzeļdegviela pa ceļam, pie autobāna",
+        "q": "Šovakar braucu pa A3 garām Vircburgai: kur tuvumā ir lētākā dīzeļdegviela?",
+        "note": "Degvielas cenas mainās ik pēc dažām minūtēm: šis skaitlis ir tās pēcpusdienas piemērs, nevis šodienas cena. ViaFrei saka, kad stacija ziņoja katru sniegto cenu."
+      },
+      "fuelland": {
+        "a": "Jaunas cenas vēl nav — zemākā pēdējā zināmā: {euro},{cent} €/l stacijā {station}, {address}, ziņots {reported}; ViaFrei pieprasa jaunu.",
+        "title": "Lētākā cena federālās zemes galvaspilsētā",
+        "q": "Kur Štutgartē, Bādenē-Virtembergā, pašlaik ir lētākais E10?",
+        "note": "Degvielas cenas mainās ik pēc dažām minūtēm: šis skaitlis ir tās pēcpusdienas piemērs, nevis šodienas cena. ViaFrei saka, kad stacija ziņoja katru sniegto cenu."
+      },
+      "carpark": {
+        "title": "Autostāvvieta ar brīvām vietām",
+        "q": "Cik brīvu vietu ir Ķelnes autostāvvietā {name}?",
+        "a": "Pēdējās ziņas — brīvas vietas {free} no {total} — vecāks ziņojums, nevis pašreizējais stāvoklis.",
+        "note": "Nosaukums, atrašanās vieta un vietu skaits nāk no Ķelnes pilsētas autostāvvietu tabulas, noslogojums – no tās tiešsaistes plūsmas. Ja jaunākais ziņojums ir pārāk vecs, ViaFrei saka „pēdējoreiz ziņots“, nevis „brīvs“."
+      },
+      "lorry": {
+        "title": "Kravas automašīnu stāvvietas ar brīvām vietām",
+        "q": "Cik kravas automašīnu vietu pašlaik ir brīvas {name}?",
+        "a": "Brīvas kravas automašīnu vietas: {free}, kā ziņo operators.",
+        "note": "Brīvās vietas sniedzam tikai tur, kur operators tās publicē – šeit ik pēc 15 minūtēm. Ja vērtība sešas stundas nemainās, ViaFrei saka „pēdējoreiz ziņots“, nevis „brīvs“."
+      }
+    },
+    "betaHeading": "Beta: ko tas nozīmē jums",
+    "beta1": "ViaFrei ir stabilizācijas fāzē: tiek pievienoti datu avoti, un atbildes un pārklājums var mainīties.",
+    "beta2": "Atbildes, balstoties uz mūsu datiem, formulē MI asistents – MI var kļūdīties.",
+    "beta3": "Svarīgu informāciju (slēgtus posmus, atiešanas, cenas) pārbaudiet atbildē nosauktajā avotā.",
+    "endpointHeading": "Adrese",
+    "endpointNote": "Streamable HTTP. Bez maksas, kamēr to veidojam, bez konta; pieprasījumu biežums ir ierobežots, lai pietiktu visiem.",
+    "legacyNote": "Vecāki klienti bez Streamable HTTP izmanto SSE adresi:",
+    "clientsHeading": "Soli pa solim",
+    "claudeAi": "claude.ai (tīmeklis)",
+    "claudeAiSteps": "Pielāgot (Customize) → Connectors → “+ Add” → “Add custom connector”. Nosauciet to ViaFrei, ielīmējiet adresi augstāk kā MCP servera URL, pēc tam “Continue”. Pajautājiet, piemēram: “Vai A8 Minhenes virzienā ir brīva?” Pirmajā reizē atļaujiet ViaFrei rīku.",
+    "claudeDesktop": "Claude Desktop",
+    "claudeDesktopSteps": "Tas pats savienotājs kā claude.ai, glabāts jūsu Claude kontā: pievienojiet to tur, kā aprakstīts augstāk, un tas parādās arī datora lietotnē.",
+    "claudeCode": "Claude Code",
+    "claudeCodeSteps": "Vienreiz palaidiet terminālī:",
+    "chatgpt": "ChatGPT",
+    "chatgptSteps": "Plugins → “+” → “Add custom MCP server”. Nosauciet to ViaFrei, ielīmējiet adresi augstāk sadaļā “Connection”, autentifikācija: nav; atzīmējiet “I understand and want to continue”, pēc tam “Create as a plugin”. Jaunā tērzēšanā ierakstiet @, izvēlieties ViaFrei un jautājiet.",
+    "editorsSteps": "Pievienojiet MCP konfigurācijai (mcp.json):",
+    "copilotSteps": "Komandu palete → „MCP: Add Server“ → „HTTP“ → ielīmējiet augstāk norādīto adresi → servera ID viafrei → „Global“ → „Copilot Global“. Tas tiek ierakstīts ~/.copilot/mcp-config.json; ar roku pievienojiet:",
+    "copilotSandbox": "Ja Copilot atbild ar 403 un galveni „x-ms-block-by: sandbox-broker“, tā smilškaste ir bloķējusi adresi: atļaujiet mcp.viafrei.de (mākoņa aģentam: repozitorija iestatījumi → Copilot → Internet access → Custom allowlist).",
+    "geminiTrust": "Gemini CLI palaiž MCP serverus tikai mapē, kurai uzticaties; to tas jautā, pirmo reizi tur palaižot.",
+    "windsurfSteps": "Cascade panelis → „…“ → MCPs → atveriet MCP konfigurācijas failu (mcp_config.json) un pievienojiet:",
+    "leChatSteps": "Connectors → „+ Add Connector“ → „Custom MCP Connector“ → nosaukums viafrei, servera URL: augstāk norādītā adrese → Connect, bez autentifikācijas. To pievieno administrators – Free un Pro plānos tas esat jūs.",
+    "generic": "Jebkurš cits MCP klients",
+    "genericSteps": "Jebkurš klients, kas atbalsta Streamable HTTP, pievienojas augstāk norādītajai adresei – bez galvenēm, bez atslēgas.",
+    "stdio": "Klienti tikai ar stdio",
+    "stdioSteps": "Tilts no publiskās npm pakotnes palaiž lokālu stdio serveri, kas pārsūta uz augstāk norādīto adresi:",
+    "notCoveredHeading": "Uz ko ViaFrei neatbild",
+    "notCoveredLead": "Lai jūs nemeklētu to, kā nav:",
+    "notCovered": {
+      "routing": "Nekāda maršruta „no durvīm līdz durvīm“ vai ceļojuma plānošanas — ViaFrei atbild par vietām, ceļiem un datu plūsmām, nekad „kā tur nokļūt“.",
+      "cityStreets": "Nekādas pilsētas ielu satiksmes ārpus mūsu pilsētu un federālo zemju plūsmām: ielu darbi, slēgšanas un satiksmes ziņojumi Berlīnei, Ķelnei (slēgšanas pasākumu dēļ), Hannoverei (tiklīdz tās plūsma sāks publicēt), Šlēsvigai-Holšteinai kopā ar Ķīli un Bādenei-Virtembergai kopā ar Štutgarti. Citas pilsētas netiek aptvertas; citur mūsu tiešsaistes satiksme ir federālais autobānu tīkls (Autobahn GmbH) un, kur plūsma tos sniedz, federālie ceļi, kā arī ceļa darbi uz reģionālajiem ceļiem Bādenē-Virtembergā, Lejassaksijā, Saksijā un Tīringenē.",
+      "fares": "Nekādu braukšanas maksu, biļešu vai jebkādas rezervēšanas.",
+      "lineRealtime": "Nekāda punktualitātes skaitļa vienai nosauktai līnijai — uz jautājumu „vai S1 ir laikā?“ atbild vilcienu pa vilcienam dzelzceļa stacijā (katra atiešanas vilciena tiešsaistes kavējums, ieskaitot S-Bahn) un pa reģioniem ar līnijas satiksmes paziņojumiem; autobusu, tramvaju vai metro (U-Bahn) pietura saņem tikai sarakstu.",
+      "forecast": "Nekādas laika prognozes — tikai oficiālie DWD brīdinājumi un tikai, kamēr tie ir spēkā.",
+      "parkingTariffs": "Nekādu stāvvietu tarifu un nekāda solījuma, ka vieta ir brīva, ja vien operators nepublicē noslogojumu."
+    },
+    "privacyHeading": "Privātums trīs teikumos",
+    "privacy1": "Jums nav vajadzīgs konts pie mums, un mēs neglabājam nevienu jautājumu ar jūsu vārdu.",
+    "privacy2": "Trešo pušu mērīšana darbojas tikai ar jūsu piekrišanu; līdz tam nekas netiek ielādēts no trešajām pusēm. Apmeklējumus skaitām bez sīkdatnēm, kā dienas kopsummas savā serverī.",
+    "privacy3": "Servera žurnāli tiek dzēsti ne vēlāk kā pēc septiņām dienām – viss pārējais ir",
+    "privacyLink": "privātuma paziņojumā (vācu valodā)",
+    "sourcesHeading": "No kurienes nāk dati",
+    "sourcesLead": "Katra atbilde nosauc savu avotu. Tie ir visi avoti, no kuriem ViaFrei atbild šodien, ar avota rindu, ko prasa to licence (vācu valodā, kā rakstīts):",
+    "askAnswers": {
+      "train": "{t1} — {l1} uz {d1} no ceļa {p1}, {t2} — {l2} uz {d2} no ceļa {p2} — abi laikā.",
+      "parking": "{p1}: brīvas vietas {f1} no {t1}; {p2}: brīvas {f2} no {t2}.",
+      "charging": "Tuvākā: {a1}, {m} m attālumā, 2. tipa līdz {kw1} kW; tālāk {a2}, {m2} m, līdz {kw2} kW — bez tiešsaistes statusa.",
+      "road": "Jā: visā A3 pašlaik sastrēgumi nav ziņoti; norādītas slēgšanas: {closures}, ceļa darbu ieraksti: {works}.",
+      "weather": "{place}: oficiāla DWD brīdinājuma par laikapstākļiem nav — pārbaudīts tagad un nākamajām {hours} stundām."
+    },
+    "allExamples": "Visi parauga jautājumi ar atbildēm, pa jomām",
+    "claudeFlow": {
+      "s1": "Pielāgot (Customize) → Connectors → “+ Add” → “Add custom connector”.",
+      "s2": "Nosauciet to ViaFrei, ielīmējiet adresi augstāk kā MCP servera URL, pēc tam “Continue”.",
+      "s3": "Pajautājiet, piemēram: “Vai A8 Minhenes virzienā ir brīva?” Pirmajā reizē atļaujiet ViaFrei rīku."
+    },
+    "chatgptFlow": {
+      "s1": "Plugins → “+” → “Add custom MCP server”.",
+      "s2": "Nosauciet to ViaFrei, ielīmējiet adresi augstāk sadaļā “Connection”, autentifikācija: nav; atzīmējiet “I understand and want to continue”, pēc tam “Create as a plugin”.",
+      "s3": "Jaunā tērzēšanā ierakstiet @, izvēlieties ViaFrei un jautājiet.",
+      "avail": "Pašu MCP serveri darbojas ChatGPT tīmeklī: Business un Enterprise/Edu darbvietās, kur tos izveido administratori un īpašnieki, un Pro lietotājiem ar lasīšanas un iegūšanas atļaujām – ViaFrei tikai lasa, tāpēc Pro ir piemērots. Ne mobilajās lietotnēs; Free un Plus nav pieejams.",
+      "d1": "Plugins → + → Add custom MCP server",
+      "d2": "Nosaukums ViaFrei · Connection: adrese · autentifikācija: nav · Create as a plugin",
+      "d3": "Jauna tērzēšana: @ViaFrei, pēc tam jautājums",
+      "dtitle": "Trīs soļi ChatGPT"
+    },
+    "shot": {
+      "claude1": "claude.ai, Customize → Connectors: atvērta izvēlne “+ Add” ar “Add custom connector”.",
+      "claude2": "Logs “Add custom connector”: nosaukums ViaFrei, MCP servera URL https://mcp.viafrei.de/mcp un poga “Continue”.",
+      "claude3": "Claude lūdz atļauju izmantot ViaFrei rīku A8: noraidīt, atļaut vienmēr vai atļaut vienreiz.",
+      "claude4": "Claude atbilde uz jautājumu par A8 Minhenes virzienā, atzīmēta kā ViaFrei izmantošana, ar avota rindu beigās.",
+      "phone1": "claude.ai tālruņa pārlūkā, Customize → Connectors: atvērta izvēlne “+ Add” ar “Add custom connector”.",
+      "phone2": "Logs “Add custom connector”: nosaukums ViaFrei, MCP servera URL https://mcp.viafrei.de/mcp un poga “Continue”.",
+      "phone3": "Tērzēšana claude.ai: “+” → Connectors ar ieslēgtu ViaFrei; pārējie savienotāji ir aizmigloti.",
+      "phone4": "Claude atbilde uz jautājumu, vai uz A7 pašlaik ir sastrēgums, atzīmēta kā ViaFrei izmantošana.",
+      "phone4b": "Tā pati atbilde beigās: avota rinda, kas nosauc Autobahn GmbH des Bundes.",
+      "phoneCaption": "Ekrānuzņēmums: claude.ai tālruņa pārlūkā, {date}",
+      "caption": "Ekrānuzņēmums: claude.ai, {date}",
+      "diagram": "Shēma, nevis ekrānuzņēmums",
+      "claudeCode1": "Terminālis: claude mcp add ar ViaFrei adresi, pēc tam claude mcp list ziņo „viafrei … ✔ Connected“.",
+      "geminiCli1": "Terminālis: gemini mcp add --scope user ar ViaFrei adresi, pēc tam gemini mcp list ziņo „viafrei … Connected“.",
+      "generic1": "Terminālis: MCP Inspector vaicā ViaFrei adresei tās rīkus (tools/list) un saņem to nosaukumus.",
+      "stdio1": "Terminālis: Claude Code pievieno tiltu npx -y viafrei, pēc tam claude mcp list ziņo „viafrei: npx -y viafrei – ✔ Connected“.",
+      "terminal": "Mūsu testa termināļa ieraksts: {what}, {date}",
+      "open": "Atvērt attēlu pilnā izmērā",
+      "close": "Aizvērt palielināto attēlu"
+    },
+    "guide": "Oficiālā rokasgrāmata",
+    "otherGuides": "Viņu pašu rokasgrāmatas:",
+    "check": {
+      "verified": "Pārbaudīts klientā {date} ar {version}.",
+      "docs": "Soļi pārbaudīti pēc oficiālās pamācības {date}, klientā vēl ne. {reason}",
+      "pending": {
+        "account": "Tam vajag kontu, kurā esat pieteicies; šī pārbaude vēl priekšā.",
+        "app": "Tā ir darbvirsmas lietotne ar savu pieteikšanos; šī pārbaude vēl priekšā.",
+        "signIn": "Sesijai vajag pieteikšanos vai API atslēgu; šī pārbaude vēl priekšā."
+      }
+    },
+    "about": {
+      "lead": "Nokopējiet šo jautājumu un uzdodiet to asistentam, kad ViaFrei ir pievienots:",
+      "place": "{place}: kāda tagad ir situācija uz ceļiem, transportā un ar laikapstākļiem?",
+      "road": "Vai {road} tagad ir brīvs?",
+      "exit": "{road}, {exit}: vai ceļš tagad ir brīvs?"
+    },
+    "phone": {
+      "heading": "Tālrunī (Android, iPhone)",
+      "jump": "Tālrunī? Lūk, kā tas notiek Android un iPhone",
+      "lead": "Lielākajā daļā asistentu lietotņu ViaFrei nevar pievienot pašā lietotnē. Savienojumu iestatāt vienreiz pārlūkā – var arī tālrunī –, un lietotne to izmanto, tiklīdz piesakāties ar to pašu kontu.",
+      "where": "Pēc Anthropic teiktā, tas darbojas ar jebkuru Claude plānu (Free: viens savs savienotājs). Savienotāja pievienošana lietotnē vēl ir beta versijā, tāpēc soļi iet caur claude.ai pārlūkā.",
+      "claude": {
+        "s1": "Tālruņa pārlūkā (vai datorā) atveriet claude.ai un piesakieties. Tad Customize → Connectors → “+ Add” → “Add custom connector”.",
+        "s2": "Nosaukums: ViaFrei. URL: {url}. Pieskarieties “Continue”.",
+        "s3": "Atveriet Claude lietotni un piesakieties ar to pašu kontu. Tērzēšanā pieskarieties “+” → Connectors un ieslēdziet ViaFrei.",
+        "s4": "Pajautājiet: “Vai A7 pie Kaseles ir brīva?” un pirmajā reizē atļaujiet ViaFrei rīku. Pareiza atbilde apraksta A7 pie Kaseles tagad un beidzas ar avota rindu, kurā nosaukts datu izdevējs."
+      },
+      "unclear": "{name}: oficiālā rokasgrāmata savu MCP serveri pievieno tikai tīmeklī un nesaka, vai tālruņa lietotne to pēc tam izmanto, – tāpēc šeit nav soļu. Stāvoklis {date}",
+      "gemini": "Gemini: savas lietotnes (MCP serverus) var pievienot tikai tīmekļa lietotnē un tikai ar personīgu kontu ASV, no 18 gadiem, angļu valodā, – tātad ne no Vācijas. Stāvoklis {date}",
+      "copilot": "Microsoft Copilot: oficiālā dokumentācija savus MCP serverus apraksta tikai Microsoft 365 Copilot (tos iestata organizācijas administrācija) un Copilot Studio, nevis Copilot lietotnei. Stāvoklis {date}",
+      "checked": "Pārbaudīts {date} pēc oficiālās rokasgrāmatas; tālrunī vēl nav izmēģināts.",
+      "device": "Savienots tālrunī {date} ar {app}."
+    }
+  },
+  "devPage": {
+    "title": "ViaFrei izstrādātājiem",
+    "lead": "MCP serveris caur Streamable HTTP, Vācijas atvērtie dati, katra atbilde ar avotu. Šeit ir aprakstīts, ko tas prot šodien – nolasīts no paša servera, nevis nokopēts.",
+    "releaseHeading": "Pašreizējā versija",
+    "releaseLine": "Versija {version}",
+    "releaseDate": "izlaista {date}",
+    "toolsHeading": "Rīki",
+    "toolsLead": "Rīki ({n}), kā tos uzrāda serveris:",
+    "promptsHeading": "Uzvednes",
+    "resourcesHeading": "Resursi",
+    "codeHeading": "Kods un līdzdalība",
+    "closed": "Serveris ir mitināts pakalpojums, un tā pirmkods ir slēgts. Tilts ir publisks – un tur ir gaidīta ikviena palīdzība.",
+    "bridge": "Publiskais tilts GitHub",
+    "discussions": "Diskusijas",
+    "goodFirst": "Piemēroti pirmie uzdevumi",
+    "contributing": "Kā piedalīties",
+    "security": "Ziņot par ievainojamību",
+    "licence": "Licence: Apache-2.0",
+    "contractHeading": "Līgums, ko ievēro katrs rīks",
+    "contract1": "Rīks dara vienu lietu un ir nosaukts pēc tās (verb_noun).",
+    "contract2": "Katra atbilde burtiski satur avota rindu; kur licence prasa mērķa piezīmi, arī tā ir pievienota.",
+    "contract3": "Laiks pēc Europe/Berlin; glabāšana UTC.",
+    "contract4": "Testi nekad nevēršas pie tiešsaistes piegādātāja; katrs ieguldījums tiek pārskatīts neatkarīgi.",
+    "npmHeading": "npm",
+    "npmLead": "Klientiem, kas atbalsta tikai stdio:",
+    "npmReserved": "Tvērums @viafrei ir rezervēts nākamajām SDK pakotnēm.",
+    "listingsHeading": "Katalogi",
+    "listingsLead": "ViaFrei ir iekļauts šeit:",
+    "listingNpm": "npm – pakotne viafrei, stdio tilts klientiem bez HTTP",
+    "listingSmithery": "Smithery – mitināts savienojums, bez lokālas instalēšanas",
+    "listingGlama": "Glama – ieraksts MCP serveru katalogā",
+    "statusHeading": "Statuss",
+    "statusText": "Datu avotu statusa pārskats ir pieejams pēc pieprasījuma.",
+    "tools": {
+      "check_autobahn_traffic": "Satiksme uz autobāniem",
+      "find_cheapest_fuel": "Lētākā degviela tuvumā",
+      "find_fuel_station": "Atrast degvielas uzpildes staciju",
+      "find_parking": "Stāvvietas tuvumā",
+      "check_road_status": "Ceļa stāvoklis un slēgšanas",
+      "find_roadworks_ahead": "Plānotie ceļa darbi",
+      "find_sharing": "Koplietošanas velosipēdi tuvumā",
+      "find_charging_station": "Elektroauto uzlāde tuvumā",
+      "find_hydrogen_station": "Ūdeņraža uzpildes stacijas tuvumā",
+      "find_speed_cameras": "Ātruma kameras plānošanai",
+      "find_place": "Meklēt vietu",
+      "find_poi": "Atrast nosauktu vietu",
+      "find_address": "Meklēt ielas adresi",
+      "describe_location": "Aprakstīt koordinātu",
+      "find_nearby": "Kas ir tuvumā",
+      "get_driving_rules": "Vācijas ceļu satiksmes noteikumi",
+      "check_transit_disruption": "Sabiedriskā transporta traucējumi reģionā",
+      "check_weather_warnings": "Oficiālie brīdinājumi par laikapstākļiem",
+      "get_train_departures": "Vilcienu atiešanas",
+      "get_departures": "Atiešanas pēc saraksta (autobuss, tramvajs, vilciens)",
+      "check_station_facilities": "Staciju lifti un eskalatori",
+      "describe_station": "Dzelzceļa stacijas pārskats",
+      "watch_situation": "Vērot izmaiņas",
+      "stop_watch": "Pārtraukt vērošanu"
+    },
+    "prompts": {
+      "plan_departure": "Sagatavo kopsavilkumu pirms brauciena ar automašīnu: brīdinājumi par laikapstākļiem abos galos, atvērtie autobāni un tiešsaistes sastrēgumi, beigās teikums „braukt vai nebraukt“.",
+      "compare_travel_options": "Salīdzina vienu braucienu ar automašīnu ar to pašu braucienu ar vilcienu: vienā pusē slēgšanas un sastrēgumi, otrā atiešanas un punktualitāte.",
+      "prepare_car_trip": "Apkopo, kas vadītājam jābūt līdzi un jāzina pirms braukšanas Vācijā un uz vienu pilsētu: emisiju uzlīme, ātruma ierobežojumi, ziemas riepas, alkohola robeža, ceļu nodevas, obligātais aprīkojums.",
+      "plan_fuel_stop": "Atrod, kur pa ceļam uzpildīt degvielu vai uzlādēt: lētākās stacijas vienai degvielas markai vai uzlādes stacijas ar pareizo savienotāju un jaudu, un atpūtas vietu blakus.",
+      "plan_commute": "Ieplāno vienu sabiedriskā transporta brauciena posmu dienā: nākamās atiešanas ar kavējumiem, ceļiem un atcelšanām, un vai reģionā viss kursē kā parasti.",
+      "plan_arrival_parking": "Atrod, kur brauciena beigās atstāt automašīnu: autostāvvietu pilsētā, „Park and Ride“ nomalē ar tālākām atiešanām vai atpūtas vietu, ja ierodaties agri.",
+      "find_a_place": "Pārvērš tikai nosaukumu par vietu, nosauktu objektu vai adresi, izmēģinot katru pēc kārtas.",
+      "plan_local_errand": "Atbild uz jautājumu „kas te apkārt“ vienai vietai: tuvākā degviela, uzlāde, stāvvieta, stacija un autobāna mezgls vienā skatienā.",
+      "explain_this_coordinate": "Pārvērš tikai platumu un garumu ceļotājam saprotamā teikumā: tuvākā adrese, apdzīvotā vieta, rajons un autobāna mezgls, katrs ar attālumu."
+    },
+    "quickHeading": "Savienots minūtes laikā",
+    "quickLead": "Izvēlieties klientu, ielīmējiet šo un uzdodiet pirmo jautājumu.",
+    "quickTabs": "Klientu programmas",
+    "quickWhere": "Kur to likt:",
+    "quickFirst": "Jūsu pirmais izsaukums",
+    "quickFirstLead": "Pēc savienošanas jautājiet vienkāršiem vārdiem; rīku asistents izvēlas pats:",
+    "copy": "Kopēt",
+    "copyCurl": "Kopēt kā curl",
+    "tryHeading": "Izmēģiniet",
+    "tryLead": "Īsts publiskā piekļuves punkta izsaukums: vispirms sesija, tad rīks. Zemāk ir atbilde, ko mūsu serveris pirms dažām minūtēm deva tieši uz šo izsaukumu.",
+    "tryRequest": "Pieprasījums",
+    "tryResponse": "Atbilde",
+    "tryAsOf": "Atbildēts {time}",
+    "tryError": "Pašlaik nav jaunas atbildes. Palaidiet pieprasījumu augstāk, lai redzētu atbildi tiešraidē.",
+    "argsLabel": "Argumenti",
+    "askLabel": "Jautājiet tā:",
+    "schemaLabel": "Ievades shēma",
+    "otherGroup": "Vairāk rīku",
+    "newHeading": "Kas jauns līgumā",
+    "newLine": "Versija {version}, {date}",
+    "newTools": "mainīts:",
+    "contract5": "Pārāk daudz pieprasījumu tiek noraidīti ar JSON-RPC kļūdu {code}; pagaidiet un sūtiet vēlreiz.",
+    "contract6": "Beigusies sesija tiek noraidīta ar kļūdu {code}; sāciet jaunu ar initialize.",
+    "ask": {
+      "check_autobahn_traffic": "Vai tagad ir sastrēgums uz A9 starp Minheni un Nirnbergu?",
+      "find_cheapest_fuel": "Kur tagad pie Kaseles ir lētākā dīzeļdegviela?",
+      "find_fuel_station": "Kura degvielas uzpildes stacija ir atvērta pie Vircburgas centrālās stacijas?",
+      "find_parking": "Vai stāvvietā pie Ķelnes centrālās stacijas ir brīva vieta?",
+      "check_road_status": "Vai uz ceļiem ap Drēzdeni ir slēgti posmi?",
+      "find_roadworks_ahead": "Kādi ceļu darbi uz A3 plānoti nākamnedēļ?",
+      "find_charging_station": "Kur Leipcigā varu ātri uzlādēt ar 150 kW?",
+      "find_hydrogen_station": "Kur ir tuvākā ūdeņraža uzpildes stacija pie Štutgartes?",
+      "find_speed_cameras": "Kur atrodas stacionārie fotoradari manā ceļā caur Bīlefeldi?",
+      "find_place": "Kur tieši atrodas Garmiša-Partenkirhene?",
+      "find_poi": "Vai pie Erfurtes centrālās stacijas ir aptieka?",
+      "find_address": "Kur atrodas Unter den Linden 77 Berlīnē?",
+      "describe_location": "Kas atrodas punktā 50,94, 6,96?",
+      "find_nearby": "Kas ir netālu no Minsteres centrālās stacijas: uzlāde, stāvvietas, pieturas?",
+      "find_sharing": "Vai pie Hamburgas Dammtor ir koplietošanas velosipēds?",
+      "get_driving_rules": "Kad kravas automašīnām ir spēkā svētdienas braukšanas aizliegums?",
+      "check_transit_disruption": "Cik precīzi tagad kursē autobusi un vilcieni Bavārijā?",
+      "check_weather_warnings": "Vai šodien Hamburgai ir laikapstākļu brīdinājums?",
+      "get_train_departures": "Kad no Hannoveres centrālās stacijas atiet nākamie vilcieni?",
+      "get_departures": "Kad no Leipcigas Augustusplatz atiet nākamais tramvajs?",
+      "check_station_facilities": "Vai Frankfurtes centrālajā stacijā darbojas lifti?",
+      "describe_station": "Kāda ir Nirnbergas centrālā stacija: perroni, lifti, atiešanas?",
+      "watch_situation": "Paziņo man, kad A7 pie Hamburgas atkal būs brīva.",
+      "stop_watch": "Pārtrauc vērot A7."
+    }
+  },
+  "bizPage": {
+    "title": "ViaFrei uzņēmumiem",
+    "lead": "Visas Vācijas atvērtie mobilitātes dati, rūpīgi apvienoti un vienmēr ar avotu – kā viens galapunkts, ko var jautāt jūsu sistēmas un jūsu asistenti.",
+    "casesHeading": "Kam uzņēmumi izmanto ViaFrei",
+    "u1t": "Loģistika un autoparki",
+    "u1": "Ceļa darbi un slēgšanas uz plānotā maršruta autobāniem, kravas automašīnu stāvvietas pa ceļam un svētdienas braukšanas aizliegums no satiksmes noteikumiem.",
+    "u1q": "Kādas slēgšanas ir uz A7 starp Vircburgu un Ulmu?",
+    "u1a": "Uz A7 līdz {to}: {n, plural, zero {# slēgti posmi} one {# slēgts posms} other {# slēgti posmi}}; starp Vircburgu un Ulmu to vidū {a} – {b} un {b} – {c}, abos virzienos.",
+    "u2t": "Uzlādes infrastruktūra",
+    "u2": "Kur tīkls ir rets un kuri punkti pašlaik ir brīvi – no operatoru plūsmām, kuru izcelsmi esam pārbaudījuši. Saglabātā pieejamības vēsture ir plānota kā sadarbības daļa.",
+    "u2q": "Kur netālu no Kaseles ir ātrās uzlādes stacijas ar vismaz 150 kW?",
+    "u2a": "Jā: {s1}, {a1}, {m} m attālumā, līdz {kw1} kW, brīvi punkti ar statusu {free} no {total}; arī {s2}, {a2}, līdz {kw2} kW, bez tiešsaistes statusa.",
+    "u3t": "Tūrisms, viesnīcas un pasākumu vietas",
+    "u3": "Ierašanās kopsavilkums viesiem viņu valodā: situācija uz autobāniem, vilcienu atiešanas, stāvvietas un uzlāde galamērķī.",
+    "u3q": "Mana viesnīca ir Garmišā-Partenkirhenē – vai viesiem šodien jārēķinās ar brīdinājumu par laikapstākļiem?",
+    "u3a": "Nē: {place} — oficiāla DWD brīdinājuma nav, pārbaudīts tagad un nākamajām {hours} stundām — tas nenozīmē, ka atlikušajā ceļā briesmu nav.",
+    "u4t": "Navigācijas, karšu un mobilitātes lietotnes",
+    "u4": "Viens MCP galapunkts daudzu atsevišķu piegādātāju integrāciju vietā – un, plānots kā sadarbības daļa, saglabātā vēsture no avotiem, kuru licence atļauj analīzi.",
+    "u4q": "Kādi ceļa darbi tuvākajās dienās plānoti uz A3?",
+    "u4a": "No {from} līdz {to} uz A3 plānoti {n, plural, zero {# ceļa darbu posmi} one {# ceļa darbu posms} other {# ceļa darbu posmi}}, to vidū {a} – {b}: slēgta 1 no 4 joslām, {speed} km/h, līdz {until}.",
+    "u5t": "Apdrošinātāji un mobilitātes pētniecība",
+    "u5": "To avotu rādījumu arhīvs, kuru licence to atļauj: kāda bija situācija posmā noteiktā brīdī? Vēstures vaicājumi ir plānoti kā sadarbības daļa; par to, kas ir spēkā tieši tagad, piemēram, federālās zemes oficiālajiem brīdinājumiem, publiskais pakalpojums atbild jau šodien.",
+    "u5q": "Kādas slēgšanas pašlaik ir spēkā uz A8?",
+    "u5a": "Uz A8 līdz {to}: {n, plural, zero {# slēgti posmi} one {# slēgts posms} other {# slēgti posmi}}, to vidū {a} – {b} Minhenes virzienā un {c} mezglā uz A81.",
+    "u6t": "Pašvaldības un federālās zemes",
+    "u6": "Visas valsts skats uz viņu pašu publicētajiem datiem – un iespēja ierosināt plūsmas, kas mums būtu jāpievieno.",
+    "u6q": "Vai Ķelnei pašlaik ir spēkā oficiāls brīdinājums par laikapstākļiem?",
+    "u6a": "Nē: {place} — oficiāls DWD brīdinājums nav spēkā ne tagad, ne nākamajās {hours} stundās.",
+    "futureLabel": "plānots",
+    "coopHeading": "Ko nozīmē sadarbība",
+    "price": "Cenas pēc pieprasījuma.",
+    "contactHeading": "Parunāsim",
+    "contactLead": "Rakstiet mums – atbildam divu darba dienu laikā.",
+    "postal": "Pasta adrese: skatīt rekvizītus.",
+    "noForm": "Nekādas veidlapas, nekādas datubāzes: tikai e-pasts.",
+    "licenceScope": "Tas, ko piedāvājam uzņēmumiem, atbilst katra avota licencei: dati, kas izlaisti tikai patērētāju informēšanai, tajā neietilpst, un „share-alike“ dati tiek nodoti tikai ar to pašu licenci.",
+    "licenceScopeCredits": "Visas avotu rindas ir šeit:",
+    "heroPilot": "Sākt izmēģinājuma projektu",
+    "heroLive": "Redzēt atbildi tiešraidē",
+    "heroSteps": "Kā asistents atbild ar ViaFrei",
+    "proofHeading": "Tiešraidē no datubāzes",
+    "proofLead": "Katrs skaitlis zemāk šai lapai nolasīts no mūsu datubāzes kopā ar laiku, uz kuru tas attiecas. Skaitlis, ko nevar nolasīt, ir parādīts kā trūkstošs, nekad kā vecāks skaitlis.",
+    "proofError": "Šo skaitli pašlaik neizdevās nolasīt.",
+    "proofCatalogue": "Saskaitīts pēc laidiena {version}.",
+    "proofSources": "norādīti datu avoti",
+    "proofTools": "rīki asistentiem",
+    "proofMotorways": "autoceļi ar savu lapu",
+    "proofLanguages": "valodas",
+    "caseShow": "Redzēt, ko tas rāda tagad",
+    "howHeading": "Kā tas darbojas",
+    "how1": "Iestādes un operatori publicē atvērtos datus: satiksmi, sarakstus, uzlādi, stāvvietas, laikapstākļu brīdinājumus.",
+    "how2": "Mēs tos vācam visu diennakti, apvienojam vienā Vācijas ainā un glabājam katru mērījumu ar laiku un avotu.",
+    "how3": "Jūsu sistēmas un asistenti jautā vienam piekļuves punktam un saņem atbildi, kas nosauc savu avotu.",
+    "howData": "Atvērtie dati",
+    "howYou": "Jūsu asistents vai sistēma",
+    "licenceHeading": "Kādus datus uzņēmums drīkst izmantot un kā",
+    "licenceColClass": "Licences klase",
+    "licenceColCount": "Avoti",
+    "licenceColUse": "Ko uzņēmums drīkst",
+    "lic": {
+      "open": {
+        "name": "Atvērta",
+        "use": "Brīvi izmantot un nodot tālāk."
+      },
+      "attribution": {
+        "name": "Autorības norāde",
+        "use": "Izmantot un nodot tālāk kopā ar avota rindu."
+      },
+      "shareAlike": {
+        "name": "Izplatīt ar tādiem pašiem noteikumiem",
+        "use": "Izmantot; atvasinātos datus nodod tālāk tikai ar to pašu licenci."
+      },
+      "terms": {
+        "name": "Uzņēmumiem vēl nav noskaidrots",
+        "use": "Vēl nav daļa no piedāvājuma uzņēmumiem: izdevējs nepublicē lietošanas noteikumus, vai tā noteikumi prasa līgumu, kuru mēs vēl nepiedāvājam."
+      },
+      "consumerOnly": {
+        "name": "Tikai patērētāju informēšanai",
+        "use": "Nav daļa no neviena piedāvājuma uzņēmumiem."
+      },
+      "own": {
+        "name": "ViaFrei saturs",
+        "use": "Iekļauts sadarbībā."
+      }
+    },
+    "coopPilotTitle": "Izmēģinājuma projekts",
+    "coopPilot": "Dažas nedēļas pie jūsu pašu jautājuma: savs API atslēga, augstāki limiti un tieša līnija ar mums.",
+    "coopDataTitle": "Datu partnerība",
+    "coopData": "Eksporti no saglabātās vēstures tiem avotiem, kuru licence to atļauj, un jūsu pašu novērojumi un kanāli.",
+    "coopPublisherTitle": "Datu izdevējs",
+    "coopPublisher": "Jūs publicējat mobilitātes datus: mēs tos nogādājam katram MI asistentam, norādot jūs kā avotu, un kopā veidojam jaunus rīkus."
+  },
+  "fuelPage": {
+    "title": "Degvielas uzpildes stacijas pa federālajām zemēm – izlase ar cenām",
+    "lead": "Līdz trim stacijām katrā federālajā zemē, vispirms lētākais Super E10. Izvēlētas no mūsu novērotajām stacijām – tāpēc ne obligāti lētākās zemē. Katra cena ir parādīta ar laiku, kad to novērojām. Informācija patērētājiem, nevis visu staciju saraksts.",
+    "back": "Atpakaļ uz sākumlapu",
+    "unavailable": "Degvielas uzpildes staciju saraksts pa federālajām zemēm pašlaik nav pieejams.",
+    "boardHead": "Līdz trim stacijām katrā federālajā zemē",
+    "hereHead": "Lētākās atvērtās degvielas uzpildes stacijas: {place}",
+    "hereHeadNone": "Lētākās atvērtās degvielas uzpildes stacijas jūsu tuvumā",
+    "hereNone": "Pašlaik mēs nezinām jūsu vietu. Izvēlieties pilsētu zemāk vai savu vietu sākumlapā; tur ir cenas.",
+    "hereNoScript": "Cenas ielādējas ar JavaScript, tiklīdz šī sadaļa ir redzama. Bez JavaScript tās ir vietas lapā.",
+    "hereLoading": "Ielādē cenas …",
+    "hereFailed": "Cenas pašlaik nevar iegūt.",
+    "cities": "Pilsētas",
+    "citiesLead": "Katras pilsētas cenas ir tās lapā."
+  },
+  "quote": {
+    "open": "„",
+    "close": "“"
+  },
+  "place": {
+    "change": "Mainīt vietu",
+    "how": {
+      "exact": "noapaļots, aptuveni 500 m",
+      "approx": "aptuveni (pēc jūsu interneta savienojuma)",
+      "chosen": "izvēlēta",
+      "saved": "saglabāta",
+      "rough": "aptuveni (pārlūks)"
+    },
+    "germany": "Visa Vācija",
+    "outsideFar": "Jūsu atrašanās vieta ir ārpus Vācijas. Rādām visu Vāciju – izvēlieties vietu, lai redzētu tās kartītes.",
+    "choose": "Izvēlieties vietu",
+    "loaded": "Ielādētas kartītes: {place}",
+    "failed": "Šo vietu tikko neizdevās ielādēt.",
+    "noGeo": "Pārlūks nesniedza atrašanās vietu – lūdzu, izvēlieties vietu.",
+    "locating": "Nosaka jūsu atrašanās vietu …",
+    "geoNo": "Pārlūks nesniedza atrašanās vietu: {why}. Joprojām rāda: {place}.",
+    "geoDenied": "piekļuve ir bloķēta – atļaujiet to ar ikonu blakus adresei",
+    "geoUnavailable": "jūsu ierīce to nevarēja noteikt",
+    "geoTimeout": "15 s laikā netika saņemta",
+    "geoApprox": "Jūsu pārlūks jūsu atrašanās vietu zina tikai aptuveni (vairāk nekā 1 km).",
+    "why": "Uzlādes stacijām, degvielas uzpildes stacijām un brīdinājumiem tieši tur, kur esat – jūsu precīzā atrašanās vieta paliek jūsu ierīcē.",
+    "kept": "Jūsu pārlūks atceras šo vietu",
+    "sheet": {
+      "useLocation": "Izmantot manu atrašanās vietu",
+      "forget": "Aizmirst vietu"
+    },
+    "privacy": {
+      "title": "Jūsu vieta paliek pie jums.",
+      "body": "ViaFrei neveido ne kontu, ne profilu un neglabā jūsu vietu. Jūsu pārlūks šajā ierīcē atceras vietu tikai tad, kad to izvēlaties vietas joslā – vietu vai adresi, „Izmantot manu atrašanās vietu“ vai „Visa Vācija“ – kopā ar nesen izvēlētajām vietām; kamēr šī lapa izmanto atcerētu vietu, to norāda rinda zem vietas joslas, un „Aizmirst vietu“ to uzreiz dzēš. Lapa jūsu atrašanās vietu jautā tikai tad, kad izvēlaties „Izmantot manu atrašanās vietu“; ja pārlūkā to jau esat atļāvis pastāvīgi, šī lapa to nolasa, nejautājot, un neko neglabā. Jūsu atrašanās vieta jūsu ierīcē tiek noapaļota līdz aptuveni 500 m lielai zonai, un mūsu serveris no šīs zonas nosaka ielas vai vietas nosaukumu; šo nosaukumu tas tur atmiņā ne ilgāk kā stundu katrai zonai, bez jebkādas saiknes ar jums, un neglabā. Tikai uzreiz pēc šī klikšķa un tikai tad, ja pārlūks norāda jūsu atrašanās vietu ar ne mazāku kā 150 m precizitāti, lapa vienreiz nosūta precīzo pozīciju mūsu serverim, lai pārbaudītu, vai atrodaties pie stacijas, degvielas uzpildes stacijas, uzlādes stacijas vai automaģistrāles atpūtas vietas; tur tā netiek ne glabāta, ne reģistrēta žurnālā. Tāpat ne ilgāk kā stundu tas tur atmiņā šeit izvēlētas stacijas, vietas vai adreses nosaukumu. Jūsu IP adrese tiek izmantota tikai atmiņā, aptuvenai atrašanās vietai, un šim nolūkam netiek glabāta. Tas attiecas uz katru lapu ar vietas joslu, arī uz staciju pārskatu. Staciju pārskatā šādi noteiktā vieta kalpo tikai tuvāko staciju un pieturu parādīšanai.",
+      "more": "Vairāk privātuma politikā"
+    },
+    "geoipCredit": "Aptuvenā vieta pēc IP adreses:",
+    "pageTitle": "{place}: slēgšanas, ceļa darbi, satiksme – ViaFrei",
+    "pageDescription": "Sastrēgumi, ceļa darbi un slēgti posmi vietā {place}, kā arī stāvvietas, uzlāde, degvielas cenas un brīdinājumi par laikapstākļiem – tiešsaistē, ar avotu.",
+    "pageLead": "Viss, ko ViaFrei pašlaik zina par vietu {place} – no atvērtajiem datiem, ar katra skaitļa avotu.",
+    "pageMissing": "Šo vietu mēs nezinām.",
+    "geoipModified": "izvilkums mainīts",
+    "loadingCards": "Šīs vietas kartītes tiek ielādētas …",
+    "reloadCards": "Pārlādējiet lapu, lai redzētu kartītes",
+    "fuelUnavailable": "Cenas tikko neizdevās pieprasīt no jauna. Šī ir pēdējā zināmā cena ar tās laiku.",
+    "motorway": {
+      "why": "Tam, kas ir ap jums uz šī autobāna – jūsu precīzā atrašanās vieta paliek jūsu ierīcē.",
+      "radius": "Rādiuss",
+      "radiusOther": "Izvēlieties jebkuru rādiusu (1–100 km)",
+      "updating": "atjaunina …",
+      "failed": "Neizdevās atjaunināt – paliek iepriekšējais skats.",
+      "zoomGroup": "Kartes mērogs – katrs solis ir rādiuss",
+      "zoomIn": "Tuvināt – rādiuss {r} km",
+      "zoomOut": "Tālināt – rādiuss {r} km",
+      "zoomInEnd": "Tuvināt – sasniegts mazākais rādiuss",
+      "zoomOutEnd": "Tālināt – sasniegts lielākais rādiuss",
+      "filter": {
+        "legend": "Rādīt",
+        "all": "Rādīt visu",
+        "none": "Slēpt visu",
+        "allLabel": "Rādīt visu – atlasīt visus veidus",
+        "noneLabel": "Slēpt visu – noņemt atlasi visiem veidiem",
+        "save": "Atcerēties izvēli",
+        "saved": "Izvēle saglabāta šajā ierīcē.",
+        "forget": "Neatcerēties",
+        "everything": "Visi dati",
+        "nothing": "Nekas nav izvēlēts – izvēlieties vismaz vienu veidu.",
+        "sum": "{kinds}: {n}",
+        "sumR": "{kinds} {r} km rādiusā: {n}",
+        "entriesOne": "{n} ieraksts",
+        "entriesFew": "{n} ieraksti",
+        "entriesMany": "{n} ieraksti",
+        "entriesOther": "{n} ieraksti",
+        "entriesZero": "{n} ierakstu",
+        "ampel": "Luksofors joprojām vērtē visu – daži tā iemesli pašlaik ir paslēpti."
+      }
+    },
+    "pageDescriptionRoads": "{place}: slēgšanas un ceļa darbi tagad uz {roads} – arī sastrēgumi, stāvvietas, uzlāde un brīdinājumi, tiešsaistē ar avotu.",
+    "topics": {
+      "legend": "Tēmas",
+      "apply": "Lietot",
+      "none": "Nav izvēlēta neviena tēma.",
+      "shown": "Parādītās tēmas: {n} no {total}",
+      "attention": "Paslēpts, bet tagad svarīgs: {topic} – rādīt"
+    },
+    "head": {
+      "live": "Tiešraidē:",
+      "scope": "Apgabals",
+      "search": "Meklēt vietu",
+      "searchHint": "Adrese, pasta indekss, rajons vai stacija",
+      "locate": "Izmantot manu atrašanās vietu",
+      "confirmQ": "Vai šī ir pareizā vieta?",
+      "yes": "Jā",
+      "other": "Cita vieta",
+      "confirmed": "apstiprināts",
+      "updated": "atjaunināts: {place}",
+      "outside": "atrašanās vieta ārpus Vācijas",
+      "germanyHow": "izvēlēta visa Vācija",
+      "germanyNote": "Izvēlēta visa Vācija: visi valsts mēroga dati ir tieši zemāk – katrs ar laiku un avotu."
+    },
+    "bar": {
+      "label": "Izvēlieties vai meklējiet vietu",
+      "close": "Aizvērt",
+      "hint": "Vieta, adrese, autoceļš, stacija …",
+      "recent": "Nesenās",
+      "popular": "Populārās",
+      "drop": "Noņemt {place}",
+      "found": "Ieteikumi: {n}",
+      "how": "Vieta, adrese vai stacija no saraksta rāda tās kartītes; Enter meklē visā vietnē."
+    }
+  },
+  "newsPage": {
+    "readMore": "Lasīt tālāk",
+    "title": "Jaunumi",
+    "lead": "Kas jauns ViaFrei, kas sekos un ilgstošie slēgtie posmi, kas mums pašlaik ir — katrs ar avotu.",
+    "filterLabel": "Rādīt",
+    "chipNew": "Jauns",
+    "chipPlans": "Plāni",
+    "chipTraffic": "Satiksme",
+    "newHeading": "Jauns ViaFrei",
+    "plansHeading": "Plāni",
+    "plansLead": "Ko plānojam pievienot nākamo. Plānots nozīmē plānots: nekā no tā ViaFrei vēl nav, un datumus mēs nesolām.",
+    "trafficHeading": "Ilgstoši slēgti posmi",
+    "trafficLead": "No mūsu pašu datiem: slēgti posmi ar norādītām beigām, vismaz diennakti ilgi. Katrs pazūd, tiklīdz pienāk tā beigas.",
+    "badgeNew": "Jauns",
+    "badgePlan": "Plānots",
+    "askLabel": "Pajautājiet savam asistentam",
+    "askLabelPlan": "Kad tas būs pieejams, pajautājiet savam asistentam",
+    "plannedNote": "datuma vēl nav",
+    "connect": "Pievienot ViaFrei",
+    "sources": "Avots",
+    "feed": "Jaunumi kā Atom plūsma",
+    "released": "Versija {v} · {d}",
+    "teaserHeading": "Jauns ViaFrei",
+    "teaserAll": "Visi jaunumi",
+    "trafficError": "Satiksmes ziņojumus tikko neizdevās ielādēt.",
+    "noEntries": "Šajā valodā ierakstu vēl nav."
+  },
+  "examplesPage": {
+    "title": "Visi parauga jautājumi",
+    "lead": "Katrs jautājums, ko ViaFrei šajā vietnē rāda kā piemēru – ar rīku, kas uz to atbild, un tā atbildi, sagrupēts pa jomām.",
+    "live": "Kur ViaFrei pats regulāri uzdod jautājumu, šeit redzat tā jaunāko atbildi; visur citur – ierakstīto atbildi ar datumu.",
+    "toc": "Jomas",
+    "domain": {
+      "transit": "Autobuss, vilciens un stacija",
+      "roads": "Ceļi un autobāni",
+      "parking": "Stāvvietas",
+      "charging": "Uzlāde",
+      "fuel": "Degviela",
+      "more": "Vietas un vērošanas"
+    },
+    "question": "Jautājums {n}",
+    "fuelNote": "Parauga atbildes par degvielas cenām tiek rādītas tikai ar datumu un tikai divās vietās: {home} un {connect}.",
+    "fuelHome": "sākumlapā",
+    "fuelConnect": "pievienošanas lapā"
+  },
+  "seo": {
+    "connectTitle": "Satiksmes dati ChatGPT un Claude caur MCP – ViaFrei",
+    "connectDescription": "Viena adrese, bez atslēgas: pievienojiet ViaFrei Claude, ChatGPT, Copilot, Cursor, Gemini CLI vai Le Chat un jautājiet par sastrēgumiem un vilcieniem.",
+    "motorwayTitle": "{road} sastrēgumi Vācijā: ceļa darbi, slēgti posmi – ViaFrei",
+    "motorwayDescription": "{road} satiksme Vācijā: sastrēgumi, slēgti posmi un ceļa darbi tiešsaistē pa virzieniem, no atvērtajiem datiem, ar plānotajām slēgšanām un noteikumiem.",
+    "motorwaysTitle": "Sastrēgumi un ceļa darbi autobāņos tagad – Vācija – ViaFrei",
+    "motorwaysDescription": "Visas Vācijas autobāņi tiešsaistē: sastrēgumi, slēgšanas, ceļa darbi, apbraucamie ceļi, stāvvietas un uzlāde, ar karti un lapu katram autobānim.",
+    "motorwayH1": "Autobāns {road} tagad",
+    "motorwayLead": "Sastrēgumi, slēgti posmi un ceļa darbi uz autobāna {road}, tiešsaistē no atvērtajiem datiem, katrs ar avotu un laiku.",
+    "motorwaysH1": "Vācijas autobāni",
+    "motorwaysLead": "Katrs autobāns ar pašreizējiem ziņojumiem. Izvēlieties vienu – sastrēgumi, slēgti posmi, ceļa darbi un tā trase.",
+    "stationsTitle": "Dzelzceļa stacijas Vācijā: peroni, aprīkojums – ViaFrei",
+    "stationsDescription": "Katra Deutsche Bahn stacija: peroni ar augstumu un piekļuvi bez pakāpieniem, aprīkojums, mobilitātes pakalpojums un kas atrodas 300 m rādiusā – no atvērtajiem datiem.",
+    "stationsH1": "Dzelzceļa stacijas Vācijā",
+    "crumbStations": "Stacijas",
+    "stationTitle": "{name}: atiešana, peroni, lifti, traucējumi – ViaFrei",
+    "stationDescription": "{name}: nākamās atiešanas tiešsaistē ar ceļu, kuri lifti un eskalatori tagad darbojas, peroni bez pakāpieniem, aprīkojums un apkārtne – no atvērtajiem datiem, ar avotu un datumu.",
+    "crumbHome": "Sākums",
+    "crumbMotorways": "Autobāni",
+    "linksMotorways": "Autobāni tiešsaistē",
+    "linksPlaces": "Pilsētas tiešsaistē",
+    "allMotorways": "Visi autobāni",
+    "allPlaces": "Vairāk pilsētu",
+    "imprintDescription": "viafrei.de rekvizīti: kas uztur ViaFrei – reāllaika mobilitātes platformu MI asistentiem – un kā sazināties ar operatoru.",
+    "privacyDescription": "viafrei.de privātuma politika: ko ViaFrei glabā un ko ne, kā darbojas piekrišana un kādas ir jūsu tiesības – bez konta un bez profila.",
+    "termsDescription": "ViaFrei lietošanas noteikumi: ar kādiem nosacījumiem drīkstat izmantot datus, piemēram, Toll Collect GmbH kravas auto stāvvietu noslodzi.",
+    "businessTitle": "Tiešraides mobilitātes datu API uzņēmumiem",
+    "businessDescription": "Satiksme, sabiedriskais transports, uzlāde un stāvvietas visā Vācijā vienā tiešraides piekļuves punktā ar avotiem. Sāciet ar izmēģinājuma projektu.",
+    "developersTitle": "MCP serveris Vācijas mobilitātes datiem",
+    "developersDescription": "Pievienojiet jebkuru MCP klientu minūtes laikā: ātrs sākums katram klientam, īsts izsaukums ar atbildi un katrs rīks ar savu shēmu."
+  },
+  "ask": {
+    "live": "ViaFrei tiešsaistes atbilde",
+    "asOf": "Dati uz: {time}",
+    "tool": "Rīks",
+    "question": "Jautājums",
+    "answer": "Atbilde",
+    "cta": "Pajautājiet savam asistentam",
+    "roads": {
+      "question": "Vai uz A8 pašlaik ir sastrēgums?",
+      "clear": "{road}: pašlaik sastrēgumi nav ziņoti. Spēkā – slēgšanas: {closures}, ceļa darbi: {works}.",
+      "jams": "{road}: ziņotie sastrēgumi: {jams}; garākais maksā {delay} min. Slēgšanas: {closures}, ceļa darbi: {works}.",
+      "jamsNoDelay": "{road}: ziņotie sastrēgumi: {jams}. Slēgšanas: {closures}, ceļa darbi: {works}."
+    },
+    "lorryPark": {
+      "question": "Cik kravas auto stāvvietu ir pie A3 un cik no tām publicē noslogojumu?",
+      "listed": "Kravas auto stāvvietas pie {road}: {total}; ar publicētu noslogojumu: {live}."
+    },
+    "hydrogen": {
+      "question": "Kur pie Frankfurt am Main var uzpildīties ūdeņraža kravas automašīna?",
+      "near": "{name}, {address}: 350 bāri kravas automašīnām un autobusiem, {km} km attālumā.",
+      "none": "{km} km rādiusā nav norādīta neviena ūdeņraža uzpildes stacija kravas automašīnām."
+    },
+    "weatherLand": {
+      "question": "Vai Bavārijā (Bayern) šobrīd ir spēkā oficiāls brīdinājums par laikapstākļiem?",
+      "none": "{place}: Oficiāla DWD brīdinājuma nav, pārbaudīts tagad un nākamajām {hours} stundām.",
+      "warn": "{place}: Spēkā esošie oficiālie brīdinājumi: {count}, augstākais līmenis {level} no 4, to vidū „{event}“."
+    },
+    "transit": {
+      "question": "Cik punktuāli pašlaik kursē autobusi un vilcieni Ziemeļreinā-Vestfālenē?",
+      "share": "{region}: pēdējās {minutes} minūtēs kavējas {pct} % braucienu ({late} no {trips}).",
+      "thin": "{region}: pēdējās {minutes} minūtēs novērotie braucieni: {trips} – par maz, lai aprēķinātu daļu."
+    },
+    "charging": {
+      "question": "Kur Leipcigā varu uzlādēt ar 150 kW vai vairāk?",
+      "live": "{operator}, {address}: līdz {kw} kW, {km} km attālumā – brīvi uzlādes punkti {free} no {total}.",
+      "liveNoOp": "{address}: līdz {kw} kW, {km} km attālumā – brīvi uzlādes punkti {free} no {total}.",
+      "noStatus": "{operator}, {address}: līdz {kw} kW, {km} km attālumā. Operators pašlaik neziņo pieejamību.",
+      "noStatusNoOp": "{address}: līdz {kw} kW, {km} km attālumā. Operators pašlaik neziņo pieejamību.",
+      "none": "Tuvumā nav norādīta neviena uzlādes stacija ar 150 kW vai vairāk."
+    },
+    "parking": {
+      "question": "Kur pie Minsteres centrālās stacijas pašlaik ir autostāvvieta ar brīvām vietām?",
+      "free": "{name}: brīvas vietas {free} no {total}, {km} km attālumā.",
+      "none": "Neviena tuvumā esoša autostāvvieta pašlaik neziņo brīvas vietas.",
+      "unpublished": "Tuvumā esošo autostāvvietu operatori nepublicē tiešsaistes noslogojumu, tāpēc nav zināms, vai ir brīvas vietas."
+    },
+    "roadsNear": {
+      "question": "Kas pašlaik notiek uz ceļiem šeit?",
+      "clear": "{km} km rādiusā pašlaik nekas nav ziņots: ne sastrēgumu, ne slēgtu posmu.",
+      "noJams": "{km} km rādiusā sastrēgumu nav. Spēkā – slēgšanas: {closed}, ierobežojumi: {restricted}.",
+      "jams": "{km} km rādiusā – sastrēgumi: {jams}, slēgšanas: {closed}, ierobežojumi: {restricted}."
+    },
+    "weather": {
+      "question": "Vai šeit ir spēkā oficiāls brīdinājums par laikapstākļiem?",
+      "none": "Oficiāla DWD brīdinājuma nav, pārbaudīts tagad un nākamajām {hours} stundām.",
+      "warn": "Spēkā esošie oficiālie brīdinājumi: {count}, augstākais līmenis {level} no 4, to vidū „{event}“."
+    },
+    "nearby": {
+      "question": "Kas ir tuvumā?",
+      "near": "{km} km rādiusā: stacija {station}; uzlādes stacijas: {charging}, stāvvietas: {parking} (rāda ne vairāk kā trīs no katra veida).",
+      "noStation": "{km} km rādiusā stacijas nav; uzlādes stacijas: {charging}, stāvvietas: {parking} (rāda ne vairāk kā trīs no katra veida).",
+      "none": "{km} km rādiusā nav norādīta neviena stacija, uzlādes stacija vai stāvvieta."
+    },
+    "poi": {
+      "question": "Kur ir tuvākā aptieka?",
+      "found": "{name}, {street} – {km} km attālumā.",
+      "foundNoStreet": "{name} – {km} km attālumā.",
+      "none": "5 km rādiusā nav norādīta neviena aptieka."
+    },
+    "chargingNear": {
+      "question": "Kur ir tuvākā uzlādes stacija?",
+      "live": "{operator}, {address}: līdz {kw} kW, {km} km attālumā – brīvi uzlādes punkti {free} no {total}.",
+      "liveNoOp": "{address}: līdz {kw} kW, {km} km attālumā – brīvi uzlādes punkti {free} no {total}.",
+      "noStatus": "{operator}, {address}: līdz {kw} kW, {km} km attālumā. Operators pašlaik neziņo pieejamību.",
+      "noStatusNoOp": "{address}: līdz {kw} kW, {km} km attālumā. Operators pašlaik neziņo pieejamību.",
+      "none": "Tuvumā nav norādīta neviena uzlādes stacija."
+    },
+    "offerOsm": "Šie ieraksti nāk no mūsu datubāzes, kas atvasināta no OpenStreetMap. Pēc pieprasījuma bez maksas nosūtām pilnu mašīnlasāmu kopiju (CSV) saskaņā ar ODbL 1.0 – kontaktinformācija ir {link}.",
+    "offerDb": "Šie ieraksti nāk no mūsu datubāzes, kas atvasināta no „{db}“. Mūsu publiski izmantoto datubāzi – bez ierakstiem, ko izdevējs atzīmē kā konfidenciālus – pēc pieprasījuma bez maksas nosūtām kā mašīnlasāmu kopiju (CSV) saskaņā ar ODbL 1.0 – kontaktinformācija ir {link}.",
+    "offerLink": "rekvizītos"
+  },
+  "connectNote": {
+    "text": "Šo atbildi jūsu MI asistents sniedz tikai tad, ja ViaFrei ir pievienots.",
+    "link": "Kā pievienot ViaFrei",
+    "guide": "Pilna rokasgrāmata visiem klientiem",
+    "clients": "Soli pa solim",
+    "copy": "Kopēt adresi",
+    "copied": "Nokopēts"
+  },
+  "next": {
+    "label": "Tālāk",
+    "ask": "Pajautājiet savam MI: {place}",
+    "motorways": "Visi autoceļi"
+  },
+  "search": {
+    "label": "Meklēt ViaFrei",
+    "placeholder": "Vieta, automaģistrāle, stacija, lapa …",
+    "submit": "Meklēt",
+    "title": "Meklēšana",
+    "description": "Atrodiet ViaFrei vietas, automaģistrāles, mezglus, stacijas un lapas.",
+    "hint": "Ievadiet vismaz divas rakstzīmes.",
+    "alt": "Rādīt kartītes šeit",
+    "partial": "Daži rezultāti nav parādīti: avots laikus neatbildēja.",
+    "allResults": "Visi rezultāti",
+    "showAll": "Visi šī veida rezultāti",
+    "prev": "Atpakaļ",
+    "next": "Tālāk",
+    "pageOf": "Lapa {page} no {pages}",
+    "pager": "Rezultātu lapas",
+    "none": "Par “{q}” neko neatradām.",
+    "nearest": "Līdzīga rakstība:",
+    "motorwayIndex": "Visas automaģistrāles",
+    "kind": {
+      "motorway": "Automaģistrāles",
+      "road": "Federālie un zemju ceļi",
+      "place": "Vietas",
+      "station": "Stacijas",
+      "exit": "Nobrauktuves un mezgli",
+      "area": "Apgabali un adreses",
+      "poi": "Apskates vietas",
+      "page": "Lapas",
+      "news": "Jaunumi"
+    }
+  },
+  "header": {
+    "how": "Vieta, adrese vai punkts no saraksta kļūst par jūsu vietu visās lapās; automaģistrāle, stacija vai lapa atveras. Enter meklē visā vietnē.",
+    "makeMine": "Padarīt šo par manu vietu"
+  },
+  "statePages": {
+    "title": "Vācijas federālās zemes: autoceļi tagad, pilsētas – ViaFrei",
+    "description": "Visas 16 Vācijas federālās zemes vienuviet: slēgšanas, sastrēgumi un ceļa darbi uz autobāņiem tagad, platība, galvaspilsēta, kaimiņzemes un lielākās pilsētas.",
+    "h1": "16 federālās zemes",
+    "crumb": "Federālās zemes"
+  },
+  "ai": {
+    "placeWarn": "Vai pašlaik ir brīdinājumi par laikapstākļiem {place}?",
+    "placePark": "Kur pašlaik varu novietot vai uzlādēt auto {place}?",
+    "landRoads": "Kuras automaģistrāles {place} pašlaik ir visvairāk skartas?",
+    "roadUsual": "Cik ilgi parasti ilgst sastrēgumi uz {road}?",
+    "roadPlans": "Kādi ceļa darbi un slēgšanas plānotas uz {road}?",
+    "open": "Jautāt {app}",
+    "copy": "Kopēt jautājumu",
+    "copied": "Nokopēts"
+  },
+  "star": {
+    "add": "Saglabāt lapu",
+    "remove": "Saglabāts",
+    "neu": "jauns",
+    "gone": "Atcelts kopš jūsu pēdējā apmeklējuma: {list}",
+    "longer": "ilgāk",
+    "install": "Pievienot sākuma ekrānam",
+    "commute": "Jūsu maršruts"
+  },
+  "pwa": {
+    "offline": "Stāvoklis {t}, bezsaistē"
+  }
+}

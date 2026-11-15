@@ -1,0 +1,78 @@
+---
+/**
+ * The fuel page (owner 2026-10-06, "Board to its own page"): the fuel tile
+ * WITH the per-Land station board, embedded server-side from the digest's
+ * `/internal/tiles/fuel?view=board` exactly as the home embeds its tiles — one
+ * GET per render with the same deadline, and the shell's error tile when the
+ * digest does not answer. The board was ~43 KB folded into every home page;
+ * the home keeps the summary and links here.
+ *
+ * Everything the data steward's ruling of 2026-10-05 (cdc75d3b) attaches to
+ * the board arrives INSIDE the fragment, so it cannot be left behind: the
+ * Tankerkönig CC BY line with its link and the MTS-K note verbatim in one
+ * credit element, the BKG line the Länder are derived from, every row's poll
+ * time and no "current" for the window. This page adds words around it and
+ * nothing machine-readable. Reads no database (A2).
+ *
+ * The data steward's ruling of 2026-10-06 on this page (C1–C5): the title names
+ * the stations and the selection, the lead says BEFORE the board how the
+ * selection is made (up to three per Land, cheapest E10 first, chosen from the
+ * stations we observe and so not necessarily a Land's cheapest, each price with
+ * its time), and the page asks search engines not to keep a cached copy
+ * (`noarchive`), so no stale board outlives the price it shows.
+ *
+ * #1182: the page opens with the visitor's place — its cheapest open stations — then the cities, then the board. The
+ * place's prices are person-gated as on a place page (#1065 PF1/PF2, #1076 S1–S5): the document carries the fuel card's
+ * frame alone and `placeFuelScript()` asks for the figures when the slot is in view (`lib/fuel-index.ts`). The place
+ * is the visitor's IP rung, so the page varies by visitor and is never stored by a cache.
+ *
+ * The data steward's ruling of 2026-11-08 (#1182, B2/B3): the C2 lead moved out of the page head into the board's own
+ * section, under a visible heading stating the bound, directly above the board (`fuelBoardSectionHtml`); the head keeps
+ * the C1 title alone. A declared automation client, corpus crawler or SEO-tool crawler (`boardWithheld`) gets the
+ * not-available line and the board's fragment is never asked for.
+ */
+import Base from "./Base.astro";
+import PageHead from "../components/PageHead.astro";
+import { t } from "../i18n/index.js";
+import { readEnv } from "../lib/env.js";
+import { fetchFuelBoard } from "../lib/tiles.js";
+import { PANEL_DEADLINE_MS } from "../lib/fill.js";
+import { boardWithheld, fuelBoardSectionHtml, fuelCitiesHtml, fuelHereHtml, fuelHereOf } from "../lib/fuel-index.js";
+import { PLACE_FUEL_FRAGMENT_ON, placeFuelScript } from "../lib/place-fuel.js";
+import type { Lang } from "../site/pages.js";
+
+interface Props {
+  lang: Lang;
+}
+const { lang } = Astro.props;
+const env = readEnv();
+const withheld = boardWithheld(Astro.request.headers.get("user-agent") ?? "");
+// #1205 review B1: the board is decided by the user agent and the here-panel by the address: a render about one client
+Astro.locals.perVisitor = true;
+const [board, here] = await Promise.all([
+  withheld ? Promise.resolve(null) : fetchFuelBoard(lang, { baseUrl: env.digestUrl, timeoutMs: env.tileTimeoutMs }),
+  fuelHereOf(Astro.request.headers, lang, { baseUrl: env.digestUrl, timeoutMs: Math.min(env.tileTimeoutMs, PANEL_DEADLINE_MS), geoipFile: env.geoipFile }),
+]);
+const fuelScript = PLACE_FUEL_FRAGMENT_ON && here !== null;
+if (fuelScript) Astro.locals.hasScript = true;
+Astro.response.headers.set("Cache-Control", "private, no-store");
+Astro.response.headers.set("Vary", "Accept-Language, X-Forwarded-For");
+---
+
+<Base lang={lang} page="fuel" robots="noarchive">
+  <section class="block page-head">
+    <div class="wrap">
+      <PageHead as="div" wrap={false} h1={t(lang, "fuelPage.title")} />
+    </div>
+  </section>
+
+  <div class="block fuel-index">
+    <div class="wrap">
+      <Fragment set:html={fuelHereHtml(lang, here)} />
+      <Fragment set:html={fuelCitiesHtml(lang)} />
+    </div>
+  </div>
+
+  <Fragment set:html={fuelBoardSectionHtml(lang, board === null ? null : board.html)} />
+  {fuelScript && <script is:inline set:html={placeFuelScript()} />}
+</Base>

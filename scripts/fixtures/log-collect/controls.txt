@@ -1,0 +1,9 @@
+# The controls of #741 T14: text that MUST survive every mask, one per line.
+# A mask that also ate one of these is a mask that destroyed the diagnosis it
+# exists to keep. Read by the same tests as needles.tsv.
+16:36:00
+status 502
+ms 1234
+:123:45
+A3
+find_parking

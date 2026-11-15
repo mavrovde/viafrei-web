@@ -1,0 +1,10 @@
+---
+/** `/de/business` and `/en/business` (#379); any other first segment is the 404 (A4). */
+import BusinessPage from "../../layouts/BusinessPage.astro";
+import { isLang } from "../../i18n/index.js";
+
+const lang = Astro.params["lang"] ?? "";
+if (!isLang(lang)) return Astro.rewrite("/404");
+---
+
+<BusinessPage lang={lang} />

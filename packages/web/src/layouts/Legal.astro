@@ -1,0 +1,39 @@
+---
+/**
+ * One layout for the two legal pages in both languages (#379 PR-07, A4).
+ * German is binding: the text is always the German one with `lang="de"`; the
+ * English page puts one English sentence above it saying so. A missing
+ * required identity name is a 500 with a one-line body — never a half page
+ * (`e2e/legal.e2e.ts`).
+ */
+import Base from "./Base.astro";
+import LegalImpressum from "../components/LegalImpressum.astro";
+import LegalPrivacy from "../components/LegalPrivacy.astro";
+import LegalTerms from "../components/LegalTerms.astro";
+import { t } from "../i18n/index.js";
+import { esc } from "../lib/answer-html.js";
+import type { Identity } from "../lib/identity.js";
+import { pathFor, type Lang } from "../site/pages.js";
+
+interface Props {
+  lang: Lang;
+  which: "impressum" | "datenschutz" | "terms";
+  /** Read by the PAGE (only a page may answer 500 instead of rendering). */
+  id: Identity;
+}
+const { lang, which, id } = Astro.props;
+const analytics = Astro.locals.googleTag !== undefined;
+// #717: Clarity runs only through the consent island, which needs the tag; so its section is said only with both.
+const clarity = analytics && Astro.locals.clarityId !== undefined;
+// #707: the terms carry their own binding sentence, in the page's language, linked to the German text. The others' note
+// is in the page's language inside the German text, so it says its own language; it stands under the H1 (#1182 AC 1).
+const note = lang !== "de" && which !== "terms" ? `<p class="legal__note" lang="${lang}">${esc(t(lang, "legal.bindingNote"))}</p>` : "";
+---
+
+<Base lang={lang} page={which}>
+  <section class="wrap wrap--narrow">
+    {which === "impressum" && <LegalImpressum id={id} privacyHref={pathFor("datenschutz", "de")}><Fragment slot="note" set:html={note} /></LegalImpressum>}
+    {which === "terms" && <LegalTerms lang={lang} name={id.name} />}
+    {which === "datenschutz" && <LegalPrivacy id={id} imprintHref={pathFor("impressum", "de")} analytics={analytics} clarity={clarity}><Fragment slot="note" set:html={note} /></LegalPrivacy>}
+  </section>
+</Base>
