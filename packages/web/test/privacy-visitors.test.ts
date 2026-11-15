@@ -44,13 +44,7 @@ describe("section 3 of the privacy notice (T1)", () => {
   });
 
   // cross-repo(viafrei-infra): the log rotation, its deploy gate and the edge's log format are viafrei-infra's
-  it.skip("says seven days because the rotation deletes on day seven and the deploy fails past seven days and an hour", () => {
-    expect(read("the edge log rotation")).toMatch(/^KEEP_DAYS=7$/mu);
-    expect(read("the edge log gate")).toMatch(/^MAX_AGE_S=\$\(\(7 \* 86400 \+ 3600\)\)$/mu);
-    const conf = read("the edge configuration");
-    expect(conf).toContain('"gpc":"$http_sec_gpc"');
-    expect(conf).toContain('"dnt":"$http_dnt"');
-  });
+  it.skip("says seven days because the rotation deletes on day seven and the deploy fails past seven days and an hour", () => {});
 });
 
 describe("section 4, Besucherzählung ohne Cookies (T2)", () => {

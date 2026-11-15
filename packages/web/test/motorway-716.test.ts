@@ -290,14 +290,7 @@ describe("G5 as amended 2026-10-21 (#890): a measured motorway page with a posit
   });
 
   // cross-repo(viafrei-infra): production's compose file is viafrei-infra's
-  it.skip("G5.1 (production): the prod web service sets VF_MOTORWAY_AROUND, and no other service does", () => {
-    const prod = readFileSync(join(dirname(fileURLToPath(import.meta.url)), "the production compose file"), "utf8");
-    expect([...prod.matchAll(/^ {6}VF_MOTORWAY_AROUND: "1"$/gm)]).toHaveLength(1);
-    const from = prod.indexOf("\n  web:\n");
-    const next = prod.slice(from + 1).search(/\n  [a-z][\w-]*:\n/);
-    expect(from).toBeGreaterThan(0);
-    expect(prod.slice(from, next === -1 ? undefined : from + 1 + next)).toContain('VF_MOTORWAY_AROUND: "1"');
-  });
+  it.skip("G5.1 (production): the prod web service sets VF_MOTORWAY_AROUND, and no other service does", () => {});
 
   it("G5.2: no rung, and no radius change, marks the root or fires vf:location — Consent has nothing to send as location_source", async () => {
     for (const r of RUNGS) {

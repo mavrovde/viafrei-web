@@ -454,19 +454,7 @@ describe("the wiring of this repository's compose file", () => {
 
 describe("prod wiring (production's compose file and its template)", () => {
   // cross-repo(viafrei-infra): production's compose file is viafrei-infra's
-  it.skip("production's web service is handed the id and the switch, empty by default, and no other service is", () => {
-    const prod = readRoot("the production compose file");
-    expect(prod).toContain("CLARITY_PROJECT_ID: ${CLARITY_PROJECT_ID:-}");
-    expect(prod).toContain("CLARITY_ENABLED: ${CLARITY_ENABLED:-}");
-    expect(prod.match(/CLARITY_PROJECT_ID: /g)).toHaveLength(1);
-    expect(prod).not.toContain("CLARITY_API_TOKEN");
-  });
+  it.skip("production's web service is handed the id and the switch, empty by default, and no other service is", () => {});
   // cross-repo(viafrei-infra): production's environment template is viafrei-infra's
-  it.skip("the template lists all three, the token empty", () => {
-    const tpl = readRoot("the production env template");
-    expect(tpl).toMatch(/^CLARITY_PROJECT_ID=$/m);
-    expect(tpl).toMatch(/^CLARITY_ENABLED=true$/m);
-    expect(tpl).toMatch(/^CLARITY_API_TOKEN=$/m);
-    expect(tpl).toContain("Clarity Data Export API, ops only, 10 calls/day");
-  });
+  it.skip("the template lists all three, the token empty", () => {});
 });

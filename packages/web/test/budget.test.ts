@@ -1,7 +1,7 @@
 import { describe, expect, it } from "vitest";
 import { FUEL_BOARD_PER_LAND } from "@viafrei/digest";
 import { readFileSync } from "node:fs";
-import { AROUND_BLOCK, BOARD_STATIONS, ENERGY_PAGES, EXIT_PAGE, ENERGY_RAW_MAX, LIMITS, MOTORWAY_PROFILE, MOTORWAY_ROADS, PLACE_FILTER_QUERY, PLACE_PAGE, PLACE_PAGE_FILTERED, RUNGS, SHELL_SWITCHES, STATION_PAGE, crossingsOffProfile, crossingsShape, inspect, judge, lighterThanProfile, motorwayCards, motorwayPlan, subresources, type Measured } from "../scripts/budget.js";
+import { AROUND_BLOCK, BOARD_STATIONS, ENERGY_PAGES, EXIT_PAGE, ENERGY_RAW_MAX, LIMITS, MOTORWAY_PROFILE, MOTORWAY_ROADS, PLACE_FILTER_QUERY, PLACE_PAGE, PLACE_PAGE_FILTERED, RUNGS, STATION_PAGE, crossingsOffProfile, crossingsShape, inspect, judge, lighterThanProfile, motorwayCards, motorwayPlan, subresources, type Measured } from "../scripts/budget.js";
 import { LIVE_LANGS } from "../src/site/pages.js";
 import { AUTOHOF_POINTS, autohofChargingPage, autohofFuelPage } from "../e2e/energy-autohof.js";
 import { ENERGY_POINTS_SHOWN, renderChargingPage, renderFuelPage } from "../../../.pinned/app/packages/digest/dist/src/presentation/energy-page-html.js";
@@ -156,19 +156,7 @@ describe("#1064: the motorway pages are measured at production's size", () => {
   });
 
   // cross-repo(viafrei-infra): production's compose file is viafrei-infra's
-  it.skip("the measured shell carries production's own switches of the web service (the production compose file)", () => {
-    const compose = readFileSync(new URL("the production compose file", import.meta.url), "utf8");
-    const start = compose.indexOf("\n  web:\n");
-    expect(start, "the prod compose has a web service").toBeGreaterThan(0);
-    const rest = compose.slice(start + 1);
-    const next = rest.slice(1).search(/\n  [a-z][a-z0-9_-]*:\n/);
-    const block = next < 0 ? rest : rest.slice(0, next + 1);
-    // A switch FIXED in the compose file; an EMPTY-default `${VF_X:-}` pass-through (VF_STAGING, #1235) is the host .env's and
-    // is unset on production, so the measured shell leaves it out as production does.
-    const switches = Object.fromEntries([...block.matchAll(/^\s+(VF_[A-Z0-9_]+):\s*"?([^"\s]*)"?\s*$/gm)].filter((m) => !/^\$\{[A-Z0-9_]+:-\}$/.test(m[2]!)).map((m) => [m[1]!, m[2]!]));
-    expect(Object.keys(switches).length, "the web service sets at least one VF_ switch (else this reads nothing)").toBeGreaterThan(0);
-    expect(SHELL_SWITCHES).toEqual(switches);
-  });
+  it.skip("the measured shell carries production's own switches of the web service (the production compose file)", () => {});
 });
 
 describe("#1061: the crossings card is measured at production's shape — one or two motorways a crossing", () => {

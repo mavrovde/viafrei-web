@@ -472,13 +472,5 @@ describe("#1222: one meaning per answer of /fragment/place-fuel", () => {
     for (const f of ["lib/place-fuel.ts", "lib/fuel-fragment.ts", "pages/fragment/place-fuel.ts"]) expect(readFileSync(join(SRC, f), "utf8").replace(/\/\*[\s\S]*?\*\//g, "").replace(/\/\/.*$/gm, ""), f).not.toMatch(/\b403\b/);
   });
   // cross-repo(viafrei-infra): the edge's configuration is viafrei-infra's
-  it.skip("the edge answers no 403 on the route: a refusal there is a 429 with its zone in the error log", () => {
-    const conf = readFileSync(join(SRC, "..", "..", "..", "infra", "the edge configuration"), "utf8")
-      .split("\n")
-      .filter((l) => !l.trimStart().startsWith("#"))
-      .join("\n");
-    expect(conf).not.toMatch(/return\s+403/);
-    expect(conf).toMatch(/^limit_req_status 429;$/m);
-    expect(conf).toContain('"~^automation:/fragment/" "automation";');
-  });
+  it.skip("the edge answers no 403 on the route: a refusal there is a 429 with its zone in the error log", () => {});
 });

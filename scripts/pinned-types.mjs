@@ -112,7 +112,7 @@ for (const [dts, names] of wanted) {
   const have = new Set(sym === undefined ? [] : checker.getExportsOfModule(sym).map((s) => s.getName()));
   const missing = [...names].filter((n) => !have.has(n)).sort();
   if (missing.length === 0) continue;
-  // Each of these is an `any` until viafrei-app ships its own .d.ts (a viafrei issue, to be filed;
+  // Each of these is an `any` until viafrei-app ships its own .d.ts (viafrei#1318;
   // docs/moved-from-viafrei.md): a type-only export the image's JavaScript cannot carry.
   appendFileSync(dts, `\n// pinned-types.mjs (viafrei-web#2): a type-only export the image's JavaScript cannot carry\n${missing.map((n) => `export type ${n} = any;`).join("\n")}\n`);
   stubbed += missing.length;

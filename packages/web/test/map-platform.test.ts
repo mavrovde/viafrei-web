@@ -48,9 +48,7 @@ describe("condition 9: the platform, reduced first and alone", () => {
     for (const f of ["packages/web/src/middleware.ts", "packages/web/src/security/csp.ts"]) expect(read(f), f).not.toMatch(/["'`](?:accept-ch|critical-ch)["'`]|add_header\s+(?:accept-ch|critical-ch)/i);
   });
   // cross-repo(viafrei-infra): the nginx configuration of the edge and the fragment cache is viafrei-infra's
-  it.skip("no Accept-CH anywhere in the nginx configuration", () => {
-    for (const f of ["the edge configuration", "the fragment cache configuration", "the fragment cache configuration"]) expect(read(f), f).not.toMatch(/["'`](?:accept-ch|critical-ch)["'`]|add_header\s+(?:accept-ch|critical-ch)/i);
-  });
+  it.skip("no Accept-CH anywhere in the nginx configuration", () => {});
 
   it("only three values reach the digest, and other adds nothing to a URL", () => {
     expect(mapQuery({ mapPlatform: "android" })).toBe("&map=android");
@@ -82,9 +80,7 @@ describe("condition 6: a click on a map-app link is never an event", () => {
 
 describe("AC 5: the fragment cache's key carries the platform", () => {
   // cross-repo(viafrei-infra): the fragment cache's key is viafrei-infra's configuration
-  it.skip("fragcache keys on the path and the whole query the shell sent", () => {
-    expect(read("the fragment cache configuration")).toMatch(/^proxy_cache_key "\$uri\|\$args";$/m);
-  });
+  it.skip("fragcache keys on the path and the whole query the shell sent", () => {});
 });
 
 let digest: Awaited<ReturnType<typeof startRealDigest>>;

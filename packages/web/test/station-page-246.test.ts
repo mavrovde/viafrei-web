@@ -211,7 +211,5 @@ describe("the page's script fills a loading part from the page itself", () => {
     expect(REFRESH_JS).toContain('document.dispatchEvent(new CustomEvent("vf:swapped"))');
   });
   // cross-repo(viafrei-infra): the edge's access log is viafrei-infra's configuration
-  it.skip("the edge's access log does not count a request marked x-vf-fill as a page view (2.4.6 review)", () => {
-    expect(readFileSync(new URL("the edge configuration", import.meta.url), "utf8")).toMatch(/map \$http_x_vf_fill \$vf_visit \{\s*default 1;\s*"1"\s+0;\s*\}/);
-  });
+  it.skip("the edge's access log does not count a request marked x-vf-fill as a page view (2.4.6 review)", () => {});
 });

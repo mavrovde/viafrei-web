@@ -14,7 +14,6 @@
  * table of cases through both is skipped here and held by viafrei-infra; the
  * table itself is judged against the TypeScript rule below.
  */
-import { execFileSync } from "node:child_process";
 import { readFileSync } from "node:fs";
 import { join } from "node:path";
 import { describe, expect, it } from "vitest";
@@ -33,20 +32,7 @@ describe("the placeholder rule (F-9)", () => {
   });
 
   // cross-repo(viafrei-infra): the deploy's ERE is viafrei-infra's
-  it.skip("is the SAME rule as the deploy's, case for case", () => {
-    const sh = readFileSync(join(ROOT, "the deploy"), "utf8");
-    const ere = /^IDENTITY_PLACEHOLDER_ERE='(.*)'$/m.exec(sh)?.[1];
-    expect(ere, "IDENTITY_PLACEHOLDER_ERE is no longer one quoted line in the deploy (#931)").toBeDefined();
-    const shell = (v: string): boolean => {
-      try {
-        execFileSync("grep", ["-qiE", ere!], { input: v, env: { ...process.env, LC_ALL: "C" } });
-        return true;
-      } catch {
-        return false;
-      }
-    };
-    for (const v of [...PLACEHOLDERS, ...REAL]) expect(shell(v), `the deploy and identity.ts disagree about "${v}"`).toBe(looksLikePlaceholder(v));
-  });
+  it.skip("is the SAME rule as the deploy's, case for case", () => {});
 });
 
 describe("readIdentity never hands a placeholder to a page (F-9)", () => {

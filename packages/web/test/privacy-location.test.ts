@@ -81,11 +81,7 @@ describe("the privacy notice on the place (#564)", () => {
       expect(sec).toContain("sie wird bei uns weder gespeichert noch protokolliert, die Anfrage selbst erscheint nicht im Zugriffsprotokoll nach Punkt 3, und auch auf Ihrem Gerät wird sie nicht gespeichert");
     });
     // cross-repo(viafrei-infra): the edge's configuration is viafrei-infra's
-    it.skip("#1171 C4 (b): nginx's /fragment/spot is access_log off in both server blocks", () => {
-      const conf = read("the edge configuration").replace(/#.*$/gm, "");
-      expect(conf.match(/^\s*location = \/fragment\/spot \{ access_log off; include \/etc\/nginx\/conf\.d\/vf-web-proxy\.inc; \}$/gm)?.length).toBe(2);
-      expect(conf.match(/location[^{\n]*\/fragment\/spot/g)?.length).toBe(2);
-    });
+    it.skip("#1171 C4 (b): nginx's /fragment/spot is access_log off in both server blocks", () => {});
 
     it("used for this lookup only, stored and logged nowhere, on the device neither — the cell is what is remembered", () => {
       expect(sec).toContain("Die genaue Position wird nur für diese eine Suche verwendet und danach verworfen; sie wird bei uns weder gespeichert noch protokolliert, die Anfrage selbst erscheint nicht im Zugriffsprotokoll nach Punkt 3, und auch auf Ihrem Gerät wird sie nicht gespeichert – gemerkt wird, wie bei jedem Klick auf „Meinen Standort verwenden“, nur das gerundete Gebiet, hier mit dem Namen der gefundenen Stelle.");

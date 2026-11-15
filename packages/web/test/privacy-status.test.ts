@@ -33,11 +33,7 @@ describe("the privacy notice on the status page and the console (2.0.2)", () => 
     expect(src).not.toContain("Für die Statusseite status.viafrei.de");
   });
   // cross-repo(viafrei-infra): the public smoke is viafrei-infra's
-  it.skip("the public smoke that runs after every release refuses a status page served to the outside vantage", () => {
-    const smoke = read("the public smoke");
-    expect(smoke).toContain('refused status.viafrei.de "${r%%|*}" "$OUT/status-public.$OUTSIDE"');
-    expect(smoke).toContain("the status page is for the allow-listed addresses only");
-  });
+  it.skip("the public smoke that runs after every release refuses a status page served to the outside vantage", () => {});
 
   it("the console carries NO analytics — the status process never hands it the tag (steward 2026-10-12, § 25 Abs. 1)", () => {
     expect(sec).toContain("Weitere Cookies oder Analysedienste verwendet sie nicht");
@@ -56,12 +52,7 @@ describe("the privacy notice on the status page and the console (2.0.2)", () => 
     );
   });
   // cross-repo(viafrei-infra): the backup and rollup jobs are viafrei-infra's
-  it.skip("the audit log's addresses are deleted after twelve months (#692): the backup job keeps seven, the rollup job runs the forget", () => {
-    // "the seven newest backups" is the backup job's own retention
-    expect(read("the backup job")).toContain(`KEEP="$(cfg BACKUP_KEEP 7)"`);
-    // and something runs it: the five-minute rollup job on the host
-    expect(read("the rollup job")).toContain("ops_audit_forget_ips()");
-  });
+  it.skip("the audit log's addresses are deleted after twelve months (#692): the backup job keeps seven, the rollup job runs the forget", () => {});
   it("the audit log's addresses are deleted after twelve months (#692): the pinned database's schema says so", () => {
     // the exception admits client_ip := NULL on rows older than twelve months, and nothing else
     expect(baseline).toContain("old.at < now() - interval '12 months'");

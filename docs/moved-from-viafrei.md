@@ -126,7 +126,7 @@ line above:
 
 51 cases in 26 files, and 3 whole files. Of them, 34 read viafrei-infra's configuration
 (the edge, the deploy, the host jobs) — this repository carries no copy of it, and viafrei-infra holds
-those agreements. The recorded fixtures are provider payloads whose terms
+those agreements (viafrei-infra#32). The recorded fixtures are provider payloads whose terms
 are viafrei's, and this repository is planned to be public. So they do not travel, and the files
 that read them stay excluded.
 
@@ -173,11 +173,11 @@ that read them stay excluded.
 
 - **viafrei-app ships no type declarations.** The tests' types are inferred from its JavaScript
   (`scripts/pinned-app.sh`). `scripts/pinned-types.mjs` re-declares 3 inferred names and stubs 80
-  type-only names as `any`. The fix is in viafrei: ship the `.d.ts` (a viafrei issue, to be filed).
+  type-only names as `any`. The fix is in viafrei: ship the `.d.ts` (viafrei#1318).
 - **The infra side of the tests.** This repository carries no copy of viafrei-infra's files. The
   34 cases that read them (the edge, the production compose file, the deploy and the host jobs) are
   skipped here with a `cross-repo(viafrei-infra)` marker and listed above; viafrei-infra holds those
-  agreements, and mounts `/srv/site-static/*` and runs `geoip-build.mjs` from this image
+  agreements (viafrei-infra#32): the case names here, the assertions there. It also mounts `/srv/site-static/*` and runs `geoip-build.mjs` from this image
   (viafrei-infra#31).
 - **The catalogue and the News feed** (`src/generated/*.json`) are generated in viafrei, from its
   CHANGELOG and the MCP server, and arrive here as copies. Until viafrei publishes them as a release

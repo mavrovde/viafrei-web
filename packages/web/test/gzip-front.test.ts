@@ -4,24 +4,13 @@
  * skipped here and held by viafrei-infra; the front's own behaviour is tested here.
  */
 import { createServer, get, type IncomingMessage, type Server } from "node:http";
-import { readFileSync } from "node:fs";
 import { gunzipSync } from "node:zlib";
 import { afterAll, beforeAll, describe, expect, it } from "vitest";
-import { GZIP_LEVEL, GZIP_MIN_LENGTH, GZIP_TYPES, compresses, startGzipFront } from "../e2e/gzip-front.js";
-
-const directive = (name: string): string => {
-  const conf = readFileSync(new URL("the edge configuration", import.meta.url), "utf8");
-  return new RegExp(`^${name}\\s+([^;]+);`, "mu").exec(conf)?.[1]?.trim() ?? "";
-};
+import { GZIP_MIN_LENGTH, compresses, startGzipFront } from "../e2e/gzip-front.js";
 
 describe("the front's rule is the edge's", () => {
   // cross-repo(viafrei-infra): the edge's gzip directives are viafrei-infra's configuration
-  it.skip("text/html plus the conf's gzip_types, its minimum length and its level", () => {
-    expect(directive("gzip")).toBe("on");
-    expect([...GZIP_TYPES]).toEqual(["text/html", ...directive("gzip_types").split(/\s+/u)]);
-    expect(GZIP_MIN_LENGTH).toBe(Number(directive("gzip_min_length")));
-    expect(GZIP_LEVEL).toBe(Number(directive("gzip_comp_level")));
-  });
+  it.skip("text/html plus the conf's gzip_types, its minimum length and its level", () => {});
 
   it("compresses a page for a client that accepts gzip, and nothing else", () => {
     const gz = { "accept-encoding": "gzip, deflate, br" };

@@ -75,32 +75,9 @@ describe("robots.txt (#531)", () => {
     for (const ua of SEO_CRAWLERS) expect(named.has(ua.toLowerCase()), ua).toBe(false);
   });
   // cross-repo(viafrei-infra): the edge's user-agent class map is viafrei-infra's configuration
-  it.skip("names the same SEO tools as nginx's seo class, the limit behind the request (the edge configuration, #936 C)", () => {
-    const conf = readFileSync(join(WEB, "the edge configuration"), "utf8").replace(/#[^\n]*/g, "");
-    const m = /^\s*~\*\(([^)]+)\)\s+"seo";/m.exec(conf);
-    expect(m, "the seo line of the user-agent class map").not.toBeNull();
-    expect(m![1]!.split("|").sort()).toEqual(SEO_CLASS_TOKENS.map((x) => x.toLowerCase()).sort());
-  });
+  it.skip("names the same SEO tools as nginx's seo class, the limit behind the request (the edge configuration, #936 C)", () => {});
   // cross-repo(viafrei-infra): the edge's per-network budget map is viafrei-infra's configuration
-  it.skip("leaves the search engines and exactly the AI assistants out of nginx's per-network budget (#1077 review, #1290)", () => {
-    const conf = readFileSync(join(WEB, "the edge configuration"), "utf8").replace(/#[^\n]*/g, "");
-    const block = /map \$http_user_agent \$vf_search_claimed \{([^}]*)\}/u.exec(conf);
-    expect(block, "the vf_search_engine map").not.toBeNull();
-    const tokens = [...block![1]!.matchAll(/~\*\(([^)]+)\)\s+"1";/gu)].flatMap((m) => m[1]!.split("|"));
-    const engines = ["googlebot", "bingbot", "applebot", "duckduckbot", "yandexbot", "seznambot", "google-inspectiontool", "googleother"];
-    expect(tokens.sort()).toEqual([...engines, ...AI_ASSISTANTS.map((x) => x.toLowerCase())].sort());
-    // No SEO tool is an assistant, and no training or corpus crawler escapes the budget through an assistant token —
-    // ClaudeBot, Amazonbot and GPTBot alone, by the owner's word (2026-11-12: all three of Anthropic's agents; 2026-11-14:
-    // "Add Amazon bot to the priority also"; 2026-11-14, #1306 option 2: GPTBot like OAI-SearchBot). `applebot` covering
-    // the robots-only token Applebot-Extended is the search engines' line, as before.
-    for (const ua of AI_ASSISTANTS) expect((SEO_CRAWLERS as readonly string[]).includes(ua), ua).toBe(false);
-    const answer = tokens.filter((t) => !engines.includes(t));
-    const training = [...CORPUS_CRAWLERS, "GPTBot", "CCBot", "Bytespider"].filter((c) => c !== "ClaudeBot" && c !== "Amazonbot" && c !== "GPTBot");
-    for (const ua of training) expect(answer.some((t) => ua.toLowerCase().includes(t)), ua).toBe(false);
-    expect(answer).toContain("claudebot");
-    expect(answer).toContain("amazonbot");
-    expect(answer).toContain("gptbot");
-  });
+  it.skip("leaves the search engines and exactly the AI assistants out of nginx's per-network budget (#1077 review, #1290)", () => {});
   it("paces Meta's search indexer like the SEO tools; its AI crawler is an AI crawler again, unpaced (owner 2026-10-23; #1205 review S2)", () => {
     expect([...PACED_CRAWLERS]).toEqual(["meta-webindexer"]);
     const g = groups.find((x) => x.startsWith("User-agent: meta-webindexer\n"));
@@ -318,12 +295,7 @@ describe("the card on both hosts, from one source (#734)", () => {
     }
   });
   // cross-repo(viafrei-infra): the edge's routing is viafrei-infra's configuration
-  it.skip("nginx routes every /.well-known/ discovery route to the shell on both server blocks", () => {
-    const conf = readFileSync(join(WEB, "..", "..", "infra", "the edge configuration"), "utf8");
-    for (const p of DISCOVERY_ROUTES.filter((x) => x.startsWith("/.well-known/"))) {
-      expect(conf.split(`location = ${p} { include the edge shell proxy rules; }`).length - 1, p).toBe(2);
-    }
-  });
+  it.skip("nginx routes every /.well-known/ discovery route to the shell on both server blocks", () => {});
 });
 
 describe("/.well-known/security.txt (RFC 9116, #734)", () => {
