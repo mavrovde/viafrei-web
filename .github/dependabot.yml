@@ -24,9 +24,15 @@ updates:
     # TypeScript 7 made npm re-resolve typescript-eslint under the cooldown's
     # date limit, which cannot find the locked release when that is younger
     # than seven days: ETARGET, and the whole npm update job failed.
+    # No lighthouse from 13.6.0 on: it requires @sentry/node 11, whose @sentry/bundler-plugins
+    # pulls in the `sentry` CLI under FSL-1.1-Apache-2.0, a licence outside the allow-list of
+    # scripts/licences.mjs. 13.5.0 uses @sentry/node 10, which does not. Lifted when that chain
+    # is gone or the licence is decided (a data-steward and owner decision, not a CI one).
     ignore:
       - dependency-name: typescript
         versions: [">=6.1.0"]
+      - dependency-name: lighthouse
+        versions: [">=13.6.0"]
     open-pull-requests-limit: 5
     labels: [dependencies]
   - package-ecosystem: github-actions
