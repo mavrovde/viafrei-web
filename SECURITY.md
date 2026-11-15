@@ -27,8 +27,7 @@ Until 1.0.0 only the newest release receives fixes.
   browser position is rounded on the device; an IP lookup is never stored);
 - the container image as published, including `/srv/site-static/*` and
   `/app/scripts/geoip-build.mjs`;
-- the boundary: the shell reads no database and routes nothing under
-  `/internal` (`scripts/check_web_boundary.sh`).
+- the boundary: the shell reads no database (`scripts/check_web_boundary.sh`).
 
 The digest that renders the fragments, the MCP server and the status console
 are viafrei's; the edge and nginx are viafrei-infra's. Report those there.
@@ -36,9 +35,9 @@ are viafrei's; the edge and nginx are viafrei-infra's. Report those there.
 ## Automated checks
 
 GitHub is used by the minimum (owner 2026-11-15): nothing runs on a schedule, a pull request
-that changes prose only (`*.md`, `docs/`) runs nothing, and on `main` only the merge commit of a
-release pull request runs the full set (the release gate reads it). Everything is run locally
-before the one push.
+that changes prose only (`*.md`, `docs/`) skips every job but the one that decides so, and on
+`main` only the merge commit of a release pull request runs the full set (the release gate reads
+its jobs). Everything is run locally before the one push.
 
 | Check | Workflow | Runs on |
 |---|---|---|
@@ -64,6 +63,16 @@ Dependabot proposes updates monthly, after a seven-day cooldown, for npm, the ac
 file. A TypeScript release at or above typescript-eslint's supported upper
 bound (today 6.1.0) is not proposed; `test/workflows.test.ts` keeps the bound
 equal to that range.
+
+### What a public CI log can carry
+
+The tests run against the pinned viafrei-app release, extracted into `.pinned/` (never committed).
+That is private compiled code, and some tests assert on its source text: a FAILING assertion of
+that kind prints the text it compared, into a CI log that anyone can read on this public
+repository. Coverage is limited to `packages/**` and leaves `.pinned/` out, and the uploaded
+artifacts (coverage, visual baselines, the ZAP report) are kept one day. A failing source-text
+assertion is still printed in full; read such a failure, and fix it, without quoting the code
+it shows.
 
 ### Images bumped by hand
 

@@ -20,6 +20,7 @@ npm ci
 npm run pinned
 npm run typecheck && npm run lint && npm test
 npm run gates && bash scripts/check_static_pages.sh && bash scripts/web-i18n-mutation.sh
+bash scripts/check_lastmod_commits.sh && bash scripts/changes.test.sh
 bash scripts/pins.sh lint && bash scripts/pins.test.sh
 docker build -t viafrei-web:local . && IMAGE=viafrei-web:local bash scripts/image-smoke.sh
 bash scripts/stack-smoke.sh && bash scripts/stack.sh down
@@ -27,13 +28,25 @@ bash scripts/stack-smoke.sh && bash scripts/stack.sh down
 
 The browser suite, the visual comparison and Lighthouse run on Linux only, in the Playwright
 container. On a laptop, never install a browser. On macOS the visual test prints `DID NOT RUN` and
-proves nothing either way (see [RELEASING](docs/RELEASING.md#visual-baselines)).
+proves nothing either way. To compare against the baselines, or re-record them after an intended
+change, run it in the container (amd64, the image CI uses):
+
+```bash
+bash scripts/visual-container.sh            # compare
+bash scripts/visual-container.sh --update   # re-record packages/web/e2e/__screenshots__/linux/
+```
+
+In CI the visual comparison runs only on a dispatch of CI and on a minor's release pull request
+(`X.Y.0`), so a page change is compared here, before the push (see
+[RELEASING](docs/RELEASING.md#visual-baselines)).
 
 ## Rules the gates hold
 
-- **The shell reads no database.** It also routes nothing under `/internal`
-  (`scripts/check_web_boundary.sh`). Live content comes from the digest's fragments over the
-  internal network.
+- **The shell reads no database** (`scripts/check_web_boundary.sh`). Live content comes from the
+  digest's fragments over the internal network; that the edge routes nothing under `/internal` is
+  viafrei-infra's rule.
+- **The lastmod map changes only at a release** (`scripts/check_lastmod_commits.sh`; see
+  [RELEASING](docs/RELEASING.md#the-lastmod-map-at-the-cut)).
 - **Every colour pair is declared and passes the contrast check** in both themes: 4.5:1, and 7:1
   for body text (`scripts/web-contrast.mjs` over `packages/design/tokens.css`).
 - **Every catalogue has every key in every language** (`packages/web/test/i18n-parity.test.ts`).

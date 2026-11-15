@@ -12,7 +12,9 @@ to npm: `@viafrei/web` and `@viafrei/design` are private workspaces.
 a Conventional Commit lands on main
   -> release-please keeps a release pull request open: package.json's version, CHANGELOG.md
 merge of the release pull request into main
-  -> CI and Security succeed on that commit (the newest run of each, a push to main)
+  -> CI and Security succeed on that commit (the newest run of each, a push to main), and every
+     required job of each ran and passed: a run of skipped jobs concludes success too, so the run
+     alone is not evidence (scripts/ci-gate.sh reads its jobs)
   -> a draft GitHub release, then the annotated tag vX.Y.Z on that commit
      (CI and Security checked again first; an existing tag is refused, never moved)
   -> release.yml, started on that tag:
@@ -93,8 +95,8 @@ Everything is verified locally before the single push, and nothing is pushed to 
 
 | workflow | triggers | what runs |
 |---|---|---|
-| CI | `pull_request` and `push` to `main`, both ignoring prose; `workflow_dispatch` | on a pull request every job. On `main` only `Lint`, unless the commit is a release's merge (`chore: release X.Y.Z`), which runs every job. Visual, Lighthouse and the i18n mutations only on a dispatch or a minor's release pull request (`X.Y.0`) |
-| Security | the same | on `main` only `Dependency licences`, unless it is a release's merge |
+| CI | `pull_request` and `push` to `main`; `workflow_dispatch` | first the `Changes` job (`scripts/changes.sh`): when every changed file is prose, every other job is skipped. Otherwise, on a pull request every job; on `main` only `Lint`, unless the commit is a release's merge (`chore: release X.Y.Z`), which runs every job. Visual, Lighthouse and the i18n mutations only on a dispatch or a minor's release pull request (`X.Y.0`) |
+| Security | the same | the same `Changes` job; on `main` only `Dependency licences`, unless it is a release's merge |
 | Release Please | `workflow_run` of CI and Security on `main`, `workflow_dispatch` | the release pull request, the draft, the tag |
 | Release | `push` of a `v*` tag, `workflow_dispatch` on a tag | the gate, then the publish |
 | Scorecard | `workflow_dispatch` only | |
@@ -128,9 +130,12 @@ required by name:
 
 `test/workflows.test.ts` holds this list to the jobs that exist.
 
-A pull request that changes prose only (`*.md`, `docs/`, the issue templates) runs no workflow, so
-its required checks never report: it is merged with the administrator's bypass, which is the
-cost of not spending runs on prose. `SonarCloud analysis`, `Snyk
+A pull request that changes prose only (`*.md`, `docs/`, LICENSE, CODEOWNERS, the issue and pull
+request templates) runs the `Changes` job and skips every other job; a skipped job satisfies its
+required check, so it merges like any other. A prose file a test reads (`TESTED_PROSE` in
+`scripts/changes.sh`, held to the tests by `test/workflows.test.ts`) counts as code. When
+`changes.sh` cannot read the diff it answers "code", so an error runs the jobs rather than skipping
+them. `SonarCloud analysis`, `Snyk
 (dependencies)` and `Scorecard analysis` run and report but are not required: each depends on an
 outside service whose outage must not block a merge.
 
@@ -144,8 +149,7 @@ gh api -X POST repos/mavrovde/viafrei-web/rulesets --input - <<'JSON'
   "enforcement": "active",
   "conditions": { "ref_name": { "include": ["refs/tags/v*"], "exclude": [] } },
   "bypass_actors": [
-    { "actor_id": 5, "actor_type": "RepositoryRole", "bypass_mode": "always" },
-    { "actor_id": 15368, "actor_type": "Integration", "bypass_mode": "always" }
+    { "actor_id": 5, "actor_type": "RepositoryRole", "bypass_mode": "always" }
   ],
   "rules": [{ "type": "update" }, { "type": "deletion" }, { "type": "non_fast_forward" }]
 }
@@ -162,16 +166,42 @@ gh api -X POST repos/mavrovde/viafrei-web/rulesets --input - <<'JSON'
 JSON
 ```
 
+The one bypass is the repository's admin role. GitHub refuses an `Integration` bypass actor (the
+Actions app) on a repository owned by a user rather than an organisation (HTTP 422), so none is
+listed: the release workflow creates a tag, which the first ruleset does not restrict, and never
+updates or deletes one.
+
 ## Owner setup, once
 
 - **Actions may create pull requests** (Settings, Actions, General, Workflow permissions).
-- **Read access to `viafrei-app`.** The CI jobs that pull the pinned digest image log in with the
-  workflow's `GITHUB_TOKEN`; the `viafrei-app` package (private) must grant this repository
-  read access (Package settings, Manage Actions access). `viafrei-database` is public.
-- **Secrets:** `SONAR_TOKEN` and `SNYK_TOKEN`, each also as a Dependabot secret. A missing token
-  fails its job with a message naming the secret; it never passes as a skip.
+- **Read access to `viafrei-app`: `GHCR_READ_TOKEN`.** The `viafrei-app` package is private and
+  belongs to another repository, so the CI jobs that pull the pinned digest image (`Lint`,
+  `Unit tests`, `Site gates`, `Web`, `Stack`) log in with `GHCR_READ_TOKEN`, never with the
+  workflow's `GITHUB_TOKEN`. It is a classic personal access token with the `read:packages` scope
+  only and an expiry date, used for nothing but that pull, and it is set both as an Actions secret
+  and as a Dependabot secret (Dependabot's pull requests read only Dependabot secrets). A missing
+  token fails the job by name (`GHCR_READ_TOKEN must be set`) before anything is pulled.
+  `viafrei-database` is public. Release.yml pushes and reads this repository's own image, and for
+  that `GITHUB_TOKEN` is right.
+- **Secrets:** `GHCR_READ_TOKEN`, `SONAR_TOKEN` and `SNYK_TOKEN`, each also as a Dependabot secret.
+  A missing token fails its job with a message naming the secret; it never passes as a skip.
 - **SonarCloud:** project `mavrovde_viafrei-web` in organisation `mavrovde`, automatic analysis off.
 - **The rulesets above, and branch protection with the required checks.**
+
+## The lastmod map at the cut
+
+`packages/web/src/generated/lastmod.json` dates each page for the sitemaps. It is a release
+artefact: no feature commit changes it, and at the release it must be current
+(`scripts/check_lastmod_commits.sh`, run by `Site gates` on every pull request over its own
+commits; on the release pull request, whose range moves the version, it also runs
+`lastmod.ts --check-fresh`). Release Please rewrites its branch whenever `main` moves, so the map
+is regenerated last, just before the release pull request is merged:
+
+```bash
+gh pr checkout <the release pull request>   # its branch starts release-please--
+npx tsx packages/web/scripts/lastmod.ts
+git commit -am "chore(release): lastmod" && git push
+```
 
 ## The pins (`images.pin`)
 
@@ -192,13 +222,12 @@ never `latest`, `edge` or a bare tag: `pins.sh lint` refuses each.
 ## Visual baselines
 
 The visual test compares screenshots against `packages/web/e2e/__screenshots__/linux/`. They are
-recorded on Linux only, in the Playwright container (the e2e-arm image; on a laptop, never install
-a browser), and CI's `Web` job runs the same image. To re-record after an intended change:
+recorded on Linux only, in the amd64 Playwright container (on a laptop, never install a browser),
+and CI's `Web` job runs the same image. To re-record after an intended change:
 
 ```bash
-npm run web:build
-# inside the Playwright container, with the repository mounted:
-npm run web:visual -- --update   # writes packages/web/e2e/__screenshots__/linux/
+npm run pinned
+bash scripts/visual-container.sh --update   # writes packages/web/e2e/__screenshots__/linux/
 ```
 
 and commit the changed PNGs in the same pull request as the change, saying why each moved. The comparison runs on a dispatch of CI and on a minor's release pull request; a

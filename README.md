@@ -1,10 +1,24 @@
 # viafrei-web
 
-The ViaFrei user interface: the public website viafrei.de and the building blocks every ViaFrei page is made of.
+The ViaFrei user interface: the public website [viafrei.de](https://viafrei.de) and the building
+blocks its pages are made of.
+
+ViaFrei collects German open transport data (motorway traffic and roadworks, fuel prices, EV
+charging, parking, departures, weather warnings) and answers questions about it, mainly through AI
+assistants. This repository is the website: every page, in every language, rendered on the server
+from small live fragments that another ViaFrei service produces.
+
+## Documentation
+
+- [docs/architecture.md](docs/architecture.md): how the site is built and how a page is put together.
+- [docs/development.md](docs/development.md): running it, testing it and changing it.
+- [CONTRIBUTING.md](CONTRIBUTING.md): the command list and the rules the checks hold.
+- [docs/RELEASING.md](docs/RELEASING.md): how a release and its image are made.
+- [SECURITY.md](SECURITY.md): how to report a problem, and what CI may show.
 
 ## The ViaFrei projects
 
-ViaFrei is a group of private repositories, each with its own area. The database is the only interface between the data and the services; a change that crosses an area is an issue in the project that owns it.
+ViaFrei is a group of repositories, each with its own area; some of them are private. The database is the only interface between the data and the services; a change that crosses an area is an issue in the project that owns it.
 
 | project | area |
 |---|---|
@@ -79,7 +93,8 @@ It depends on released images only, pinned in `images.pin`:
 
 ## Working on it
 
-[CONTRIBUTING.md](CONTRIBUTING.md) has the commands.
+[docs/development.md](docs/development.md) explains the set-up; [CONTRIBUTING.md](CONTRIBUTING.md)
+lists every check.
 
 1. Run `npm ci && npm run pinned`.
 2. Run `npm run typecheck`, `npm run lint` and `npm test`.
@@ -93,3 +108,7 @@ It depends on released images only, pinned in `images.pin`:
   move yet.
 - viafrei removes its copy once this repository ships a release and infra runs it
   ([viafrei-infra#31](https://github.com/mavrovde/viafrei-infra/issues/31)).
+
+## Licence
+
+No licence has been chosen yet: there is no `LICENSE` file, and `package.json` says `UNLICENSED`.
