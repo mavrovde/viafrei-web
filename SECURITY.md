@@ -34,7 +34,7 @@ are viafrei's; the edge and nginx are viafrei-infra's. Report those there.
 
 ## Automated checks
 
-To save CI minutes, nothing runs on a schedule, a pull request
+To save CI minutes, only Snyk runs on a schedule (weekly on `main`), a pull request
 that changes prose only (`*.md`, `docs/`) skips every job but the one that decides so, and on
 `main` only the merge commit of a release pull request runs the full set (the release gate reads
 its jobs). Everything is run locally before the one push.
@@ -45,18 +45,18 @@ its jobs). Everything is run locally before the one push.
 | unit tests, with coverage | CI | every pull request, a release's merge commit |
 | contrast, boundary, static pages, the pins | CI (Site gates) | every pull request, a release's merge commit |
 | the i18n mutation proof | CI (Site gates) | a minor's release pull request, a dispatch |
-| the browser suite, page weight, latency | CI (Web) | every pull request, a release's merge commit |
-| visual, Lighthouse | CI (Web) | a minor's release pull request, a dispatch |
+| the browser suite, page weight, Lighthouse, latency, visual | Release (Web) | every release, before the image is published; a dispatch on a branch |
 | Trivy over the image, the image smoke | CI (Image) | every pull request, a release's merge commit |
 | the shell against the pinned releases | CI (Stack) | every pull request, a release's merge commit |
 | SonarCloud | CI | every pull request, a release's merge commit |
-| CodeQL (SAST), Snyk, gitleaks, OWASP ZAP (DAST) | Security | every pull request, a release's merge commit |
+| CodeQL (SAST), gitleaks, OWASP ZAP (DAST) | Security | every pull request, a release's merge commit |
+| Snyk | Snyk | weekly on `main`; every release, before the image is published |
 | dependency licences | Security | every pull request, every push to `main` |
 | dependency review | Security | pull requests only |
 | OpenSSF Scorecard | Scorecard | by hand only |
 
-A new advisory against an unchanged tree is found by Dependabot (monthly) and by a dispatch of
-Security, not by a schedule.
+A new advisory against an unchanged tree is found by the weekly Snyk run on `main`, by Dependabot
+(monthly) and by a dispatch of Security.
 
 **What CodeQL reads.** Every source file except the test suites: `packages/*/test/` and
 `packages/web/e2e/` are left out (`.github/codeql/codeql-config.yml`), because no test file reaches
