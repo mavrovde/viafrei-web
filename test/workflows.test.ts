@@ -219,6 +219,8 @@ describe("release-please", () => {
     const lines = read(".github/workflows/release-please.yml").split("\n");
     const at = lines.findIndex((l) => l.includes("- name: The released version has its tag"));
     const run = lines.findIndex((l, i) => i > at && l.trim() === "run: |");
+    expect(at).toBeGreaterThanOrEqual(0);
+    expect(run).toBeGreaterThan(at);
     const indent = (lines[run + 1] ?? "").search(/\S/u);
     const body: string[] = [];
     for (const l of lines.slice(run + 1)) {
@@ -227,25 +229,37 @@ describe("release-please", () => {
     }
     return body.join("\n");
   };
-  const runTagStep = (manifest: string, tag: "found" | "missing"): { out: string; calls: string } => {
+  const runTagStep = (manifest: string, tag: "found" | "missing" | "error"): { out: string; calls: string } => {
     const dir = mkdtempSync(join(tmpdir(), "rp-tag-"));
     const gh = join(dir, "gh");
     writeFileSync(gh, [
       "#!/usr/bin/env bash",
       `echo "$*" >> "${dir}/calls"`,
       `case "$*" in *release-please-manifest*) echo '{".":"${manifest}"}';;`,
-      tag === "found" ? "  *git/ref/tags*) echo abc;;" : "  *git/ref/tags*) echo 'gh: Not Found (HTTP 404)' >&2; exit 1;;",
+      {
+        found: "  *git/ref/tags*) echo abc;;",
+        missing: "  *git/ref/tags*) echo 'gh: Not Found (HTTP 404)' >&2; exit 1;;",
+        error: "  *git/ref/tags*) echo 'gh: Server Error (HTTP 500)' >&2; exit 1;;",
+      }[tag],
       "esac",
     ].join("\n"));
-    chmodSync(gh, 0o755);
-    writeFileSync(join(dir, "step.sh"), tagStep());
-    const outFile = join(dir, "out");
-    writeFileSync(outFile, "");
-    execFileSync("bash", ["-e", join(dir, "step.sh")], { env: { ...process.env, PATH: `${dir}:${process.env.PATH ?? ""}`, GITHUB_OUTPUT: outFile, GH_REPO: "o/r" }, stdio: "pipe" });
-    const res = { out: readFileSync(outFile, "utf8"), calls: existsSync(join(dir, "calls")) ? readFileSync(join(dir, "calls"), "utf8") : "" };
-    rmSync(dir, { recursive: true, force: true });
-    return res;
+    try {
+      chmodSync(gh, 0o755);
+      writeFileSync(join(dir, "step.sh"), tagStep());
+      const outFile = join(dir, "out");
+      writeFileSync(outFile, "");
+      // The shell GitHub runs a `run:` step with.
+      execFileSync("bash", ["--noprofile", "--norc", "-eo", "pipefail", join(dir, "step.sh")], { env: { ...process.env, PATH: `${dir}:${process.env.PATH ?? ""}`, GITHUB_OUTPUT: outFile, GH_REPO: "o/r" }, stdio: "pipe" });
+      return { out: readFileSync(outFile, "utf8"), calls: existsSync(join(dir, "calls")) ? readFileSync(join(dir, "calls"), "utf8") : "" };
+    } finally {
+      rmSync(dir, { recursive: true, force: true });
+    }
   };
+
+  it("the first release is 0.1.0: release-please's own first version is 1.0.0 and bump-minor-pre-major never applies to it", () => {
+    const c = JSON.parse(read("release-please-config.json")) as { packages: Record<string, Record<string, unknown>> };
+    expect(c.packages["."]?.["initial-version"]).toBe("0.1.0");
+  });
 
   it("builds the first release pull request from manifest 0.0.0 without waiting for a v0.0.0 tag", () => {
     const r = runTagStep("0.0.0", "missing");
@@ -256,5 +270,9 @@ describe("release-please", () => {
   it("after a release, waits for that version's tag and builds once it exists", () => {
     expect(runTagStep("0.1.0", "missing").out).toBe("tagged=false\n");
     expect(runTagStep("0.1.0", "found").out).toBe("tagged=true\n");
+  });
+
+  it("a tag read that fails for another reason than 404 fails the step", () => {
+    expect(() => runTagStep("0.1.0", "error")).toThrow();
   });
 });
