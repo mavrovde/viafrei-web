@@ -22,13 +22,13 @@ ViaFrei is a group of repositories, each with its own area; some of them are pri
 
 | project | area |
 |---|---|
-| [viafrei](https://github.com/mavrovde/viafrei) | the product core: the MCP server (the product), the digest (the live fragments the site embeds) and the status console |
+| viafrei (private) | the product core: the MCP server (the product), the digest (the live fragments the site embeds) and the status console |
 | **viafrei-web** (this one) | the UI: the viafrei.de site shell, the design system and the UI gates |
 | [viafrei-database](https://github.com/mavrovde/viafrei-database) | the schema and its changes: migrations, partitions and their retention, roles and grants, views, the throwaway test database |
-| [viafrei-ingestor](https://github.com/mavrovde/viafrei-ingestor) | collects open data and writes it into the shared domain tables |
-| [viafrei-infra](https://github.com/mavrovde/viafrei-infra) | runs everything: Kubernetes, the host, the edge, deploys, backups and monitoring |
+| viafrei-ingestor (private) | collects open data and writes it into the shared domain tables |
+| viafrei-infra (private) | runs everything: Kubernetes, the host, the edge, deploys, backups and monitoring |
 
-Several areas still live in `viafrei` and move out step by step. The database code moves to viafrei-database ([viafrei-database#1](https://github.com/mavrovde/viafrei-database/issues/1)). The UI has moved here ([viafrei-web#2](https://github.com/mavrovde/viafrei-web/issues/2)). The collectors and runtime have already moved to viafrei-ingestor and viafrei-infra; their old copies in viafrei are removed in [viafrei#1298](https://github.com/mavrovde/viafrei/issues/1298).
+Several areas still live in `viafrei` and move out step by step. The database code moves to viafrei-database ([viafrei-database#1](https://github.com/mavrovde/viafrei-database/issues/1)). The UI has moved here ([viafrei-web#2](https://github.com/mavrovde/viafrei-web/issues/2)). The collectors and runtime have already moved to viafrei-ingestor and viafrei-infra; their old copies in viafrei are being removed.
 
 ## What this project owns
 
@@ -106,8 +106,7 @@ lists every check.
   [viafrei-web#2](https://github.com/mavrovde/viafrei-web/issues/2).
 - [docs/moved-from-viafrei.md](docs/moved-from-viafrei.md) lists every path, and what could not
   move yet.
-- viafrei removes its copy once this repository ships a release and infra runs it
-  ([viafrei-infra#31](https://github.com/mavrovde/viafrei-infra/issues/31)).
+- viafrei removes its copy once this repository ships a release and infra runs it.
 
 ## Licence
 

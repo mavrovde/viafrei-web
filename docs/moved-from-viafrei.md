@@ -1,7 +1,7 @@
 # Moved from viafrei
 
 The site shell and the files it is judged by came here from
-[viafrei](https://github.com/mavrovde/viafrei) at **`ea91377ba`** (`release/2.6.18`), under
+viafrei (a private repository) at **`ea91377ba`** (`release/2.6.18`), under
 [viafrei-web#2](https://github.com/mavrovde/viafrei-web/issues/2). Commit `4c40539` is that copy,
 byte for byte and nothing else. Every change made to it afterwards is in a later commit, and none
 of them changes what a visitor gets: every route of `scripts/site-pages.txt` renders the same here
@@ -25,8 +25,7 @@ as in a build of `ea91377ba` (see "The proof" below).
 | `tsconfig.base.json` | the same path | copied | `npm run typecheck` |
 | Lighthouse, the page-weight budget, latency and visual runners (`packages/web/scripts/{lighthouse,budget,latency,visual}.ts`) | the same path | moved with the shell | CI `Web` |
 
-From [viafrei-infra](https://github.com/mavrovde/viafrei-infra), copied byte for byte (viafrei-infra#31
-moves its side to this image):
+From viafrei-infra (a private repository), copied byte for byte (infra moves its side to this image):
 
 | page | here | in the image |
 |---|---|---|
@@ -126,7 +125,7 @@ line above:
 
 51 cases in 26 files, and 3 whole files. Of them, 34 read viafrei-infra's configuration
 (the edge, the deploy, the host jobs) — this repository carries no copy of it, and viafrei-infra holds
-those agreements (viafrei-infra#32). The recorded fixtures are provider payloads whose terms
+those agreements. The recorded fixtures are provider payloads whose terms
 are viafrei's, and this repository is public. So they do not travel, and the files
 that read them stay excluded.
 
@@ -173,12 +172,11 @@ that read them stay excluded.
 
 - **viafrei-app ships no type declarations.** The tests' types are inferred from its JavaScript
   (`scripts/pinned-app.sh`). `scripts/pinned-types.mjs` re-declares 3 inferred names and stubs 80
-  type-only names as `any`. The fix is in viafrei: ship the `.d.ts` (viafrei#1318).
+  type-only names as `any`. The fix is in viafrei: ship the `.d.ts`.
 - **The infra side of the tests.** This repository carries no copy of viafrei-infra's files. The
   34 cases that read them (the edge, the production compose file, the deploy and the host jobs) are
   skipped here with a `cross-repo(viafrei-infra)` marker and listed above; viafrei-infra holds those
-  agreements (viafrei-infra#32): the case names here, the assertions there. It also mounts `/srv/site-static/*` and runs `geoip-build.mjs` from this image
-  (viafrei-infra#31).
+  agreements: the case names here, the assertions there. It also mounts `/srv/site-static/*` and runs `geoip-build.mjs` from this image.
 - **The catalogue and the News feed** (`src/generated/*.json`) are generated in viafrei, from its
   CHANGELOG and the MCP server, and arrive here as copies. Until viafrei publishes them as a release
   asset, refreshing them is a hand-off.
