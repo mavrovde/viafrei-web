@@ -15,7 +15,7 @@ pull request from there.
 
 ## Running it
 
-You need Node 26 (CI and the image run 26.12.1), and Docker for the image and the stack.
+You need Node 26 (CI and the image run 26.13.0), and Docker for the image and the stack.
 
 The tests import the compiled packages of the pinned viafrei-app image. So `npm run pinned`
 extracts that image into `.pinned/` first. It needs a registry login that can read

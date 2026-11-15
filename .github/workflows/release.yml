@@ -178,7 +178,7 @@ jobs:
       - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
         if: steps.tag.outputs.publish == 'true'
         with:
-          node-version: 26.12.1 # the Node of the image (Dockerfile)
+          node-version: 26.13.0 # the Node of the image (Dockerfile)
       - name: CI and Security passed on the tagged commit
         if: steps.tag.outputs.publish == 'true'
         env:
@@ -213,7 +213,7 @@ jobs:
           persist-credentials: false
       - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
         with:
-          node-version: 26.12.1 # the Node of the image (Dockerfile)
+          node-version: 26.13.0 # the Node of the image (Dockerfile)
       - run: npm ci --ignore-scripts --no-audit --no-fund
       - name: GHCR_READ_TOKEN must be set
         env:
