@@ -227,7 +227,9 @@ jobs:
     needs: changes
     if: "needs.changes.outputs.code == 'true' && (github.event_name != 'push' || startsWith(github.event.head_commit.message, 'chore: release '))"
     runs-on: ubuntu-24.04
-    timeout-minutes: 45
+    # Measured on PR #15 (run 43731345008): 74 of 103 e2e files took ~27 min,
+    # and a11y.e2e.ts alone (930 tests) takes ~13 min more; 45 cancelled it.
+    timeout-minutes: 75
     permissions:
       contents: read
     steps:
