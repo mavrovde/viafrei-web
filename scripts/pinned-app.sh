@@ -72,9 +72,12 @@ else
   # Declarations: the image ships compiled JavaScript only (its build deletes every .d.ts), so the
   # test code that imports it is type-checked against declarations inferred from that JavaScript.
   # They are weaker than the sources' own types; viafrei shipping its .d.ts would close that gap.
+  # `strict` is spelled out because TypeScript 6 turned it on by default: inferred from JavaScript
+  # under strictNullChecks, an empty array literal (`cities: []`) is declared `never[]` rather than
+  # `any[]`, and a union with the filled branch then types nothing the tests can map over.
   cat > "$OUT/tsconfig.decl.json" << 'JSON'
 { "compilerOptions": { "allowJs": true, "checkJs": false, "declaration": true, "emitDeclarationOnly": true, "module": "NodeNext",
-    "moduleResolution": "NodeNext", "target": "ES2022", "skipLibCheck": true, "types": [], "noEmitOnError": false },
+    "moduleResolution": "NodeNext", "target": "ES2022", "strict": false, "skipLibCheck": true, "types": [], "noEmitOnError": false },
   "include": ["packages/*/dist/**/*.js"] }
 JSON
   "$ROOT/node_modules/.bin/tsc" -p "$OUT/tsconfig.decl.json" > "$OUT/.decl.log" 2>&1 || true
