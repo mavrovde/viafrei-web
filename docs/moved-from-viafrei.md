@@ -126,6 +126,17 @@ that read them stay excluded.
     the GeoIP builder, `/healthz`, `/de` with no digest, the CSP and a 404.
   - `scripts/stack-smoke.sh` passes: the shell renders `/de`, `/en` and `/de/autobahn` from the pinned
     releases and uses every fragment it asks for.
+- **The browser suite**, in the arm64 Playwright image (`mcr.microsoft.com/playwright:v1.63.0-noble`
+  with the DejaVu fonts), the whole of `packages/web/e2e`: 103 files, 4464 cases.
+  - The full run: 4435 passed and 29 failed. 23 of the failures were `place-fuel-1065`, which
+    still read viafrei's digest source. It now reads the pinned l10n, and its re-run passes.
+  - After that fix, a re-run of the six failing files leaves 4 failures, all of them the "eight desktop screens" bound of #1180 (8.03 to 8.12 screens against 8):
+    `desktop-1180`, `desktop-place-1180` and `desktop-station-1180` (2).
+  - The same files from viafrei `ea91377ba`, run in the same container, fail the same
+    cases with the same figures, plus two more. So the bound fails at the source too, on this
+    architecture. CI runs the amd64 image.
+  - Two cases that timed out once under load (the link walk of `site.e2e.ts`, one width of
+    `station-board-1083`) passed on the re-run.
 
 ## What could not move without a change outside the UI
 
