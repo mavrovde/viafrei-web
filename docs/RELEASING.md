@@ -108,10 +108,12 @@ Everything is verified locally before the single push, and nothing is pushed to 
 | CI | `pull_request` and `push` to `main`; `workflow_dispatch` | first the `Changes` job (`scripts/changes.sh`): when every changed file is prose, every other job is skipped. Otherwise, on a pull request every job; on `main` only `Lint`, unless the commit is a release's merge (`chore: release X.Y.Z`), which runs every job. The i18n mutations only on a dispatch or a minor's release pull request (`X.Y.0`). No browser check: that is Release's `Web` job |
 | Security | the same | the same `Changes` job; on `main` only `Dependency licences`, unless it is a release's merge |
 | Release Please | `workflow_run` of CI and Security on `main`, `workflow_dispatch` | the release pull request, the draft, the tag |
-| Release | `push` of a `v*` tag, `workflow_dispatch` on a tag or a branch | on a tag: the gate, the `Web` job (the browser suite, page weight, Lighthouse, latency, visual), then the publish. On a branch: the `Web` job alone, nothing published |
+| Release | `push` of a `v*` tag, `workflow_dispatch` on a tag or a branch | on a tag: the gate, the `Web` job (the browser suite, page weight, Lighthouse, latency, visual), then Snyk and the publish. On a branch: the `Web` job alone, nothing published |
 | Scorecard | `workflow_dispatch` only | |
+| Snyk | `schedule` weekly on `main`, `workflow_dispatch` on `main`, `workflow_call` from Release | Snyk over the dependencies, SARIF to code scanning |
 
-No workflow has a `schedule`. CI and Security cancel a pull request's older run
+One workflow has a `schedule`: Snyk, weekly on `main` (Mondays 05:17 UTC). It runs again in
+every release before the image is published, and never on a pull request or a push. CI and Security cancel a pull request's older run
 (`cancel-in-progress`). Dependabot opens its pull requests monthly.
 
 The push to `main` stays because the release gate (`scripts/ci-gate.ts`) requires CI and Security
@@ -147,8 +149,7 @@ request templates) runs the `Changes` job and skips every other job; a skipped j
 required check, so it merges like any other. A prose file a test reads (`TESTED_PROSE` in
 `scripts/changes.sh`, held to the tests by `test/workflows.test.ts`) counts as code. When
 `changes.sh` cannot read the diff it answers "code", so an error runs the jobs rather than skipping
-them. `SonarCloud analysis`, `Snyk
-(dependencies)` and `Scorecard analysis` run and report but are not required: each depends on an
+them. `SonarCloud analysis` and `Scorecard analysis` run and report but are not required: each depends on an
 outside service whose outage must not block a merge.
 
 ### Tag rulesets (applied once by a repository admin; no workflow applies them)

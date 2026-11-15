@@ -43,8 +43,8 @@ const SIBLING_PINS: Record<string, string> = {
 };
 
 describe("the workflows", () => {
-  it("are the five this repository runs", () => {
-    expect(files).toEqual(["ci.yml", "release-please.yml", "release.yml", "scorecard.yml", "security.yml"]);
+  it("are the six this repository runs", () => {
+    expect(files).toEqual(["ci.yml", "release-please.yml", "release.yml", "scorecard.yml", "security.yml", "snyk.yml"]);
   });
 
   it("pin every action by a full commit sha, with its version beside it, and the sha the siblings pin", () => {
@@ -53,6 +53,8 @@ describe("the workflows", () => {
       for (const line of text(f).split("\n")) {
         const m = /^\s*(?:-\s+)?uses:\s*(\S+)(.*)$/u.exec(line);
         if (m === null) continue;
+        // a workflow of this repository, called by its path, is pinned by the commit that runs it
+        if ((m[1] ?? "").startsWith("./.github/workflows/")) continue;
         n++;
         const [action, sha] = (m[1] ?? "").split("@");
         expect(sha, `${f}: ${line.trim()}`).toMatch(/^[0-9a-f]{40}$/u);
@@ -103,9 +105,9 @@ describe("the workflows", () => {
     expect(r).not.toMatch(/npm publish/u);
   });
 
-  it("save CI minutes: no schedule, prose skips every job but one, heavy steps at a minor only", () => {
+  it("save CI minutes: no schedule but Snyk's weekly one, prose skips every job but one, heavy steps at a minor only", () => {
     for (const f of files) {
-      expect(text(f), `${f} has a schedule`).not.toMatch(/^\s+schedule:/mu);
+      if (f !== "snyk.yml") expect(text(f), `${f} has a schedule`).not.toMatch(/^\s+schedule:/mu);
       expect(text(f), `${f} runs on a push to any branch`).not.toMatch(/^ {2}push:\n(?! {4}(branches: \[main\]|tags:))/mu);
     }
     const minor = "github.event_name == 'workflow_dispatch' || (startsWith(github.head_ref, 'release-please--') && endsWith(github.event.pull_request.title, '.0'))";
@@ -182,6 +184,21 @@ describe("the workflows", () => {
     expect(web.indexOf("- name: GHCR_READ_TOKEN must be set")).toBeLessThan(web.indexOf("password: ${{ secrets.GHCR_READ_TOKEN }}"));
   });
 
+  // Owner 2026-11-15: Snyk weekly on main and once per release, never on a pull request or a push.
+  it("run Snyk weekly on main and once per release, before publish, never on a pull request or a push", () => {
+    const sn = text("snyk.yml");
+    expect(sn).toMatch(/^ {2}schedule:\n {4}- cron: "17 5 \* \* 1"/mu);
+    expect(sn).toMatch(/^ {2}workflow_call:\n/mu);
+    expect(sn).not.toMatch(/^ {2}(pull_request|push):/mu);
+    // anything but a call from release.yml runs on main only, and refuses (exit 2) rather than skipping
+    expect(sn).toContain("elif [[ $GITHUB_REF != refs/heads/main ]]; then");
+    expect(sn).toContain("./snyk test --all-projects --severity-threshold=high");
+    for (const f of files) if (f !== "snyk.yml") expect(text(f), `${f} runs the Snyk CLI`).not.toMatch(/snyk test/u);
+    const r = text("release.yml");
+    expect(r).toMatch(/\n {2}snyk:\n {4}name: Snyk \(dependencies\)\n {4}needs: gate\n {4}if: needs\.gate\.outputs\.publish == 'true'\n[\s\S]*? {4}uses: \.\/\.github\/workflows\/snyk\.yml\n {4}with:\n {6}ref: \$\{\{ needs\.gate\.outputs\.commit \}\}/u);
+    expect(r).toMatch(/\n {2}publish:\n {4}name: [^\n]+\n {4}needs: \[gate, web, snyk\]\n/u);
+  });
+
   it("run the browser suite once per release: release.yml's web job, which publish needs, and no CI job", () => {
     const ci = text("ci.yml");
     expect(ci, "ci.yml has a web job").not.toMatch(/^ {2}web:$/mu);
@@ -209,7 +226,7 @@ describe("the workflows", () => {
     }
     expect(web.split("\n        if:").length - 1, "only the two bootstrap steps are conditional").toBe(2);
     // publish needs it, so a failure blocks the signed image; verify, tag and the page need publish
-    expect(job(r, "publish")).toMatch(/^ {4}name: [^\n]+\n {4}needs: \[gate, web\]\n {4}if: needs\.gate\.outputs\.publish == 'true'\n/u);
+    expect(job(r, "publish")).toMatch(/^ {4}name: [^\n]+\n {4}needs: \[gate, web, snyk\]\n {4}if: needs\.gate\.outputs\.publish == 'true'\n/u);
     for (const j of ["verify", "tag", "release-page"]) expect(job(r, j), j).toMatch(/^ {4}name: [^\n]+\n {4}needs: \[gate, publish[\],]/u);
     // a dispatch on a branch is the browser job alone: the gate checks nothing out and sets no publish
     const gate = job(r, "gate");
