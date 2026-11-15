@@ -29,7 +29,7 @@ concurrency:
   cancel-in-progress: ${{ github.event_name == 'pull_request' }}
 
 env:
-  NODE_VERSION: 26.12.1 # the Node of the image (Dockerfile), and of viafrei-app's
+  NODE_VERSION: 26.13.0 # the Node of the image (Dockerfile); the pinned viafrei-app runs the same major
 
 jobs:
   changes:

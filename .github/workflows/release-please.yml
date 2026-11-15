@@ -80,7 +80,7 @@ jobs:
           persist-credentials: false
       - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
         with:
-          node-version: 26.12.1 # the Node of the image (Dockerfile)
+          node-version: 26.13.0 # the Node of the image (Dockerfile)
       - name: Both workflows concluded success on the commit
         id: gate
         env:
@@ -195,7 +195,7 @@ jobs:
           persist-credentials: false
       - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
         with:
-          node-version: 26.12.1 # the Node of the image (Dockerfile)
+          node-version: 26.13.0 # the Node of the image (Dockerfile)
       - name: The tag is a plain vX.Y.Z on a 40-hex release commit
         env:
           TAG: ${{ needs.release-please.outputs.tag }}
