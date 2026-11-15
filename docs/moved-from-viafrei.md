@@ -183,6 +183,9 @@ from 1024 px, where the sticky side column exists, and nowhere below it:
   desk script's existing `move` (`packages/web/src/lib/desk.ts`) puts it under the sticky map, just
   before the "Frag deine KI" box, the way it already moves that box. In the reading order it still
   comes after the H1, after the station's or road's own blocks, as the side column does.
+  Only when the map fills in late (it was not in the page as served, and a script inserts it
+  afterwards) does the star still move after the first paint and shift the page by one row; that is
+  the degraded path only.
 - **A station's lamp per line** (`ul.railampel`) stands beside its status line instead of under the
   departures. The DOM order and the focus order are unchanged: the departures between them carry no
   link.

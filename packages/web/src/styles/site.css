@@ -2172,10 +2172,13 @@ p.proof__cell.is-error { background: var(--error-bg); color: var(--error); borde
   /* until the script has moved it, the star takes no room under the head of a page that has a map to move it into: moved
      after the first paint, it would pull the whole page up by its own row (a layout shift); with no map, it stays */
   .desk:has(:is(.motorway__map, #place-ampel, #pcard-station-nearby)) .star:not(:is(.motorway__map, #place-ampel, #pcard-station-nearby) > *) { display: none; }
-  .desk--station .pagefirst:has(> .railampel) { grid-template-columns: minmax(0, 1fr) auto; column-gap: var(--s-4); }
-  .desk--station .pagefirst:has(> .railampel) > * { grid-column: 1 / -1; }
-  .desk--station .pagefirst:has(> .railampel) > .statusline { grid-column: 1; grid-row: 1; }
-  .desk--station .pagefirst:has(> .railampel) > .railampel { grid-column: 2; grid-row: 1; align-self: center; }
+  /* a moved star with no button shown (none revealed yet, or the script gave up) leaves no empty row with its margin */
+  .star:not(:has(> :not([hidden]))) { display: none; }
+  /* through the guarded statement's display:contents box (FS11d, `.pagefirst__now`) as well as directly */
+  .desk--station .pagefirst:has(.railampel) { grid-template-columns: minmax(0, 1fr) auto; column-gap: var(--s-4); }
+  .desk--station :is(.pagefirst:has(.railampel), .pagefirst:has(.railampel) > .pagefirst__now) > * { grid-column: 1 / -1; }
+  .desk--station :is(.pagefirst:has(.railampel), .pagefirst:has(.railampel) > .pagefirst__now) > .statusline { grid-column: 1; grid-row: 1; }
+  .desk--station :is(.pagefirst:has(.railampel), .pagefirst:has(.railampel) > .pagefirst__now) > .railampel { grid-column: 2; grid-row: 1; align-self: center; }
 }
 /* #1180: the home's dashboard (`homeDesk`): three columns — the hero's head and the place on the left (about 40 %), the
    heat strip in the middle and the connect block sticky on the right in the first screen; "Deutschland jetzt" two by two
