@@ -11,7 +11,7 @@ export default tseslint.config(
   // `dist/`), and `packages/web/.astro/` is Astro's generated type directory.
   // `.pinned/` is the released viafrei-app the tests read (scripts/pinned-app.sh):
   // compiled code of another repository, never ours to lint.
-  { ignores: ["**/dist/**", "**/node_modules/**", "**/coverage/**", ".pinned/**", "packages/web/build/**", "packages/web/.astro/**"] },
+  { ignores: ["**/dist/**", "**/node_modules/**", "**/coverage/**", ".pinned/**", "build/**", "packages/web/build/**", "packages/web/.astro/**", "zap-report/**"] },
   ...tseslint.configs.recommendedTypeChecked,
   {
     languageOptions: {

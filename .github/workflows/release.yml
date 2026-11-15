@@ -1,0 +1,405 @@
+# Publishes the image of a CONFIRMED release, and nothing else: there is no
+# image for a branch, a commit or a release candidate.
+#
+# It always runs ON a tag, started in one of three ways, each held to the
+# same gate:
+#   - release-please.yml, after creating the tag, starts it on that tag
+#     (gh workflow run release.yml --ref vX.Y.Z): the normal path. A tag
+#     created with GITHUB_TOKEN starts no push workflow, but GITHUB_TOKEN may
+#     start a workflow_dispatch;
+#   - a push of a tag made by hand (a maintainer's annotated vX.Y.Z);
+#   - a maintainer starting it on the tag the same way, to retry a release.
+# On a tag github.ref is refs/tags/vX.Y.Z and github.sha is the tag's commit,
+# so the signing identity is release.yml on a version tag whatever started it.
+#
+# A tag publishes only when every one of these holds, checked before anything
+# is built:
+#   - the run is on refs/tags/<the tag> (a dispatch on a branch is refused);
+#   - it is an annotated tag vX.Y.Z with no suffix (on a tag push an rc or any
+#     other tag ends here, green, having published nothing; a dispatch on one
+#     is an error);
+#   - X.Y.Z equals package.json's version;
+#   - the tagged commit is on main, and it is the commit this run was started
+#     for (github.sha, which the signing certificate records): a tag moved
+#     after the push is refused, and every later job checks out the gate's
+#     commit, never the tag;
+#   - CI and Security concluded success on that commit, from a push to main
+#     of this repository (scripts/ci-gate.ts);
+#   - the tag has no published release page yet (a draft is expected).
+# Before the push: :X.Y.Z must not exist yet (a release is never rebuilt or
+# re-tagged; scripts/ghcr-not-released.sh), the image built from the tag must
+# carry the tag's version in its org.opencontainers.image.version label, and
+# its /srv/site-static/site-pages.txt must be the tree's route map.
+#
+# (viafrei-web#2: viafrei-database's release.yml, unchanged in every gate and
+# step; what differs is the image's own check — there is no schema head here —
+# and the release page, which also carries site-pages.txt as a release asset,
+# the file viafrei-infra's probes and smoke read.)
+#
+# Then, in this order, so a failure at any step leaves no tag behind:
+#   1. publish: linux/amd64 + linux/arm64 pushed BY DIGEST only (no tag),
+#      signed keyless with cosign, SLSA build provenance and an SPDX SBOM
+#      attested;
+#   2. verify: the digest is pulled, its signature verified against this
+#      workflow on a version tag AND on the gate's commit, and BOTH
+#      attestations verified — the SLSA provenance by gh attestation verify
+#      with --signer-workflow (this file), --source-ref (the ref of this run)
+#      and --source-digest (the gate's commit), and the SPDX SBOM by cosign
+#      verify-attestation --type spdxjson, bound to the gate's commit
+#      (--certificate-github-workflow-sha) — then smoked (/healthz, /de, the static pages, the route map);
+#   3. tag: only now :X.Y.Z, :X.Y (newest patch of its minor only) and :latest
+#      (newest vX.Y.Z tag only) are pointed at that digest, each read back;
+#   4. release-page: the tag's draft release (release-please's, or a new one
+#      for a hand-made tag) gets the image digest and the verify commands in
+#      its notes and site-pages.txt as an asset (read back byte for byte), and
+#      is published.
+#
+# One release at a time: every run shares the single concurrency group
+# `release`, whatever the tag. A running release is never cancelled; a run
+# still pending behind it is replaced by a newer pending one (GitHub keeps one
+# pending run per group), which cancels it before it has done anything.
+name: Release
+
+on:
+  push:
+    tags: ["v*"]
+  # Started ON the tag (gh workflow run release.yml --ref vX.Y.Z): by
+  # release-please.yml once it has created the tag, or by a maintainer to retry.
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+# One release at a time, whatever the tag; a running release is never
+# cancelled, a pending one can be replaced by a newer pending one.
+concurrency:
+  group: release
+  cancel-in-progress: false
+
+env:
+  IMAGE: ghcr.io/mavrovde/viafrei-web
+  TAG: ${{ github.ref_name }}
+  IDENTITY: ^https://github\.com/mavrovde/viafrei-web/\.github/workflows/release\.yml@refs/tags/v[0-9]+\.[0-9]+\.[0-9]+$
+  ISSUER: https://token.actions.githubusercontent.com
+
+jobs:
+  gate:
+    name: Release gate
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    permissions:
+      contents: read
+      actions: read # the workflow runs on the tagged commit (scripts/ci-gate.ts)
+    outputs:
+      publish: ${{ steps.tag.outputs.publish }}
+      version: ${{ steps.tag.outputs.version }}
+      minor: ${{ steps.tag.outputs.minor }}
+      commit: ${{ steps.tag.outputs.commit }}
+      highest: ${{ steps.tag.outputs.highest }}
+      highest_in_minor: ${{ steps.tag.outputs.highest_in_minor }}
+    steps:
+      # First, before anything is checked out: whatever started it, a release
+      # runs on its tag, so github.sha is the tag's commit.
+      - name: The run is on its tag
+        run: |
+          [[ $GITHUB_REF == "refs/tags/$TAG" ]] || { echo "::error::release gate: this run is on $GITHUB_REF, not on a tag; start a release on its tag (gh workflow run release.yml --ref vX.Y.Z)"; exit 1; }
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          ref: refs/tags/${{ env.TAG }}
+          fetch-depth: 0
+          persist-credentials: false
+      - name: The tag is an annotated vX.Y.Z equal to package.json, on main
+        id: tag
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GH_REPO: ${{ github.repository }}
+        run: |
+          if [[ ! $TAG =~ ^v([0-9]+)\.([0-9]+)\.([0-9]+)$ ]]; then
+            [[ $GITHUB_EVENT_NAME == push ]] || { echo "::error::$TAG is not a final vX.Y.Z tag"; exit 1; }
+            echo "::notice::$TAG is not a final vX.Y.Z tag; only a confirmed release publishes an image, so nothing is published"
+            echo "publish=false" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+          major=${BASH_REMATCH[1]} minor=${BASH_REMATCH[2]}
+          version=${TAG#v}
+          [[ $(gh api "repos/$GH_REPO/git/ref/tags/$TAG" --jq .object.type) == tag ]] || { echo "::error::$TAG is a lightweight tag; a release needs an annotated tag (git tag -a)"; exit 1; }
+          pkg=$(jq -r .version package.json)
+          [[ $pkg == "$version" ]] || { echo "::error::$TAG does not equal package.json's version ($pkg)"; exit 1; }
+          git fetch --no-tags origin main
+          git merge-base --is-ancestor "$TAG^{commit}" origin/main || { echo "::error::$TAG points at a commit that is not on main"; exit 1; }
+          commit=$(git rev-parse "$TAG^{commit}")
+          # The tag must still name the commit this run was started for; the
+          # certificate records github.sha, so they are one commit or nothing is built.
+          [[ $commit == "$GITHUB_SHA" ]] || { echo "::error::$TAG points at $commit, but this run was started for $GITHUB_SHA"; exit 1; }
+          # A published page is a release already made; release-please's draft is expected (drafts answer 404 here).
+          if page=$(gh api "repos/$GH_REPO/releases/tags/$TAG" --jq .html_url 2>&1); then
+            echo "::error::$TAG has a published release page already ($page)"; exit 1
+          elif [[ $page != *"HTTP 404"* ]]; then
+            echo "::error::cannot tell whether $TAG has a published release page: $page"; exit 1
+          fi
+          {
+            echo "publish=true"
+            echo "version=$version"
+            echo "minor=$major.$minor"
+            echo "commit=$commit"
+            echo "highest=$([[ $(git tag -l 'v*' | grep -E '^v[0-9]+\.[0-9]+\.[0-9]+$' | sort -V | tail -n 1) == "$TAG" ]] && echo true || echo false)"
+            echo "highest_in_minor=$([[ $(git tag -l "v$major.$minor.*" | grep -E '^v[0-9]+\.[0-9]+\.[0-9]+$' | sort -V | tail -n 1) == "$TAG" ]] && echo true || echo false)"
+          } >> "$GITHUB_OUTPUT"
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
+        if: steps.tag.outputs.publish == 'true'
+        with:
+          node-version: 26.12.1 # the Node of the image (Dockerfile)
+      - name: CI and Security passed on the tagged commit
+        if: steps.tag.outputs.publish == 'true'
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GH_REPO: ${{ github.repository }}
+          SHA: ${{ steps.tag.outputs.commit }}
+        run: |
+          gh api --paginate --slurp "repos/$GH_REPO/actions/runs?head_sha=$SHA&per_page=100" > "$RUNNER_TEMP/runs.json"
+          node scripts/ci-gate.ts "$SHA" "$GH_REPO" < "$RUNNER_TEMP/runs.json"
+
+  publish:
+    name: Build, check, sign, attest, publish
+    needs: gate
+    if: needs.gate.outputs.publish == 'true'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 40
+    permissions:
+      contents: read
+      packages: write
+      id-token: write
+      attestations: write
+    outputs:
+      digest: ${{ steps.build.outputs.digest }}
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          ref: ${{ needs.gate.outputs.commit }}
+          persist-credentials: false
+      - uses: docker/setup-qemu-action@99012661954931238ded8c8b007157a8430204e1 # v4.4.0
+      - uses: docker/setup-buildx-action@f87e5991a6d7451dcb8d9637bfbc97413f497069 # v4.4.1
+      - name: Build for the check (linux/amd64, not pushed)
+        uses: docker/build-push-action@c3c9e263c25d99ce0380d002d59b67737d91b0dc # v7.4.0
+        with:
+          context: .
+          load: true
+          push: false
+          tags: viafrei-web:release-check
+          build-args: |
+            VERSION=${{ needs.gate.outputs.version }}
+            GIT_SHA=${{ needs.gate.outputs.commit }}
+      - name: The image carries the tag's version and the tree's route map
+        env:
+          VERSION: ${{ needs.gate.outputs.version }}
+        run: |
+          got=$(docker inspect viafrei-web:release-check --format '{{ index .Config.Labels "org.opencontainers.image.version" }}')
+          [[ $got == "$VERSION" ]] || { echo "::error::the image's version label is '$got', expected '$VERSION'"; exit 1; }
+          docker run --rm --read-only --network none --entrypoint cat viafrei-web:release-check /srv/site-static/site-pages.txt > "$RUNNER_TEMP/site-pages.txt"
+          cmp "$RUNNER_TEMP/site-pages.txt" scripts/site-pages.txt || { echo "::error::the image's site-pages.txt is not the tree's"; exit 1; }
+          echo "viafrei-web $got, site-pages.txt $(grep -cv '^#' scripts/site-pages.txt) route(s)"
+      - uses: docker/login-action@8aa5831fb8d48d8f76594c7ddde61ae58019f550 # v4.8.0
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+      - name: Not released yet (a release is never rebuilt or re-tagged)
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          VERSION: ${{ needs.gate.outputs.version }}
+        run: scripts/ghcr-not-released.sh "$IMAGE" "$VERSION"
+      - id: build
+        uses: docker/build-push-action@c3c9e263c25d99ce0380d002d59b67737d91b0dc # v7.4.0
+        with:
+          context: .
+          platforms: linux/amd64,linux/arm64
+          provenance: mode=max
+          # By digest only: no tag exists until the verify job has passed (the tag job).
+          outputs: type=image,name=${{ env.IMAGE }},push-by-digest=true,name-canonical=true,push=true
+          build-args: |
+            VERSION=${{ needs.gate.outputs.version }}
+            GIT_SHA=${{ needs.gate.outputs.commit }}
+          labels: |
+            org.opencontainers.image.version=${{ needs.gate.outputs.version }}
+            org.opencontainers.image.revision=${{ needs.gate.outputs.commit }}
+            org.opencontainers.image.source=https://github.com/${{ github.repository }}
+      - uses: sigstore/cosign-installer@756fe2d284c7292c4e9b62c8a28f1e5629c59532 # v4.1.3
+      - name: Sign the digest (keyless)
+        env:
+          DIGEST: ${{ steps.build.outputs.digest }}
+        run: cosign sign --yes "$IMAGE@$DIGEST"
+      - uses: actions/attest-build-provenance@4d101475d8b20a2381f78447822ac1eab6504dd8 # v4.2.2
+        with:
+          subject-name: ${{ env.IMAGE }}
+          subject-digest: ${{ steps.build.outputs.digest }}
+          push-to-registry: true
+      - name: SBOM (SPDX)
+        uses: anchore/sbom-action@66cbf4bc1f1c0d2edc94016e65bc221b6bb0ad6c # v0.24.3
+        with:
+          image: ${{ env.IMAGE }}@${{ steps.build.outputs.digest }}
+          format: spdx-json
+          output-file: ${{ runner.temp }}/sbom.spdx.json
+          upload-artifact: false
+      - name: Attest the SBOM to the image
+        env:
+          DIGEST: ${{ steps.build.outputs.digest }}
+        run: cosign attest --yes --type spdxjson --predicate "$RUNNER_TEMP/sbom.spdx.json" "$IMAGE@$DIGEST"
+      - name: Summary
+        env:
+          DIGEST: ${{ steps.build.outputs.digest }}
+        run: echo "Pushed \`$IMAGE@$DIGEST\` (untagged until verified)" >> "$GITHUB_STEP_SUMMARY"
+
+  verify:
+    name: Verify the published image
+    needs: [gate, publish]
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    permissions:
+      contents: read
+      packages: read
+      attestations: read
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          ref: ${{ needs.gate.outputs.commit }}
+          persist-credentials: false
+      - uses: docker/login-action@8aa5831fb8d48d8f76594c7ddde61ae58019f550 # v4.8.0
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+      - uses: sigstore/cosign-installer@756fe2d284c7292c4e9b62c8a28f1e5629c59532 # v4.1.3
+      - name: Pull by digest
+        env:
+          DIGEST: ${{ needs.publish.outputs.digest }}
+        run: docker pull "$IMAGE@$DIGEST"
+      - name: cosign verify (this workflow, on a release tag, built from the gate's commit on main)
+        env:
+          DIGEST: ${{ needs.publish.outputs.digest }}
+          COMMIT: ${{ needs.gate.outputs.commit }}
+        run: cosign verify "$IMAGE@$DIGEST" --certificate-identity-regexp "$IDENTITY" --certificate-oidc-issuer "$ISSUER" --certificate-github-workflow-sha "$COMMIT" > /dev/null
+      - name: gh attestation verify
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GH_REPO: ${{ github.repository }}
+          DIGEST: ${{ needs.publish.outputs.digest }}
+          COMMIT: ${{ needs.gate.outputs.commit }}
+        run: gh attestation verify "oci://$IMAGE@$DIGEST" --repo "$GH_REPO" --signer-workflow mavrovde/viafrei-web/.github/workflows/release.yml --source-ref "$GITHUB_REF" --source-digest "$COMMIT"
+      - name: cosign verify-attestation (the SPDX SBOM, same identity)
+        env:
+          DIGEST: ${{ needs.publish.outputs.digest }}
+          COMMIT: ${{ needs.gate.outputs.commit }}
+        run: cosign verify-attestation "$IMAGE@$DIGEST" --type spdxjson --certificate-identity-regexp "$IDENTITY" --certificate-oidc-issuer "$ISSUER" --certificate-github-workflow-sha "$COMMIT" > /dev/null
+      - name: Smoke the published digest (hardening, static pages, route map, GeoIP builder, /healthz, /de)
+        env:
+          IMAGE_REF: ${{ env.IMAGE }}@${{ needs.publish.outputs.digest }}
+        run: IMAGE="$IMAGE_REF" scripts/image-smoke.sh
+
+  tag:
+    name: Tag the verified digest
+    needs: [gate, publish, verify]
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    permissions:
+      contents: read
+      packages: write
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          ref: ${{ needs.gate.outputs.commit }}
+          persist-credentials: false
+      - uses: docker/setup-buildx-action@f87e5991a6d7451dcb8d9637bfbc97413f497069 # v4.4.1
+      - uses: docker/login-action@8aa5831fb8d48d8f76594c7ddde61ae58019f550 # v4.8.0
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+      - name: Still not released (nothing tagged :X.Y.Z while this run built)
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          VERSION: ${{ needs.gate.outputs.version }}
+        run: scripts/ghcr-not-released.sh "$IMAGE" "$VERSION"
+      - name: Point the tags at the digest and read each one back
+        env:
+          DIGEST: ${{ needs.publish.outputs.digest }}
+          VERSION: ${{ needs.gate.outputs.version }}
+          MINOR: ${{ needs.gate.outputs.minor }}
+          HIGHEST: ${{ needs.gate.outputs.highest }}
+          HIGHEST_IN_MINOR: ${{ needs.gate.outputs.highest_in_minor }}
+        run: |
+          tags=("$IMAGE:$VERSION")
+          # :X.Y moves to the newest patch of its minor only; :latest to the newest vX.Y.Z tag only.
+          if [[ $HIGHEST_IN_MINOR == true ]]; then tags+=("$IMAGE:$MINOR"); fi
+          if [[ $HIGHEST == true ]]; then tags+=("$IMAGE:latest"); fi
+          args=()
+          for t in "${tags[@]}"; do args+=(-t "$t"); done
+          docker buildx imagetools create "${args[@]}" "$IMAGE@$DIGEST"
+          for t in "${tags[@]}"; do
+            got=$(docker buildx imagetools inspect "$t" --format '{{json .Manifest}}' | jq -r .digest)
+            [[ $got == "$DIGEST" ]] || { echo "::error::$t points at $got, not the verified $DIGEST"; exit 1; }
+            echo "- \`$t\` → \`$DIGEST\`" >> "$GITHUB_STEP_SUMMARY"
+          done
+
+  release-page:
+    name: Publish the release page
+    needs: [gate, publish, tag]
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    permissions:
+      contents: write # edits the draft release, attaches site-pages.txt, publishes it
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          ref: ${{ needs.gate.outputs.commit }}
+          persist-credentials: false
+      - name: The draft gets the digest and the verify commands, then is published
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GH_REPO: ${{ github.repository }}
+          DIGEST: ${{ needs.publish.outputs.digest }}
+          VERSION: ${{ needs.gate.outputs.version }}
+          MINOR: ${{ needs.gate.outputs.minor }}
+          COMMIT: ${{ needs.gate.outputs.commit }}
+          HIGHEST: ${{ needs.gate.outputs.highest }}
+          HIGHEST_IN_MINOR: ${{ needs.gate.outputs.highest_in_minor }}
+        run: |
+          find_releases() { gh api --paginate "repos/$GH_REPO/releases?per_page=100" --jq ".[] | select(.tag_name == \"$TAG\") | \"\(.id) \(.draft)\""; }
+          found=$(find_releases)
+          if [[ -z $found ]]; then
+            # A hand-made tag has no draft: one is made here, from the tag that exists.
+            gh release create "$TAG" --draft --verify-tag --title "viafrei-web $VERSION" --generate-notes > /dev/null
+            found=$(find_releases)
+            [[ -n $found ]] || { echo "::error::a draft release for $TAG was created, but the release listing does not show it"; exit 1; }
+          fi
+          [[ $(wc -l <<<"$found") -eq 1 ]] || { echo "::error::expected one release for $TAG, found: $found"; exit 1; }
+          read -r id draft <<<"$found"
+          [[ $draft == true ]] || { echo "::error::the release of $TAG is published already"; exit 1; }
+          body=$(gh api "repos/$GH_REPO/releases/$id" --jq '.body // ""')
+          [[ $body != *"## Container image"* ]] || { echo "::error::the draft of $TAG carries an image section already"; exit 1; }
+          tags=":$VERSION"
+          if [[ $HIGHEST_IN_MINOR == true ]]; then tags+=", :$MINOR"; fi
+          if [[ $HIGHEST == true ]]; then tags+=", :latest"; fi
+          notes=$RUNNER_TEMP/notes.md
+          {
+            printf '%s\n\n## Container image\n\n' "$body"
+            printf '\x60%s@%s\x60\n\n' "$IMAGE" "$DIGEST" # \x60 is a backquote
+            printf 'Tags %s, for linux/amd64 and linux/arm64, built from %s.\n\n' "$tags" "$COMMIT"
+            printf 'The route map is attached as site-pages.txt and is in the image at /srv/site-static/site-pages.txt.\n\n'
+            printf '## Verify\n\n```sh\n'
+            printf "cosign verify %s@%s \\\\\n  --certificate-identity-regexp '%s' \\\\\n  --certificate-oidc-issuer %s \\\\\n  --certificate-github-workflow-sha %s\n" "$IMAGE" "$DIGEST" "$IDENTITY" "$ISSUER" "$COMMIT"
+            printf "gh attestation verify oci://%s@%s --repo %s \\\\\n  --signer-workflow %s/.github/workflows/release.yml \\\\\n  --source-ref %s --source-digest %s\n" "$IMAGE" "$DIGEST" "$GH_REPO" "$GH_REPO" "$GITHUB_REF" "$COMMIT"
+            printf "cosign verify-attestation %s@%s --type spdxjson \\\\\n  --certificate-identity-regexp '%s' \\\\\n  --certificate-oidc-issuer %s \\\\\n  --certificate-github-workflow-sha %s\n" "$IMAGE" "$DIGEST" "$IDENTITY" "$ISSUER" "$COMMIT"
+            printf '```\n'
+          } > "$notes"
+          # The route map viafrei-infra's probes read, as an asset of the draft, read back byte for byte
+          # before the page is published (the same file is in the image at /srv/site-static/site-pages.txt).
+          gh release upload "$TAG" scripts/site-pages.txt --clobber
+          asset=$(gh api "repos/$GH_REPO/releases/$id/assets" --jq '.[] | select(.name == "site-pages.txt") | .id')
+          [[ -n $asset ]] || { echo "::error::the draft of $TAG carries no site-pages.txt asset"; exit 1; }
+          gh api -H "Accept: application/octet-stream" "repos/$GH_REPO/releases/assets/$asset" > "$RUNNER_TEMP/site-pages.read"
+          cmp "$RUNNER_TEMP/site-pages.read" scripts/site-pages.txt || { echo "::error::the site-pages.txt asset of $TAG is not the tree's"; exit 1; }
+          gh api -X PATCH "repos/$GH_REPO/releases/$id" -F "body=@$notes" -F draft=false -f make_latest="$HIGHEST" > /dev/null
+          got=$(gh api "repos/$GH_REPO/releases/tags/$TAG" --jq '"\(.id) \(.draft)"')
+          [[ $got == "$id false" ]] || { echo "::error::the release of $TAG reads back as '$got', not published"; exit 1; }
+          gh api "repos/$GH_REPO/releases/$id" --jq .body | grep -qF "$DIGEST" || { echo "::error::the release notes of $TAG do not carry $DIGEST"; exit 1; }
+          echo "published the release page of $TAG with $DIGEST" >> "$GITHUB_STEP_SUMMARY"

@@ -11,3 +11,4 @@ build/
 .astro/
 test-results/
 playwright-report/
+zap-report/

@@ -1,8 +1,17 @@
 {
   "files": [],
   "references": [
-    { "path": "packages/design" },
-    { "path": "packages/web" },
-    { "path": "packages/web/tsconfig.consumers.json" }
+    {
+      "path": "packages/design"
+    },
+    {
+      "path": "packages/web"
+    },
+    {
+      "path": "packages/web/tsconfig.consumers.json"
+    },
+    {
+      "path": "tsconfig.tools.json"
+    }
   ]
 }

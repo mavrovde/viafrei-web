@@ -32,7 +32,8 @@
     "web:lighthouse": "tsx packages/web/scripts/lighthouse.ts",
     "web:latency": "tsx packages/web/scripts/latency.ts",
     "web:visual": "tsx packages/web/scripts/visual.ts",
-    "web:site-map": "tsx packages/web/scripts/site-map.ts"
+    "web:site-map": "tsx packages/web/scripts/site-map.ts",
+    "coverage": "vitest run --coverage"
   },
   "devDependencies": {
     "@types/node": "^22.19.0",

@@ -10,15 +10,13 @@ import { defineConfig } from "vitest/config";
  * outside the allow-list. It is the guard of the pinned viafrei-app release
  * (`scripts/pinned-app.sh`), the same file viafrei's suite installs.
  *
- * The one database-backed file (`city-jams-agreement.test.ts`) reads
- * TEST_DATABASE_URL — a throwaway database migrated by the pinned
- * viafrei-database release (`scripts/test-db.sh`) — and skips each case when
- * none is reachable, as it did in viafrei.
+ * `test/` is the release tooling's suite, mirrored from viafrei-database
+ * (ci-gate, approve-release-runs, ghcr-not-released, zap-verdict, workflows).
  */
 export default defineConfig({
   test: {
     environment: "node",
-    include: ["packages/**/*.test.ts"],
+    include: ["packages/**/*.test.ts", "test/**/*.test.ts"],
     exclude: [
       "**/node_modules/**",
       "**/dist/**",

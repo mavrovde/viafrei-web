@@ -1,0 +1,67 @@
+# Weekly dependency updates, each as a pull request that runs the full CI.
+# A version update waits 7 days after its release (cooldown), so a broken or
+# malicious release has time to be found first; security updates are not delayed.
+# Every pull request carries only the 'dependencies' label (the repo's label set
+# is type:bug, type:feature, dependencies, documentation).
+version: 2
+updates:
+  - package-ecosystem: npm
+    directory: /
+    schedule:
+      interval: weekly
+      day: monday
+    cooldown:
+      default-days: 7
+    commit-message:
+      prefix: deps
+    groups:
+      dev-tooling:
+        dependency-type: development
+    # No TypeScript release that typescript-eslint does not accept: the bound
+    # is the upper bound of typescript-eslint's peer range for typescript in
+    # package-lock.json (">=4.8.4 <6.1.0" today), and it moves with it —
+    # test/workflows.test.ts holds the two equal, so a typescript-eslint
+    # update that widens its range fails until this line follows. Proposing
+    # TypeScript 7 made npm re-resolve typescript-eslint under the cooldown's
+    # date limit, which cannot find the locked release when that is younger
+    # than seven days: ETARGET, and the whole npm update job failed.
+    ignore:
+      - dependency-name: typescript
+        versions: [">=6.1.0"]
+    open-pull-requests-limit: 5
+    labels: [dependencies]
+  - package-ecosystem: github-actions
+    directory: /
+    schedule:
+      interval: weekly
+      day: monday
+    cooldown:
+      default-days: 7
+    commit-message:
+      prefix: ci
+    open-pull-requests-limit: 5
+    labels: [dependencies]
+  - package-ecosystem: docker
+    directory: /
+    schedule:
+      interval: weekly
+      day: monday
+    cooldown:
+      default-days: 7
+    commit-message:
+      prefix: deps
+    open-pull-requests-limit: 5
+    labels: [dependencies]
+  # The two pinned images of docker-compose.yml (postgis, and the build of the shell itself); the
+  # released images the stack runs are pinned in images.pin, which is bumped by hand (docs/RELEASING.md).
+  - package-ecosystem: docker-compose
+    directory: /
+    schedule:
+      interval: weekly
+      day: monday
+    cooldown:
+      default-days: 7
+    commit-message:
+      prefix: deps
+    open-pull-requests-limit: 3
+    labels: [dependencies]

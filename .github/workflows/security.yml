@@ -1,0 +1,183 @@
+# Security checks on every pull request, on main and weekly (a new advisory against an unchanged
+# tree is still found). viafrei-database's security.yml with viafrei-api's two more jobs (Snyk and
+# the licence allow-list): SAST (CodeQL), dependencies (dependency review, Snyk, licences), secrets
+# over the whole history (gitleaks), DAST (OWASP ZAP against the built shell). The image itself is
+# scanned by Trivy in ci.yml. Nothing here reaches a database or a public host.
+name: Security
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+  schedule:
+    - cron: "41 4 * * 1"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: security-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
+
+env:
+  NODE_VERSION: 26.12.1 # the Node of the image (Dockerfile)
+
+jobs:
+  codeql:
+    name: CodeQL (TypeScript)
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    permissions:
+      contents: read
+      security-events: write
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - uses: github/codeql-action/init@33d7b85da1a04171e211befe2c739303b9a4c066 # v4.39.3
+        with:
+          languages: javascript-typescript
+          queries: security-extended
+      - uses: github/codeql-action/analyze@33d7b85da1a04171e211befe2c739303b9a4c066 # v4.39.3
+        with:
+          category: codeql-typescript
+
+  dependency-review:
+    name: Dependency review
+    if: github.event_name == 'pull_request'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - uses: actions/dependency-review-action@a1d282b36b6f3519aa1f3fc636f609c47dddb294 # v5.0.0
+        with:
+          fail-on-severity: moderate
+          # Exactly the licences of today's tree (scripts/licences.mjs ALLOWED holds the same list).
+          # A new licence is a decision: add it here and there by hand.
+          allow-licenses: 0BSD, Apache-2.0, BlueOak-1.0.0, BSD-2-Clause, BSD-3-Clause, CC0-1.0, ISC, MIT, MPL-2.0
+          # sharp's libvips builds (LGPL-3.0-or-later): optional dev dependencies of Astro's image
+          # service, never in the image (scripts/licences.mjs names them with the reason).
+          allow-dependencies-licenses: >-
+            pkg:npm/%40img/sharp-libvips-darwin-arm64, pkg:npm/%40img/sharp-libvips-darwin-x64,
+            pkg:npm/%40img/sharp-libvips-linux-arm, pkg:npm/%40img/sharp-libvips-linux-arm64,
+            pkg:npm/%40img/sharp-libvips-linux-ppc64, pkg:npm/%40img/sharp-libvips-linux-riscv64,
+            pkg:npm/%40img/sharp-libvips-linux-s390x, pkg:npm/%40img/sharp-libvips-linux-x64,
+            pkg:npm/%40img/sharp-libvips-linuxmusl-arm64, pkg:npm/%40img/sharp-libvips-linuxmusl-x64,
+            pkg:npm/%40img/sharp-wasm32, pkg:npm/%40img/sharp-win32-arm64,
+            pkg:npm/%40img/sharp-win32-ia32, pkg:npm/%40img/sharp-win32-x64
+
+  licenses:
+    name: Dependency licences
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+      - name: Every licence of the lockfile is on the allow-list
+        run: node scripts/licences.mjs
+
+  snyk:
+    name: Snyk (dependencies)
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    permissions:
+      contents: read
+      security-events: write # uploads SARIF to code scanning
+    steps:
+      - name: SNYK_TOKEN must be set
+        env:
+          SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
+          ACTOR: ${{ github.actor }}
+        run: |
+          if [ -z "$SNYK_TOKEN" ]; then
+            if [ "$ACTOR" = "dependabot[bot]" ]; then
+              echo "::error::SNYK_TOKEN is not visible to this Dependabot pull request: Dependabot runs read Dependabot secrets, not Actions secrets. Add SNYK_TOKEN under Settings > Secrets and variables > Dependabot (docs/RELEASING.md)."
+            else
+              echo "::error::the repository secret SNYK_TOKEN is not set (a pull request from a fork never sees it); Snyk cannot test this run"
+            fi
+            exit 1
+          fi
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: npm
+      - run: npm ci --ignore-scripts --no-audit --no-fund
+      - name: Snyk CLI 1.1308.1, checksum verified
+        run: |
+          curl -fsSL --proto '=https' --tlsv1.2 --max-time 60 -o snyk https://static.snyk.io/cli/v1.1308.1/snyk-linux
+          echo "a8b2e420af6d8e61bf1d367c064475ccf699d767fc8763efb0072b9cac250f9a  snyk" | sha256sum -c -
+          chmod +x snyk
+      - env:
+          SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
+        run: |
+          mkdir -p sarif
+          ./snyk test --all-projects --severity-threshold=high --sarif-file-output=sarif/snyk.sarif
+      - name: Upload SARIF to code scanning
+        if: always() && hashFiles('sarif/snyk.sarif') != '' && (github.event_name != 'pull_request' || github.event.pull_request.head.repo.full_name == github.repository)
+        uses: github/codeql-action/upload-sarif@33d7b85da1a04171e211befe2c739303b9a4c066 # v4.39.3
+        with:
+          sarif_file: sarif/snyk.sarif
+          category: snyk-open-source
+
+  gitleaks:
+    name: Secrets in history (gitleaks)
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+          fetch-depth: 0 # every commit, not only the tip
+      - name: gitleaks over the full history
+        run: |
+          docker run --rm -v "$PWD:/repo" \
+            zricethezav/gitleaks:v8.30.1@sha256:c00b6bd0aeb3071cbcb79009cb16a60dd9e0a7c60e2be9ab65d25e6bc8abbb7f \
+            git /repo --redact --no-banner --exit-code 1 --log-opts="--all"
+
+  zap:
+    name: DAST (OWASP ZAP against the container)
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    permissions:
+      contents: read
+      security-events: write # uploads the ZAP SARIF to code scanning
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - uses: docker/setup-buildx-action@f87e5991a6d7451dcb8d9637bfbc97413f497069 # v4.4.1
+      - uses: docker/build-push-action@c3c9e263c25d99ce0380d002d59b67737d91b0dc # v7.4.0
+        with:
+          context: .
+          load: true
+          push: false
+          tags: viafrei-web:zap
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+      - name: ZAP baseline against the shell
+        env:
+          IMAGE: viafrei-web:zap
+        run: scripts/zap-scan.sh
+      - uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        if: always()
+        with:
+          name: zap-report
+          path: zap-report/
+          retention-days: 30
+      - name: Upload SARIF to code scanning
+        if: always() && hashFiles('zap-report/zap.sarif') != '' && (github.event_name != 'pull_request' || github.event.pull_request.head.repo.full_name == github.repository)
+        uses: github/codeql-action/upload-sarif@33d7b85da1a04171e211befe2c739303b9a4c066 # v4.39.3
+        with:
+          sarif_file: zap-report/zap.sarif
+          category: zap
