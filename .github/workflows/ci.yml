@@ -1,4 +1,4 @@
-# Build and test on every pull request that touches more than prose, and on a release's merge commit. Check names are stable: branch protection
+# Build and test on every pull request that touches more than prose (the `changes` job), and on a release's merge commit. Check names are stable: branch protection
 # requires them by name (docs/RELEASING.md). viafrei-database's ci.yml, with the site's own jobs:
 # the gates that judged packages/web in viafrei's Verify workflow (its static and web jobs) move
 # here unchanged, and the database jobs (migration lint, PostGIS integration) have no counterpart:
@@ -10,25 +10,13 @@ name: CI
 
 on:
   # GitHub by minimum (owner 2026-11-15): pull requests, and on main only so the release gate has a
-  # run on the merge commit (scripts/ci-gate.ts reads it). On main every job but one is skipped
-  # unless the commit is the merge of a release pull request (RELEASE_PUSH below). No schedule.
+  # run on the merge commit (scripts/ci-gate.sh reads its jobs). On main the heavy jobs run only on
+  # the merge of a release pull request (its subject starts `chore: release `). No schedule, and no
+  # workflow-level paths-ignore: a prose-only change is decided by the `changes` job below, so every
+  # required check still reports (skipped), and no merge needs the administrator's bypass.
   pull_request:
-    paths-ignore: # a change to prose alone runs nothing (owner 2026-11-15: GitHub by minimum)
-      - "**/*.md"
-      - "docs/**"
-      - LICENSE
-      - .github/CODEOWNERS
-      - .github/ISSUE_TEMPLATE/**
-      - .github/PULL_REQUEST_TEMPLATE.md
   push:
     branches: [main]
-    paths-ignore: # a change to prose alone runs nothing (owner 2026-11-15: GitHub by minimum)
-      - "**/*.md"
-      - "docs/**"
-      - LICENSE
-      - .github/CODEOWNERS
-      - .github/ISSUE_TEMPLATE/**
-      - .github/PULL_REQUEST_TEMPLATE.md
   workflow_dispatch:
 
 permissions:
@@ -42,13 +30,43 @@ env:
   NODE_VERSION: 26.12.1 # the Node of the image (Dockerfile), and of viafrei-app's
 
 jobs:
+  changes:
+    name: Changes (code, or prose only)
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    outputs:
+      code: ${{ steps.diff.outputs.code }}
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+          fetch-depth: 0 # both ends of the diff
+      # scripts/changes.sh: `false` only when every changed file is prose (and no test reads it);
+      # anything it cannot read is `true`. A dispatch always runs everything.
+      - name: Does the change touch more than prose?
+        id: diff
+        env:
+          EVENT: ${{ github.event_name }}
+          PR_BASE: ${{ github.event.pull_request.base.sha }}
+          PR_HEAD: ${{ github.event.pull_request.head.sha }}
+          BEFORE: ${{ github.event.before }}
+          AFTER: ${{ github.sha }}
+        run: |
+          case "$EVENT" in
+            pull_request) code="$(bash scripts/changes.sh "$PR_BASE" "$PR_HEAD")" ;;
+            push) code="$(bash scripts/changes.sh "$BEFORE" "$AFTER")" ;;
+            *) code=true ;;
+          esac
+          echo "code=$code" >> "$GITHUB_OUTPUT"
+
   lint:
     name: Lint
+    needs: changes
+    if: needs.changes.outputs.code == 'true'
     runs-on: ubuntu-24.04
     timeout-minutes: 15
     permissions:
       contents: read
-      packages: read # pulls the pinned viafrei-app (images.pin)
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
@@ -58,13 +76,26 @@ jobs:
           node-version: ${{ env.NODE_VERSION }}
           cache: npm
       - run: npm ci --ignore-scripts --no-audit --no-fund
-      # viafrei-app is a private package: this repository must be granted read access to it
-      # (package settings > Manage Actions access; docs/RELEASING.md), and the job pulls it with its own token.
+      - name: GHCR_READ_TOKEN must be set
+        env:
+          GHCR_READ_TOKEN: ${{ secrets.GHCR_READ_TOKEN }}
+          ACTOR: ${{ github.actor }}
+        run: |
+          if [ -z "$GHCR_READ_TOKEN" ]; then
+            if [ "$ACTOR" = "dependabot[bot]" ]; then
+              echo "::error::GHCR_READ_TOKEN is not visible to this Dependabot pull request: Dependabot runs read Dependabot secrets, not Actions secrets. Add GHCR_READ_TOKEN under Settings > Secrets and variables > Dependabot (docs/RELEASING.md)."
+            else
+              echo "::error::the repository secret GHCR_READ_TOKEN is not set (a pull request from a fork never sees it); the pinned viafrei-app cannot be pulled (docs/RELEASING.md)"
+            fi
+            exit 1
+          fi
+      # viafrei-app is a private package of another repository: the job pulls it with GHCR_READ_TOKEN,
+      # a read:packages token kept for that one pull (docs/RELEASING.md), never with GITHUB_TOKEN.
       - uses: docker/login-action@8aa5831fb8d48d8f76594c7ddde61ae58019f550 # v4.8.0
         with:
           registry: ghcr.io
           username: ${{ github.actor }}
-          password: ${{ secrets.GITHUB_TOKEN }}
+          password: ${{ secrets.GHCR_READ_TOKEN }}
       - run: npm run pinned
       - run: npm run typecheck
       - run: npm run lint
@@ -77,12 +108,12 @@ jobs:
 
   unit:
     name: Unit tests
-    if: "github.event_name != 'push' || startsWith(github.event.head_commit.message, 'chore: release ')"
+    needs: changes
+    if: "needs.changes.outputs.code == 'true' && (github.event_name != 'push' || startsWith(github.event.head_commit.message, 'chore: release '))"
     runs-on: ubuntu-24.04
     timeout-minutes: 20
     permissions:
       contents: read
-      packages: read # pulls the pinned viafrei-app (images.pin)
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
@@ -92,13 +123,26 @@ jobs:
           node-version: ${{ env.NODE_VERSION }}
           cache: npm
       - run: npm ci --ignore-scripts --no-audit --no-fund
-      # viafrei-app is a private package: this repository must be granted read access to it
-      # (package settings > Manage Actions access; docs/RELEASING.md), and the job pulls it with its own token.
+      - name: GHCR_READ_TOKEN must be set
+        env:
+          GHCR_READ_TOKEN: ${{ secrets.GHCR_READ_TOKEN }}
+          ACTOR: ${{ github.actor }}
+        run: |
+          if [ -z "$GHCR_READ_TOKEN" ]; then
+            if [ "$ACTOR" = "dependabot[bot]" ]; then
+              echo "::error::GHCR_READ_TOKEN is not visible to this Dependabot pull request: Dependabot runs read Dependabot secrets, not Actions secrets. Add GHCR_READ_TOKEN under Settings > Secrets and variables > Dependabot (docs/RELEASING.md)."
+            else
+              echo "::error::the repository secret GHCR_READ_TOKEN is not set (a pull request from a fork never sees it); the pinned viafrei-app cannot be pulled (docs/RELEASING.md)"
+            fi
+            exit 1
+          fi
+      # viafrei-app is a private package of another repository: the job pulls it with GHCR_READ_TOKEN,
+      # a read:packages token kept for that one pull (docs/RELEASING.md), never with GITHUB_TOKEN.
       - uses: docker/login-action@8aa5831fb8d48d8f76594c7ddde61ae58019f550 # v4.8.0
         with:
           registry: ghcr.io
           username: ${{ github.actor }}
-          password: ${{ secrets.GITHUB_TOKEN }}
+          password: ${{ secrets.GHCR_READ_TOKEN }}
       - run: npm run pinned
       # The unit suite with coverage, for the SonarCloud job (no threshold: viafrei held none for the
       # site, and a new one is a decision of its own).
@@ -107,33 +151,47 @@ jobs:
         with:
           name: coverage
           path: coverage/lcov.info
-          retention-days: 14
+          retention-days: 1
           if-no-files-found: error
 
   gates:
     name: Site gates
-    if: "github.event_name != 'push' || startsWith(github.event.head_commit.message, 'chore: release ')"
+    needs: changes
+    if: "needs.changes.outputs.code == 'true' && (github.event_name != 'push' || startsWith(github.event.head_commit.message, 'chore: release '))"
     runs-on: ubuntu-24.04
     timeout-minutes: 15
     permissions:
       contents: read
-      packages: read # pulls the pinned viafrei-app (images.pin)
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           persist-credentials: false
+          fetch-depth: 0 # the lastmod lint reads the pull request's commits
       - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
         with:
           node-version: ${{ env.NODE_VERSION }}
           cache: npm
       - run: npm ci --ignore-scripts --no-audit --no-fund
-      # viafrei-app is a private package: this repository must be granted read access to it
-      # (package settings > Manage Actions access; docs/RELEASING.md), and the job pulls it with its own token.
+      - name: GHCR_READ_TOKEN must be set
+        env:
+          GHCR_READ_TOKEN: ${{ secrets.GHCR_READ_TOKEN }}
+          ACTOR: ${{ github.actor }}
+        run: |
+          if [ -z "$GHCR_READ_TOKEN" ]; then
+            if [ "$ACTOR" = "dependabot[bot]" ]; then
+              echo "::error::GHCR_READ_TOKEN is not visible to this Dependabot pull request: Dependabot runs read Dependabot secrets, not Actions secrets. Add GHCR_READ_TOKEN under Settings > Secrets and variables > Dependabot (docs/RELEASING.md)."
+            else
+              echo "::error::the repository secret GHCR_READ_TOKEN is not set (a pull request from a fork never sees it); the pinned viafrei-app cannot be pulled (docs/RELEASING.md)"
+            fi
+            exit 1
+          fi
+      # viafrei-app is a private package of another repository: the job pulls it with GHCR_READ_TOKEN,
+      # a read:packages token kept for that one pull (docs/RELEASING.md), never with GITHUB_TOKEN.
       - uses: docker/login-action@8aa5831fb8d48d8f76594c7ddde61ae58019f550 # v4.8.0
         with:
           registry: ghcr.io
           username: ${{ github.actor }}
-          password: ${{ secrets.GITHUB_TOKEN }}
+          password: ${{ secrets.GHCR_READ_TOKEN }}
       - run: npm run pinned
       - name: Pins (images.pin parses; pins.sh self-test)
         run: bash scripts/pins.sh lint && bash scripts/pins.test.sh
@@ -143,18 +201,25 @@ jobs:
         run: bash scripts/check_web_boundary.sh && bash scripts/check_web_boundary.test.sh
       - name: The fallback and preview pages (one sentence, no figure, legal links, nothing external) and the self-test
         run: bash scripts/check_static_pages.sh && bash scripts/check_static_pages.test.sh
+      - name: The lastmod map changes only in a release commit, and is current at the cut, and the self-test
+        run: |
+          bash scripts/check_lastmod_commits.test.sh
+          if [ "$EVENT" = pull_request ]; then bash scripts/check_lastmod_commits.sh --range "$BASE..HEAD"; fi
+        env:
+          EVENT: ${{ github.event_name }}
+          BASE: ${{ github.event.pull_request.base.sha }}
       - name: The catalogue parity sweep fails four ways (mutations, so at a dispatch or a minor's release pull request only)
         if: github.event_name == 'workflow_dispatch' || (startsWith(github.head_ref, 'release-please--') && endsWith(github.event.pull_request.title, '.0'))
         run: bash scripts/web-i18n-mutation.sh
 
   web:
     name: Web (the site shell, built and judged)
-    if: "github.event_name != 'push' || startsWith(github.event.head_commit.message, 'chore: release ')"
+    needs: changes
+    if: "needs.changes.outputs.code == 'true' && (github.event_name != 'push' || startsWith(github.event.head_commit.message, 'chore: release '))"
     runs-on: ubuntu-24.04
     timeout-minutes: 45
     permissions:
       contents: read
-      packages: read # pulls the pinned viafrei-app (images.pin)
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
@@ -164,13 +229,26 @@ jobs:
           node-version: ${{ env.NODE_VERSION }}
           cache: npm
       - run: npm ci --ignore-scripts --no-audit --no-fund
-      # viafrei-app is a private package: this repository must be granted read access to it
-      # (package settings > Manage Actions access; docs/RELEASING.md), and the job pulls it with its own token.
+      - name: GHCR_READ_TOKEN must be set
+        env:
+          GHCR_READ_TOKEN: ${{ secrets.GHCR_READ_TOKEN }}
+          ACTOR: ${{ github.actor }}
+        run: |
+          if [ -z "$GHCR_READ_TOKEN" ]; then
+            if [ "$ACTOR" = "dependabot[bot]" ]; then
+              echo "::error::GHCR_READ_TOKEN is not visible to this Dependabot pull request: Dependabot runs read Dependabot secrets, not Actions secrets. Add GHCR_READ_TOKEN under Settings > Secrets and variables > Dependabot (docs/RELEASING.md)."
+            else
+              echo "::error::the repository secret GHCR_READ_TOKEN is not set (a pull request from a fork never sees it); the pinned viafrei-app cannot be pulled (docs/RELEASING.md)"
+            fi
+            exit 1
+          fi
+      # viafrei-app is a private package of another repository: the job pulls it with GHCR_READ_TOKEN,
+      # a read:packages token kept for that one pull (docs/RELEASING.md), never with GITHUB_TOKEN.
       - uses: docker/login-action@8aa5831fb8d48d8f76594c7ddde61ae58019f550 # v4.8.0
         with:
           registry: ghcr.io
           username: ${{ github.actor }}
-          password: ${{ secrets.GITHUB_TOKEN }}
+          password: ${{ secrets.GHCR_READ_TOKEN }}
       - run: npm run pinned
       # The browser is Playwright's own Chromium with its system dependencies; the version comes
       # from the lockfile, never "latest". Every step runs a declared `npm run` script, never `npx`.
@@ -205,11 +283,12 @@ jobs:
         with:
           name: visual-baselines-linux
           path: ${{ runner.temp }}/visual-baselines
-          retention-days: 14
+          retention-days: 1
 
   image:
     name: Image (build, scan, smoke)
-    if: "github.event_name != 'push' || startsWith(github.event.head_commit.message, 'chore: release ')"
+    needs: changes
+    if: "needs.changes.outputs.code == 'true' && (github.event_name != 'push' || startsWith(github.event.head_commit.message, 'chore: release '))"
     runs-on: ubuntu-24.04
     timeout-minutes: 30
     permissions:
@@ -250,21 +329,34 @@ jobs:
 
   stack:
     name: Stack (the shell against the pinned releases)
-    if: "github.event_name != 'push' || startsWith(github.event.head_commit.message, 'chore: release ')"
+    needs: changes
+    if: "needs.changes.outputs.code == 'true' && (github.event_name != 'push' || startsWith(github.event.head_commit.message, 'chore: release '))"
     runs-on: ubuntu-24.04
     timeout-minutes: 20
     permissions:
       contents: read
-      packages: read # pulls the pinned viafrei-app (images.pin)
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           persist-credentials: false
+      - name: GHCR_READ_TOKEN must be set
+        env:
+          GHCR_READ_TOKEN: ${{ secrets.GHCR_READ_TOKEN }}
+          ACTOR: ${{ github.actor }}
+        run: |
+          if [ -z "$GHCR_READ_TOKEN" ]; then
+            if [ "$ACTOR" = "dependabot[bot]" ]; then
+              echo "::error::GHCR_READ_TOKEN is not visible to this Dependabot pull request: Dependabot runs read Dependabot secrets, not Actions secrets. Add GHCR_READ_TOKEN under Settings > Secrets and variables > Dependabot (docs/RELEASING.md)."
+            else
+              echo "::error::the repository secret GHCR_READ_TOKEN is not set (a pull request from a fork never sees it); the pinned viafrei-app cannot be pulled (docs/RELEASING.md)"
+            fi
+            exit 1
+          fi
       - uses: docker/login-action@8aa5831fb8d48d8f76594c7ddde61ae58019f550 # v4.8.0
         with:
           registry: ghcr.io
           username: ${{ github.actor }}
-          password: ${{ secrets.GITHUB_TOKEN }}
+          password: ${{ secrets.GHCR_READ_TOKEN }}
       - name: Every version tag of images.pin still names its pinned digest
         run: bash scripts/pins.sh check
       # The database migrated from empty by the pinned viafrei-database, the pinned viafrei-app's
@@ -280,8 +372,8 @@ jobs:
 
   sonar:
     name: SonarCloud analysis
-    if: "github.event_name != 'push' || startsWith(github.event.head_commit.message, 'chore: release ')"
-    needs: [unit]
+    needs: [changes, unit]
+    if: "needs.changes.outputs.code == 'true' && (github.event_name != 'push' || startsWith(github.event.head_commit.message, 'chore: release '))"
     runs-on: ubuntu-24.04
     timeout-minutes: 10
     steps:

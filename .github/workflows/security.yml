@@ -1,4 +1,4 @@
-# Security checks on every pull request that touches more than prose and on a release's merge
+# Security checks on every pull request that touches more than prose (the `changes` job) and on a release's merge
 # commit; a new advisory against an unchanged tree is found by Dependabot and by a dispatch, not by
 # a schedule (owner 2026-11-15: GitHub by minimum). viafrei-database's security.yml with viafrei-api's two more jobs (Snyk and
 # the licence allow-list): SAST (CodeQL), dependencies (dependency review, Snyk, licences), secrets
@@ -8,25 +8,13 @@ name: Security
 
 on:
   # GitHub by minimum (owner 2026-11-15): pull requests, and on main only so the release gate has a
-  # run on the merge commit (scripts/ci-gate.ts reads it). On main every job but one is skipped
-  # unless the commit is the merge of a release pull request (RELEASE_PUSH below). No schedule.
+  # run on the merge commit (scripts/ci-gate.sh reads its jobs). On main the heavy jobs run only on
+  # the merge of a release pull request (its subject starts `chore: release `). No schedule, and no
+  # workflow-level paths-ignore: a prose-only change is decided by the `changes` job below, so every
+  # required check still reports (skipped), and no merge needs the administrator's bypass.
   pull_request:
-    paths-ignore: # a change to prose alone runs nothing (owner 2026-11-15: GitHub by minimum)
-      - "**/*.md"
-      - "docs/**"
-      - LICENSE
-      - .github/CODEOWNERS
-      - .github/ISSUE_TEMPLATE/**
-      - .github/PULL_REQUEST_TEMPLATE.md
   push:
     branches: [main]
-    paths-ignore: # a change to prose alone runs nothing (owner 2026-11-15: GitHub by minimum)
-      - "**/*.md"
-      - "docs/**"
-      - LICENSE
-      - .github/CODEOWNERS
-      - .github/ISSUE_TEMPLATE/**
-      - .github/PULL_REQUEST_TEMPLATE.md
   workflow_dispatch:
 
 permissions:
@@ -40,9 +28,39 @@ env:
   NODE_VERSION: 26.12.1 # the Node of the image (Dockerfile)
 
 jobs:
+  changes:
+    name: Changes (code, or prose only)
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    outputs:
+      code: ${{ steps.diff.outputs.code }}
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+          fetch-depth: 0 # both ends of the diff
+      # scripts/changes.sh: `false` only when every changed file is prose (and no test reads it);
+      # anything it cannot read is `true`. A dispatch always runs everything.
+      - name: Does the change touch more than prose?
+        id: diff
+        env:
+          EVENT: ${{ github.event_name }}
+          PR_BASE: ${{ github.event.pull_request.base.sha }}
+          PR_HEAD: ${{ github.event.pull_request.head.sha }}
+          BEFORE: ${{ github.event.before }}
+          AFTER: ${{ github.sha }}
+        run: |
+          case "$EVENT" in
+            pull_request) code="$(bash scripts/changes.sh "$PR_BASE" "$PR_HEAD")" ;;
+            push) code="$(bash scripts/changes.sh "$BEFORE" "$AFTER")" ;;
+            *) code=true ;;
+          esac
+          echo "code=$code" >> "$GITHUB_OUTPUT"
+
   codeql:
     name: CodeQL (TypeScript)
-    if: "github.event_name != 'push' || startsWith(github.event.head_commit.message, 'chore: release ')"
+    needs: changes
+    if: "needs.changes.outputs.code == 'true' && (github.event_name != 'push' || startsWith(github.event.head_commit.message, 'chore: release '))"
     runs-on: ubuntu-24.04
     timeout-minutes: 20
     permissions:
@@ -62,7 +80,8 @@ jobs:
 
   dependency-review:
     name: Dependency review
-    if: github.event_name == 'pull_request'
+    needs: changes
+    if: needs.changes.outputs.code == 'true' && github.event_name == 'pull_request'
     runs-on: ubuntu-24.04
     timeout-minutes: 5
     steps:
@@ -88,6 +107,8 @@ jobs:
 
   licenses:
     name: Dependency licences
+    needs: changes
+    if: needs.changes.outputs.code == 'true'
     runs-on: ubuntu-24.04
     timeout-minutes: 5
     steps:
@@ -102,7 +123,8 @@ jobs:
 
   snyk:
     name: Snyk (dependencies)
-    if: "github.event_name != 'push' || startsWith(github.event.head_commit.message, 'chore: release ')"
+    needs: changes
+    if: "needs.changes.outputs.code == 'true' && (github.event_name != 'push' || startsWith(github.event.head_commit.message, 'chore: release '))"
     runs-on: ubuntu-24.04
     timeout-minutes: 10
     permissions:
@@ -149,7 +171,8 @@ jobs:
 
   gitleaks:
     name: Secrets in history (gitleaks)
-    if: "github.event_name != 'push' || startsWith(github.event.head_commit.message, 'chore: release ')"
+    needs: changes
+    if: "needs.changes.outputs.code == 'true' && (github.event_name != 'push' || startsWith(github.event.head_commit.message, 'chore: release '))"
     runs-on: ubuntu-24.04
     timeout-minutes: 10
     steps:
@@ -165,7 +188,8 @@ jobs:
 
   zap:
     name: DAST (OWASP ZAP against the container)
-    if: "github.event_name != 'push' || startsWith(github.event.head_commit.message, 'chore: release ')"
+    needs: changes
+    if: "needs.changes.outputs.code == 'true' && (github.event_name != 'push' || startsWith(github.event.head_commit.message, 'chore: release '))"
     runs-on: ubuntu-24.04
     timeout-minutes: 30
     permissions:
@@ -194,7 +218,7 @@ jobs:
         with:
           name: zap-report
           path: zap-report/
-          retention-days: 30
+          retention-days: 1
       - name: Upload SARIF to code scanning
         if: always() && hashFiles('zap-report/zap.sarif') != '' && (github.event_name != 'pull_request' || github.event.pull_request.head.repo.full_name == github.repository)
         uses: github/codeql-action/upload-sarif@33d7b85da1a04171e211befe2c739303b9a4c066 # v4.39.3

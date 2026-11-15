@@ -2,9 +2,10 @@
  * The workflows hold to what this repository promises about them (viafrei-web#2; the claims
  * viafrei-database's test/workflows.test.ts holds, for the ones that apply here).
  */
-import { readdirSync, readFileSync } from "node:fs";
+import { existsSync, readdirSync, readFileSync } from "node:fs";
 import { join } from "node:path";
 import { describe, expect, it } from "vitest";
+import { REQUIRED_JOBS } from "../scripts/ci-gate.js";
 import { REPO } from "./helpers.js";
 
 const WF = join(REPO, ".github/workflows");
@@ -95,26 +96,40 @@ describe("the workflows", () => {
     expect(r).not.toMatch(/npm publish/u);
   });
 
-  it("use GitHub by minimum (owner 2026-11-15): no schedule, prose runs nothing, heavy steps at a minor only", () => {
+  it("use GitHub by minimum (owner 2026-11-15): no schedule, prose skips every job but one, heavy steps at a minor only", () => {
     for (const f of files) {
       expect(text(f), `${f} has a schedule`).not.toMatch(/^\s+schedule:/mu);
       expect(text(f), `${f} runs on a push to any branch`).not.toMatch(/^ {2}push:\n(?! {4}(branches: \[main\]|tags:))/mu);
     }
     const minor = "github.event_name == 'workflow_dispatch' || (startsWith(github.head_ref, 'release-please--') && endsWith(github.event.pull_request.title, '.0'))";
     const releasePush = "github.event_name != 'push' || startsWith(github.event.head_commit.message, 'chore: release ')";
+    const code = "needs.changes.outputs.code == 'true'";
     for (const f of ["ci.yml", "security.yml"]) {
-      const on = /\non:\n([\s\S]*?)\n\S/u.exec(text(f))?.[1] ?? "";
-      expect(on.match(/paths-ignore:/gu)?.length, `${f}: pull_request and push both ignore prose`).toBe(2);
-      expect(on).toContain('      - "**/*.md"\n      - "docs/**"\n');
-      expect(text(f)).toContain("cancel-in-progress: ${{ github.event_name == 'pull_request' }}");
-      expect(text(f)).toContain(releasePush);
+      const t = text(f);
+      // no workflow-level filter: a skipped workflow never reports its required checks (a merge would need the bypass)
+      expect(t, `${f}: a workflow-level paths filter`).not.toMatch(/^\s+paths(-ignore)?:/mu);
+      expect(t, `${f}: the changes job`).toContain('  changes:\n    name: Changes (code, or prose only)\n');
+      expect(t).toContain('pull_request) code="$(bash scripts/changes.sh "$PR_BASE" "$PR_HEAD")" ;;');
+      expect(t).toContain('push) code="$(bash scripts/changes.sh "$BEFORE" "$AFTER")" ;;');
+      expect(t).toContain("*) code=true ;;");
+      expect(t).toContain("cancel-in-progress: ${{ github.event_name == 'pull_request' }}");
+      // every other job needs the changes job and runs only on code
+      const jobs = [...t.matchAll(/^ {2}([a-z-]+):\n((?: {4}.*\n|\n)+?)(?= {4}runs-on:)/gmu)];
+      expect(jobs.length, `${f}: jobs read`).toBeGreaterThan(4);
+      for (const [, name, head] of jobs) {
+        if (name === "changes") continue;
+        expect(head, `${f} ${name ?? ""}: needs changes`).toMatch(/^ {4}needs: (changes|\[changes, [a-z]+\])$/mu);
+        const cond = (/^ {4}if: (.+)$/mu.exec(head ?? "")?.[1] ?? "").replace(/^"/u, "");
+        expect(cond.startsWith(code), `${f} ${name ?? ""}: runs only on code (${cond})`).toBe(true);
+      }
+      expect(t).toContain(`${code} && (${releasePush})`);
     }
     const ci = text("ci.yml");
     for (const step of ["npm run web:lighthouse", "npm run web:visual\n", "bash scripts/web-i18n-mutation.sh"]) {
       expect(ci, step).toContain(`        if: ${minor}\n        run: ${step}`);
     }
     const prc = JSON.parse(read("release-please-config.json")) as { "pull-request-title-pattern": string };
-    expect(prc["pull-request-title-pattern"], "RELEASE_PUSH reads the release commit by this title").toBe("chore: release ${version}");
+    expect(prc["pull-request-title-pattern"], "the release-push condition reads the release commit by this title").toBe("chore: release ${version}");
     expect(text("scorecard.yml")).toMatch(/\non:\n(?:\s*#[^\n]*\n)*\s+workflow_dispatch:\n\n/u);
   });
 
@@ -125,6 +140,45 @@ describe("the workflows", () => {
     expect(required.length).toBeGreaterThan(5);
     const names = new Set(files.flatMap((f) => [...text(f).matchAll(/^ {4}name: (.+)$/gmu)].map((m) => (m[1] ?? "").trim())));
     for (const c of required) expect(names.has(c), `required check "${c}" is no job's name`).toBe(true);
+  });
+
+  it("gate a release on exactly the required checks that run on a push (scripts/ci-gate.ts REQUIRED_JOBS)", () => {
+    const block = /<!-- required-checks:begin -->([\s\S]*?)<!-- required-checks:end -->/u.exec(read("docs/RELEASING.md"))?.[1] ?? "";
+    const required = [...block.matchAll(/^- `([^`]+)`/gmu)].map((m) => m[1] ?? "");
+    // Dependency review runs on pull requests only, so a release's push run never has it
+    expect(required).toContain("Dependency review");
+    expect(Object.values(REQUIRED_JOBS).flat().sort()).toEqual(required.filter((c) => c !== "Dependency review").sort());
+    for (const [wf, jobs] of Object.entries(REQUIRED_JOBS)) {
+      const names = [...read(wf).matchAll(/^ {4}name: (.+)$/gmu)].map((m) => (m[1] ?? "").trim());
+      for (const j of jobs) expect(names, `${wf}: ${j}`).toContain(j);
+    }
+  });
+
+  it("pull the private viafrei-app with GHCR_READ_TOKEN, each pull behind a check that the secret is set", () => {
+    const ci = text("ci.yml");
+    const logins = ci.split("docker/login-action@").length - 1;
+    expect(logins).toBe(5);
+    expect(ci.split("password: ${{ secrets.GHCR_READ_TOKEN }}").length - 1).toBe(logins);
+    expect(ci.split("- name: GHCR_READ_TOKEN must be set").length - 1).toBe(logins);
+    expect(ci, "a job asks for packages it no longer reads").not.toMatch(/packages: read/u);
+    expect(ci).not.toContain("Manage Actions access");
+    // release.yml pushes and reads this repository's own image: there GITHUB_TOKEN is right
+    expect(text("release.yml").split("password: ${{ secrets.GITHUB_TOKEN }}").length - 1).toBe(3);
+  });
+
+  it("send a prose file a test reads through the suites (scripts/changes.sh TESTED_PROSE)", () => {
+    const listed = (/^TESTED_PROSE="([^"]+)"$/mu.exec(read("scripts/changes.sh"))?.[1] ?? "").split(" ");
+    const tests = ["test", "packages/web/test"].flatMap((d) => readdirSync(join(REPO, d)).filter((f) => f.endsWith(".ts")).map((f) => read(`${d}/${f}`)));
+    const named = new Set(tests.flatMap((t) => [...t.matchAll(/["'`(]((?:docs\/|packages\/)[\w./-]+\.md)["'`)]/gu)].map((m) => m[1] ?? "")));
+    const here = [...named].filter((p) => existsSync(join(REPO, p))).sort();
+    expect(here.length).toBeGreaterThan(1);
+    for (const p of here) expect(listed, p).toContain(p);
+  });
+
+  it("document a tag ruleset whose one bypass is the admin role", () => {
+    const doc = read("docs/RELEASING.md");
+    expect(doc, "GitHub refuses an Integration bypass actor on a user-owned repository (422)").not.toMatch(/"actor_type": "Integration"/u);
+    expect(doc).toContain('{ "actor_id": 5, "actor_type": "RepositoryRole", "bypass_mode": "always" }');
   });
 });
 

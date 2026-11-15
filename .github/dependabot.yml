@@ -1,4 +1,4 @@
-# Weekly dependency updates, each as a pull request that runs the full CI.
+# Monthly dependency updates, each as a pull request that runs the full CI.
 # A version update waits 7 days after its release (cooldown), so a broken or
 # malicious release has time to be found first; security updates are not delayed.
 # Every pull request carries only the 'dependencies' label (the repo's label set
@@ -9,7 +9,6 @@ updates:
     directory: /
     schedule:
       interval: monthly # GitHub by minimum (owner 2026-11-15): each update is a CI run
-      day: monday
     cooldown:
       default-days: 7
     commit-message:
@@ -34,7 +33,6 @@ updates:
     directory: /
     schedule:
       interval: monthly # GitHub by minimum (owner 2026-11-15): each update is a CI run
-      day: monday
     cooldown:
       default-days: 7
     commit-message:
@@ -45,7 +43,6 @@ updates:
     directory: /
     schedule:
       interval: monthly # GitHub by minimum (owner 2026-11-15): each update is a CI run
-      day: monday
     cooldown:
       default-days: 7
     commit-message:
@@ -58,7 +55,6 @@ updates:
     directory: /
     schedule:
       interval: monthly # GitHub by minimum (owner 2026-11-15): each update is a CI run
-      day: monday
     cooldown:
       default-days: 7
     commit-message:

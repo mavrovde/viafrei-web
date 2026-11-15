@@ -24,7 +24,8 @@
 #     after the push is refused, and every later job checks out the gate's
 #     commit, never the tag;
 #   - CI and Security concluded success on that commit, from a push to main
-#     of this repository (scripts/ci-gate.ts);
+#     of this repository, and every required job of each ran and passed
+#     (scripts/ci-gate.sh: a run of skipped jobs concludes success too);
 #   - the tag has no published release page yet (a draft is expected).
 # Before the push: :X.Y.Z must not exist yet (a release is never rebuilt or
 # re-tagged; scripts/ghcr-not-released.sh), the image built from the tag must
@@ -156,8 +157,8 @@ jobs:
           GH_REPO: ${{ github.repository }}
           SHA: ${{ steps.tag.outputs.commit }}
         run: |
-          gh api --paginate --slurp "repos/$GH_REPO/actions/runs?head_sha=$SHA&per_page=100" > "$RUNNER_TEMP/runs.json"
-          node scripts/ci-gate.ts "$SHA" "$GH_REPO" < "$RUNNER_TEMP/runs.json"
+          # the runs AND every required job of each: a run of skipped jobs concludes success too
+          bash scripts/ci-gate.sh "$SHA"
 
   publish:
     name: Build, check, sign, attest, publish

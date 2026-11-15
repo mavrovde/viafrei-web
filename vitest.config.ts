@@ -31,6 +31,14 @@ export default defineConfig({
     setupFiles: ["./.pinned/app/packages/ingest/dist/platform/offline-setup.js"],
     testTimeout: 20_000,
     hookTimeout: 30_000,
-    coverage: { provider: "v8", reporter: ["text", "lcov"], reportsDirectory: "coverage" },
+    // This repository's own code only: the pinned viafrei-app under .pinned/ is private compiled code,
+    // and a coverage report is uploaded (an artifact, the SonarCloud analysis) from a public repository.
+    coverage: {
+      provider: "v8",
+      reporter: ["text", "lcov"],
+      reportsDirectory: "coverage",
+      include: ["packages/**"],
+      exclude: [".pinned/**", "**/node_modules/**", "**/dist/**", "**/*.test.ts", "**/*.e2e.ts"],
+    },
   },
 });

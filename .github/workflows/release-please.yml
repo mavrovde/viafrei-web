@@ -91,7 +91,9 @@ jobs:
           sha=${RUN_SHA:-$GITHUB_SHA}
           gh api --paginate --slurp "repos/$GH_REPO/actions/runs?head_sha=$sha&per_page=100" > "$RUNNER_TEMP/runs.json"
           rc=0
-          node scripts/ci-gate.ts "$sha" "$GH_REPO" < "$RUNNER_TEMP/runs.json" || rc=$?
+          # the runs alone: after an ordinary merge only Lint and Dependency licences run, and Release
+          # Please must still update its pull request; the tag job below reads the jobs (ci-gate.sh)
+          node scripts/ci-gate.ts runs "$sha" "$GH_REPO" < "$RUNNER_TEMP/runs.json" || rc=$?
           case $rc in
             0) echo "ready=true" >> "$GITHUB_OUTPUT" ;;
             1) echo "::notice::not both of CI and Security have succeeded on $sha yet; the other completion runs this again"
@@ -202,8 +204,8 @@ jobs:
           GH_REPO: ${{ github.repository }}
           SHA: ${{ needs.release-please.outputs.sha }}
         run: |
-          gh api --paginate --slurp "repos/$GH_REPO/actions/runs?head_sha=$SHA&per_page=100" > "$RUNNER_TEMP/runs.json"
-          node scripts/ci-gate.ts "$SHA" "$GH_REPO" < "$RUNNER_TEMP/runs.json"
+          # the runs AND every required job of each: a run of skipped jobs concludes success too
+          bash scripts/ci-gate.sh "$SHA"
       - name: Create the annotated tag (an existing tag is refused, never moved)
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
