@@ -45,8 +45,7 @@ its jobs). Everything is run locally before the one push.
 | unit tests, with coverage | CI | every pull request, a release's merge commit |
 | contrast, boundary, static pages, the pins | CI (Site gates) | every pull request, a release's merge commit |
 | the i18n mutation proof | CI (Site gates) | a minor's release pull request, a dispatch |
-| the browser suite, page weight, latency | CI (Web) | every pull request, a release's merge commit |
-| visual, Lighthouse | CI (Web) | a minor's release pull request, a dispatch |
+| the browser suite, page weight, Lighthouse, latency, visual | Release (Web) | every release, before the image is published; a dispatch on a branch |
 | Trivy over the image, the image smoke | CI (Image) | every pull request, a release's merge commit |
 | the shell against the pinned releases | CI (Stack) | every pull request, a release's merge commit |
 | SonarCloud | CI | every pull request, a release's merge commit |

@@ -14,6 +14,11 @@ const WF = join(REPO, ".github/workflows");
 const files = readdirSync(WF).filter((f) => f.endsWith(".yml")).sort();
 const text = (f: string): string => readFileSync(join(WF, f), "utf8");
 const read = (p: string): string => readFileSync(join(REPO, p), "utf8");
+/** One job of a workflow, from its `  <id>:` line to the next job's (or the end of the file). */
+const job = (t: string, id: string): string => {
+  const m = new RegExp(`^ {2}${id}:\n((?: {4}.*\n|\n)*)`, "mu").exec(t);
+  return m?.[1] ?? "";
+};
 
 /** The action pins of viafrei-database main (a92153a) and viafrei-api main (23b3f24), newest where they differ. */
 const SIBLING_PINS: Record<string, string> = {
@@ -129,9 +134,7 @@ describe("the workflows", () => {
       expect(t).toContain(`${code} && (${releasePush})`);
     }
     const ci = text("ci.yml");
-    for (const step of ["npm run web:lighthouse", "npm run web:visual\n", "bash scripts/web-i18n-mutation.sh"]) {
-      expect(ci, step).toContain(`        if: ${minor}\n        run: ${step}`);
-    }
+    expect(ci).toContain(`        if: ${minor}\n        run: bash scripts/web-i18n-mutation.sh`);
     const prc = JSON.parse(read("release-please-config.json")) as { "pull-request-title-pattern": string };
     expect(prc["pull-request-title-pattern"], "the release-push condition reads the release commit by this title").toBe("chore: release ${version}");
     expect(text("scorecard.yml")).toMatch(/\non:\n(?:\s*#[^\n]*\n)*\s+workflow_dispatch:\n\n/u);
@@ -163,13 +166,59 @@ describe("the workflows", () => {
   it("pull the private viafrei-app with GHCR_READ_TOKEN, each pull behind a check that the secret is set", () => {
     const ci = text("ci.yml");
     const logins = ci.split("docker/login-action@").length - 1;
-    expect(logins).toBe(5);
+    expect(logins).toBe(4);
     expect(ci.split("password: ${{ secrets.GHCR_READ_TOKEN }}").length - 1).toBe(logins);
     expect(ci.split("- name: GHCR_READ_TOKEN must be set").length - 1).toBe(logins);
     expect(ci, "a job asks for packages it no longer reads").not.toMatch(/packages: read/u);
     expect(ci).not.toContain("Manage Actions access");
-    // release.yml pushes and reads this repository's own image: there GITHUB_TOKEN is right
-    expect(text("release.yml").split("password: ${{ secrets.GITHUB_TOKEN }}").length - 1).toBe(3);
+    // release.yml pushes and reads this repository's own image: there GITHUB_TOKEN is right; its
+    // browser job alone pulls the private viafrei-app, with GHCR_READ_TOKEN behind the same check
+    const r = text("release.yml");
+    expect(r.split("password: ${{ secrets.GITHUB_TOKEN }}").length - 1).toBe(3);
+    expect(r.split("password: ${{ secrets.GHCR_READ_TOKEN }}").length - 1).toBe(1);
+    const web = job(r, "web");
+    expect(web).toContain("password: ${{ secrets.GHCR_READ_TOKEN }}");
+    expect(web.indexOf("- name: GHCR_READ_TOKEN must be set")).toBeGreaterThan(-1);
+    expect(web.indexOf("- name: GHCR_READ_TOKEN must be set")).toBeLessThan(web.indexOf("password: ${{ secrets.GHCR_READ_TOKEN }}"));
+  });
+
+  it("run the browser suite once per release: release.yml's web job, which publish needs, and no CI job", () => {
+    const ci = text("ci.yml");
+    expect(ci, "ci.yml has a web job").not.toMatch(/^ {2}web:$/mu);
+    expect(ci, "ci.yml names the Web job").not.toContain("Web (the site shell, built and judged)");
+    for (const s of ["web:e2e", "web:browsers", "web:build", "web:budget", "web:lighthouse", "web:latency", "web:visual"]) {
+      for (const f of files.filter((x) => x !== "release.yml")) expect(text(f), `${f} runs ${s}`).not.toContain(`npm run ${s}`);
+    }
+    const r = text("release.yml");
+    const web = job(r, "web");
+    expect(web).toMatch(/^ {4}name: Web \(the site shell, built and judged\)\n {4}needs: gate\n/u);
+    expect(web).toContain("    if: needs.gate.outputs.publish == 'true' || needs.gate.outputs.browser == 'true'\n");
+    // the measured ceiling, with its measurement beside it
+    expect(web).toMatch(/ {4}# Measured on PR #15 [^\n]+\n(?: {4}#[^\n]*\n)* {4}timeout-minutes: 75\n/u);
+    // contents: read and nothing else
+    expect(web).toMatch(/\n {4}permissions:\n {6}contents: read\n {4}steps:\n/u);
+    expect(web).not.toMatch(/cache: npm/u);
+    expect(web).toContain("ref: ${{ needs.gate.outputs.commit || github.sha }}");
+    // every check, in order, and none of them conditional but the bootstrap
+    const order = ["npm run pinned", "npm run web:browsers", "npm run web:build", "npm run web:e2e\n", "npm run web:budget", "npm run web:lighthouse", "npm run web:latency", "npm run web:visual\n", "npm run web:visual -- --update", "name: visual-baselines-linux"];
+    let at = -1;
+    for (const s of order) {
+      const i = web.indexOf(s);
+      expect(i, `the web job runs ${s} after the step before`).toBeGreaterThan(at);
+      at = i;
+    }
+    expect(web.split("\n        if:").length - 1, "only the two bootstrap steps are conditional").toBe(2);
+    // publish needs it, so a failure blocks the signed image; verify, tag and the page need publish
+    expect(job(r, "publish")).toMatch(/^ {4}name: [^\n]+\n {4}needs: \[gate, web\]\n {4}if: needs\.gate\.outputs\.publish == 'true'\n/u);
+    for (const j of ["verify", "tag", "release-page"]) expect(job(r, j), j).toMatch(/^ {4}name: [^\n]+\n {4}needs: \[gate, publish[\],]/u);
+    // a dispatch on a branch is the browser job alone: the gate checks nothing out and sets no publish
+    const gate = job(r, "gate");
+    expect(gate).toContain("      browser: ${{ steps.on.outputs.browser }}\n");
+    expect(gate).toContain('if [[ $GITHUB_EVENT_NAME == workflow_dispatch && $GITHUB_REF == refs/heads/* ]]; then');
+    expect(gate.split("        if: steps.on.outputs.browser == 'false'\n").length - 1, "the checkout and the tag check").toBe(2);
+    expect(r).toContain("  group: ${{ github.ref_type == 'branch' && format('browser-{0}', github.ref) || 'release' }}\n");
+    // the gate does not wait for a CI job that no longer exists
+    expect(Object.values(REQUIRED_JOBS).flat()).not.toContain("Web (the site shell, built and judged)");
   });
 
   it("send a prose file a test reads through the suites (scripts/changes.sh TESTED_PROSE)", () => {

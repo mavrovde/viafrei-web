@@ -18,7 +18,8 @@ merge of the release pull request into main
   -> a draft GitHub release, then the annotated tag vX.Y.Z on that commit
      (CI and Security checked again first; an existing tag is refused, never moved)
   -> release.yml, started on that tag:
-     gate -> build linux/amd64 + linux/arm64 -> checks of the image -> push by digest
+     gate -> the browser job (Web: build, browser suite, page weight, Lighthouse, latency, visual)
+     -> build linux/amd64 + linux/arm64 -> checks of the image -> push by digest
      -> cosign sign (keyless) -> SLSA build provenance -> SPDX SBOM
      -> verify (pull, cosign verify, both attestations against the tag's commit, boot, /healthz)
      -> only then :X.Y.Z, :X.Y (newest patch of its minor) and :latest (newest tag)
@@ -29,6 +30,13 @@ merge of the release pull request into main
 There is no `edge` image, no image for a branch, a commit or a pull request, and no `sha-…` tag.
 A tag whose commit is not on `main`, whose version is not `package.json`'s, that has a suffix
 (`-rc.1`) or that is lightweight publishes nothing.
+
+The browser suite runs here and nowhere else in CI: once per release, as release.yml's `Web` job,
+between the gate and the publish, and `publish` needs it, so a failing page stops the signed image
+before anything is built. No pull request and no push to `main` runs it; it is run locally, in the
+Playwright container, before the push. To run it by hand on a branch:
+`gh workflow run release.yml --ref <branch>` runs the `Web` job alone on that branch's commit and
+publishes nothing (the gate skips every release check, and `publish` does not run).
 
 ### The checks of the image (release.yml, before the push)
 
@@ -84,6 +92,8 @@ A version tag is never reused, moved or deleted:
 - **The tag job failed before the tag existed:** fix the cause, `gh run rerun <run-id> --failed`.
 - **The tag job failed after the tag existed:** `gh workflow run release.yml --ref vX.Y.Z`, then
   `gh workflow run release-please.yml --ref main` for the next release pull request.
+- **The `Web` job failed:** nothing was built or published. A flaky run: `gh run rerun <run-id>
+  --failed`. A real fault is a fault in the tagged commit (below).
 - **The fault is in the tagged commit:** fix it on `main` and release a new patch.
 
 Rollback is infra's: it deploys the previous digest (viafrei-infra). This repository never
@@ -95,10 +105,10 @@ Everything is verified locally before the single push, and nothing is pushed to 
 
 | workflow | triggers | what runs |
 |---|---|---|
-| CI | `pull_request` and `push` to `main`; `workflow_dispatch` | first the `Changes` job (`scripts/changes.sh`): when every changed file is prose, every other job is skipped. Otherwise, on a pull request every job; on `main` only `Lint`, unless the commit is a release's merge (`chore: release X.Y.Z`), which runs every job. Visual, Lighthouse and the i18n mutations only on a dispatch or a minor's release pull request (`X.Y.0`) |
+| CI | `pull_request` and `push` to `main`; `workflow_dispatch` | first the `Changes` job (`scripts/changes.sh`): when every changed file is prose, every other job is skipped. Otherwise, on a pull request every job; on `main` only `Lint`, unless the commit is a release's merge (`chore: release X.Y.Z`), which runs every job. The i18n mutations only on a dispatch or a minor's release pull request (`X.Y.0`). No browser check: that is Release's `Web` job |
 | Security | the same | the same `Changes` job; on `main` only `Dependency licences`, unless it is a release's merge |
 | Release Please | `workflow_run` of CI and Security on `main`, `workflow_dispatch` | the release pull request, the draft, the tag |
-| Release | `push` of a `v*` tag, `workflow_dispatch` on a tag | the gate, then the publish |
+| Release | `push` of a `v*` tag, `workflow_dispatch` on a tag or a branch | on a tag: the gate, the `Web` job (the browser suite, page weight, Lighthouse, latency, visual), then the publish. On a branch: the `Web` job alone, nothing published |
 | Scorecard | `workflow_dispatch` only | |
 
 No workflow has a `schedule`. CI and Security cancel a pull request's older run
@@ -119,7 +129,6 @@ required by name:
 - `Lint`
 - `Unit tests`
 - `Site gates`
-- `Web (the site shell, built and judged)`
 - `Image (build, scan, smoke)`
 - `Stack (the shell against the pinned releases)`
 - `CodeQL (TypeScript)`
@@ -129,7 +138,9 @@ required by name:
 - `DAST (OWASP ZAP against the container)`
 <!-- required-checks:end -->
 
-`test/workflows.test.ts` holds this list to the jobs that exist.
+`test/workflows.test.ts` holds this list to the jobs that exist. `Web (the site shell, built and
+judged)` is not a required check: it is a job of `release.yml`, which runs on a tag, so no pull
+request ever reports it, and a required check that never reports would block every merge.
 
 A pull request that changes prose only (`*.md`, `docs/`, LICENSE, CODEOWNERS, the issue and pull
 request templates) runs the `Changes` job and skips every other job; a skipped job satisfies its
@@ -224,12 +235,13 @@ never `latest`, `edge` or a bare tag: `pins.sh lint` refuses each.
 
 The visual test compares screenshots against `packages/web/e2e/__screenshots__/linux/`. They are
 recorded on Linux only, in the amd64 Playwright container (on a laptop, never install a browser),
-and CI's `Web` job runs the same image. To re-record after an intended change:
+and release.yml's `Web` job compares against them. To re-record after an intended change:
 
 ```bash
 npm run pinned
 bash scripts/visual-container.sh --update   # writes packages/web/e2e/__screenshots__/linux/
 ```
 
-and commit the changed PNGs in the same pull request as the change, saying why each moved. The comparison runs on a dispatch of CI and on a minor's release pull request; a
-`workflow_dispatch` of CI uploads the screenshots it took when the comparison fails.
+and commit the changed PNGs in the same pull request as the change, saying why each moved. The comparison runs in CI once per release, in release.yml's `Web` job, and on a dispatch of
+release.yml on a branch; a dispatched run (release-please starts every release that way) uploads
+the screenshots it took when the comparison fails.
