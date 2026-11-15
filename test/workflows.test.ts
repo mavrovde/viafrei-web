@@ -199,6 +199,11 @@ describe("dependabot", () => {
     const d = read(".github/dependabot.yml");
     for (const e of ["npm", "github-actions", "docker", "docker-compose"]) expect(d).toContain(`package-ecosystem: ${e}\n`);
   });
+
+  it("proposes no PostgreSQL major for the stack's database: it moves with viafrei-database and production", () => {
+    const compose = /^ {2}- package-ecosystem: docker-compose\n((?: {4}.*\n|\n)+)/mu.exec(read(".github/dependabot.yml"))?.[1] ?? "";
+    expect(compose).toContain('      - dependency-name: postgis/postgis\n        update-types: ["version-update:semver-major"]\n');
+  });
 });
 
 describe("release-please", () => {
