@@ -134,7 +134,12 @@ jobs:
           # a release pull request would count from bootstrap-sha and list released commits again.
           v=$(gh api -H "Accept: application/vnd.github.raw+json" "repos/$GH_REPO/contents/.release-please-manifest.json?ref=main" | jq -r '."."')
           [[ $v =~ ^[0-9]+\.[0-9]+\.[0-9]+$ ]] || { echo "::error::the manifest on main names version '$v', not X.Y.Z"; exit 1; }
-          if out=$(gh api "repos/$GH_REPO/git/ref/tags/v$v" --jq .object.sha 2>&1); then
+          # 0.0.0 is the manifest before the first release: nothing was released, so there is no tag
+          # to wait for and release-please counts from bootstrap-sha, which is what it should do.
+          if [[ $v == 0.0.0 ]]; then
+            echo "::notice::no release yet (manifest 0.0.0); the first release pull request counts from bootstrap-sha"
+            echo "tagged=true" >> "$GITHUB_OUTPUT"
+          elif out=$(gh api "repos/$GH_REPO/git/ref/tags/v$v" --jq .object.sha 2>&1); then
             echo "tagged=true" >> "$GITHUB_OUTPUT"
           elif [[ $out == *"HTTP 404"* ]]; then
             echo "::notice::v$v has no tag yet; the release pull request is built once it has one"
