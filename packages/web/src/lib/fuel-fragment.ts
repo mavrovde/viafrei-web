@@ -9,6 +9,7 @@
  */
 import { FUEL_FILL_MAX_MS, FUEL_FILL_MIN_MS, FUEL_FILL_RETRY_MS } from "./fuel-refresh.js";
 import { digestFetch } from "./agent-class.js";
+import { scriptLiteral } from "./script-literal.js";
 import type { FetchLike, TileFetchOptions } from "./tiles.js";
 
 /** (b): every answer, the sentence included — no shared cache keeps a copy, no index or snippet is made of it. */
@@ -73,7 +74,7 @@ export function fuelLoaderJs(o: { readonly path: string; readonly root: string; 
   const visible = `document.hidden!==true&&document.prerendering!==true`;
   const events = ["visibilitychange", "prerenderingchange"];
   return (
-    `const load=async(n,h)=>{${o.params}if(n>0){p.set("polls",String(n));p.set("head",String(h||0))}const r=await fetch(${JSON.stringify(o.path)}+"?"+p.toString(),{credentials:"same-origin",headers:{accept:"text/html"}});const t=await r.text();if(!r.ok||!/^<div class="${o.root}[" ]/.test(t)||/<script/i.test(t))throw new Error("fuel");o.innerHTML=t;const e=o.firstElementChild,d=e?Number(e.getAttribute("data-vf-refill")):0,c=e?Number(e.getAttribute("data-vf-polls")):0,k=e?Number(e.getAttribute("data-vf-head")):0;if(d>0&&c>0)again(e,c,k,d)};` +
+    `const load=async(n,h)=>{${o.params}if(n>0){p.set("polls",String(n));p.set("head",String(h||0))}const r=await fetch(${scriptLiteral(o.path)}+"?"+p.toString(),{credentials:"same-origin",headers:{accept:"text/html"}});const t=await r.text();if(!r.ok||!/^<div class="${o.root}[" ]/.test(t)||/<script/i.test(t))throw new Error("fuel");o.innerHTML=t;const e=o.firstElementChild,d=e?Number(e.getAttribute("data-vf-refill")):0,c=e?Number(e.getAttribute("data-vf-polls")):0,k=e?Number(e.getAttribute("data-vf-head")):0;if(d>0&&c>0)again(e,c,k,d)};` +
     `const shown=()=>${visible}?Promise.resolve():new Promise(r=>{const v=()=>{if(${visible}){${events.map((e) => `document.removeEventListener("${e}",v);`).join("")}r()}};${events.map((e) => `document.addEventListener("${e}",v)`).join(";")}});` +
     `const again=(e,c,k,d)=>{setTimeout(async()=>{await shown();if(!o.isConnected||o.firstElementChild!==e)return;if(o.querySelector(".pager[open]")){again(e,c,k,d);return}try{await load(c,k)}catch(x){again(e,c,k,${String(FUEL_FILL_RETRY_MS)})}},Math.min(Math.max(d,${String(FUEL_FILL_MIN_MS)}),${String(FUEL_FILL_MAX_MS)}))};`
   );

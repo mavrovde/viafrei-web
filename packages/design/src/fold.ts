@@ -11,15 +11,14 @@
  * that data instead of inside the fold.
  */
 import type { PageHeadLang } from "./page-head-copy.js";
+import { replaceCreditBlocks } from "./scan.js";
 import { foldSummaryHtml, unruledCredit } from "./sources-names.js";
-
-const CREDIT_BLOCK = /<p class="credit[ "][^>]*>[\s\S]*?<\/p>/gu;
 
 export type LiftedCredits = { readonly rest: string; readonly lifted: string };
 
 export function liftCredits(html: string, keep: (block: string) => boolean = () => true): LiftedCredits {
   const lifted: string[] = [];
-  const rest = html.replace(CREDIT_BLOCK, (b) => {
+  const rest = replaceCreditBlocks(html, (b) => {
     if (!keep(b)) return b;
     lifted.push(b);
     return "";

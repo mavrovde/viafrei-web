@@ -14,6 +14,7 @@
  * (`wellFormed`). Test-only: exported as `@viafrei/design/testing`, never
  * imported by a runtime file.
  */
+import { dropDelimited } from "../scan.js";
 import { RENDERED_STATES, type RenderedState } from "../tile.js";
 
 export type El = {
@@ -75,7 +76,9 @@ export function parse(html: string): { readonly root: El; readonly problems: rea
       i = lt + close[0].length;
       continue;
     }
-    const open = /^<([a-zA-Z][\w-]*)((?:\s+[^\s=>/]+(?:\s*=\s*(?:"[^"]*"|'[^']*'|[^\s>]+))?)*)\s*(\/?)>/.exec(html.slice(lt));
+    // an unquoted value never begins with a quote (as in HTML): `""` is a quoted value and nothing else, so the
+    // attribute list has one reading and no exponential backtracking (CodeQL js/redos)
+    const open = /^<([a-zA-Z][\w-]*)((?:\s+[^\s=>/]+(?:\s*=\s*(?:"[^"]*"|'[^']*'|[^\s>"'][^\s>]*))?)*)\s*(\/?)>/.exec(html.slice(lt));
     if (open === null) {
       cur.children.push({ text: "<" });
       i = lt + 1;
@@ -83,7 +86,7 @@ export function parse(html: string): { readonly root: El; readonly problems: rea
     }
     const tag = open[1]!.toLowerCase();
     const a: Record<string, string> = {};
-    for (const m of open[2]!.matchAll(/([^\s=>/]+)(?:\s*=\s*(?:"([^"]*)"|'([^']*)'|([^\s>]+)))?/g)) a[m[1]!.toLowerCase()] = decode(m[2] ?? m[3] ?? m[4] ?? "");
+    for (const m of open[2]!.matchAll(/([^\s=>/]+)(?:\s*=\s*(?:"([^"]*)"|'([^']*)'|([^\s>"'][^\s>]*)))?/g)) a[m[1]!.toLowerCase()] = decode(m[2] ?? m[3] ?? m[4] ?? "");
     const el: MutableEl = { tag, attrs: a, children: [], parent: cur };
     cur.children.push(el);
     i = lt + open[0].length;
@@ -130,7 +133,7 @@ type Simple = { readonly tag: string | null; readonly classes: readonly string[]
 const parseSimple = (s: string): Simple => {
   const tag = /^[a-zA-Z][\w-]*/.exec(s)?.[0]?.toLowerCase() ?? null;
   // classes and the id are read OUTSIDE the brackets: `[href="https://a.b/#c"]` holds a dot and a hash that are neither
-  const bare = s.replace(/\[[^\]]*\]/g, "");
+  const bare = dropDelimited(s, "[", "]");
   return {
     tag,
     classes: [...bare.matchAll(/\.([\w-]+)/g)].map((m) => m[1]!),
@@ -145,13 +148,42 @@ const matches = (e: El, s: Simple): boolean =>
   s.attrs.every(([k, v]) => (v === null ? k in e.attrs : e.attrs[k] === v));
 
 /**
+ * `s.split(/\s+(?![^[]*\])/)` in one pass (CodeQL js/polynomial-redos: the lookahead rescanned the rest of the
+ * selector after every space): a run of white space splits unless the first bracket after it is a `]` — the space
+ * stands inside `[attr="a b"]`.
+ */
+export function descendantParts(s: string): string[] {
+  const ws = (c: string | undefined): boolean => c !== undefined && /\s/.test(c);
+  const closeNext: boolean[] = new Array<boolean>(s.length + 1).fill(false);
+  for (let k = s.length - 1; k >= 0; k--) closeNext[k] = s[k] === "]" || (s[k] !== "[" && closeNext[k + 1]!);
+  const out: string[] = [];
+  let start = 0;
+  let k = 0;
+  while (k < s.length) {
+    if (!ws(s[k])) {
+      k++;
+      continue;
+    }
+    let j = k;
+    while (ws(s[j])) j++;
+    if (!closeNext[j]) {
+      out.push(s.slice(start, k));
+      start = j;
+    }
+    k = j;
+  }
+  out.push(s.slice(start));
+  return out;
+}
+
+/**
  * Every element matching a selector of simple parts — `tag`, `.class`, `#id`,
  * `[attr]`, `[attr="v"]`, compounded (`p.credit[lang="de"]`) — joined by the
  * descendant combinator (a space). Enough for our fragments; no `>`, no pseudo.
  */
 export function all(html: string | El, selector: string): readonly El[] {
   const root = typeof html === "string" ? parse(html).root : html;
-  const parts = selector.trim().split(/\s+(?![^[]*\])/).map(parseSimple);
+  const parts = descendantParts(selector.trim()).map(parseSimple);
   return elements(root).filter((e) => {
     if (!matches(e, parts[parts.length - 1]!)) return false;
     let k = parts.length - 2;

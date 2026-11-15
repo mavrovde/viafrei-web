@@ -84,6 +84,8 @@ jobs:
         with:
           languages: javascript-typescript
           queries: security-extended
+          # paths-ignore: packages/*/test and packages/web/e2e, which never reach the image (the reason is in the file)
+          config-file: ./.github/codeql/codeql-config.yml
       - uses: github/codeql-action/analyze@33d7b85da1a04171e211befe2c739303b9a4c066 # v4.39.3
         with:
           category: codeql-typescript
@@ -190,11 +192,35 @@ jobs:
         with:
           persist-credentials: false
           fetch-depth: 0 # every commit, not only the tip
+      # The configuration is .gitleaks.toml (the default rules plus one narrow test-literal exception), passed
+      # explicitly: left to itself gitleaks reads the copy in the scanned tree, which a pull request can edit. On a
+      # pull request the BASE revision's copy judges, as with scripts/changes.sh; the pull request's own copy only
+      # when the base has none (the bootstrap). A .gitleaksignore anywhere in the tree is refused: gitleaks reads
+      # one from the scanned tree whatever --gitleaks-ignore-path says (measured on v8.30.1), so a fingerprint
+      # in it would silence a finding with no review of the exception.
       - name: gitleaks over the full history
+        env:
+          EVENT: ${{ github.event_name }}
+          PR_BASE: ${{ github.event.pull_request.base.sha }}
         run: |
-          docker run --rm -v "$PWD:/repo" \
+          ignores="$(git ls-files -- .gitleaksignore '**/.gitleaksignore')"
+          if [ -n "$ignores" ] || [ -e .gitleaksignore ]; then
+            echo "::error::a .gitleaksignore is in the tree ($ignores); an exception belongs in .gitleaks.toml, scoped by rule, path and literal"
+            exit 1
+          fi
+          cfg="$RUNNER_TEMP/gitleaks.toml"
+          if [ "$EVENT" = pull_request ] && git show "$PR_BASE:.gitleaks.toml" > "$cfg" 2> /dev/null; then
+            echo "gitleaks: the base revision's .gitleaks.toml judges"
+          elif [ -f .gitleaks.toml ]; then
+            cp .gitleaks.toml "$cfg"
+            [ "$EVENT" != pull_request ] || echo "::notice::gitleaks: the base has no .gitleaks.toml (the bootstrap); the pull request's own copy judges"
+          else
+            echo "::error::no .gitleaks.toml to judge with"
+            exit 1
+          fi
+          docker run --rm -v "$PWD:/repo" -v "$cfg:/gitleaks.toml:ro" \
             zricethezav/gitleaks:v8.30.1@sha256:c00b6bd0aeb3071cbcb79009cb16a60dd9e0a7c60e2be9ab65d25e6bc8abbb7f \
-            git /repo --redact --no-banner --exit-code 1 --log-opts="--all"
+            git /repo --config /gitleaks.toml --redact --no-banner --exit-code 1 --log-opts="--all"
 
   zap:
     name: DAST (OWASP ZAP against the container)

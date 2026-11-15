@@ -44,9 +44,14 @@ export type EndpointChip = EndpointChipWords & { readonly source: ConnectSource 
 
 /** The address cut where it may break: everything up to the path (never broken) and the path. */
 export function splitEndpoint(url: string): { readonly scheme: string; readonly host: string; readonly path: string } {
-  const m = /^([a-z][a-z0-9+.-]*:\/\/)([^/]*)(.*)$/iu.exec(url);
-  if (m === null) return { scheme: "", host: url, path: "" };
-  return { scheme: m[1] ?? "", host: m[2] ?? "", path: m[3] ?? "" };
+  // `/^([a-z][a-z0-9+.-]*:\/\/)([^/]*)(.*)$/iu` without its backtracking (the host and the path both matched what is
+  // not a slash, quadratic on an address whose path holds a line break): the host runs to the first slash, the path is
+  // the rest, and a path holding a line terminator (which `.` never matches) is no match, as before
+  const scheme = /^[a-z][a-z0-9+.-]*:\/\//iu.exec(url)?.[0];
+  const slash = scheme === undefined ? -1 : url.indexOf("/", scheme.length);
+  const path = slash < 0 ? "" : url.slice(slash);
+  if (scheme === undefined || /[\n\r\u2028\u2029]/u.test(path)) return { scheme: "", host: url, path: "" };
+  return { scheme, host: url.slice(scheme.length, slash < 0 ? url.length : slash), path };
 }
 
 /** The chip. */

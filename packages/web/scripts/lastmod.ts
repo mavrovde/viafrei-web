@@ -47,7 +47,7 @@
  */
 import { execFileSync } from "node:child_process";
 import { createHash } from "node:crypto";
-import { existsSync, readFileSync, writeFileSync } from "node:fs";
+import { readFileSync, writeFileSync } from "node:fs";
 import { dirname, join, normalize, relative } from "node:path";
 import { fileURLToPath } from "node:url";
 import { berlinDay, isDay, readMap as parseMap, writeMap, type LastmodMapV2 } from "../src/site/lastmod-map.js";
@@ -101,10 +101,7 @@ export const CHROME: readonly string[] = [
 ];
 
 export type Reader = (rel: string) => string | null;
-export const diskReader: Reader = (rel) => {
-  const p = join(WEB_ROOT, rel);
-  return existsSync(p) ? readFileSync(p, "utf8") : null;
-};
+export const diskReader: Reader = (rel) => readIfPresent(join(WEB_ROOT, rel));
 
 const isChrome = (rel: string): boolean => CHROME.some((c) => (c.endsWith("/") ? rel.startsWith(c) : rel === c));
 
@@ -309,9 +306,23 @@ export function gitDay(page: PageId | "place" | "motorway"): string | null {
   return /^\d{4}-\d{2}-\d{2}$/.test(out) ? out : null;
 }
 
+/**
+ * A file's text, or null when there is none: one read, never a check followed by a read (CodeQL js/file-system-race —
+ * the file may go between the two); any error but its absence is thrown.
+ */
+function readIfPresent(file: string): string | null {
+  try {
+    return readFileSync(file, "utf8");
+  } catch (e) {
+    if ((e as NodeJS.ErrnoException).code === "ENOENT") return null;
+    throw e;
+  }
+}
+
 /** The committed map, either version, as version 2 — or null when there is none. */
 export function readMap(file: string = LASTMOD_FILE): LastmodMapV2 | null {
-  return existsSync(file) ? parseMap(readFileSync(file, "utf8")) : null;
+  const text = readIfPresent(file);
+  return text === null ? null : parseMap(text);
 }
 
 export const renderMap = writeMap;
@@ -344,7 +355,7 @@ export function checkFile(text: string | null, fresh: boolean, hashes: Readonly<
 
 if (process.argv[1] !== undefined && fileURLToPath(import.meta.url) === process.argv[1]) {
   const today = todayBerlin();
-  const onDiskText = existsSync(LASTMOD_FILE) ? readFileSync(LASTMOD_FILE, "utf8") : null;
+  const onDiskText = readIfPresent(LASTMOD_FILE);
   const hashes = allHashes();
   if (process.argv.includes("--check") || process.argv.includes("--check-fresh")) {
     const r = checkFile(onDiskText, process.argv.includes("--check-fresh"), hashes, today);

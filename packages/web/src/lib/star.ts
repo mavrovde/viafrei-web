@@ -18,6 +18,7 @@
  * script the button stays `hidden`.
  */
 import type { Lang } from "../site/pages.js";
+import { scriptLiteral } from "./script-literal.js";
 
 export const STAR_STORE = "viafrei.star";
 export const STAR_MAX_PAGES = 12;
@@ -51,13 +52,13 @@ export type StarWords = { readonly add: string; readonly remove: string; readonl
 /** The page script: the star, the marks, the service worker once starred, the install prompt from the second visit. */
 export function starScript(): string {
   return `(()=>{const w=window;if(w.vfStar)return;w.vfStar=1;const b=document.getElementById("vf-star");if(!b)return;
-const S=${JSON.stringify(STAR_STORE)},M=(${sinceMarks.toString()});
+const S=${scriptLiteral(STAR_STORE)},M=(${sinceMarks.toString()});
 const rd=()=>{try{const v=JSON.parse(localStorage.getItem(S)||"null");return v&&typeof v==="object"&&v.p&&typeof v.p==="object"?v:{p:{}}}catch(_){return null}};
 const wr=v=>{try{Object.keys(v.p).length===0?localStorage.removeItem(S):localStorage.setItem(S,JSON.stringify(v))}catch(_){}};
 const st=rd();if(st===null)return;const key=b.getAttribute("data-key")||location.pathname,W=JSON.parse(b.getAttribute("data-words")||"{}");
 const items=()=>[...document.querySelectorAll("#page-first [data-vf-key]")].slice(0,${String(STAR_MAX_ITEMS)}).map(e=>{const l=Number(e.getAttribute("data-vf-len"));const n=e.querySelector(".topitems__where");return{k:String(e.getAttribute("data-vf-key")).slice(0,200),l:e.hasAttribute("data-vf-len")&&isFinite(l)?l:null,n:(n?n.textContent:"").trim().slice(0,80),e}});
 const show=on=>{b.hidden=false;b.setAttribute("aria-pressed",on?"true":"false");b.textContent=on?W.remove:W.add};
-const sw=()=>{if("serviceWorker" in navigator)navigator.serviceWorker.register(${JSON.stringify(SW_PATH)}).catch(()=>{})};
+const sw=()=>{if("serviceWorker" in navigator)navigator.serviceWorker.register(${scriptLiteral(SW_PATH)}).catch(()=>{})};
 const keep=(e,v)=>{e.n=Math.min((e.n||0)+v,999);e.t=Date.now();e.i=items().map(x=>({k:x.k,l:x.l,n:x.n}))};
 let rec=st.p[key];show(!!rec);
 if(rec){const now=items(),m=M(Array.isArray(rec.i)?rec.i:[],now);const tag=(e,word,c)=>{const s=document.createElement("span");s.className="since since--"+c;s.textContent=word;e.querySelector(".topitems__body")?.prepend(s)};
@@ -73,8 +74,8 @@ const e={h:key,a:b.getAttribute("data-label")||"",r:b.getAttribute("data-road")|
 
 /** The home's commute card: the first starred road, its status card from `/fragment/commute`. No storage written. */
 export function commuteScript(lang: Lang): string {
-  return `(()=>{const slot=document.getElementById("commute");if(!slot)return;let v=null;try{v=JSON.parse(localStorage.getItem(${JSON.stringify(STAR_STORE)})||"null")}catch(_){return}
+  return `(()=>{const slot=document.getElementById("commute");if(!slot)return;let v=null;try{v=JSON.parse(localStorage.getItem(${scriptLiteral(STAR_STORE)})||"null")}catch(_){return}
 if(!v||!v.p)return;const r=Object.values(v.p).filter(e=>e&&typeof e.r==="string"&&/^A\\d{1,3}$/.test(e.r)).sort((a,b)=>(b.t||0)-(a.t||0))[0];if(!r)return;
-fetch(${JSON.stringify(COMMUTE_ROUTE)},{method:"POST",headers:{accept:"text/html","content-type":"application/json"},body:JSON.stringify({road:r.r,lang:${JSON.stringify(lang)}}),credentials:"omit"})
+fetch(${scriptLiteral(COMMUTE_ROUTE)},{method:"POST",headers:{accept:"text/html","content-type":"application/json"},body:JSON.stringify({road:r.r,lang:${scriptLiteral(lang)}}),credentials:"omit"})
 .then(x=>x.status===200?x.text():"").then(h=>{if(!/^<section class="commute" id="commute-card"/.test(h))return;slot.innerHTML=h;slot.hidden=false}).catch(()=>{})})();`;
 }

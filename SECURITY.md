@@ -58,6 +58,17 @@ its jobs). Everything is run locally before the one push.
 A new advisory against an unchanged tree is found by Dependabot (monthly) and by a dispatch of
 Security, not by a schedule.
 
+**What CodeQL reads.** Every source file except the test suites: `packages/*/test/` and
+`packages/web/e2e/` are left out (`.github/codeql/codeql-config.yml`), because no test file reaches
+the image — it ships the built `packages/web/dist` alone — and the security queries there flag
+assertion code, not a reachable path. `packages/*/src` (the design package's test helpers in
+`src/testing/` included), `packages/web/scripts/`, `scripts/` and the root `test/` are analysed.
+
+**What gitleaks allows.** `.gitleaks.toml` keeps every default rule and makes one exception: the
+`generic-api-key` rule, in three named test files, for a literal that is the hexadecimal digits in
+order — the test IndexNow and staging keys, which are no service's keys. On a pull request the base
+revision's copy judges, so a pull request cannot widen it, and a `.gitleaksignore` is refused.
+
 Dependabot proposes updates monthly, after a seven-day cooldown, for npm, the actions
 (each pinned by commit SHA), the Dockerfile's base image and the compose
 file. A TypeScript release at or above typescript-eslint's supported upper

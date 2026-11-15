@@ -71,12 +71,14 @@ async function slowDigest(ms: number): Promise<{ url: string; close: () => Promi
   const server = createServer((req, res) => {
     // Only a tile path is forwarded, and only to the stub's own origin: the
     // proxy never builds a URL out of whatever a request carried (S5144).
-    const path = /^\/internal\/tiles\/[a-z-]+(\?[a-z]+=[a-z]+(&[a-z]+=[a-z]+)*)?$/.exec(req.url ?? "")?.[0];
-    if (path === undefined) {
+    // The constant path is written here and only the tile and its query are taken from the request, so the stub's
+    // origin and the path prefix are fixed by this line (CodeQL js/request-forgery).
+    const tile = /^\/internal\/tiles\/([a-z-]+(?:\?[a-z]+=[a-z]+(?:&[a-z]+=[a-z]+)*)?)$/.exec(req.url ?? "")?.[1];
+    if (tile === undefined) {
       res.writeHead(404).end();
       return;
     }
-    const target = new URL(path, inner.url);
+    const target = `${inner.url}/internal/tiles/${tile}`;
     setTimeout(() => {
       void fetch(target).then(async (r) => {
         res.writeHead(r.status, { "Content-Type": r.headers.get("content-type") ?? "text/html" });

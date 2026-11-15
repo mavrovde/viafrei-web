@@ -138,7 +138,7 @@ export function oneLine(s: string | undefined): string {
  * Never null: `site/lastmod.ts` falls back to it for a build without APP_BUILT_AT.
  */
 export function releaseDateOf(changelog: string, version: string, now: Date, committed?: { readonly version?: unknown; readonly date?: unknown } | null): string {
-  const m = new RegExp(`^## \\[${version.replace(/\./g, "\\.")}\\] — (\\d{4}-\\d{2}-\\d{2})`, "m").exec(changelog);
+  const m = new RegExp(`^## \\[${version.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")}\\] — (\\d{4}-\\d{2}-\\d{2})`, "m").exec(changelog);
   if (m !== null) return m[1]!;
   if (committed?.version === version && typeof committed.date === "string" && /^\d{4}-\d{2}-\d{2}$/.test(committed.date)) return committed.date;
   return berlinDay(now);

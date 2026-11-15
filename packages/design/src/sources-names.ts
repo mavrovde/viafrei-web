@@ -6,12 +6,13 @@
  * sources component (`sources-html.ts`) and the web shell's tiles both read this one implementation.
  */
 import { PAGE_HEAD_COPY, type PageHeadLang } from "./page-head-copy.js";
+import { creditBlocks, dropDelimited } from "./scan.js";
 
 const ENTITIES: Readonly<Record<string, string>> = { "&amp;": "&", "&lt;": "<", "&gt;": ">", "&quot;": '"', "&#39;": "'", "&#x27;": "'" };
 /** A block's visible text: tags dropped, the five entities `safe` writes read back. */
 export function textOf(html: string): string {
-  return html
-    .replace(/<[^>]*>/gu, "")
+  // the tags dropped in one pass (`/<[^>]*>/g`, linear): the result is TEXT, entities read back, escaped by every caller
+  return dropDelimited(html, "<", ">")
     .replace(/&(?:amp|lt|gt|quot|#39|#x27);/gu, (m) => ENTITIES[m] ?? m)
     .replace(/\s+/gu, " ")
     .trim();
@@ -25,7 +26,12 @@ const CLAUSES = [" · ", " via ", ", ", "; ", " (", " — ", " – ", " - "];
  * at the institute; "DELFI e.V. via", "Ampeco Ltd. (EDRI)", "Road B.V. (…)", "Grid & Co. GmbH" do not end at the dot.
  */
 function sentenceEnd(s: string): number {
-  for (const m of s.matchAll(/(\S+)\. /gu)) if (/^\p{L}{4,}$/u.test(m[1]!)) return m.index + m[1]!.length;
+  // `/(\S+)\. /g` matches only where a word begins, as the word less its final dot when a space follows: read word by
+  // word (linear) rather than letting the expression restart inside every word (quadratic on a long one)
+  for (const m of s.matchAll(/\S+/gu)) {
+    const end = m.index + m[0].length - 1;
+    if (m[0].length >= 2 && s[end] === "." && s[end + 1] === " " && /^\p{L}{4,}$/u.test(m[0].slice(0, -1))) return end;
+  }
   return -1;
 }
 
@@ -52,14 +58,12 @@ export function shortSource(text: string): string {
   return head;
 }
 
-const CREDIT_BLOCK = /<p class="credit[ "][^>]*>[\s\S]*?<\/p>/gu;
-
 /**
  * Every publisher of a fragment's credit lines, once each, in the order their lines stand. A `credit--note` line is a
  * condition sentence, not a publisher's line (its publisher is named on its own credit line), so it names no one.
  */
 export function creditNames(html: string): readonly string[] {
-  const lines = (html.match(CREDIT_BLOCK) ?? []).filter((b) => !/^<p class="credit credit--note[ "]/u.test(b));
+  const lines = creditBlocks(html).filter((b) => !/^<p class="credit credit--note[ "]/u.test(b));
   return [...new Set(lines.map((b) => shortSource(textOf(b))).filter((n) => n !== ""))];
 }
 
