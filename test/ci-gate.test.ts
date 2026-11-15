@@ -92,7 +92,7 @@ describe("judgeCi reads the jobs, not the run's conclusion alone", () => {
     expect(r.lines[1]).toContain("Dependency licences: not in the run");
   });
   it("refuses a required job that failed or was cancelled", () => {
-    expect(judgeCi(green, SHA, REPO_, jobsWith(ci, "Web (the site shell, built and judged)", { conclusion: "failure" })).ok).toBe(false);
+    expect(judgeCi(green, SHA, REPO_, jobsWith(ci, "Site gates", { conclusion: "failure" })).ok).toBe(false);
     expect(judgeCi(green, SHA, REPO_, jobsWith(ci, "Stack (the shell against the pinned releases)", { conclusion: "cancelled" })).ok).toBe(false);
   });
   it("a skipped Dependency review (pull requests only) is no reason to refuse", () => {

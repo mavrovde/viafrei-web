@@ -2,7 +2,9 @@
  * The workflows hold to what this repository promises about them (viafrei-web#2; the claims
  * viafrei-database's test/workflows.test.ts holds, for the ones that apply here).
  */
-import { existsSync, readdirSync, readFileSync } from "node:fs";
+import { execFileSync, spawnSync } from "node:child_process";
+import { chmodSync, existsSync, mkdtempSync, readdirSync, readFileSync, rmSync, writeFileSync } from "node:fs";
+import { tmpdir } from "node:os";
 import { join } from "node:path";
 import { describe, expect, it } from "vitest";
 import { REQUIRED_JOBS } from "../scripts/ci-gate.js";
@@ -12,6 +14,11 @@ const WF = join(REPO, ".github/workflows");
 const files = readdirSync(WF).filter((f) => f.endsWith(".yml")).sort();
 const text = (f: string): string => readFileSync(join(WF, f), "utf8");
 const read = (p: string): string => readFileSync(join(REPO, p), "utf8");
+/** One job of a workflow, from its `  <id>:` line to the next job's (or the end of the file). */
+const job = (t: string, id: string): string => {
+  const m = new RegExp(`^ {2}${id}:\n((?: {4}.*\n|\n)*)`, "mu").exec(t);
+  return m?.[1] ?? "";
+};
 
 /** The action pins of viafrei-database main (a92153a) and viafrei-api main (23b3f24), newest where they differ. */
 const SIBLING_PINS: Record<string, string> = {
@@ -36,8 +43,8 @@ const SIBLING_PINS: Record<string, string> = {
 };
 
 describe("the workflows", () => {
-  it("are the five this repository runs", () => {
-    expect(files).toEqual(["ci.yml", "release-please.yml", "release.yml", "scorecard.yml", "security.yml"]);
+  it("are the six this repository runs", () => {
+    expect(files).toEqual(["ci.yml", "release-please.yml", "release.yml", "scorecard.yml", "security.yml", "snyk.yml"]);
   });
 
   it("pin every action by a full commit sha, with its version beside it, and the sha the siblings pin", () => {
@@ -46,6 +53,8 @@ describe("the workflows", () => {
       for (const line of text(f).split("\n")) {
         const m = /^\s*(?:-\s+)?uses:\s*(\S+)(.*)$/u.exec(line);
         if (m === null) continue;
+        // a workflow of this repository, called by its path, is pinned by the commit that runs it
+        if ((m[1] ?? "").startsWith("./.github/workflows/")) continue;
         n++;
         const [action, sha] = (m[1] ?? "").split("@");
         expect(sha, `${f}: ${line.trim()}`).toMatch(/^[0-9a-f]{40}$/u);
@@ -96,9 +105,9 @@ describe("the workflows", () => {
     expect(r).not.toMatch(/npm publish/u);
   });
 
-  it("save CI minutes: no schedule, prose skips every job but one, heavy steps at a minor only", () => {
+  it("save CI minutes: no schedule but Snyk's weekly one, prose skips every job but one, heavy steps at a minor only", () => {
     for (const f of files) {
-      expect(text(f), `${f} has a schedule`).not.toMatch(/^\s+schedule:/mu);
+      if (f !== "snyk.yml") expect(text(f), `${f} has a schedule`).not.toMatch(/^\s+schedule:/mu);
       expect(text(f), `${f} runs on a push to any branch`).not.toMatch(/^ {2}push:\n(?! {4}(branches: \[main\]|tags:))/mu);
     }
     const minor = "github.event_name == 'workflow_dispatch' || (startsWith(github.head_ref, 'release-please--') && endsWith(github.event.pull_request.title, '.0'))";
@@ -127,9 +136,7 @@ describe("the workflows", () => {
       expect(t).toContain(`${code} && (${releasePush})`);
     }
     const ci = text("ci.yml");
-    for (const step of ["npm run web:lighthouse", "npm run web:visual\n", "bash scripts/web-i18n-mutation.sh"]) {
-      expect(ci, step).toContain(`        if: ${minor}\n        run: ${step}`);
-    }
+    expect(ci).toContain(`        if: ${minor}\n        run: bash scripts/web-i18n-mutation.sh`);
     const prc = JSON.parse(read("release-please-config.json")) as { "pull-request-title-pattern": string };
     expect(prc["pull-request-title-pattern"], "the release-push condition reads the release commit by this title").toBe("chore: release ${version}");
     expect(text("scorecard.yml")).toMatch(/\non:\n(?:\s*#[^\n]*\n)*\s+workflow_dispatch:\n\n/u);
@@ -161,13 +168,118 @@ describe("the workflows", () => {
   it("pull the private viafrei-app with GHCR_READ_TOKEN, each pull behind a check that the secret is set", () => {
     const ci = text("ci.yml");
     const logins = ci.split("docker/login-action@").length - 1;
-    expect(logins).toBe(5);
+    expect(logins).toBe(4);
     expect(ci.split("password: ${{ secrets.GHCR_READ_TOKEN }}").length - 1).toBe(logins);
     expect(ci.split("- name: GHCR_READ_TOKEN must be set").length - 1).toBe(logins);
     expect(ci, "a job asks for packages it no longer reads").not.toMatch(/packages: read/u);
     expect(ci).not.toContain("Manage Actions access");
-    // release.yml pushes and reads this repository's own image: there GITHUB_TOKEN is right
-    expect(text("release.yml").split("password: ${{ secrets.GITHUB_TOKEN }}").length - 1).toBe(3);
+    // release.yml pushes and reads this repository's own image: there GITHUB_TOKEN is right; its
+    // browser job alone pulls the private viafrei-app, with GHCR_READ_TOKEN behind the same check
+    const r = text("release.yml");
+    expect(r.split("password: ${{ secrets.GITHUB_TOKEN }}").length - 1).toBe(3);
+    expect(r.split("password: ${{ secrets.GHCR_READ_TOKEN }}").length - 1).toBe(1);
+    const web = job(r, "web");
+    expect(web).toContain("password: ${{ secrets.GHCR_READ_TOKEN }}");
+    expect(web.indexOf("- name: GHCR_READ_TOKEN must be set")).toBeGreaterThan(-1);
+    expect(web.indexOf("- name: GHCR_READ_TOKEN must be set")).toBeLessThan(web.indexOf("password: ${{ secrets.GHCR_READ_TOKEN }}"));
+  });
+
+  // Owner 2026-11-15: Snyk weekly on main and once per release, never on a pull request or a push.
+  it("run Snyk weekly on main and once per release, before publish, never on a pull request or a push", () => {
+    const sn = text("snyk.yml");
+    expect(sn).toMatch(/^ {2}schedule:\n {4}- cron: "17 5 \* \* 1"/mu);
+    expect(sn).toMatch(/^ {2}workflow_call:\n/mu);
+    expect(sn).not.toMatch(/^ {2}(pull_request|push):/mu);
+    // anything but a call from release.yml runs on main only, and refuses (exit 2) rather than skipping
+    expect(sn).toContain("elif [[ $GITHUB_REF != refs/heads/main ]]; then");
+    expect(sn).toContain("./snyk test --all-projects --severity-threshold=high");
+    for (const f of files) if (f !== "snyk.yml") expect(text(f), `${f} runs the Snyk CLI`).not.toMatch(/snyk test/u);
+    const r = text("release.yml");
+    expect(r).toMatch(/\n {2}snyk:\n {4}name: Snyk \(dependencies\)\n {4}needs: gate\n {4}if: needs\.gate\.outputs\.publish == 'true'\n[\s\S]*? {4}uses: \.\/\.github\/workflows\/snyk\.yml\n {4}with:\n {6}ref: \$\{\{ needs\.gate\.outputs\.commit \}\}/u);
+    expect(r).toMatch(/\n {2}publish:\n {4}name: [^\n]+\n {4}needs: \[gate, web, snyk\]\n/u);
+  });
+
+  // The guard step's own shell text, run in both directions with the shell GitHub runs a step with.
+  const snykGuard = (refIn: string, ref: string): number => {
+    const lines = text("snyk.yml").split("\n");
+    const at = lines.findIndex((l) => l.includes("- name: The run scans main or a release's commit"));
+    const run = lines.findIndex((l, i) => i > at && l.trim() === "run: |");
+    expect(at).toBeGreaterThanOrEqual(0);
+    expect(run).toBeGreaterThan(at);
+    const indent = (lines[run + 1] ?? "").search(/\S/u);
+    const body: string[] = [];
+    for (const l of lines.slice(run + 1)) {
+      if (l.trim() !== "" && l.search(/\S/u) < indent) break;
+      body.push(l.slice(indent));
+    }
+    const dir = mkdtempSync(join(tmpdir(), "snyk-guard-"));
+    try {
+      writeFileSync(join(dir, "step.sh"), body.join("\n"));
+      return spawnSync("bash", ["--noprofile", "--norc", "-eo", "pipefail", join(dir, "step.sh")], { env: { ...process.env, REF_IN: refIn, GITHUB_REF: ref }, stdio: "pipe" }).status ?? -1;
+    } finally {
+      rmSync(dir, { recursive: true, force: true });
+    }
+  };
+
+  it("refuse a Snyk run on any branch but main unless release.yml passed a commit, by running the guard", () => {
+    const sha = "0123456789abcdef0123456789abcdef01234567";
+    expect(snykGuard("", "refs/heads/feature")).toBe(2);
+    expect(snykGuard("", "refs/heads/main")).toBe(0);
+    expect(snykGuard(sha, "refs/tags/v0.1.0")).toBe(0);
+    expect(snykGuard("main", "refs/tags/v0.1.0")).toBe(2);
+    expect(snykGuard(`${sha}0`, "refs/heads/main")).toBe(2);
+    const sn = text("snyk.yml");
+    // the called run checks out the commit release.yml passed, not main's tip
+    expect(sn).toContain("          ref: ${{ inputs.ref || github.sha }}\n");
+    // a dispatch takes no input, so it cannot hand the guard a commit
+    expect(sn).toMatch(/^ {2}workflow_dispatch:\n {2}workflow_call:\n/mu);
+    expect(sn).toContain([
+      "        run: |",
+      "          mkdir -p sarif",
+      "          ./snyk test --all-projects --severity-threshold=high --sarif-file-output=sarif/snyk.sarif",
+      "      - name: Upload SARIF to code scanning",
+    ].join("\n"));
+    expect(text("release.yml")).toContain("    secrets:\n      SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}\n\n");
+    for (const f of files) expect(text(f), `${f} inherits every secret`).not.toMatch(/secrets:\s*inherit/u);
+  });
+
+  it("run the browser suite once per release: release.yml's web job, which publish needs, and no CI job", () => {
+    const ci = text("ci.yml");
+    expect(ci, "ci.yml has a web job").not.toMatch(/^ {2}web:$/mu);
+    expect(ci, "ci.yml names the Web job").not.toContain("Web (the site shell, built and judged)");
+    for (const s of ["web:e2e", "web:browsers", "web:build", "web:budget", "web:lighthouse", "web:latency", "web:visual"]) {
+      for (const f of files.filter((x) => x !== "release.yml")) expect(text(f), `${f} runs ${s}`).not.toContain(`npm run ${s}`);
+    }
+    const r = text("release.yml");
+    const web = job(r, "web");
+    expect(web).toMatch(/^ {4}name: Web \(the site shell, built and judged\)\n {4}needs: gate\n/u);
+    expect(web).toContain("    if: needs.gate.outputs.publish == 'true' || needs.gate.outputs.browser == 'true'\n");
+    // the measured ceiling, with its measurement beside it
+    expect(web).toMatch(/ {4}# Measured on PR #15 [^\n]+\n(?: {4}#[^\n]*\n)* {4}timeout-minutes: 75\n/u);
+    // contents: read and nothing else
+    expect(web).toMatch(/\n {4}permissions:\n {6}contents: read\n {4}steps:\n/u);
+    expect(web).not.toMatch(/cache: npm/u);
+    expect(web).toContain("ref: ${{ needs.gate.outputs.commit || github.sha }}");
+    // every check, in order, and none of them conditional but the bootstrap
+    const order = ["npm run pinned", "npm run web:browsers", "npm run web:build", "npm run web:e2e\n", "npm run web:budget", "npm run web:lighthouse", "npm run web:latency", "npm run web:visual\n", "npm run web:visual -- --update", "name: visual-baselines-linux"];
+    let at = -1;
+    for (const s of order) {
+      const i = web.indexOf(s);
+      expect(i, `the web job runs ${s} after the step before`).toBeGreaterThan(at);
+      at = i;
+    }
+    expect(web.split("\n        if:").length - 1, "only the two bootstrap steps are conditional").toBe(2);
+    // publish needs it, so a failure blocks the signed image; verify, tag and the page need publish
+    expect(job(r, "publish")).toMatch(/^ {4}name: [^\n]+\n {4}needs: \[gate, web, snyk\]\n {4}if: needs\.gate\.outputs\.publish == 'true'\n/u);
+    for (const j of ["verify", "tag", "release-page"]) expect(job(r, j), j).toMatch(/^ {4}name: [^\n]+\n {4}needs: \[gate, publish[\],]/u);
+    // a dispatch on a branch is the browser job alone: the gate checks nothing out and sets no publish
+    const gate = job(r, "gate");
+    expect(gate).toContain("      browser: ${{ steps.on.outputs.browser }}\n");
+    expect(gate).toContain('if [[ $GITHUB_EVENT_NAME == workflow_dispatch && $GITHUB_REF == refs/heads/* ]]; then');
+    expect(gate.split("        if: steps.on.outputs.browser == 'false'\n").length - 1, "the checkout and the tag check").toBe(2);
+    expect(r).toContain("  group: ${{ github.ref_type == 'branch' && format('browser-{0}', github.ref) || 'release' }}\n");
+    // the gate does not wait for a CI job that no longer exists
+    expect(Object.values(REQUIRED_JOBS).flat()).not.toContain("Web (the site shell, built and judged)");
   });
 
   it("send a prose file a test reads through the suites (scripts/changes.sh TESTED_PROSE)", () => {
@@ -220,5 +332,67 @@ describe("release-please", () => {
     const m = JSON.parse(read(".release-please-manifest.json")) as Record<string, string>;
     const pkg = JSON.parse(read("package.json")) as { version: string };
     expect(m["."]).toBe(pkg.version);
+  });
+
+  // The step's own shell text, run behind a stub gh: the manifest answer and the tag answer are planted.
+  const tagStep = (): string => {
+    const lines = read(".github/workflows/release-please.yml").split("\n");
+    const at = lines.findIndex((l) => l.includes("- name: The released version has its tag"));
+    const run = lines.findIndex((l, i) => i > at && l.trim() === "run: |");
+    expect(at).toBeGreaterThanOrEqual(0);
+    expect(run).toBeGreaterThan(at);
+    const indent = (lines[run + 1] ?? "").search(/\S/u);
+    const body: string[] = [];
+    for (const l of lines.slice(run + 1)) {
+      if (l.trim() !== "" && l.search(/\S/u) < indent) break;
+      body.push(l.slice(indent));
+    }
+    return body.join("\n");
+  };
+  const runTagStep = (manifest: string, tag: "found" | "missing" | "error"): { out: string; calls: string } => {
+    const dir = mkdtempSync(join(tmpdir(), "rp-tag-"));
+    const gh = join(dir, "gh");
+    writeFileSync(gh, [
+      "#!/usr/bin/env bash",
+      `echo "$*" >> "${dir}/calls"`,
+      `case "$*" in *release-please-manifest*) echo '{".":"${manifest}"}';;`,
+      {
+        found: "  *git/ref/tags*) echo abc;;",
+        missing: "  *git/ref/tags*) echo 'gh: Not Found (HTTP 404)' >&2; exit 1;;",
+        error: "  *git/ref/tags*) echo 'gh: Server Error (HTTP 500)' >&2; exit 1;;",
+      }[tag],
+      "esac",
+    ].join("\n"));
+    try {
+      chmodSync(gh, 0o755);
+      writeFileSync(join(dir, "step.sh"), tagStep());
+      const outFile = join(dir, "out");
+      writeFileSync(outFile, "");
+      // The shell GitHub runs a `run:` step with.
+      execFileSync("bash", ["--noprofile", "--norc", "-eo", "pipefail", join(dir, "step.sh")], { env: { ...process.env, PATH: `${dir}:${process.env.PATH ?? ""}`, GITHUB_OUTPUT: outFile, GH_REPO: "o/r" }, stdio: "pipe" });
+      return { out: readFileSync(outFile, "utf8"), calls: existsSync(join(dir, "calls")) ? readFileSync(join(dir, "calls"), "utf8") : "" };
+    } finally {
+      rmSync(dir, { recursive: true, force: true });
+    }
+  };
+
+  it("the first release is 0.1.0: release-please's own first version is 1.0.0 and bump-minor-pre-major never applies to it", () => {
+    const c = JSON.parse(read("release-please-config.json")) as { packages: Record<string, Record<string, unknown>> };
+    expect(c.packages["."]?.["initial-version"]).toBe("0.1.0");
+  });
+
+  it("builds the first release pull request from manifest 0.0.0 without waiting for a v0.0.0 tag", () => {
+    const r = runTagStep("0.0.0", "missing");
+    expect(r.out).toBe("tagged=true\n");
+    expect(r.calls).not.toContain("git/ref/tags");
+  });
+
+  it("after a release, waits for that version's tag and builds once it exists", () => {
+    expect(runTagStep("0.1.0", "missing").out).toBe("tagged=false\n");
+    expect(runTagStep("0.1.0", "found").out).toBe("tagged=true\n");
+  });
+
+  it("a tag read that fails for another reason than 404 fails the step", () => {
+    expect(() => runTagStep("0.1.0", "error")).toThrow();
   });
 });

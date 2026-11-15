@@ -53,7 +53,7 @@ a release; leave that file out of ordinary changes (see [RELEASING](RELEASING.md
 - `npm test`: the unit tests of both packages.
 - `npm run coverage`: the same, with a coverage report for `packages/`.
 - The browser suite (`npm run web:e2e`), the visual comparison and Lighthouse run on Linux in the
-  Playwright container, never with a browser installed on a laptop. CI runs them in its `Web` job.
+  Playwright container, never with a browser installed on a laptop. CI runs them once per release, in release.yml's `Web` job, before the image is published.
 - Shell scripts carry their own self-tests, next to them as `*.test.sh`; run them with `bash`.
 
 [CONTRIBUTING](../CONTRIBUTING.md) has the full list a change should pass before it is pushed, and
