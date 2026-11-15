@@ -25,7 +25,7 @@ concurrency:
   cancel-in-progress: ${{ github.event_name == 'pull_request' }}
 
 env:
-  NODE_VERSION: 26.12.1 # the Node of the image (Dockerfile)
+  NODE_VERSION: 26.13.0 # the Node of the image (Dockerfile)
 
 jobs:
   changes:
