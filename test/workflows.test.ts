@@ -229,6 +229,8 @@ describe("the workflows", () => {
     expect(snykGuard("main", "refs/tags/v0.1.0")).toBe(2);
     expect(snykGuard(`${sha}0`, "refs/heads/main")).toBe(2);
     const sn = text("snyk.yml");
+    // the called run checks out the commit release.yml passed, not main's tip
+    expect(sn).toContain("          ref: ${{ inputs.ref || github.sha }}\n");
     // a dispatch takes no input, so it cannot hand the guard a commit
     expect(sn).toMatch(/^ {2}workflow_dispatch:\n {2}workflow_call:\n/mu);
     expect(sn).toContain([
