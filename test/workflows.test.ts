@@ -320,9 +320,24 @@ describe("dependabot", () => {
     expect(read(".github/dependabot.yml")).toContain(`versions: [">=${upper ?? ""}"]`);
   });
 
+  it("proposes no lighthouse that brings the FSL-licensed sentry CLI, and the tree holds one that does not", () => {
+    const npm = /^ {2}- package-ecosystem: npm\n((?: {4}.*\n|\n)+)/mu.exec(read(".github/dependabot.yml"))?.[1] ?? "";
+    expect(npm).toContain('      - dependency-name: lighthouse\n        versions: [">=13.6.0"]\n');
+    const lock = JSON.parse(read("package-lock.json")) as { packages: Record<string, { version?: string }> };
+    const lighthouse = Object.entries(lock.packages).filter(([k]) => k.endsWith("node_modules/lighthouse"));
+    expect(lighthouse.length).toBeGreaterThan(0);
+    for (const [k, v] of lighthouse) expect(v.version, k).toMatch(/^13\.[0-5]\./u);
+    expect(Object.keys(lock.packages).filter((k) => k.endsWith("node_modules/sentry"))).toEqual([]);
+  });
+
   it("watches npm, the actions, the Dockerfile and the compose file", () => {
     const d = read(".github/dependabot.yml");
     for (const e of ["npm", "github-actions", "docker", "docker-compose"]) expect(d).toContain(`package-ecosystem: ${e}\n`);
+  });
+
+  it("proposes no PostgreSQL major for the stack's database: it moves with viafrei-database and production", () => {
+    const compose = /^ {2}- package-ecosystem: docker-compose\n((?: {4}.*\n|\n)+)/mu.exec(read(".github/dependabot.yml"))?.[1] ?? "";
+    expect(compose).toContain('      - dependency-name: postgis/postgis\n        update-types: ["version-update:semver-major"]\n');
   });
 });
 
