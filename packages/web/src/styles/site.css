@@ -2136,7 +2136,9 @@ p.proof__cell.is-error { background: var(--error-bg); color: var(--error); borde
   .desk--station > .desk__top { grid-column: 1 / -1; display: grid; grid-template-columns: subgrid; align-items: start; }
   .desk--station > .desk__top > * { grid-column: 1; min-width: 0; }
   .desk--station > .desk__top > .wrap, .desk--station .stpage, .desk--station .stlive { display: contents; }
-  .desk--station :is(.stpage, .stlive) > * { grid-column: 1; min-width: 0; margin-block: 0 var(--s-3); }
+  .desk--station :is(.stpage, .stlive) > * { grid-column: 1; min-width: 0; margin-block: 0 var(--s-2); }
+  /* owner 2026-11-15, "compact desktop" (the eight-screen budget): the station's own cards a little tighter than a phone's */
+  .desk--station .stpage__card { padding-block: var(--s-3); }
   /* the area under the station, the full width (the sticky map's own rows end above it), and its Ampel's map behind
      its line as on a phone (#1175) — the browser's own fold */
   .desk--station > .placebar { grid-column: 1 / -1; padding-block-start: 0; }
@@ -2163,6 +2165,17 @@ p.proof__cell.is-error { background: var(--error-bg); color: var(--error); borde
   .desk .motorway__filter > fieldset > :not(label) { flex-basis: 100%; }
   /* a dashboard reads at body size: the head's lead is a paragraph beside the map, not a deck */
   .desk .pagehead .lead { font-size: var(--fs-2); }
+  /* owner 2026-11-15, "compact desktop" (the eight-screen budget): the star stands under the sticky map, before the ask box (the desk
+     script's `move`, `lib/desk.ts`), not as a row of its own under the head; a station's lamp per line stands beside its
+     status line, the head's other lines under both (the station's own blocks are tighter, above) */
+  .desk :is(.motorway__map, #place-ampel, #pcard-station-nearby) > .star { margin-block: var(--s-3) 0; }
+  /* until the script has moved it, the star takes no room under the head of a page that has a map to move it into: moved
+     after the first paint, it would pull the whole page up by its own row (a layout shift); with no map, it stays */
+  .desk:has(:is(.motorway__map, #place-ampel, #pcard-station-nearby)) .star:not(:is(.motorway__map, #place-ampel, #pcard-station-nearby) > *) { display: none; }
+  .desk--station .pagefirst:has(> .railampel) { grid-template-columns: minmax(0, 1fr) auto; column-gap: var(--s-4); }
+  .desk--station .pagefirst:has(> .railampel) > * { grid-column: 1 / -1; }
+  .desk--station .pagefirst:has(> .railampel) > .statusline { grid-column: 1; grid-row: 1; }
+  .desk--station .pagefirst:has(> .railampel) > .railampel { grid-column: 2; grid-row: 1; align-self: center; }
 }
 /* #1180: the home's dashboard (`homeDesk`): three columns — the hero's head and the place on the left (about 40 %), the
    heat strip in the middle and the connect block sticky on the right in the first screen; "Deutschland jetzt" two by two

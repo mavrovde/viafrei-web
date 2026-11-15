@@ -3,9 +3,12 @@
 The site shell and the files it is judged by came here from
 viafrei (a private repository) at **`ea91377ba`** (`release/2.6.18`), under
 [viafrei-web#2](https://github.com/mavrovde/viafrei-web/issues/2). Commit `4c40539` is that copy,
-byte for byte and nothing else. Every change made to it afterwards is in a later commit, and none
-of them changes what a visitor gets: every route of `scripts/site-pages.txt` renders the same here
-as in a build of `ea91377ba` (see "The proof" below).
+byte for byte and nothing else. Every change made to it afterwards is in a later commit, and all
+but one of them leave what a visitor gets unchanged: every route of `scripts/site-pages.txt` renders
+the same here as in a build of `ea91377ba` (see "The proof" below). The one deliberate exception is
+the desktop layout, 1024 px and wider, of the station, place and motorway pages, changed on the
+owner's decision of 2026-11-15 (see "The compact desktop" below). Below 1024 px those pages render
+as before.
 
 ## What moved, and where
 
@@ -154,6 +157,7 @@ that read them stay excluded.
   - The same files from viafrei `ea91377ba`, run in the same container, fail the same
     cases with the same figures, plus two more. So the bound fails at the source too, on this
     architecture. CI runs the amd64 image.
+  - The compact desktop below is the fix; with it the three files pass.
   - Two cases that timed out once under load (the link walk of `site.e2e.ts`, one width of
     `station-board-1083`) passed on the re-run.
 - **The visual baselines** were re-recorded once, in the amd64 Playwright image that CI's runner
@@ -167,6 +171,49 @@ that read them stay excluded.
   of the web side's 73 cases failed on the files' own 2-second navigation timeout before any figure
   was read, and the reference side was stopped unfinished. The amd64 figures come from CI's `Web`
   job, on native amd64; the arm64 figures above stand.
+
+## The compact desktop (owner, 2026-11-15)
+
+The "eight desktop screens" bound failed at the source: since the bound was set, the star and the lamp
+per line had each added a row under the head of these pages, and a station's disruptions card had
+grown. The owner chose to make the desktop more compact rather than move the bound. The change applies
+from 1024 px, where the sticky side column exists, and nowhere below it:
+
+- **The star** of a road, place or station page no longer has a row of its own under the head. The
+  desk script's existing `move` (`packages/web/src/lib/desk.ts`) puts it under the sticky map, just
+  before the "Frag deine KI" box, the way it already moves that box. In the reading order it still
+  comes after the H1, after the station's or road's own blocks, as the side column does.
+- **A station's lamp per line** (`ul.railampel`) stands beside its status line instead of under the
+  departures. The DOM order and the focus order are unchanged: the departures between them carry no
+  link.
+- **A station's own blocks** are spaced 8 px apart instead of 12, and its cards have 12 px of
+  vertical padding instead of 16.
+
+The budget and the tests are unchanged. Heights at 1280 × 800, collapsed, in px (8 screens = 6400):
+
+| page | before | after |
+|---|---|---|
+| road, de | 6420 | 6368 |
+| road, en | 6310 | 6258 |
+| place, de | 6445 | 6393 |
+| place, en | 6399 | 6347 |
+| station, de | 6425 | 6287 |
+| station, en | 6496 | 6358 |
+
+The place page in German is back at its height from before the star and the lamp were added. That
+leaves 7 px to spare.
+
+Below 1024 px, the station, place and motorway pages (Köln Hbf, München, A1; de and en) were checked
+before and after the change:
+
+- **Full-page screenshots** at 375, 768 and 1023 px, light and dark, are pixel-identical.
+- **One exception:** a band of the station board at 768 px also differs between two runs of the
+  unchanged page, so that band is noise from the board itself, not from this change.
+- **The HTML** differs only in the stylesheet's hashed name and in the desk script's `move` list.
+
+Of the 208 visual baselines, two moved and were re-recorded: `board-station-board-de-1280-light.png`
+and `board-station-board-de-1280-dark.png` (the station board at 1280 px, 7 px shorter for its
+tighter padding).
 
 ## What could not move without a change outside the UI
 

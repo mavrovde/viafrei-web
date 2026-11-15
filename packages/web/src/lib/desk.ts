@@ -47,14 +47,21 @@ export type DeskConfig = {
   readonly more: string;
   /**
    * Blocks the desktop shows in another column: each `[block, into]` is appended to `into` from 1024 px and put back in
-   * its place below (a comment holds it), so the phone's order is the HTML's. The home's heat strip, the ask box under a
-   * map. A selector matching nothing moves nothing.
+   * its place below (a comment holds it), so the phone's order is the HTML's. The home's heat strip, the star and the
+   * ask box under a map. A selector matching nothing moves nothing.
    */
   readonly move?: readonly (readonly [string, string])[];
 };
 
 /** The "Frag deine KI" box (`components/AskBox.astro`), under the sticky map of a dashboard page. */
 const ASK_INTO = (map: string): readonly [string, string] => ["#desk-ask", map];
+
+/**
+ * The star of a road, place or station page (`components/Star.astro`), under the sticky map beside the ask box: on a
+ * desktop it is no row of its own under the head (owner 2026-11-15, "compact desktop": the eight-screen budget). Below
+ * 1024 px it stands under the head as before. Moved before the ask box, so the side column reads map, star, questions.
+ */
+const STAR_INTO = (map: string): readonly [string, string] => ["p.star", map];
 
 /**
  * A road page's: every card but the closures, the jams, the DWD warnings and the fuel; the rules; the questions; the route's junctions,
@@ -72,7 +79,7 @@ export function roadDesk(lang: Lang): DeskConfig {
     ],
     map: ".motorway__map",
     more: PAGE_HEAD_COPY[lang].showAll,
-    move: [ASK_INTO(".motorway__map")],
+    move: [STAR_INTO(".motorway__map"), ASK_INTO(".motorway__map")],
   };
 }
 
@@ -98,7 +105,7 @@ export function placeDesk(lang: Lang): DeskConfig {
     cap: [["#place-ampel ol.ampel__why", 2]],
     map: "#place-ampel",
     more: PAGE_HEAD_COPY[lang].showAll,
-    move: [ASK_INTO("#place-ampel")],
+    move: [STAR_INTO("#place-ampel"), ASK_INTO("#place-ampel")],
   };
 }
 
@@ -117,7 +124,7 @@ export function stationDesk(lang: Lang): DeskConfig {
     cap: [["#place-ampel ol.ampel__why", 2]],
     map: "#pcard-station-nearby",
     more: PAGE_HEAD_COPY[lang].showAll,
-    move: [ASK_INTO("#pcard-station-nearby")],
+    move: [STAR_INTO("#pcard-station-nearby"), ASK_INTO("#pcard-station-nearby")],
   };
 }
 

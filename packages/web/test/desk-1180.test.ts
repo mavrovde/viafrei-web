@@ -36,14 +36,14 @@ describe("#1180: what a desktop folds", () => {
     // the fuel tile is never named (FS5): it carries no fold of its own (`NationalBand`'s `folds`)
     expect(fold).not.toMatch(/fuel/u);
   });
-  it("the home's heat strip is the two most-affected lists, moved into the strip; the ask box goes under each map", () => {
+  it("the home's heat strip is the two most-affected lists, moved into the strip; the star and then the ask box go under each map", () => {
     expect(homeDesk("de").move).toEqual([
       ["#now-roads > .now__widefold", "#desk-heat"],
       ["#now-rail > .now__widefold", "#desk-heat"],
     ]);
-    expect(roadDesk("de").move).toEqual([["#desk-ask", roadDesk("de").map]]);
-    expect(placeDesk("de").move).toEqual([["#desk-ask", placeDesk("de").map]]);
-    expect(stationDesk("de").move).toEqual([["#desk-ask", stationDesk("de").map]]);
+    expect(roadDesk("de").move).toEqual([["p.star", roadDesk("de").map], ["#desk-ask", roadDesk("de").map]]);
+    expect(placeDesk("de").move).toEqual([["p.star", placeDesk("de").map], ["#desk-ask", placeDesk("de").map]]);
+    expect(stationDesk("de").move).toEqual([["p.star", stationDesk("de").map], ["#desk-ask", stationDesk("de").map]]);
   });
   it("the connect page closes on a desktop the folds a phone closes, and caps the live answers to three", () => {
     expect(connectDesk("de").fold.split(", ")).toEqual(["#answers > .wrap", "#sources > .wrap", "#asks > .wrap"]);
