@@ -130,13 +130,17 @@ that read them stay excluded.
   with the DejaVu fonts), the whole of `packages/web/e2e`: 103 files, 4464 cases.
   - The full run: 4435 passed and 29 failed. 23 of the failures were `place-fuel-1065`, which
     still read viafrei's digest source. It now reads the pinned l10n, and its re-run passes.
-  - After that fix, a re-run of the six failing files leaves 4 failures, all of them the "eight desktop screens" bound of #1180 (8.03 to 8.12 screens against 8):
-    `desktop-1180`, `desktop-place-1180` and `desktop-station-1180` (2).
+  - After that fix, a re-run of the six failing files leaves 4 failures. All of them are the
+    "eight desktop screens" bound of #1180 (8.03 to 8.12 screens against 8): `desktop-1180`,
+    `desktop-place-1180` and `desktop-station-1180` (2).
   - The same files from viafrei `ea91377ba`, run in the same container, fail the same
     cases with the same figures, plus two more. So the bound fails at the source too, on this
     architecture. CI runs the amd64 image.
   - Two cases that timed out once under load (the link walk of `site.e2e.ts`, one width of
     `station-board-1083`) passed on the re-run.
+- **The visual baselines** were re-recorded once, in the amd64 Playwright image that CI's runner
+  matches: 208 screenshots, 80 of them byte-changed from viafrei's. A compare against the new set
+  passes (208 within 0.2 %). That shows the run is deterministic; it says nothing about the old set.
 
 ## What could not move without a change outside the UI
 
