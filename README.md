@@ -4,17 +4,17 @@ The ViaFrei user interface: the public website viafrei.de and the building block
 
 ## The ViaFrei projects
 
-ViaFrei is a group of private repositories, each with its own area. The database is the only interface between the data and the services; a change that crosses an area is an issue in the project that owns it.
+ViaFrei is a group of repositories, each with its own area; some of them are private. The database is the only interface between the data and the services; a change that crosses an area is an issue in the project that owns it.
 
 | project | area |
 |---|---|
-| [viafrei](https://github.com/mavrovde/viafrei) | the product core: the MCP server (the product), the digest (the live fragments the site embeds) and the status console |
+| viafrei (private) | the product core: the MCP server (the product), the digest (the live fragments the site embeds) and the status console |
 | **viafrei-web** (this one) | the UI: the viafrei.de site shell, the design system and the UI gates |
 | [viafrei-database](https://github.com/mavrovde/viafrei-database) | the schema and its changes: migrations, partitions and their retention, roles and grants, views, the throwaway test database |
-| [viafrei-ingestor](https://github.com/mavrovde/viafrei-ingestor) | collects open data and writes it into the shared domain tables |
-| [viafrei-infra](https://github.com/mavrovde/viafrei-infra) | runs everything: Kubernetes, the host, the edge, deploys, backups and monitoring |
+| viafrei-ingestor (private) | collects open data and writes it into the shared domain tables |
+| viafrei-infra (private) | runs everything: Kubernetes, the host, the edge, deploys, backups and monitoring |
 
-Several areas still live in `viafrei` and move out step by step: the UI to viafrei-web ([viafrei-web#1](https://github.com/mavrovde/viafrei-web/issues/1)) and the database code to viafrei-database ([viafrei-database#1](https://github.com/mavrovde/viafrei-database/issues/1)). The collectors and runtime have already moved to viafrei-ingestor and viafrei-infra; their old copies in viafrei are removed in [viafrei#1298](https://github.com/mavrovde/viafrei/issues/1298).
+Several areas still live in `viafrei` and move out step by step: the UI to viafrei-web ([viafrei-web#1](https://github.com/mavrovde/viafrei-web/issues/1)) and the database code to viafrei-database ([viafrei-database#1](https://github.com/mavrovde/viafrei-database/issues/1)). The collectors and runtime have already moved to viafrei-ingestor and viafrei-infra; their old copies in viafrei are being removed.
 
 ## What this project owns
 
