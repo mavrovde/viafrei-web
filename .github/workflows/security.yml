@@ -1,9 +1,10 @@
 # Security checks on every pull request that touches more than prose (the `changes` job) and on a release's merge
 # commit; a new advisory against an unchanged tree is found by Dependabot and by a dispatch, not by
-# a schedule, which saves CI minutes. viafrei-database's security.yml with viafrei-api's two more jobs (Snyk and
-# the licence allow-list): SAST (CodeQL), dependencies (dependency review, Snyk, licences), secrets
+# a schedule, which saves CI minutes. viafrei-database's security.yml with viafrei-api's licence allow-list: SAST (CodeQL),
+# dependencies (dependency review, licences), secrets
 # over the whole history (gitleaks), DAST (OWASP ZAP against the built shell). The image itself is
-# scanned by Trivy in ci.yml. Nothing here reaches a database or a public host.
+# scanned by Trivy in ci.yml. Snyk runs from snyk.yml: weekly on main and once per release.
+# Nothing here reaches a database or a public host.
 name: Security
 
 on:
@@ -132,54 +133,6 @@ jobs:
           node-version: ${{ env.NODE_VERSION }}
       - name: Every licence of the lockfile is on the allow-list
         run: node scripts/licences.mjs
-
-  snyk:
-    name: Snyk (dependencies)
-    needs: changes
-    if: "needs.changes.outputs.code == 'true' && (github.event_name != 'push' || startsWith(github.event.head_commit.message, 'chore: release '))"
-    runs-on: ubuntu-24.04
-    timeout-minutes: 10
-    permissions:
-      contents: read
-      security-events: write # uploads SARIF to code scanning
-    steps:
-      - name: SNYK_TOKEN must be set
-        env:
-          SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
-          ACTOR: ${{ github.actor }}
-        run: |
-          if [ -z "$SNYK_TOKEN" ]; then
-            if [ "$ACTOR" = "dependabot[bot]" ]; then
-              echo "::error::SNYK_TOKEN is not visible to this Dependabot pull request: Dependabot runs read Dependabot secrets, not Actions secrets. Add SNYK_TOKEN under Settings > Secrets and variables > Dependabot (docs/RELEASING.md)."
-            else
-              echo "::error::the repository secret SNYK_TOKEN is not set (a pull request from a fork never sees it); Snyk cannot test this run"
-            fi
-            exit 1
-          fi
-      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
-        with:
-          persist-credentials: false
-      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
-        with:
-          node-version: ${{ env.NODE_VERSION }}
-          cache: npm
-      - run: npm ci --ignore-scripts --no-audit --no-fund
-      - name: Snyk CLI 1.1308.1, checksum verified
-        run: |
-          curl -fsSL --proto '=https' --tlsv1.2 --max-time 60 -o snyk https://static.snyk.io/cli/v1.1308.1/snyk-linux
-          echo "a8b2e420af6d8e61bf1d367c064475ccf699d767fc8763efb0072b9cac250f9a  snyk" | sha256sum -c -
-          chmod +x snyk
-      - env:
-          SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
-        run: |
-          mkdir -p sarif
-          ./snyk test --all-projects --severity-threshold=high --sarif-file-output=sarif/snyk.sarif
-      - name: Upload SARIF to code scanning
-        if: always() && hashFiles('sarif/snyk.sarif') != '' && (github.event_name != 'pull_request' || github.event.pull_request.head.repo.full_name == github.repository)
-        uses: github/codeql-action/upload-sarif@33d7b85da1a04171e211befe2c739303b9a4c066 # v4.39.3
-        with:
-          sarif_file: sarif/snyk.sarif
-          category: snyk-open-source
 
   gitleaks:
     name: Secrets in history (gitleaks)

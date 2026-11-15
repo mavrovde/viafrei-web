@@ -49,7 +49,8 @@ Several areas still live in `viafrei` and move out step by step. The database co
 - **The UI gates:**
   - copy-deck parity, contrast and the boundary;
   - the static pages and the visual baselines;
-  - the browser suite, Lighthouse, latency and the page-weight budget.
+  - the browser suite, Lighthouse, latency and the page-weight budget (once per release, before
+    the image is published).
 
 ## What it does not own
 
