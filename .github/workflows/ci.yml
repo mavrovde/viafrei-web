@@ -262,9 +262,11 @@ jobs:
           username: ${{ github.actor }}
           password: ${{ secrets.GHCR_READ_TOKEN }}
       - run: npm run pinned
-      # The browser is Playwright's own Chromium with its system dependencies; the version comes
-      # from the lockfile, never "latest". Every step runs a declared `npm run` script, never `npx`.
-      - name: Install Chromium for the browser checks
+      # The browsers are Playwright's own, with their system dependencies; the version comes from the
+      # lockfile, never "latest". Every step runs a declared `npm run` script, never `npx`. Chromium
+      # runs the suite; Firefox only for first-screen-1174.e2e.ts, the one browser here without scroll
+      # timelines (the action bar's script path). No other browser is installed.
+      - name: Install Chromium and Firefox for the browser checks
         run: npm run web:browsers
       - name: The site builds
         run: npm run web:build

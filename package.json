@@ -25,7 +25,7 @@
     "web:build": "npm run build -w @viafrei/web",
     "web:test": "npm run build -w @viafrei/web && vitest run --config packages/web/vitest.e2e.config.ts",
     "web:dev": "npm run dev -w @viafrei/web",
-    "web:browsers": "playwright install --with-deps chromium",
+    "web:browsers": "playwright install --with-deps chromium firefox",
     "web:e2e": "vitest run --config packages/web/vitest.e2e.config.ts",
     "web:budget": "tsx packages/web/scripts/budget.ts",
     "web:inline": "VF_INLINE_WRITE=1 vitest run packages/web/test/inline-scripts.test.ts",
