@@ -219,15 +219,16 @@ describe("#1065: a person's view shows the prices with no click", () => {
 
 const escapeRe = (s: string): string => s.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
 /** Each language's price-time words ("Preis von {t}", "prix de {t}", "{t} fiyatı" …), read from the digest's own packs. */
-const L10N = join(fileURLToPath(new URL(".", import.meta.url)), "..", "..", "digest", "src", "presentation", "l10n");
+// viafrei-web#2: the strings of the digest the stack runs: the pinned viafrei-app's compiled l10n (test/pinned-source.ts), not viafrei's source
+const L10N = join(fileURLToPath(new URL(".", import.meta.url)), "..", "..", "..", ".pinned", "app", "packages", "digest", "dist", "src", "presentation", "l10n");
 const priceTimeWords = (lang: string): string => {
-  const m = /"fuel\.board\.seen":\s*"([^"]+)"/.exec(readFileSync(join(L10N, `${lang}.ts`), "utf8"));
-  if (m === null) throw new Error(`no fuel.board.seen in ${lang}.ts`);
+  const m = /"fuel\.board\.seen":\s*"([^"]+)"/.exec(readFileSync(join(L10N, `${lang}.js`), "utf8"));
+  if (m === null) throw new Error(`no fuel.board.seen in ${lang}.js`);
   return m[1]!;
 };
 const stationCountWords = (lang: string): string => {
-  const m = /"fuel\.sample":\s*"([^"]+)"/.exec(readFileSync(join(L10N, `${lang}.ts`), "utf8"));
-  if (m === null) throw new Error(`no fuel.sample in ${lang}.ts`);
+  const m = /"fuel\.sample":\s*"([^"]+)"/.exec(readFileSync(join(L10N, `${lang}.js`), "utf8"));
+  if (m === null) throw new Error(`no fuel.sample in ${lang}.js`);
   return m[1]!;
 };
 /**
