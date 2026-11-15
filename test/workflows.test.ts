@@ -2,7 +2,7 @@
  * The workflows hold to what this repository promises about them (viafrei-web#2; the claims
  * viafrei-database's test/workflows.test.ts holds, for the ones that apply here).
  */
-import { execFileSync } from "node:child_process";
+import { execFileSync, spawnSync } from "node:child_process";
 import { chmodSync, existsSync, mkdtempSync, readdirSync, readFileSync, rmSync, writeFileSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
@@ -197,6 +197,48 @@ describe("the workflows", () => {
     const r = text("release.yml");
     expect(r).toMatch(/\n {2}snyk:\n {4}name: Snyk \(dependencies\)\n {4}needs: gate\n {4}if: needs\.gate\.outputs\.publish == 'true'\n[\s\S]*? {4}uses: \.\/\.github\/workflows\/snyk\.yml\n {4}with:\n {6}ref: \$\{\{ needs\.gate\.outputs\.commit \}\}/u);
     expect(r).toMatch(/\n {2}publish:\n {4}name: [^\n]+\n {4}needs: \[gate, web, snyk\]\n/u);
+  });
+
+  // The guard step's own shell text, run in both directions with the shell GitHub runs a step with.
+  const snykGuard = (refIn: string, ref: string): number => {
+    const lines = text("snyk.yml").split("\n");
+    const at = lines.findIndex((l) => l.includes("- name: The run scans main or a release's commit"));
+    const run = lines.findIndex((l, i) => i > at && l.trim() === "run: |");
+    expect(at).toBeGreaterThanOrEqual(0);
+    expect(run).toBeGreaterThan(at);
+    const indent = (lines[run + 1] ?? "").search(/\S/u);
+    const body: string[] = [];
+    for (const l of lines.slice(run + 1)) {
+      if (l.trim() !== "" && l.search(/\S/u) < indent) break;
+      body.push(l.slice(indent));
+    }
+    const dir = mkdtempSync(join(tmpdir(), "snyk-guard-"));
+    try {
+      writeFileSync(join(dir, "step.sh"), body.join("\n"));
+      return spawnSync("bash", ["--noprofile", "--norc", "-eo", "pipefail", join(dir, "step.sh")], { env: { ...process.env, REF_IN: refIn, GITHUB_REF: ref }, stdio: "pipe" }).status ?? -1;
+    } finally {
+      rmSync(dir, { recursive: true, force: true });
+    }
+  };
+
+  it("refuse a Snyk run on any branch but main unless release.yml passed a commit, by running the guard", () => {
+    const sha = "0123456789abcdef0123456789abcdef01234567";
+    expect(snykGuard("", "refs/heads/feature")).toBe(2);
+    expect(snykGuard("", "refs/heads/main")).toBe(0);
+    expect(snykGuard(sha, "refs/tags/v0.1.0")).toBe(0);
+    expect(snykGuard("main", "refs/tags/v0.1.0")).toBe(2);
+    expect(snykGuard(`${sha}0`, "refs/heads/main")).toBe(2);
+    const sn = text("snyk.yml");
+    // a dispatch takes no input, so it cannot hand the guard a commit
+    expect(sn).toMatch(/^ {2}workflow_dispatch:\n {2}workflow_call:\n/mu);
+    expect(sn).toContain([
+      "        run: |",
+      "          mkdir -p sarif",
+      "          ./snyk test --all-projects --severity-threshold=high --sarif-file-output=sarif/snyk.sarif",
+      "      - name: Upload SARIF to code scanning",
+    ].join("\n"));
+    expect(text("release.yml")).toContain("    secrets:\n      SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}\n\n");
+    for (const f of files) expect(text(f), `${f} inherits every secret`).not.toMatch(/secrets:\s*inherit/u);
   });
 
   it("run the browser suite once per release: release.yml's web job, which publish needs, and no CI job", () => {

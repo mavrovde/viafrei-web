@@ -94,6 +94,10 @@ A version tag is never reused, moved or deleted:
   `gh workflow run release-please.yml --ref main` for the next release pull request.
 - **The `Web` job failed:** nothing was built or published. A flaky run: `gh run rerun <run-id>
   --failed`. A real fault is a fault in the tagged commit (below).
+- **The `Snyk` job failed:** nothing was built or published. An outage (the CLI download or
+  Snyk's service): `gh run rerun <run-id> --failed`. A high or critical advisory: fix it on `main`
+  and release a new patch. Snyk's free plan has a monthly test quota and `--all-projects` spends
+  one test per project; an exhausted quota fails this job like an advisory.
 - **The fault is in the tagged commit:** fix it on `main` and release a new patch.
 
 Rollback is infra's: it deploys the previous digest (viafrei-infra). This repository never
@@ -196,7 +200,8 @@ updates or deletes one.
   token fails the job by name (`GHCR_READ_TOKEN must be set`) before anything is pulled.
   `viafrei-database` is public. Release.yml pushes and reads this repository's own image, and for
   that `GITHUB_TOKEN` is right.
-- **Secrets:** `GHCR_READ_TOKEN`, `SONAR_TOKEN` and `SNYK_TOKEN`, each also as a Dependabot secret.
+- **Secrets:** `GHCR_READ_TOKEN` and `SONAR_TOKEN`, each also as a Dependabot secret, and
+  `SNYK_TOKEN` as an Actions secret only (Snyk never runs on a pull request).
   A missing token fails its job with a message naming the secret; it never passes as a skip.
 - **SonarCloud:** project `mavrovde_viafrei-web` in organisation `mavrovde`, automatic analysis off.
 - **The rulesets above, and branch protection with the required checks.**
