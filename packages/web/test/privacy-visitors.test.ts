@@ -3,7 +3,8 @@
  * text of 2026-10-11, and it ships with the mechanism it describes (ruling
  * C10). Each claim the text makes is pinned to the file that makes it true:
  * the seven days to the rotation script and the deploy gate, the GPC/DNT
- * fields to the nginx log format, the /64 and the HMAC to the counter. Read as
+ * fields to the nginx log format (all three viafrei-infra's, so that case is
+ * skipped here), the /64 and the HMAC to the counter. Read as
  * text (tests may read the register; the web runtime imports nothing from the
  * database-holding workspaces — check_web_boundary.sh).
  *
@@ -15,6 +16,7 @@ import { join } from "node:path";
 import { fileURLToPath } from "node:url";
 import { describe, expect, it } from "vitest";
 import { all, text as nodeText } from "@viafrei/design/testing";
+import { PAGES_PER_VISIT_BUCKETS, SEARCH_ENGINES, SITE_VISIT_DEVICES } from "../../../.pinned/app/packages/ingest/dist/platform/site-visits.js";
 import { pinnedPath } from "./pinned-source.js";
 
 const REPO = new URL("../../../", import.meta.url);
@@ -41,7 +43,8 @@ describe("section 3 of the privacy notice (T1)", () => {
     expect(website).not.toContain("hängt allein vom Zugriffsaufkommen ab");
   });
 
-  it("says seven days because the rotation deletes on day seven and the deploy fails past seven days and an hour", () => {
+  // cross-repo(viafrei-infra): the log rotation, its deploy gate and the edge's log format are viafrei-infra's
+  it.skip("says seven days because the rotation deletes on day seven and the deploy fails past seven days and an hour", () => {
     expect(read("the edge log rotation")).toMatch(/^KEEP_DAYS=7$/mu);
     expect(read("the edge log gate")).toMatch(/^MAX_AGE_S=\$\(\(7 \* 86400 \+ 3600\)\)$/mu);
     const conf = read("the edge configuration");
@@ -80,10 +83,8 @@ describe("section 4, Besucherzählung ohne Cookies (T2)", () => {
     }
   });
 
-  // cross-repo(viafrei): asserts TypeScript source text (a type, a `readonly`/`as const` declaration) that the released viafrei-app ships compiled, so it cannot be decided here (viafrei-web#2, docs/moved-from-viafrei.md)
-  it.skip("names every device class the counter stores — four since #591", () => {
-    const counter = read("packages/ingest/src/platform/site-visits.ts");
-    expect(counter).toContain('export const SITE_VISIT_DEVICES = ["desktop", "mobile", "tablet", "other"] as const;');
+  it("names every device class the counter stores — four since #591", () => {
+    expect(SITE_VISIT_DEVICES).toEqual(["desktop", "mobile", "tablet", "other"]);
     expect(text).toContain("Geräteklasse (Desktop, Mobilgerät, Tablet oder „sonstige“");
   });
 
@@ -120,9 +121,8 @@ describe("#1185 V10: the numbers the text says are the code's constants", () => 
     expect(sec4).toContain("zwischen denen höchstens 30 Minuten liegen, zählen wir als einen Besuch");
   });
 
-  // cross-repo(viafrei): asserts TypeScript source text (a type, a `readonly`/`as const` declaration) that the released viafrei-app ships compiled, so it cannot be decided here (viafrei-web#2, docs/moved-from-viafrei.md)
-  it.skip("the pages-per-visit buckets, in the text's order", () => {
-    expect(counter).toContain('export const PAGES_PER_VISIT_BUCKETS = ["1", "2", "3", "4-5", "6-10", "11+"] as const;');
+  it("the pages-per-visit buckets, in the text's order", () => {
+    expect(PAGES_PER_VISIT_BUCKETS).toEqual(["1", "2", "3", "4-5", "6-10", "11+"]);
     expect(sec4).toContain("wie viele Besuche 1, 2, 3, 4–5, 6–10 oder mehr als 10 Seiten umfassten");
   });
 
@@ -131,12 +131,12 @@ describe("#1185 V10: the numbers the text says are the code's constants", () => 
     expect(sec4).toContain("eine Domain, von der an einem Tag weniger als drei Besuche kamen, nur als „sonstige“");
   });
 
-  // cross-repo(viafrei): asserts TypeScript source text (a type, a `readonly`/`as const` declaration) that the released viafrei-app ships compiled, so it cannot be decided here (viafrei-web#2, docs/moved-from-viafrei.md)
-  it.skip("the closed list of search engines, the same in the counter, the migration and the console's schema", () => {
+  it("the closed list of search engines, the same in the counter, the pinned database's schema and the console's schema", () => {
     const engines = ["google", "bing", "duckduckgo", "ecosia", "qwant", "startpage", "yahoo", "yandex", "baidu"];
-    expect(counter).toContain(`export const SEARCH_ENGINES = [${engines.map((e) => `"${e}"`).join(", ")}] as const;`);
-    const migration = read("db/migrations/0256_site_visits_visits.sql");
-    expect(migration).toContain(`engine in (${[...engines, "other"].map((e) => `'${e}'`).join(", ")})`);
+    expect(SEARCH_ENGINES).toEqual(engines);
+    // migration 0256 as the pinned viafrei-database release carries it — squashed into its baseline
+    const migration = read(`.pinned/database/db/baseline/${readdirSync(new URL(".pinned/database/db/baseline/", REPO)).find((f) => f.endsWith("_baseline.sql")) ?? "missing"}`);
+    expect(migration).toContain(`CHECK ((engine = ANY (ARRAY[${[...engines, "other"].map((e) => `'${e}'::text`).join(", ")}])))`);
     expect(read("packages/status/src/presentation/schema.ts")).toContain(`z.enum([${[...engines, "other"].map((e) => `"${e}"`).join(", ")}])`);
   });
 

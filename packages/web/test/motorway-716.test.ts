@@ -279,19 +279,24 @@ describe("G5 as amended 2026-10-21 (#890): a measured motorway page with a posit
   it("G5.1: with the switch on the page renders the position bar and stays measured, consent unchanged", async () => {
     expect(motorwayAroundOn({ VF_MOTORWAY_AROUND: "1" })).toBe(true);
     expect(motorwayAroundOn({})).toBe(false);
-    // On in production since G5.7 holds (owner, 2026-10-21): the prod web service sets it, and no other service does.
-    const prod = readFileSync(join(dirname(fileURLToPath(import.meta.url)), "the production compose file"), "utf8");
-    expect([...prod.matchAll(/^ {6}VF_MOTORWAY_AROUND: "1"$/gm)]).toHaveLength(1);
-    const from = prod.indexOf("\n  web:\n");
-    const next = prod.slice(from + 1).search(/\n  [a-z][\w-]*:\n/);
-    expect(from).toBeGreaterThan(0);
-    expect(prod.slice(from, next === -1 ? undefined : from + 1 + next)).toContain('VF_MOTORWAY_AROUND: "1"');
+    // On in production since G5.7 holds (owner, 2026-10-21): production's compose file is viafrei-infra's, so
+    // "the prod web service sets it, and no other service does" is the skipped case below.
     const o = { baseUrl: "http://digest", timeoutMs: 1, geoipFile: undefined };
     expect(await aroundFirstRender(new Headers(), "A7", "de", new URLSearchParams("r=5"), o, true)).toMatchObject({ radiusKm: 5 });
     expect(await aroundFirstRender(new Headers(), "A7", "de", new URLSearchParams("r=abc"), o, true)).toMatchObject({ radiusKm: 25 });
     const page = readSrc("layouts", "MotorwayPage.astro");
     expect(page).toContain('<Base lang={lang} page="motorways" measure={true}');
     expect(page).toContain("{around !== null && <MotorwayPlace ");
+  });
+
+  // cross-repo(viafrei-infra): production's compose file is viafrei-infra's
+  it.skip("G5.1 (production): the prod web service sets VF_MOTORWAY_AROUND, and no other service does", () => {
+    const prod = readFileSync(join(dirname(fileURLToPath(import.meta.url)), "the production compose file"), "utf8");
+    expect([...prod.matchAll(/^ {6}VF_MOTORWAY_AROUND: "1"$/gm)]).toHaveLength(1);
+    const from = prod.indexOf("\n  web:\n");
+    const next = prod.slice(from + 1).search(/\n  [a-z][\w-]*:\n/);
+    expect(from).toBeGreaterThan(0);
+    expect(prod.slice(from, next === -1 ? undefined : from + 1 + next)).toContain('VF_MOTORWAY_AROUND: "1"');
   });
 
   it("G5.2: no rung, and no radius change, marks the root or fires vf:location — Consent has nothing to send as location_source", async () => {

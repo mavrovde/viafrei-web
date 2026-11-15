@@ -15,6 +15,7 @@
  */
 import { readFileSync } from "node:fs";
 import { describe, expect, it } from "vitest";
+import { offReason } from "../../../.pinned/app/packages/ingest/dist/cli/usage-analytics.js";
 import { pinnedPath } from "./pinned-source.js";
 
 const REPO = new URL("../../../", import.meta.url);
@@ -101,8 +102,8 @@ describe("the recipient sentence, per render (#536, steward condition d)", () =>
     expect(common).toContain("Soweit dabei überhaupt personenbezogene Daten verarbeitet werden");
   });
 
-  // cross-repo(viafrei): asserts TypeScript source text (a type, a `readonly`/`as const` declaration) that the released viafrei-app ships compiled, so it cannot be decided here (viafrei-web#2, docs/moved-from-viafrei.md)
-  it.skip("the no-tag sentence is true because the export is off without GOOGLE_TAG", () => {
-    expect(read("packages/ingest/src/cli/usage-analytics.ts")).toMatch(/c\.measurementId === undefined \|\| c\.measurementId\.trim\(\) === ""\) return "GOOGLE_TAG is unset/u);
+  it("the no-tag sentence is true because the export is off without GOOGLE_TAG (the pinned offReason)", () => {
+    for (const measurementId of [undefined, "", "  "]) expect(offReason({ apiSecret: "s", measurementId }), String(measurementId)).toMatch(/^GOOGLE_TAG is unset/u);
+    expect(offReason({ apiSecret: "s", measurementId: "G-ABC123XYZ" })).toBeNull();
   });
 });

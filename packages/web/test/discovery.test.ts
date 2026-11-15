@@ -74,13 +74,14 @@ describe("robots.txt (#531)", () => {
     const named = new Set([...AI_CRAWLERS, "Googlebot", "YandexBot"].map((x) => x.toLowerCase()));
     for (const ua of SEO_CRAWLERS) expect(named.has(ua.toLowerCase()), ua).toBe(false);
   });
-  it("names the same SEO tools as nginx's seo class, the limit behind the request (the edge configuration, #936 C)", () => {
+  // cross-repo(viafrei-infra): the edge's user-agent class map is viafrei-infra's configuration
+  it.skip("names the same SEO tools as nginx's seo class, the limit behind the request (the edge configuration, #936 C)", () => {
     const conf = readFileSync(join(WEB, "the edge configuration"), "utf8").replace(/#[^\n]*/g, "");
     const m = /^\s*~\*\(([^)]+)\)\s+"seo";/m.exec(conf);
     expect(m, "the seo line of the user-agent class map").not.toBeNull();
     expect(m![1]!.split("|").sort()).toEqual(SEO_CLASS_TOKENS.map((x) => x.toLowerCase()).sort());
   });
-  // cross-repo(viafrei-infra): red at the source too (ea91377ba): the edge configuration predates #1306 (gptbot, amazonbot); the edge's map is infra's, refreshed by its `make snapshot` (viafrei-web#2, docs/moved-from-viafrei.md)
+  // cross-repo(viafrei-infra): the edge's per-network budget map is viafrei-infra's configuration
   it.skip("leaves the search engines and exactly the AI assistants out of nginx's per-network budget (#1077 review, #1290)", () => {
     const conf = readFileSync(join(WEB, "the edge configuration"), "utf8").replace(/#[^\n]*/g, "");
     const block = /map \$http_user_agent \$vf_search_claimed \{([^}]*)\}/u.exec(conf);
@@ -316,7 +317,8 @@ describe("the card on both hosts, from one source (#734)", () => {
       expect(src, p).not.toMatch(/de\.viafrei\/mcp|"version"/);
     }
   });
-  it("nginx routes every /.well-known/ discovery route to the shell on both server blocks", () => {
+  // cross-repo(viafrei-infra): the edge's routing is viafrei-infra's configuration
+  it.skip("nginx routes every /.well-known/ discovery route to the shell on both server blocks", () => {
     const conf = readFileSync(join(WEB, "..", "..", "infra", "the edge configuration"), "utf8");
     for (const p of DISCOVERY_ROUTES.filter((x) => x.startsWith("/.well-known/"))) {
       expect(conf.split(`location = ${p} { include the edge shell proxy rules; }`).length - 1, p).toBe(2);

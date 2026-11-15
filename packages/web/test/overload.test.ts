@@ -289,12 +289,18 @@ describe("crawlers by address, not by user agent (P7, P8, P9)", () => {
     for (const f of CRAWLER_FAMILIES) for (const u of f.ranges) expect(u).toMatch(/^https:\/\//);
   });
 
-  it("P8: no public resolver and no setServers in web, digest or deploy", () => {
-    const files = [...walk(join(REPO, "packages/web/src")), ...walk(join(REPO, ".pinned/app/packages/digest/dist/src")), ...walk(join(REPO, "the infra copy"))];
-    const bad = /setServers|(?<![\w.])(?:8\.8\.8\.8|8\.8\.4\.4|1\.1\.1\.1|1\.0\.0\.1|9\.9\.9\.9)(?![\w.])|dns\.google|cloudflare-dns|dns\.quad9/;
+  /** A public resolver or a setServers call: the shape P8 forbids. */
+  const PUBLIC_RESOLVER = /setServers|(?<![\w.])(?:8\.8\.8\.8|8\.8\.4\.4|1\.1\.1\.1|1\.0\.0\.1|9\.9\.9\.9)(?![\w.])|dns\.google|cloudflare-dns|dns\.quad9/;
+  it("P8: no public resolver and no setServers in web or digest", () => {
+    const files = [...walk(join(REPO, "packages/web/src")), ...walk(join(REPO, ".pinned/app/packages/digest/dist/src"))];
     expect(files.length).toBeGreaterThan(100);
-    expect(files.filter((f) => bad.test(readFileSync(f, "utf8"))).map((f) => f.slice(REPO.length))).toEqual([]);
-    expect(bad.test("resolver.setServers(['1.1.1.1'])")).toBe(true);
+    expect(files.filter((f) => PUBLIC_RESOLVER.test(readFileSync(f, "utf8"))).map((f) => f.slice(REPO.length))).toEqual([]);
+    expect(PUBLIC_RESOLVER.test("resolver.setServers(['1.1.1.1'])")).toBe(true);
+  });
+  // cross-repo(viafrei-infra): the deploy's files are viafrei-infra's
+  it.skip("P8: no public resolver and no setServers in the deploy", () => {
+    const files = [...walk(join(REPO, "the infra copy"))];
+    expect(files.filter((f) => PUBLIC_RESOLVER.test(readFileSync(f, "utf8"))).map((f) => f.slice(REPO.length))).toEqual([]);
   });
 });
 
@@ -392,15 +398,21 @@ describe("#1205: one pass key for every replica", () => {
     }
   });
 
-  it("the web's key rule and the host's are the one rule: exactly 64 hex characters (#1205 review N1)", () => {
+  it("the web's key rule is exactly 64 hex characters (#1205 review N1)", () => {
     expect(PASS_KEY_HEX.source).toBe("^[0-9a-fA-F]{64}$");
+  });
+  // cross-repo(viafrei-infra): the host's key rule is in viafrei-infra's deploy
+  it.skip("the web's key rule and the host's are the one rule (#1205 review N1)", () => {
     expect(read("the deploy")).toContain(`grep -Ecx '${PASS_KEY_HEX.source.slice(1, -1)}' > /dev/null`);
   });
 
-  it("the process-wide book reads the shared key, and the host generates it for every replica (compose and the k8s Secret alike)", () => {
+  it("the process-wide book reads the shared key", () => {
     const index = read("packages/web/src/overload/index.ts");
     expect(index).toContain("createPassBook(passBookDeps())");
     expect(index).toContain("passKeyFrom(process.env)");
+  });
+  // cross-repo(viafrei-infra): generating the key on the host is viafrei-infra's deploy
+  it.skip("the host generates the shared key for every replica (compose and the k8s Secret alike)", () => {
     const tpl = "${WEB_PASS_KEY:?generated on the host by the deploy";
     expect(read("the production compose file")).toContain(`WEB_PASS_KEY: ${tpl}`);
     expect(read("the cluster manifests")).toContain(`web\tWEB_PASS_KEY\t${tpl}`);
@@ -535,8 +547,9 @@ describe("one purpose, no record (P1, P5)", () => {
     const runtime = [...walk(join(REPO, "packages/web/src")), ...walk(join(REPO, ".pinned/app/packages/digest/dist/src")), ...walk(join(REPO, ".pinned/app/packages/status/dist/src")), ...walk(join(REPO, ".pinned/app/packages/ingest/dist")), ...walk(join(REPO, ".pinned/app/packages/mcp/dist/src"))];
     const allowed = new Set([join(REPO, "packages/web/src/overload/pass.ts"), join(REPO, "packages/web/src/components/LegalPrivacy.astro")]);
     expect(readers(runtime).filter((f) => !allowed.has(f)).map((f) => f.slice(REPO.length))).toEqual([]);
-    // deploy: the edge forwards it and nothing else names it — the compose edge and its k3s twin (#1245), read from
-    //  since the infra split (mavrovde/viafrei-infra#1); viafrei-infra holds the whole edge
+  });
+  // cross-repo(viafrei-infra): the edge's configuration is viafrei-infra's
+  it.skip("deploy: the edge forwards the pass cookie and nothing else there names it (#1245)", () => {
     expect(readers([...walk(join(REPO, "the infra copy"))]).map((f) => f.slice(REPO.length)).sort()).toEqual(["the cluster manifests", "the cluster manifests", "the edge shell proxy rules", "the edge configuration"]);
   });
   it("the scan can say no: a planted reader is found", () => {
@@ -819,7 +832,8 @@ describe("#1205: a VERIFIED crawler reads on its own lane and is served under sa
     expect(r.calls.length + fetches, "the quiet read looked nothing up").toBe(madeCalls);
   });
 
-  it("#1205 review S1: nginx's range-checked claims are the same list as its $vf_ua_verify map", () => {
+  // cross-repo(viafrei-infra): the edge's $vf_ua_verify map is viafrei-infra's configuration
+  it.skip("#1205 review S1: nginx's range-checked claims are the same list as its $vf_ua_verify map", () => {
     const conf = read("the edge configuration").replace(/#[^\n]*/g, "");
     const block = /map \$http_user_agent \$vf_ua_verify \{([^}]*)\}/.exec(conf)?.[1] ?? "";
     const tokens = [...block.matchAll(/~\*\(?([a-z|-]+)\)?\s+"(?:google|bing)";/g)].flatMap((m) => m[1]!.split("|")).sort();
@@ -827,10 +841,13 @@ describe("#1205: a VERIFIED crawler reads on its own lane and is served under sa
     expect(NGINX_RANGE_CHECKED.source.split("|").sort()).toEqual(tokens);
   });
 
-  it("#1205 review N6: Google's user-triggered fetchers are no range that makes `search` — not in the web's verifier, the generator or either conf", () => {
+  it("#1205 review N6: Google's user-triggered fetchers are no range that makes `search` in the web's verifier", () => {
     const google = CRAWLER_FAMILIES.find((f) => f.name === "google");
     expect(google?.ranges.length).toBe(2);
     expect(google?.ranges.join(" ")).not.toContain("user-triggered");
+  });
+  // cross-repo(viafrei-infra): the range generator and the edge's configuration are viafrei-infra's
+  it.skip("#1205 review N6: nor in the generator or either conf", () => {
     expect(read("the crawler ranges generator")).not.toMatch(/file: "user-triggered-fetchers-google\.json"/);
     for (const f of ["the edge configuration", "the cluster manifests"]) {
       const geo = /# BEGIN crawler ranges[^\n]*\n([^\n]*)\n/.exec(read(f))?.[1] ?? "";
@@ -854,7 +871,8 @@ describe("#1205: a VERIFIED crawler reads on its own lane and is served under sa
     expect(r.calls).toEqual([]);
   });
 
-  it("#1205 review S2: meta-externalagent is an AI crawler in nginx's map (the crawler class, which the edge's marker no longer lifts to the lane since #1290: a training crawler), no longer an SEO tool", () => {
+  // cross-repo(viafrei-infra): the edge's $vf_ua_claimed map is viafrei-infra's configuration
+  it.skip("#1205 review S2: meta-externalagent is an AI crawler in nginx's map (the crawler class, which the edge's marker no longer lifts to the lane since #1290: a training crawler), no longer an SEO tool", () => {
     for (const f of ["the edge configuration", "the cluster manifests"]) {
       const conf = read(f).replace(/#[^\n]*/g, "");
       const claimed = /map \$http_user_agent \$vf_ua_claimed \{([^}]*)\}/.exec(conf)?.[1] ?? "";

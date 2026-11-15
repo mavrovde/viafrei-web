@@ -429,7 +429,8 @@ describe("the fuel grade switch (#1116 AC4)", () => {
 /**
  * #1222: what `/fragment/place-fuel` answers, one meaning per status — the table in `src/lib/place-fuel.ts`'s header.
  * The edge's own answers (a 429 from `vf_auto` or the per-address zone) never reach this route, so they are asserted
- * on `the edge configuration`; a 403 is answered by nobody since the interim hand edit of 2026-11-08 was retired.
+ * on the edge configuration, which is viafrei-infra's (skipped here); a 403 is answered by nobody since the interim hand
+ * edit of 2026-11-08 was retired.
  */
 describe("#1222: one meaning per answer of /fragment/place-fuel", () => {
   it("an incomplete request (no place, no language, a slug of the wrong shape) is 404, final: nothing is read, nothing asked", async () => {
@@ -467,8 +468,11 @@ describe("#1222: one meaning per answer of /fragment/place-fuel", () => {
     expect(body).not.toContain("data-vf-refill");
   });
 
-  it("no code path of the route answers 403, and the edge answers none on it: a refusal there is a 429 with its zone in the error log", () => {
+  it("no code path of the route answers 403", () => {
     for (const f of ["lib/place-fuel.ts", "lib/fuel-fragment.ts", "pages/fragment/place-fuel.ts"]) expect(readFileSync(join(SRC, f), "utf8").replace(/\/\*[\s\S]*?\*\//g, "").replace(/\/\/.*$/gm, ""), f).not.toMatch(/\b403\b/);
+  });
+  // cross-repo(viafrei-infra): the edge's configuration is viafrei-infra's
+  it.skip("the edge answers no 403 on the route: a refusal there is a 429 with its zone in the error log", () => {
     const conf = readFileSync(join(SRC, "..", "..", "..", "infra", "the edge configuration"), "utf8")
       .split("\n")
       .filter((l) => !l.trimStart().startsWith("#"))

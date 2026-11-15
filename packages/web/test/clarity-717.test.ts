@@ -433,8 +433,7 @@ describe("the words (22 catalogues, the Datenschutz)", () => {
   });
 });
 
-describe("prod wiring (both compose files, the template)", () => {
-  const prod = readRoot("the production compose file");
+describe("the wiring of this repository's compose file", () => {
   const dev = readRoot("docker-compose.yml");
   const service = (yml: string, name: string): string => {
     const start = yml.indexOf(`\n  ${name}:\n`);
@@ -442,20 +441,28 @@ describe("prod wiring (both compose files, the template)", () => {
     const end = rest.slice(1).search(/\n {2}[a-z][a-z0-9-]*:\n/);
     return end < 0 ? rest : rest.slice(0, end + 1);
   };
-  it("the web service of both files is handed the id and the switch, empty by default", () => {
-    for (const yml of [prod, dev]) {
-      const web = service(yml, "web");
-      expect(web).toContain("CLARITY_PROJECT_ID: ${CLARITY_PROJECT_ID:-}");
-      expect(web).toContain("CLARITY_ENABLED: ${CLARITY_ENABLED:-}");
-    }
+  it("the web service is handed the id and the switch, empty by default", () => {
+    const web = service(dev, "web");
+    expect(web).toContain("CLARITY_PROJECT_ID: ${CLARITY_PROJECT_ID:-}");
+    expect(web).toContain("CLARITY_ENABLED: ${CLARITY_ENABLED:-}");
   });
   it("no other service is handed them, and the ops token reaches no service at all", () => {
-    for (const yml of [prod, dev]) {
-      expect(yml.match(/CLARITY_PROJECT_ID: /g)).toHaveLength(1);
-      expect(yml).not.toContain("CLARITY_API_TOKEN");
-    }
+    expect(dev.match(/CLARITY_PROJECT_ID: /g)).toHaveLength(1);
+    expect(dev).not.toContain("CLARITY_API_TOKEN");
   });
-  it("the template lists all three, the token empty", () => {
+});
+
+describe("prod wiring (production's compose file and its template)", () => {
+  // cross-repo(viafrei-infra): production's compose file is viafrei-infra's
+  it.skip("production's web service is handed the id and the switch, empty by default, and no other service is", () => {
+    const prod = readRoot("the production compose file");
+    expect(prod).toContain("CLARITY_PROJECT_ID: ${CLARITY_PROJECT_ID:-}");
+    expect(prod).toContain("CLARITY_ENABLED: ${CLARITY_ENABLED:-}");
+    expect(prod.match(/CLARITY_PROJECT_ID: /g)).toHaveLength(1);
+    expect(prod).not.toContain("CLARITY_API_TOKEN");
+  });
+  // cross-repo(viafrei-infra): production's environment template is viafrei-infra's
+  it.skip("the template lists all three, the token empty", () => {
     const tpl = readRoot("the production env template");
     expect(tpl).toMatch(/^CLARITY_PROJECT_ID=$/m);
     expect(tpl).toMatch(/^CLARITY_ENABLED=true$/m);

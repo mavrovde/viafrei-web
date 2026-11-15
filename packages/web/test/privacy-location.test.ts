@@ -63,23 +63,25 @@ describe("the privacy notice on the place (#564)", () => {
       expect(spot).toContain('body: JSON.stringify({ lat, lon, acc, lang })');
     });
 
-    // cross-repo(viafrei): asserts TypeScript source text (a type, a `readonly`/`as const` declaration) that the released viafrei-app ships compiled, so it cannot be decided here (viafrei-web#2, docs/moved-from-viafrei.md)
-    it.skip("names the four kinds of object — exactly the kinds the lookup can open", () => {
+    it("names the four kinds of object — exactly the kinds the lookup can open", () => {
       expect(sec).toContain("ob Sie an einem Bahnhof, einer Tankstelle oder einer Ladestation stehen, die auf dieser Website eine eigene Seite hat, oder an einer Tank- und Rastanlage oder einem Rastplatz an der Autobahn");
       expect(island).toContain("(?:station|fuel|charging|autobahn)");
       expect(spot).toContain("(?:station|fuel|charging|autobahn)");
-      expect(rule).toContain('export type SpotKind = "fuel" | "station" | "charging" | "rest";');
+      // the pinned digest's compiled rule: its kinds, in their order (the type `SpotKind` is compiled away)
+      expect(rule).toContain('export const SPOT_ORDER = ["fuel", "station", "charging", "rest"];');
     });
 
-    // cross-repo(viafrei): asserts TypeScript source text (a type, a `readonly`/`as const` declaration) that the released viafrei-app ships compiled, so it cannot be decided here (viafrei-web#2, docs/moved-from-viafrei.md)
-    it.skip("#1171 C4 (a): a Tank- und Rastanlage AND a Rastplatz (LCL P3.3 and P3.4) open the motorway's page — the code matches both and has no page of a rest area", () => {
+    it("#1171 C4 (a): a Tank- und Rastanlage AND a Rastplatz (LCL P3.3 and P3.4) open the motorway's page — the code matches both and has no page of a rest area", () => {
       expect(sec).toContain("trifft das zu, öffnet die Seite die Seite dieser Stelle, bei einer Rastanlage die Seite der Autobahn, sonst zeigt sie wie sonst die Karten des gerundeten Gebiets.");
-      expect(rule).toContain("export const SPOT_REST_STCD: readonly number[] = [3, 4];");
+      expect(rule).toContain("export const SPOT_REST_STCD = [3, 4];");
       expect(read("packages/digest/src/server/spot-service.ts")).toContain('{ kind: "rest", href: motorwayPath(lang, r.road),');
     });
 
-    it("#1171 C4 (b): the request itself is not in the access log of Punkt 3 — nginx's /fragment/spot is access_log off in both server blocks", () => {
+    it("#1171 C4 (b): the request itself is not in the access log of Punkt 3 — the page says so", () => {
       expect(sec).toContain("sie wird bei uns weder gespeichert noch protokolliert, die Anfrage selbst erscheint nicht im Zugriffsprotokoll nach Punkt 3, und auch auf Ihrem Gerät wird sie nicht gespeichert");
+    });
+    // cross-repo(viafrei-infra): the edge's configuration is viafrei-infra's
+    it.skip("#1171 C4 (b): nginx's /fragment/spot is access_log off in both server blocks", () => {
       const conf = read("the edge configuration").replace(/#.*$/gm, "");
       expect(conf.match(/^\s*location = \/fragment\/spot \{ access_log off; include \/etc\/nginx\/conf\.d\/vf-web-proxy\.inc; \}$/gm)?.length).toBe(2);
       expect(conf.match(/location[^{\n]*\/fragment\/spot/g)?.length).toBe(2);
@@ -363,15 +365,15 @@ describe("the privacy notice on the place (#564)", () => {
     expect(nearShown).not.toContain("remember(");
   });
 
-  // cross-repo(viafrei): asserts TypeScript source text (a type, a `readonly`/`as const` declaration) that the released viafrei-app ships compiled, so it cannot be decided here (viafrei-web#2, docs/moved-from-viafrei.md)
-  it.skip("says how the server names a browser area — derived from the rounded cell, never a house number, not kept with you (v2.0.10)", () => {
+  it("says how the server names a browser area — derived from the rounded cell, never a house number, not kept with you (v2.0.10)", () => {
     expect(sec).toContain("Aus diesem gerundeten Gebiet leitet unser Server den Namen ab, mit dem die Seite die Gegend bezeichnet: einen Bahnhof oder einen benannten Ort nahe der Mitte des Gebiets, sonst die nächste Straße, jeweils mit der Gemeinde, etwa „nahe Dachsweg, Alsdorf“, nie eine Hausnummer.");
     expect(sec).toContain("Diesen Namen hält er je Gebiet höchstens eine Stunde im Arbeitsspeicher, ohne Bezug zu Ihnen, und speichert ihn nicht; ebenso den Namen eines in der Ortsleiste gewählten Bahnhofs, Orts oder einer Adresse.");
     expect(sec).toContain("er hält den Suchtext mit den Vorschlägen dazu höchstens zehn Minuten im Arbeitsspeicher, ohne Bezug zu Ihnen, und speichert ihn nicht.");
     const label = read("packages/digest/src/queries/place-label.ts");
     expect(label).toContain("// A cell: the street only — never the number.");
     const service = read("packages/digest/src/server/place-service.ts");
-    expect(service).toContain("const labelCache = new BoundedCache<Read<PlaceLabel>>((deps.resolveCacheSeconds ?? 3_600) * 1000, max, clock);");
+    // the pinned digest's compiled service (the type argument is compiled away)
+    expect(service).toContain("const labelCache = new BoundedCache((deps.resolveCacheSeconds ?? 3_600) * 1000, max, clock);");
   });
 
   it("says truthfully what the IP rung hands on: a point rounded to about one kilometre, the Gemeinde determined by the card service (review S2)", () => {
@@ -516,11 +518,11 @@ describe("the place cards' live answers in the privacy notice (#745, data-stewar
     );
   });
 
-  // cross-repo(viafrei): asserts TypeScript source text (a type, a `readonly`/`as const` declaration) that the released viafrei-app ships compiled, so it cannot be decided here (viafrei-web#2, docs/moved-from-viafrei.md)
-  it.skip("and the 15 minutes are the MCP process's own TTL, and its sweep's", () => {
+  it("and the 15 minutes are the MCP process's own TTL, and its sweep's", () => {
     const engine = read("packages/mcp/src/server/site-examples.ts");
     expect(engine).toContain("export const LOCAL_TTL_MS = 15 * 60_000;");
     // An entry is dropped one sweep before it would pass 15 minutes, so none is held longer (site-examples.test.ts pins every phase).
-    expect(engine).toMatch(/if \(now\(\) - h\.at < LOCAL_TTL_MS - LOCAL_SWEEP_MS\) break;\s+held\.delete\(ags\);/u);
+    // the pinned mcp's compiled module puts the `break` on a line of its own
+    expect(engine).toMatch(/if \(now\(\) - h\.at < LOCAL_TTL_MS - LOCAL_SWEEP_MS\)\s+break;\s+held\.delete\(ags\);/u);
   });
 });
