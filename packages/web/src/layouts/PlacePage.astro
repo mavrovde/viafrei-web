@@ -72,7 +72,7 @@ const headerPlace = blockHeaderPlace(lang, { source: "page", place, path: placeP
   <PageHead class="place-page__head" h1={place.label} h1Translate={false} first={lifted.first}>
     <p class="lead">{leadBefore}<span translate="no">{place.label}</span>{leadAfter}</p>
   </PageHead>
-  <Star lang={lang} path={placePath(lang, slug)} label={place.label} />
+  <Star lang={lang} path={placePath(lang, slug)} label={place.label} moves={place.html.includes('id="place-ampel"')} />
   <PlaceBlock lang={lang} source="page" place={place} topics={topics} path={placePath(lang, slug)} />
   {/* #1110 item 3: the roads the place's cards name, and the AI link asking about the place */}
   <NextStep lang={lang} roads={nextRoads(lang, place.html)} about={{ kind: "place", place: place.label }} />

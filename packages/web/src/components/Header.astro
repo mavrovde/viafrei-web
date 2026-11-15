@@ -55,7 +55,10 @@ const anchorLabel: Record<(typeof HOME_ANCHORS)[number], string> = {
   start: t(lang, "nav.start"),
   tools: t(lang, "nav.tools"),
 };
-// #1089: the accessible name says WHAT is connected and to which assistants — the hero's own list ("Für: Claude · …")
+// #1089: the button says WHAT is connected and to which assistants — the hero's own list ("Für: Claude · …"). WCAG 2.5.3
+// (label in name; axe's label-content-name-mismatch, no longer experimental since axe-core 4.14): the accessible name is the
+// visible text itself — whichever of the long and the short form the width shows, the other is display:none and so in no
+// name — and the assistants are the button's DESCRIPTION, so a voice user's "click Mit Ihrer KI verbinden" finds it.
 const ctaLabel = t(lang, "nav.ctaLabel", { clients: `${NOTE_CLIENTS.slice(0, 2).map((c) => c.name).join(", ")}, …` });
 // #1111, #1153: the one search on every page — a GET form to this origin's `/<lang>/search` (it works without script),
 // so every page allows one (`form-action 'self'`); with script it suggests as you type (the location island).
@@ -83,7 +86,7 @@ const ownIsland = scripts && !place.island ? islandScript({ lang, server: { sour
     <nav class="site-nav" aria-label={t(lang, "a11y.mainNav")}>
       {HOME_ANCHORS.map((a) => <a href={onHome || (a === "start" && page === "start") ? `#${a}` : `${home}#${a}`}>{anchorLabel[a]}</a>)}
     </nav>
-    <a class="btn btn--primary btn--sm site-head__cta" href={connect} aria-label={ctaLabel}><span class="site-head__cta-long">{t(lang, "nav.cta")}</span><span class="site-head__cta-short" aria-hidden="true">{t(lang, "nav.ctaShort")}</span></a>
+    <a class="btn btn--primary btn--sm site-head__cta" href={connect} aria-describedby="site-head-cta-desc"><span class="site-head__cta-long">{t(lang, "nav.cta")}</span><span class="site-head__cta-short">{t(lang, "nav.ctaShort")}</span><span id="site-head-cta-desc" hidden>{ctaLabel}</span></a>
     <LanguageList lang={lang} page={page} variant="menu" hrefs={hrefs} />
   </div>
   {/*

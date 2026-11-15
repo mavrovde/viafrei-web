@@ -2,6 +2,11 @@
 /**
  * #1181 features 3 and 7: the star of a road, place or station page (`lib/star.ts`) and the home-screen offer. Both
  * buttons stay `hidden` until the script reveals them; nothing is stored before the star is pressed.
+ *
+ * `moves`: the page's desk script moves the star under a map that is in the server's HTML (`lib/desk.ts`, STAR_INTO).
+ * From 1024 px such a star takes no room under the head until it is moved (`site.css`). The stylesheet cannot tell
+ * that from the map alone: the map is parsed AFTER the star, whose own script has revealed its button by then, so a
+ * paint between the two showed the star's row and the map's arrival pulled the page up by it (a 52 px layout shift).
  */
 import { t } from "../i18n/index.js";
 import { starScript } from "../lib/star.js";
@@ -15,13 +20,15 @@ interface Props {
   label: string;
   /** A motorway page's road: the home's commute card reads it. */
   road?: string | undefined;
+  /** The desk moves this star under a map the server's HTML carries (see above). */
+  moves?: boolean;
 }
-const { lang, path, label, road } = Astro.props;
+const { lang, path, label, road, moves = false } = Astro.props;
 const words = JSON.stringify({ add: t(lang, "star.add"), remove: t(lang, "star.remove"), neu: t(lang, "star.neu"), gone: t(lang, "star.gone", { list: "{list}" }), longer: t(lang, "star.longer") });
 Astro.locals.hasScript = true;
 ---
 
-<p class="star wrap">
+<p class="star wrap" data-desk-move={moves ? "" : undefined}>
   <button class="star__btn" id="vf-star" type="button" aria-pressed="false" data-key={path} data-label={label} data-road={road} data-words={words} hidden>{t(lang, "star.add")}</button>
   <button class="star__btn" id="vf-install" type="button" hidden>{t(lang, "star.install")}</button>
 </p>

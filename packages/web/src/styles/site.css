@@ -2170,7 +2170,10 @@ p.proof__cell.is-error { background: var(--error-bg); color: var(--error); borde
      status line, the head's other lines under both (the station's own blocks are tighter, above) */
   .desk :is(.motorway__map, #place-ampel, #pcard-station-nearby) > .star { margin-block: var(--s-3) 0; }
   /* until the script has moved it, the star takes no room under the head of a page that has a map to move it into: moved
-     after the first paint, it would pull the whole page up by its own row (a layout shift); with no map, it stays */
+     after the first paint, it would pull the whole page up by its own row (a layout shift); with no map, it stays. The
+     server marks a star whose map is in its HTML (`data-desk-move`, `Star.astro`): the map is parsed after the star, so
+     the `:has` alone left a paint in between with the star's row shown; the `:has` still covers a map that came later */
+  .desk .star[data-desk-move]:not(:is(.motorway__map, #place-ampel, #pcard-station-nearby) > *),
   .desk:has(:is(.motorway__map, #place-ampel, #pcard-station-nearby)) .star:not(:is(.motorway__map, #place-ampel, #pcard-station-nearby) > *) { display: none; }
   /* a moved star with no button shown (none revealed yet, or the script gave up) leaves no empty row with its margin */
   .star:not(:has(> :not([hidden]))) { display: none; }

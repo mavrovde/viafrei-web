@@ -281,11 +281,16 @@ describe("the consent sheet (#1174 AC 4)", () => {
 
 describe("the fixed action bar in a browser without scroll timelines (#1174)", () => {
   let fx: Browser;
+  let fxTimelines: Browser;
   beforeAll(async () => {
-    fx = await firefox.launch();
+    // Firefox has scroll timelines on by default since 159 (Playwright 1.65's build), so the case under test — a browser
+    // without them, where the header's script shows the bar — is Firefox with them switched off by its own preference.
+    fx = await firefox.launch({ firefoxUserPrefs: { "layout.css.scroll-driven-animations.enabled": false } });
+    fxTimelines = await firefox.launch();
   });
   afterAll(async () => {
     await fx?.close();
+    await fxTimelines?.close();
   });
 
   it("Firefox: hidden on the first screen, shown from 520 px of scroll by the header's script, hidden again at the top", async () => {
@@ -301,6 +306,19 @@ describe("the fixed action bar in a browser without scroll timelines (#1174)", (
     await page.evaluate(() => window.scrollTo(0, 0));
     await page.waitForFunction(() => !document.documentElement.hasAttribute("data-actionbar"));
     expect(await page.locator(".actionbar").isVisible(), "back at the top").toBe(false);
+    await ctx.close();
+  });
+
+  it("Firefox with scroll timelines (its default since 159): the stylesheet's path, hidden on the first screen, shown from 520 px", async () => {
+    const ctx = await fxTimelines.newContext({ viewport: PHONE, reducedMotion: "no-preference" });
+    ctx.setDefaultTimeout(2_000);
+    const page = await ctx.newPage();
+    await page.goto(`${base(PORT)}/de`);
+    expect(await page.evaluate(() => CSS.supports("animation-timeline", "scroll()")), "this browser has scroll timelines").toBe(true);
+    expect(await page.locator(".actionbar").isVisible(), "at the top").toBe(false);
+    await page.evaluate(() => window.scrollTo(0, 900));
+    await page.waitForFunction(() => getComputedStyle(document.querySelector(".actionbar") as Element).visibility === "visible");
+    expect(await page.evaluate(() => document.documentElement.hasAttribute("data-actionbar")), "the script stays out of it").toBe(false);
     await ctx.close();
   });
 

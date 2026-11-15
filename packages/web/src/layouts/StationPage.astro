@@ -101,7 +101,7 @@ const pageCss = (stationPageCss + freshnessCss).replace(/\/\*[\s\S]*?\*\//g, "")
     {/* #1195: the station's part in a box of its own from 1024 px, so its sticky map ends with it, above the area */}
     <div class="desk__top">
     <PageHead h1={label} h1Translate={false} first={first} />
-    <Star lang={lang} path={path} label={label} />
+    <Star lang={lang} path={path} label={label} moves={head.html.includes('id="pcard-station-nearby"')} />
     <div class="wrap" set:html={keepChoicesInChargingForm(head.html, Astro.url.searchParams)} />
     </div>
     <AroundBlock lang={lang} area={area} path={path} topics={topics} />

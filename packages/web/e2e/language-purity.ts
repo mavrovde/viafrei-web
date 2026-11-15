@@ -324,7 +324,9 @@ export const COLLECT_JS = String.raw`(() => {
   for (const el of Array.from(document.body.querySelectorAll("[aria-label],[title],[alt]"))) {
     if (el.closest(skip) !== null || named(el) || foreign(el)) continue;
     for (const a of ["aria-label", "title", "alt"]) {
-      const v = el.getAttribute(a);
+      // the language menu's summary names itself by its visible badge first ("RU – Выбор языка: Русский", WCAG 2.5.3):
+      // the badge is the code skipped above as the summary's text, so it is taken off the front here and the rest judged
+      const v = el.matches(".langmenu__summary") && a === "aria-label" ? (el.getAttribute(a) || "").replace(/^[A-Z]{2} – /, "") : el.getAttribute(a);
       if (v) texts.push({ where: label(el) + "@" + a, text: v });
     }
   }
