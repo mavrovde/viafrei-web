@@ -42,9 +42,11 @@ bash scripts/visual-container.sh            # compare
 bash scripts/visual-container.sh --update   # re-record packages/web/e2e/__screenshots__/linux/
 ```
 
-In CI the visual comparison runs only on a dispatch of CI and on a minor's release pull request
-(`X.Y.0`), so a page change is compared here, before the push (see
-[RELEASING](docs/RELEASING.md#visual-baselines)).
+In CI the browser suite, the visual comparison, Lighthouse, latency and the page-weight budget run
+once per release, in release.yml's `Web` job before the image is published, and on no pull request
+or push, so a page change is checked here, in the container, before the push (see
+[RELEASING](docs/RELEASING.md#visual-baselines)). `gh workflow run release.yml --ref <branch>`
+runs that job alone on a branch and publishes nothing.
 
 ## Rules the gates hold
 

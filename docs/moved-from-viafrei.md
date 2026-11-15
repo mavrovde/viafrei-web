@@ -26,7 +26,7 @@ as before.
 | `scripts/geoip-build.mjs` | the same path, and `/app/scripts/geoip-build.mjs` in the image | moved | the GeoIP tests in `npm test`, `scripts/image-smoke.sh` (builds a VFGEO1 file inside the image, no network) |
 | `scripts/fixtures/log-collect/**` (the planted corpus the web log tests read) | the same path | copied. viafrei's collector keeps reading its own | `packages/web/test/error-log.test.ts` in `npm test` |
 | `tsconfig.base.json` | the same path | copied | `npm run typecheck` |
-| Lighthouse, the page-weight budget, latency and visual runners (`packages/web/scripts/{lighthouse,budget,latency,visual}.ts`) | the same path | moved with the shell | CI `Web` |
+| Lighthouse, the page-weight budget, latency and visual runners (`packages/web/scripts/{lighthouse,budget,latency,visual}.ts`) | the same path | moved with the shell | Release `Web` (once per release, before publish) |
 
 From viafrei-infra (a private repository), copied byte for byte (infra moves its side to this image):
 
@@ -169,8 +169,8 @@ that read them stay excluded.
 - **The four `*1180*` browser files** (`desktop-1180`, `desktop-home-1180`, `desktop-place-1180`,
   `desktop-station-1180`) could not be measured in the amd64 image on this laptop. Under emulation 70
   of the web side's 73 cases failed on the files' own 2-second navigation timeout before any figure
-  was read, and the reference side was stopped unfinished. The amd64 figures come from CI's `Web`
-  job, on native amd64; the arm64 figures above stand.
+  was read, and the reference side was stopped unfinished. The amd64 figures come from the `Web` job
+  of release.yml (CI's until it moved there), on native amd64; the arm64 figures above stand.
 
 ## The compact desktop (owner, 2026-11-15)
 

@@ -1,8 +1,8 @@
 # Publishes the image of a CONFIRMED release, and nothing else: there is no
 # image for a branch, a commit or a release candidate.
 #
-# It always runs ON a tag, started in one of three ways, each held to the
-# same gate:
+# A release always runs ON a tag, started in one of three ways, each held to
+# the same gate:
 #   - release-please.yml, after creating the tag, starts it on that tag
 #     (gh workflow run release.yml --ref vX.Y.Z): the normal path. A tag
 #     created with GITHUB_TOKEN starts no push workflow, but GITHUB_TOKEN may
@@ -12,9 +12,16 @@
 # On a tag github.ref is refs/tags/vX.Y.Z and github.sha is the tag's commit,
 # so the signing identity is release.yml on a version tag whatever started it.
 #
+# The one run that is not a release: a maintainer's dispatch on a BRANCH
+# (gh workflow run release.yml --ref <branch>) runs the browser job (web, below)
+# alone, on that branch's commit, and publishes nothing; the gate checks out
+# nothing for it, and publish never runs. It has a concurrency group of its
+# own, so it never replaces a release waiting in the `release` group.
+#
 # A tag publishes only when every one of these holds, checked before anything
 # is built:
-#   - the run is on refs/tags/<the tag> (a dispatch on a branch is refused);
+#   - the run is on refs/tags/<the tag> (a dispatch on a branch publishes
+#     nothing: it runs the browser job alone);
 #   - it is an annotated tag vX.Y.Z with no suffix (on a tag push an rc or any
 #     other tag ends here, green, having published nothing; a dispatch on one
 #     is an error);
@@ -38,6 +45,14 @@
 # the file viafrei-infra's probes and smoke read.)
 #
 # Then, in this order, so a failure at any step leaves no tag behind:
+#   0. web: the browser job on the gate's commit: the site built, the browser
+#      suite (npm run web:e2e), the page-weight budget, Lighthouse, latency and
+#      the visual comparison against the Linux baselines. This is the only run
+#      of the browser suite in CI: no pull request or push runs it. A failure
+#      stops the release before anything is built, because publish needs it
+#      (as viafrei-database's publish needs its mutation check);
+#      snyk: Snyk over the dependencies of the same commit (snyk.yml, called);
+#      a high or critical advisory stops the release before anything is built;
 #   1. publish: linux/amd64 + linux/arm64 pushed BY DIGEST only (no tag),
 #      signed keyless with cosign, SLSA build provenance and an SPDX SBOM
 #      attested;
@@ -55,8 +70,9 @@
 #      its notes and site-pages.txt as an asset (read back byte for byte), and
 #      is published.
 #
-# One release at a time: every run shares the single concurrency group
-# `release`, whatever the tag. A running release is never cancelled; a run
+# One release at a time: every run on a tag shares the single concurrency
+# group `release`, whatever the tag (a browser-only dispatch on a branch has a
+# group of its own). A running release is never cancelled; a run
 # still pending behind it is replaced by a newer pending one (GitHub keeps one
 # pending run per group), which cancels it before it has done anything.
 name: Release
@@ -66,15 +82,17 @@ on:
     tags: ["v*"]
   # Started ON the tag (gh workflow run release.yml --ref vX.Y.Z): by
   # release-please.yml once it has created the tag, or by a maintainer to retry.
+  # On a branch (--ref <branch>): the browser job alone, nothing published.
   workflow_dispatch:
 
 permissions:
   contents: read
 
 # One release at a time, whatever the tag; a running release is never
-# cancelled, a pending one can be replaced by a newer pending one.
+# cancelled, a pending one can be replaced by a newer pending one. A browser-only
+# dispatch on a branch queues in a group of its own, never in `release`.
 concurrency:
-  group: release
+  group: ${{ github.ref_type == 'branch' && format('browser-{0}', github.ref) || 'release' }}
   cancel-in-progress: false
 
 env:
@@ -92,6 +110,7 @@ jobs:
       contents: read
       actions: read # the workflow runs on the tagged commit (scripts/ci-gate.ts)
     outputs:
+      browser: ${{ steps.on.outputs.browser }}
       publish: ${{ steps.tag.outputs.publish }}
       version: ${{ steps.tag.outputs.version }}
       minor: ${{ steps.tag.outputs.minor }}
@@ -100,17 +119,27 @@ jobs:
       highest_in_minor: ${{ steps.tag.outputs.highest_in_minor }}
     steps:
       # First, before anything is checked out: whatever started it, a release
-      # runs on its tag, so github.sha is the tag's commit.
-      - name: The run is on its tag
+      # runs on its tag, so github.sha is the tag's commit. A dispatch on a
+      # branch is the browser job alone: browser=true, and publish stays unset.
+      - name: The run is on its tag (or is a browser-only dispatch on a branch)
+        id: on
         run: |
+          if [[ $GITHUB_EVENT_NAME == workflow_dispatch && $GITHUB_REF == refs/heads/* ]]; then
+            echo "::notice::a dispatch on $GITHUB_REF: the browser job runs on $GITHUB_SHA, and nothing is published"
+            echo "browser=true" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
           [[ $GITHUB_REF == "refs/tags/$TAG" ]] || { echo "::error::release gate: this run is on $GITHUB_REF, not on a tag; start a release on its tag (gh workflow run release.yml --ref vX.Y.Z)"; exit 1; }
+          echo "browser=false" >> "$GITHUB_OUTPUT"
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        if: steps.on.outputs.browser == 'false'
         with:
           ref: refs/tags/${{ env.TAG }}
           fetch-depth: 0
           persist-credentials: false
       - name: The tag is an annotated vX.Y.Z equal to package.json, on main
         id: tag
+        if: steps.on.outputs.browser == 'false'
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           GH_REPO: ${{ github.repository }}
@@ -160,9 +189,98 @@ jobs:
           # the runs AND every required job of each: a run of skipped jobs concludes success too
           bash scripts/ci-gate.sh "$SHA"
 
+  # The browser job, the only run of the browser suite in CI: browser tests once, as the
+  # pre-release. Every step runs a declared `npm run` script, never `npx`. It reads the pinned
+  # viafrei-app release, a private package of another repository, so it logs in with
+  # GHCR_READ_TOKEN (a read:packages token kept for that one pull, docs/RELEASING.md), never with
+  # GITHUB_TOKEN, and it needs nothing but contents: read. No npm cache: like the gate, it restores
+  # nothing another run wrote.
+  web:
+    name: Web (the site shell, built and judged)
+    needs: gate
+    if: needs.gate.outputs.publish == 'true' || needs.gate.outputs.browser == 'true'
+    runs-on: ubuntu-24.04
+    # Measured on PR #15 (run 43731345008): 74 of 103 e2e files took ~27 min,
+    # and a11y.e2e.ts alone (930 tests) takes ~13 min more; 45 cancelled it.
+    timeout-minutes: 75
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          # the gate's commit on a release; the branch's on a browser-only dispatch
+          ref: ${{ needs.gate.outputs.commit || github.sha }}
+          persist-credentials: false
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
+        with:
+          node-version: 26.12.1 # the Node of the image (Dockerfile)
+      - run: npm ci --ignore-scripts --no-audit --no-fund
+      - name: GHCR_READ_TOKEN must be set
+        env:
+          GHCR_READ_TOKEN: ${{ secrets.GHCR_READ_TOKEN }}
+        run: |
+          if [ -z "$GHCR_READ_TOKEN" ]; then
+            echo "::error::the repository secret GHCR_READ_TOKEN is not set; the pinned viafrei-app cannot be pulled (docs/RELEASING.md)"
+            exit 1
+          fi
+      - uses: docker/login-action@8aa5831fb8d48d8f76594c7ddde61ae58019f550 # v4.8.0
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GHCR_READ_TOKEN }}
+      - run: npm run pinned
+      # The browsers are Playwright's own, with their system dependencies; the version comes from the
+      # lockfile, never "latest". Chromium runs the suite; Firefox only for first-screen-1174.e2e.ts,
+      # the one browser here without scroll timelines (the action bar's script path). No other
+      # browser is installed.
+      - name: Install Chromium and Firefox for the browser checks
+        run: npm run web:browsers
+      - name: The site builds
+        run: npm run web:build
+      - name: Browser suite (CSP, consent, tiles, legal, routes, links, hreflang, axe in both schemes)
+        run: npm run web:e2e
+      - name: Page weight (raw ≤ 700 KB, gzip < 200 KB, 2 requests, no third party)
+        run: npm run web:budget
+      - name: Lighthouse (perf ≥ 95, a11y 100, SEO ≥ 95, best ≥ 95, median of 3)
+        run: npm run web:lighthouse
+      - name: Latency (p95 ≤ 300 ms; slow and hanging tiles inside 2.5 s)
+        run: npm run web:latency
+      # The baselines are Linux renders of the Playwright container (docs/RELEASING.md); when none
+      # is committed the job writes them, uploads them to be committed, and FAILS: a first run never
+      # passes on screenshots it compared with nothing. A dispatch (release-please's start of a
+      # release, a retry, a browser-only run on a branch) uploads what it rendered on any failure.
+      - name: Visual — every page, DE and EN, 375/768/1280, light and dark, ≤ 0.2 % from its Linux baseline
+        id: visual
+        run: npm run web:visual
+      - name: Visual bootstrap — write the baselines this runner renders
+        if: failure() && steps.visual.outcome == 'failure' && (hashFiles('packages/web/e2e/__screenshots__/linux/**') == '' || github.event_name == 'workflow_dispatch')
+        run: VISUAL_OUT_DIR="$RUNNER_TEMP/visual-baselines" npm run web:visual -- --update
+      - name: Visual bootstrap — upload them to be committed
+        if: failure() && steps.visual.outcome == 'failure' && (hashFiles('packages/web/e2e/__screenshots__/linux/**') == '' || github.event_name == 'workflow_dispatch')
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        with:
+          name: visual-baselines-linux
+          path: ${{ runner.temp }}/visual-baselines
+          retention-days: 1
+
+  # Snyk once per release, on the commit about to be published (snyk.yml; it also runs weekly on
+  # main). A high or critical advisory stops the release, as the browser suite does.
+  snyk:
+    name: Snyk (dependencies)
+    needs: gate
+    if: needs.gate.outputs.publish == 'true'
+    permissions:
+      contents: read
+      security-events: write
+    uses: ./.github/workflows/snyk.yml
+    with:
+      ref: ${{ needs.gate.outputs.commit }}
+    secrets:
+      SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
+
   publish:
     name: Build, check, sign, attest, publish
-    needs: gate
+    needs: [gate, web, snyk]
     if: needs.gate.outputs.publish == 'true'
     runs-on: ubuntu-24.04
     timeout-minutes: 40

@@ -2,7 +2,7 @@
 # scripts/visual-container.sh [--update] — the visual comparison on a laptop, in the Playwright container.
 #
 # The baselines (packages/web/e2e/__screenshots__/linux/) are Linux renders of the amd64 Playwright image,
-# the image CI's Web job runs, so they are compared, and re-recorded with --update, in that image and
+# the image release.yml's Web job runs, so they are compared, and re-recorded with --update, in that image and
 # nowhere else: never install a browser on the laptop. The container gets its own node_modules in a named
 # volume, so the laptop's are not replaced by Linux builds, and the pinned packages are linked into it the
 # way `npm run pinned` links them on the host.

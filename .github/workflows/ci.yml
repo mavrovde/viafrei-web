@@ -1,7 +1,9 @@
 # Build and test on every pull request that touches more than prose (the `changes` job), and on a release's merge commit. Check names are stable: branch protection
 # requires them by name (docs/RELEASING.md). viafrei-database's ci.yml, with the site's own jobs:
 # the gates that judged packages/web in viafrei's Verify workflow (its static and web jobs) move
-# here unchanged, and the database jobs (migration lint, PostGIS integration) have no counterpart:
+# here unchanged, except the browser checks: those run once per release, as release.yml's `web`
+# job before publish (or by hand, a dispatch of release.yml on a branch), never on a pull request
+# or a push, and the database jobs (migration lint, PostGIS integration) have no counterpart:
 # this repository holds no schema and its runtime reads no database.
 #
 # Every job that runs the suite first extracts the pinned viafrei-app release (`npm run pinned`,
@@ -221,83 +223,6 @@ jobs:
       - name: The catalogue parity sweep fails four ways (mutations, so at a dispatch or a minor's release pull request only)
         if: github.event_name == 'workflow_dispatch' || (startsWith(github.head_ref, 'release-please--') && endsWith(github.event.pull_request.title, '.0'))
         run: bash scripts/web-i18n-mutation.sh
-
-  web:
-    name: Web (the site shell, built and judged)
-    needs: changes
-    if: "needs.changes.outputs.code == 'true' && (github.event_name != 'push' || startsWith(github.event.head_commit.message, 'chore: release '))"
-    runs-on: ubuntu-24.04
-    # Measured on PR #15 (run 43731345008): 74 of 103 e2e files took ~27 min,
-    # and a11y.e2e.ts alone (930 tests) takes ~13 min more; 45 cancelled it.
-    timeout-minutes: 75
-    permissions:
-      contents: read
-    steps:
-      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
-        with:
-          persist-credentials: false
-      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
-        with:
-          node-version: ${{ env.NODE_VERSION }}
-          cache: npm
-      - run: npm ci --ignore-scripts --no-audit --no-fund
-      - name: GHCR_READ_TOKEN must be set
-        env:
-          GHCR_READ_TOKEN: ${{ secrets.GHCR_READ_TOKEN }}
-          ACTOR: ${{ github.actor }}
-        run: |
-          if [ -z "$GHCR_READ_TOKEN" ]; then
-            if [ "$ACTOR" = "dependabot[bot]" ]; then
-              echo "::error::GHCR_READ_TOKEN is not visible to this Dependabot pull request: Dependabot runs read Dependabot secrets, not Actions secrets. Add GHCR_READ_TOKEN under Settings > Secrets and variables > Dependabot (docs/RELEASING.md)."
-            else
-              echo "::error::the repository secret GHCR_READ_TOKEN is not set (a pull request from a fork never sees it); the pinned viafrei-app cannot be pulled (docs/RELEASING.md)"
-            fi
-            exit 1
-          fi
-      # viafrei-app is a private package of another repository: the job pulls it with GHCR_READ_TOKEN,
-      # a read:packages token kept for that one pull (docs/RELEASING.md), never with GITHUB_TOKEN.
-      - uses: docker/login-action@8aa5831fb8d48d8f76594c7ddde61ae58019f550 # v4.8.0
-        with:
-          registry: ghcr.io
-          username: ${{ github.actor }}
-          password: ${{ secrets.GHCR_READ_TOKEN }}
-      - run: npm run pinned
-      # The browsers are Playwright's own, with their system dependencies; the version comes from the
-      # lockfile, never "latest". Every step runs a declared `npm run` script, never `npx`. Chromium
-      # runs the suite; Firefox only for first-screen-1174.e2e.ts, the one browser here without scroll
-      # timelines (the action bar's script path). No other browser is installed.
-      - name: Install Chromium and Firefox for the browser checks
-        run: npm run web:browsers
-      - name: The site builds
-        run: npm run web:build
-      - name: Browser suite (CSP, consent, tiles, legal, routes, links, hreflang, axe in both schemes)
-        run: npm run web:e2e
-      - name: Page weight (raw ≤ 700 KB, gzip < 200 KB, 2 requests, no third party)
-        run: npm run web:budget
-      # Lighthouse at a release only (viafrei #476: Actions minutes are billed, and a commit is not
-      # where the site's performance moves): on the release pull request and on a manual dispatch.
-      - name: Lighthouse (perf ≥ 95, a11y 100, SEO ≥ 95, best ≥ 95, median of 3)
-        if: github.event_name == 'workflow_dispatch' || (startsWith(github.head_ref, 'release-please--') && endsWith(github.event.pull_request.title, '.0'))
-        run: npm run web:lighthouse
-      - name: Latency (p95 ≤ 300 ms; slow and hanging tiles inside 2.5 s)
-        run: npm run web:latency
-      # The baselines are Linux renders of the Playwright container (docs/RELEASING.md); when none
-      # is committed the job writes them, uploads them to be committed, and FAILS — a first run never
-      # passes on screenshots it compared with nothing.
-      - name: Visual — every page, DE and EN, 375/768/1280, light and dark, ≤ 0.2 % from its Linux baseline
-        id: visual
-        if: github.event_name == 'workflow_dispatch' || (startsWith(github.head_ref, 'release-please--') && endsWith(github.event.pull_request.title, '.0'))
-        run: npm run web:visual
-      - name: Visual bootstrap — write the baselines this runner renders
-        if: failure() && steps.visual.outcome == 'failure' && (hashFiles('packages/web/e2e/__screenshots__/linux/**') == '' || github.event_name == 'workflow_dispatch')
-        run: VISUAL_OUT_DIR="$RUNNER_TEMP/visual-baselines" npm run web:visual -- --update
-      - name: Visual bootstrap — upload them to be committed
-        if: failure() && steps.visual.outcome == 'failure' && (hashFiles('packages/web/e2e/__screenshots__/linux/**') == '' || github.event_name == 'workflow_dispatch')
-        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
-        with:
-          name: visual-baselines-linux
-          path: ${{ runner.temp }}/visual-baselines
-          retention-days: 1
 
   image:
     name: Image (build, scan, smoke)
