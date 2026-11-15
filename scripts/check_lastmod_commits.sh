@@ -105,15 +105,26 @@ if [ -n "$bad" ]; then
 fi
 
 # Is HEAD a release? The version moved in the range.
+# The bootstrap is ONLY a base with no root package.json at all: the repository before its first
+# manifest, which is not a release (0.0.0 is never tagged); the first release pull request asks the
+# question. A manifest whose version cannot be read, at either end, is a refusal, never a bootstrap.
+has_manifest() { G cat-file -e "$1:package.json" 2>/dev/null; }
 TO_VER="$(version_at "$TO")"
 FROM_VER="$(version_at "$FROM")"
+bootstrap=0
+if has_manifest "$FROM"; then
+  [ -n "$FROM_VER" ] || { echo "✗ lastmod commits: $FROM has a package.json but no version could be read from it — nothing could be checked" >&2; exit 2; }
+else
+  bootstrap=1
+fi
+if has_manifest "$TO"; then
+  [ -n "$TO_VER" ] || { echo "✗ lastmod commits: $TO has a package.json but no version could be read from it — nothing could be checked" >&2; exit 2; }
+fi
 why=""
-if [ -n "$FROM_VER" ] && [ "$FROM_VER" != "$TO_VER" ]; then why="the range moves the version"; fi
+if [ "$bootstrap" -eq 0 ] && [ "$FROM_VER" != "$TO_VER" ]; then why="the range moves the version"; fi
 
 fresh="not run (HEAD carries no release: freshness is the cut's question)"
-# The bootstrap: a base with no root package.json is the repository before its first manifest,
-# not a release (0.0.0 is never tagged); the first release pull request asks the question.
-[ -z "$FROM_VER" ] && fresh="not run (the bootstrap: the base has no package.json; the first release cut asks it)"
+[ "$bootstrap" -eq 1 ] && fresh="not run (the bootstrap: the base has no package.json; the first release cut asks it)"
 if [ -n "$why" ]; then
   if [ -n "${LASTMOD_FRESH_CMD:-}" ]; then
     out="$(cd "$ROOT" && bash -c "$LASTMOD_FRESH_CMD" 2>&1)"; rc=$?

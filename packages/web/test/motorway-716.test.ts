@@ -195,7 +195,7 @@ const settleAll = async (): Promise<void> => {
   for (let i = 0; i < 10; i++) await new Promise((r) => setTimeout(r, 0));
 };
 const runScript = async (b: { win: Record<string, unknown> }, c: IslandConfig): Promise<void> => {
-  // eslint-disable-next-line @typescript-eslint/no-implied-eval, @typescript-eslint/no-unsafe-call -- the very text the page carries
+  // eslint-disable-next-line @typescript-eslint/no-implied-eval -- the very text the page carries
   new Function("window", islandScript(c))(b.win);
   await settleAll();
 };

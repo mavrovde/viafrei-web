@@ -2,14 +2,14 @@
 
 The site shell and the files it is judged by came here from
 [viafrei](https://github.com/mavrovde/viafrei) at **`ea91377ba`** (`release/2.6.18`), under
-[viafrei-web#2](https://github.com/mavrovde/viafrei-web/issues/2). Commit `a958d0c` is that copy,
+[viafrei-web#2](https://github.com/mavrovde/viafrei-web/issues/2). Commit `4c40539` is that copy,
 byte for byte and nothing else. Every change made to it afterwards is in a later commit, and none
 of them changes what a visitor gets: every route of `scripts/site-pages.txt` renders the same here
 as in a build of `ea91377ba` (see "The proof" below).
 
 ## What moved, and where
 
-`ea91377ba` is the viafrei commit and `a958d0c` is the copy here.
+`ea91377ba` is the viafrei commit and `4c40539` is the copy here.
 
 | viafrei path | here | moved or copied | the gate that proves it |
 |---|---|---|---|
@@ -127,7 +127,7 @@ line above:
 51 cases in 26 files, and 3 whole files. Of them, 34 read viafrei-infra's configuration
 (the edge, the deploy, the host jobs) — this repository carries no copy of it, and viafrei-infra holds
 those agreements (viafrei-infra#32). The recorded fixtures are provider payloads whose terms
-are viafrei's, and this repository is planned to be public. So they do not travel, and the files
+are viafrei's, and this repository is public. So they do not travel, and the files
 that read them stay excluded.
 
 ## The proof

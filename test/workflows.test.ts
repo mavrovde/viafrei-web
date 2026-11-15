@@ -96,7 +96,7 @@ describe("the workflows", () => {
     expect(r).not.toMatch(/npm publish/u);
   });
 
-  it("use GitHub by minimum (owner 2026-11-15): no schedule, prose skips every job but one, heavy steps at a minor only", () => {
+  it("save CI minutes: no schedule, prose skips every job but one, heavy steps at a minor only", () => {
     for (const f of files) {
       expect(text(f), `${f} has a schedule`).not.toMatch(/^\s+schedule:/mu);
       expect(text(f), `${f} runs on a push to any branch`).not.toMatch(/^ {2}push:\n(?! {4}(branches: \[main\]|tags:))/mu);
@@ -109,7 +109,9 @@ describe("the workflows", () => {
       // no workflow-level filter: a skipped workflow never reports its required checks (a merge would need the bypass)
       expect(t, `${f}: a workflow-level paths filter`).not.toMatch(/^\s+paths(-ignore)?:/mu);
       expect(t, `${f}: the changes job`).toContain('  changes:\n    name: Changes (code, or prose only)\n');
-      expect(t).toContain('pull_request) code="$(bash scripts/changes.sh "$PR_BASE" "$PR_HEAD")" ;;');
+      // the base's copy judges; the pull request's own copy only when the base has none (the bootstrap)
+      expect(t).toContain('if git show "$PR_BASE:scripts/changes.sh" > "$RUNNER_TEMP/changes.sh" 2> /dev/null; then');
+      expect(t).toContain('code="$(CHANGES_ROOT="$PWD" bash "$judge" "$PR_BASE" "$PR_HEAD")" ;;');
       expect(t).toContain('push) code="$(bash scripts/changes.sh "$BEFORE" "$AFTER")" ;;');
       expect(t).toContain("*) code=true ;;");
       expect(t).toContain("cancel-in-progress: ${{ github.event_name == 'pull_request' }}");
@@ -147,7 +149,9 @@ describe("the workflows", () => {
     const required = [...block.matchAll(/^- `([^`]+)`/gmu)].map((m) => m[1] ?? "");
     // Dependency review runs on pull requests only, so a release's push run never has it
     expect(required).toContain("Dependency review");
-    expect(Object.values(REQUIRED_JOBS).flat().sort()).toEqual(required.filter((c) => c !== "Dependency review").sort());
+    expect([...new Set(Object.values(REQUIRED_JOBS).flat())].sort()).toEqual(required.filter((c) => c !== "Dependency review").sort());
+    // the Changes job gates every other job of both workflows, so both runs must carry it
+    for (const jobs of Object.values(REQUIRED_JOBS)) expect(jobs).toContain("Changes (code, or prose only)");
     for (const [wf, jobs] of Object.entries(REQUIRED_JOBS)) {
       const names = [...read(wf).matchAll(/^ {4}name: (.+)$/gmu)].map((m) => (m[1] ?? "").trim());
       for (const j of jobs) expect(names, `${wf}: ${j}`).toContain(j);

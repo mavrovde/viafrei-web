@@ -32,6 +32,7 @@ export const REQUIRED_WORKFLOWS = [".github/workflows/ci.yml", ".github/workflow
  */
 export const REQUIRED_JOBS: Readonly<Record<(typeof REQUIRED_WORKFLOWS)[number], readonly string[]>> = {
   ".github/workflows/ci.yml": [
+    "Changes (code, or prose only)",
     "Lint",
     "Unit tests",
     "Site gates",
@@ -39,7 +40,7 @@ export const REQUIRED_JOBS: Readonly<Record<(typeof REQUIRED_WORKFLOWS)[number],
     "Image (build, scan, smoke)",
     "Stack (the shell against the pinned releases)",
   ],
-  ".github/workflows/security.yml": ["CodeQL (TypeScript)", "Dependency licences", "Secrets in history (gitleaks)", "DAST (OWASP ZAP against the container)"],
+  ".github/workflows/security.yml": ["Changes (code, or prose only)", "CodeQL (TypeScript)", "Dependency licences", "Secrets in history (gitleaks)", "DAST (OWASP ZAP against the container)"],
 };
 
 export type Job = { readonly name: string; readonly status: string; readonly conclusion: string | null; readonly run_attempt?: number };

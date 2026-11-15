@@ -7,6 +7,12 @@ This repository holds two things:
 
 Changes reach `main` through a pull request with green checks. `main` is squash-merged and linear.
 
+A pull request from a fork cannot read the repository's secrets, `GHCR_READ_TOKEN` among them, so
+its `Lint`, `Unit tests`, `Site gates`, `Web` and `Stack` jobs fail on the pull of the private
+viafrei-app image (each says `GHCR_READ_TOKEN must be set`). That is not a fault in the change: a
+maintainer re-runs it by pushing the same commits to a branch of this repository and opening the
+pull request from there.
+
 ## Running it
 
 You need Node 26 (CI and the image run 26.12.1), and Docker for the image and the stack.

@@ -4,7 +4,7 @@
 name: Scorecard
 
 on:
-  # By hand only (owner 2026-11-15: GitHub by minimum): run it on main after a change to the
+  # By hand only, to save CI minutes: run it on main after a change to the
   # repository's settings or before a release.
   workflow_dispatch:
 

@@ -74,10 +74,12 @@ describe("judgeCi", () => {
 describe("judgeCi reads the jobs, not the run's conclusion alone", () => {
   const ci = REQUIRED_WORKFLOWS[0];
   it("the mutant this exists for: a run that concluded success with its required jobs SKIPPED is refused", () => {
-    const allSkipped = (id: number): Job[] => passed(id).map((j) => ({ ...j, conclusion: "skipped" }));
+    // the shape a prose-only answer (or a broken Changes job answering false) leaves: Changes ran, the rest skipped
+    const allSkipped = (id: number): Job[] => passed(id).map((j) => (j.name === "Changes (code, or prose only)" ? j : { ...j, conclusion: "skipped" }));
     const r = judgeCi(green, SHA, REPO_, allSkipped);
     expect(r.ok).toBe(false);
     expect(r.lines[0]).toContain("concluded success, but a required job did not run and pass — Lint: skipped");
+    expect(r.lines[0]).not.toContain("Changes (code, or prose only): skipped");
   });
   it.each(REQUIRED_JOBS[ci].map((n) => [n]))("refuses when %s alone was skipped", (name) => {
     const r = judgeCi(green, SHA, REPO_, jobsWith(ci, name, { conclusion: "skipped" }));

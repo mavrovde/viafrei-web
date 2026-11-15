@@ -191,6 +191,18 @@ check "the first manifest over a base without one passes" 0 "$RC"
 contains "…and says it is the bootstrap" "the bootstrap" "$OUT"
 check "…and the freshness gate did not run" 0 "$(ran_count)"
 
+echo "== a manifest with no readable version is a refusal, never the bootstrap =="
+rm -rf "$REPO"; mkdir -p "$REPO/packages/web/src/generated"; G init -q -b main
+printf '{\n  "name": "viafrei"\n}\n' > "$REPO/package.json"; map_v2 aaaa; commit "base"; G tag base
+manifest 0.0.1; page two; commit "feat: a page"
+rm -f "$work/ran"; run LASTMOD_FRESH_CMD="$STUB_OK"
+check "a base manifest without a version: exit 2" 2 "$RC"
+contains "…naming the unreadable version" "no version could be read" "$OUT"
+check "…and the freshness gate did not run" 0 "$(ran_count)"
+fresh_repo; printf '{\n  "name": "viafrei"\n}\n' > "$REPO/package.json"; commit "chore: the version dropped"
+run LASTMOD_FRESH_CMD="$STUB_OK"
+check "a head manifest without a version: exit 2" 2 "$RC"
+
 echo "== the real tree, on its own history (the gate can say yes) =="
 OUT="$(bash "$LINT" --range HEAD~1..HEAD 2>&1)"; RC=$?
 contains "the real checkout's last commit is judged and the line says how many it read" "commit(s) read in HEAD~1..HEAD" "$OUT"

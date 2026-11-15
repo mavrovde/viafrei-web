@@ -8,7 +8,7 @@ updates:
   - package-ecosystem: npm
     directory: /
     schedule:
-      interval: monthly # GitHub by minimum (owner 2026-11-15): each update is a CI run
+      interval: monthly # each update is a CI run, so once a month saves CI minutes
     cooldown:
       default-days: 7
     commit-message:
@@ -32,7 +32,7 @@ updates:
   - package-ecosystem: github-actions
     directory: /
     schedule:
-      interval: monthly # GitHub by minimum (owner 2026-11-15): each update is a CI run
+      interval: monthly # each update is a CI run, so once a month saves CI minutes
     cooldown:
       default-days: 7
     commit-message:
@@ -42,7 +42,7 @@ updates:
   - package-ecosystem: docker
     directory: /
     schedule:
-      interval: monthly # GitHub by minimum (owner 2026-11-15): each update is a CI run
+      interval: monthly # each update is a CI run, so once a month saves CI minutes
     cooldown:
       default-days: 7
     commit-message:
@@ -54,7 +54,7 @@ updates:
   - package-ecosystem: docker-compose
     directory: /
     schedule:
-      interval: monthly # GitHub by minimum (owner 2026-11-15): each update is a CI run
+      interval: monthly # each update is a CI run, so once a month saves CI minutes
     cooldown:
       default-days: 7
     commit-message:

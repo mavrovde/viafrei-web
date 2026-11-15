@@ -34,7 +34,7 @@ are viafrei's; the edge and nginx are viafrei-infra's. Report those there.
 
 ## Automated checks
 
-GitHub is used by the minimum (owner 2026-11-15): nothing runs on a schedule, a pull request
+To save CI minutes, nothing runs on a schedule, a pull request
 that changes prose only (`*.md`, `docs/`) skips every job but the one that decides so, and on
 `main` only the merge commit of a release pull request runs the full set (the release gate reads
 its jobs). Everything is run locally before the one push.

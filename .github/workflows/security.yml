@@ -1,13 +1,13 @@
 # Security checks on every pull request that touches more than prose (the `changes` job) and on a release's merge
 # commit; a new advisory against an unchanged tree is found by Dependabot and by a dispatch, not by
-# a schedule (owner 2026-11-15: GitHub by minimum). viafrei-database's security.yml with viafrei-api's two more jobs (Snyk and
+# a schedule, which saves CI minutes. viafrei-database's security.yml with viafrei-api's two more jobs (Snyk and
 # the licence allow-list): SAST (CodeQL), dependencies (dependency review, Snyk, licences), secrets
 # over the whole history (gitleaks), DAST (OWASP ZAP against the built shell). The image itself is
 # scanned by Trivy in ci.yml. Nothing here reaches a database or a public host.
 name: Security
 
 on:
-  # GitHub by minimum (owner 2026-11-15): pull requests, and on main only so the release gate has a
+  # To save CI minutes: pull requests, and on main only so the release gate has a
   # run on the merge commit (scripts/ci-gate.sh reads its jobs). On main the heavy jobs run only on
   # the merge of a release pull request (its subject starts `chore: release `). No schedule, and no
   # workflow-level paths-ignore: a prose-only change is decided by the `changes` job below, so every
@@ -51,7 +51,17 @@ jobs:
           AFTER: ${{ github.sha }}
         run: |
           case "$EVENT" in
-            pull_request) code="$(bash scripts/changes.sh "$PR_BASE" "$PR_HEAD")" ;;
+            pull_request)
+              # The BASE revision's copy judges the diff, so a pull request cannot edit the rule that
+              # decides whether it is tested. The pull request's own copy is used only when the base
+              # has none: the bootstrap, before changes.sh was on main.
+              if git show "$PR_BASE:scripts/changes.sh" > "$RUNNER_TEMP/changes.sh" 2> /dev/null; then
+                judge="$RUNNER_TEMP/changes.sh"
+              else
+                judge=scripts/changes.sh
+                echo "::notice::changes: the base has no scripts/changes.sh (the bootstrap); the pull request's own copy judges"
+              fi
+              code="$(CHANGES_ROOT="$PWD" bash "$judge" "$PR_BASE" "$PR_HEAD")" ;;
             push) code="$(bash scripts/changes.sh "$BEFORE" "$AFTER")" ;;
             *) code=true ;;
           esac

@@ -89,7 +89,7 @@ A version tag is never reused, moved or deleted:
 Rollback is infra's: it deploys the previous digest (viafrei-infra). This repository never
 re-tags an older image as `latest`.
 
-## What runs, and when (owner 2026-11-15: GitHub by minimum)
+## What runs, and when
 
 Everything is verified locally before the single push, and nothing is pushed to re-run CI.
 
@@ -115,6 +115,7 @@ completion; on any other merge they run `Lint` and `Dependency licences` alone.
 required by name:
 
 <!-- required-checks:begin -->
+- `Changes (code, or prose only)` (in both CI and Security: a broken one must not let a pull request merge untested)
 - `Lint`
 - `Unit tests`
 - `Site gates`
