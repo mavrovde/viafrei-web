@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ViaFrei — Vorschau</title>
+<meta name="description" content="Nicht öffentlich.">
+<!-- The robots line is not decoration. This tree is reachable only through the
+     edge's allow-list, so a crawler should never see it — but an allow-list is
+     a configuration and configurations are edited. noindex is the second lock,
+     and it costs nothing. -->
+<meta name="robots" content="noindex, nofollow">
+<style>
+  :root { color-scheme: light dark; --bg:#f6f7f9; --fg:#1b1f24; --muted:#5b6470; --accent:#1e6fd9; --card:#ffffff; --warn:#b26a00; }
+  @media (prefers-color-scheme: dark) { :root { --bg:#0f1318; --fg:#e8ecf1; --muted:#9aa4b1; --accent:#5aa0ff; --card:#171c23; --warn:#e9a33a; } }
+  * { box-sizing: border-box; }
+  body { margin:0; min-height:100vh; display:grid; place-items:center; background:var(--bg); color:var(--fg);
+         font: 16px/1.5 system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; padding:24px 24px 72px; }
+  main { max-width: 640px; width:100%; background:var(--card); border-radius:16px; padding:40px 32px;
+         box-shadow: 0 10px 40px rgba(0,0,0,.08); }
+  h1 { font-size: 2rem; margin: 0 0 8px; letter-spacing: .5px; }
+  h1 span { color: var(--accent); }
+  p { margin: 0 0 12px; color: var(--muted); }
+  .small { font-size: .85rem; margin-top: 24px; }
+  footer { position: fixed; left:0; right:0; bottom:0; padding:10px 16px; text-align:center; font-size:.85rem;
+           background:var(--card); border-top:1px solid rgba(127,127,127,.25); color:var(--muted); }
+  footer a { color: var(--accent); text-decoration:none; }
+</style>
+</head>
+<body>
+<main>
+  <h1>Via<span>Frei</span></h1>
+  <p>Diese Seite ist im Aufbau.</p>
+  <p class="small">under construction</p>
+</main>
+<!-- Both served from the PUBLIC tree by the preview server: § 5 DDG and
+     Art. 13 DSGVO pages are one text, and a second copy is a second text that
+     drifts. See the edge configuration. -->
+<footer><a href="/impressum">Impressum</a> · <a href="/datenschutz">Datenschutz</a></footer>
+</body>
+</html>

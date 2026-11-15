@@ -1,0 +1,15 @@
+# Only what the image is built from (Dockerfile). Everything else stays out of the context.
+*
+!package.json
+!package-lock.json
+!tsconfig.base.json
+!packages/design/
+!packages/web/
+!scripts/site-pages.txt
+!scripts/geoip-build.mjs
+**/node_modules
+**/dist
+**/build
+**/.astro
+**/coverage
+packages/web/e2e/__screenshots__
