@@ -1,0 +1,19 @@
+/*
+ * #1076: a fuel station's and a charging site's page, their own rules. Carried INLINE on those pages only
+ * (`layouts/EnergyPage.astro`, under the request's nonce like every <style>), because site.css is the one stylesheet of
+ * every page and the home's gzip budget pays for each byte of it. Every rule is scoped under `.energypage`.
+ */
+.energypage { display: grid; gap: var(--s-3); }
+.energypage p { margin: 0; }
+.energypage h2 { font-size: var(--fs-2); margin: var(--s-2) 0 0; }
+.energypage__facts, .energypage__near { margin: 0; padding-left: var(--s-4); display: grid; gap: var(--s-1); }
+.energypage a { display: inline-block; min-height: var(--target); line-height: var(--target); }
+.energypage__dist, .energypage__stand, .energypage__src, .energypage__nolive { color: var(--fg-muted); font-size: var(--fs-0); }
+.energypage__prices { min-height: calc(var(--target) * 2); }
+.energypage .evpts { border-collapse: collapse; width: 100%; }
+.energypage .evpts th, .energypage .evpts td { text-align: left; padding: var(--s-1) var(--s-2) var(--s-1) 0; border-bottom: 1px solid var(--line); }
+.energypage .evpts .num { text-align: right; }
+.energypage .evpt--available { font-weight: var(--weight-strong); }
+/* #1178: the operator under the heading, the way there beside what the page says first */
+.energypage__who { margin: 0 0 var(--s-1); color: var(--fg-muted); font-size: var(--fs-1); }
+.energypage__first { margin: var(--s-1) 0 0; font-size: var(--fs-1); }

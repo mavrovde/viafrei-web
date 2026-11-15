@@ -1,0 +1,20 @@
+---
+/**
+ * owner 2026-10-27: no block looks empty without saying why — on "Ganz Deutschland" the place block says where the
+ * nationwide figures are. #1153 moved the place headline into the header; this note stays with the block it explains
+ * (the home's and a place page's `PlaceBlock.astro`, a motorway page's `MotorwayPlace.astro`), so the header holds only
+ * what the owner's header design names. The headline script (`PLACEHEAD_JS`) shows and hides it on `vf:place`.
+ */
+import { t } from "../i18n/index.js";
+import type { HeaderPlace } from "../lib/header-place.js";
+import type { Lang } from "../site/pages.js";
+
+interface Props {
+  lang: Lang;
+  /** The block's place state, from the same builder the header's headline is given. */
+  place: Pick<HeaderPlace, "scopeOn" | "noteHref">;
+}
+const { lang, place } = Astro.props;
+---
+
+<p class="placehead__note" id="place-de-note" hidden={place.scopeOn === "place"}><a href={place.noteHref}>{t(lang, "place.head.germanyNote")}</a></p>

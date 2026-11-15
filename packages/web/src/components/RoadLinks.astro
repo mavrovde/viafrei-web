@@ -1,0 +1,28 @@
+---
+/**
+ * The internal links between the live pages (#715, 2.1.13): the one-digit
+ * motorways and the index, then the largest cities' place pages. On the home,
+ * every place page and every motorway page — a crawler reaches every motorway
+ * page from the index and every place page from its sitemap, and a person
+ * reaches the next page without the search box. Plain links, a few hundred
+ * bytes: inside the page budget (`npm run web:budget`).
+ */
+import { t } from "../i18n/index.js";
+import { pathFor, type Lang } from "../site/pages.js";
+import { LINKED_MOTORWAYS, motorwayPath } from "../site/motorways.js";
+import { POPULAR_PLACES, placePath, popularSlug } from "../site/places.js";
+
+interface Props {
+  lang: Lang;
+  /** The place page or motorway page this strip sits on: its own link is left out. */
+  here?: string;
+}
+const { lang, here } = Astro.props;
+const roads = LINKED_MOTORWAYS.map((r) => ({ name: r, href: motorwayPath(lang, r) })).filter((r) => r.href !== here);
+const places = POPULAR_PLACES.map((p) => ({ name: p.name, href: placePath(lang, popularSlug(p)) })).filter((p) => p.href !== here);
+---
+
+<nav class="wrap roadlinks" aria-label={t(lang, "seo.linksMotorways")}>
+  <p class="roadlinks__row"><span class="roadlinks__h">{t(lang, "seo.linksMotorways")}:</span> {roads.map((r) => <a href={r.href} translate="no">{r.name}</a>)} <a href={pathFor("motorways", lang)}>{t(lang, "seo.allMotorways")} →</a></p>
+  <p class="roadlinks__row"><span class="roadlinks__h">{t(lang, "seo.linksPlaces")}:</span> {places.map((p) => <a href={p.href} translate="no">{p.name}</a>)}</p>
+</nav>

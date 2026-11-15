@@ -1,0 +1,7 @@
+{
+  "extends": "../../tsconfig.base.json",
+  "compilerOptions": { "rootDir": ".", "outDir": "build", "verbatimModuleSyntax": true, "types": ["node", "astro/client"] },
+  "include": ["src/**/*.ts", "src/pages/.well-known/**/*.ts", "src/**/*.json"],
+  "exclude": ["dist", "build", "node_modules"],
+  "references": [{ "path": "../design" }]
+}

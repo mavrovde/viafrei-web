@@ -1,0 +1,282 @@
+{
+  "blitzer-autobahnseiten": {
+    "title": "Fartkontroller på motorvejssiderne",
+    "body": "En motorvejs side og siderne for dens tilslutningsanlæg viser nu også de offentliggjorte steder for fartkontrol langs ruten, hver med det tilslutningsanlæg, den er tildelt – fra byernes officielle lister og, hvor ingen by offentliggør en, fra OpenStreetMap. Oplysningerne er kun beregnet til planlægning før turen eller under et stop; kortet bærer advarslen efter § 23 Abs. 1c StVO.",
+    "ask": "Jeg planlægger en tur ad A 5 ved Karlsruhe: hvor står der faste fartkameraer?"
+  },
+  "flixbus-flixtrain-abfahrten": {
+    "title": "FlixBus og FlixTrain i afgangene",
+    "body": "Ved siden af den lokale trafiks afgange viser ViaFrei nu også FlixBus' busser og FlixTrains tog, der kører fra nær et stoppested, ved stoppestedet og på stationskortet. Hvor FlixBus leverer en aktuel prognose, står den forventede tid, ellers køreplanstiden. Booking og priser kun hos FlixBus selv.",
+    "ask": "Hvornår kører den næste FlixBus fra Berlin ZOB?"
+  },
+  "blitzer-bottrop-essen-konstanz": {
+    "title": "Fartkontrolsteder i Bottrop, Essen og Konstanz",
+    "body": "ViaFrei kender nu også de fartkontrolsteder, som Bottrop, Essen og Konstanz offentliggør: i Bottrop de aktuelle målesteder, i Essen gaderne for ugens annoncerede mobile kontroller, i Konstanz byens faste målesteder. Oplysningerne er kun beregnet til planlægning før turen eller under et stop; hvert svar bærer henvisningen efter § 23 Abs. 1c StVO.",
+    "ask": "Jeg planlægger en tur til Essen: hvor er der kontrol i denne uge?"
+  },
+  "aufzuege-u-bahnhoefe-berlin-brandenburg": {
+    "title": "Berlin og Brandenburg: elevatorer og indgange på U-Bahn- og sporvognsstationer",
+    "body": "ViaFrei læser nu VBB's liste over stationsindgange. For hver station i Berlin og Brandenburg, hvor listen nævner elevatorer, står der, hvor mange elevatorer der er, og hvor mange indgange fra gaden, og hvor mange af dem der har elevator – også på rene U-Bahn-stationer som Hermannplatz, der ikke er DB-stationer. Listen siger, hvad der er bygget, ikke om en elevator kører lige nu; ViaFrei oplyser filens dato.",
+    "ask": "Har U-Bahn-stationen Hermannplatz en elevator?"
+  },
+  "stadtbahn-stationen-unter-der-erde": {
+    "title": "Underjordiske letbanestationer får deres egen side",
+    "body": "ViaFrei giver nu også underjordiske letbanestationer (Stadtbahn) deres egen stationsside. Køreplanen siger ikke, om et sporvognsstoppested ligger under jorden; ViaFrei genkender det ud fra data fra OpenStreetMap, når der er kortlagt en underjordisk station inden for 300 meter. Siden nævner de linjer, der holder der, og deres næste afgange, og den angiver OpenStreetMap som kilde.",
+    "ask": "Hvad kører der som det næste fra Neumarkt i Köln?"
+  },
+  "blitzer-standorte-planung": {
+    "title": "Fartkameraers placering til planlægning af turen",
+    "body": "ViaFrei kender nu de steder for hastighedskontrol, som Aachen, Düsseldorf, Karlsruhe og Köln offentliggør. De er kun beregnet til planlægning før turen eller under et stop: efter § 23 Abs. 1c StVO må en fører ikke bruge en app, der viser trafikkontrol. Hvert svar indeholder denne meddelelse.",
+    "ask": "Jeg planlægger en tur til Düsseldorf: hvor står de faste fartkameraer der?"
+  },
+  "parken-trier": {
+    "title": "Parkeringshuse i Trier med ledige pladser",
+    "body": "ViaFrei læser nu parkeringshusene og parkeringspladserne fra Triers forsyningsselskab (SWT) med deres ledige pladser live. Indtil nu kendte ViaFrei ikke noget parkeringshus i Trier; nu nævner den 28 parkeringshuse og pladser, og hvor mange pladser der er ledige lige nu.",
+    "ask": "Hvor er der et parkeringshus med ledige pladser i Trier lige nu?"
+  },
+  "parken-konstanz": {
+    "title": "Parkeringshuse i Konstanz med ledige pladser",
+    "body": "ViaFrei læser nu parkeringshusene og parkeringspladserne i byen Konstanz med deres ledige pladser live. Indtil nu vidste ViaFrei kun, hvor parkeringshusene i Konstanz ligger; nu siger den, hvor mange pladser der er ledige lige nu. Et parkeringshus, som to kilder offentliggør, står én gang i svaret, og begge udgivere nævnes.",
+    "ask": "Hvor er der et parkeringshus med ledige pladser i Konstanz lige nu?"
+  },
+  "parken-wiesbaden": {
+    "title": "Parkeringshuse i Wiesbaden med deres belægning",
+    "body": "ViaFrei læser nu parkeringshusene og de underjordiske garager i byen Wiesbaden og deres belægning live: for hvert af dem, hvor mange procent det er optaget lige nu ifølge byen. Er en melding ældre, siger ViaFrei, hvornår den kom, i stedet for at vise den som aktuel.",
+    "ask": "Hvor er der et parkeringshus med plads i Wiesbaden lige nu?"
+  },
+  "kurzzeitbaustellen-hessen": {
+    "title": "Natarbejder på motorvejene og vejarbejder i Hessen",
+    "body": "ViaFrei kender nu Autobahn GmbH's planlagte kortvarige vejarbejder: natlige spærringer og vognbaner for en dag, hver med sine egne tidsvinduer. Uden for sit vindue kaldes et sådant vejarbejde planlagt, med sine datoer. Dertil kommer Hessen Mobils vejarbejder på forbunds- og delstatsveje og på en del af amtsvejene i Hessen.",
+    "ask": "Er A3 spærret i nat?"
+  },
+  "nrw-baustellen-landesstrassen": {
+    "title": "Nordrhein-Westfalen: vejarbejder på forbunds-, delstats- og amtsveje",
+    "body": "ViaFrei læser nu Straßen.NRW's vejarbejder på forbunds-, delstats- og amtsvejene i Nordrhein-Westfalen. Spørg om en vej eller et sted, og ViaFrei nævner vejarbejderne der. Arbejder, der endnu ikke er begyndt, nævnes som planlagte med deres startdato.",
+    "ask": "Er der vejarbejde på L968?"
+  },
+  "ausfallsicherheit-verkehrsmeldungen": {
+    "title": "Større driftssikkerhed for trafikmeldinger og trafiksituationen",
+    "body": "ViaFrei læser nu også trafikmeldingerne fra VIZ.NRW og fra Hamborgs trafikmeldecentral. Den læser også planlagte vejarbejder i Mecklenburg-Vorpommern og trafikken pr. vognbane på motorvejene i Nordrhein-Westfalen. Hver melding vises én gang, og alle kilder, der bærer den, nævnes. Hvis én kilde svigter, svarer ViaFrei fra den anden.",
+    "ask": "Er der trafikmeldinger i Hamborg lige nu?"
+  },
+  "lkw-beschraenkungen-koeln": {
+    "title": "Vægt- og højdegrænser i Köln",
+    "body": "ViaFrei læser nu de vejbegrænsninger, som Köln Kommune offentliggør: vægtgrænser på broer, frihøjder ved underføringer og andre forbud for lastbiler. For et sted i Köln nævner ViaFrei de nærmeste med art, værdi og gade; mangler en værdi, siger ViaFrei det. Skiltningen på stedet gælder.",
+    "ask": "Hvilke frihøjder gælder for lastbiler ved domkirken i Köln?"
+  },
+  "parken-kiel": {
+    "title": "Parkeringspladser, p-huse og P+R i Kiel",
+    "body": "ViaFrei læser nu de parkeringspladser, p-huse, parkeringskældre og P+R-anlæg, som Kiel Kommune offentliggør: 194 steder med beliggenhed og art. Kommunen offentliggør hverken antallet af pladser eller belægningen, og ViaFrei siger det i stedet for at opfinde et tal.",
+    "ask": "Hvor er der et p-hus i Kiel?"
+  },
+  "behindertenparkplaetze-frankfurt": {
+    "title": "Handicapparkeringspladser i Frankfurt am Main",
+    "body": "ViaFrei kender nu de 458 steder med handicapparkeringspladser, som Frankfurt am Main Kommune offentliggør, i alt 615 reserverede pladser, hver med adresse, antal pladser og de tider, hvor de er reserveret. Ingen sensor melder dér, om en plads er ledig, og ViaFrei siger det i stedet for at gætte.",
+    "ask": "Hvor er der en handicapparkeringsplads i nærheden af Römer i Frankfurt?"
+  },
+  "lkw-netz-koeln": {
+    "title": "Kölns eget lastbilnet",
+    "body": "ViaFrei læser nu de lastbilforbindelser, som Köln Kommune offentliggør: de gader, som byen leder lastbiltrafikken ad, i fire klasser fra motorvejen til forbindelsen for varelevering. For et sted i Köln nævner ViaFrei det nærmeste afsnit i hver klasse med dets gader og dataenes dato, ved siden af begrænsningerne for lastbiler fra SEVAS. Nettet er ingen tilladelse: skiltningen på stedet gælder.",
+    "ask": "Ad hvilke gader leder Köln lastbiler ved domkirken?"
+  },
+  "verkehrslage-hamburg-bonn": {
+    "title": "Hamborg og Bonn: den målte trafiksituation i byen",
+    "body": "ViaFrei læser nu hvert femte minut den trafiksituation, som Hamborg og Bonn offentliggør for deres gader, og siger for et sted, hvor mange strækninger inden for 10 km der har tæt trafik, langsom trafik eller stilstand, og hvor langt væk den nærmeste kø er. Kun langsom trafik eller stilstand tæller som kø, tæt trafik gør ikke. Hamborg offentliggør kun de strækninger, hvor trafikken ikke glider frit, derfor nævner ViaFrei dér intet antal frie strækninger. Er byens data ældre end 30 minutter, siger ViaFrei intet om dem.",
+    "ask": "Hvordan er trafikken i Hamborg lige nu?"
+  },
+  "muenchen-baustellen-umweltzone": {
+    "title": "München: byens vejarbejde og dens egen grænse for miljøzonen",
+    "body": "ViaFrei læser nu det vejarbejde, som München Kommune offentliggør for de næste fire uger, og grænsen for dens miljøzone med de frigivne overgangsarealer. Byen registrerer vejarbejde især i centrum og på hovedfærdselsårerne; det står ved hvert svar. Et midlertidigt standsningsforbud tæller ikke som en begrænsning af kørebanen. For miljøzonen afgør byens egen grænse, med Umweltbundesamts register ved siden af.",
+    "ask": "Hvilket vejarbejde er der i München i denne uge?"
+  },
+  "lang-lkw-positivnetz": {
+    "title": "Må modulvogntoget køre her? BASt’s positivnet",
+    "body": "ViaFrei læser nu det tyske vejforskningsinstitut BASt’s uddrag af positivnettet for modulvogntog og siger for en vej, om den står i det, og for et sted, hvilke strækninger i nærheden der hører til. Ifølge BASt er uddraget hverken fuldstændigt eller juridisk bindende og ikke beregnet til navigation; bindende er forordningen, og ViaFrei siger det ved hvert svar. Hamborgs net fra forsøget nævner ViaFrei med dets dato fra 2015.",
+    "ask": "Må jeg køre ad A7 med et modulvogntog?"
+  },
+  "durchfahrtshoehen-bremen": {
+    "title": "Frihøjder og vægtgrænser i Bremen",
+    "body": "ViaFrei læser nu de frihøjder og vægtgrænser for lastbiler, som Verkehrsmanagementzentrale Bremen offentliggør. For et sted i Bremen nævner ViaFrei de nærmeste angivelser præcis som VMZ Bremen offentliggør dem, med den dag, de blev læst. Kun skiltningen på stedet er bindende; angivelserne er ikke beregnet til rutevejledning, og hvor der ikke står noget, betyder det ikke, at der ingen begrænsning er.",
+    "ask": "Hvilke frihøjder er der i Bremen-Gröpelingen for min lastbil?"
+  },
+  "lkw-beschraenkungen-nrw-rheinmain": {
+    "title": "Frihøjder, vægtgrænser og forbud for lastbiler i Nordrhein-Westfalen og Rhein-Main",
+    "body": "ViaFrei læser nu kommunernes lastbildata i Nordrhein-Westfalen via NRW.Mobidrom (SEVAS) og ivm’s prioriterede net og skiltning for lastbiler i regionen Frankfurt RheinMain. For et sted siger ViaFrei, hvilke frihøjder, vægt- og breddegrænser og forbud for lastbiler der gælder i nærheden, hvem der er undtaget, og hvor det nærmeste prioriterede net for lastbiler går. Hvor ingen udgiver offentliggør sådanne data, siger ViaFrei det i stedet for at melde fri passage.",
+    "ask": "Er der lave frihøjder for min lastbil i Haan?"
+  },
+  "barrierefreie-haltestellen-dresden-muenster": {
+    "title": "Dresden og Münster: hvilket stoppested er trinfrit?",
+    "body": "ViaFrei læser nu Dresden Kommunes stoppestedsregister for 750 bus- og sporvognsstoppesteder og Stadtwerke Münsters liste over trinfri busstoppesteder. For et stoppested i Dresden står der, ved hvor mange påstigningssteder påstigningen er niveaufri, kun mulig med køretøjets rampe, begrænset eller slet ikke trinfri, med kantstenshøjden. For Münster står der, om stoppestedet er trinfrit eller delvis trinfrit, med Stadtwerkes bemærkning. Et stoppested, der ikke står på listen, er dermed ikke meldt som utilgængeligt.",
+    "ask": "Er stoppestedet Theaterplatz i Dresden trinfrit?"
+  },
+  "barrierefreiheit-aus-openstreetmap": {
+    "title": "Tilgængelighed fra OpenStreetMap: kantstenshøjder, ledelinjer og elevatorer ved stoppesteder i hele Tyskland",
+    "body": "ViaFrei læser nu TU Chemnitz’ eksport, som for stoppesteder i hele Tyskland samler, hvad frivillige har registreret i OpenStreetMap: kantstenshøjder, høje kantsten, ledelinjer, elevatorer, ramper, trapper og rulletrapper, for godt 4.000 stoppesteder. ViaFrei viser disse oplysninger, hvor ingen officiel registrering beskriver stoppestedet, og siger, at det er kortlægninger og ikke en registrering: hvad ingen har indtastet, mangler.",
+    "ask": "Har stoppestedet Lichtenauer Straße i Chemnitz en høj kantsten?"
+  },
+  "auslastung-mvv-regionalbus": {
+    "title": "Regionalbusser i MVV: hvor fuld bussen plejer at være",
+    "body": "Ved afgangene for en regionalbus i Münchens trafikforbund MVV står der nu, hvor fuld den plejer at være på det tidspunkt, fra få passagerer til meget fuld med kun ståpladser. Værdierne kommer fra MVV’s automatiske passagertællinger og er typiske værdier, ikke realtid. På hverdage nævner ViaFrei skoledage og ferier hver for sig, når de er forskellige.",
+    "ask": "Hvor fuld er bus 210 fra Ottobrunn, Jahnstraße i morgen tidlig?"
+  },
+  "ladestatus-hamburg": {
+    "title": "Hamborg: om en offentlig ladestander er ledig lige nu, også fra byen",
+    "body": "ViaFrei læser nu ladestatus for de omkring 2.500 offentlige ladepunkter, som Den Frie og Hansestad Hamborg løbende offentliggør. Det supplerer de ladestandere, ViaFrei allerede kender: ved en ladestander i Hamborg står der nu, om den er ledig, optaget eller ude af drift og siden hvornår, og byen nævnes som kilde.",
+    "ask": "Hvor er der en ledig ladestander i Hamburg-Altona lige nu?"
+  },
+  "barrierefreiheit-baden-wuerttemberg": {
+    "title": "Baden-Württemberg: elevatorer, ramper og ledelinjer ved stationer og stoppesteder",
+    "body": "ViaFrei læser nu NVBW’s registrering af tilgængeligheden på 1.104 stationer og 14.065 bus- og sporvognsstoppesteder i Baden-Württemberg. Ved en station står der ud over elevatorernes tilstand, hvad der er registreret på stedet: hvor mange elevatorer med hvilken dørbredde og kabinestørrelse, hvor stejle ramperne er, og hvor mange perroner der har ledelinjer for blinde. Dataene er ukontrollerede rådata fra registreringen, og ViaFrei siger det.",
+    "ask": "Hvor trinfri er Mannheim Hbf?"
+  },
+  "vrn-echtzeit-rhein-neckar": {
+    "title": "Busser og sporvogne i Rhein-Neckar-området: realtid også fra VRN",
+    "body": "ViaFrei læser nu Verkehrsverbund Rhein-Neckars realtidsdata for busser og sporvogne fra Mannheim og Heidelberg til Mainz og Kaiserslautern. Melder de landsdækkende data intet for et af disse distrikter, eller er de forældede, viser ViaFrei punktligheden fra VRN’s data og siger, at tog ikke indgår i dem.",
+    "ask": "Hvor punktlige er busser og tog i Mannheim lige nu?"
+  },
+  "vbn-echtzeit-niedersachsen-bremen": {
+    "title": "Bremen og Niedersachsen: realtid også fra VBN",
+    "body": "ViaFrei læser nu Verkehrsverbund Bremen/Niedersachsens realtidsprognoser for busser, sporvogne og tog, fra Bremen og Oldenburg over Hannover og Braunschweig til Göttingen og Osnabrück. Melder de landsdækkende data intet for Bremen eller et af disse distrikter, eller er de forældede, viser ViaFrei punktligheden fra VBN’s data og nævner kilden.",
+    "ask": "Hvor punktlige er busser og tog i Bremen lige nu?"
+  },
+  "baustellen-staedte-laender": {
+    "title": "Vejarbejde fra byer og delstater",
+    "body": "ViaFrei kender nu også det vejarbejde, som byer og delstater selv offentliggør — fra Kiel og Slesvig-Holsten over Brandenburg, Berlin, Köln, Dortmund, Münster, Duisburg og Aachen til Frankfurt, Karlsruhe, Stuttgart, Freiburg og Ingolstadt. Hvert vejarbejde står der én gang, med hver kilde, der melder det.",
+    "ask": "Hvilket vejarbejde er der i Dortmund lige nu?"
+  },
+  "umweltzone-am-punkt": {
+    "title": "Ligger dette sted i en miljøzone?",
+    "body": "ViaFrei tjekker en adresse eller et punkt mod de offentliggjorte grænser for miljøzonerne: indenfor, i et frigivet område, udenfor med afstanden — eller ukendt. Grundlaget er byernes grænser og Umweltbundesamts register over alle tyske zoner, hver med dataenes dato.",
+    "ask": "Ligger Alexanderplatz i Berlins miljøzone?"
+  },
+  "dortmund-sensoren-behindertenparkplaetze-ladeplaetze": {
+    "title": "Dortmund: ledige handicapparkeringspladser og pladsen ved ladestanderen",
+    "body": "I Dortmund melder sensorer i gaden, om en handicapparkeringsplads eller pladsen ved en ladestander er ledig lige nu. Når du søger parkering, nævner ViaFrei de nærmeste handicapparkeringspladser, og ved en ladestander siger den, om pladsen er optaget — hver med tidspunktet for sensorens seneste melding.",
+    "ask": "Er der en ledig handicapparkeringsplads i nærheden af Dortmund Hauptbahnhof?"
+  },
+  "zweite-quelle-berlin-sachsen-autobahn": {
+    "title": "Vejarbejde og spærringer fra to kilder: Berlin, Sachsen og motorvejene",
+    "body": "ViaFrei læser nu Verkehrsinformationszentrale Berlin, Landesmeldestelle Berlin, Sachsens informationssystem for spærringer og Autobahn GmbH’s vejarbejde for de næste 14 dage. En melding, som to kilder fører, står én gang i svaret, og begge nævnes; er en kilde ikke aktuel, svarer den anden alene, og omkørsler i Sachsen nævner ViaFrei som henvisning til skiltningen, aldrig som rute.",
+    "ask": "Hvilke veje er spærret nær mig i Berlin-Mitte lige nu?"
+  },
+  "baustellen-bayern-mv-umleitungen-nrw": {
+    "title": "Vejarbejde i Bayern og Mecklenburg-Vorpommern, omkørsler i Nordrhein-Westfalen",
+    "body": "ViaFrei læser nu vejarbejde og trafikmeldinger fra Zentralstelle Verkehrsmanagement Bayern, arbejdssteder fra Mecklenburg-Vorpommerns vejmyndighed på forbunds- og delstatsveje og Straßen.NRW’s skiltede omkørsler. En omkørsel nævner ViaFrei som henvisning til skiltningen, aldrig som ruteanbefaling.",
+    "ask": "Er der vejarbejde på B14 i næste uge?"
+  },
+  "verkehrslage-autobahn-nrw": {
+    "title": "Trafiksituationen ved motorvejenes målesteder i Nordrhein-Westfalen",
+    "body": "ViaFrei læser nu den trafiksituation, som Autobahn GmbH måler ved omkring 2.000 målesteder i Nordrhein-Westfalen, og siger for en motorvej, hvor trafikken er fri, tæt, langsom eller stillestående.",
+    "ask": "Hvordan er trafikken på A1 i Nordrhein-Westfalen lige nu?"
+  },
+  "parken-wuppertal-leipzig-pr": {
+    "title": "Flere p-huse i Wuppertal og P+R i Leipzig med ledige pladser",
+    "body": "ViaFrei læser nu Wuppertal Kommunes p-hustabel, som kender 33 flere p-huse og parkeringspladser end før, og Verkehrs- und Tiefbauamt Leipzigs P+R-anlæg med ledige pladser live, for første gang også de ledige pladser ved Völkerschlachtdenkmal. Et anlæg, som to kilder offentliggør, står én gang i svaret, og begge udgivere nævnes.",
+    "ask": "Hvor er der ledige P+R-pladser i Leipzig lige nu?"
+  },
+  "parken-freiburg-herrenberg-jena-vrr-karlsruhe": {
+    "title": "Parkering i Freiburg, Herrenberg, Jena, i VRR og lastbilpladser omkring Karlsruhe",
+    "body": "ViaFrei læser nu fem udgivere mere direkte: Freiburg Kommunes parkeringshenvisningssystem og P+R-anlæg med ledige pladser live, Herrenberg Kommunes parkeringspladser, Kommunalservice Jenas parkeringspladser og p-huse, P+R-anlæggene i Verkehrsverbund Rhein-Ruhr og TechnologieRegion Karlsruhes lastbilpladser. Hvor en udgiver ikke offentliggør belægning, siger ViaFrei det i stedet for at opfinde et tal.",
+    "ask": "Hvilket p-hus i Freiburg har ledige pladser lige nu?"
+  },
+  "live-antworten-auf-der-seite": {
+    "title": "Live-svar fra din AI-assistent på forsiden og ved hvert sted",
+    "body": "Ved hvert tal på forsiden står nu det spørgsmål, du kan stille din AI-assistent, og hvad ViaFreis værktøjer svarer på det lige nu: med værktøjet, dataenes klokkeslæt og hver kilde. Også et steds kort viser svarene for det sted, om advarsler, veje, steder i nærheden, opladning og parkering. Det er det samme svar, din assistent får, når den er forbundet med ViaFrei.",
+    "ask": "Er der noget spærret på vejene omkring Pulheim lige nu?"
+  },
+  "autobahn-seiten": {
+    "title": "En live-side for hver tysk motorvej",
+    "body": "Alle 122 motorveje har nu deres egen side med et kort over forløbet, spærringer, køer og vejarbejde lige nu og de planlagte totalspærringer de næste syv dage med deres omkørsler. Dertil kommer lastbilpladser med ledige pladser, ladestandere efter effekt, vejvejr og advarsler, kameraer, kørselsforbud for lastbiler og motorvejskrydsene. Forsiden viser de ti motorveje, hvor der sker mest lige nu.",
+    "ask": "Hvordan er situationen på A7 lige nu?"
+  },
+  "wasserstoff-bruecken-bahnhoefe": {
+    "title": "Brintstationer, broer i Slesvig-Holsten og mere ved hver station",
+    "body": "ViaFrei kender nu H2 Mobilitys brintstationer med deres tankpunkter for personbiler og lastbiler, tilstanden af de store broer i Slesvig-Holsten og Kassel Kommunes p-huse med deres belægning. På stedsiderne står der ved hver station, hvilke elevatorer og rulletrapper der kører, hvilke perroner der er trinfri, og hvilke p-huse der ligger lige ved siden af. Vejrkortet viser de næste timer ved den nærmeste vejvejrstation, og punktligheden gælder nu for distriktet.",
+    "ask": "Hvor er den nærmeste brintstation for en lastbil ved Hamborg?"
+  },
+  "baustellen-bremen-kassel-leipzig": {
+    "title": "Vejarbejde og spærringer i Bremen, Kassel, Leipzig og Rüsselsheim",
+    "body": "ViaFrei læser nu trafikmeldingerne fra byerne Bremen, Kassel, Leipzig og Rüsselsheim am Main og Niedersachsens vejmyndigheds arbejdssteder og spærringer uden for motorvejene. Byernes meldinger står også på stedsiderne, ligesom Kölns og Hannovers.",
+    "ask": "Er der spærringer i Bremens centrum lige nu?"
+  },
+  "ladepunkte-23-betreiber": {
+    "title": "Ladepunkter fra 23 flere operatører",
+    "body": "ViaFrei læser nu de egne offentliggørelser på Mobilithek fra 23 flere operatører af ladepunkter, blandt dem EWE Go, LichtBlick, Qwello, Wirelane, chargecloud og vaylens. Hvor en operatør melder, om et ladepunkt er ledigt, viser vi det, men aldrig når meldingen er ældre end 30 minutter.",
+    "ask": "Hvor er der en ledig ladestander i Münster lige nu?"
+  },
+  "autobahn-verkehrsmeldungen": {
+    "title": "Trafikmeldinger fra Autobahn GmbH, med sted",
+    "body": "ViaFrei læser nu hvert femte minut Autobahn GmbH’s trafikmeldinger om spærringer og tidstab. Meldingerne knyttes via BASt’s TMC-stedliste til deres motorvej og deres referencepunkter, fx tilslutningsanlæg.",
+    "ask": "Er A620 ved Saarbrücken spærret lige nu?"
+  },
+  "muenchen-pr-prognosen": {
+    "title": "P-huse og P+R i München, med prognose",
+    "body": "ViaFrei kender nu Münchens p-huse og P+R-anlæg. Hvor et P+R-anlæg ikke melder live-belægning, nævner vi byens prognose for den aktuelle time, med dens dato, og aldrig som ledige pladser.",
+    "ask": "Hvor kan jeg parkere ved en P+R i München og tage U-Bahn videre?"
+  },
+  "parkapi-baden-wuerttemberg": {
+    "title": "Ledige parkeringspladser i Baden-Württemberg",
+    "body": "Live-belægningen i p-huse i Baden-Württemberg kommer nu fra MobiData BW’s ParkAPI, hvert femte minut, kun fra kilder med passende licens. En melding, der hos udgiveren er ældre end 30 minutter, viser vi ikke som belægning.",
+    "ask": "Hvor finder jeg en ledig plads i et p-hus i Karlsruhe lige nu?"
+  },
+  "bw-bedarfsumleitungen": {
+    "title": "Skiltede omkørsler i Baden-Württemberg",
+    "body": "Passer en motorvejsspærring i Baden-Württemberg til en offentliggjort Bedarfsumleitung, nævner ViaFrei U-ruten — som henvisning til skiltningen, ikke som ruteanbefaling.",
+    "ask": "Er der en skiltet omkørsel for spærringen på A8 ved Stuttgart?"
+  },
+  "hamburg-baustellen-kameras": {
+    "title": "Vejarbejde og trafikkameraer i Hamborg",
+    "body": "For Hamborgs bygader nævner ViaFrei nu det frigivne vejarbejde fra Bauweiser, aktuelt eller planlagt, læst hver time, og op til to placeringer af trafikkameraer i nærheden — kun placeringerne, aldrig et billede.",
+    "ask": "Hvilket vejarbejde er der i Hamburg-Eimsbüttel lige nu?"
+  },
+  "bemas-baden-wuerttemberg": {
+    "title": "Vejarbejde på forbunds- og delstatsveje i Baden-Württemberg",
+    "body": "ViaFrei kender nu aktuelt og planlagt vejarbejde på forbunds- og delstatsvejene i Baden-Württemberg, læst hvert kvarter fra MobiData BW. Hvad udgiveren ikke frigiver til offentliggørelse, viser vi ikke.",
+    "ask": "Hvilket vejarbejde kommer der på B27 mellem Stuttgart og Tübingen?"
+  },
+  "dwd-strassenzustand": {
+    "title": "Prognose for vejbanens tilstand fra DWD",
+    "body": "Sammen med vejrvarslerne nævner ViaFrei nu den forventede vejbanetilstand og vejbanetemperatur ved de nærmeste vejvejrstationer — markeret som modelprognose, ikke som måling og ikke som officielt varsel.",
+    "ask": "Hvordan bliver vejbanen ved Kassel i morgen tidlig?"
+  },
+  "rastanlagen-lkw-stellplaetze": {
+    "title": "Rastepladser ved motorvejene med lastbilpladser",
+    "body": "Vi planlægger at tilføje Bundesamt für Logistik und Mobilitäts data om de bemandede rastepladser ved de tyske motorveje: beliggenhed, navn og det anslåede antal lastbilpladser, for hele Tyskland. Tallet er myndighedens skøn, ikke live-belægning.",
+    "ask": "Hvilken rasteplads ved A2 mellem Hannover og Dortmund har flest lastbilpladser?"
+  },
+  "autobahn-umleitungsempfehlungen": {
+    "title": "Anbefalede omkørsler fra Autobahn GmbH",
+    "body": "Vi planlægger at tilføje omkørselsanbefalingerne fra Autobahn GmbH des Bundes: den rute, som de dynamiske vejvisere anbefaler ved køer og spærringer. Så kan ViaFrei ved en spærring nævne den omkørsel, operatøren selv anbefaler.",
+    "ask": "Hvordan kører jeg uden om spærringen på A3?"
+  },
+  "viafrei-2-3": {
+    "title": "ViaFrei 2.3: motorvejssider, flere kilder, flere assistenter",
+    "body": "Hver motorvej har nu sin egen side med paneler for trafik, vejarbejde, parkering og opladning, hvert med alderen på sine data. Nyt er vejarbejde og trafikmeldinger fra flere delstater, flere ladeoperatører og Autobahn GmbH's strategiske omkørselsanbefalinger, når den udgiver en. Afgange er også rigtige ved tidsomstillingen. Forbind ViaFrei i Claude, ChatGPT og de andre assistenter på forbindelsessiden – kun da er svarene live.",
+    "ask": "Hvordan er situationen på A3 lige nu?"
+  },
+  "lkw-stellplatzbelegung": {
+    "title": "Belægning på lastbilparkeringer ved motorvejen",
+    "body": "ViaFrei viser nu belægningen på lastbilparkeringerne ved motorvejene fra Toll Collect GmbH's Stellplatz-Informationsdienst (SID). Tallene vises først, når du accepterer brugsbetingelserne, afsnit 2: på viafrei.de med »Vis belægning«, i din AI-assistent via det spørgsmål, den stiller dig. Oplysningerne kan være unøjagtige eller forældede.",
+    "ask": "Hvor er der ledige lastbilpladser på A9 ved Nürnberg lige nu?"
+  },
+  "lkw-parken-thiersheim": {
+    "title": "Autohof Thiersheim ved A93",
+    "body": "ViaFrei kender nu lastbilpladserne på Autohof Thiersheim ved A93 fra rastepladsens egen tabel: 55 lastbilpladser, adressen og placeringen. Rastepladsen står én gang i svaret, selv om den landsdækkende tabel over lastbilparkering også fører den, og begge kilder nævnes. ViaFrei viser ingen belægning her, fordi udgiveren ikke har meldt nogen siden april.",
+    "ask": "Hvor kan jeg parkere en lastbil ved A93 nær Thiersheim?"
+  },
+  "echtzeit-vbn-connect": {
+    "title": "Realtid for busser og tog i VBN-området",
+    "body": "ViaFrei læser nu realtidsdata fra trafikforbundet Bremen/Niedersachsen (VBN, datasættet Connect). Ved stoppesteder i Bremen og i hele VBN-området viser afgangene en forsinkelse fra disse data, hvor ingen anden realtidskilde melder turen. Hver afgang vises én gang, og hver kilde, der bærer den, nævnes.",
+    "ask": "Hvornår kører den næste bus fra hovedbanegården i Bremen?"
+  },
+  "strassen-auf-den-karten": {
+    "title": "Gader på kortene",
+    "body": "Kortene på motorvejssiderne og stedsiderne tegner nu gaderne i deres udsnit fra OpenStreetMap: forbunds-, delstats- og kredsveje og boliggader, tegnet af os, uden en tredjeparts korttjeneste; selve motorvejene tegner vi efter BASt's liste over lokationskoder. En melding på kortet kan nu knyttes til sin gade.",
+    "ask": "Hvordan er situationen på A7 ved Kassel?"
+  },
+  "einzelmeldungen-viz-nrw": {
+    "title": "VIZ.NRW's enkeltmeldinger som endnu en reserve",
+    "body": "ViaFrei læser nu også enkeltmeldingerne i trafikinformationen for Nordrhein-Westfalen fra VIZ.NRW. De sikrer trafikmeldingerne i Nordrhein-Westfalen endnu en gang: hvis én kilde svigter, svarer ViaFrei fra en anden. Hver melding vises kun én gang, og hver kilde, der bærer den, nævnes.",
+    "ask": "Er der lige nu trafikmeldinger på A1 ved Köln?"
+  }
+}

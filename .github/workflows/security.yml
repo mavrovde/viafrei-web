@@ -1,0 +1,263 @@
+# Security checks on every pull request that touches more than prose (the `changes` job) and on a release's merge
+# commit; a new advisory against an unchanged tree is found by Dependabot and by a dispatch, not by
+# a schedule, which saves CI minutes. viafrei-database's security.yml with viafrei-api's two more jobs (Snyk and
+# the licence allow-list): SAST (CodeQL), dependencies (dependency review, Snyk, licences), secrets
+# over the whole history (gitleaks), DAST (OWASP ZAP against the built shell). The image itself is
+# scanned by Trivy in ci.yml. Nothing here reaches a database or a public host.
+name: Security
+
+on:
+  # To save CI minutes: pull requests, and on main only so the release gate has a
+  # run on the merge commit (scripts/ci-gate.sh reads its jobs). On main the heavy jobs run only on
+  # the merge of a release pull request (its subject starts `chore: release `). No schedule, and no
+  # workflow-level paths-ignore: a prose-only change is decided by the `changes` job below, so every
+  # required check still reports (skipped), and no merge needs the administrator's bypass.
+  pull_request:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: security-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
+
+env:
+  NODE_VERSION: 26.12.1 # the Node of the image (Dockerfile)
+
+jobs:
+  changes:
+    name: Changes (code, or prose only)
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    outputs:
+      code: ${{ steps.diff.outputs.code }}
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+          fetch-depth: 0 # both ends of the diff
+      # scripts/changes.sh: `false` only when every changed file is prose (and no test reads it);
+      # anything it cannot read is `true`. A dispatch always runs everything.
+      - name: Does the change touch more than prose?
+        id: diff
+        env:
+          EVENT: ${{ github.event_name }}
+          PR_BASE: ${{ github.event.pull_request.base.sha }}
+          PR_HEAD: ${{ github.event.pull_request.head.sha }}
+          BEFORE: ${{ github.event.before }}
+          AFTER: ${{ github.sha }}
+        run: |
+          case "$EVENT" in
+            pull_request)
+              # The BASE revision's copy judges the diff, so a pull request cannot edit the rule that
+              # decides whether it is tested. The pull request's own copy is used only when the base
+              # has none: the bootstrap, before changes.sh was on main.
+              if git show "$PR_BASE:scripts/changes.sh" > "$RUNNER_TEMP/changes.sh" 2> /dev/null; then
+                judge="$RUNNER_TEMP/changes.sh"
+              else
+                judge=scripts/changes.sh
+                echo "::notice::changes: the base has no scripts/changes.sh (the bootstrap); the pull request's own copy judges"
+              fi
+              code="$(CHANGES_ROOT="$PWD" bash "$judge" "$PR_BASE" "$PR_HEAD")" ;;
+            push) code="$(bash scripts/changes.sh "$BEFORE" "$AFTER")" ;;
+            *) code=true ;;
+          esac
+          echo "code=$code" >> "$GITHUB_OUTPUT"
+
+  codeql:
+    name: CodeQL (TypeScript)
+    needs: changes
+    if: "needs.changes.outputs.code == 'true' && (github.event_name != 'push' || startsWith(github.event.head_commit.message, 'chore: release '))"
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    permissions:
+      contents: read
+      security-events: write
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - uses: github/codeql-action/init@33d7b85da1a04171e211befe2c739303b9a4c066 # v4.39.3
+        with:
+          languages: javascript-typescript
+          queries: security-extended
+          # paths-ignore: packages/*/test and packages/web/e2e, which never reach the image (the reason is in the file)
+          config-file: ./.github/codeql/codeql-config.yml
+      - uses: github/codeql-action/analyze@33d7b85da1a04171e211befe2c739303b9a4c066 # v4.39.3
+        with:
+          category: codeql-typescript
+
+  dependency-review:
+    name: Dependency review
+    needs: changes
+    if: needs.changes.outputs.code == 'true' && github.event_name == 'pull_request'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - uses: actions/dependency-review-action@a1d282b36b6f3519aa1f3fc636f609c47dddb294 # v5.0.0
+        with:
+          fail-on-severity: moderate
+          # Exactly the licences of today's tree (scripts/licences.mjs ALLOWED holds the same list).
+          # A new licence is a decision: add it here and there by hand.
+          allow-licenses: 0BSD, Apache-2.0, BlueOak-1.0.0, BSD-2-Clause, BSD-3-Clause, CC0-1.0, ISC, MIT, MPL-2.0
+          # sharp's libvips builds (LGPL-3.0-or-later): optional dev dependencies of Astro's image
+          # service, never in the image (scripts/licences.mjs names them with the reason).
+          allow-dependencies-licenses: >-
+            pkg:npm/%40img/sharp-libvips-darwin-arm64, pkg:npm/%40img/sharp-libvips-darwin-x64,
+            pkg:npm/%40img/sharp-libvips-linux-arm, pkg:npm/%40img/sharp-libvips-linux-arm64,
+            pkg:npm/%40img/sharp-libvips-linux-ppc64, pkg:npm/%40img/sharp-libvips-linux-riscv64,
+            pkg:npm/%40img/sharp-libvips-linux-s390x, pkg:npm/%40img/sharp-libvips-linux-x64,
+            pkg:npm/%40img/sharp-libvips-linuxmusl-arm64, pkg:npm/%40img/sharp-libvips-linuxmusl-x64,
+            pkg:npm/%40img/sharp-wasm32, pkg:npm/%40img/sharp-win32-arm64,
+            pkg:npm/%40img/sharp-win32-ia32, pkg:npm/%40img/sharp-win32-x64
+
+  licenses:
+    name: Dependency licences
+    needs: changes
+    if: needs.changes.outputs.code == 'true'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+      - name: Every licence of the lockfile is on the allow-list
+        run: node scripts/licences.mjs
+
+  snyk:
+    name: Snyk (dependencies)
+    needs: changes
+    if: "needs.changes.outputs.code == 'true' && (github.event_name != 'push' || startsWith(github.event.head_commit.message, 'chore: release '))"
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    permissions:
+      contents: read
+      security-events: write # uploads SARIF to code scanning
+    steps:
+      - name: SNYK_TOKEN must be set
+        env:
+          SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
+          ACTOR: ${{ github.actor }}
+        run: |
+          if [ -z "$SNYK_TOKEN" ]; then
+            if [ "$ACTOR" = "dependabot[bot]" ]; then
+              echo "::error::SNYK_TOKEN is not visible to this Dependabot pull request: Dependabot runs read Dependabot secrets, not Actions secrets. Add SNYK_TOKEN under Settings > Secrets and variables > Dependabot (docs/RELEASING.md)."
+            else
+              echo "::error::the repository secret SNYK_TOKEN is not set (a pull request from a fork never sees it); Snyk cannot test this run"
+            fi
+            exit 1
+          fi
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: npm
+      - run: npm ci --ignore-scripts --no-audit --no-fund
+      - name: Snyk CLI 1.1308.1, checksum verified
+        run: |
+          curl -fsSL --proto '=https' --tlsv1.2 --max-time 60 -o snyk https://static.snyk.io/cli/v1.1308.1/snyk-linux
+          echo "a8b2e420af6d8e61bf1d367c064475ccf699d767fc8763efb0072b9cac250f9a  snyk" | sha256sum -c -
+          chmod +x snyk
+      - env:
+          SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
+        run: |
+          mkdir -p sarif
+          ./snyk test --all-projects --severity-threshold=high --sarif-file-output=sarif/snyk.sarif
+      - name: Upload SARIF to code scanning
+        if: always() && hashFiles('sarif/snyk.sarif') != '' && (github.event_name != 'pull_request' || github.event.pull_request.head.repo.full_name == github.repository)
+        uses: github/codeql-action/upload-sarif@33d7b85da1a04171e211befe2c739303b9a4c066 # v4.39.3
+        with:
+          sarif_file: sarif/snyk.sarif
+          category: snyk-open-source
+
+  gitleaks:
+    name: Secrets in history (gitleaks)
+    needs: changes
+    if: "needs.changes.outputs.code == 'true' && (github.event_name != 'push' || startsWith(github.event.head_commit.message, 'chore: release '))"
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+          fetch-depth: 0 # every commit, not only the tip
+      # The configuration is .gitleaks.toml (the default rules plus one narrow test-literal exception), passed
+      # explicitly: left to itself gitleaks reads the copy in the scanned tree, which a pull request can edit. On a
+      # pull request the BASE revision's copy judges, as with scripts/changes.sh; the pull request's own copy only
+      # when the base has none (the bootstrap). A .gitleaksignore anywhere in the tree is refused: gitleaks reads
+      # one from the scanned tree whatever --gitleaks-ignore-path says (measured on v8.30.1), so a fingerprint
+      # in it would silence a finding with no review of the exception.
+      - name: gitleaks over the full history
+        env:
+          EVENT: ${{ github.event_name }}
+          PR_BASE: ${{ github.event.pull_request.base.sha }}
+        run: |
+          ignores="$(git ls-files -- .gitleaksignore '**/.gitleaksignore')"
+          if [ -n "$ignores" ] || [ -e .gitleaksignore ]; then
+            echo "::error::a .gitleaksignore is in the tree ($ignores); an exception belongs in .gitleaks.toml, scoped by rule, path and literal"
+            exit 1
+          fi
+          cfg="$RUNNER_TEMP/gitleaks.toml"
+          if [ "$EVENT" = pull_request ] && git show "$PR_BASE:.gitleaks.toml" > "$cfg" 2> /dev/null; then
+            echo "gitleaks: the base revision's .gitleaks.toml judges"
+          elif [ -f .gitleaks.toml ]; then
+            cp .gitleaks.toml "$cfg"
+            [ "$EVENT" != pull_request ] || echo "::notice::gitleaks: the base has no .gitleaks.toml (the bootstrap); the pull request's own copy judges"
+          else
+            echo "::error::no .gitleaks.toml to judge with"
+            exit 1
+          fi
+          docker run --rm -v "$PWD:/repo" -v "$cfg:/gitleaks.toml:ro" \
+            zricethezav/gitleaks:v8.30.1@sha256:c00b6bd0aeb3071cbcb79009cb16a60dd9e0a7c60e2be9ab65d25e6bc8abbb7f \
+            git /repo --config /gitleaks.toml --redact --no-banner --exit-code 1 --log-opts="--all"
+
+  zap:
+    name: DAST (OWASP ZAP against the container)
+    needs: changes
+    if: "needs.changes.outputs.code == 'true' && (github.event_name != 'push' || startsWith(github.event.head_commit.message, 'chore: release '))"
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    permissions:
+      contents: read
+      security-events: write # uploads the ZAP SARIF to code scanning
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - uses: docker/setup-buildx-action@f87e5991a6d7451dcb8d9637bfbc97413f497069 # v4.4.1
+      - uses: docker/build-push-action@c3c9e263c25d99ce0380d002d59b67737d91b0dc # v7.4.0
+        with:
+          context: .
+          load: true
+          push: false
+          tags: viafrei-web:zap
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+      - name: ZAP baseline against the shell
+        env:
+          IMAGE: viafrei-web:zap
+        run: scripts/zap-scan.sh
+      - uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        if: always()
+        with:
+          name: zap-report
+          path: zap-report/
+          retention-days: 1
+      - name: Upload SARIF to code scanning
+        if: always() && hashFiles('zap-report/zap.sarif') != '' && (github.event_name != 'pull_request' || github.event.pull_request.head.repo.full_name == github.repository)
+        uses: github/codeql-action/upload-sarif@33d7b85da1a04171e211befe2c739303b9a4c066 # v4.39.3
+        with:
+          sarif_file: zap-report/zap.sarif
+          category: zap

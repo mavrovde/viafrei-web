@@ -1,0 +1,17 @@
+{
+  "name": "@viafrei/design",
+  "version": "0.0.0",
+  "description": "ViaFrei, the German Real-Time Mobility Context Platform for AI: the typed UI building blocks (tile contract, class names, tile builders) shared by the digest, the site shell and the status page. A leaf: no dependencies.",
+  "private": true,
+  "type": "module",
+  "exports": {
+    ".": {
+      "viafrei-dist": "./dist/src/index.js",
+      "default": "./src/index.ts"
+    },
+    "./testing": {
+      "viafrei-dist": "./dist/src/testing/index.js",
+      "default": "./src/testing/index.ts"
+    }
+  }
+}

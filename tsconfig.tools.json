@@ -1,0 +1,13 @@
+{
+  // The release tooling (scripts/*.ts, run by node directly) and its tests under test/, mirrored from
+  // viafrei-database (viafrei-web#2). Type-checked by `tsc -b` with the site; nothing is emitted that ships.
+  "extends": "./tsconfig.base.json",
+  "compilerOptions": {
+    "rootDir": ".",
+    "outDir": "build/tools",
+    "allowImportingTsExtensions": true,
+    "emitDeclarationOnly": true,
+    "types": ["node"]
+  },
+  "include": ["scripts/ci-gate.ts", "scripts/zap-verdict.ts", "test/**/*.ts"]
+}

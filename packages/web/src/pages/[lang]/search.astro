@@ -1,0 +1,14 @@
+---
+/** `/<lang>/search?q=…` — the site search's results page (#1111), every language; server-rendered, no script needed. */
+import SearchPage from "../../layouts/SearchPage.astro";
+import { isLang } from "../../i18n/index.js";
+import { readEnv } from "../../lib/env.js";
+import { resolveSearchPage } from "../../lib/search-page.js";
+
+const lang = Astro.params["lang"] ?? "";
+if (!isLang(lang)) return Astro.rewrite("/404");
+const env = readEnv();
+const a = await resolveSearchPage(lang, new URL(Astro.request.url).searchParams, { baseUrl: env.digestUrl, timeoutMs: env.tileTimeoutMs });
+---
+
+<SearchPage lang={lang} q={a.q} html={a.html} />

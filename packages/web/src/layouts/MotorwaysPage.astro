@@ -1,0 +1,72 @@
+---
+/**
+ * The motorway index (#715, 2.1.13): `/de/autobahn` and `/<lang>/motorway` —
+ * every motorway of the register in natural order, each linked to its page,
+ * with its live counts from the per-motorway summary (the digest's
+ * `/internal/motorway/index`). A row of the page map ("motorways"), so its
+ * title, alternates and JSON-LD come from the map like every page's.
+ *
+ * 2.1.16 (#716 C1): a search (`?q=`) and an order (`?sort=worst`) — a GET
+ * form that works with no script; such a variant is `noindex` with the bare
+ * index as its canonical (the page map's path), and is never kept.
+ */
+import Base from "./Base.astro";
+import PageHead from "../components/PageHead.astro";
+import RoadLinks from "../components/RoadLinks.astro";
+import { t } from "../i18n/index.js";
+import type { Lang } from "../site/pages.js";
+import freshnessCss from "../styles/freshness.css?raw";
+import { freshAgesScript } from "../lib/motorway-filter.js";
+import { motorwayIndexHeadOf } from "../lib/motorway-head.js";
+import { MOTORWAY_NEAR_SLOT, motorwayNearScript } from "../lib/motorway-near.js";
+import { motorwayAroundOn } from "../lib/motorway-around.js";
+import { hasLiveMap, liveMapScript } from "../lib/live-map.js";
+import { fitDescription } from "../site/meta.js";
+import { motorwaysCrumbs } from "../site/structured-data.js";
+import Crumbs from "../components/Crumbs.astro";
+import { liftPlaceFirst } from "../lib/place-head.js";
+
+interface Props {
+  lang: Lang;
+  html: string;
+  /** A search or an order in the address (#716 C1, 2.1.16). */
+  variant?: boolean;
+}
+const { lang, html: fragment, variant = false } = Astro.props;
+// #1028: the national sums in words as the page's description (the catalogue's when the digest has no current read).
+const head = motorwayIndexHeadOf(fragment);
+// #1182: a first block in the fragment (lamp, top items, jumps) stands under the H1 through PageHead
+const lifted = liftPlaceFirst(head.html);
+const html = lifted.html;
+const description = head.description === null || variant ? undefined : fitDescription(head.description);
+// 2.1.16: the index carries its search form (a GET form to this origin), so the page allows one.
+Astro.locals.hasForm = html.includes('<form class="motorway-search"');
+Astro.response.headers.set("Cache-Control", "no-store");
+// review S3: the sign's relative-age filler — declared, so the middleware writes the request's nonce onto it (never sniffed)
+const hasAges = html.includes('class="fresh__age"');
+if (hasAges) Astro.locals.hasScript = true;
+// #1113: the visitor's remembered place, applied here as on a road page — read by a script, never written; behind the
+// road pages' position switch (G5). A remembered "Ganz Deutschland" asks for nothing: this page is the whole country.
+const near = motorwayAroundOn();
+if (near) Astro.locals.hasScript = true;
+// #1183: the overview map made live — declared like the others, so the middleware writes the request's nonce onto it
+const liveMap = hasLiveMap(html);
+if (liveMap) Astro.locals.hasScript = true;
+// #986: the overview's freshness sign rides inline on this page only, like the road page's rules (never site.css).
+const pageCss = freshnessCss.replace(/\/\*[\s\S]*?\*\//g, "").replace(/\s+/g, " ").trim();
+---
+
+<Base lang={lang} page="motorways" robots={variant ? "noindex, follow" : undefined} description={description}>
+  <style is:inline slot="head" set:html={pageCss}></style>
+  <Crumbs lang={lang} crumbs={motorwaysCrumbs(lang)} />
+  <PageHead h1={t(lang, "seo.motorwaysH1")} first={lifted.first} class="motorway-page__head motorway-page__head--index">
+    <p class="lead">{t(lang, "seo.motorwaysLead")}</p>
+  </PageHead>
+  {near && <div class="wrap motorway-near-slot" id={MOTORWAY_NEAR_SLOT} hidden />}
+  {near && <script is:inline set:html={motorwayNearScript(lang)} />}
+  <div class="wrap motorway-page" set:html={html} />
+  {/* review S3: the sign's relative age beside its absolute time, filled like the road page's (the request's nonce) */}
+  {hasAges && <script is:inline set:html={freshAgesScript(lang)} />}
+  {liveMap && <script is:inline set:html={liveMapScript(lang)} />}
+  <RoadLinks lang={lang} />
+</Base>

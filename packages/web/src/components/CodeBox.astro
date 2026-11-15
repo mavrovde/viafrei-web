@@ -1,0 +1,26 @@
+---
+/**
+ * One copyable code block (#992): the code in its own scrolling box (`pre`, `overflow-x: auto`, so a phone at 375 px
+ * scrolls the code and never the page), and a copy button the copy script reveals (`CodeCopy.astro`). `what` and
+ * `client` are the two closed-list words the `dev_copy` event carries; the code itself never leaves the page.
+ */
+import { t } from "../i18n/index.js";
+import type { DevClient, DevCopyWhat } from "../analytics/events.js";
+import type { Lang } from "../site/pages.js";
+
+interface Props {
+  lang: Lang;
+  code: string;
+  what: DevCopyWhat;
+  client: DevClient;
+  /** The copy button's label; "Copy" by default. */
+  label?: string;
+}
+const { lang, code, what, client, label } = Astro.props;
+---
+
+<div class="code-box" data-vf-copy={what} data-vf-client={client}>
+  <pre tabindex="0"><code translate="no">{code}</code></pre>
+  <button type="button" class="btn btn--sm code-box__copy" hidden value={t(lang, "connectNote.copied")}>{label ?? t(lang, "devPage.copy")}</button>
+  <span class="code-box__status" role="status"></span>
+</div>

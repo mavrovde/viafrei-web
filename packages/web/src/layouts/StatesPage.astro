@@ -1,0 +1,29 @@
+---
+/**
+ * The index of the sixteen Länder (#1074): `/<lang>/states` — each Land linked to its page with its motorway counts
+ * now (the digest's `/internal/state/index`). A row of the page map ("states"), so its title, alternates and JSON-LD
+ * come from the map like every page's. #1182: the H1 through `PageHead`; the fragment opens with the map of the sixteen. Unmeasured (no row of `ANALYTICS_PAGES`). No fuel figure (MF1).
+ */
+import Base from "./Base.astro";
+import Crumbs from "../components/Crumbs.astro";
+import PageHead from "../components/PageHead.astro";
+import { t } from "../i18n/index.js";
+import type { Lang } from "../site/pages.js";
+import { statesCrumbs } from "../site/structured-data.js";
+import statePageCss from "../styles/state-page.css?raw";
+
+interface Props {
+  lang: Lang;
+  html: string;
+}
+const { lang, html } = Astro.props;
+Astro.response.headers.set("Cache-Control", "no-store");
+const pageCss = statePageCss.replace(/\/\*[\s\S]*?\*\//g, "").replace(/\s+/g, " ").trim();
+---
+
+<Base lang={lang} page="states">
+  <style is:inline slot="head" set:html={pageCss}></style>
+  <Crumbs lang={lang} crumbs={statesCrumbs(lang)} />
+  <PageHead h1={t(lang, "statePages.h1")} />
+  <div class="wrap" set:html={html} />
+</Base>

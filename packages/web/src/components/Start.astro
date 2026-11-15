@@ -1,0 +1,67 @@
+---
+/**
+ * "In einer Minute startklar" (#379): three plain steps for anyone, the
+ * address as the endpoint chip (#1003), then one exclusive <details name="client">
+ * per client (no JS: the browser closes the others). The steps carry the
+ * draft label until #142 verifies them on each client. The protocol words
+ * (MCP, Streamable HTTP) live here and on the developer page, not above the
+ * fold.
+ */
+import { t } from "../i18n/index.js";
+import { MCP_SSE_ENDPOINT } from "../site/endpoints.js";
+import { endpointChipHtml } from "../lib/connect-note.js";
+import { pathFor, type Lang } from "../site/pages.js";
+
+interface Props {
+  lang: Lang;
+  /** The surface the chip names (#1003): the home or a place page. */
+  source?: "home" | "place";
+}
+const { lang, source = "home" } = Astro.props;
+const clients = ["claude", "chatgpt", "other"] as const;
+---
+
+<section class="block start" id="start" aria-labelledby="start-heading">
+  <div class="wrap">
+    <div class="band">
+      <div class="block__head">
+        <h2 id="start-heading">{t(lang, "start.heading")}</h2>
+        <p class="lead mobile-hide">{t(lang, "start.lead")}</p>
+      </div>
+      <ol class="steps">
+        <li>{t(lang, "start.s1")}</li>
+        <li>{t(lang, "start.s2")}</li>
+        <li>{t(lang, "start.s3")}</li>
+      </ol>
+      <p class="draft draft--on-sign">{t(lang, "start.draft")}</p>
+      <div class="endpoint">
+        <span class="endpoint__label">{t(lang, "connect.endpointLabel")}</span>
+        {/* #1003: the endpoint chip, with its copy button */}
+        <p set:html={endpointChipHtml(lang, source)} />
+      </div>
+      <details class="fold fold--on-sign">
+        <summary class="fold__summary btn btn--on-sign btn--sm">{t(lang, "connect.showClients")}</summary>
+      <div class="endpoint endpoint--legacy">
+        <span class="endpoint__label">{t(lang, "connect.legacyLabel")}</span>
+        <pre><code>{MCP_SSE_ENDPOINT}</code></pre>
+      </div>
+      {
+        clients.map((c, i) => (
+          <details class="disclosure" name="client" open={i === 0 ? true : undefined}>
+            <summary class="disclosure__summary">{t(lang, `connect.clients.${c}`)}</summary>
+            <div class="disclosure__body">
+              <ol>
+                <li>{t(lang, `connect.steps.${c}.s1`)}</li>
+                <li>{t(lang, `connect.steps.${c}.s2`)}</li>
+                <li>{t(lang, `connect.steps.${c}.s3`)}</li>
+              </ol>
+              <span class="draft">{t(lang, "connect.draft")}</span>
+            </div>
+          </details>
+        ))
+      }
+      </details>
+      <p class="mobile-hide"><a class="btn btn--on-sign" href={pathFor("developers", lang)}>{t(lang, "connect.cta")}</a></p>
+    </div>
+  </div>
+</section>

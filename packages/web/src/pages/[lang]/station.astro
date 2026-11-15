@@ -1,0 +1,38 @@
+---
+/**
+ * `/<lang>/station` — the station catalogue (#1041), every language. #1182: the search, then the stations nearest the
+ * visitor (`lib/station-near.ts`, the data steward's ruling of 2026-11-08, point 2: the IP rung here, the remembered
+ * choice in the page's script), then the stations most delayed now (`/internal/station/top`, under the panel
+ * deadline; left out when it did not arrive), then the catalogue by Land. Both blocks are asked for the bare
+ * catalogue only.
+ */
+import StationsPage from "../../layouts/StationsPage.astro";
+import { isLang } from "../../i18n/index.js";
+import { readEnv } from "../../lib/env.js";
+import { unavailableAnswer } from "../../lib/degraded.js";
+import { resolveStationIndex } from "../../lib/station-page.js";
+import { fetchStationTop, withStationTop } from "../../lib/station-top.js";
+import { stationNearIp, stationNearSlotHtml, withStationNear } from "../../lib/station-near.js";
+import { PANEL_DEADLINE_MS } from "../../lib/fill.js";
+
+const lang = Astro.params["lang"] ?? "";
+if (!isLang(lang)) return Astro.rewrite("/404");
+const env = readEnv();
+const params = new URL(Astro.request.url).searchParams;
+const o = { baseUrl: env.digestUrl, timeoutMs: env.tileTimeoutMs };
+const panel = { ...o, timeoutMs: Math.min(o.timeoutMs, PANEL_DEADLINE_MS) };
+// the blocks are asked only for the bare catalogue: a search or a Land's list is the person's own question
+const bare = !params.has("q") && !params.has("land");
+const [a, top, near] = await Promise.all([
+  resolveStationIndex(lang, o, params),
+  bare ? fetchStationTop(lang, panel) : Promise.resolve(null),
+  bare ? stationNearIp(Astro.request.headers, lang, { ...panel, geoipFile: env.geoipFile }) : Promise.resolve(null),
+]);
+// #1205 review B1: the near-IP panel (and its DB-IP credit) is about the visitor's address — never held for a crawler
+if (near !== null) Astro.locals.perVisitor = true;
+if (a.kind === "unavailable") return unavailableAnswer(lang, Astro.request);
+const withTop = top === null || a.variant ? a.html : withStationTop(a.html, top);
+const html = near === null || a.variant ? withTop : withStationNear(withTop, stationNearSlotHtml(lang, near));
+---
+
+<StationsPage lang={lang} html={html} variant={a.variant} near={near !== null && !a.variant} />

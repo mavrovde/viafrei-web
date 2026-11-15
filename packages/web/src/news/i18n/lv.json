@@ -1,0 +1,282 @@
+{
+  "blitzer-autobahnseiten": {
+    "title": "Ātruma kontroles vietas autoceļu lapās",
+    "body": "Automaģistrāles lapa un tās mezglu lapas tagad rāda arī publicētās ātruma kontroles vietas gar maršrutu, katru ar mezglu, kuram tā piešķirta, – no pilsētu oficiālajiem sarakstiem un, kur neviena pilsēta sarakstu nepublicē, no OpenStreetMap. Dati paredzēti tikai plānošanai pirms brauciena vai apstāšanās laikā; kartītē ir norāde saskaņā ar § 23 Abs. 1c StVO.",
+    "ask": "Plānoju braucienu pa A 5 pie Karlsrūes: kur tur ir stacionārie ātruma radari?"
+  },
+  "flixbus-flixtrain-abfahrten": {
+    "title": "FlixBus un FlixTrain atiešanās sarakstā",
+    "body": "Blakus vietējā transporta atiešanām ViaFrei tagad rāda arī FlixBus autobusus un FlixTrain vilcienus, kas atiet netālu no pieturas, pieturā un stacijas kartītē. Kur FlixBus sniedz aktuālu prognozi, norādīts gaidāmais laiks, citādi laiks pēc saraksta. Rezervācijas un cenas tikai pie FlixBus.",
+    "ask": "Kad atiet nākamais FlixBus no Berlin ZOB?"
+  },
+  "blitzer-bottrop-essen-konstanz": {
+    "title": "Ātruma kontroles vietas Botropā, Esenē un Konstancē",
+    "body": "ViaFrei tagad zina arī ātruma kontroles vietas, ko publicē Botropa, Esene un Konstance: Botropā pašreizējās mērījumu vietas, Esenē nedēļas izziņoto mobilo pārbaužu ielas, Konstancē pilsētas stacionārās mērījumu vietas. Dati paredzēti tikai plānošanai pirms brauciena vai apstāšanās laikā; katrā atbildē ir norāde saskaņā ar § 23 Abs. 1c StVO.",
+    "ask": "Plānoju braucienu uz Eseni: kur šonedēļ notiek pārbaudes?"
+  },
+  "aufzuege-u-bahnhoefe-berlin-brandenburg": {
+    "title": "Berlīne un Brandenburga: lifti un ieejas metro un tramvaja stacijās",
+    "body": "ViaFrei tagad lasa VBB staciju ieeju sarakstu. Katrai Berlīnes un Brandenburgas stacijai, kurai sarakstā norādīti lifti, ViaFrei norāda, cik ir liftu un cik ieeju no ielas un cik no tām ir ar liftu – arī tikai metro stacijās, piemēram, Hermannplatz, kas nav DB stacijas. Saraksts saka, kas ir uzbūvēts, nevis vai lifts pašlaik darbojas; ViaFrei norāda faila datumu.",
+    "ask": "Vai Hermannplatz metro stacijā ir lifts?"
+  },
+  "stadtbahn-stationen-unter-der-erde": {
+    "title": "Pazemes vieglā metro stacijām ir sava lapa",
+    "body": "ViaFrei tagad arī pazemes vieglā metro (Stadtbahn) stacijām piešķir savu stacijas lapu. Kustības saraksts nenorāda, vai tramvaja pietura atrodas pazemē; ViaFrei to atpazīst no OpenStreetMap datiem, ja tur 300 metru rādiusā ir kartēta pazemes stacija. Lapā norādītas līnijas, kas tur apstājas, un to nākamās atiešanas, bet kā avots minēts OpenStreetMap.",
+    "ask": "Kas nākamais atiet no Neimarktas Ķelnē?"
+  },
+  "blitzer-standorte-planung": {
+    "title": "Ātruma kameru vietas brauciena plānošanai",
+    "body": "ViaFrei tagad zina ātruma kontroles vietas, ko publicē Āhene, Diseldorfa, Karlsrūe un Ķelne. Tās paredzētas tikai plānošanai pirms brauciena vai apstāšanās laikā: saskaņā ar § 23 Abs. 1c StVO vadītājs nedrīkst izmantot lietotni, kas rāda satiksmes kontroli. Katrā atbildē ir šis paziņojums.",
+    "ask": "Plānoju braucienu uz Diseldorfu: kur tur atrodas stacionārās ātruma kameras?"
+  },
+  "parken-trier": {
+    "title": "Trīres autostāvvietas ar brīvām vietām",
+    "body": "ViaFrei tagad tiešsaistē lasa Trīres pilsētas uzņēmuma (SWT) autostāvvietas un stāvvietu ēkas ar brīvajām vietām. Līdz šim ViaFrei nezināja nevienu autostāvvietu Trīrē; tagad tas nosauc 28 stāvvietas un cik vietu tur pašlaik ir brīvas.",
+    "ask": "Kur Trīrē tagad ir autostāvvieta ar brīvām vietām?"
+  },
+  "parken-konstanz": {
+    "title": "Konstancas autostāvvietas ar brīvajām vietām",
+    "body": "ViaFrei tagad tiešsaistē nolasa Konstancas pilsētas autostāvvietas ar to brīvajām vietām. Līdz šim ViaFrei zināja tikai, kur atrodas Konstancas autostāvvietas; tagad tas pasaka, cik vietu pašlaik ir brīvas. Autostāvvieta, ko publicē divi avoti, atbildē minēta vienreiz, un nosaukti abi izdevēji.",
+    "ask": "Kur Konstancā pašlaik ir autostāvvieta ar brīvām vietām?"
+  },
+  "parken-wiesbaden": {
+    "title": "Vīsbādenes autostāvvietas un to noslogojums",
+    "body": "ViaFrei tagad tiešsaistē nolasa Vīsbādenes pilsētas daudzstāvu un pazemes autostāvvietas un to noslogojumu: katrai, cik procentu tā pašlaik ir aizņemta pēc pilsētas datiem. Ja ziņojums ir vecāks, ViaFrei pasaka, kad tas saņemts, nevis rāda to kā aktuālu.",
+    "ask": "Kur Vīsbādenē pašlaik ir autostāvvieta ar brīvām vietām?"
+  },
+  "kurzzeitbaustellen-hessen": {
+    "title": "Nakts darbi uz autobāņiem un ceļu darbi Hesenē",
+    "body": "ViaFrei tagad zina Autobahn GmbH plānotos īslaicīgos darbus: nakts slēgšanas un joslas uz vienu dienu, katru ar saviem laika logiem. Ārpus sava loga šādi darbi tiek saukti par plānotiem, norādot to datumus. Tiem pievienojas Hessen Mobil ceļu darbi uz federālajiem un zemes ceļiem un uz daļas apriņķu ceļu Hesenē.",
+    "ask": "Vai A3 šonakt ir slēgts?"
+  },
+  "nrw-baustellen-landesstrassen": {
+    "title": "Ziemeļreina-Vestfāle: būvdarbi federālajos, zemes un apriņķa ceļos",
+    "body": "ViaFrei tagad lasa Straßen.NRW būvdarbus Ziemeļreinas-Vestfāles federālajos, zemes un apriņķa ceļos. Pajautājiet par ceļu vai vietu, un ViaFrei nosauks tur notiekošos darbus. Darbus, kas vēl nav sākušies, tas nosauc kā plānotus, ar sākuma datumu.",
+    "ask": "Vai uz L968 notiek būvdarbi?"
+  },
+  "ausfallsicherheit-verkehrsmeldungen": {
+    "title": "Lielāka satiksmes ziņojumu un satiksmes situācijas uzticamība",
+    "body": "ViaFrei tagad lasa arī VIZ.NRW un Hamburgas zemes satiksmes ziņojumu centra satiksmes ziņojumus. Tas lasa arī plānotos būvdarbus Mēklenburgā-Priekšpomerānijā un satiksmi pa joslām Ziemeļreinas-Vestfāles autoceļos. Katrs ziņojums tiek parādīts vienu reizi, un tiek nosaukts katrs avots, kas to pārraida. Ja viens avots atteic, ViaFrei atbild no otra.",
+    "ask": "Vai Hamburgā šobrīd ir satiksmes ziņojumi?"
+  },
+  "lkw-beschraenkungen-koeln": {
+    "title": "Masas un augstuma ierobežojumi Ķelnē",
+    "body": "ViaFrei tagad nolasa Ķelnes pilsētas publicētos ceļu ierobežojumus: masas ierobežojumus uz tiltiem, caurbrauktuves augstumu zem pārvadiem un citus kravas automašīnu satiksmes aizliegumus. Vietai Ķelnē ViaFrei nosauc tuvākos ar to veidu, vērtību un ielu; ja vērtības nav, ViaFrei to pasaka. Spēkā ir ceļa zīmes uz vietas.",
+    "ask": "Kādi caurbrauktuves augstumi kravas automašīnām ir spēkā pie Ķelnes katedrāles?"
+  },
+  "parken-kiel": {
+    "title": "Autostāvvietas, stāvparki un P+R Ķīlē",
+    "body": "ViaFrei tagad nolasa Ķīles pilsētas publicētās autostāvvietas, daudzstāvu un pazemes stāvparkus un „Park and Ride“ vietas: 194 objekti ar atrašanās vietu un veidu. Pilsēta nepublicē ne vietu skaitu, ne noslodzi, un ViaFrei to pasaka, nevis izdomā skaitli.",
+    "ask": "Kur Ķīlē ir daudzstāvu stāvparks?"
+  },
+  "behindertenparkplaetze-frankfurt": {
+    "title": "Stāvvietas cilvēkiem ar invaliditāti Frankfurtē pie Mainas",
+    "body": "ViaFrei tagad zina 458 objektus ar stāvvietām cilvēkiem ar invaliditāti, ko publicē Frankfurtes pie Mainas pilsēta, kopā 615 rezervētas vietas, katrai ar adresi, vietu skaitu un rezervācijas laiku. Neviens sensors neziņo, vai vieta ir brīva, un ViaFrei to pasaka, nevis min.",
+    "ask": "Kur pie Frankfurtes rātsnama (Rēmera) ir stāvvieta cilvēkiem ar invaliditāti?"
+  },
+  "lkw-netz-koeln": {
+    "title": "Ķelnes pašas kravas automašīnu tīkls",
+    "body": "ViaFrei tagad nolasa Ķelnes pilsētas publicētos kravas automašīnu savienojumus: ielas, pa kurām pilsēta novirza kravas transportu, četrās klasēs – no autobāna līdz piebraukšanai piegādei. Vietai Ķelnē ViaFrei nosauc katras klases tuvāko posmu ar tā ielām un datu datumu, līdzās SEVAS kravas automašīnu ierobežojumiem. Tīkls nenozīmē, ka šķēršļu nav: spēkā ir ceļa zīmes uz vietas.",
+    "ask": "Pa kurām ielām Ķelne pie katedrāles novirza kravas automašīnas?"
+  },
+  "verkehrslage-hamburg-bonn": {
+    "title": "Hamburga un Bonna: izmērītā satiksmes situācija pilsētā",
+    "body": "ViaFrei tagad ik pēc piecām minūtēm nolasa Hamburgas un Bonnas publicēto satiksmes situāciju to ielās un vietai nosauc, cik posmu 10 km rādiusā ir ar blīvu, lēnu vai stāvošu satiksmi un cik tālu ir tuvākais sastrēgums. Par sastrēgumu uzskata tikai lēnu vai stāvošu satiksmi, blīvu – ne. Hamburga publicē tikai posmus, kuros satiksme nav brīva, tāpēc ViaFrei tur brīvo posmu skaitu nenosauc. Ja pilsētas rādījums ir vecāks par 30 minūtēm, ViaFrei par to neko nesaka.",
+    "ask": "Kāda pašlaik ir satiksme Hamburgā?"
+  },
+  "muenchen-baustellen-umweltzone": {
+    "title": "Minhene: pilsētas ceļa darbi un pašas vides zonas robeža",
+    "body": "ViaFrei tagad nolasa Minhenes pilsētas publicētos tuvāko četru nedēļu ceļa darbus un tās vides zonas robežu ar izņēmuma pārejas teritorijām. Pilsēta ceļa darbus reģistrē galvenokārt centrālajos rajonos un galvenajās ielās; katra atbilde to norāda. Pagaidu apstāšanās aizlieguma zona netiek uzskatīta par brauktuves ierobežojumu. Zonai noteicošā ir pašas pilsētas robeža, un līdzās tai tiek norādīts Umweltbundesamt reģistrs.",
+    "ask": "Kādi ceļa darbi šonedēļ notiek Minhenē?"
+  },
+  "lang-lkw-positivnetz": {
+    "title": "Vai šeit drīkst braukt garā kravas automašīna? BASt atļauto ceļu tīkls",
+    "body": "ViaFrei tagad nolasa Federālā ceļu pētniecības institūta garo kravas automašīnu atļauto ceļu tīkla izrakstu un ceļam nosauc, vai tas ir iekļauts, bet vietai – kuri tuvumā esošie ceļi tam pieder. BASt norāda, ka izraksts nav ne pilnīgs, ne juridiski saistošs un nav paredzēts navigācijai; saistoša ir regula, un ViaFrei to pasaka katrā atbildē. Hamburgas tīkls no lauka izmēģinājuma tiek sniegts ar 2015. gada datumu.",
+    "ask": "Vai ar garo kravas automašīnu drīkstu braukt pa autobānu A7?"
+  },
+  "durchfahrtshoehen-bremen": {
+    "title": "Augstuma un masas ierobežojumi Brēmenē",
+    "body": "ViaFrei tagad nolasa kravas automašīnu augstuma un masas ierobežojumus, ko publicē Verkehrsmanagementzentrale Bremen. Vietai Brēmenē ViaFrei sniedz tuvākos ierakstus tieši tā, kā tos publicē VMZ Bremen, ar nolasīšanas dienu. Saistošas ir tikai ceļa zīmes uz vietas; ieraksti nav paredzēti maršruta norādīšanai, un, ja ieraksta nav, tas nenozīmē, ka ierobežojuma nav.",
+    "ask": "Kādi augstuma ierobežojumi manai kravas automašīnai ir spēkā Brēmenes Grēpelingenas rajonā?"
+  },
+  "lkw-beschraenkungen-nrw-rheinmain": {
+    "title": "Augstuma un masas ierobežojumi un kravas automašīnu aizliegumi Ziemeļreinā-Vestfālenē un Reinas–Mainas reģionā",
+    "body": "ViaFrei tagad nolasa Ziemeļreinas-Vestfālenes pašvaldību kravas automašīnu datus no NRW.Mobidrom (SEVAS) un ivm kravas automašīnu prioritāro tīklu un kravas automašīnu ceļa zīmes Frankfurtes Reinas–Mainas reģionam. Vietai ViaFrei nosauc, kādi augstuma, masas un platuma ierobežojumi un kravas automašīnu aizliegumi ir tuvumā, kam piemēro izņēmumus un kur iet tuvākais kravas automašīnu prioritārais maršruts. Kur neviens izdevējs šādus datus nepublicē, ViaFrei to pasaka, nevis ziņo, ka šķēršļu nav.",
+    "ask": "Vai Hānā ir zemas caurbrauktuves manai kravas automašīnai?"
+  },
+  "barrierefreie-haltestellen-dresden-muenster": {
+    "title": "Drēzdene un Minstere: kura pietura ir bez pakāpieniem?",
+    "body": "ViaFrei tagad nolasa Drēzdenes pilsētas 750 autobusu un tramvaju pieturu reģistru un Stadtwerke Münster sarakstu ar autobusu pieturām bez pakāpieniem. Drēzdenes pieturai tiek norādīts, cik iekāpšanas vietu ir bez pakāpiena, kur vajadzīga transportlīdzekļa rampa, kur iekāpšana ir ierobežota vai nav bez pakāpieniem, ar apmales augstumu. Minsterei tiek norādīts, vai pietura ir bez pakāpieniem vai daļēji, ar Stadtwerke Münster piezīmi. Pietura, kuras sarakstā nav, netiek uzskatīta par nepieejamu.",
+    "ask": "Vai Drēzdenes pietura Theaterplatz ir bez pakāpieniem?"
+  },
+  "barrierefreiheit-aus-openstreetmap": {
+    "title": "Piekļūstamība no OpenStreetMap: apmaļu augstumi, taktilās virsmas un lifti pieturās visā Vācijā",
+    "body": "ViaFrei tagad nolasa Kemnicas Tehniskās universitātes (TU Chemnitz) eksportu, kas no OpenStreetMap apkopo, ko brīvprātīgie atzīmējuši pieturās visā Vācijā: apmaļu augstumus, paaugstinātas apmales, taktilās virsmas, liftus, uzbrauktuves, kāpnes un eskalatorus – aptuveni 4000 pieturu. ViaFrei rāda šos faktus tur, kur pieturu neapraksta neviena oficiāla apsekošana, un norāda, ka tie ir atzīmēti, nevis pārbaudīti: ko neviens nav ievadījis, tā nav.",
+    "ask": "Vai Kemnicas pieturā Lichtenauer Straße ir paaugstināta apmale?"
+  },
+  "auslastung-mvv-regionalbus": {
+    "title": "MVV reģionālie autobusi: cik pilns parasti ir autobuss",
+    "body": "Minhenes transporta apvienības MVV reģionālā autobusa atiešanas tagad norāda, cik pilns tas tajā laikā parasti ir – no brīva līdz ļoti pilnam, kad paliek tikai stāvvietas. Vērtības nāk no MVV automātiskās pasažieru skaitīšanas un ir tipiskas, nevis reāllaika. Darbdienās ViaFrei skolas dienas un brīvlaikus sniedz atsevišķi, ja tie atšķiras.",
+    "ask": "Cik pilns rīt no rīta būs autobuss 210 no Ottobrunn, Jahnstraße?"
+  },
+  "ladestatus-hamburg": {
+    "title": "Hamburga: vai publiskā uzlādes stacija pašlaik ir brīva – tagad arī no pilsētas",
+    "body": "ViaFrei tagad nolasa aptuveni 2500 Hamburgas publisko uzlādes punktu statusu, ko Brīvā un Hanzas pilsēta Hamburga publicē, tiklīdz tas mainās. Tas papildina ViaFrei jau zināmās uzlādes stacijas: Hamburgas uzlādes stacija tagad rāda, vai tā ir brīva, aizņemta vai bojāta un kopš kura laika, un pilsēta tiek nosaukta kā avots.",
+    "ask": "Kur Hamburgas Altonas rajonā pašlaik ir brīva uzlādes stacija?"
+  },
+  "barrierefreiheit-baden-wuerttemberg": {
+    "title": "Bādene-Virtemberga: lifti, uzbrauktuves un vadotnes stacijās un pieturās",
+    "body": "ViaFrei tagad nolasa NVBW veikto 1104 dzelzceļa staciju un 14 065 autobusu un tramvaju pieturu piekļūstamības apsekošanu Bādenē-Virtembergā. Līdzās staciju liftu statusam tagad tiek rādīts, kas pārbaudīts uz vietas: cik liftu, kāds durvju platums un kabīnes izmērs, kāds uzbrauktuvju slīpums un cik peronu ir taktilā vadotne. Tie ir nepārbaudīti apsekošanas neapstrādātie dati, un ViaFrei to pasaka.",
+    "ask": "Cik piekļūstama bez pakāpieniem ir Manheimas centrālā stacija?"
+  },
+  "vrn-echtzeit-rhein-neckar": {
+    "title": "Autobusi un tramvaji Reinas–Nekāras reģionā: reāllaika dati arī no VRN",
+    "body": "ViaFrei tagad nolasa Verkehrsverbund Rhein-Neckar reāllaika autobusu un tramvaju datus no Manheimas un Heidelbergas līdz Maincai un Kaizerslauternai. Ja valsts dati par kādu no šiem apriņķiem neko neziņo vai ir novecojuši, ViaFrei punktualitāti rāda no VRN datiem un norāda, ka vilcienu tajos nav.",
+    "ask": "Cik punktuāli pašlaik Manheimā brauc autobusi un vilcieni?"
+  },
+  "vbn-echtzeit-niedersachsen-bremen": {
+    "title": "Brēmene un Lejassaksija: reāllaika dati arī no VBN",
+    "body": "ViaFrei tagad nolasa Verkehrsverbund Bremen/Niedersachsen reāllaika prognozes autobusiem, tramvajiem un vilcieniem – no Brēmenes un Oldenburgas caur Hannoveri un Braunšveigu līdz Getingenei un Osnabrikai. Ja valsts dati par Brēmeni vai kādu no šiem apriņķiem neko neziņo vai ir novecojuši, ViaFrei punktualitāti rāda no VBN datiem un nosauc avotu.",
+    "ask": "Cik punktuāli pašlaik Brēmenē brauc autobusi un vilcieni?"
+  },
+  "baustellen-staedte-laender": {
+    "title": "Pilsētu un federālo zemju ceļa darbi",
+    "body": "ViaFrei tagad zina arī ceļa darbus, ko pašas publicē pilsētas un federālās zemes – no Ķīles un Šlēsvigas-Holšteinas caur Brandenburgu, Berlīni, Ķelni, Dortmundi, Minsteri, Duisburgu un Āheni līdz Frankfurtei, Karlsrūei, Štutgartei, Freiburgai un Ingolštatei. Katri darbi tiek nosaukti vienu reizi, ar visiem avotiem, kas par tiem ziņo.",
+    "ask": "Kādi ceļa darbi pašlaik notiek Dortmundē?"
+  },
+  "umweltzone-am-punkt": {
+    "title": "Vai šī vieta ir vides zonā?",
+    "body": "ViaFrei pārbauda adresi vai punktu pret publicētajām vides zonu robežām: iekšā, izņēmuma teritorijā, ārpusē ar attālumu – vai nezināms. Tas nolasa pašu pilsētu robežas un Umweltbundesamt reģistru ar katru Vācijas zonu, katru ar datu datumu.",
+    "ask": "Vai Aleksandra laukums (Alexanderplatz) ir Berlīnes vides zonā?"
+  },
+  "dortmund-sensoren-behindertenparkplaetze-ladeplaetze": {
+    "title": "Dortmunde: brīvas vietas cilvēkiem ar invaliditāti un vieta pie uzlādes stacijas",
+    "body": "Dortmundē ielu sensori ziņo, vai stāvvieta cilvēkiem ar invaliditāti vai vieta pie uzlādes punkta pašlaik ir brīva. Kad meklējat vietu automašīnai, ViaFrei nosauc tuvākās vietas cilvēkiem ar invaliditāti, bet pie uzlādes punkta pasaka, vai tā vieta ir aizņemta – katru reizi ar pēdējā sensora ziņojuma laiku.",
+    "ask": "Vai pie Dortmundes centrālās stacijas ir brīva stāvvieta cilvēkiem ar invaliditāti?"
+  },
+  "zweite-quelle-berlin-sachsen-autobahn": {
+    "title": "Ceļa darbi un slēgšanas no diviem avotiem: Berlīne, Saksija un autobāni",
+    "body": "ViaFrei tagad nolasa Berlīnes satiksmes informācijas centra, Landesmeldestelle Berlin, Saksijas slēgšanu informācijas sistēmas un Autobahn GmbH tuvāko 14 dienu ceļa darbu datus. Ziņojums, ko sniedz divi avoti, atbildē tiek nosaukts vienu reizi, un tiek nosaukti abi; ja viens avots nav aktuāls, atbild otrs, un apbraucamos ceļus Saksijā ViaFrei sniedz kā marķējuma kontekstu, nekad ne kā maršrutu.",
+    "ask": "Kuri ceļi pašlaik ir slēgti netālu no manis Berlīnes Mitte rajonā?"
+  },
+  "baustellen-bayern-mv-umleitungen-nrw": {
+    "title": "Ceļa darbi Bavārijā un Mēklenburgā-Priekšpomerānijā, apbraucamie ceļi Ziemeļreinā-Vestfālenē",
+    "body": "ViaFrei tagad nolasa Bavārijas satiksmes vadības centra ceļa darbus un satiksmes ziņojumus, Mēklenburgas-Priekšpomerānijas ceļu iestādes darbus uz federālajiem un reģionālajiem ceļiem un Straßen.NRW marķētos apbraucamos ceļus. Apbraucamo ceļu ViaFrei sniedz kā marķējuma kontekstu, nekad ne kā maršruta ieteikumu.",
+    "ask": "Vai nākamnedēļ uz B14 būs ceļa darbi?"
+  },
+  "verkehrslage-autobahn-nrw": {
+    "title": "Satiksmes situācija autobānu mērīšanas vietās Ziemeļreinā-Vestfālenē",
+    "body": "ViaFrei tagad nolasa satiksmes situāciju, ko Autobahn GmbH mēra aptuveni 2000 vietās Ziemeļreinā-Vestfālenē, un autobānam nosauc, kur satiksme ir brīva, blīva, lēna vai stāv.",
+    "ask": "Kāda pašlaik ir satiksme uz A1 Ziemeļreinā-Vestfālenē?"
+  },
+  "parken-wuppertal-leipzig-pr": {
+    "title": "Vairāk stāvparku Vupertālē un Leipcigas P+R stāvvietas ar brīvām vietām",
+    "body": "ViaFrei tagad nolasa Vupertāles pilsētas stāvparku tabulu ar 33 stāvparkiem vairāk nekā līdz šim un Leipcigas pilsētas satiksmes un inženierbūvju dienesta P+R stāvvietas ar tiešraidē publicētām brīvām vietām, pirmo reizi arī ar brīvām vietām pie Tautu kaujas pieminekļa. Stāvvieta, ko publicē divi avoti, atbildē tiek nosaukta vienu reizi, un tiek nosaukti abi izdevēji.",
+    "ask": "Kur Leipcigā pašlaik ir brīvas P+R vietas?"
+  },
+  "parken-freiburg-herrenberg-jena-vrr-karlsruhe": {
+    "title": "Stāvvietas Freiburgā, Herenbergā, Jēnā, VRR teritorijā un kravas automašīnu vietas ap Karlsrūi",
+    "body": "ViaFrei tagad tieši nolasa vēl piecus izdevējus: Freiburgas pilsētas stāvvietu vadības sistēmu un P+R stāvvietas ar tiešraidē publicētām brīvām vietām, Herenbergas pilsētas stāvvietas, Kommunalservice Jena stāvvietas, Reinas–Rūras transporta apvienības „Park and Ride“ stāvvietas un TechnologieRegion Karlsruhe kravas automašīnu vietas. Kur izdevējs noslodzi nepublicē, ViaFrei to pasaka, nevis izdomā skaitli.",
+    "ask": "Kurā Freiburgas stāvparkā pašlaik ir brīvas vietas?"
+  },
+  "live-antworten-auf-der-seite": {
+    "title": "Jūsu MI asistenta tiešās atbildes sākumlapā un katrai vietai",
+    "body": "Līdzās katram skaitlim sākumlapā tagad ir jautājums, ko varat uzdot savam MI asistentam, un tas, ko ViaFrei rīki uz to atbild šobrīd: ar rīku, datu laiku un katru avotu. Vietas kartītes rāda arī šīs vietas atbildes – par brīdinājumiem, ceļiem, vietām tuvumā, uzlādi un stāvvietām. Tā ir tā pati atbilde, ko saņem jūsu asistents, kas savienots ar ViaFrei.",
+    "ask": "Vai pašlaik kaut kas ir slēgts uz ceļiem ap Pulheimu?"
+  },
+  "autobahn-seiten": {
+    "title": "Tiešraides lapa katram Vācijas autobānam",
+    "body": "Visiem 122 autobāniem tagad ir sava lapa ar ceļa karti, pašreizējām slēgšanām, sastrēgumiem un ceļa darbiem, kā arī tuvāko septiņu dienu plānotajām pilnīgajām slēgšanām ar apbraucamajiem ceļiem. Ir arī kravas automašīnu stāvvietas ar brīvām vietām, uzlādes stacijas pēc jaudas, ceļa laikapstākļi un brīdinājumi, kameras, kravas automašīnu braukšanas aizliegums un autobānu krustojumi. Sākumlapa rāda desmit autobānus, uz kuriem pašlaik notiek visvairāk.",
+    "ask": "Kāda pašlaik ir situācija uz A7?"
+  },
+  "wasserstoff-bruecken-bahnhoefe": {
+    "title": "Ūdeņraža uzpildes stacijas, Šlēsvigas-Holšteinas tilti un vairāk par katru staciju",
+    "body": "ViaFrei tagad zina H2 Mobility ūdeņraža uzpildes stacijas ar sūkņiem vieglajām un kravas automašīnām, lielo Šlēsvigas-Holšteinas tiltu stāvokli un Kaseles pilsētas stāvparkus ar noslodzi. Vietu lapās katra stacija tagad norāda, kuri lifti un eskalatori darbojas, kuri peroni ir bez pakāpieniem un kuras stāvvietas ir tieši blakus. Laikapstākļu kartīte rāda tuvākās stundas tuvākajā ceļa meteostacijā, un punktualitāte tagad tiek sniegta apriņķim.",
+    "ask": "Kur pie Hamburgas ir tuvākā ūdeņraža uzpildes stacija kravas automašīnai?"
+  },
+  "baustellen-bremen-kassel-leipzig": {
+    "title": "Ceļa darbi un slēgšanas Brēmenē, Kaselē, Leipcigā un Rīselsheimā",
+    "body": "ViaFrei tagad nolasa Brēmenes, Kaseles, Leipcigas un Rīselsheimas pie Mainas pilsētu satiksmes ziņojumus, kā arī Lejassaksijas ceļu iestādes darbus un slēgšanas ārpus autobāniem. Pilsētu ziņojumi tiek sniegti arī vietu lapās, tāpat kā Ķelnes un Hannoveres.",
+    "ask": "Vai pašlaik Brēmenes centrā ir slēgšanas?"
+  },
+  "ladepunkte-23-betreiber": {
+    "title": "Uzlādes punkti no vēl 23 operatoriem",
+    "body": "ViaFrei tagad nolasa vēl 23 uzlādes punktu operatoru pašu Mobilithek publikācijas, to vidū EWE Go, LichtBlick, Qwello, Wirelane, chargecloud un vaylens. Kur operators ziņo, vai uzlādes punkts ir brīvs, mēs to rādām, bet nekad, ja ziņojums ir vecāks par 30 minūtēm.",
+    "ask": "Kur Minsterē pašlaik ir brīva uzlādes stacija?"
+  },
+  "autobahn-verkehrsmeldungen": {
+    "title": "Autobahn GmbH satiksmes ziņojumi, piesaistīti vietai",
+    "body": "ViaFrei tagad ik pēc piecām minūtēm nolasa Autobahn GmbH satiksmes ziņojumus par slēgšanām un kavējumiem. Ziņojumi tiek piesaistīti to autobānam un atskaites punktiem, piemēram, krustojumiem, izmantojot BASt TMC vietu sarakstu.",
+    "ask": "Vai A620 pie Zārbrikenes pašlaik ir slēgts?"
+  },
+  "muenchen-pr-prognosen": {
+    "title": "Stāvparki un „Park and Ride“ Minhenē, ar prognozēm",
+    "body": "ViaFrei tagad zina Minhenes stāvparkus un „Park and Ride“ vietas. Ja P+R stāvvieta tiešās noslodzes neziņo, mēs sniedzam pilsētas prognozi pašreizējai stundai, ar tās datumu, un nekad kā brīvas vietas.",
+    "ask": "Kur Minhenē varu atstāt automašīnu „Park and Ride“ stāvvietā un turpināt ar metro?"
+  },
+  "parkapi-baden-wuerttemberg": {
+    "title": "Brīvas stāvvietas Bādenē-Virtembergā",
+    "body": "Tiešā stāvparku noslodze visā Bādenē-Virtembergā tagad nāk no MobiData BW ParkAPI ik pēc piecām minūtēm, tikai no licencētiem avotiem. Rādījums, kas pēc izdevēja pulksteņa ir vecāks par 30 minūtēm, netiek rādīts kā noslodze.",
+    "ask": "Kur Karlsrūē pašlaik atrast brīvu vietu stāvparkā?"
+  },
+  "bw-bedarfsumleitungen": {
+    "title": "Marķētie apbraucamie ceļi Bādenē-Virtembergā",
+    "body": "Ja autobāna slēgšana Bādenē-Virtembergā atbilst publicētam rezerves apbraucamajam ceļam, ViaFrei nosauc U maršrutu – kā piezīmi par marķējumu, nevis kā maršruta ieteikumu.",
+    "ask": "Vai ir marķēts apbraucamais ceļš slēgšanai uz A8 pie Štutgartes?"
+  },
+  "hamburg-baustellen-kameras": {
+    "title": "Ceļa darbi un satiksmes kameras Hamburgā",
+    "body": "Hamburgas pilsētas ielām ViaFrei tagad nosauc apstiprinātos ceļa darbus no Bauweiser, pašreizējos vai plānotos, nolasītus ik stundu, un līdz divām tuvumā esošu satiksmes kameru vietām – tikai vietas, nekad attēlu.",
+    "ask": "Kādi ceļa darbi pašlaik notiek Hamburgas Eimsbitelas rajonā?"
+  },
+  "bemas-baden-wuerttemberg": {
+    "title": "Ceļa darbi uz Bādenes-Virtembergas federālajiem un reģionālajiem ceļiem",
+    "body": "ViaFrei tagad zina pašreizējos un plānotos ceļa darbus uz Bādenes-Virtembergas federālajiem un reģionālajiem ceļiem, ik pēc 15 minūtēm nolasītus no federālās zemes atvērto mobilitātes datu pakalpojuma. Objekti, kurus izdevējs neļauj publicēt, nekad netiek rādīti.",
+    "ask": "Kādi ceļa darbi gaidāmi uz B27 starp Štutgarti un Tībingeni?"
+  },
+  "dwd-strassenzustand": {
+    "title": "DWD ceļa seguma prognoze",
+    "body": "Kopā ar brīdinājumiem par laikapstākļiem ViaFrei tagad sniedz prognozēto ceļa stāvokli un seguma temperatūru tuvākajās ceļa meteostacijās – atzīmētu kā modeļa prognozi, nevis mērījumu un nevis oficiālu brīdinājumu.",
+    "ask": "Kāds būs ceļa segums pie Kaseles rīt no rīta?"
+  },
+  "rastanlagen-lkw-stellplaetze": {
+    "title": "Autobānu atpūtas vietas ar kravas automašīnu stāvvietām",
+    "body": "Plānojam pievienot Federālā loģistikas un mobilitātes biroja datus par apkalpotajām Vācijas autobānu atpūtas vietām: atrašanās vieta, nosaukums un aptuvenais kravas automašīnu vietu skaits visā Vācijā. Šis skaitlis ir biroja aplēse, nevis tiešā noslodze.",
+    "ask": "Kurā A2 atpūtas vietā starp Hannoveri un Dortmundi ir visvairāk kravas automašīnu vietu?"
+  },
+  "autobahn-umleitungsempfehlungen": {
+    "title": "Ieteiktie apbraucamie ceļi no autobānu operatora",
+    "body": "Plānojam pievienot federālā autobānu operatora apbraucamo ceļu ieteikumus: maršrutu, ko sastrēgumu un slēgšanu laikā iesaka dinamiskās norāžu zīmes. Tad ViaFrei slēgšanai varētu nosaukt apbraucamo ceļu, ko iesaka pats operators.",
+    "ask": "Kā apbraukt slēgšanu uz A3?"
+  },
+  "viafrei-2-3": {
+    "title": "ViaFrei 2.3: autobāņu lapas, vairāk avotu un asistentu",
+    "body": "Katram autobānim tagad ir sava lapa ar satiksmes, ceļa darbu, stāvvietu un uzlādes paneļiem, katrā redzams datu vecums. Jauni ir ceļa darbi un satiksmes ziņojumi no vairākām federālajām zemēm, vairāk uzlādes operatoru un Autobahn GmbH stratēģiskie apbraukšanas ieteikumi, kad tā tos publicē. Atiešanas laiki ir pareizi arī laika maiņā. Pievienojiet ViaFrei Claude, ChatGPT un citos savienojuma lapas asistentos – tikai tad atbildes ir tiešsaistē.",
+    "ask": "Kāda pašlaik ir situācija uz A3?"
+  },
+  "lkw-stellplatzbelegung": {
+    "title": "Kravas automašīnu stāvvietu noslodze uz autobāņiem",
+    "body": "ViaFrei tagad rāda kravas automašīnu stāvvietu noslodzi pie autobāņiem no Toll Collect GmbH pakalpojuma Stellplatz-Informationsdienst (SID). Skaitļi parādās tikai pēc tam, kad piekrītat lietošanas noteikumu 2. sadaļai: viafrei.de ar pogu “Rādīt noslodzi”, jūsu mākslīgā intelekta asistentā – atbildot uz tā jautājumu. Dati var būt neprecīzi vai novecojuši.",
+    "ask": "Kur pašlaik uz A9 pie Nirnbergas ir brīvas vietas kravas automašīnām?"
+  },
+  "lkw-parken-thiersheim": {
+    "title": "Autohof Thiersheim pie A93",
+    "body": "ViaFrei tagad zina Autohof Thiersheim pie A93 kravas automašīnu vietas no stāvlaukuma paša tabulas: 55 kravas automašīnu vietas, adrese un atrašanās vieta. Stāvlaukums atbildē norādīts vienreiz, lai gan to iekļauj arī valsts kravas automašīnu stāvvietu tabula, un abi avoti ir nosaukti. Noslogojumu ViaFrei šeit nerāda, jo izdevējs to nav ziņojis kopš aprīļa.",
+    "ask": "Kur varu novietot kravas automašīnu pie A93 netālu no Thiersheimas?"
+  },
+  "echtzeit-vbn-connect": {
+    "title": "Reāllaika dati autobusiem un vilcieniem VBN zonā",
+    "body": "ViaFrei tagad nolasa Brēmenes/Lejassaksijas transporta apvienības (VBN, datu kopa Connect) reāllaika datus. Pieturās Brēmenē un visā VBN zonā atiešanas parāda kavējumu no šiem datiem, ja neviens cits reāllaika avots par reisu neziņo. Katra atiešana tiek parādīta vienreiz, un tiek nosaukts katrs avots, kas to nodod.",
+    "ask": "Kad no Brēmenes centrālās stacijas atiet nākamais autobuss?"
+  },
+  "strassen-auf-den-karten": {
+    "title": "Ielas kartēs",
+    "body": "Automaģistrāļu lapu un vietu lapu kartes tagad zīmē sava izgriezuma ielas no OpenStreetMap: federālos, zemju un apriņķu ceļus un dzīvojamās ielas, ko zīmējam mēs, bez trešās puses karšu pakalpojuma; pašas automaģistrāles zīmējam pēc BASt atrašanās vietu kodu saraksta. Tā ziņojumu kartē var piesaistīt tā ielai.",
+    "ask": "Kāda ir situācija uz A7 pie Kaseles?"
+  },
+  "einzelmeldungen-viz-nrw": {
+    "title": "VIZ.NRW atsevišķie ziņojumi kā vēl viena rezerve",
+    "body": "ViaFrei tagad lasa arī VIZ.NRW Ziemeļreinas-Vestfāles satiksmes informācijas atsevišķos ziņojumus. Tie vēlreiz nodrošina satiksmes ziņojumus Ziemeļreinā-Vestfālē: ja viens avots pārstāj darboties, ViaFrei atbild no cita. Katrs ziņojums tiek parādīts vienu reizi, un tiek nosaukts katrs avots, kas to pārraida.",
+    "ask": "Vai tagad ir satiksmes ziņojumi uz A1 pie Ķelnes?"
+  }
+}

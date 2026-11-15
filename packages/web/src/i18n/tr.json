@@ -1,0 +1,1274 @@
+{
+  "meta": {
+    "tagline": "Yapay zekâ için Almanya'nın gerçek zamanlı mobilite platformu",
+    "pitch": "ViaFrei, yapay zekâ asistanlarına Almanya hakkında gerçek zamanlı bilgi verir. Tren ve otobüs, trafik ve yol çalışmaları, yakıt, şarj, otopark ve hava durumu. Tek bir MCP. API anahtarı yok. Kayıt yok.",
+    "description": "Almanya genelinde sıkışıklık, kapanmalar, çalışmalar, tren, otopark, şarj ve yakıt – açık verilerden, yapay zekâ asistanınızın yanıtı, her rakam kaynağıyla.",
+    "siteName": "ViaFrei"
+  },
+  "a11y": {
+    "skip": "İçeriğe geç",
+    "mainNav": "Ana gezinme",
+    "langNav": "Dil seçin",
+    "currentLang": "geçerli dil",
+    "sample": "Örnek değerler, canlı veri değil",
+    "crumbs": "Buradasınız"
+  },
+  "nav": {
+    "brand": "ViaFrei",
+    "claim": "Ulaşım verisi, kelimelerle",
+    "tools": "Geliştiriciler için",
+    "cta": "Yapay zekânıza bağlanın",
+    "day": "Gününüz",
+    "start": "Başlayın",
+    "ctaShort": "YZ bağla",
+    "ctaLabel": "ViaFrei'yi yapay zekâ asistanınıza bağlayın ({clients})"
+  },
+  "beta": {
+    "label": "Beta",
+    "short": "ViaFrei beta aşamasında: yanıtlar ve kapsam değişebilir, yapay zekâ da hata yapabilir. Önemli bilgileri yanıtta adı geçen kaynaktan kontrol edin.",
+    "more": "Bu ne demek",
+    "sign": "Uyarı trafik işareti: tehlikeli yer",
+    "line": "Kaynaktan doğrulayın"
+  },
+  "hero": {
+    "lead": "İyi bilgilendirilmiş bir arkadaşa sorar gibi: trenim kalkıyor mu? Otoyol açık mı? Boş bir şarj noktası var mı? ViaFrei asistanınıza bugünün rakamlarını, her birini kaynağıyla birlikte verir.",
+    "primary": "Yapay zekânızı bir dakikada bağlayın",
+    "secondary": "ViaFrei ile gününüz",
+    "clients": "Desteklenenler:",
+    "phase": "Erken aşama: yanıtlar bilgi amaçlıdır, hukuki tavsiye değildir.",
+    "trust": {
+      "free": "Ücretsiz",
+      "account": "Bizde hesap gerekmez",
+      "app": "Ek uygulama yok",
+      "sources": "Her rakamın kaynağı var"
+    },
+    "connected": "Yapay zekâ asistanınız bu canlı verileri yalnızca ViaFrei ona bağlıyken kullanır – bağlantı olmadan eğitim verilerinden yanıt verir."
+  },
+  "sign": {
+    "label": "Örnek yanıt, kısaltılmış",
+    "question": "Münih yönünde A8 açık mı?",
+    "answerBefore": "Stuttgart ile Ulm arasında iki yol çalışması var, kapanma yok — yol",
+    "answerHighlight": "açık",
+    "answerAfter": ".",
+    "meta": "Örnek: asistanınız ViaFrei ile böyle yanıtlar — kısaltılmış, örnek değerlerle.",
+    "badge": "{road} – otoyol sayfası"
+  },
+  "proof": {
+    "tiles": {
+      "reports": {
+        "title": "Otoyol bildirimleri"
+      },
+      "charging": {
+        "title": "Şarj noktaları"
+      },
+      "lorry": {
+        "title": "Kamyon park yerleri"
+      },
+      "lifts": {
+        "title": "Asansörler ve yürüyen merdivenler"
+      }
+    }
+  },
+  "tile": {
+    "error": "şu anda okunamıyor",
+    "errorNote": "Bu kaynak şu anda yanıt vermiyor. Eski bir rakamı yeniymiş gibi göstermektense hiçbir şey göstermemeyi tercih ederiz.",
+    "loading": "yükleniyor …",
+    "loadingNote": "Bu rakam geliyor. Kaynak yanıt verir vermez görünecek."
+  },
+  "tools": {
+    "heading": "Alanlara göre araçlar",
+    "lead": "Asistanınız doğru aracı kendisi seçer. Liste bir broşürden değil, sunucudan gelir.",
+    "showAll": "{n} aracın tümünü göster",
+    "groups": {
+      "roads": "Otoyollar ve yollar",
+      "rail": "Demiryolu",
+      "transit": "Toplu taşıma",
+      "energy": "Şarj ve yakıt",
+      "places": "Yerler ve adresler",
+      "rules": "Kurallar ve hava durumu"
+    },
+    "count": "{n} araç"
+  },
+  "connect": {
+    "heading": "60 saniyede bağlanın",
+    "lead": "Tek adres, hesap yok, anahtar yok. İstemcinizi seçin ve adımları izleyin.",
+    "endpointLabel": "MCP adresi (Streamable HTTP)",
+    "legacyLabel": "Eski istemciler için (HTTP + SSE)",
+    "clients": {
+      "claude": "Claude (masaüstü ve claude.ai)",
+      "chatgpt": "ChatGPT",
+      "other": "Diğer MCP istemcileri"
+    },
+    "draft": "Taslak — bu adımlar istemcide henüz doğrulanmadı.",
+    "steps": {
+      "claude": {
+        "s1": "Ayarlar → Connectors → “Add custom connector”.",
+        "s2": "Yukarıdaki adresi yapıştırın ve kaydedin.",
+        "s3": "Sorun: “Münih yönünde A8 açık mı?”"
+      },
+      "chatgpt": {
+        "s1": "Ayarlar → Connectors → “Create” (geliştirici modu).",
+        "s2": "Yukarıdaki adresi MCP sunucusu olarak girin.",
+        "s3": "Sohbette bağlayıcıyı seçin ve sorun."
+      },
+      "other": {
+        "s1": "Yukarıdaki adreste Streamable HTTP; eski istemciler SSE yolunu kullanır.",
+        "s2": "Geliştirme aşamasında kimlik doğrulama yok.",
+        "s3": "tools/list kataloğu döndürür; her yanıt kaynağını taşır."
+      }
+    },
+    "cta": "Geliştirici kılavuzuna",
+    "showClients": "İstemciniz için adımları göster"
+  },
+  "sources": {
+    "heading": "Kaynaklar ve güven",
+    "lead": "Her rakam, gösterilmesine izin veren kaynağı taşır — onu gösteren kutucukta, kelimesi kelimesine ve çevrilmeden.",
+    "creditsLabel": "Bu sayfadaki rakamların kaynakları",
+    "creditsShow": "{n} kaynak belirtiminin tümünü göster",
+    "licenceText": "lisans metni",
+    "notAnswered": {
+      "heading": "Yanıtlamadıklarımız",
+      "routing": "Rota planlaması yok — yolda ne olduğunu söyleriz, hangi yolu seçmeniz gerektiğini değil.",
+      "legal": "Hukuki tavsiye yok — kurallarla ilgili yanıtlar kaynaklarını ve kontrol tarihlerini belirtir ve bilgi amaçlıdır.",
+      "fuelFeed": "Üzerine ürün kurulacak fiyat verisi yok — yakıt fiyatları tüketiciyi bilgilendirmek içindir, bir API değildir."
+    },
+    "privacy": {
+      "heading": "Üç cümlede gizlilik",
+      "s1": "Onay vermeden önce bu sayfa üçüncü taraflardan yazı tipi, betik veya görsel yüklemez.",
+      "s2": "Ziyaretleri çerez kullanmadan, yalnızca kendi sunucumuzda günlük toplamlar olarak sayarız; Google Analytics yalnızca onay verirseniz çalışır.",
+      "s2Clarity": "Ziyaretleri çerez kullanmadan, yalnızca kendi sunucumuzda günlük toplamlar olarak sayarız; Google Analytics ve Microsoft Clarity yalnızca onay verirseniz çalışır.",
+      "s3": "Asistanınız sunucumuzla konuşur — hesap ya da profil tutmayız."
+    }
+  },
+  "audience": {
+    "heading": "Kimin için",
+    "travellers": {
+      "title": "Yolcular için",
+      "text": "Yola çıkmadan önce, perondayken ya da şarj noktasında asistanınıza sorun — kaynağıyla birlikte bir yanıt alın.",
+      "cta": "Nasıl bağlanılır"
+    },
+    "developers": {
+      "title": "Geliştiriciler için",
+      "text": "Streamable HTTP üzerinden tek bir MCP sunucusu, açık bir katalog, npm'de bir stdio köprüsü. Geliştirme aşamasında anahtar gerekmez.",
+      "cta": "Belgelere"
+    },
+    "business": {
+      "title": "İşletmeler için",
+      "text": "Her canlı bildirimin geçmişi, filo ve tesis soruları, net bir lisans tutumu. Geliştirmeye başlamadan önce bizimle konuşun.",
+      "cta": "İletişime geçin"
+    },
+    "show": "ViaFrei kimin için"
+  },
+  "footer": {
+    "imprint": "Künye",
+    "privacy": "Gizlilik",
+    "privacySettings": "Gizlilik ayarları",
+    "terms": "Kullanım koşulları",
+    "languages": "Diller",
+    "refresh": "Bu sayfa her 20 dakikada bir yenilenir; her kutucuk rakamının ne kadar eski olduğunu gösterir.",
+    "openData": "Açık verilerden oluşturuldu. Her rakam kaynağını belirtir."
+  },
+  "consent": {
+    "title": "Google Analytics kullanabilir miyiz?",
+    "titleClarity": "Google Analytics ve Microsoft Clarity kullanabilir miyiz?",
+    "body": "Google Analytics yalnızca onayınızdan sonra yüklenir. Reddetmek de tek bir tıklamadır ve hatırlanır. Çerezsiz kendi ziyaretçi sayımımız bundan bağımsız olarak çalışır (bkz. Gizlilik).",
+    "bodyClarity": "Google Analytics ve Microsoft Clarity yalnızca onay vermenizden sonra yüklenir. Clarity bu sayfadaki tıklamaları, kaydırmayı ve fare hareketlerini kaydeder; tüm metinler ve girdiler gizli kalır. Microsoft bu verileri reklam dahil kendi amaçları için de kullanır. Reddetmek de tek bir tıklamadır ve hatırlanır. Çerezsiz kendi ziyaretçi sayımımız bundan bağımsız olarak çalışır (bkz. Gizlilik).",
+    "accept": "Kabul ediyorum",
+    "decline": "Reddet",
+    "more": "Gizlilik",
+    "state": {
+      "none": "Henüz bir seçim yapmadınız.",
+      "denied": "Şu anki seçiminiz: {date} tarihinde reddedildi.",
+      "granted": "Şu anki seçiminiz: {date} tarihinde kabul edildi."
+    }
+  },
+  "notFound": {
+    "title": "Bu sayfa yok",
+    "text": "Bu adres hiçbir yere çıkmıyor. Başlangıç sayfası bir tık uzakta.",
+    "choiceTitle": "Bu adı taşıyan birden fazla yer var",
+    "choiceText": "Hangisini kastediyorsunuz?",
+    "back": "Ana sayfaya",
+    "connect": "Asistanınızı bağlayın",
+    "developers": "Geliştiriciler için",
+    "business": "İşletmeler için"
+  },
+  "now": {
+    "heading": "Tüm Almanya",
+    "lead": "Ülke genelindeki tüm rakamlar tek yerde, konuya göre – her biri saati ve kaynağıyla.",
+    "stationTop": {
+      "head": "İstasyonlar şimdi: iptaller, gecikmeler, aksaklık duyuruları, asansörler",
+      "all": "Tüm istasyonlar",
+      "search": "İstasyon ara",
+      "go": "Ara"
+    }
+  },
+  "tiles": {
+    "punctuality": "Otobüs ve trenlerin dakikliği",
+    "lifts": "Asansörler ve yürüyen merdivenler",
+    "reports": "En önemli bildirimler",
+    "jams": "Şehirlerde trafik sıkışıklığı, şimdi",
+    "station": "Büyük istasyonlardan canlı",
+    "lorry": "Kamyon park yerleri ve dinlenme alanları",
+    "carparks": "Şehirlerde otoparklar ve P+R",
+    "charging": "Şarj noktaları",
+    "fuel": "Akaryakıt fiyatları, gözlenen"
+  },
+  "day": {
+    "heading": "ViaFrei ile gününüz",
+    "lead": "Kısa bir sorunun zaman kazandırdığı dokuz an — yanıtın doğru olduğunu gösteren bugünkü rakamla birlikte.",
+    "howTo": "Asistanınıza nasıl sorulur",
+    "howToText": "Bir soruya basılı tutun (veya seçin), kopyalayın ve sohbete yapıştırın. Asistanınız doğru aracı kendisi seçer.",
+    "more": "2 soru daha ve bir sınır",
+    "answer": {
+      "label": "ViaFrei'nin yanıtı",
+      "asOf": "{asOf} itibarıyla"
+    },
+    "limitLabel": "Açıkçası",
+    "cta": "Başlayın",
+    "moments": {
+      "commute": {
+        "title": "Sabah işe giderken",
+        "scene": "07.10, elinizde kahve: toplu taşıma normal çalışıyor mu — trenim zamanında mı?",
+        "q1": "Hamburg'da otobüs ve trenler şu anda zamanında mı?",
+        "a1": "Gecikme oranı % {share}: son bir saatte izlenen seferlerin bu kadarı 5 dakikadan fazla geç kaldı — bir önceki saatle aşağı yukarı aynı (% {before}).",
+        "limit": "Dakikliği hat bazında değil, bölge bazında gösteriyoruz.",
+        "q2": "Hannover Ana Garı'ndan bir sonraki tren ne zaman ve gecikmeli mi?",
+        "q3": "Köln Ana Garı kalkış tablosunda önümüzdeki bir saatte iptal edilen tren var mı?",
+        "a2": "{d1} yönüne {l1} (tarifeye göre {t1}, peron {p1}) +{delay} dk gecikmeli, {exp} civarında kalkıyor; ardından {d2} yönüne {l2} saat {t2}'de, zamanında.",
+        "a3": "İptal yok: saat {last}'e kadar {n} kalkış; en büyük gecikme {d1} yönüne {l1} treninde, +{delay} dk."
+      },
+      "bus": {
+        "title": "Otobüs ve tramvayla",
+        "scene": "Şehirde: en yakın istasyon nerede ve ulaşım çalışıyor mu?",
+        "q1": "Köln Katedrali'ne en yakın tren istasyonu hangisi?",
+        "q2": "Frankfurt'taki Hauptwache istasyonundan bir sonraki banliyö treni ne zaman?",
+        "a1": "{s1}, {km},{kmd} km uzaklıkta; ardından {s2} ve {s3}.",
+        "limit": "Her otobüs ve tramvay durağının saatlerini yüklendiği anda göstereceğiz — o zamana kadar istasyonlar ve bölgenizdeki durum.",
+        "board": "Durağınızdaki sefer saatleri",
+        "a2": "Sıradaki, {d1} yönüne {l1}: saat {t1}, peron {p1}, zamanında; {d2} yönüne saat {t2}'deki {l2} +{delay2} dk gecikmeli, {exp2} civarında.",
+        "q3": "Leipzig Ana Garı'ndan şu anda gecikmeli kalkan tren var mı?",
+        "a3": "Evet, iki tane: {d1} yönüne {l1} +{dl1} dk gecikmeli, {p1} numaralı perondan; {d2} yönüne {l2} +{dl2} dk gecikmeli; sıradaki diğer {n} kalkış zamanında."
+      },
+      "station": {
+        "title": "İstasyonda",
+        "scene": "Bebek arabası, tekerlekli sandalye ya da bagajla: perona çıkan asansör çalışıyor mu?",
+        "q1": "Köln Ana Garı'ndaki asansör çalışıyor mu?",
+        "a1": "{station} için bildirilen {total} asansörden {working} tanesi çalışıyor; biri hizmet dışı, biri için demiryolu durum bildirmiyor.",
+        "limit": "Deutsche Bahn istasyonlarındaki asansör ve yürüyen merdivenler; diğer işletmeciler henüz yok.",
+        "q2": "Erlangen istasyonundaki tüm asansörler çalışıyor mu?",
+        "a2": "Evet: {station}'da bildirilen tek asansör, {platforms} numaralı perona çıkan, çalışıyor.",
+        "q3": "Nürnberg Ana Garı'ndan bir sonraki ICE hangi perondan kalkıyor?",
+        "a3": "{dest} yönüne {train}, saat {t}'de {p} numaralı perondan, zamanında."
+      },
+      "driving": {
+        "title": "Direksiyonda",
+        "scene": "Yola çıkmadan önce: trafik sıkışıklığı, kapanmalar, yol çalışmaları — ve şu anda yakıt nerede ucuz.",
+        "q1": "Münih yönünde A8 şu anda açık mı?",
+        "a1": "Tam değil: {a} ile {b} arasında Münih yönünde polis bir kaza bildiriyor; emniyet şeridi kapalı.",
+        "a1more": "A8'in tamamında ayrıca {closures} kapanma ve {works} yol çalışması kaydı listeleniyor.",
+        "limit": "Rota planlaması yok: otoyolda ne olduğunu söyleriz, hangi yoldan gitmeniz gerektiğini değil.",
+        "q2": "A7'de şu anda hangi yol çalışmaları var?",
+        "a2": "{to} tarihine kadar {count} çalışma alanı; örneğin {a} ile {b} arasında: yeni köprü yapımı, üç şeritten biri kapalı, saatte {speed} km, {until} tarihine kadar.",
+        "q3": "Hafta sonu A2'de yolculuk yapacağım — hangi yol çalışmalarını beklemeliyim?",
+        "a3": "{from} ile {to} arasında {count} çalışma alanı; örneğin {a} kavşağında: yol üst yapısı yenileniyor, rampa tamamen kapalı, {until} tarihine kadar."
+      },
+      "jam": {
+        "title": "Trafik sıkışıklığında",
+        "scene": "Otobanda ve şehirlerin çevresinde trafik sıkışıklığı: trafik nerede duruyor, ne kadar zaman kaybettiriyor — ve bu gece kapama var mı.",
+        "q1": "A3'te Frankfurt ile Würzburg arasındaki sıkışıklık şu anda ne kadar zaman kaybettiriyor?",
+        "a1": "{a} ile {b} arasında Frankfurt yönünde bir kazanın ardından yaklaşık +{delay} dk; A3'ün tamamında {jams} sıkışıklık bildiriliyor.",
+        "a1more": "Listede: {closures} kapanma ve {works} yol çalışması kaydı.",
+        "limit": "Şehirlerde şehir içi otobanları, Berlin, Köln ve Hannover'de ise şehirlerin kendi trafik bildirimlerini de görüyoruz — henüz her sokaktaki durumu değil. Hamburg'un bildirimleri ve Köln'ün trafik durumu sağlayıcılardan talep edildi.",
+        "q2": "Köln otoban çevre yolunda şu anda sıkışıklık var mı — A1, A3 veya A4?",
+        "q3": "A7 bugün Hamburg'da kapalı mı?",
+        "a3": "{a} ile {b} bağlantıları arasında bir kapanış bildirildi (sekiz şeride genişletme, yeni {tunnel}); A7'nin tamamında {n} kapanış var.",
+        "a2": "Evet, A4'te: {a} ile {b} arasında Köln yönünde trafik yavaş, yaklaşık +{delay} dk; sorulan otoyollarda {n} sıkışıklık bildiriliyor."
+      },
+      "parking": {
+        "title": "Park etme",
+        "scene": "Arabayı istasyonda bırakın — ya da kamyon şoförü olarak molanızı planlayın.",
+        "q1": "Köln Ana Garı yakınında otopark nerede?",
+        "a1": "{p1}: son bildirime göre {t1} yerin {f1} tanesi boş; {p2}: {t2} yerin {f2} tanesi — ikisi de en fazla 300 m uzaklıkta.",
+        "limit": "Boş yerler yalnızca işletmecinin yayımladığı yerlerde — diğerlerinde doluluk değil, yer sayısı.",
+        "q2": "A9 üzerinde kamyon parkı nerede var?",
+        "a2": "Örneğin {n1} kamyon yerli {p1}, {n2} yerli {p2} ve {n3} yerli {p3}; oralarda boş yer bilgisini kimse yayımlamıyor.",
+        "q3": "Essen Ana Garı yakınında park et-devam et otoparkı nerede?",
+        "a3": "{k1},{k1d} km uzaklıkta {p1} ve {k2},{k2d} km uzaklıkta {p2}; doluluk bilgisini ViaFrei bu kaynaktan almıyor."
+      },
+      "charging": {
+        "title": "Şarj",
+        "scene": "Elektrikli araçla: en yakın şarj istasyonu nerede ve boş nokta var mı?",
+        "q1": "Leipzig yakınında nerede hızlı şarj edebilirim?",
+        "q2": "Ingolstadt yakınında hangi hızlı şarj istasyonları var?",
+        "a1": "En az 150 kW ile örneğin: {site}, {address} — {kw} kW'a kadar.",
+        "a1more": "İşletmeci anlık durum yayımlamıyor, bu yüzden ViaFrei “boş” değil “bilinmiyor” diyor.",
+        "limit": "Doluluk bilgisi, bunu yayımlayan ağlar için; diğerlerinde durumu değil, konumu gösteriyoruz.",
+        "a2": "En yakını {op1}, {a1}, {kw1} kW'a kadar: {total1} şarj noktasından {free1} tanesi boş; ayrıca {s2}, {a2}, {kw2} kW'a kadar, güncel durum yok.",
+        "q3": "Hilden'deki Supercharger'da şu anda boş yer var mı?",
+        "a3": "{brand} son durumu {t} tarihinde bildirdi — “boş” demek için fazla eski; {address}, {kw} kW'a kadar."
+      },
+      "places": {
+        "title": "Yer bulma",
+        "scene": "Bir isim yeter: konser salonu, eczane, firma — adresi ve bir sonraki soru için koordinatıyla.",
+        "q1": "Navigasyonum 50.1109, 8.6821 gösteriyor — bu hangi adres ve en yakın otoban girişi nerede?",
+        "a1": "{address}, {m} m uzaklıkta. En yakın otoban girişi: {junction}, {km},{kmd} km uzaklıkta.",
+        "limit": "Yerler ve adresler OpenStreetMap'ten gelir; veri tarihi her yanıtta belirtilir. Orada haritalanmamış olanı bulamayız — çalışma saatleri ve değerlendirmeler buna dahil değildir.",
+        "q2": "Fulda'da hangi eczaneler var — adresleriyle?",
+        "a2": "Örneğin {p1}, {a1}; {p2}, {a2}; {p3}, {a3} ({osm} tarihli OpenStreetMap verisi).",
+        "q3": "Hamburg'daki Elbphilharmonie'nin adresi nedir?",
+        "a3": "{poi} adresi: {address} ({osm} tarihli OpenStreetMap verisi)."
+      },
+      "watch": {
+        "title": "Haber ver",
+        "scene": "Sürekli bakmanıza gerek yok: ViaFrei sizin yerinize izler ve her değişikliği sohbette saklar — asistanınız sorduğunuzda ya da bildirimleri destekliyorsa kendiliğinden gösterir.",
+        "q1": "A7'de herhangi bir kapama kalkar kalkmaz bana haber ver.",
+        "limit": "Yalnızca bu sohbet, açık olduğu sürece — e-posta yok, SMS yok. Sohbet başına en fazla 10 izleme, her biri en fazla 24 saat; bir yol bölüm bölüm değil, bütün olarak izlenir.",
+        "a1": "İzleme başladı: {road}, {until} saatine kadar. Orada bir kapama kalktığı anda ViaFrei bu sohbette haber veriyor; 10 izlemeden {used} tanesi kullanımda.",
+        "q2": "Köln'de otobüs ve tren seferlerinin dörtte biri veya daha fazlası geciktiğinde bana haber ver.",
+        "a2": "İzleme başladı: {ags} bölgesi ({city}), seferlerin % {pct}'i geciktiğinde haber verilir, {until} saatine kadar — yalnızca bu sohbette.",
+        "q3": "Köln için Alman Meteoroloji Servisi'nin şiddetli hava uyarısı yürürlüğe girdiğinde beni uyar.",
+        "a3": "İzleme başladı: DWD uyarı bölgesi {cell} ({city}), {until} saatine kadar — durum değiştiği anda ViaFrei burada haber veriyor."
+      }
+    },
+    "fuelAsks": {
+      "heading": "Yakıt alırken para kazandırabilecek bir soru",
+      "whyLabel": "Neden sormalı",
+      "goerlitz": {
+        "q": "Görlitz'de şu anda en ucuz dizel nerede?",
+        "why": "Fiyatlar günde birkaç kez değişir ve aynı şehirdeki birkaç istasyon arasında bile farklıdır: ViaFrei en ucuzunu fiyatı ve istasyonun onu bildirdiği saatle birlikte söyler.",
+        "a": "Henüz yeni fiyat yok — bilinen son fiyatların en düşüğü: {station}, {address} — litresi {euro},{cent} €, {reported} tarihinde bildirildi; ViaFrei şu anda yenisini istiyor."
+      },
+      "muenchen": {
+        "q": "Münih'te şu anda en ucuz E10 benzin nerede?",
+        "why": "Bir fiyat sabahtan kalma olabilir: o öğleden sonra Münih için ViaFrei'de yalnızca sabah fiyatları vardı; her birini saatiyle verdi ve yenilerini istedi.",
+        "a": "Henüz yeni fiyat yok — bilinen son fiyatların en düşüğü: {station}, {address} — litresi {euro},{cent} €, {reported} tarihinde bildirildi; ViaFrei şu anda yenisini istiyor."
+      },
+      "leipzig": {
+        "q": "Leipzig'de şu anda en ucuz E5 benzin nerede?",
+        "why": "Bir fiyat saatlerce eski olabilir: ViaFrei her fiyatın istasyon tarafından ne zaman bildirildiğini söyler — o öğleden sonra Leipzig'deki en ucuzlar hâlâ sabahtan kalmaydı.",
+        "a": "Henüz yeni fiyat yok — bilinen son fiyatların en düşüğü: {station}, {address} — litresi {euro},{cent} €, {reported} tarihinde bildirildi."
+      },
+      "nuernberg": {
+        "q": "Nürnberg'de şu anda en ucuz dizel nerede?",
+        "why": "En yakın istasyon her zaman en ucuzu değildir: ViaFrei her fiyatla birlikte mesafeyi de verir.",
+        "a": "{station}, {address} — litresi {euro},{cent} €, {reported} saatinde bildirildi."
+      }
+    },
+    "fuelAll": "Her eyalette en fazla üç istasyon, adresi ve fiyatıyla",
+    "allExamples": "Yanıtlarıyla tüm örnek sorular"
+  },
+  "start": {
+    "heading": "Bir dakikada hazır",
+    "lead": "ViaFrei zaten kullandığınız asistanın içinde çalışır. Üç adım, bir kez:",
+    "s1": "Claude veya ChatGPT'de: ayarlar → “Connectors”.",
+    "s2": "Aşağıdaki adresle ViaFrei'yi ekleyin.",
+    "s3": "Sorun: “Münih yönünde A8 şu anda açık mı?”",
+    "draft": "Taslak — bu adımlar henüz her asistanda doğrulanmadı."
+  },
+  "legal": {
+    "bindingNote": "Bu sayfa Alman hukukuna göre yasal bir bildirimdir. Yalnızca aşağıdaki Almanca metin bağlayıcıdır."
+  },
+  "connectPage": {
+    "moreExamples": "Daha fazla örnek",
+    "title": "ViaFrei'yi asistanınıza bağlayın",
+    "lead": "Tek adres, hesap yok, anahtar yok. ViaFrei'yi bir kez bağlayıcı olarak ekleyin — sonra sadece sorun.",
+    "askHeading": "Nasıl sorulur",
+    "askLead": "Asistanınızın bugün yanıtladığı beş soru:",
+    "asks": {
+      "train": "Köln Ana Garı'ndan bir sonraki tren ne zaman kalkıyor?",
+      "parking": "Köln şehir merkezinde katlı otopark nerede?",
+      "charging": "Leipzig'de elektrikli aracımı nerede şarj edebilirim?",
+      "road": "A3 Frankfurt yönünde şu anda açık mı?",
+      "weather": "Dresden için şu anda şiddetli hava uyarısı var mı?"
+    },
+    "live": {
+      "heading": "Geldiği gibi yanıtlar",
+      "lead": "Kısaltılmış; verinin zamanı ve kaynaklarıyla. Rakamlar o anın bir görüntüsüdür, canlı gösterge değildir.",
+      "asOf": "{asOf} itibarıyla",
+      "fuelExample": "{asOf} tarihli örnek yanıt — bugün fiyatlar farklı",
+      "stadtbahn": {
+        "title": "Hafif raylı sistemde asansörler ve yürüyen merdivenler",
+        "q": "Köln'deki {stop} hafif raylı sistem durağında şu anda ne arızalı?",
+        "a": "Bildirilen {total} tesisten {out} tanesi: {e1} ve {e2} numaralı yürüyen merdivenler {since}'den, {e3} numaralı {since3}'ten, {e4} numaralı {since4}'ten beri arızalı; iki asansör de çalışıyor. {publisher} verileri hiçbir garanti vermeden sağlar.",
+        "note": "Köln hafif raylı sistem durakları için, yayımlanan arıza listesinden – bir tesisin ne zamandan beri arızalı bildirildiği saatle."
+      },
+      "bikes": {
+        "title": "İstasyonda kiralık bisiklet, canlı",
+        "q": "{station} yakınında boş bir kiralık bisikleti nerede bulurum?",
+        "a": "{operator} istasyonu {dock}: {free} bisiklet boş; {radius} km içinde {docks} istasyon var, her birinin kendi sayısıyla.",
+        "note": "Boş bisikletler kiralama sistemlerinin açık verilerinden canlı gelir; ViaFrei yalnızca bir istasyonun şu anda bildirdiğini söyler."
+      },
+      "lift": {
+        "title": "İstasyonda asansörler",
+        "q": "{station} istasyonunda şu anda hangi asansörler çalışmıyor?",
+        "a": "Biri arızalı bildiriliyor, {platforms} numaralı perona giden bir asansör: {total} asansörden {working} tanesi çalışıyor. {platforms} numaralı perona giden diğer asansör izlenmiyor – durumu bilinmiyor.",
+        "note": "Deutsche Bahn istasyonları için, 20 dakikada bir okunur. Son bildirimin söylemediği şey “bilinmiyor” demektir – asla “çalışıyor” değil."
+      },
+      "alert": {
+        "title": "Otobüs ve tren arıza bildirimleri",
+        "q": "Aşağı Saksonya'da şu anda otobüs ve trenler için arıza bildirimi var mı?",
+        "a": "Şu anda {count} duyuru geçerli, aralarında: {a} ile {b} arasındaki {road} yolu kapalı olduğu için {lines} hatları şantiye tarifesiyle çalışıyor – {from} – {to} arasında geçerli.",
+        "note": "DELFI üzerinden ulaşım birliklerinin duyuruları, yalnızca geçerli oldukları sürece. Durak adı içermeyen bir duyuruyu ViaFrei ağı üzerinden bir eyalete bağlar ve komşu bir eyaleti de ilgilendirebileceğini belirtir."
+      },
+      "enbw": {
+        "title": "Canlı doluluk bilgili hızlı şarj",
+        "q": "{address} adresindeki {brand} istasyonunda şu anda boş bir şarj noktası var mı?",
+        "a": "En fazla {kw} kW, kWh başına {euro},{cent} € — ama {n} şarj noktasının hiçbiri için durum bilgisi yok, bu yüzden ViaFrei “boş” demiyor.",
+        "note": "İstasyonları ve doluluklarını işletmeci kendisi yayımlar; “itibarıyla” saati son bildirimidir."
+      },
+      "ecomove": {
+        "title": "Bir veri toplayıcı üzerinden canlı doluluk",
+        "q": "{address} adresindeki hızlı şarj istasyonunda şu anda boş bir nokta var mı?",
+        "a": "{site}: en fazla {kw} kW, kWh başına {euro},{cent} €; son durum {t} tarihli — “boş” demek için fazla eski.",
+        "note": "Burada doluluk, birçok işletmecinin bildirimlerini toplayan bir hizmetten gelir. Bildirimi olmayan bir nokta asla boş sayılmaz."
+      },
+      "ocpdb": {
+        "title": "Canlı boş ya da dolu, Köln'de",
+        "q": "{address} adresindeki istasyonda şu anda boş bir şarj noktası var mı?",
+        "a": "Evet, bir tane: {kw2} kW'a kadar Tip 2 boş, {kw} kW'a kadar CCS noktası arızalı — kWh başına {euro},{cent} € (KDV hariç).",
+        "note": "Doluluk, Baden-Württemberg eyaletinin veri portalı üzerinden canlı gelir; portal eyaletin çok dışındaki istasyonları da içerir."
+      },
+      "lsr": {
+        "title": "Kimsenin canlı bildirmediği yerde bile",
+        "q": "{address} yakınında nerede şarj edebilirim?",
+        "a": "{m} m uzakta: Tip 2, en fazla {kw} kW, Federal Şebeke Ajansı kaydına göre ({register} itibarıyla), canlı durum yok; doğruluk ve eksiksizlik garantisi verilmez.",
+        "note": "Hiçbir işletmecinin canlı veri yayımlamadığı yerde ViaFrei istasyonları resmî kayıttan gösterir; doluluk olmadan, çünkü bilinmeyen asla “boş” değildir."
+      },
+      "hamburg": {
+        "title": "Hamburg şehir merkezinde bir otopark",
+        "q": "Hamburg'da {stop} yakınında nereye park edebilirim?",
+        "a": "{park}: {total} yerden {free} tanesi boş. Hamburg şehri bu gerçek zamanlı verilerin doğrulanmadığını kendisi belirtiyor.",
+        "note": "Hamburg otoparklarının doluluğu şehirden canlı gelir; ViaFrei şehrin doğrulanmamış veri uyarısını her zaman iletir."
+      },
+      "hhworks": {
+        "title": "Hamburg'da şehir içi yol çalışması",
+        "q": "Hamburg'da {street} üzerinde hangi yol çalışmaları planlanıyor?",
+        "a": "{street}, {b}: {from} ile {to} arasında cadde yeniden düzenlemesi; 2027 baharında tam kapanma bekleniyor.",
+        "note": "Hamburg'un şehir içi yol çalışmaları şehrin Bauweiser kaydından gelir: yalnızca onaylanmış şantiyeler, takvim günlerine göre; “planlanan”, çalışmanın bugünden sonra başlayacağı anlamına gelir. Polis bildirimleri ayrı kayıtlar olarak kalır."
+      },
+      "muenster": {
+        "title": "Münster'in otopark yönlendirme sistemi, canlı",
+        "q": "Münster'deki {name} içinde kaç yer boş?",
+        "a": "{total} yerden {free} tanesi boş; ayrıca yakında {more} otopark daha, her biri kendi doluluğuyla.",
+        "note": "Doluluk, Münster şehrinin otopark yönlendirme sisteminden canlı gelir. Hiçbir şey bildirmeyen bir otoparkı ViaFrei asla “dolu” saymaz."
+      },
+      "motorway": {
+        "title": "Otobanda kapalı bir giriş",
+        "q": "Şu anda A6'da {place} yakınında kapalı bir yer var mı?",
+        "a": "Evet: {place} bağlantısından A6'ya giriş kapalı, bir yapı yeniden inşa ediliyor – bu çalışma aşaması {from} – {to}. Tüm A6 için yanıtta {count} kapanma var.",
+        "note": "Otobanlardaki kapanmalar ve yol çalışmaları Autobahn GmbH'den, her çalışma aşamasının dönemiyle birlikte gelir. Bir otoban sorulduğunda ViaFrei önce kapanmaları sayar."
+      },
+      "citywork": {
+        "title": "Şehirde yol çalışması",
+        "q": "Berlin'de {street} üzerinde kapalı bir yer var mı?",
+        "a": "Evet: {a} ile {b} arasında her iki yönde altyapı çalışması; Senato idaresine göre {from} – {to} tarihleri arasında motorlu taşıtlara kapalı.",
+        "note": "Berlin bildirimleri sokağı ve kesimi belirtir, yol numarasını değil; bu yüzden ViaFrei onları konuma göre bulur: 25 km içinde, en yakını önce."
+      },
+      "landroad": {
+        "title": "Bir eyalet yolunda yol çalışması",
+        "q": "Bu hafta Thüringen'de L1025 üzerinde yol çalışması var mı?",
+        "a": "{count} çalışma alanı, aralarında: {site}, trafik ışıklı bir daralma, {from} – {to}.",
+        "note": "Eyalet yollarını Baden-Württemberg, Aşağı Saksonya, Thüringen ve Saksonya'da, karayolu idarelerinin verilerinden biliyoruz: kesim ve süre; koordinat ve canlı gecikme yok."
+      },
+      "saxony": {
+        "title": "Saksonya'da bir federal yolda yol çalışması",
+        "q": "Bu hafta Saksonya'da B6 üzerinde yol çalışması var mı?",
+        "a": "Bu hafta {count} çalışma alanı, aralarında: Dresden'de {place} yakınında yol iyileştiriliyor, {from} – {to}.",
+        "note": "Saksonya karayolu idaresi uzun süreli yol çalışmalarını üç saatte bir yeniden yayımlar. ViaFrei bunları federal ve eyalet yolları için kesim ve süreyle yanıtlar; koordinat ve canlı gecikme yok."
+      },
+      "bwroad": {
+        "title": "Baden-Württemberg'de bir federal yolda yol çalışması",
+        "q": "Gelecek hafta Baden-Württemberg'de B27 üzerinde planlanmış yol çalışması var mı?",
+        "a": "{all} çalışma alanından {count} tanesi Baden-Württemberg'de, örneğin {a} – {b}: yeni yol yüzeyi, {from} – {to}.",
+        "note": "Baden-Württemberg Ulaştırma Bakanlığı yol çalışmalarını (BEMaS) MobiData BW üzerinden yayımlar. ViaFrei bunları federal ve eyalet yolları için kesim ve süreyle yanıtlar; planlanan çalışma planlanan olarak gösterilir, canlı gecikme yok."
+      },
+      "kiel": {
+        "title": "Kiel'de bir yol çalışması",
+        "q": "Kiel'deki {street} şu anda trafiğe açık mı?",
+        "a": "Hayır: {street}, {no} numara ile {b} arasında kanalizasyon çalışmaları nedeniyle {from} ile {to} arasında kapalı (Örnek, özetlenmiştir; araç bildirimi eksiksiz gösterir).",
+        "note": "Kiel şehri yol çalışmalarını yer, neden ve süreyle yayımlar. Bu kart bir bildirimi özetler; araç bildirimleri kısaltmadan gösterir ve bir bildirimi konuma göre bulur: 25 km içinde, en yakını önce."
+      },
+      "truckstop": {
+        "title": "A7'de güvenli tır parkı",
+        "q": "Bu gece A7'deki {name} tesisinde boş tır yeri var mı?",
+        "a": "İşletmecinin bildirdiğine göre {total} yerin {free} tanesi boş.",
+        "note": "Bu güvenli park yerlerinin işletmecisi boş yerleri yayımlıyor; ViaFrei bunları doluluk yayımlamayan dinlenme tesislerinin yanında gösteriyor ve ikisini asla toplamıyor."
+      },
+      "parkride": {
+        "title": "Trenden önce park et ve devam et",
+        "q": "Dortmund'da arabamı bırakıp trene geçebileceğim park yeri nerede?",
+        "a": "{t1} yerli {p1} ve {t2} yerli {p2} — bu otoparklar için doluluk bilgisi yok.",
+        "note": "Kuzey Ren-Vestfalya'daki aktarma otoparkları eyaletin toplu verisinden gelir ve ayrı bir blokta, başka kaynaklarla eşleştirilmeden gösterilir. Doluluklarını aktarmıyoruz."
+      },
+      "platform": {
+        "title": "Canlı bir gecikme",
+        "q": "{station} istasyonundan {dest} yönüne giden {train} zamanında kalkıyor mu?",
+        "a": "+{delay} dk, {planned} yerine {expected} bekleniyor — planlandığı gibi {platform} numaralı perondan.",
+        "note": "Gecikmeler ve peron değişiklikleri Deutsche Bahn tarife arayüzünden gelir; istasyonun tüm bölümleri için — Berlin Ana Garı'nın alt kat ve banliyö peronları da dahil."
+      },
+      "region": {
+        "title": "Bir metropol bölgede dakiklik",
+        "q": "Ren-Ruhr bölgesinde otobüs ve trenler şu anda zamanında mı?",
+        "a": "Gecikme oranı % {share}: son bir saatte izlenen seferlerin bu kadarı 5 dakikadan fazla geç kaldı — bir önceki saatten daha fazla (% {before}).",
+        "note": "Ren-Ruhr tek bir bölge olarak yanıt verir: 30 ilçe ve ilçe statüsündeki şehir birlikte. ViaFrei hat başına değil, bölge başına toplamlar verir."
+      },
+      "tomorrow": {
+        "title": "Yarınki güzergâhta yol çalışmaları",
+        "q": "Yarın A7'de hangi yol çalışmaları planlanıyor?",
+        "a": "{count} çalışma alanı, {started} tanesi zaten sürüyor. Bunlardan biri: {a} ile {b} arasında {km} km boyunca yeni bir köprü yapılıyor, hız sınırı {speed} km/h, {until} tarihine kadar.",
+        "note": "Planlı çalışmalar Federal Karayolu Araştırma Enstitüsü'nden gelir: kesim ve dönem, koordinat ve anlık gecikme yok. Şu anda ne olduğunu ViaFrei otoban bildirimlerinden yanıtlar."
+      },
+      "closure": {
+        "title": "İleride bir kapanma",
+        "q": "Şu anda Hamburg yakınında A7'de kapalı bir yer var mı?",
+        "a": "Evet: Autobahn GmbH, {at} kavşağında kapalı bir rampa bildiriyor — {a} ile {b} arasındaki çalışma kesiminde. Bu çalışma aşaması {until} günü saat {end}'de sona eriyor.",
+        "note": "Otobanlardaki kapanmalar ve yol çalışmaları Autobahn GmbH'den, her çalışma aşamasının dönemiyle birlikte gelir."
+      },
+      "weather": {
+        "title": "Dağlardan önce hava kontrolü",
+        "q": "Bugün {name} için hava durumu uyarısı var mı?",
+        "a": "Evet, önümüzdeki gece için: Alman Meteoroloji Servisi {temp} °C'ye kadar hafif don uyarısı veriyor, {day} tarihinde {from} ile {to} arası geçerli — uyarı seviyesi {level}, en düşüğü.",
+        "note": "Uyarılar 5 dakikada bir okunur ve bölge bazında geçerlidir; kısa sürede yenisi yayımlanabilir."
+      },
+      "fuelcity": {
+        "title": "Şehirdeki en ucuz E10",
+        "q": "Köln'de Super E10 şu anda en ucuz nerede?",
+        "a": "{station}, {address} — litresi {euro},{cent} €, {reported} saatinde bildirildi.",
+        "note": "Akaryakıt fiyatları birkaç dakikada bir değişir: bu rakam o öğleden sonradan bir örnektir, bugünkü fiyat değildir. ViaFrei her fiyatın istasyon tarafından ne zaman bildirildiğini söyler."
+      },
+      "charger": {
+        "a": "{site} içinde {points} şarj noktası, Tip 2, en fazla {kw},{kwd} kW, kWh başına {euro},{cent} € (KDV hariç). Hiçbiri dolu bildirmiyor; {stale} nokta için son durum {t} tarihli, {unknown} nokta için hiç yok — bu yüzden “boş” değil.",
+        "title": "Şarj istasyonunda canlı durum",
+        "q": "{address} adresinde şu anda boş bir şarj noktası var mı?",
+        "note": "Canlı doluluğu yalnızca işletmecinin yayımladığı yerlerde veriyoruz – burada e-clearing.net üzerinden. Bildirim yoksa yanıt “boş” değil, “durum verisi yok” olur."
+      },
+      "roadworks": {
+        "a": "Aşağı Saksonya'da {count} tane, hepsi başlamış; ilki: {section}, {start} – {end}.",
+        "note": "Federal yolları Aşağı Saksonya, Saksonya, Thüringen ve Baden-Württemberg'de, bu eyaletlerin karayolu idarelerinin verilerinden biliyoruz: kesim ve süre, canlı gecikme yok. Başka bir yerdeki federal yol için ViaFrei “boş” değil, “kapsam dışı” yanıtını verir.",
+        "title": "Bir federal yolda yol çalışmaları",
+        "q": "Bu hafta Aşağı Saksonya'da B3 üzerinde hangi yol çalışmaları planlanıyor?"
+      },
+      "train": {
+        "title": "Bölgesel trenlerde dakiklik",
+        "q": "{station} istasyonundan {dest} yönüne bir sonraki bölgesel tren zamanında mı?",
+        "a": "Evet: {line} saat {planned}'de {platform} numaralı perondan, zamanında — {last}'e kadarki {all} bölgesel trenin {n} tanesi gibi.",
+        "note": "Deutsche Bahn tarife arayüzü canlı saat vermediğinde ViaFrei bölgesel trenleri ve S-Bahn'ı DELFI SIRI ET'ten ekler – ayrı bir blokta, demiryolunun satırlarına asla karıştırmadan."
+      },
+      "fuelroad": {
+        "a": "Henüz yeni fiyat yok — bilinen son fiyatların en düşüğü: {station}, {address} — litresi {euro},{cent} €, {reported} tarihinde bildirildi; ViaFrei şu anda yenisini istiyor.",
+        "title": "Yolda, otoban kenarında motorin",
+        "q": "Bu akşam A3'te Würzburg'un yanından geçiyorum: yakınlarda motorin en ucuz nerede?",
+        "note": "Akaryakıt fiyatları birkaç dakikada bir değişir: bu rakam o öğleden sonradan bir örnektir, bugünkü fiyat değildir. ViaFrei her fiyatın istasyon tarafından ne zaman bildirildiğini söyler."
+      },
+      "fuelland": {
+        "a": "Henüz yeni fiyat yok — bilinen son fiyatların en düşüğü: {station}, {address} — litresi {euro},{cent} €, {reported} tarihinde bildirildi; ViaFrei şu anda yenisini istiyor.",
+        "title": "Bir eyalet başkentinde en düşük fiyat",
+        "q": "Baden-Württemberg'in başkenti Stuttgart'ta E10 şu anda en ucuz nerede?",
+        "note": "Akaryakıt fiyatları birkaç dakikada bir değişir: bu rakam o öğleden sonradan bir örnektir, bugünkü fiyat değildir. ViaFrei her fiyatın istasyon tarafından ne zaman bildirildiğini söyler."
+      },
+      "carpark": {
+        "title": "Boş yerleri olan bir otopark",
+        "q": "Köln'deki {name} otoparkında kaç yer boş?",
+        "a": "Son bildirime göre {total} yerden {free} tanesi boş — eski bir bildirim, güncel durum değil.",
+        "note": "Ad, konum ve yer sayısı Köln şehrinin otopark tablosundan, doluluk ise şehrin canlı veri akışından geliyor. Son bildirim çok eskiyse ViaFrei “boş” yerine “en son bildirilen” ifadesini kullanır."
+      },
+      "lorry": {
+        "title": "Boş yerleri bildirilen tır parkı",
+        "q": "{name} tesisinde şu anda kaç tır park yeri boş?",
+        "a": "İşletmecinin bildirdiğine göre {free} tır park yeri boş.",
+        "note": "Boş yerleri yalnızca işletmecinin yayımladığı yerlerde veriyoruz – burada 15 dakikada bir. Bir değer altı saat boyunca değişmezse ViaFrei “boş” yerine “en son bildirilen” ifadesini kullanır."
+      }
+    },
+    "betaHeading": "Beta: sizin için anlamı",
+    "beta1": "ViaFrei istikrar kazanma aşamasında: veri kaynakları ekleniyor, yanıtlar ve kapsam değişebilir.",
+    "beta2": "Yanıtları, verilerimize dayanarak bir yapay zekâ asistanı oluşturur – yapay zekâ hata yapabilir.",
+    "beta3": "Önemli bilgileri (yol kapanmaları, kalkışlar, fiyatlar) yanıtta adı geçen kaynaktan kontrol edin.",
+    "endpointHeading": "Adres",
+    "endpointNote": "Streamable HTTP. Geliştirme aşamasında ücretsiz, hesap yok; herkese yetmesi için istekler sınırlıdır.",
+    "legacyNote": "Streamable HTTP desteği olmayan eski istemciler SSE adresini kullanır:",
+    "clientsHeading": "Adım adım",
+    "claudeAi": "claude.ai (web)",
+    "claudeAiSteps": "Özelleştir (Customize) → Connectors → “+ Add” → “Add custom connector”. Adını ViaFrei koyun, yukarıdaki adresi MCP sunucu URL’si olarak yapıştırın, sonra “Continue”. Örneğin sorun: “Münih yönünde A8 açık mı?” İlk kullanımda ViaFrei aracına izin verin.",
+    "claudeDesktop": "Claude Desktop",
+    "claudeDesktopSteps": "claude.ai’dakiyle aynı bağlayıcı, Claude hesabınızda tutulur: orada yukarıdaki gibi ekleyin, masaüstü uygulamasında da görünür.",
+    "claudeCode": "Claude Code",
+    "claudeCodeSteps": "Bir terminalde bir kez çalıştırın:",
+    "chatgpt": "ChatGPT",
+    "chatgptSteps": "Plugins → “+” → “Add custom MCP server”. Adını ViaFrei koyun, yukarıdaki adresi “Connection” altına yapıştırın, kimlik doğrulama: yok; “I understand and want to continue” kutusunu işaretleyin, sonra “Create as a plugin”. Yeni bir sohbette @ yazın, ViaFrei’yi seçin, sonra sorun.",
+    "editorsSteps": "MCP yapılandırmasına (mcp.json) ekleyin:",
+    "copilotSteps": "Komut Paleti → “MCP: Add Server” → “HTTP” → yukarıdaki adresi yapıştırın → sunucu kimliği viafrei → “Global” → “Copilot Global”. Bu, ~/.copilot/mcp-config.json dosyasına yazar; elle ekleyin:",
+    "copilotSandbox": "Copilot “x-ms-block-by: sandbox-broker” başlığıyla 403 yanıtı verirse, sanal alanı adresi engellemiştir: mcp.viafrei.de’ye izin verin (bulut aracısı için: depo ayarları → Copilot → Internet access → Custom allowlist).",
+    "geminiTrust": "Gemini CLI, MCP sunucularını yalnızca güvendiğiniz bir klasörde başlatır; orada ilk başlatışta bunu sorar.",
+    "windsurfSteps": "Cascade paneli → “…” → MCPs → MCP yapılandırma dosyasını (mcp_config.json) açın ve ekleyin:",
+    "leChatSteps": "Connectors → “+ Add Connector” → “Custom MCP Connector” → ad viafrei, sunucu URL’si: yukarıdaki adres → Connect, kimlik doğrulama yok. Bir yönetici ekler – Free ve Pro planlarında bu sizsiniz.",
+    "generic": "Diğer her MCP istemcisi",
+    "genericSteps": "Streamable HTTP konuşan her istemci yukarıdaki adrese bağlanır — başlık yok, anahtar yok.",
+    "stdio": "Yalnızca stdio destekleyen istemciler",
+    "stdioSteps": "Açık npm paketindeki köprü, yukarıdaki adrese ileten yerel bir stdio sunucusu başlatır:",
+    "notCoveredHeading": "ViaFrei'nin yanıtlamadıkları",
+    "notCoveredLead": "Olmayan şeyi aramayın diye:",
+    "notCovered": {
+      "routing": "Kapıdan kapıya rota ya da yolculuk planlaması yok — ViaFrei yerler, yollar ve veri kaynakları hakkında yanıt verir, asla “oraya nasıl giderim” sorusuna değil.",
+      "cityStreets": "Kaynaklarını aldığımız şehir ve eyaletler dışında şehir içi sokak trafiği yok: Berlin, Köln (etkinlikler için kapatmalar), Hannover (kaynağı mesaj yayımlamaya başladığında), Kiel dahil Schleswig-Holstein ve Stuttgart dahil Baden-Württemberg için yol çalışmaları, kapatmalar ve trafik mesajları. Diğer şehirler kapsanmıyor; bunun dışında elimizdeki canlı trafik, federal otoyol ağına (Autobahn GmbH) ve bir kaynak içeriyorsa federal yollara aittir; ayrıca Baden-Württemberg, Aşağı Saksonya, Saksonya ve Thüringen'deki eyalet yollarında yol çalışmaları.",
+      "fares": "Ücret, bilet ya da herhangi bir rezervasyon yok.",
+      "lineRealtime": "Tek bir hat için dakiklik oranı yok — ViaFrei “S1 zamanında mı” sorusunu bir tren istasyonunda tren tren yanıtlar (kalkan her trenin anlık gecikmesi, banliyö trenleri dahil) ve bölge bazında hattın aksaklık duyurularıyla; otobüs, tramvay veya metro durağında yalnızca tarife vardır.",
+      "forecast": "Hava tahmini yok — yalnızca resmî DWD uyarıları ve yalnızca yürürlükteyken.",
+      "parkingTariffs": "Otopark ücreti yok; işletmeci doluluk bilgisini yayımlamıyorsa bir yerin boş olduğuna dair bir söz de yok."
+    },
+    "privacyHeading": "Üç cümlede gizlilik",
+    "privacy1": "Bizde hesaba ihtiyacınız yok ve soruları adınızla saklamayız.",
+    "privacy2": "Üçüncü taraf ölçüm hizmetleri yalnızca onay verirseniz çalışır; öncesinde üçüncü taraflardan hiçbir şey yüklenmez. Ziyaretleri çerez kullanmadan, kendi sunucumuzda günlük toplamlar olarak sayarız.",
+    "privacy3": "Sunucu kayıtları en geç yedi gün sonra silinir — geri kalan her şey",
+    "privacyLink": "gizlilik bildiriminde (Almanca)",
+    "sourcesHeading": "Veriler nereden geliyor",
+    "sourcesLead": "Her yanıt kaynağını belirtir. ViaFrei'nin bugün yanıt verdiği tüm kaynaklar, lisanslarının gerektirdiği belirtimle birlikte (Almanca, yazıldığı gibi):",
+    "askAnswers": {
+      "train": "{t1}'de {d1} yönüne {l1}, {p1} numaralı perondan; {t2}'de {d2} yönüne {l2}, {p2} numaralı perondan — ikisi de zamanında.",
+      "parking": "{p1}: {t1} yerden {f1} tanesi boş; {p2}: {t2} yerden {f2} tanesi boş.",
+      "charging": "En yakını: {a1}, {m} m uzaklıkta, Tip 2, {kw1} kW'a kadar; sonra {a2}, {m2} m, {kw2} kW'a kadar — anlık durum yok.",
+      "road": "Evet: A3'ün tamamında şu anda bildirilmiş trafik sıkışıklığı yok; {closures} kapanış ve {works} yol çalışması kaydı listeleniyor.",
+      "weather": "{place} için resmî bir DWD hava uyarısı yok — şimdi ve sonraki {hours} saat için kontrol edildi."
+    },
+    "allExamples": "Yanıtlarıyla tüm örnek sorular, alanlara göre",
+    "claudeFlow": {
+      "s1": "Özelleştir (Customize) → Connectors → “+ Add” → “Add custom connector”.",
+      "s2": "Adını ViaFrei koyun, yukarıdaki adresi MCP sunucu URL’si olarak yapıştırın, sonra “Continue”.",
+      "s3": "Örneğin sorun: “Münih yönünde A8 açık mı?” İlk kullanımda ViaFrei aracına izin verin."
+    },
+    "chatgptFlow": {
+      "s1": "Plugins → “+” → “Add custom MCP server”.",
+      "s2": "Adını ViaFrei koyun, yukarıdaki adresi “Connection” altına yapıştırın, kimlik doğrulama: yok; “I understand and want to continue” kutusunu işaretleyin, sonra “Create as a plugin”.",
+      "s3": "Yeni bir sohbette @ yazın, ViaFrei’yi seçin, sonra sorun.",
+      "avail": "Özel MCP sunucuları web’deki ChatGPT’de çalışır: Business ve Enterprise/Edu çalışma alanlarında, yöneticiler ve sahipler oluşturur; ayrıca okuma ve getirme izinleriyle Pro kullanıcıları için – ViaFrei yalnızca okur, bu yüzden Pro çalışır. Mobil uygulamalarda değil; Free ve Plus’ta kullanılamaz.",
+      "d1": "Plugins → + → Add custom MCP server",
+      "d2": "Ad ViaFrei · Connection: adres · kimlik doğrulama: yok · Create as a plugin",
+      "d3": "Yeni sohbet: @ViaFrei, sonra soru",
+      "dtitle": "ChatGPT’de üç adım"
+    },
+    "shot": {
+      "claude1": "claude.ai, Customize → Connectors: “+ Add” menüsü “Add custom connector” ile açık.",
+      "claude2": "“Add custom connector” penceresi: ViaFrei adı, MCP sunucu URL’si https://mcp.viafrei.de/mcp ve “Continue” düğmesi.",
+      "claude3": "Claude, A8 için ViaFrei aracını kullanmak için izin istiyor: reddet, her zaman izin ver veya bir kez izin ver.",
+      "claude4": "Claude’un Münih yönündeki A8 sorusuna yanıtı, ViaFrei kullanımı olarak işaretli, sonunda kaynak satırıyla.",
+      "phone1": "claude.ai bir telefonun tarayıcısında, Customize → Connectors: “+ Add” menüsü “Add custom connector” ile açık.",
+      "phone2": "“Add custom connector” penceresi: ViaFrei adı, MCP sunucu URL’si https://mcp.viafrei.de/mcp ve “Continue” düğmesi.",
+      "phone3": "claude.ai’de bir sohbet: “+” → Connectors, ViaFrei açık; diğer bağlayıcılar bulanıklaştırılmış.",
+      "phone4": "Claude’un A7’de şu anda trafik sıkışıklığı olup olmadığı sorusuna yanıtı, ViaFrei kullanıldığı işaretli.",
+      "phone4b": "Aynı yanıtın sonu: Autobahn GmbH des Bundes’i adlandıran kaynak satırı.",
+      "phoneCaption": "Ekran görüntüsü: claude.ai bir telefonun tarayıcısında, {date}",
+      "caption": "Ekran görüntüsü: claude.ai, {date}",
+      "diagram": "Şema, ekran görüntüsü değil",
+      "claudeCode1": "Terminal: ViaFrei adresiyle claude mcp add, ardından claude mcp list “viafrei … ✔ Connected” bildiriyor.",
+      "geminiCli1": "Terminal: ViaFrei adresiyle gemini mcp add --scope user, ardından gemini mcp list “viafrei … Connected” bildiriyor.",
+      "generic1": "Terminal: MCP Inspector, ViaFrei adresinden araçlarını (tools/list) istiyor ve adlarını alıyor.",
+      "stdio1": "Terminal: Claude Code npx -y viafrei köprüsünü ekliyor, ardından claude mcp list “viafrei: npx -y viafrei – ✔ Connected” bildiriyor.",
+      "terminal": "Testimizin terminal kaydı: {what}, {date}",
+      "open": "Görseli tam boyutta açın",
+      "close": "Büyük görseli kapatın"
+    },
+    "guide": "Resmî kılavuz",
+    "otherGuides": "Kendi kılavuzları:",
+    "check": {
+      "verified": "{date} tarihinde istemcide {version} ile denetlendi.",
+      "docs": "Adımlar {date} tarihinde resmî kılavuza göre denetlendi, istemcide henüz değil. {reason}",
+      "pending": {
+        "account": "Bunun için oturum açılmış bir hesap gerekir; bu denetim henüz yapılmadı.",
+        "app": "Kendi oturum açma ekranı olan bir masaüstü uygulamasıdır; bu denetim henüz yapılmadı.",
+        "signIn": "Bir oturum için giriş ya da API anahtarı gerekir; bu denetim henüz yapılmadı."
+      }
+    },
+    "about": {
+      "lead": "ViaFrei bağlandıktan sonra bu soruyu kopyalayıp asistanınıza sorun:",
+      "place": "{place}: yollar, toplu taşıma ve hava şu anda nasıl?",
+      "road": "{road} şu anda açık mı?",
+      "exit": "{road}, {exit}: yol şu anda açık mı?"
+    },
+    "phone": {
+      "heading": "Telefonda (Android, iPhone)",
+      "jump": "Telefonda mısınız? Android ve iPhone’da böyle çalışır",
+      "lead": "Çoğu asistan uygulamasında ViaFrei uygulamanın içinden eklenemez. Bağlantıyı bir kez tarayıcıda kurarsınız – telefonda da olur – ve aynı hesapla giriş yaptığınız anda uygulama onu kullanır.",
+      "where": "Anthropic’e göre her Claude planıyla çalışır (Free: bir özel bağlayıcı). Uygulama içinde bağlayıcı eklemek henüz beta aşamasında olduğundan adımlar tarayıcıda claude.ai üzerinden ilerler.",
+      "claude": {
+        "s1": "Telefonun tarayıcısında (ya da bir bilgisayarda) claude.ai’yi açın ve giriş yapın. Sonra Customize → Connectors → “+ Add” → “Add custom connector”.",
+        "s2": "Ad: ViaFrei. URL: {url}. “Continue”a dokunun.",
+        "s3": "Claude uygulamasını açın ve aynı hesapla giriş yapın. Bir sohbette “+” → Connectors’a dokunun ve ViaFrei’yi açın.",
+        "s4": "Şunu sorun: “Kassel yakınındaki A7 açık mı?” ve ilk seferde ViaFrei aracına izin verin. Doğru bir yanıt A7’yi Kassel yakınında şu anki haliyle anlatır ve verilerin yayıncısını belirten kaynak satırıyla biter."
+      },
+      "unclear": "{name}: resmi kılavuz özel bir MCP sunucusunu yalnızca web’de ekliyor ve telefondaki uygulamanın onu sonra kullanıp kullanmadığını söylemiyor – bu yüzden burada adım yok. {date} itibarıyla.",
+      "gemini": "Gemini: özel uygulamalar (MCP sunucuları) yalnızca web uygulamasında ve yalnızca ABD’de, 18 yaş üstü, İngilizce kullanılan kişisel bir hesapla eklenebilir – yani Almanya’dan olmaz. {date} itibarıyla.",
+      "copilot": "Microsoft Copilot: resmi belgeler özel MCP sunucularını yalnızca Microsoft 365 Copilot (bir kuruluşun yönetimi tarafından kurulur) ve Copilot Studio için anlatıyor, Copilot uygulaması için değil. {date} itibarıyla.",
+      "checked": "{date} tarihinde resmi kılavuza göre kontrol edildi; henüz bir telefonda denenmedi.",
+      "device": "{date} tarihinde bir telefonda {app} ile bağlandı."
+    }
+  },
+  "devPage": {
+    "title": "Geliştiriciler için ViaFrei",
+    "lead": "Streamable HTTP üzerinden bir MCP sunucusu, Almanya'dan açık veriler, her yanıt kaynağıyla. Bugün yapabildikleri burada — kopyalanmadan, doğrudan sunucudan okunarak.",
+    "releaseHeading": "Güncel sürüm",
+    "releaseLine": "Sürüm {version}",
+    "releaseDate": "{date} tarihinde yayımlandı",
+    "toolsHeading": "Araçlar",
+    "toolsLead": "Sunucunun bildirdiği şekliyle {n} araç:",
+    "promptsHeading": "İstemler",
+    "resourcesHeading": "Kaynaklar",
+    "codeHeading": "Kod ve katkı",
+    "closed": "Sunucu barındırılan bir hizmettir ve kaynak kodu kapalıdır. Köprü ise açıktır — ve orada her türlü yardım memnuniyetle karşılanır.",
+    "bridge": "GitHub'daki açık köprü",
+    "discussions": "Tartışmalar",
+    "goodFirst": "Başlangıç için iyi görevler",
+    "contributing": "Nasıl katkıda bulunulur",
+    "security": "Güvenlik açığı bildirin",
+    "licence": "Lisans: Apache-2.0",
+    "contractHeading": "Her aracın uyduğu sözleşme",
+    "contract1": "Bir araç tek bir iş yapar ve adını ondan alır (verb_noun).",
+    "contract2": "Her yanıt kaynak belirtimini kelimesi kelimesine taşır; lisans bir amaç notu istiyorsa o da oradadır.",
+    "contract3": "Saatler Europe/Berlin; saklama UTC.",
+    "contract4": "Testler hiçbir zaman gerçek bir sağlayıcıyı çağırmaz; her katkı bağımsız olarak incelenir.",
+    "npmHeading": "npm",
+    "npmLead": "Yalnızca stdio konuşan istemciler için:",
+    "npmReserved": "@viafrei kapsamı ileride gelecek SDK paketleri için ayrılmıştır.",
+    "listingsHeading": "Dizinler",
+    "listingsLead": "ViaFrei burada listeleniyor:",
+    "listingNpm": "npm – viafrei paketi, HTTP konuşmayan istemciler için stdio köprüsü",
+    "listingSmithery": "Smithery – yerel kurulum gerektirmeyen barındırılan bağlantı",
+    "listingGlama": "Glama – MCP sunucu dizinindeki kayıt",
+    "statusHeading": "Durum",
+    "statusText": "Veri kaynaklarının durum görünümü istek üzerine sunulur.",
+    "tools": {
+      "check_autobahn_traffic": "Otoban trafiği",
+      "find_cheapest_fuel": "Yakındaki en ucuz yakıt",
+      "find_fuel_station": "Akaryakıt istasyonu bul",
+      "find_parking": "Yakındaki otoparklar",
+      "check_road_status": "Yol durumu ve kapanmalar",
+      "find_roadworks_ahead": "Planlanan yol çalışmaları",
+      "find_sharing": "Yakındaki kiralık bisikletler",
+      "find_charging_station": "Yakındaki elektrikli araç şarjı",
+      "find_hydrogen_station": "Yakındaki hidrojen istasyonları",
+      "find_speed_cameras": "Planlama için hız kameraları",
+      "find_place": "Bir yer ara",
+      "find_poi": "Adı bilinen bir yeri bul",
+      "find_address": "Bir adres ara",
+      "describe_location": "Bir koordinatı tarif et",
+      "find_nearby": "Yakında ne var",
+      "get_driving_rules": "Almanya trafik kuralları",
+      "check_transit_disruption": "Bir bölgede toplu taşıma aksaklıkları",
+      "check_weather_warnings": "Resmî hava uyarıları",
+      "get_train_departures": "Tren kalkışları",
+      "get_departures": "Tarifeli kalkışlar (otobüs, tramvay, tren)",
+      "check_station_facilities": "İstasyon asansörleri ve yürüyen merdivenleri",
+      "describe_station": "Tren istasyonu özeti",
+      "watch_situation": "Bir değişikliği izle",
+      "stop_watch": "İzlemeyi durdur"
+    },
+    "prompts": {
+      "plan_departure": "Yola çıkmadan önce özet: iki uçtaki hava uyarıları, açık otobanlar ve anlık sıkışıklıklar; sonunda tek cümle: yola çık ya da bekle.",
+      "compare_travel_options": "Aynı yolculuğu arabayla ve trenle karşılaştırır: bir yanda kapanmalar ve sıkışıklıklar, diğer yanda kalkışlar ve dakiklik.",
+      "prepare_car_trip": "Almanya'da ve belirli bir şehre araç kullanmadan önce sürücünün yanında bulundurması ve bilmesi gerekenleri toplar: emisyon etiketi, hız sınırları, kış lastiği, alkol sınırı, geçiş ücretleri, zorunlu donanım.",
+      "plan_fuel_stop": "Yolda nerede yakıt alınacağını ya da şarj edileceğini bulur: bir yakıt türü için en ucuz istasyonlar veya uygun soket ve güçte şarj noktaları ve yanlarındaki dinlenme alanı.",
+      "plan_commute": "O günkü tek bir toplu taşıma yolculuğunu planlar: gecikmeleri, peronları ve iptalleriyle sonraki kalkışlar ve bölgedeki ulaşımın normal işleyip işlemediği.",
+      "plan_arrival_parking": "Yolculuğun sonunda arabanın nereye bırakılacağını bulur: şehirde bir otopark, kenarda aktarma kalkışlı park et-devam et ya da erken gelindiyse bir dinlenme alanı.",
+      "find_a_place": "Yalnızca bir adı sırayla deneyerek bir yere, adı bilinen bir mekâna ya da bir adrese çözer.",
+      "plan_local_errand": "Bir yer için “buralarda ne var” sorusunu yanıtlar: en yakın akaryakıt, şarj, otopark, istasyon ve otoban girişi tek bakışta.",
+      "explain_this_coordinate": "Çıplak koordinatları yolcunun anlayacağı bir cümleye çevirir: en yakın adres, yerleşim, ilçe ve otoban girişi, her biri mesafesiyle."
+    },
+    "quickHeading": "Bir dakikada bağlanın",
+    "quickLead": "İstemcinizi seçin, bunu yapıştırın ve ilk sorunuzu sorun.",
+    "quickTabs": "İstemci programları",
+    "quickWhere": "Nereye gider:",
+    "quickFirst": "İlk çağrınız",
+    "quickFirstLead": "Bağlandıktan sonra sade sözcüklerle sorun; aracı asistan kendisi seçer:",
+    "copy": "Kopyala",
+    "copyCurl": "curl olarak kopyala",
+    "tryHeading": "Deneyin",
+    "tryLead": "Herkese açık uç noktaya gerçek bir çağrı: önce oturum, sonra araç. Altında, sunucumuzun birkaç dakika önce tam bu çağrıya verdiği yanıt.",
+    "tryRequest": "İstek",
+    "tryResponse": "Yanıt",
+    "tryAsOf": "Yanıt zamanı: {time}",
+    "tryError": "Şu anda yeni bir yanıt yok. Canlı bir yanıt görmek için yukarıdaki isteği çalıştırın.",
+    "argsLabel": "Bağımsız değişkenler",
+    "askLabel": "Şöyle sorun:",
+    "schemaLabel": "Girdi şeması",
+    "otherGroup": "Diğer araçlar",
+    "newHeading": "Sözleşmedeki yenilikler",
+    "newLine": "Sürüm {version}, {date}",
+    "newTools": "değişti:",
+    "contract5": "Çok fazla istek JSON-RPC {code} hatasıyla reddedilir; bekleyip yeniden gönderin.",
+    "contract6": "Süresi dolmuş bir oturum {code} hatasıyla reddedilir; initialize ile yeni bir oturum başlatın.",
+    "ask": {
+      "check_autobahn_traffic": "Münih ile Nürnberg arasında A9'da şu anda trafik sıkışıklığı var mı?",
+      "find_cheapest_fuel": "Kassel yakınlarında motorin şu anda en ucuz nerede?",
+      "find_fuel_station": "Würzburg ana tren istasyonu yakınında hangi benzin istasyonu açık?",
+      "find_parking": "Köln ana tren istasyonu yakınında bir otoparkta boş yer var mı?",
+      "check_road_status": "Dresden çevresindeki yollarda kapanma var mı?",
+      "find_roadworks_ahead": "Gelecek hafta A3'te hangi yol çalışmaları planlanıyor?",
+      "find_charging_station": "Leipzig'de 150 kW ile nerede hızlı şarj edebilirim?",
+      "find_hydrogen_station": "Stuttgart'a en yakın hidrojen istasyonu nerede?",
+      "find_speed_cameras": "Bielefeld'den geçen yolumda sabit hız kameraları nerede?",
+      "find_place": "Garmisch-Partenkirchen tam olarak nerede?",
+      "find_poi": "Erfurt ana tren istasyonu yakınında eczane var mı?",
+      "find_address": "Berlin'de Unter den Linden 77 nerede?",
+      "describe_location": "50,94, 6,96 noktasında ne var?",
+      "find_nearby": "Münster ana tren istasyonu yakınında ne var: şarj, otopark, duraklar?",
+      "find_sharing": "Hamburg Dammtor yakınında paylaşımlı bisiklet var mı?",
+      "get_driving_rules": "Kamyonlar için pazar günü sürüş yasağı ne zaman geçerli?",
+      "check_transit_disruption": "Bavyera'da otobüsler ve trenler şu anda ne kadar dakik?",
+      "check_weather_warnings": "Bugün Hamburg için hava uyarısı var mı?",
+      "get_train_departures": "Hannover ana tren istasyonundan sonraki trenler ne zaman kalkıyor?",
+      "get_departures": "Leipzig Augustusplatz'tan sonraki tramvay ne zaman kalkıyor?",
+      "check_station_facilities": "Frankfurt ana tren istasyonundaki asansörler çalışıyor mu?",
+      "describe_station": "Nürnberg ana tren istasyonu nasıl: peronlar, asansörler, kalkışlar?",
+      "watch_situation": "Hamburg yakınındaki A7 yeniden açıldığında bana haber ver.",
+      "stop_watch": "A7'yi izlemeyi bırak."
+    }
+  },
+  "bizPage": {
+    "title": "İşletmeler için ViaFrei",
+    "lead": "Tüm Almanya'dan açık mobilite verileri, özenle birleştirilmiş ve her zaman kaynağıyla — sistemlerinizin ve asistanlarınızın sorabileceği tek bir adres olarak.",
+    "casesHeading": "İşletmeler ViaFrei'yi ne için kullanır",
+    "u1t": "Lojistik ve filolar",
+    "u1": "Planlanan güzergâhtaki otoyollarda yol çalışmaları ve kapanmalar, güzergâh boyunca kamyon park yerleri ve trafik kurallarından pazar günü sürüş yasağı.",
+    "u1q": "A7'de Würzburg ile Ulm arasında hangi kapanmalar var?",
+    "u1a": "A7'de {to} tarihine kadar {n} kapanış var; Würzburg ile Ulm arasında bunlardan biri {a} – {b}, diğeri {b} – {c}, iki yönde de.",
+    "u2t": "Şarj altyapısı",
+    "u2": "Ağın nerede seyrek olduğu ve hangi noktaların şu anda boş olduğu — kökenini doğruladığımız işletmeci akışlarından. Kayıtlı doluluk geçmişi bir iş birliğinin parçası olarak planlanmaktadır.",
+    "u2q": "Kassel yakınında en az 150 kW'lık hızlı şarj istasyonları nerede?",
+    "u2a": "Evet: {s1}, {a1}, {m} m uzaklıkta, {kw1} kW'a kadar, durum bildiren {total} noktadan {free} tanesi boş; ayrıca {s2}, {a2}, {kw2} kW'a kadar, anlık durum yok.",
+    "u3t": "Turizm, oteller ve etkinlik mekânları",
+    "u3": "Misafirler için kendi dillerinde varış bilgisi: otoyol durumu, tren kalkışları, varış noktasında park ve şarj.",
+    "u3q": "Otelim Garmisch-Partenkirchen'de – misafirler bugün bir hava uyarısı beklemeli mi?",
+    "u3a": "Hayır: {place} için şimdi ve sonraki {hours} saat için resmî bir DWD uyarısı yok — bu, yolun geri kalanı için bir güvence değil.",
+    "u4t": "Navigasyon, harita ve mobilite uygulamaları",
+    "u4": "Birçok ayrı sağlayıcı entegrasyonu yerine tek bir MCP adresi — ve planlanan bir iş birliğinin parçası olarak, lisansı analize izin veren kaynakların kayıtlı geçmişi.",
+    "u4q": "Önümüzdeki günlerde A3'te hangi yol çalışmaları planlı?",
+    "u4a": "{from} ile {to} arasında A3'te {n} çalışma planlı, bunlardan biri {a} – {b}: 4 şeritten 1'i kapalı, {speed} km/s, {until} tarihine kadar.",
+    "u5t": "Sigortacılar ve mobilite araştırması",
+    "u5": "Lisansı buna izin veren kaynakların ölçüm arşivi: belirli bir anda bir kesimdeki durum neydi? Geçmişin sorgulanması bir iş birliğinin parçası olarak planlanmaktadır; şu anda geçerli olanları, örneğin bir eyaletin resmî uyarılarını açık hizmet bugün zaten yanıtlıyor.",
+    "u5q": "A8'de şu anda hangi kapanmalar geçerli?",
+    "u5a": "A8'de {to} tarihine kadar {n} kapanış var; bunlardan biri {a} – {b} Münih yönünde, biri de A81'e bağlantıdaki {c} kavşağında.",
+    "u6t": "Belediyeler ve eyaletler",
+    "u6": "Kendi yayımladıkları verilere ülke çapında bir bakış — ve eklememiz gereken veri akışlarını önermenin bir yolu.",
+    "u6q": "Köln için şu anda resmî bir hava uyarısı var mı?",
+    "u6a": "Hayır: {place} için resmî bir DWD uyarısı yok — ne şimdi ne de sonraki {hours} saat içinde.",
+    "futureLabel": "planlandı",
+    "coopHeading": "İş birliği ne demek",
+    "price": "Fiyatlar istek üzerine.",
+    "contactHeading": "Konuşalım",
+    "contactLead": "Bize yazın — iki iş günü içinde yanıtlıyoruz.",
+    "postal": "Posta adresi: künyeye bakın.",
+    "noForm": "Form yok, veritabanı yok: sadece bir e-posta.",
+    "licenceScope": "İşletmelere sunduklarımız her kaynağın lisansına göre belirlenir: yalnızca tüketicinin bilgilendirilmesi için izin verilen veriler buna dahil değildir; “Aynı Lisansla Paylaş” lisanslı verileri yalnızca aynı lisansla aktarırız.",
+    "licenceScopeCredits": "Tüm kaynak belirtimleri şu bölümde:",
+    "heroPilot": "Pilot proje başlatın",
+    "heroLive": "Canlı yanıtı görün",
+    "heroSteps": "Bir asistan ViaFrei ile nasıl yanıt verir",
+    "proofHeading": "Veritabanından canlı",
+    "proofLead": "Aşağıdaki her sayı bu sayfa için veritabanımızdan, ait olduğu zamanla birlikte okundu. Okunamayan bir sayı eksik olarak gösterilir, asla daha eski bir sayı olarak değil.",
+    "proofError": "Bu sayı şu anda okunamadı.",
+    "proofCatalogue": "{version} sürümüne göre sayım.",
+    "proofSources": "kaynağı belirtilen veri kaynağı",
+    "proofTools": "asistanlar için araç",
+    "proofMotorways": "kendi sayfası olan otoyol",
+    "proofLanguages": "dil",
+    "caseShow": "Şu anda ne gösterdiğini görün",
+    "howHeading": "Nasıl çalışır",
+    "how1": "Kurumlar ve işletmeciler açık veri yayımlar: trafik, tarifeler, şarj, otopark, hava uyarıları.",
+    "how2": "Bunları gece gündüz toplar, Almanya'nın tek bir resminde birleştirir ve her ölçümü zamanı ve kaynağıyla saklarız.",
+    "how3": "Sistemleriniz ve asistanlarınız tek bir uç noktaya sorar ve kaynağını belirten bir yanıt alır.",
+    "howData": "Açık veri",
+    "howYou": "Asistanınız veya sisteminiz",
+    "licenceHeading": "Bir şirket hangi verileri nasıl kullanabilir",
+    "licenceColClass": "Lisans sınıfı",
+    "licenceColCount": "Kaynaklar",
+    "licenceColUse": "Bir şirketin yapabilecekleri",
+    "lic": {
+      "open": {
+        "name": "Açık",
+        "use": "Serbestçe kullanılabilir ve aktarılabilir."
+      },
+      "attribution": {
+        "name": "Atıf",
+        "use": "Kaynak satırıyla birlikte kullanılabilir ve aktarılabilir."
+      },
+      "shareAlike": {
+        "name": "Aynı lisansla paylaş",
+        "use": "Kullanılabilir; türetilen veri yalnızca aynı lisansla aktarılır."
+      },
+      "terms": {
+        "name": "İşletmeler için henüz netleşmedi",
+        "use": "Henüz işletmelere yönelik bir teklifin parçası değil: yayıncı kullanım koşulu yayımlamıyor veya koşulları henüz sunmadığımız bir sözleşme gerektiriyor."
+      },
+      "consumerOnly": {
+        "name": "Yalnızca tüketici bilgilendirmesi",
+        "use": "Şirketlere yönelik hiçbir teklifin parçası değildir."
+      },
+      "own": {
+        "name": "ViaFrei içeriği",
+        "use": "Bir iş birliğine dahildir."
+      }
+    },
+    "coopPilotTitle": "Pilot proje",
+    "coopPilot": "Kendi sorunuz üzerinde birkaç hafta: kendi API anahtarınız, daha yüksek sınırlar ve bize doğrudan bir hat.",
+    "coopDataTitle": "Veri ortaklığı",
+    "coopData": "Lisansı izin veren kaynaklar için saklanan geçmişten dışa aktarımlar ve kendi izlemeleriniz ile kanallarınız.",
+    "coopPublisherTitle": "Veri yayıncısı",
+    "coopPublisher": "Hareketlilik verisi yayımlıyorsunuz: biz onu her yapay zekâ asistanına, sizi kaynak olarak belirterek ulaştırır ve üzerine birlikte yeni araçlar kurarız."
+  },
+  "fuelPage": {
+    "title": "Eyaletlere göre akaryakıt istasyonları – fiyatlı bir seçki",
+    "lead": "Her eyalette en fazla üç istasyon, en ucuz Süper E10 önce. Gözlediğimiz istasyonlar arasından seçilmiştir – yani eyaletin en ucuzları olmayabilir. Her fiyat, gözlediğimiz saatle birlikte gösterilir. Tüketicilere yönelik bir bilgi, tüm istasyonların listesi değildir.",
+    "back": "Ana sayfaya dön",
+    "unavailable": "Eyaletlere göre istasyon listesi şu anda kullanılamıyor.",
+    "boardHead": "Her eyalette en fazla üç istasyon",
+    "hereHead": "{place} için en ucuz açık akaryakıt istasyonları",
+    "hereHeadNone": "Bulunduğunuz yerdeki en ucuz açık akaryakıt istasyonları",
+    "hereNone": "Şu anda yerinizi bilmiyoruz. Aşağıdan bir şehir ya da başlangıç sayfasında yerinizi seçin; fiyatlar orada.",
+    "hereNoScript": "Fiyatlar bu bölüm görünür olunca JavaScript ile yüklenir. JavaScript olmadan yerin sayfasındadır.",
+    "hereLoading": "Fiyatlar yükleniyor …",
+    "hereFailed": "Fiyatlar şu anda alınamıyor.",
+    "cities": "Şehirler",
+    "citiesLead": "Her şehrin fiyatları kendi sayfasında."
+  },
+  "quote": {
+    "open": "“",
+    "close": "”"
+  },
+  "place": {
+    "change": "Yeri değiştir",
+    "how": {
+      "exact": "yuvarlatılmış, yaklaşık 500 m",
+      "approx": "yaklaşık (internet bağlantınıza göre)",
+      "chosen": "seçildi",
+      "saved": "kaydedildi",
+      "rough": "yaklaşık (tarayıcı)"
+    },
+    "germany": "Tüm Almanya",
+    "outsideFar": "Konumunuz Almanya dışında. Tüm Almanya'yı gösteriyoruz – kartlarını görmek için bir yer seçin.",
+    "choose": "Bir yer seçin",
+    "loaded": "{place} için kartlar yüklendi",
+    "failed": "Bu yer şu anda yüklenemedi.",
+    "noGeo": "Tarayıcı konum vermedi – lütfen bir yer seçin.",
+    "locating": "Konum belirleniyor …",
+    "geoNo": "Tarayıcı konum vermedi: {why}. Gösterilen: {place}.",
+    "geoDenied": "erişim engellendi – adresin yanındaki simgeden izin verin",
+    "geoUnavailable": "cihazınız konumu belirleyemedi",
+    "geoTimeout": "15 sn içinde yanıt yok",
+    "geoApprox": "Tarayıcınız konumunuzu yalnızca yaklaşık olarak biliyor (1 km'den fazla).",
+    "why": "Hemen yanınızdaki şarj istasyonları, benzinlikler ve uyarılar için – tam konumunuz cihazınızda kalır.",
+    "kept": "Tarayıcınız bu yeri hatırlıyor",
+    "sheet": {
+      "useLocation": "Konumumu kullan",
+      "forget": "Yeri unut"
+    },
+    "privacy": {
+      "title": "Yeriniz sizde kalır.",
+      "body": "ViaFrei hesap ya da profil oluşturmaz ve yerinizi saklamaz. Tarayıcınız bu cihazda bir yeri yalnızca onu yer çubuğunda seçtiğinizde hatırlar – bir yer ya da adres, “Konumumu kullan” veya “Tüm Almanya” – ve son seçtiğiniz yerleri de; bu sayfa hatırlanan bir yeri kullandığı sürece bu, yer çubuğunun altında yazar ve “Yeri unut” onu hemen siler. Sayfa konumunuzu yalnızca “Konumumu kullan”ı seçtiğinizde sorar; tarayıcınızda buna zaten kalıcı izin verdiyseniz bu sayfa konumu sormadan okur ve hiçbir şey saklamaz. Konumunuz cihazınızda yaklaşık 500 m'lik bir alana yuvarlanır; bu alan için sokak ya da yer adını sunucumuz bu alandan çıkarır; bu adı her alan için en fazla bir saat, sizinle hiçbir bağlantı kurmadan çalışma belleğinde tutar ve saklamaz. Yalnızca bu tıklamadan hemen sonra ve yalnızca tarayıcınız konumunuzu en fazla 150 m hassasiyetle bildirirse, sayfa bir istasyonda, bir akaryakıt istasyonunda, bir şarj istasyonunda veya bir otoyol dinlenme tesisinde olup olmadığınızı kontrol etmek için kesin konumu sunucumuza bir kez gönderir; orada ne saklanır ne de günlüğe kaydedilir. Burada seçilen bir istasyonun, yerin ya da adresin adını da aynı şekilde en fazla bir saat çalışma belleğinde tutar. IP adresiniz yalnızca çalışma belleğinde, yaklaşık konum için kullanılır ve bunun için saklanmaz. Bu, yer çubuğu olan her sayfada, istasyon listesinde de geçerlidir. İstasyon listesinde bu şekilde belirlenen yer yalnızca en yakın istasyonları ve durakları göstermek için kullanılır.",
+      "more": "Gizlilik politikasında daha fazlası"
+    },
+    "geoipCredit": "IP adresinden yaklaşık yer:",
+    "pageTitle": "{place}: kapanışlar, yol çalışmaları, trafik – ViaFrei",
+    "pageDescription": "{place} içinde trafik sıkışıklığı, yol çalışmaları ve kapanmalar; ayrıca otopark, şarj istasyonları, yakıt fiyatları ve hava uyarıları – canlı, kaynağıyla.",
+    "pageLead": "ViaFrei’ın şu anda {place} hakkında bildiği her şey – açık verilerden, her rakamın kaynağıyla.",
+    "pageMissing": "Bu yeri tanımıyoruz.",
+    "geoipModified": "özet düzenlendi",
+    "loadingCards": "Bu yerin kartları yükleniyor …",
+    "reloadCards": "Kartları görmek için sayfayı yeniden yükleyin",
+    "fuelUnavailable": "Fiyatlar şu anda yeniden sorulamadı. Burada saatiyle birlikte bilinen son fiyat var.",
+    "motorway": {
+      "why": "Bu otoyolda çevrenizde olanlar için – tam konumunuz cihazınızda kalır.",
+      "radius": "Yarıçap",
+      "radiusOther": "İstediğiniz yarıçapı seçin (1–100 km)",
+      "updating": "güncelleniyor …",
+      "failed": "Güncellenemedi – önceki görünüm kalıyor.",
+      "zoomGroup": "Haritayı yakınlaştır – her adım bir yarıçaptır",
+      "zoomIn": "Yakınlaştır – yarıçap {r} km",
+      "zoomOut": "Uzaklaştır – yarıçap {r} km",
+      "zoomInEnd": "Yakınlaştır – en küçük yarıçapa ulaşıldı",
+      "zoomOutEnd": "Uzaklaştır – en büyük yarıçapa ulaşıldı",
+      "filter": {
+        "legend": "Göster",
+        "all": "Tümünü göster",
+        "none": "Hiçbirini gösterme",
+        "allLabel": "Tümünü göster – tüm türleri seç",
+        "noneLabel": "Hiçbirini gösterme – tüm türlerin seçimini kaldır",
+        "save": "Seçimi hatırla",
+        "saved": "Seçim bu cihazda hatırlanıyor.",
+        "forget": "Unut",
+        "everything": "Tüm veriler",
+        "nothing": "Hiçbir şey seçilmedi – en az bir tür seçin.",
+        "sum": "{kinds}: {n}",
+        "sumR": "{r} km çapında {kinds}: {n}",
+        "entriesOne": "{n} kayıt",
+        "entriesFew": "{n} kayıt",
+        "entriesMany": "{n} kayıt",
+        "entriesOther": "{n} kayıt",
+        "entriesZero": "{n} kayıt",
+        "ampel": "Trafik ışığı hâlâ her şeyi değerlendiriyor – bazı gerekçeleri şu anda gizli."
+      }
+    },
+    "pageDescriptionRoads": "{place}: {roads} üzerinde şu an kapanışlar ve yol çalışmaları – ayrıca trafik, otopark, şarj ve uyarılar, kaynağıyla canlı.",
+    "topics": {
+      "legend": "Konular",
+      "apply": "Uygula",
+      "none": "Hiç konu seçilmedi.",
+      "shown": "Gösterilen konular: {n}/{total}",
+      "attention": "Gizli, ama şu an önemli: {topic} – göster"
+    },
+    "head": {
+      "live": "Canlı:",
+      "scope": "Alan",
+      "search": "Yer ara",
+      "searchHint": "Adres, posta kodu, semt veya istasyon",
+      "locate": "Konumumu kullan",
+      "confirmQ": "Doğru yer mi?",
+      "yes": "Evet",
+      "other": "Başka yer",
+      "confirmed": "onaylandı",
+      "updated": "{place} için güncellendi",
+      "outside": "konum Almanya dışında",
+      "germanyHow": "tüm Almanya seçildi",
+      "germanyNote": "Tüm Almanya seçildi: ülke genelindeki tüm veriler hemen aşağıda – her biri zamanı ve kaynağıyla."
+    },
+    "bar": {
+      "label": "Konum seçin veya arayın",
+      "close": "Kapat",
+      "hint": "Yer, adres, otoyol, istasyon ara …",
+      "recent": "Son seçilenler",
+      "popular": "Popüler",
+      "drop": "{place} kaldır",
+      "found": "Öneriler: {n}",
+      "how": "Listeden bir yer, adres veya istasyon oradaki kartları gösterir; Enter tüm sitede arar."
+    }
+  },
+  "newsPage": {
+    "readMore": "Devamını oku",
+    "title": "Haberler",
+    "lead": "ViaFrei'de neler yeni, sırada ne var ve şu anda elimizdeki uzun kapanmalar — her biri kaynağıyla.",
+    "filterLabel": "Göster",
+    "chipNew": "Yeni",
+    "chipPlans": "Planlar",
+    "chipTraffic": "Trafik",
+    "newHeading": "ViaFrei'de yeni",
+    "plansHeading": "Planlar",
+    "plansLead": "Sırada eklemeyi düşündüklerimiz. Planlanan, planlanan demektir: bunların hiçbiri henüz ViaFrei'de yok ve tarih vaat etmiyoruz.",
+    "trafficHeading": "Uzun kapanmalar",
+    "trafficLead": "Kendi verilerimizden: bitişi belirtilmiş, en az bir gün süren kapanmalar. Her biri bitiş zamanına ulaşıldığı anda kaybolur.",
+    "badgeNew": "Yeni",
+    "badgePlan": "Planlandı",
+    "askLabel": "Asistanınıza sorun",
+    "askLabelPlan": "Hazır olduğunda asistanınıza sorun",
+    "plannedNote": "henüz tarih yok",
+    "connect": "ViaFrei'yi bağlayın",
+    "sources": "Kaynak",
+    "feed": "Atom akışı olarak haberler",
+    "released": "Sürüm {v} · {d}",
+    "teaserHeading": "ViaFrei'de yeni",
+    "teaserAll": "Tüm haberler",
+    "trafficError": "Trafik bildirimleri şu anda yüklenemedi.",
+    "noEntries": "Bu dilde henüz kayıt yok."
+  },
+  "examplesPage": {
+    "title": "Tüm örnek sorular",
+    "lead": "ViaFrei'nin bu sitede örnek olarak gösterdiği her soru – onu yanıtlayan araç ve yanıtıyla birlikte, alanlara göre.",
+    "live": "ViaFrei'nin soruyu düzenli olarak kendisinin sorduğu yerlerde burada en yeni yanıt görünür; diğer her yerde tarihiyle birlikte kaydedilmiş yanıt.",
+    "toc": "Alanlar",
+    "domain": {
+      "transit": "Otobüs, tren ve istasyon",
+      "roads": "Yollar ve otoyollar",
+      "parking": "Otopark",
+      "charging": "Şarj",
+      "fuel": "Yakıt",
+      "more": "Yerler ve takipler"
+    },
+    "question": "Soru {n}",
+    "fuelNote": "Yakıt fiyatlarıyla ilgili örnek yanıtları yalnızca tarihleriyle ve yalnızca iki yerde gösteriyoruz: {home} ve {connect}.",
+    "fuelHome": "ana sayfada",
+    "fuelConnect": "bağlanma sayfasında"
+  },
+  "seo": {
+    "connectTitle": "Trafik verileri ChatGPT ve Claude'da, MCP ile – ViaFrei",
+    "connectDescription": "Tek adres, anahtar yok: ViaFrei'yi Claude, ChatGPT, Copilot, Cursor, Gemini CLI veya Le Chat'e bağlayın; trafik, tren ve otoparkı canlı sorun.",
+    "motorwayTitle": "{road} otoyolu: trafik, kapanmalar, çalışmalar – ViaFrei",
+    "motorwayDescription": "{road} otoyolu, Almanya: yöne göre sıkışıklık, kapanmalar ve yol çalışmaları açık verilerden canlı, planlanan kapanmalar ve otoyol kuralları.",
+    "motorwaysTitle": "Otoyol trafik ve yol çalışmaları şimdi – Almanya – ViaFrei",
+    "motorwaysDescription": "Almanya'daki tüm otoyollar canlı: trafik, kapanışlar, yol çalışmaları, dolambaçlar, otopark ve şarj; harita ve her otoyol için bir sayfa.",
+    "motorwayH1": "{road} otoyolu şimdi",
+    "motorwayLead": "{road} otoyolunda sıkışıklık, kapanmalar ve yol çalışmaları açık verilerden, her biri kaynağı ve saatiyle.",
+    "motorwaysH1": "Almanya'daki otoyollar",
+    "motorwaysLead": "Her otoyol güncel mesajlarıyla. Sıkışıklık, kapanmalar, çalışmalar ve güzergâh için birini seçin.",
+    "stationsTitle": "Almanya'daki tren istasyonları: peronlar, olanaklar – ViaFrei",
+    "stationsDescription": "Her Deutsche Bahn istasyonu: yüksekliği ve basamaksız erişimiyle peronlar, olanaklar, hareket kısıtlılarına hizmet ve 300 m içinde neler olduğu – açık verilerden.",
+    "stationsH1": "Almanya'daki tren istasyonları",
+    "crumbStations": "İstasyonlar",
+    "stationTitle": "{name}: kalkışlar, peronlar, asansörler, aksaklıklar – ViaFrei",
+    "stationDescription": "{name}: sonraki kalkışlar canlı ve hat numarasıyla, hangi asansör ve yürüyen merdivenlerin şu an çalıştığı, basamaksız peronlar, olanaklar ve çevre – açık verilerden, kaynak ve tarihle.",
+    "crumbHome": "Ana sayfa",
+    "crumbMotorways": "Otoyollar",
+    "linksMotorways": "Otoyollar canlı",
+    "linksPlaces": "Şehirler canlı",
+    "allMotorways": "Tüm otoyollar",
+    "allPlaces": "Diğer şehirler",
+    "imprintDescription": "viafrei.de künyesi: yapay zekâ asistanları için gerçek zamanlı mobilite platformu ViaFrei'yi kimin işlettiği ve işletmeciye nasıl ulaşılacağı.",
+    "privacyDescription": "viafrei.de gizlilik politikası: ViaFrei neyi saklar, neyi saklamaz, onay nasıl işler ve hangi haklara sahipsiniz – hesap yok, profil yok.",
+    "termsDescription": "ViaFrei kullanım koşulları: Toll Collect GmbH'nin tır park yeri doluluğu gibi verileri hangi koşullarla kullanabileceğiniz.",
+    "businessTitle": "Şirketler için canlı hareketlilik verisi API'si",
+    "businessDescription": "Almanya genelinde trafik, toplu taşıma, şarj ve otopark verisi, kaynaklarıyla tek bir canlı uç noktada. Bir pilot projeyle başlayın.",
+    "developersTitle": "Alman hareketlilik verisi için MCP sunucusu",
+    "developersDescription": "Herhangi bir MCP istemcisini bir dakikada bağlayın: istemci başına hızlı başlangıç, yanıtıyla gerçek bir çağrı ve şemasıyla her araç."
+  },
+  "ask": {
+    "live": "ViaFrei'den canlı yanıt",
+    "asOf": "Veri saati {time}",
+    "tool": "Araç",
+    "question": "Soru",
+    "answer": "Yanıt",
+    "cta": "Asistanınıza sorun",
+    "roads": {
+      "question": "A8'de şu anda trafik sıkışıklığı var mı?",
+      "clear": "{road} üzerinde şu anda bildirilen sıkışıklık yok. Yürürlükte: {closures} kapanma ve {works} yol çalışması.",
+      "jams": "{road} üzerinde {jams} sıkışıklık bildirildi; en uzunu {delay} dk kaybettiriyor. Ayrıca {closures} kapanma ve {works} yol çalışması.",
+      "jamsNoDelay": "{road} üzerinde {jams} sıkışıklık bildirildi. Ayrıca {closures} kapanma ve {works} yol çalışması."
+    },
+    "lorryPark": {
+      "question": "A3'te kaç kamyon otoparkı var ve kaçı doluluk bilgisini yayımlıyor?",
+      "listed": "{road} boyunca kamyon otoparkları: {total}; doluluk bilgisi yayımlanan: {live}."
+    },
+    "hydrogen": {
+      "question": "Hidrojenli bir kamyon Frankfurt am Main yakınında nerede yakıt alabilir?",
+      "near": "{name}, {address}: kamyon ve otobüsler için 350 bar, {km} km uzaklıkta.",
+      "none": "{km} km içinde kamyonlar için hidrojen istasyonu kayıtlı değil."
+    },
+    "weatherLand": {
+      "question": "Bavyera'da (Bayern) şu anda resmî bir hava durumu uyarısı yürürlükte mi?",
+      "none": "{place}: Yürürlükte resmî DWD uyarısı yok; şimdi ve sonraki {hours} saat için kontrol edildi.",
+      "warn": "{place}: Yürürlükte {count} resmî uyarı var, en yüksek seviye 4 üzerinden {level}, aralarında „{event}“."
+    },
+    "transit": {
+      "question": "Kuzey Ren-Vestfalya'da (Nordrhein-Westfalen) otobüs ve trenler şu anda ne kadar dakik?",
+      "share": "{region}: son {minutes} dakikada gecikmeli sefer oranı %{pct} ({trips} seferden {late}).",
+      "thin": "{region}: son {minutes} dakikada yalnızca {trips} sefer gözlendi – oran için çok az."
+    },
+    "charging": {
+      "question": "Leipzig'de en az 150 kW ile nerede şarj edebilirim?",
+      "live": "{operator}, {address}: {kw} kW'a kadar, {km} km uzakta – {total} şarj noktasından {free} boş.",
+      "liveNoOp": "{address}: {kw} kW'a kadar, {km} km uzakta – {total} şarj noktasından {free} boş.",
+      "noStatus": "{operator}, {address}: {kw} kW'a kadar, {km} km uzakta. İşletmeci şu anda güncel doluluk bildirmiyor.",
+      "noStatusNoOp": "{address}: {kw} kW'a kadar, {km} km uzakta. İşletmeci şu anda güncel doluluk bildirmiyor.",
+      "none": "Yakında en az 150 kW'lık kayıtlı şarj istasyonu yok."
+    },
+    "parking": {
+      "question": "Münster Ana Garı'nda (Münster Hbf) şu anda boş yeri olan otopark nerede?",
+      "free": "{name}: {total} yerden {free} boş, {km} km uzakta.",
+      "none": "Şu anda yakındaki hiçbir otopark boş yer bildirmiyor.",
+      "unpublished": "Yakındaki otoparkların işletmecileri anlık doluluk yayımlamıyor; bu yüzden boş yer olup olmadığı bilinmiyor."
+    },
+    "roadsNear": {
+      "question": "Buradaki yollarda şu anda neler oluyor?",
+      "clear": "{km} km çevrede şu anda bildirilen bir şey yok: sıkışıklık yok, kapanma yok.",
+      "noJams": "{km} km çevrede sıkışıklık yok. Yürürlükte: {closed} kapanma ve {restricted} kısıtlama.",
+      "jams": "{km} km çevrede: {jams} sıkışıklık, {closed} kapanma ve {restricted} kısıtlama."
+    },
+    "weather": {
+      "question": "Burada resmî bir hava durumu uyarısı var mı?",
+      "none": "Yürürlükte resmî DWD uyarısı yok; şimdi ve sonraki {hours} saat için kontrol edildi.",
+      "warn": "Yürürlükte {count} resmî uyarı var, en yüksek seviye 4 üzerinden {level}, aralarında „{event}“."
+    },
+    "nearby": {
+      "question": "Buraya yakın neler var?",
+      "near": "{km} km'ye kadar: {station} istasyonu; şarj istasyonu: {charging}, otopark: {parking} (her türden en fazla üç gösterilir).",
+      "noStation": "{km} km'ye kadar istasyon yok; şarj istasyonu: {charging}, otopark: {parking} (her türden en fazla üç gösterilir).",
+      "none": "{km} km'ye kadar ne istasyon ne şarj istasyonu ne de otopark kayıtlı."
+    },
+    "poi": {
+      "question": "En yakın eczane nerede?",
+      "found": "{name}, {street} – {km} km uzakta.",
+      "foundNoStreet": "{name} – {km} km uzakta.",
+      "none": "5 km çevrede kayıtlı eczane yok."
+    },
+    "chargingNear": {
+      "question": "En yakın şarj istasyonu nerede?",
+      "live": "{operator}, {address}: {kw} kW'a kadar, {km} km uzakta – {total} şarj noktasından {free} boş.",
+      "liveNoOp": "{address}: {kw} kW'a kadar, {km} km uzakta – {total} şarj noktasından {free} boş.",
+      "noStatus": "{operator}, {address}: {kw} kW'a kadar, {km} km uzakta. İşletmeci şu anda güncel doluluk bildirmiyor.",
+      "noStatusNoOp": "{address}: {kw} kW'a kadar, {km} km uzakta. İşletmeci şu anda güncel doluluk bildirmiyor.",
+      "none": "Yakında kayıtlı şarj istasyonu yok."
+    },
+    "offerOsm": "Bu bilgiler, OpenStreetMap'ten türetilmiş veritabanımızdan gelir. ODbL 1.0 lisansıyla tam, makinece okunabilir bir kopyayı (CSV) istek üzerine ücretsiz gönderiyoruz – iletişim bilgileri {link} sayfasında.",
+    "offerDb": "Bu bilgiler, “{db}”tan türetilmiş veritabanımızdan gelir. Herkese açık kullandığımız veritabanını – yayıncının gizli olarak işaretlediği kayıtlar hariç – ODbL 1.0 lisansıyla makinece okunabilir bir kopya (CSV) olarak istek üzerine ücretsiz gönderiyoruz – iletişim bilgileri {link} sayfasında.",
+    "offerLink": "Künye"
+  },
+  "connectNote": {
+    "text": "Yapay zekâ asistanınız bu yanıtı yalnızca ViaFrei bağlıyken verir.",
+    "link": "ViaFrei nasıl bağlanır",
+    "guide": "Tüm istemciler için eksiksiz kılavuz",
+    "clients": "Adım adım",
+    "copy": "Adresi kopyala",
+    "copied": "Kopyalandı"
+  },
+  "next": {
+    "label": "Devam",
+    "ask": "Yapay zekânıza sorun: {place}",
+    "motorways": "Tüm otoyollar"
+  },
+  "search": {
+    "label": "ViaFrei'de ara",
+    "placeholder": "Yer, otoyol, istasyon, sayfa …",
+    "submit": "Ara",
+    "title": "Arama",
+    "description": "ViaFrei'deki yerleri, otoyolları, kavşakları, istasyonları ve sayfaları bulun.",
+    "hint": "En az iki karakter yazın.",
+    "alt": "Kartları burada göster",
+    "partial": "Bazı sonuçlar gösterilmiyor: bir kaynak zamanında yanıt vermedi.",
+    "allResults": "Tüm sonuçlar",
+    "showAll": "Bu türdeki tüm sonuçlar",
+    "prev": "Önceki",
+    "next": "Sonraki",
+    "pageOf": "Sayfa {page} / {pages}",
+    "pager": "Sonuç sayfaları",
+    "none": "“{q}” için bir şey bulamadık.",
+    "nearest": "Benzer yazılış:",
+    "motorwayIndex": "Tüm otoyollar",
+    "kind": {
+      "motorway": "Otoyollar",
+      "road": "Federal ve eyalet yolları",
+      "place": "Yerler",
+      "station": "İstasyonlar",
+      "exit": "Çıkışlar ve kavşaklar",
+      "area": "Bölgeler ve adresler",
+      "poi": "İlgi çekici yerler",
+      "page": "Sayfalar",
+      "news": "Haberler"
+    }
+  },
+  "header": {
+    "how": "Listeden bir yer, adres veya nokta tüm sayfalarda yeriniz olur; bir otoyol, istasyon veya sayfa açılır. Enter tüm sitede arar.",
+    "makeMine": "Bunu yerim yap"
+  },
+  "statePages": {
+    "title": "Almanya eyaletleri: otobanlar şimdi, şehirler – ViaFrei",
+    "description": "Almanya'nın 16 eyaleti bir bakışta: otobanlarda şu anki kapanışlar, trafik sıkışıklıkları ve yol çalışmaları, yüzölçümü, başkent, komşu eyaletler ve en büyük şehirler.",
+    "h1": "Almanya'nın 16 eyaleti",
+    "crumb": "Eyaletler"
+  },
+  "ai": {
+    "placeWarn": "{place} için şu anda hava durumu uyarısı var mı?",
+    "placePark": "{place} içinde şu anda nerede park edebilir veya şarj edebilirim?",
+    "landRoads": "{place} içinde şu anda en çok etkilenen otoyollar hangileri?",
+    "roadUsual": "{road} üzerindeki sıkışıklıklar genellikle ne kadar sürer?",
+    "roadPlans": "{road} üzerinde hangi yol çalışmaları ve kapanışlar planlanıyor?",
+    "open": "{app} içinde sor",
+    "copy": "Soruyu kopyala",
+    "copied": "Kopyalandı"
+  },
+  "star": {
+    "add": "Sayfayı kaydet",
+    "remove": "Kaydedildi",
+    "neu": "yeni",
+    "gone": "Son ziyaretinizden bu yana kaldırıldı: {list}",
+    "longer": "daha uzun",
+    "install": "Ana ekrana ekle",
+    "commute": "Güzergâhınız"
+  },
+  "pwa": {
+    "offline": "{t} itibarıyla, çevrimdışı"
+  }
+}

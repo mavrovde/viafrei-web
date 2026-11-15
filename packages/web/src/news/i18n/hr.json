@@ -1,0 +1,282 @@
+{
+  "blitzer-autobahnseiten": {
+    "title": "Mjesta kontrole brzine na stranicama autocesta",
+    "body": "Stranica autoceste i stranice njezinih čvorova sada prikazuju i objavljena mjesta kontrole brzine duž trase, svako s čvorom kojemu je dodijeljeno – iz službenih popisa gradova, a gdje nijedan grad ne objavljuje popis, iz OpenStreetMapa. Podaci služe samo za planiranje prije putovanja ili tijekom zaustavljanja; kartica nosi napomenu prema § 23 Abs. 1c StVO.",
+    "ask": "Planiram putovanje autocestom A 5 kod Karlsruhea: gdje su tamo fiksni radari?"
+  },
+  "flixbus-flixtrain-abfahrten": {
+    "title": "FlixBus i FlixTrain u polascima",
+    "body": "Uz polaske lokalnog prijevoza ViaFrei sada prikazuje i autobuse FlixBusa i vlakove FlixTraina koji polaze u blizini stajališta, na stajalištu i na kartici kolodvora. Gdje FlixBus daje aktualnu prognozu, navedeno je očekivano vrijeme, inače vrijeme iz voznog reda. Rezervacije i cijene samo kod FlixBusa.",
+    "ask": "Kada polazi sljedeći FlixBus s Berlin ZOB?"
+  },
+  "blitzer-bottrop-essen-konstanz": {
+    "title": "Mjesta kontrole brzine u Bottropu, Essenu i Konstanzu",
+    "body": "ViaFrei sada poznaje i mjesta kontrole brzine koja objavljuju Bottrop, Essen i Konstanz: u Bottropu trenutačna mjerna mjesta, u Essenu ulice najavljenih mobilnih kontrola za tjedan, u Konstanzu fiksna mjerna mjesta grada. Podaci su namijenjeni samo planiranju prije vožnje ili tijekom stanke; svaki odgovor nosi napomenu prema § 23 Abs. 1c StVO.",
+    "ask": "Planiram put u Essen: gdje su ovaj tjedan kontrole?"
+  },
+  "aufzuege-u-bahnhoefe-berlin-brandenburg": {
+    "title": "Berlin i Brandenburg: dizala i ulazi na stanicama podzemne željeznice i tramvaja",
+    "body": "ViaFrei sada čita VBB-ov popis ulaza u stanice. Za svaku stanicu u Berlinu i Brandenburgu za koju popis navodi dizala navodi se koliko ima dizala i koliko ulaza s ulice te koliko ih ima dizalo — i na stanicama samo podzemne željeznice, poput Hermannplatza, koje nisu stanice DB-a. Popis kaže što je izgrađeno, a ne radi li dizalo upravo sada; ViaFrei navodi datum datoteke.",
+    "ask": "Ima li stanica podzemne željeznice Hermannplatz dizalo?"
+  },
+  "stadtbahn-stationen-unter-der-erde": {
+    "title": "Podzemne stanice gradske željeznice imaju vlastitu stranicu",
+    "body": "ViaFrei sada i podzemnim stanicama gradske brze željeznice (Stadtbahn) daje vlastitu stranicu stanice. Vozni red ne kaže leži li tramvajska stanica pod zemljom; ViaFrei to prepoznaje iz podataka OpenStreetMapa kada je ondje unutar 300 metara ucrtana podzemna stanica. Stranica navodi linije koje ondje staju i njihove sljedeće polaske, a kao izvor navodi OpenStreetMap.",
+    "ask": "Što sljedeće polazi s Neumarkta u Kölnu?"
+  },
+  "blitzer-standorte-planung": {
+    "title": "Lokacije radara za planiranje putovanja",
+    "body": "ViaFrei sada poznaje mjesta kontrole brzine koja objavljuju Aachen, Düsseldorf, Karlsruhe i Köln. Namijenjena su samo planiranju prije putovanja ili tijekom zaustavljanja: prema § 23 Abs. 1c StVO vozač ne smije koristiti aplikaciju koja prikazuje prometne kontrole. Svaki odgovor sadrži ovu napomenu.",
+    "ask": "Planiram putovanje u Düsseldorf: gdje su ondje fiksni radari?"
+  },
+  "parken-trier": {
+    "title": "Parkirališta u Trieru sa slobodnim mjestima",
+    "body": "ViaFrei sada uživo čita garaže i parkirališta gradskog poduzeća Triera (SWT) sa slobodnim mjestima. Dosad ViaFrei nije poznavao nijedno parkiralište u Trieru; sada navodi 28 garaža i parkirališta i koliko je mjesta ondje trenutačno slobodno.",
+    "ask": "Gdje u Trieru sada ima slobodnog parkirališta?"
+  },
+  "parken-konstanz": {
+    "title": "Garaže u Konstanzu sa slobodnim mjestima",
+    "body": "ViaFrei sada uživo čita garaže i parkirališta grada Konstanza s njihovim slobodnim mjestima. Dosad je ViaFrei znao samo gdje se nalaze garaže u Konstanzu; sada kaže koliko je mjesta trenutačno slobodno. Garaža koju objavljuju dva izvora navedena je u odgovoru jednom, a navedena su oba izdavača.",
+    "ask": "Gdje u Konstanzu sada ima garaža sa slobodnim mjestima?"
+  },
+  "parken-wiesbaden": {
+    "title": "Garaže u Wiesbadenu s njihovom popunjenošću",
+    "body": "ViaFrei sada čita garaže i podzemne garaže grada Wiesbadena i njihovu popunjenost uživo: za svaku, koliko je posto trenutačno popunjena prema podacima grada. Ako je izvješće starije, ViaFrei kaže kada je stiglo umjesto da ga prikaže kao aktualno.",
+    "ask": "Gdje u Wiesbadenu sada ima garaža sa slobodnim mjestima?"
+  },
+  "kurzzeitbaustellen-hessen": {
+    "title": "Noćni radovi na autocestama i radovi na cestama u Hessenu",
+    "body": "ViaFrei sada poznaje planirane kratkotrajne radove tvrtke Autobahn GmbH: noćna zatvaranja i trake na jedan dan, svaki sa svojim vremenskim prozorima. Izvan svog prozora takav se rad navodi kao planiran, s datumima. Uz njih dolaze radovi Hessen Mobila na saveznim i pokrajinskim cestama te na dijelu okružnih cesta u Hessenu.",
+    "ask": "Je li A3 noćas zatvorena?"
+  },
+  "nrw-baustellen-landesstrassen": {
+    "title": "Sjeverna Rajna-Vestfalija: radovi na saveznim, pokrajinskim i okružnim cestama",
+    "body": "ViaFrei sada čita radove Straßen.NRW na saveznim, pokrajinskim i okružnim cestama Sjeverne Rajne-Vestfalije. Pitajte za cestu ili mjesto i ViaFrei navodi tamošnje radove. Radovi koji još nisu počeli navode se kao planirani, s datumom početka.",
+    "ask": "Ima li radova na L968?"
+  },
+  "ausfallsicherheit-verkehrsmeldungen": {
+    "title": "Veća pouzdanost prometnih obavijesti i stanja u prometu",
+    "body": "ViaFrei sada čita i prometne obavijesti VIZ.NRW i hamburškog pokrajinskog centra za prometne obavijesti. Čita i planirane radove u Mecklenburgu-Zapadnom Pomorju te promet po traci na autocestama Sjeverne Rajne-Vestfalije. Svaka se obavijest prikazuje jednom i navodi se svaki izvor koji je prenosi. Ako jedan izvor zakaže, ViaFrei odgovara iz drugoga.",
+    "ask": "Ima li trenutačno prometnih obavijesti u Hamburgu?"
+  },
+  "lkw-beschraenkungen-koeln": {
+    "title": "Ograničenja mase i visine u Kölnu",
+    "body": "ViaFrei sada čita prometna ograničenja koja objavljuje grad Köln: ograničenja mase na mostovima, slobodne visine u podvožnjacima i druge zabrane za kamione. Za mjesto u Kölnu ViaFrei navodi najbliža, s vrstom, vrijednošću i ulicom; ako vrijednost nedostaje, ViaFrei to kaže. Vrijedi signalizacija na licu mjesta.",
+    "ask": "Koje slobodne visine vrijede za kamione kod kölnske katedrale?"
+  },
+  "parken-kiel": {
+    "title": "Parkirališta, parkirne garaže i P+R u Kielu",
+    "body": "ViaFrei sada čita parkirališta, parkirne garaže, podzemne garaže i lokacije Park & Ride koje objavljuje glavni grad savezne zemlje Kiel: 194 lokacije s položajem i vrstom. Grad ne objavljuje ni broj mjesta ni zauzetost, i ViaFrei to kaže umjesto da izmisli broj.",
+    "ask": "Gdje u Kielu ima parkirna garaža?"
+  },
+  "behindertenparkplaetze-frankfurt": {
+    "title": "Parkirna mjesta za osobe s invaliditetom u Frankfurtu na Majni",
+    "body": "ViaFrei sada poznaje 458 lokacija s parkirnim mjestima za osobe s invaliditetom koje objavljuje grad Frankfurt na Majni, ukupno 615 rezerviranih mjesta, svaku s adresom, brojem mjesta i vremenom rezervacije. Nijedan senzor ne javlja je li mjesto slobodno, i ViaFrei to kaže umjesto da nagađa.",
+    "ask": "Gdje je u Frankfurtu parkirno mjesto za osobe s invaliditetom blizu Römera?"
+  },
+  "lkw-netz-koeln": {
+    "title": "Kölnova vlastita mreža za kamione",
+    "body": "ViaFrei sada čita veze za kamione koje objavljuje grad Köln: ulice kojima grad vodi teretni promet, u četiri razreda, od autoceste do priključka za dostavu. Za mjesto u Kölnu ViaFrei navodi najbližu dionicu svakog razreda s ulicama i datumom podataka, uz ograničenja za kamione iz sustava SEVAS. Mreža nije jamstvo prohodnosti: vrijedi signalizacija na licu mjesta.",
+    "ask": "Kojim ulicama Köln vodi kamione kod katedrale?"
+  },
+  "verkehrslage-hamburg-bonn": {
+    "title": "Hamburg i Bonn: izmjereno stanje prometa u gradu",
+    "body": "ViaFrei sada svakih pet minuta čita stanje prometa koje Hamburg i Bonn objavljuju za svoje ulice i za mjesto kaže koliko je odsječaka u krugu od 10 km gusto, usporeno ili u zastoju te koliko je udaljen najbliži zastoj. Kao zastoj računa se samo usporen promet ili stajanje, gust promet ne. Hamburg objavljuje samo odsječke na kojima promet ne teče slobodno, pa ViaFrei ondje ne navodi broj slobodnih odsječaka. Ako je očitanje grada starije od 30 minuta, ViaFrei o njemu ništa ne kaže.",
+    "ask": "Kakav je promet trenutačno u Hamburgu?"
+  },
+  "muenchen-baustellen-umweltzone": {
+    "title": "München: gradski radovi na cesti i vlastita granica ekološke zone",
+    "body": "ViaFrei sada čita radove na cesti koje grad München objavljuje za sljedeća četiri tjedna te granicu njegove ekološke zone s izuzetim prijelaznim područjima. Grad bilježi radove ponajprije u središnjim četvrtima i na glavnim cestama; svaki odgovor to navodi. Privremena zabrana zaustavljanja ne računa se kao ograničenje kolnika. Za zonu odlučuje gradska granica, uz registar Saveznog ureda za okoliš (Umweltbundesamt).",
+    "ask": "Koji su radovi na cesti ovaj tjedan u Münchenu?"
+  },
+  "lang-lkw-positivnetz": {
+    "title": "Smije li dugi kamion ovuda? Pozitivna mreža BASt-a",
+    "body": "ViaFrei sada čita izvadak Saveznog instituta za ceste (BASt) iz pozitivne mreže za duge kamione i za cestu kaže je li na popisu, a za mjesto koje ceste u blizini joj pripadaju. BASt navodi da izvadak nije ni potpun ni pravno obvezujući i da nije namijenjen navigaciji; obvezuje uredba, i ViaFrei to kaže uz svaki odgovor. Hamburška mreža iz pokusnog razdoblja navodi se s datumom iz 2015.",
+    "ask": "Smijem li dugim kamionom na A7?"
+  },
+  "durchfahrtshoehen-bremen": {
+    "title": "Ograničenja visine i mase u Bremenu",
+    "body": "ViaFrei sada čita ograničenja visine i mase za kamione koja objavljuje centar za upravljanje prometom Bremena (VMZ Bremen). Za mjesto u Bremenu ViaFrei navodi najbliže unose točno onako kako ih VMZ Bremen objavljuje, s danom kad su pročitani. Obvezujuća je samo signalizacija na licu mjesta; unosi nisu za navođenje rute, a to što unos ne postoji ne znači da ograničenja nema.",
+    "ask": "Koje slobodne visine vrijede za moj kamion u Bremen-Gröpelingenu?"
+  },
+  "lkw-beschraenkungen-nrw-rheinmain": {
+    "title": "Ograničenja visine i mase te zabrane za kamione u Sjevernoj Rajni-Vestfaliji i regiji Rajna-Majna",
+    "body": "ViaFrei sada čita podatke općina Sjeverne Rajne-Vestfalije o kamionima putem NRW.Mobidroma (SEVAS) te ivm-ovu prioritetnu mrežu i prometne znakove za kamione u regiji Frankfurt RheinMain. Za mjesto ViaFrei kaže koja ograničenja visine, mase i širine te zabrane za kamione postoje u blizini, tko je izuzet i gdje prolazi najbliža prioritetna ruta za kamione. Gdje nijedan izdavač ne objavljuje takve podatke, ViaFrei to kaže umjesto da javi da je sve slobodno.",
+    "ask": "Ima li u Haanu niskih podvožnjaka za moj kamion?"
+  },
+  "barrierefreie-haltestellen-dresden-muenster": {
+    "title": "Dresden i Münster: koja je stanica bez prepreka?",
+    "body": "ViaFrei sada čita registar glavnoga grada savezne zemlje Dresdena sa 750 autobusnih i tramvajskih stanica te popis autobusnih stanica bez prepreka gradskog poduzeća Stadtwerke Münster. Za stanicu u Dresdenu kaže na koliko je mjesta ulazak u razini, treba li rampa vozila, je li ograničen ili nije bez prepreka, s visinom rubnjaka. Za Münster kaže je li stanica bez prepreka ili djelomično, s napomenom poduzeća Stadtwerke Münster. Stanica koje nema na popisu ne prikazuje se kao nepristupačna.",
+    "ask": "Je li stanica Theaterplatz u Dresdenu bez prepreka?"
+  },
+  "barrierefreiheit-aus-openstreetmap": {
+    "title": "Pristupačnost iz OpenStreetMapa: visine rubnjaka, taktilne staze i dizala na stanicama diljem Njemačke",
+    "body": "ViaFrei sada čita izvoz TU Chemnitz koji iz OpenStreetMapa okuplja ono što su volonteri ucrtali na stanicama diljem Njemačke: visine rubnjaka, povišene rubnjake, taktilne staze, dizala, rampe, stube i pokretne stube, za oko 4000 stanica. ViaFrei prikazuje te podatke ondje gdje stanicu ne opisuje nijedan službeni pregled i kaže da su ucrtani, a ne izmjereni: što nitko nije unio, nedostaje.",
+    "ask": "Ima li stanica Lichtenauer Straße u Chemnitzu povišeni rubnjak?"
+  },
+  "auslastung-mvv-regionalbus": {
+    "title": "Regionalni autobusi MVV-a: koliko je autobus obično pun",
+    "body": "Polasci regionalnog autobusa u münchenskom prometnom savezu MVV sada pokazuju koliko je autobus u to vrijeme obično pun, od slabo zauzetog do vrlo punog, samo sa stajanjem. Vrijednosti potječu iz automatskog brojanja putnika MVV-a i tipične su vrijednosti, a ne podaci uživo. Radnim danima ViaFrei zasebno navodi školske dane i praznike kad se razlikuju.",
+    "ask": "Koliko je sutra ujutro pun autobus 210 iz Ottobrunna, Jahnstraße?"
+  },
+  "ladestatus-hamburg": {
+    "title": "Hamburg: je li javna punionica upravo slobodna, sada i prema gradu",
+    "body": "ViaFrei sada čita stanje punjenja oko 2500 javnih priključaka u Hamburgu, koje Slobodni i hanzeatski grad Hamburg objavljuje čim se promijeni. To dopunjuje punionice koje ViaFrei već poznaje: hamburška punionica sada pokazuje je li slobodna, zauzeta ili izvan funkcije i od kada, a grad se navodi kao izvor.",
+    "ask": "Gdje je u Hamburg-Altoni upravo slobodna punionica?"
+  },
+  "barrierefreiheit-baden-wuerttemberg": {
+    "title": "Baden-Württemberg: dizala, rampe i vodilice na kolodvorima i stanicama",
+    "body": "ViaFrei sada čita pregled pristupačnosti NVBW-a za 1104 željeznička kolodvora i 14 065 autobusnih i tramvajskih stanica u Baden-Württembergu. Uz stanje dizala na kolodvoru sada pokazuje i što je pregledano na licu mjesta: koliko dizala, s kojom širinom vrata i veličinom kabine, koliko su strme rampe i koliko perona ima taktilnu vodilicu. To su neprovjereni sirovi podaci pregleda, i ViaFrei to kaže.",
+    "ask": "Koliko je kolodvor Mannheim Hbf pristupačan?"
+  },
+  "vrn-echtzeit-rhein-neckar": {
+    "title": "Autobusi i tramvaji u području Rajna-Neckar: podaci uživo i od VRN-a",
+    "body": "ViaFrei sada čita podatke uživo prometnog saveza Rajna-Neckar (VRN) za autobuse i tramvaje, od Mannheima i Heidelberga do Mainza i Kaiserslauterna. Kad nacionalni podaci za neki od tih okruga ništa ne javljaju ili su zastarjeli, ViaFrei prikazuje točnost prema podacima VRN-a i kaže da oni ne obuhvaćaju vlakove.",
+    "ask": "Koliko su trenutačno točni autobusi i vlakovi u Mannheimu?"
+  },
+  "vbn-echtzeit-niedersachsen-bremen": {
+    "title": "Bremen i Donja Saska: podaci uživo i od VBN-a",
+    "body": "ViaFrei sada čita prognoze uživo prometnog saveza Bremen/Donja Saska (VBN) za autobuse, tramvaje i vlakove, od Bremena i Oldenburga preko Hannovera i Braunschweiga do Göttingena i Osnabrücka. Kad nacionalni podaci za Bremen ili neki od tih okruga ništa ne javljaju ili su zastarjeli, ViaFrei prikazuje točnost prema podacima VBN-a i navodi izvor.",
+    "ask": "Koliko su trenutačno točni autobusi i vlakovi u Bremenu?"
+  },
+  "baustellen-staedte-laender": {
+    "title": "Radovi na cesti iz gradova i saveznih zemalja",
+    "body": "ViaFrei sada poznaje i radove na cesti koje gradovi i savezne zemlje sami objavljuju – od Kiela i Schleswig-Holsteina preko Brandenburga, Berlina, Kölna, Dortmunda, Münstera, Duisburga i Aachena do Frankfurta, Karlsruhea, Stuttgarta, Freiburga i Ingolstadta. Svi se radovi navode samo jednom, sa svim izvorima koji ih javljaju.",
+    "ask": "Koji su radovi na cesti trenutačno u Dortmundu?"
+  },
+  "umweltzone-am-punkt": {
+    "title": "Je li ovo mjesto u ekološkoj zoni?",
+    "body": "ViaFrei provjerava adresu ili točku prema objavljenim granicama ekoloških zona: unutra, u izuzetom području, izvan s udaljenošću – ili nepoznato. Čita vlastite granice gradova i registar svih njemačkih zona Saveznog ureda za okoliš (Umweltbundesamt), svaku s datumom podataka.",
+    "ask": "Je li Alexanderplatz unutar berlinske ekološke zone?"
+  },
+  "dortmund-sensoren-behindertenparkplaetze-ladeplaetze": {
+    "title": "Dortmund: slobodna mjesta za osobe s invaliditetom i mjesto uz punionicu",
+    "body": "U Dortmundu senzori u ulici javljaju je li mjesto za osobe s invaliditetom ili mjesto uz priključak za punjenje upravo slobodno. Kad tražite parkiranje, ViaFrei navodi najbliža mjesta za osobe s invaliditetom, a kod punionice kaže je li njezino mjesto zauzeto – svaki put s vremenom posljednje poruke senzora.",
+    "ask": "Ima li slobodno mjesto za osobe s invaliditetom blizu glavnog kolodvora u Dortmundu?"
+  },
+  "zweite-quelle-berlin-sachsen-autobahn": {
+    "title": "Radovi na cesti i zatvaranja iz dvaju izvora: Berlin, Saska i autoceste",
+    "body": "ViaFrei sada čita berlinski centar za prometne informacije, Landesmeldestelle Berlin, saski informacijski sustav o zatvaranjima i radove na cesti Autobahn GmbH za sljedećih 14 dana. Obavijest koju nose dva izvora navodi se u odgovoru jednom i navode se oba; kad jedan izvor nije ažuran, odgovara samo drugi, a obilaznice u Saskoj ViaFrei navodi kao uputu na signalizaciju, nikad kao rutu.",
+    "ask": "Koje su ceste kod mene u Berlin-Mitteu trenutačno zatvorene?"
+  },
+  "baustellen-bayern-mv-umleitungen-nrw": {
+    "title": "Radovi na cesti u Bavarskoj i Mecklenburgu-Zapadnom Pomorju, obilaznice u Sjevernoj Rajni-Vestfaliji",
+    "body": "ViaFrei sada čita radove na cesti i prometne obavijesti bavarskog centra za upravljanje prometom, radove cestovne uprave Mecklenburga-Zapadnog Pomorja na saveznim i zemaljskim cestama te označene obilaznice uprave Straßen.NRW. Obilaznicu ViaFrei navodi kao uputu na signalizaciju, nikad kao preporuku rute.",
+    "ask": "Ima li sljedeći tjedan radova na cesti na B14?"
+  },
+  "verkehrslage-autobahn-nrw": {
+    "title": "Stanje prometa na mjernim mjestima autocesta u Sjevernoj Rajni-Vestfaliji",
+    "body": "ViaFrei sada čita stanje prometa koje Autobahn GmbH mjeri na oko 2000 mjesta u Sjevernoj Rajni-Vestfaliji i za autocestu kaže gdje promet teče slobodno, gusto, usporeno ili stoji.",
+    "ask": "Kakav je trenutačno promet na A1 u Sjevernoj Rajni-Vestfaliji?"
+  },
+  "parken-wuppertal-leipzig-pr": {
+    "title": "Više parkirališta u Wuppertalu i lokacije P+R u Leipzigu sa slobodnim mjestima",
+    "body": "ViaFrei sada čita tablicu parkirališta grada Wuppertala, koja poznaje 33 parkirališta više nego prije, i lokacije P+R gradskog ureda za promet i niskogradnju Leipziga sa slobodnim mjestima uživo, prvi put i sa slobodnim mjestima kod Spomenika Bitke naroda. Lokacija koju objavljuju dva izvora navodi se u odgovoru jednom i navode se oba izdavača.",
+    "ask": "Gdje u Leipzigu trenutačno ima slobodnih mjesta na P+R?"
+  },
+  "parken-freiburg-herrenberg-jena-vrr-karlsruhe": {
+    "title": "Parkiranje u Freiburgu, Herrenbergu, Jeni, području VRR-a i mjesta za kamione oko Karlsruhea",
+    "body": "ViaFrei sada izravno čita još pet izdavača: sustav za navođenje na parkiranje i lokacije P+R grada Freiburga sa slobodnim mjestima uživo, parkirališta grada Herrenberga, parkirališta poduzeća Kommunalservice Jena, lokacije Park&Ride prometnog saveza Rajna-Ruhr i mjesta za kamione regije TechnologieRegion Karlsruhe. Gdje izdavač ne objavljuje zauzetost, ViaFrei to kaže umjesto da izmisli broj.",
+    "ask": "Koja parkirna garaža u Freiburgu trenutačno ima slobodnih mjesta?"
+  },
+  "live-antworten-auf-der-seite": {
+    "title": "Odgovori vašeg AI asistenta uživo na početnoj stranici i za svako mjesto",
+    "body": "Uz svaki podatak na početnoj stranici sada stoji pitanje koje možete postaviti svojem AI asistentu i ono što alati ViaFreija upravo na njega odgovaraju: s alatom, vremenom podataka i svakim izvorom. Kartice mjesta prikazuju odgovore i za to mjesto, o upozorenjima, cestama, mjestima u blizini, punjenju i parkiranju. To je isti odgovor koji dobiva vaš asistent kad je povezan s ViaFreijem.",
+    "ask": "Je li na cestama oko Pulheima trenutačno nešto zatvoreno?"
+  },
+  "autobahn-seiten": {
+    "title": "Stranica uživo za svaku njemačku autocestu",
+    "body": "Sve 122 autoceste sada imaju vlastitu stranicu, s kartom ceste, njezinim trenutačnim zatvaranjima, zastojima i radovima na cesti te potpunim zatvaranjima planiranima za sljedećih sedam dana s obilaznicama. Tu su i parkirališta za kamione sa slobodnim mjestima, punionice prema snazi, vrijeme na cesti i upozorenja, kamere, zabrana vožnje za kamione i križanja autocesta. Početna stranica prikazuje deset autocesta na kojima se trenutačno najviše događa.",
+    "ask": "Kakvo je trenutačno stanje na A7?"
+  },
+  "wasserstoff-bruecken-bahnhoefe": {
+    "title": "Vodikove postaje, mostovi Schleswig-Holsteina i više na svakom kolodvoru",
+    "body": "ViaFrei sada poznaje vodikove postaje tvrtke H2 Mobility s točionicima za osobna i teretna vozila, stanje velikih mostova u Schleswig-Holsteinu i parkirališta grada Kassela sa zauzetošću. Na stranicama mjesta svaki kolodvor sada kaže koja dizala i pokretne stube rade, koji su peroni bez prepreka i koja su parkirališta odmah uz njega. Kartica vremena prikazuje sljedeće sate na najbližoj cestovnoj meteorološkoj postaji, a točnost se sada navodi za okrug.",
+    "ask": "Gdje je najbliža vodikova postaja za kamion kod Hamburga?"
+  },
+  "baustellen-bremen-kassel-leipzig": {
+    "title": "Radovi na cesti i zatvaranja u Bremenu, Kasselu, Leipzigu i Rüsselsheimu",
+    "body": "ViaFrei sada čita prometne obavijesti gradova Bremena, Kassela, Leipziga i Rüsselsheima na Majni te radove i zatvaranja cestovne uprave Donje Saske izvan autocesta. Obavijesti gradova nalaze se i na stranicama mjesta, kao i one Kölna i Hannovera.",
+    "ask": "Ima li trenutačno zatvaranja u središtu Bremena?"
+  },
+  "ladepunkte-23-betreiber": {
+    "title": "Priključci za punjenje još 23 operatera",
+    "body": "ViaFrei sada čita vlastite objave na Mobilitheku još 23 operatera punionica, među njima EWE Go, LichtBlick, Qwello, Wirelane, chargecloud i vaylens. Gdje operater javlja je li priključak slobodan, prikazujemo to, ali nikad kad je poruka starija od 30 minuta.",
+    "ask": "Gdje je u Münsteru upravo slobodna punionica?"
+  },
+  "autobahn-verkehrsmeldungen": {
+    "title": "Prometne obavijesti Autobahn GmbH, smještene na kartu",
+    "body": "ViaFrei sada svakih pet minuta čita prometne obavijesti Autobahn GmbH o zatvaranjima i kašnjenjima. Obavijesti se smještaju na njihovu autocestu i referentne točke, primjerice čvorove, putem popisa lokacija TMC BASt-a.",
+    "ask": "Je li A620 kod Saarbrückena trenutačno zatvorena?"
+  },
+  "muenchen-pr-prognosen": {
+    "title": "Parkirališta i park-and-ride u Münchenu, s prognozama",
+    "body": "ViaFrei sada poznaje parkirne garaže i lokacije park-and-ride u Münchenu. Gdje lokacija P+R ne javlja zauzetost uživo, navodimo gradsku prognozu za tekući sat, s njezinim datumom, i nikad kao slobodna mjesta.",
+    "ask": "Gdje u Münchenu mogu parkirati na P+R i nastaviti U-Bahnom?"
+  },
+  "parkapi-baden-wuerttemberg": {
+    "title": "Slobodna parkirna mjesta u Baden-Württembergu",
+    "body": "Zauzetost parkirnih garaža uživo u cijelom Baden-Württembergu sada dolazi iz MobiData BW ParkAPI-ja, svakih pet minuta, samo iz licenciranih izvora. Očitanje starije od 30 minuta prema satu izdavača ne prikazuje se kao zauzetost.",
+    "ask": "Gdje u Karlsruheu trenutačno mogu naći slobodno mjesto u parkirnoj garaži?"
+  },
+  "bw-bedarfsumleitungen": {
+    "title": "Označene obilaznice u Baden-Württembergu",
+    "body": "Kad zatvaranje autoceste u Baden-Württembergu odgovara objavljenoj stalnoj obilaznici (Bedarfsumleitung), ViaFrei navodi U-rutu – kao uputu na signalizaciju, a ne kao preporuku rute.",
+    "ask": "Postoji li označena obilaznica za zatvaranje na A8 kod Stuttgarta?"
+  },
+  "hamburg-baustellen-kameras": {
+    "title": "Radovi na cesti i prometne kamere u Hamburgu",
+    "body": "Za gradske ulice Hamburga ViaFrei sada navodi odobrene radove na cesti iz sustava Bauweiser, aktualne ili planirane, čitane svakog sata, i do dvije obližnje lokacije prometnih kamera – samo lokacije, nikad sliku.",
+    "ask": "Koji su radovi na cesti trenutačno u Hamburg-Eimsbüttelu?"
+  },
+  "bemas-baden-wuerttemberg": {
+    "title": "Radovi na saveznim i zemaljskim cestama u Baden-Württembergu",
+    "body": "ViaFrei sada poznaje aktualne i planirane radove na saveznim i zemaljskim cestama Baden-Württemberga, čitane svakih 15 minuta iz otvorenog servisa podataka o mobilnosti te savezne zemlje. Lokacije koje izdavač ne odobri za objavu nikad se ne prikazuju.",
+    "ask": "Koji radovi na cesti predstoje na B27 između Stuttgarta i Tübingena?"
+  },
+  "dwd-strassenzustand": {
+    "title": "Prognoza stanja kolnika DWD-a",
+    "body": "Uz upozorenja na vremenske uvjete ViaFrei sada navodi i prognozirano stanje kolnika i temperaturu površine na najbližim cestovnim meteorološkim postajama – označeno kao prognoza modela, a ne mjerenje i ne službeno upozorenje.",
+    "ask": "Kakav će biti kolnik sutra ujutro kod Kassela?"
+  },
+  "rastanlagen-lkw-stellplaetze": {
+    "title": "Odmorišta na autocestama s mjestima za kamione",
+    "body": "Planiramo dodati podatke Saveznog ureda za logistiku i mobilnost o uređenim odmorištima na njemačkim autocestama: položaj, naziv i procijenjeni broj mjesta za kamione, za cijelu Njemačku. Taj je broj procjena ureda, a ne zauzetost uživo.",
+    "ask": "Koje odmorište na A2 između Hannovera i Dortmunda ima najviše mjesta za kamione?"
+  },
+  "autobahn-umleitungsempfehlungen": {
+    "title": "Preporučene obilaznice upravitelja autocesta",
+    "body": "Planiramo dodati preporuke obilaznica saveznog upravitelja autocesta: rutu koju dinamični putokazi preporučuju za vrijeme zastoja i zatvaranja. ViaFrei bi tada za zatvaranje mogao navesti obilaznicu koju preporučuje sam upravitelj.",
+    "ask": "Kako da zaobiđem zatvaranje na A3?"
+  },
+  "viafrei-2-3": {
+    "title": "ViaFrei 2.3: stranice autocesta, više izvora i asistenata",
+    "body": "Svaka autocesta sada ima svoju stranicu s pločama za promet, radove, parkiranje i punjenje, svaka sa starošću svojih podataka. Novo su radovi i prometne obavijesti iz više saveznih zemalja, više operatera punjenja i strateške preporuke obilaska Autobahn GmbH kad ih objavi. Polasci su točni i pri promjeni vremena. Povežite ViaFrei u Claude, ChatGPT i drugim asistentima sa stranice za povezivanje – tek su tada odgovori uživo.",
+    "ask": "Kakva je trenutačno situacija na A3?"
+  },
+  "lkw-stellplatzbelegung": {
+    "title": "Popunjenost parkirališta za kamione na autocestama",
+    "body": "ViaFrei sada prikazuje popunjenost parkirališta za kamione uz autoceste iz usluge Stellplatz-Informationsdienst (SID) tvrtke Toll Collect GmbH. Brojke se pojavljuju tek kada prihvatite uvjete korištenja, odjeljak 2: na viafrei.de gumbom „Prikaži popunjenost”, u svom AI asistentu putem pitanja koje vam postavi. Podaci mogu biti netočni ili zastarjeli.",
+    "ask": "Gdje su sada slobodna mjesta za kamione na A9 kod Nürnberga?"
+  },
+  "lkw-parken-thiersheim": {
+    "title": "Autohof Thiersheim na A93",
+    "body": "ViaFrei sada poznaje mjesta za kamione na Autohof Thiersheim na A93 iz vlastite tablice odmorišta: 55 mjesta za kamione, adresu i položaj. Odmorište se u odgovoru navodi samo jednom, iako ga sadrži i nacionalna tablica parkirališta za kamione, a navode se oba izvora. ViaFrei ovdje ne prikazuje zauzetost jer je izdavač ne javlja od travnja.",
+    "ask": "Gdje mogu parkirati kamion na A93 kod Thiersheima?"
+  },
+  "echtzeit-vbn-connect": {
+    "title": "Podaci u stvarnom vremenu za autobuse i vlakove na području VBN-a",
+    "body": "ViaFrei sada čita podatke u stvarnom vremenu prometne zajednice Bremen/Donja Saska (VBN, skup podataka Connect). Na stajalištima u Bremenu i na cijelom području VBN-a polasci prikazuju kašnjenje iz tih podataka ondje gdje nijedan drugi izvor u stvarnom vremenu ne javlja vožnju. Svaki se polazak prikazuje jednom, a navodi se svaki izvor koji ga prenosi.",
+    "ask": "Kada polazi sljedeći autobus s glavnog kolodvora u Bremenu?"
+  },
+  "strassen-auf-den-karten": {
+    "title": "Ulice na kartama",
+    "body": "Karte stranica autocesta i stranica mjesta sada crtaju ulice svog isječka iz OpenStreetMapa: savezne, pokrajinske i okružne ceste te stambene ulice, koje crtamo sami, bez kartografske usluge treće strane; same autoceste crtamo prema popisu lokacijskih kodova BASt-a. Tako se obavijest na karti može povezati s njezinom ulicom.",
+    "ask": "Kakva je situacija na A7 kod Kassela?"
+  },
+  "einzelmeldungen-viz-nrw": {
+    "title": "Pojedinačne obavijesti VIZ.NRW kao još jedna pričuva",
+    "body": "ViaFrei sada čita i pojedinačne obavijesti prometnih informacija Sjeverne Rajne-Vestfalije od VIZ.NRW. One još jednom osiguravaju prometne obavijesti u Sjevernoj Rajni-Vestfaliji: ako jedan izvor zakaže, ViaFrei odgovara iz drugoga. Svaka se obavijest prikazuje jednom i navodi se svaki izvor koji je prenosi.",
+    "ask": "Ima li sada prometnih obavijesti na A1 kod Kölna?"
+  }
+}

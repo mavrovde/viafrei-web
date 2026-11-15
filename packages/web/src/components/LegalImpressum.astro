@@ -1,0 +1,47 @@
+---
+/**
+ * The § 5 DDG site notice, German and binding, carried over verbatim from
+ * the pre-1.6 static `the pre-1.6 static page` (#379 PR-07; that tree
+ * was retired by #405, so this is the text now). Rendered with `lang="de"` on
+ * both the German and the English page; the English page adds one sentence
+ * above it saying so. Identity from `readIdentity()` — never a committed value.
+ */
+import { ADDRESS_PENDING_NOTE, type Identity } from "../lib/identity.js";
+
+interface Props {
+  id: Identity;
+  privacyHref: string;
+}
+const { id, privacyHref } = Astro.props;
+---
+
+<article class="legal" lang="de">
+  <h1>Impressum</h1>
+  {/* #1182 AC 1: the page's H1 first in main; the binding note in the page's language stands under it (`Legal.astro`) */}
+  <slot name="note" />
+  <h2>Angaben gemäß § 5 DDG</h2>
+  {
+    id.addressPending ? (
+      <p>{id.name}<br /><em>{ADDRESS_PENDING_NOTE}.</em><br />Deutschland</p>
+    ) : (
+      <p>{id.name}<br />{id.street}<br />{id.city}<br />Deutschland</p>
+    )
+  }
+  <h2>Kontakt</h2>
+  <p>E-Mail: <a href={`mailto:${id.email}`}>{id.email}</a></p>
+  {id.phone !== undefined && <p>Telefon: {id.phone}</p>}
+  {
+    id.vatId !== undefined && (
+      <>
+        <h2>Umsatzsteuer-Identifikationsnummer</h2>
+        <p>Umsatzsteuer-Identifikationsnummer gemäß § 27a UStG: {id.vatId}</p>
+      </>
+    )
+  }
+  <h2>Verantwortlich für den Inhalt nach § 18 Abs. 2 MStV</h2>
+  <p>{id.addressPending ? <>{id.name} (<em>{ADDRESS_PENDING_NOTE}</em>)</> : <>{id.name}, {id.street}, {id.city}</>}</p>
+  <h2>Verbraucherstreitbeilegung</h2>
+  <p>Wir sind nicht bereit oder verpflichtet, an Streitbeilegungsverfahren vor einer Verbraucherschlichtungsstelle teilzunehmen.</p>
+  <h2>Datenschutz</h2>
+  <p>Wie diese Seite mit personenbezogenen Daten umgeht, steht in der <a href={privacyHref}>Datenschutzerklärung</a>.</p>
+</article>

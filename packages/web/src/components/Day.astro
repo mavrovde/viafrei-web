@@ -1,0 +1,212 @@
+---
+/**
+ * "Ihr Tag mit ViaFrei" (#379, owner 2026-10-03, second ask; replaces the
+ * "Was ViaFrei weiß" domain cards so the page does not say the same thing
+ * twice): nine daily moments in the order of a day. Each carries a scene line,
+ * one question visible and one folded with one honest limit (open on a
+ * desktop) and the tool that answers each. The LIVE tiles that prove them are
+ * in "Deutschland jetzt" since #990 (`NationalBand.astro`: one topic, one
+ * place), so a moment is its questions and answers only.
+ *
+ * The questions are plain selectable text with `user-select: all`, so one tap
+ * (or a long press) selects the whole question for copying — no clipboard
+ * script; the consent island stays the page's only script.
+ *
+ * The moments keep the order of a day (#798, owner 2026-10-17): the "Meine
+ * Tafel" pins that reordered them (#404) became "Mein Tag" (#798) and then the
+ * topic filter above the LIVE place cards (#1050, `lib/topic-filter.ts`), and
+ * these moments only show the questions a person can ask, each with the tool
+ * that answers it.
+ *
+ * EVERY question carries, directly under it, what production answered to it
+ * on 2026-10-05 (owner 2026-10-05: "All example requests must have the right
+ * response! Not only first."), dated, with the credit lines of the sources it
+ * quotes (`Answer.astro`). The first is shown open at every width; the one in
+ * the fold opens with it (from 601 px up, by themselves); an answer longer than
+ * a glance keeps its second half (`a1more`) at the top of the fold. The fuel
+ * tile carries a request a driver asks, with a measured reason.
+ *
+ * Three questions per moment and four fuel requests again since #746 (owner
+ * 2026-10-15: "restore every removed example"; the page budget that rotated
+ * them off in v1.8.16 and v1.8.18 is 500 KB since #742): the first open, the
+ * other two in the fold with the limit. Where the first question is the one
+ * the MCP engine asks itself (`Moment.live`: the A8, Leipzig's fast chargers,
+ * the car parks at Köln Hbf), the moment shows that LIVE answer (`LiveAsk`)
+ * and the recorded one only when no live answer is held — a question is never
+ * shown without an answer. Every example, the recorded answer of a live one
+ * too, stays on the examples page (#747), which the section links to.
+ *
+ * The bus and tram moment has no live figure today. Its timetable slot is
+ * rendered only when the digest's `transit` tile answers live (#399); until
+ * then the moment shows what is true today and says what is missing.
+ */
+import { PAGE_HEAD_COPY } from "@viafrei/design";
+import { foldSourcesFor, mayFold } from "../lib/fold-credits.js";
+import Answer from "./Answer.astro";
+import Ask from "./Ask.astro";
+import LiveAsk from "./LiveAsk.astro";
+import RoadSign from "./RoadSign.astro";
+import { t } from "../i18n/index.js";
+import { answerParts, type AskSet } from "../lib/ask.js";
+import { HOME_FUEL_ASKS, MOMENTS, answerKey, type Moment } from "../site/examples.js";
+import { pathFor, type Lang } from "../site/pages.js";
+
+interface Props {
+  lang: Lang;
+  /** The engine's live answers (#744); a moment whose first question is one of them shows it (#746). */
+  asks: AskSet;
+}
+const { lang, asks } = Astro.props;
+const now = new Date();
+/**
+ * #1177 (owner 2026-11-05, decision 1): on a phone the moments after the first {@link DAY_OPEN} stand as their heading and
+ * scene; the first question and its answer are a `.fold` the wide stylesheet opens from 601 px up (no script), and their
+ * further questions' button shows once it is open. Everything stays in the HTML.
+ */
+const DAY_OPEN = 2;
+/**
+ * The register ids a moment's first answer credits — the live answer's sources where it shows one, else the recorded
+ * answer's. FS-2026-11-06: a moment whose first answer credits Tankerkönig (FS5) or a class the ruling did not read (FS8;
+ * none since FS12) stands open; a folded one's summary names every publisher inside (FS3).
+ */
+const firstIds = (m: Moment): readonly string[] => {
+  const live = liveFor(m);
+  return m.live !== undefined && live !== undefined ? live.projection.sources : m.answers[0].credits;
+};
+/**
+ * FS3: the register ids of what the further-questions fold holds — the first answer's second half where it is shown
+ * there, and the answers to the second and third questions.
+ */
+const moreIds = (m: Moment): readonly string[] => [
+  ...(m.answers[0].more === true && liveFor(m) === undefined ? m.answers[0].credits : []),
+  ...m.answers.slice(1, 3).flatMap((a) => a.credits),
+];
+const show = (title: string): string => PAGE_HEAD_COPY[lang].showCounted.replace("{x}", title);
+/** The live answer a moment's first question shows, or undefined: only one that renders in this language. */
+const liveFor = (m: Moment) => {
+  const e = m.live === undefined ? undefined : asks.get(m.live);
+  return e !== undefined && answerParts(lang, e) !== null ? e : undefined;
+};
+/**
+ * The first answer's second half (`a1more`), at the top of the fold: the
+ * deck's words with the answer's figures, its proper names split out so each
+ * renders `translate="no"` (#449) — the same holes as `Answer.astro`.
+ */
+const HOLE = "\u0000";
+type Part = { readonly text: string; readonly name: boolean };
+const moreParts = (m: Moment): readonly Part[] => {
+  const a = m.answers[0];
+  const keys = Object.keys(a.names);
+  const holes = Object.fromEntries(keys.map((k, i) => [k, `${HOLE}${i}${HOLE}`]));
+  return t(lang, `day.moments.${m.key}.a1more`, { ...a.values, ...holes })
+    .split(HOLE)
+    .map((s, i) => (i % 2 === 0 ? { text: s, name: false } : { text: a.names[keys[Number(s)] ?? ""] ?? "", name: true }))
+    .filter((p) => p.text !== "");
+};
+---
+
+<section class="block day" id="day" aria-labelledby="day-heading">
+  <div class="wrap">
+    <div class="block__head">
+      <h2 id="day-heading">{t(lang, "day.heading")}</h2>
+      <p class="lead">{t(lang, "day.lead")}</p>
+      <p class="howto">
+        <strong>{t(lang, "day.howTo")}:</strong>
+        {t(lang, "day.howToText")}
+      </p>
+    </div>
+    <div class="moments">
+      {
+        MOMENTS.map((m, n) => {
+          const live = liveFor(m);
+          const folded = n >= DAY_OPEN && mayFold(firstIds(m));
+          const Q = folded ? "details" : "div";
+          return (
+            <article class={`moment moment--${m.key}`} aria-labelledby={`moment-${m.key}-title`}>
+              <div class="moment__main">
+                <div class="moment__lead">
+                  <header class="moment__head">
+                    <span class="moment__step num" aria-hidden="true">
+                      {n + 1}
+                    </span>
+                    <div>
+                      <h3 class="moment__title" id={`moment-${m.key}-title`}>
+                        <RoadSign kind={m.sign} />
+                        {t(lang, `day.moments.${m.key}.title`)}
+                      </h3>
+                      <p class="moment__scene">{t(lang, `day.moments.${m.key}.scene`)}</p>
+                    </div>
+                  </header>
+                  {/* every question is followed DIRECTLY by what production answered to it (owner 2026-10-05);
+                      the engine's own question, answered live, where the moment's first is that one (#746) */}
+                  <Q class={folded ? "fold moment__qfold" : "moment__q"}>
+                  {folded && <summary class="fold__summary"><span class="fold__label">{show(t(lang, `day.moments.${m.key}.title`))}</span><Fragment set:html={foldSourcesFor(lang, firstIds(m))} /></summary>}
+                  {m.live !== undefined && live !== undefined ? (
+                    <LiveAsk lang={lang} key={m.live} entry={live} ctaHref="#start" now={now} source="home" />
+                  ) : (
+                    <>
+                      <blockquote class="ask">
+                        <Ask lang={lang} text={t(lang, `day.moments.${m.key}.q1`)} />
+                        <p class="ask__tool">
+                          <code>{m.tools[0]}</code>
+                        </p>
+                      </blockquote>
+                      <Answer lang={lang} msg={answerKey(m, 1)} answer={m.answers[0]} class="moment__answer" source="home" />
+                    </>
+                  )}
+                  </Q>
+                </div>
+                <details class="fold moment__more">
+                  <summary class="fold__summary"><span class="fold__label">{t(lang, "day.more")}</span><Fragment set:html={foldSourcesFor(lang, moreIds(m))} /></summary>
+                  {m.answers[0].more === true && live === undefined && (
+                    <p class="moment__answer-more">{moreParts(m).map((p) => (p.name ? <span translate="no">{p.text}</span> : p.text))}</p>
+                  )}
+                  {/* the second and third questions (#746: every moment carries three again) */}
+                  {([2, 3] as const).filter((i) => m.answers.length >= i).map((i) => (
+                    <>
+                      <blockquote class="ask">
+                        <Ask lang={lang} text={t(lang, `day.moments.${m.key}.q${i}`)} />
+                        <p class="ask__tool">
+                          <code>{m.tools[i - 1]}</code>
+                        </p>
+                      </blockquote>
+                      <Answer lang={lang} msg={answerKey(m, i)} answer={m.answers[i - 1]} class="moment__answer" source="home" />
+                    </>
+                  ))}
+                  <p class="moment__limit">
+                    <strong>{t(lang, "day.limitLabel")}:</strong> {t(lang, `day.moments.${m.key}.limit`)}
+                  </p>
+                </details>
+              </div>
+              {/* the example requests a driver asks about fuel (owner 2026-10-05): a reason, the question, its answer — open on
+                  every width and never a fold, because each answer is a recorded Tankerkönig price with its credit (FS5, #423;
+                  `example-ledger.test.ts` holds every one to crediting Tankerkönig); the fuel figure itself is in "Deutschland
+                  jetzt" (#990) */}
+              {m.extra === "fuel" && (
+                <section class="fuelasks" id="fuel-asks" aria-labelledby="fuelasks-heading">
+                  <h4 class="fuelasks__heading" id="fuelasks-heading">{t(lang, "day.fuelAsks.heading")}</h4>
+                  {HOME_FUEL_ASKS.map((f) => (
+                    <div class="fuelasks__item">
+                      <p class="fuelasks__why">
+                        <strong>{t(lang, "day.fuelAsks.whyLabel")}:</strong> {t(lang, `day.fuelAsks.${f.key}.why`, f.answer.values)}
+                      </p>
+                      <blockquote class="ask">
+                        <Ask lang={lang} text={t(lang, `day.fuelAsks.${f.key}.q`)} />
+                        <p class="ask__tool">
+                          <code>{f.tool}</code>
+                        </p>
+                      </blockquote>
+                      <Answer lang={lang} msg={`day.fuelAsks.${f.key}.a`} answer={f.answer} class="moment__answer" source="home" />
+                    </div>
+                  ))}
+                </section>
+              )}
+            </article>
+          );
+        })
+      }
+    </div>
+    {/* #747: every question of the moments and the fuel requests, and the connect page's cards, by domain */}
+    <p class="examples-link"><a href={pathFor("examples", lang)}>{t(lang, "day.allExamples")}</a></p>
+  </div>
+</section>

@@ -1,0 +1,10 @@
+---
+/** The 404 for every unmatched path (#379 PR-06, A4), in the visitor's negotiated language (#380). */
+import NotFound from "../layouts/NotFound.astro";
+import { negotiate } from "../i18n/negotiate.js";
+
+const lang = negotiate(Astro.request.headers.get("accept-language"));
+Astro.response.headers.set("Vary", "Accept-Language");
+---
+
+<NotFound lang={lang} />

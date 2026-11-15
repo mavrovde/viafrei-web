@@ -1,0 +1,1274 @@
+{
+  "meta": {
+    "tagline": "Nemecká platforma mobility v reálnom čase pre AI",
+    "pitch": "ViaFrei dáva AI asistentom prehľad o Nemecku v reálnom čase. Vlaky a autobusy, doprava a práce na cestách, palivo, nabíjanie, parkovanie a počasie. Jedno MCP. Žiadny kľúč API. Žiadna registrácia.",
+    "description": "Kolóny, uzávierky, práce na ceste, vlaky, parkovanie, nabíjanie a palivo v Nemecku – naživo z otvorených dát, ako odpoveď vášho AI asistenta, so zdrojom.",
+    "siteName": "ViaFrei"
+  },
+  "a11y": {
+    "skip": "Preskočiť na obsah",
+    "mainNav": "Hlavná navigácia",
+    "langNav": "Vybrať jazyk",
+    "currentLang": "aktuálny jazyk",
+    "sample": "Vzorové hodnoty, nie živé dáta",
+    "crumbs": "Nachádzate sa tu"
+  },
+  "nav": {
+    "brand": "ViaFrei",
+    "claim": "Dopravné dáta, vyslovené",
+    "tools": "Pre vývojárov",
+    "cta": "Pripojiť k vašej AI",
+    "day": "Váš deň",
+    "start": "Začíname",
+    "ctaShort": "Pripojiť AI",
+    "ctaLabel": "Pripojiť ViaFrei k vášmu AI asistentovi ({clients})"
+  },
+  "beta": {
+    "label": "Beta",
+    "short": "ViaFrei je v beta verzii: odpovede a pokrytie sa môžu meniť a AI sa môže mýliť. Dôležité údaje si overte v uvedenom zdroji.",
+    "more": "Čo to znamená",
+    "sign": "Dopravná značka: nebezpečenstvo",
+    "line": "Overte pri zdroji"
+  },
+  "hero": {
+    "lead": "Ako dobre informovaný priateľ: Ide môj vlak? Je diaľnica voľná? Je voľná nabíjačka? ViaFrei dáva vášmu asistentovi dnešné čísla, každé so zdrojom.",
+    "primary": "Pripojte svoju AI za minútu",
+    "secondary": "Váš deň s ViaFrei",
+    "clients": "Pre:",
+    "phase": "Úvodná fáza: odpovede sú informácie, nie právne poradenstvo.",
+    "trust": {
+      "free": "Zadarmo",
+      "account": "Bez účtu u nás",
+      "app": "Bez ďalšej aplikácie",
+      "sources": "Každé číslo so zdrojom"
+    },
+    "connected": "Váš AI asistent tieto živé dáta použije len vtedy, keď je k nemu pripojený ViaFrei – bez pripojenia odpovedá z dát, na ktorých bol natrénovaný."
+  },
+  "sign": {
+    "label": "Vzorová odpoveď, skrátená",
+    "question": "Je A8 smerom na Mníchov voľná?",
+    "answerBefore": "Medzi Stuttgartom a Ulmom dvoje práce na ceste, žiadna uzávierka – cesta je",
+    "answerHighlight": "voľná",
+    "answerAfter": ".",
+    "meta": "Príklad: takto odpovedá váš asistent s ViaFrei – skrátene, so vzorovými hodnotami.",
+    "badge": "{road} – stránka diaľnice"
+  },
+  "proof": {
+    "tiles": {
+      "reports": {
+        "title": "Hlásenia na diaľniciach"
+      },
+      "charging": {
+        "title": "Nabíjacie body"
+      },
+      "lorry": {
+        "title": "Parkovanie pre kamióny"
+      },
+      "lifts": {
+        "title": "Výťahy a eskalátory"
+      }
+    }
+  },
+  "tile": {
+    "error": "teraz sa nedá načítať",
+    "errorNote": "Tento zdroj teraz neodpovedá. Radšej neukážeme nič, ako staré číslo za nové.",
+    "loading": "načítava sa …",
+    "loadingNote": "Toto číslo je na ceste. Zobrazí sa, len čo zdroj odpovie."
+  },
+  "tools": {
+    "heading": "Nástroje podľa oblasti",
+    "lead": "Váš asistent si vhodný nástroj vyberie sám. Zoznam pochádza zo servera, nie z prospektu.",
+    "showAll": "Zobraziť všetky nástroje ({n})",
+    "groups": {
+      "roads": "Diaľnice a cesty",
+      "rail": "Železnica",
+      "transit": "Verejná doprava",
+      "energy": "Nabíjanie a palivo",
+      "places": "Miesta a adresy",
+      "rules": "Pravidlá a počasie"
+    },
+    "count": "{n, plural, one {# nástroj} few {# nástroje} many {# nástroja} other {# nástrojov}}"
+  },
+  "connect": {
+    "heading": "Pripojené za 60 sekúnd",
+    "lead": "Jedna adresa, žiadny účet, žiadny kľúč. Vyberte si klienta a postupujte podľa krokov.",
+    "endpointLabel": "Koncový bod MCP (Streamable HTTP)",
+    "legacyLabel": "Pre staršie klienty (HTTP + SSE)",
+    "clients": {
+      "claude": "Claude (desktop a claude.ai)",
+      "chatgpt": "ChatGPT",
+      "other": "Iné klienty MCP"
+    },
+    "draft": "Návrh – tieto kroky ešte neboli v klientovi overené.",
+    "steps": {
+      "claude": {
+        "s1": "Nastavenia → Connectors → „Add custom connector“.",
+        "s2": "Vložte adresu vyššie a uložte.",
+        "s3": "Opýtajte sa: „Je A8 smerom na Mníchov voľná?“"
+      },
+      "chatgpt": {
+        "s1": "Nastavenia → Connectors → „Create“ (režim vývojára).",
+        "s2": "Zadajte adresu vyššie ako server MCP.",
+        "s3": "V chate vyberte konektor a pýtajte sa."
+      },
+      "other": {
+        "s1": "Streamable HTTP na adrese vyššie; staršie klienty používajú cestu SSE.",
+        "s2": "Počas úvodnej fázy bez overovania.",
+        "s3": "tools/list vráti katalóg; každá odpoveď nesie svoj zdroj."
+      }
+    },
+    "cta": "K návodu pre vývojárov",
+    "showClients": "Zobraziť kroky pre váš klient"
+  },
+  "sources": {
+    "heading": "Zdroje a dôvera",
+    "lead": "Každé číslo nesie zdroj, ktorý ho povoľuje – doslovne a nepreložene, na dlaždici, ktorá ho ukazuje.",
+    "creditsLabel": "Zdroje čísel na tejto stránke",
+    "creditsShow": "Zobraziť všetky riadky so zdrojmi ({n})",
+    "licenceText": "text licencie",
+    "notAnswered": {
+      "heading": "Na čo neodpovedáme",
+      "routing": "Žiadne plánovanie trasy – hovoríme, čo sa deje na ceste, nie ktorou máte ísť.",
+      "legal": "Žiadne právne poradenstvo – odpovede o pravidlách uvádzajú zdroj a dátum kontroly a sú informáciou.",
+      "fuelFeed": "Žiadne cenové dáta na ďalšie použitie – ceny palív sú informácie pre spotrebiteľov, nie rozhranie API."
+    },
+    "privacy": {
+      "heading": "Ochrana súkromia v troch vetách",
+      "s1": "Kým nedáte súhlas, táto stránka nenačíta žiadne cudzie písmo, skript ani obrázok.",
+      "s2": "Návštevy počítame bez cookies, iba ako denné súčty na vlastnom serveri; Google Analytics beží, len ak súhlasíte.",
+      "s2Clarity": "Návštevy počítame bez cookies, iba ako denné súčty na vlastnom serveri; Google Analytics a Microsoft Clarity bežia, len ak súhlasíte.",
+      "s3": "Váš asistent komunikuje s naším serverom – neukladáme žiadne účty ani profily."
+    }
+  },
+  "audience": {
+    "heading": "Pre koho",
+    "travellers": {
+      "title": "Pre cestujúcich",
+      "text": "Opýtajte sa asistenta pred cestou, na nástupišti alebo pri nabíjačke – a dostanete odpoveď so zdrojom.",
+      "cta": "Ako sa pripojiť"
+    },
+    "developers": {
+      "title": "Pre vývojárov",
+      "text": "Jeden server MCP cez Streamable HTTP, verejný katalóg, most stdio na npm. Počas úvodnej fázy bez kľúča.",
+      "cta": "K dokumentácii"
+    },
+    "business": {
+      "title": "Pre firmy",
+      "text": "História každého hlásenia v reálnom čase, otázky o flotilách a lokalitách, jasná licenčná situácia. Ozvite sa skôr, ako začnete stavať.",
+      "cta": "Kontaktovať nás"
+    },
+    "show": "Pre koho je ViaFrei"
+  },
+  "footer": {
+    "imprint": "Tiráž",
+    "privacy": "Ochrana súkromia",
+    "privacySettings": "Nastavenia súkromia",
+    "terms": "Podmienky používania",
+    "languages": "Jazyky",
+    "refresh": "Táto stránka sa obnovuje každých 20 minút; každá dlaždica ukazuje, aké staré je jej číslo.",
+    "openData": "Postavené z otvorených dát. Každé číslo uvádza svoj zdroj."
+  },
+  "consent": {
+    "title": "Môžeme používať Google Analytics?",
+    "titleClarity": "Môžeme používať Google Analytics a Microsoft Clarity?",
+    "body": "Google Analytics sa načíta až po vašom súhlase. Odmietnutie je rovnako jedno kliknutie a zapamätá sa. Naše vlastné počítanie návštevníkov bez cookies beží nezávisle od toho (pozri Ochrana súkromia).",
+    "bodyClarity": "Google Analytics a Microsoft Clarity sa načítajú až po vašom súhlase. Clarity zaznamenáva kliknutia, posúvanie a pohyby myši na tejto stránke, pričom všetky texty a vstupy zostávajú skryté. Microsoft tieto údaje využíva aj na vlastné účely, vrátane reklamy. Odmietnutie je tiež len jedno kliknutie a uloží sa. Naše vlastné počítanie návštevníkov bez cookies beží nezávisle od toho (pozri Ochrana súkromia).",
+    "accept": "Súhlasím",
+    "decline": "Odmietnuť",
+    "more": "Ochrana súkromia",
+    "state": {
+      "none": "Zatiaľ ste sa nerozhodli.",
+      "denied": "Vaša aktuálna voľba: odmietnuté dňa {date}.",
+      "granted": "Vaša aktuálna voľba: súhlas dňa {date}."
+    }
+  },
+  "notFound": {
+    "title": "Táto stránka neexistuje",
+    "text": "Adresa nikam nevedie. Úvodná stránka je na jedno kliknutie.",
+    "choiceTitle": "Tento názov má viac miest",
+    "choiceText": "Ktoré máte na mysli?",
+    "back": "Na úvodnú stránku",
+    "connect": "Pripojiť k asistentovi",
+    "developers": "Pre vývojárov",
+    "business": "Pre firmy"
+  },
+  "now": {
+    "heading": "Celé Nemecko",
+    "lead": "Všetky celoštátne čísla na jednom mieste, podľa tém – každé s časom a zdrojom.",
+    "stationTop": {
+      "head": "Stanice teraz: zrušené spoje, meškania, hlásenia o mimoriadnostiach, výťahy",
+      "all": "Všetky stanice",
+      "search": "Hľadať stanicu",
+      "go": "Hľadať"
+    }
+  },
+  "tiles": {
+    "punctuality": "Presnosť autobusov a vlakov",
+    "lifts": "Výťahy a eskalátory",
+    "reports": "Najdôležitejšie hlásenia",
+    "jams": "Kolóny v mestách, teraz",
+    "station": "Naživo na veľkých staniciach",
+    "lorry": "Parkovanie kamiónov a odpočívadlá",
+    "carparks": "Parkovacie domy a P+R v mestách",
+    "charging": "Nabíjacie body",
+    "fuel": "Ceny palív, sledované"
+  },
+  "day": {
+    "heading": "Váš deň s ViaFrei",
+    "lead": "Deväť chvíľ, keď krátka otázka ušetrí čas – s dnešným číslom, ktoré ukazuje, že odpoveď platí.",
+    "howTo": "Ako sa opýtať asistenta",
+    "howToText": "Otázku podržte prstom (alebo ju označte), skopírujte a vložte do chatu. Váš asistent si vhodný nástroj vyberie sám.",
+    "more": "Ďalšie 2 otázky a jedno obmedzenie",
+    "answer": {
+      "label": "ViaFrei odpovedal",
+      "asOf": "Stav: {asOf}"
+    },
+    "limitLabel": "Úprimne povedané",
+    "cta": "Pripraviť sa",
+    "moments": {
+      "commute": {
+        "title": "Ráno do práce",
+        "scene": "7:10, káva v ruke: jazdí verejná doprava normálne – a ide môj vlak?",
+        "q1": "Jazdia autobusy a vlaky v Hamburgu práve načas?",
+        "a1": "{share} % jázd sledovaných za poslednú hodinu meškalo viac ako 5 minút – zhruba rovnako ako hodinu predtým ({before} %).",
+        "limit": "Presnosť ukazujeme po regiónoch, nie po linkách.",
+        "q2": "Kedy ide najbližší vlak z hlavnej stanice v Hannoveri a mešká?",
+        "q3": "Rušia sa na odchodovej tabuli hlavnej stanice v Kolíne nad Rýnom v najbližšej hodine nejaké vlaky?",
+        "a2": "Najbližšie {l1} smer {d1} (podľa plánu {t1}, koľaj {p1}) s meškaním +{delay} min, odchod okolo {exp}; potom včas {l2} smer {d2} o {t2}.",
+        "a3": "Žiadny sa neruší: {n, plural, one {# odchod} few {# odchody} many {# odchodu} other {# odchodov}} do {last}; najväčšie meškanie má {l1} smer {d1}: +{delay} min."
+      },
+      "bus": {
+        "title": "Autobusom a električkou",
+        "scene": "V meste: kde je najbližšia stanica a jazdí doprava?",
+        "q1": "Ktorá železničná stanica je najbližšie ku Kolínskemu dómu?",
+        "q2": "Kedy ide najbližší S-Bahn z Frankfurt Hauptwache?",
+        "a1": "{s1}, {km},{kmd} km odtiaľto; ďalej {s2} a {s3}.",
+        "limit": "Cestovný poriadok každej zastávky autobusu a električky ukážeme, len čo bude načítaný – dovtedy stanice a situáciu vo vašom regióne.",
+        "board": "Cestovný poriadok na vašej zastávke",
+        "a2": "Najbližšie {l1} smer {d1} o {t1} z koľaje {p1}, včas; {l2} smer {d2} s plánom {t2} má +{delay2} min, odchod okolo {exp2}.",
+        "q3": "Odchádzajú z hlavnej stanice v Lipsku práve vlaky s meškaním?",
+        "a3": "Áno, dva: {l1} smer {d1}, +{dl1} min, z koľaje {p1}, a {l2} smer {d2}, +{dl2} min; ostatné najbližšie odchody ({n}) sú včas."
+      },
+      "station": {
+        "title": "Na stanici",
+        "scene": "S kočíkom, vozíkom alebo kufrom: ide výťah na nástupište?",
+        "q1": "Funguje výťah na hlavnej stanici v Kolíne nad Rýnom?",
+        "a1": "V stanici {station} je v prevádzke {working} z {total} hlásených výťahov; jeden je mimo prevádzky, pri jednom železnica neuvádza stav.",
+        "limit": "Výťahy a eskalátory na staniciach Deutsche Bahn; iní prevádzkovatelia zatiaľ nie.",
+        "q2": "Sú na stanici Erlangen všetky výťahy v prevádzke?",
+        "a2": "Áno: jediný hlásený výťah v stanici {station}, ku koľaji {platforms}, je v prevádzke.",
+        "q3": "Z ktorej koľaje ide najbližší ICE z hlavnej stanice v Norimbergu?",
+        "a3": "{train} smer {dest} o {t} z koľaje {p}, včas."
+      },
+      "driving": {
+        "title": "Autom",
+        "scene": "Pred cestou: kolóny, uzávierky, práce na ceste – a kde je palivo práve lacné.",
+        "q1": "Je A8 smerom na Mníchov práve voľná?",
+        "a1": "Nie celkom: v úseku {a} – {b} smerom na Mníchov hlási polícia nehodu; odstavný pruh je zablokovaný.",
+        "a1more": "Na celej A8 sú navyše uvedené uzávierky ({closures}) a záznamy o prácach na ceste ({works}).",
+        "limit": "Žiadne plánovanie trasy: hovoríme, čo sa deje na diaľnici, nie ktorou cestou máte ísť.",
+        "q2": "Aké práce na ceste sú práve na A7?",
+        "a2": "{count, plural, one {# úsek s prácami} few {# úseky s prácami} many {# úseku s prácami} other {# úsekov s prácami}} do {to}; napr. v úseku {a} – {b}: nový most, uzavretý jeden z troch pruhov, {speed} km/h, do {until}.",
+        "q3": "Cez víkend idem po A2 – s akými prácami na ceste mám rátať?",
+        "a3": "{count, plural, one {# úsek s prácami} few {# úseky s prácami} many {# úseku s prácami} other {# úsekov s prácami}} od {from} do {to}; napr. na križovatke {a}: obnova vozovky, rampa je úplne uzavretá, do {until}."
+      },
+      "jam": {
+        "title": "V kolóne",
+        "scene": "Kolóny na diaľnici a okolo miest: kde sa stojí, koľko času to stojí – a či bude dnes v noci uzávierka.",
+        "q1": "Koľko času práve stojí kolóna na A3 medzi Frankfurtom a Würzburgom?",
+        "a1": "V úseku {a} – {b} smerom na Frankfurt asi +{delay} min, po nehode; na celej A3 sú hlásené kolóny ({jams}).",
+        "a1more": "Na A3 sú uvedené uzávierky ({closures}) a záznamy o prácach na ceste ({works}).",
+        "limit": "V mestách vidíme mestské diaľnice a v Berlíne, Kolíne nad Rýnom a Hannoveri aj dopravné hlásenia mesta – zatiaľ nie situáciu na každej ulici. Hlásenia pre Hamburg a dopravnú situáciu pre Kolín nad Rýnom sme si u poskytovateľov vyžiadali.",
+        "q2": "Tvorí sa práve kolóna na diaľničnom okruhu okolo Kolína nad Rýnom – A1, A3 alebo A4?",
+        "q3": "Je A7 v Hamburgu dnes uzavretá?",
+        "a3": "Hlásená je uzávierka medzi križovatkami {a} a {b} (rozšírenie na osem pruhov, nový {tunnel}); na celej A7 je uzávierok: {n}.",
+        "a2": "Áno, na A4: v úseku {a} – {b} smerom na Kolín je premávka spomalená, asi +{delay} min; na opýtaných diaľniciach sú hlásené kolóny ({n})."
+      },
+      "parking": {
+        "title": "Parkovanie",
+        "scene": "Nechať auto pri stanici – alebo si ako vodič kamióna naplánovať prestávku.",
+        "q1": "Kde je parkovací dom blízko hlavnej stanice v Kolíne nad Rýnom?",
+        "a1": "{p1}: naposledy hlásených voľných {f1} z {t1} miest; {p2}: {f2} z {t2} – oba najviac 300 m odtiaľto.",
+        "limit": "Voľné miesta len tam, kde ich prevádzkovateľ zverejňuje – inak počet miest, nie ako sú obsadené.",
+        "q2": "Kde je na A9 parkovanie pre kamióny?",
+        "a2": "Napríklad {p1} s {n1} miestami pre kamióny, {p2} s {n2} a {p3} s {n3}; voľné miesta tam nikto nezverejňuje.",
+        "q3": "Kde je park-and-ride blízko hlavnej stanice v Essene?",
+        "a3": "{p1}, {k1},{k1d} km odtiaľto, a {p2}, {k2},{k2d} km; obsadenosť z tohto zdroja ViaFrei nepreberá."
+      },
+      "charging": {
+        "title": "Nabíjanie",
+        "scene": "Elektricky na cestách: kde je najbližšia nabíjačka a je voľný bod?",
+        "q1": "Kde môžem rýchlo nabiť blízko Lipska?",
+        "q2": "Aké rýchlonabíjačky sú pri Ingolstadte?",
+        "a1": "S aspoň 150 kW napríklad: {site}, {address} – do {kw} kW.",
+        "a1more": "Prevádzkovateľ nezverejňuje živý stav, preto ViaFrei hovorí „neznámy“, nie „voľný“.",
+        "limit": "Dostupnosť pre siete, ktoré ju zverejňujú; pri ostatných ukazujeme polohu, nie stav.",
+        "a2": "Najbližšie {op1}, {a1}, do {kw1} kW: voľné {free1} z {total1} nabíjacích bodov; ďalej {s2}, {a2}, do {kw2} kW, stav neznámy.",
+        "q3": "Je na Supercharger Hilden práve niečo voľné?",
+        "a3": "{brand} naposledy hlásil stav {t} – to je príliš staré na „voľný“; na adrese {address}, do {kw} kW."
+      },
+      "places": {
+        "title": "Hľadanie miest",
+        "scene": "Stačí názov: koncertná sieň, lekáreň, firma – s adresou a súradnicou na ďalšiu otázku.",
+        "q1": "Navigácia mi ukazuje 50.1109, 8.6821 – aká je to adresa a kde je najbližší diaľničný nájazd?",
+        "a1": "{address}, {m} m odtiaľto. Najbližšia diaľničná križovatka: {junction}, {km},{kmd} km odtiaľto.",
+        "limit": "Miesta a adresy pochádzajú z OpenStreetMap; stav dát je v každej odpovedi. Čo tam nie je zmapované, nenájdeme – otváracie hodiny ani hodnotenia k tomu nepatria.",
+        "q2": "Aké lekárne sú vo Fulde – aj s adresami?",
+        "a2": "Napríklad {p1}, {a1}; {p2}, {a2}; {p3}, {a3} (OpenStreetMap k {osm}).",
+        "q3": "Aká je adresa Elbphilharmonie v Hamburgu?",
+        "a3": "{poi}: {address} (dáta OpenStreetMap k {osm})."
+      },
+      "watch": {
+        "title": "Dajte mi vedieť",
+        "scene": "Netreba stále kontrolovať: ViaFrei sleduje za vás a každú zmenu drží v rozhovore – váš asistent ju ukáže, len čo sa opýtate, alebo sám, ak podporuje upozornenia.",
+        "q1": "Daj mi vedieť, len čo sa na A7 zruší uzávierka.",
+        "limit": "Iba tento rozhovor, kým je otvorený – žiadny e-mail, žiadna SMS. Najviac 10 sledovaní na rozhovor, každé najviac 24 hodín; cesta sa sleduje ako celok, nie po úsekoch.",
+        "a1": "Sledovanie nastavené: {road}, do {until}. ViaFrei sa v tomto chate ozve, len čo sa tam zruší uzávierka; využité sledovania: {used} z 10.",
+        "q2": "Daj mi vedieť, keď bude v Kolíne nad Rýnom meškať štvrtina alebo viac jázd autobusov a vlakov.",
+        "a2": "Sledovanie nastavené: región {ags} ({city}), hlásenie od {pct} % meškajúcich jázd, do {until} – iba v tomto chate.",
+        "q3": "Upozorni ma, keď pre Kolín nad Rýnom začne platiť varovanie Nemeckej meteorologickej služby pred nebezpečným počasím.",
+        "a3": "Sledovanie nastavené: oblasť varovaní DWD {cell} ({city}), do {until} – ViaFrei sa tu ozve, len čo sa situácia zmení."
+      }
+    },
+    "fuelAsks": {
+      "heading": "Otázka, ktorá pri tankovaní môže ušetriť peniaze",
+      "whyLabel": "Prečo sa pýtať",
+      "goerlitz": {
+        "q": "Kde je v Görlitzi práve najlacnejšia nafta?",
+        "why": "Ceny sa menia niekoľkokrát denne a líšia sa aj medzi pár čerpacími stanicami v jednom meste: ViaFrei uvedie najlacnejšiu s cenou a časom, keď ju stanica nahlásila.",
+        "a": "Zatiaľ žiadna nová cena – naposledy najlacnejšie: {euro},{cent} €/l: {station}, {address}, nahlásené {reported}; ViaFrei sa práve pýta znova."
+      },
+      "muenchen": {
+        "q": "Kde je v Mníchove práve najlacnejší benzín E10?",
+        "why": "Cena môže byť ranná: pre Mníchov mal ViaFrei v to popoludnie len ceny z rána, uviedol každú s časom a vyžiadal si nové.",
+        "a": "Zatiaľ žiadna nová cena – naposledy najlacnejšie: {euro},{cent} €/l: {station}, {address}, nahlásené {reported}; ViaFrei sa práve pýta znova."
+      },
+      "leipzig": {
+        "q": "Kde je v Lipsku práve najlacnejší benzín E5?",
+        "why": "Cena môže byť hodiny stará: ViaFrei pri každej cene uvedie, kedy ju stanica nahlásila – v to popoludnie pochádzali najlacnejšie ceny v Lipsku ešte z dopoludnia.",
+        "a": "Zatiaľ žiadna nová cena – naposledy najlacnejšie: {euro},{cent} €/l: {station}, {address}, nahlásené {reported}."
+      },
+      "nuernberg": {
+        "q": "Kde je v Norimbergu práve najlacnejšia nafta?",
+        "why": "Najbližšia čerpacia stanica nie je vždy najlacnejšia: ViaFrei pri každej cene uvedie vzdialenosť.",
+        "a": "{euro},{cent} €/l: {station}, {address} – nahlásené o {reported}."
+      }
+    },
+    "fuelAll": "Až tri čerpacie stanice v každej spolkovej krajine, s adresou a cenou",
+    "allExamples": "Všetky vzorové otázky s odpoveďami"
+  },
+  "start": {
+    "heading": "Pripravené za minútu",
+    "lead": "ViaFrei žije v asistentovi, ktorého už máte. Tri kroky, raz:",
+    "s1": "V Claude alebo ChatGPT: nastavenia → „Connectors“.",
+    "s2": "Pridajte ViaFrei s adresou nižšie.",
+    "s3": "Opýtajte sa: „Je A8 smerom na Mníchov práve voľná?“",
+    "draft": "Návrh – tieto kroky ešte nie sú overené v každom asistentovi."
+  },
+  "legal": {
+    "bindingNote": "Táto stránka je právnym oznámením podľa nemeckého práva. Jediným záväzným znením je nemecký text nižšie."
+  },
+  "connectPage": {
+    "moreExamples": "Ďalšie príklady",
+    "title": "Pripojte ViaFrei k svojmu asistentovi",
+    "lead": "Jedna adresa, žiadny účet, žiadny kľúč. Pridajte ViaFrei raz ako konektor – potom sa už len pýtajte.",
+    "askHeading": "Ako sa pýtať",
+    "askLead": "Päť otázok, ako na ne váš asistent odpovedá dnes:",
+    "asks": {
+      "train": "Kedy ide najbližší vlak z hlavnej stanice v Kolíne nad Rýnom?",
+      "parking": "Kde je parkovací dom v centre Kolína nad Rýnom?",
+      "charging": "Kde môžem v Lipsku nabiť elektromobil?",
+      "road": "Je A3 smerom na Frankfurt práve voľná?",
+      "weather": "Platí práve pre Drážďany varovanie pred nebezpečným počasím?"
+    },
+    "live": {
+      "heading": "Odpovede, ako prišli",
+      "lead": "Skrátené, s časom dát a ich zdrojmi. Čísla sú snímkou toho okamihu, nie živým zobrazením.",
+      "asOf": "Stav: {asOf}",
+      "fuelExample": "Vzorová odpoveď z {asOf} – dnešné ceny sú iné",
+      "stadtbahn": {
+        "title": "Výťahy a eskalátory na Stadtbahn",
+        "q": "Čo je práve mimo prevádzky na zastávke Stadtbahn {stop} v Kolíne nad Rýnom?",
+        "a": "{out} z {total} hlásených zariadení: eskalátory {e1} a {e2} od {since}, {e3} od {since3} a {e4} od {since4}; oba výťahy v prevádzke. {publisher} poskytuje dáta bez akejkoľvek záruky.",
+        "note": "Pre zastávky kolínskej Stadtbahn, zo zverejneného zoznamu porúch – s časom, odkedy je zariadenie hlásené."
+      },
+      "bikes": {
+        "title": "Zdieľané bicykle pri stanici, naživo",
+        "q": "Kde nájdem voľný požičaný bicykel blízko stanice {station}?",
+        "a": "Stanica {dock} od {operator}: voľné bicykle: {free}, a ďalšie stanice ({docks}) do {radius} km, každá s vlastným stavom.",
+        "note": "Voľné bicykle prichádzajú naživo z otvorených dát systémov zdieľania; ViaFrei uvádza len to, čo stanica práve hlási."
+      },
+      "lift": {
+        "title": "Výťahy na stanici",
+        "q": "Ktoré výťahy na stanici {station} sú práve mimo prevádzky?",
+        "a": "Jeden je hlásený mimo prevádzky, výťah ku koľaji {platforms}: {working} z {total} výťahov v prevádzke. Druhý výťah ku koľaji {platforms} nie je monitorovaný – jeho stav je neznámy.",
+        "note": "Pre stanice Deutsche Bahn, načítané každých 20 minút. Čo posledné hlásenie neuvádza, je „neznáme“ – nikdy „v prevádzke“."
+      },
+      "alert": {
+        "title": "Hlásenia o poruchách autobusov a vlakov",
+        "q": "Sú práve nejaké hlásenia o poruchách autobusov a vlakov v Dolnom Sasku?",
+        "a": "Platné hlásenia: {count}, napr.: linky {lines} jazdia podľa výlukového poriadku, lebo {road} je uzavretá v úseku {a} – {b}, a to od {from} do {to}.",
+        "note": "Hlásenia dopravných zväzov cez DELFI, len kým platia. Hlásenie bez zastávky priradí ViaFrei spolkovej krajine podľa jeho siete a dodá, že sa môže týkať aj susednej krajiny."
+      },
+      "enbw": {
+        "title": "Rýchlonabíjačka so živou obsadenosťou",
+        "q": "Je na nabíjacej stanici {brand} na adrese {address} práve voľný nabíjací bod?",
+        "a": "Do {kw} kW, {euro},{cent} €/kWh – pre žiadny z {n} nabíjacích bodov však nie je stav, preto ViaFrei nehovorí „voľný“.",
+        "note": "Prevádzkovateľ sám zverejňuje svoje lokality a obsadenosť; čas „stav“ je jeho posledné hlásenie."
+      },
+      "ecomove": {
+        "title": "Živá obsadenosť cez agregátor",
+        "q": "Je na rýchlonabíjačke na adrese {address} práve voľný nabíjací bod?",
+        "a": "{site}: do {kw} kW, {euro},{cent} €/kWh; posledný stav je z {t} – príliš starý na „voľný“.",
+        "note": "Obsadenosť tu pochádza zo služby, ktorá zhromažďuje hlásenia mnohých prevádzkovateľov. Bod bez hlásenia sa nikdy nepočíta ako voľný."
+      },
+      "ocpdb": {
+        "title": "Naživo voľné alebo obsadené – v centre Kolína nad Rýnom",
+        "q": "Je na nabíjačke na adrese {address} práve voľný nabíjací bod?",
+        "a": "Áno, jeden: Typ 2 do {kw2} kW je voľný, bod CCS do {kw} kW je mimo prevádzky – {euro},{cent} €/kWh bez DPH.",
+        "note": "Obsadenosť prichádza naživo cez dátový portál Bádenska-Württemberska, ktorý uvádza aj nabíjačky ďaleko za hranicami tejto krajiny."
+      },
+      "lsr": {
+        "title": "Aj tam, kde nikto nehlási naživo",
+        "q": "Kde môžem nabíjať blízko adresy {address}?",
+        "a": "{m} m odtiaľto: Typ 2, do {kw} kW – podľa registra nabíjačiek Spolkovej sieťovej agentúry (stav {register}), bez živého stavu a bez záruky správnosti a úplnosti.",
+        "note": "Kde žiadny prevádzkovateľ nezverejňuje živé dáta, uvádza ViaFrei nabíjačky z úradného registra, bez obsadenosti, lebo neznámy nikdy neznamená „voľný“."
+      },
+      "hamburg": {
+        "title": "Parkovací dom v centre Hamburgu",
+        "q": "Kde môžem zaparkovať blízko zastávky {stop} v Hamburgu?",
+        "a": "{park}: voľných {free} z {total} miest. Mesto Hamburg samo uvádza, že tieto dáta v reálnom čase sú neoverené.",
+        "note": "Obsadenosť hamburských parkovacích domov prichádza naživo od mesta; ViaFrei vždy odovzdá aj jeho upozornenie, že dáta sú neoverené."
+      },
+      "hhworks": {
+        "title": "Mestské práce na ceste v Hamburgu",
+        "q": "Aké práce na ceste sú plánované na ulici {street} v Hamburgu?",
+        "a": "{street}, {b}: prestavba cesty od {from} do {to}; úplná uzávierka sa očakáva na jar 2027.",
+        "note": "Mestské práce na ceste v Hamburgu pochádzajú z mestského Bauweiser: iba schválené stavby, po kalendárnych dňoch, a „plánované“ znamená začiatok prác po dnešku. Hlásenia polície zostávajú samostatnými záznamami."
+      },
+      "muenster": {
+        "title": "Parkovací systém Münsteru, naživo",
+        "q": "Koľko miest je voľných v parkovacom dome {name} v Münsteri?",
+        "a": "Voľných {free} z {total} miest – a ďalšie parkovacie domy v okolí ({more}), každý s vlastnou obsadenosťou.",
+        "note": "Obsadenosť prichádza naživo z parkovacieho systému mesta Münster. Parkovací dom, ktorý nič nehlási, ViaFrei nikdy neoznačí za „plný“."
+      },
+      "motorway": {
+        "title": "Uzavretý nájazd na diaľnicu",
+        "q": "Je na A6 pri lokalite {place} práve niečo uzavreté?",
+        "a": "Áno: nájazd {place} na A6 je uzavretý, prestavuje sa objekt – táto etapa trvá od {from} do {to}. Pre celú A6 odpoveď uvádza uzávierky: {count}.",
+        "note": "Uzávierky a práce na ceste na diaľniciach pochádzajú od Autobahn GmbH, s obdobím každej etapy výstavby. Pri otázke na diaľnicu uvedie ViaFrei najprv uzávierky."
+      },
+      "citywork": {
+        "title": "Práce na ceste v meste",
+        "q": "Je na ulici {street} v Berlíne niečo uzavreté?",
+        "a": "Áno: v oboch smeroch v úseku {a} – {b} pokládka vedení, podľa senátnej správy úplne uzavreté pre motorové vozidlá, od {from} do {to}.",
+        "note": "Berlínske hlásenia uvádzajú ulicu a úsek, nie číslo cesty, preto ich ViaFrei hľadá podľa miesta – do 25 km, najbližšie najprv."
+      },
+      "landroad": {
+        "title": "Práce na ceste na krajinskej ceste",
+        "q": "Sú tento týždeň práce na ceste na L1025 v Durínsku?",
+        "a": "Úseky s prácami: {count}, medzi nimi {site}, zúženie riadené semaformi, od {from} do {to}.",
+        "note": "Krajinské cesty pokrývame v Bádensku-Württembersku, Dolnom Sasku a Durínsku, štátne cesty v Sasku – z dát cestných správ: úsek a obdobie, bez súradníc a bez živého zdržania."
+      },
+      "saxony": {
+        "title": "Práce na ceste na spolkovej ceste v Sasku",
+        "q": "Sú tento týždeň práce na ceste na B6 v Sasku?",
+        "a": "{count, plural, one {# úsek s prácami} few {# úseky s prácami} many {# úseku s prácami} other {# úsekov s prácami}} tento týždeň, medzi nimi: pri lokalite {place} v Drážďanoch sa cesta rozširuje, od {from} do {to}.",
+        "note": "Saský krajinský úrad pre cestné stavby a dopravu zverejňuje svoje dlhodobé práce na ceste nanovo každé tri hodiny. ViaFrei z nich odpovedá pre spolkové a štátne cesty, podľa úseku a obdobia – bez súradníc a bez živého zdržania."
+      },
+      "bwroad": {
+        "title": "Práce na ceste na spolkovej ceste v Bádensku-Württembersku",
+        "q": "Sú budúci týždeň plánované práce na ceste na B27 v Bádensku-Württembersku?",
+        "a": "{count} z {all} úsekov je v Bádensku-Württembersku, napr. {a} – {b}: nový povrch vozovky od {from} do {to}.",
+        "note": "Ministerstvo dopravy Bádenska-Württemberska zverejňuje svoje práce na ceste (BEMaS) cez MobiData BW. ViaFrei z nich odpovedá pre spolkové a krajinské cesty, podľa úseku a obdobia – plánované ako plánované, bez živého zdržania."
+      },
+      "kiel": {
+        "title": "Stavebné práce v Kieli",
+        "q": "Dá sa teraz v Kieli prejsť ulicou {street}?",
+        "a": "Nie: {street} je medzi číslom {no} a {b} uzavretý pre stavbu kanalizácie, od {from} do {to} (Príklad, zhrnuté; nástroj ho ukazuje celý).",
+        "note": "Mesto Kiel zverejňuje svoje stavebné práce s miestom, dôvodom a obdobím. Táto karta zhŕňa jedno hlásenie; nástroj ukazuje hlásenia celé a nájde hlásenie podľa miesta – do 25 km, najbližšie najprv."
+      },
+      "truckstop": {
+        "title": "Zabezpečené parkovisko pre kamióny na A7",
+        "q": "Bude dnes v noci voľné miesto pre kamión na parkovisku {name} na A7?",
+        "a": "Voľných {free} z {total} miest, tak ako ich hlási prevádzkovateľ.",
+        "note": "Prevádzkovateľ týchto zabezpečených parkovísk pre kamióny zverejňuje voľné miesta; ViaFrei ich ukazuje vedľa odpočívadiel, ktoré obsadenosť nezverejňujú, a nikdy ich nesčítava."
+      },
+      "parkride": {
+        "title": "Park and ride pred vlakom",
+        "q": "Kde v Dortmunde môžem nechať auto a prestúpiť na vlak?",
+        "a": "{p1} s {t1} miestami a {p2} s {t2} miestami – pri týchto zariadeniach bez obsadenosti.",
+        "note": "Parkoviská P+R v Severnom Porýní-Vestfálsku pochádzajú zo zhromaždených dát krajiny a sú vo vlastnom bloku, nikdy nezlúčené s inými zdrojmi. Ich obsadenosť nepreberáme."
+      },
+      "platform": {
+        "title": "Meškanie, naživo",
+        "q": "Odchádza {train} smer {dest} zo stanice {station} načas?",
+        "a": "+{delay} min, očakávaný o {expected} namiesto {planned} – z koľaje {platform} podľa plánu.",
+        "note": "Meškania a zmeny koľají pochádzajú z rozhrania cestovného poriadku Deutsche Bahn, pre všetky časti stanice – vrátane podzemných koľají a koľají S-Bahn na hlavnej stanici v Berlíne."
+      },
+      "region": {
+        "title": "Presnosť v aglomerácii",
+        "q": "Jazdia autobusy a vlaky v oblasti Rýn-Rúr práve načas?",
+        "a": "{share} % jázd sledovaných za poslednú hodinu meškalo viac ako 5 minút – viac ako hodinu predtým ({before} %).",
+        "note": "Oblasť Rýn-Rúr odpovedá ako jeden región: 30 okresov a miest spolu. ViaFrei uvádza súčty po regiónoch, nie po linkách."
+      },
+      "tomorrow": {
+        "title": "Práce na ceste na zajtrajšej trase",
+        "q": "Aké práce na ceste sú zajtra plánované na A7?",
+        "a": "{count, plural, one {# úsek s prácami} few {# úseky s prácami} many {# úseku s prácami} other {# úsekov s prácami}}, z toho {started} už prebieha. Jeden z nich: v úseku {a} – {b} sa stavia nový most, na {km} km, rýchlosť {speed} km/h, do {until}.",
+        "note": "Plánované práce na ceste od Spolkového ústavu pre výskum ciest: úsek a obdobie, bez súradníc a bez živého zdržania – čo sa deje práve teraz, odpovedá ViaFrei z diaľničných hlásení."
+      },
+      "closure": {
+        "title": "Uzávierka pred vami",
+        "q": "Je na A7 pri Hamburgu práve niečo uzavreté?",
+        "a": "Áno: Autobahn GmbH hlási uzavretú rampu na križovatke {at} – v úseku prác {a} – {b}. Táto etapa výstavby končí {until} o {end}.",
+        "note": "Uzávierky a práce na ceste na diaľniciach pochádzajú od Autobahn GmbH, s obdobím každej etapy výstavby."
+      },
+      "weather": {
+        "title": "Kontrola počasia pred horami",
+        "q": "Platí dnes varovanie pred počasím pre lokalitu {name}?",
+        "a": "Áno, na nadchádzajúcu noc: Nemecká meteorologická služba varuje pred slabým mrazom do {temp} °C, platí {day} od {from} do {to} – stupeň {level}, najnižší.",
+        "note": "Varovania sa načítavajú každých 5 minút a platia pre oblasť; nové môže byť vydané na poslednú chvíľu."
+      },
+      "fuelcity": {
+        "title": "Najlacnejší E10 v meste",
+        "q": "Kde je v Kolíne nad Rýnom práve najlacnejší Super E10?",
+        "a": "{euro},{cent} €/l: {station}, {address} – nahlásené o {reported}.",
+        "note": "Ceny palív sa menia každých pár minút: toto číslo je príklad z toho popoludnia, nie dnešná cena. ViaFrei pri každej cene uvedie, kedy ju stanica nahlásila."
+      },
+      "charger": {
+        "a": "{site}: nabíjacie body: {points}, Typ 2, do {kw},{kwd} kW, {euro},{cent} €/kWh bez DPH. Žiadny sa nehlási ako obsadený; pri {stale} je posledný stav z {t}, pri {unknown} žiadny nie je – teda nie „voľný“.",
+        "title": "Živý stav na nabíjačke",
+        "q": "Je na adrese {address} práve voľný nabíjací bod?",
+        "note": "Živú obsadenosť uvádzame len tam, kde ju prevádzkovateľ zverejňuje – tu cez e-clearing.net. Bez hlásenia je odpoveď „žiadne údaje o stave“, nikdy „voľný“."
+      },
+      "roadworks": {
+        "a": "V Dolnom Sasku: {count}, všetky už začali; prvé: {section}, od {start} do {end}.",
+        "note": "Spolkové cesty pokrývame v Dolnom Sasku, Sasku, Durínsku a Bádensku-Württembersku, z dát ich cestných správ: úsek a obdobie, bez živého zdržania. Pri spolkovej ceste inde odpovedá ViaFrei „nepokryté“ – nie „voľné“.",
+        "title": "Práce na ceste na spolkovej ceste",
+        "q": "Aké práce na ceste sú tento týždeň plánované na B3 v Dolnom Sasku?"
+      },
+      "train": {
+        "title": "Regionálne vlaky, načas alebo nie",
+        "q": "Ide najbližší regionálny vlak zo stanice {station} smer {dest} načas?",
+        "a": "Áno: {line} o {planned} z koľaje {platform}, včas – ako {n} z {all} regionálnych vlakov do {last}.",
+        "note": "Keď rozhranie cestovného poriadku Deutsche Bahn nedá živé časy, doplní ViaFrei regionálne vlaky a S-Bahn z DELFI SIRI ET – vo vlastnom bloku, nikdy nezmiešané s riadkami železnice."
+      },
+      "fuelroad": {
+        "a": "Zatiaľ žiadna nová cena – naposledy najlacnejšie: {euro},{cent} €/l: {station}, {address}, nahlásené {reported}; ViaFrei sa práve pýta znova.",
+        "title": "Nafta po ceste, pri diaľnici",
+        "q": "Dnes večer idem po A3 popri Würzburgu: kde je v okolí najlacnejšia nafta?",
+        "note": "Ceny palív sa menia každých pár minút: toto číslo je príklad z toho popoludnia, nie dnešná cena. ViaFrei pri každej cene uvedie, kedy ju stanica nahlásila."
+      },
+      "fuelland": {
+        "a": "Zatiaľ žiadna nová cena – naposledy najlacnejšie: {euro},{cent} €/l: {station}, {address}, nahlásené {reported}; ViaFrei sa práve pýta znova.",
+        "title": "Najnižšia cena v hlavnom meste spolkovej krajiny",
+        "q": "Kde je v Stuttgarte v Bádensku-Württembersku práve najlacnejší E10?",
+        "note": "Ceny palív sa menia každých pár minút: toto číslo je príklad z toho popoludnia, nie dnešná cena. ViaFrei pri každej cene uvedie, kedy ju stanica nahlásila."
+      },
+      "carpark": {
+        "title": "Parkovací dom s voľnými miestami",
+        "q": "Koľko miest je voľných v parkovacom dome {name} v Kolíne nad Rýnom?",
+        "a": "Naposledy hlásených voľných {free} z {total} miest – staršie hlásenie, nie aktuálny stav.",
+        "note": "Názov, poloha a počet miest pochádzajú z tabuľky parkovacích domov mesta Kolín nad Rýnom, obsadenosť z jeho živého kanála. Ak je posledné hlásenie príliš staré, ViaFrei povie „naposledy hlásené“ namiesto „voľné“."
+      },
+      "lorry": {
+        "title": "Parkovanie kamiónov s voľnými miestami",
+        "q": "Koľko miest pre kamióny je práve voľných na parkovisku {name}?",
+        "a": "Voľné miesta pre kamióny: {free}, tak ako ich hlási prevádzkovateľ.",
+        "note": "Voľné miesta uvádzame len tam, kde ich prevádzkovateľ zverejňuje – tu každých 15 minút. Ak hodnota zostane šesť hodín rovnaká, ViaFrei povie „naposledy hlásené“ namiesto „voľné“."
+      }
+    },
+    "betaHeading": "Beta: čo to pre vás znamená",
+    "beta1": "ViaFrei je vo fáze stabilizácie: pribúdajú zdroje dát a odpovede aj pokrytie sa môžu meniť.",
+    "beta2": "Odpovede formuluje AI asistent na základe našich dát – AI sa môže mýliť.",
+    "beta3": "Dôležité údaje (uzávierky, odchody, ceny) si overte v zdroji, ktorý odpoveď uvádza.",
+    "endpointHeading": "Adresa",
+    "endpointNote": "Streamable HTTP. Počas budovania zadarmo, bez účtu; počet požiadaviek je obmedzený, aby to stačilo pre všetkých.",
+    "legacyNote": "Staršie klienty bez Streamable HTTP používajú adresu SSE:",
+    "clientsHeading": "Krok za krokom",
+    "claudeAi": "claude.ai (web)",
+    "claudeAiSteps": "Prispôsobiť (Customize) → Connectors → „+ Add“ → „Add custom connector“. Pomenujte ho ViaFrei, vložte adresu vyššie ako URL servera MCP, potom „Continue“. Opýtajte sa napríklad: „Je A8 smerom na Mníchov voľná?“ Pri prvom použití povoľte nástroj ViaFrei.",
+    "claudeDesktop": "Claude Desktop",
+    "claudeDesktopSteps": "Ten istý konektor ako na claude.ai, uložený vo vašom účte Claude: pridajte ho tam ako vyššie a objaví sa aj v desktopovej aplikácii.",
+    "claudeCode": "Claude Code",
+    "claudeCodeSteps": "Raz spustite v termináli:",
+    "chatgpt": "ChatGPT",
+    "chatgptSteps": "Plugins → „+“ → „Add custom MCP server“. Pomenujte ho ViaFrei, vložte adresu vyššie do „Connection“, overenie: žiadne; zaškrtnite „I understand and want to continue“, potom „Create as a plugin“. V novom chate napíšte @, vyberte ViaFrei a opýtajte sa.",
+    "editorsSteps": "Pridajte do konfigurácie MCP (mcp.json):",
+    "copilotSteps": "Paleta príkazov → „MCP: Add Server“ → „HTTP“ → vložte adresu vyššie → ID servera viafrei → „Global“ → „Copilot Global“. Zapíše sa to do ~/.copilot/mcp-config.json; ručne pridajte:",
+    "copilotSandbox": "Ak Copilot odpovie 403 s hlavičkou „x-ms-block-by: sandbox-broker“, jeho sandbox adresu zablokoval: povoľte mcp.viafrei.de (pre cloudového agenta: nastavenia repozitára → Copilot → Internet access → Custom allowlist).",
+    "geminiTrust": "Gemini CLI spúšťa MCP servery len v priečinku, ktorému dôverujete; pri prvom spustení v ňom sa na to opýta.",
+    "windsurfSteps": "Panel Cascade → „…“ → MCPs → otvorte konfiguračný súbor MCP (mcp_config.json) a pridajte:",
+    "leChatSteps": "Connectors → „+ Add Connector“ → „Custom MCP Connector“ → názov viafrei, URL servera: adresa vyššie → Connect, bez overenia. Pridáva ho správca – v plánoch Free a Pro ste to vy.",
+    "generic": "Akýkoľvek iný klient MCP",
+    "genericSteps": "Každý klient, ktorý hovorí Streamable HTTP, sa pripojí k adrese vyššie – bez hlavičiek, bez kľúča.",
+    "stdio": "Klienty len so stdio",
+    "stdioSteps": "Most z verejného balíka npm spustí lokálny server stdio, ktorý preposiela na adresu vyššie:",
+    "notCoveredHeading": "Na čo ViaFrei neodpovedá",
+    "notCoveredLead": "Aby ste nehľadali, čo tu nie je:",
+    "notCovered": {
+      "routing": "Žiadne plánovanie trasy od dverí k dverám – ViaFrei odpovedá o miestach, cestách a zdrojoch dát, nikdy na „ako sa tam dostanem?“.",
+      "cityStreets": "Žiadna doprava na mestských uliciach mimo mestských a krajinských zdrojov, ktoré máme: práce na ceste, uzávierky a dopravné hlásenia pre Berlín, Kolín nad Rýnom (uzávierky pri podujatiach), Hannover (keď jeho zdroj začne zverejňovať), Šlezvicko-Holštajnsko vrátane Kielu a Bádensko-Württembersko vrátane Stuttgartu. Iné mestá nie sú pokryté; inde máme živú dopravu pre sieť spolkových diaľnic (Autobahn GmbH) a tam, kde ich zdroj obsahuje, pre spolkové cesty, plus práce na ceste na krajinských a štátnych cestách v Bádensku-Württembersku, Dolnom Sasku, Sasku a Durínsku.",
+      "fares": "Žiadne cestovné, lístky ani rezervácie akéhokoľvek druhu.",
+      "lineRealtime": "Žiadne číslo presnosti pre jednu konkrétnu linku – „Ide S1 načas?“ odpovedá ViaFrei vlak po vlaku na stanici (živé meškanie každého odchádzajúceho vlaku, aj S-Bahn) a po regiónoch s hláseniami o poruchách linky; na zastávke autobusu, električky alebo metra je len cestovný poriadok.",
+      "forecast": "Žiadna predpoveď počasia – len úradné varovania DWD, a len kým platia.",
+      "parkingTariffs": "Žiadne parkovné a žiadny prísľub, že je miesto voľné, ak prevádzkovateľ nezverejňuje obsadenosť."
+    },
+    "privacyHeading": "Ochrana súkromia v troch vetách",
+    "privacy1": "Nepotrebujete u nás účet a neukladáme žiadne otázky pod vaším menom.",
+    "privacy2": "Cudzie meracie služby bežia, len ak súhlasíte; predtým sa od tretích strán nič nenačíta. Návštevy počítame bez cookies, ako denné súčty na vlastnom serveri.",
+    "privacy3": "Záznamy servera sa mažú najneskôr po siedmich dňoch – všetko ostatné nájdete v",
+    "privacyLink": "zásadách ochrany súkromia (v nemčine)",
+    "sourcesHeading": "Odkiaľ dáta pochádzajú",
+    "sourcesLead": "Každá odpoveď uvádza svoj zdroj. Toto sú všetky zdroje, z ktorých ViaFrei dnes odpovedá, s uvedením zdroja, ako ho vyžaduje ich licencia (po nemecky, v pôvodnom znení):",
+    "askAnswers": {
+      "train": "O {t1} {l1} smer {d1} z koľaje {p1}, o {t2} {l2} smer {d2} z koľaje {p2} – oba včas.",
+      "parking": "{p1}: voľných {f1} z {t1} miest; {p2}: voľných {f2} z {t2}.",
+      "charging": "Najbližšie: {a1}, {m} m odtiaľto, Typ 2 do {kw1} kW; potom {a2}, {m2} m, do {kw2} kW – bez živého stavu.",
+      "road": "Áno: na celej A3 nie je práve hlásená žiadna kolóna; uvedené sú uzávierky ({closures}) a záznamy o prácach na ceste ({works}).",
+      "weather": "Pre lokalitu {place} neplatí žiadne úradné varovanie DWD – overené pre teraz a najbližšie {hours} h."
+    },
+    "allExamples": "Všetky vzorové otázky s odpoveďami, podľa oblastí",
+    "claudeFlow": {
+      "s1": "Prispôsobiť (Customize) → Connectors → „+ Add“ → „Add custom connector“.",
+      "s2": "Pomenujte ho ViaFrei, vložte adresu vyššie ako URL servera MCP, potom „Continue“.",
+      "s3": "Opýtajte sa napríklad: „Je A8 smerom na Mníchov voľná?“ Pri prvom použití povoľte nástroj ViaFrei."
+    },
+    "chatgptFlow": {
+      "s1": "Plugins → „+“ → „Add custom MCP server“.",
+      "s2": "Pomenujte ho ViaFrei, vložte adresu vyššie do „Connection“, overenie: žiadne; zaškrtnite „I understand and want to continue“, potom „Create as a plugin“.",
+      "s3": "V novom chate napíšte @, vyberte ViaFrei a opýtajte sa.",
+      "avail": "Vlastné servery MCP fungujú v ChatGPT na webe: v priestoroch Business a Enterprise/Edu, kde ich vytvárajú správcovia a vlastníci, a pre používateľov Pro s právami na čítanie a načítanie – ViaFrei len číta, takže Pro funguje. Nie v mobilných aplikáciách; vo Free a Plus nedostupné.",
+      "d1": "Plugins → + → Add custom MCP server",
+      "d2": "Názov ViaFrei · Connection: adresa · overenie: žiadne · Create as a plugin",
+      "d3": "Nový chat: @ViaFrei, potom otázka",
+      "dtitle": "Tri kroky v ChatGPT"
+    },
+    "shot": {
+      "claude1": "claude.ai, Customize → Connectors: otvorené menu „+ Add“ s položkou „Add custom connector“.",
+      "claude2": "Okno „Add custom connector“: názov ViaFrei, URL servera MCP https://mcp.viafrei.de/mcp a tlačidlo „Continue“.",
+      "claude3": "Claude žiada o použitie nástroja ViaFrei pre A8: odmietnuť, vždy povoliť alebo povoliť raz.",
+      "claude4": "Odpoveď Claude na otázku o A8 smerom na Mníchov, označená ako použitie ViaFrei, s riadkom zdroja na konci.",
+      "phone1": "claude.ai v prehliadači telefónu, Customize → Connectors: otvorené menu „+ Add“ s položkou „Add custom connector“.",
+      "phone2": "Okno „Add custom connector“: názov ViaFrei, URL servera MCP https://mcp.viafrei.de/mcp a tlačidlo „Continue“.",
+      "phone3": "Chat v claude.ai: „+“ → Connectors so zapnutým ViaFrei; ostatné konektory sú rozmazané.",
+      "phone4": "Odpoveď Claude na otázku, či je teraz na A7 zápcha, označená ako použitie ViaFrei.",
+      "phone4b": "Tá istá odpoveď na konci: riadok zdroja uvádzajúci Autobahn GmbH des Bundes.",
+      "phoneCaption": "Snímka obrazovky: claude.ai v prehliadači telefónu, {date}",
+      "caption": "Snímka obrazovky: claude.ai, {date}",
+      "diagram": "Schéma, nie snímka obrazovky",
+      "claudeCode1": "Terminál: claude mcp add s adresou ViaFrei, potom claude mcp list hlási „viafrei … ✔ Connected“.",
+      "geminiCli1": "Terminál: gemini mcp add --scope user s adresou ViaFrei, potom gemini mcp list hlási „viafrei … Connected“.",
+      "generic1": "Terminál: MCP Inspector sa opýta adresy ViaFrei na jej nástroje (tools/list) a dostane ich názvy.",
+      "stdio1": "Terminál: Claude Code pridá most npx -y viafrei, potom claude mcp list hlási „viafrei: npx -y viafrei – ✔ Connected“.",
+      "terminal": "Záznam terminálu z nášho testu: {what}, {date}",
+      "open": "Otvoriť obrázok v plnej veľkosti",
+      "close": "Zavrieť zväčšený obrázok"
+    },
+    "guide": "Oficiálny návod",
+    "otherGuides": "Ich vlastné návody:",
+    "check": {
+      "verified": "Overené v klientovi dňa {date} s {version}.",
+      "docs": "Kroky overené podľa oficiálneho návodu dňa {date}, v klientovi zatiaľ nie. {reason}",
+      "pending": {
+        "account": "Je na to potrebný prihlásený účet; toto overenie ešte čaká.",
+        "app": "Je to desktopová aplikácia s vlastným prihlásením; toto overenie ešte čaká.",
+        "signIn": "Relácia vyžaduje prihlásenie alebo kľúč API; toto overenie ešte čaká."
+      }
+    },
+    "about": {
+      "lead": "Skopírujte túto otázku a položte ju asistentovi, keď je ViaFrei pripojený:",
+      "place": "{place}: aká je teraz situácia na cestách, v doprave a s počasím?",
+      "road": "Je {road} teraz prejazdná?",
+      "exit": "{road}, {exit}: je cesta teraz prejazdná?"
+    },
+    "phone": {
+      "heading": "V telefóne (Android, iPhone)",
+      "jump": "V telefóne? Ako na to v Androide a na iPhone",
+      "lead": "Vo väčšine aplikácií asistentov sa ViaFrei nedá pridať priamo v aplikácii. Pripojenie nastavíte raz v prehliadači – aj v telefóne – a aplikácia ho použije, hneď ako sa prihlásite rovnakým účtom.",
+      "where": "Podľa Anthropicu funguje s každým plánom Claude (Free: jeden vlastný konektor). Pridanie konektora v aplikácii je zatiaľ v beta verzii, preto kroky vedú cez claude.ai v prehliadači.",
+      "claude": {
+        "s1": "V prehliadači telefónu (alebo na počítači) otvorte claude.ai a prihláste sa. Potom Customize → Connectors → „+ Add“ → „Add custom connector“.",
+        "s2": "Názov: ViaFrei. URL: {url}. Ťuknite na „Continue“.",
+        "s3": "Otvorte aplikáciu Claude a prihláste sa rovnakým účtom. V chate ťuknite na „+“ → Connectors a zapnite ViaFrei.",
+        "s4": "Opýtajte sa: „Je A7 pri Kasseli voľná?“ a prvýkrát povoľte nástroj ViaFrei. Správna odpoveď opisuje A7 pri Kasseli práve teraz a končí riadkom zdroja, ktorý uvádza vydavateľa údajov."
+      },
+      "unclear": "{name}: oficiálny návod pridáva vlastný server MCP len na webe a neuvádza, či ho aplikácia v telefóne potom používa – preto tu nie sú kroky. Stav k {date}.",
+      "gemini": "Gemini: vlastné aplikácie (servery MCP) sa dajú pridať len vo webovej aplikácii a len s osobným účtom v USA, od 18 rokov, v angličtine – teda nie z Nemecka. Stav k {date}.",
+      "copilot": "Microsoft Copilot: oficiálna dokumentácia opisuje vlastné servery MCP len pre Microsoft 365 Copilot (nastavuje ich správa organizácie) a Copilot Studio, nie pre aplikáciu Copilot. Stav k {date}.",
+      "checked": "Overené {date} podľa oficiálneho návodu; v telefóne zatiaľ nevyskúšané.",
+      "device": "Pripojené v telefóne {date} s {app}."
+    }
+  },
+  "devPage": {
+    "title": "ViaFrei pre vývojárov",
+    "lead": "Server MCP cez Streamable HTTP, otvorené dáta z Nemecka, každá odpoveď so svojím zdrojom. Tu je, čo dnes dokáže – načítané priamo zo servera, nie odpísané.",
+    "releaseHeading": "Aktuálna verzia",
+    "releaseLine": "Verzia {version}",
+    "releaseDate": "vydané {date}",
+    "toolsHeading": "Nástroje",
+    "toolsLead": "Nástroje ({n}), ako ich hlási server:",
+    "promptsHeading": "Prompty",
+    "resourcesHeading": "Zdroje",
+    "codeHeading": "Kód a zapojenie sa",
+    "closed": "Server je hostovaná služba a jeho zdrojový kód nie je verejný. Verejný je most – a každá pomoc je tam vítaná.",
+    "bridge": "Verejný most na GitHub",
+    "discussions": "Diskusie",
+    "goodFirst": "Vhodné prvé úlohy",
+    "contributing": "Ako prispieť",
+    "security": "Nahlásiť zraniteľnosť",
+    "licence": "Licencia: Apache-2.0",
+    "contractHeading": "Zmluva, ktorú dodržiava každý nástroj",
+    "contract1": "Nástroj robí jednu vec a podľa nej sa volá (sloveso_podstatné meno).",
+    "contract2": "Každá odpoveď nesie svoj riadok so zdrojom doslovne; kde licencia vyžaduje poznámku o účele, je tam tiež.",
+    "contract3": "Časy sú Europe/Berlin; ukladá sa v UTC.",
+    "contract4": "Testy nikdy nevolajú skutočného poskytovateľa; každý príspevok sa nezávisle posudzuje.",
+    "npmHeading": "npm",
+    "npmLead": "Pre klienty, ktoré hovoria len stdio:",
+    "npmReserved": "Menný priestor @viafrei je rezervovaný pre neskoršie balíky SDK.",
+    "listingsHeading": "Katalógy",
+    "listingsLead": "ViaFrei je uvedený tu:",
+    "listingNpm": "npm – balík viafrei, most stdio pre klienty bez HTTP",
+    "listingSmithery": "Smithery – hostované pripojenie bez lokálnej inštalácie",
+    "listingGlama": "Glama – záznam v katalógu serverov MCP",
+    "statusHeading": "Stav",
+    "statusText": "Prehľad stavu zdrojov dát je k dispozícii na požiadanie.",
+    "tools": {
+      "check_autobahn_traffic": "Doprava na diaľnici",
+      "find_cheapest_fuel": "Najlacnejšie palivo v okolí",
+      "find_fuel_station": "Nájsť čerpaciu stanicu",
+      "find_parking": "Parkovanie v okolí",
+      "check_road_status": "Stav ciest a uzávierky",
+      "find_roadworks_ahead": "Plánované práce na ceste",
+      "find_sharing": "Zdieľané bicykle v okolí",
+      "find_charging_station": "Nabíjanie v okolí",
+      "find_hydrogen_station": "Vodíkové čerpacie stanice v okolí",
+      "find_speed_cameras": "Rýchlostné radary na plánovanie",
+      "find_place": "Vyhľadať miesto",
+      "find_poi": "Nájsť pomenované miesto",
+      "find_address": "Vyhľadať adresu",
+      "describe_location": "Opísať súradnicu",
+      "find_nearby": "Čo je v okolí",
+      "get_driving_rules": "Pravidlá cestnej premávky v Nemecku",
+      "check_transit_disruption": "Poruchy verejnej dopravy v regióne",
+      "check_weather_warnings": "Úradné varovania pred počasím",
+      "get_train_departures": "Odchody vlakov",
+      "get_departures": "Odchody podľa cestovného poriadku (autobus, električka, vlak)",
+      "check_station_facilities": "Výťahy a eskalátory na stanici",
+      "describe_station": "Prehľad železničnej stanice",
+      "watch_situation": "Sledovať zmenu",
+      "stop_watch": "Ukončiť sledovanie"
+    },
+    "prompts": {
+      "plan_departure": "Pripraví jazdu tesne pred štartom: varovania pred počasím na oboch koncoch, otvorené diaľnice a aktuálne kolóny, na konci jedna veta: ísť, alebo počkať.",
+      "compare_travel_options": "Porovná jednu cestu autom s tou istou cestou vlakom: uzávierky a kolóny na jednej strane, odchody a presnosť na druhej.",
+      "prepare_car_trip": "Zhrnie, čo musí vodič mať a vedieť pred jazdou v Nemecku a do konkrétneho mesta: emisná plaketa, rýchlostné limity, zimné pneumatiky, limit alkoholu, mýto, povinná výbava.",
+      "plan_fuel_stop": "Nájde, kde po ceste natankovať alebo nabiť: najlacnejšie čerpacie stanice pre jeden druh paliva alebo nabíjačky so správnym konektorom a výkonom, a odpočívadlo vedľa nich.",
+      "plan_commute": "Naplánuje jednu cestu autobusom alebo vlakom v ten istý deň: najbližšie odchody s meškaniami, koľajami a výpadkami, a či región jazdí normálne.",
+      "plan_arrival_parking": "Nájde, kde nechať auto na konci jazdy: parkovací dom v meste, park-and-ride na okraji s nadväzujúcimi odchodmi, alebo odpočívadlo, ak ste priskoro.",
+      "find_a_place": "Premení samotný názov na miesto, pomenovaný objekt alebo adresu – skúša jedno po druhom.",
+      "plan_local_errand": "Odpovie na „čo je tu v okolí?“ pre jedno miesto: najbližšia čerpacia stanica, nabíjačka, parkovanie, stanica a diaľničný nájazd na jeden pohľad.",
+      "explain_this_coordinate": "Zo samotných súradníc urobí vetu, ktorej cestujúci rozumie: najbližšia adresa, obec, okres a diaľničný nájazd, každé so vzdialenosťou."
+    },
+    "quickHeading": "Pripojené za minútu",
+    "quickLead": "Vyberte klienta, vložte toto a položte prvú otázku.",
+    "quickTabs": "Klientske programy",
+    "quickWhere": "Kam to patrí:",
+    "quickFirst": "Vaše prvé volanie",
+    "quickFirstLead": "Po pripojení sa pýtajte bežnými slovami; nástroj vyberie asistent sám:",
+    "copy": "Kopírovať",
+    "copyCurl": "Kopírovať ako curl",
+    "tryHeading": "Vyskúšajte",
+    "tryLead": "Skutočné volanie verejného koncového bodu: relácia, potom nástroj. Pod ním odpoveď, ktorú náš server dal presne na toto volanie pred niekoľkými minútami.",
+    "tryRequest": "Požiadavka",
+    "tryResponse": "Odpoveď",
+    "tryAsOf": "Zodpovedané o {time}",
+    "tryError": "Teraz nie je k dispozícii žiadna čerstvá odpoveď. Spustite požiadavku vyššie a uvidíte ju naživo.",
+    "argsLabel": "Argumenty",
+    "askLabel": "Opýtajte sa takto:",
+    "schemaLabel": "Vstupná schéma",
+    "otherGroup": "Ďalšie nástroje",
+    "newHeading": "Novinky v zmluve",
+    "newLine": "Verzia {version}, {date}",
+    "newTools": "zmenené:",
+    "contract5": "Príliš veľa požiadaviek je odmietnutých s chybou JSON-RPC {code}; počkajte a odošlite znova.",
+    "contract6": "Vypršaná relácia je odmietnutá s chybou {code}; začnite novú pomocou initialize.",
+    "ask": {
+      "check_autobahn_traffic": "Je teraz zápcha na A9 medzi Mníchovom a Norimbergom?",
+      "find_cheapest_fuel": "Kde je teraz pri Kasseli najlacnejšia nafta?",
+      "find_fuel_station": "Ktorá čerpacia stanica má otvorené pri hlavnej stanici vo Würzburgu?",
+      "find_parking": "Je voľné miesto v parkovacom dome pri hlavnej stanici v Kolíne?",
+      "check_road_status": "Sú na cestách okolo Drážďan uzávierky?",
+      "find_roadworks_ahead": "Aké práce sú na A3 naplánované na budúci týždeň?",
+      "find_charging_station": "Kde v Lipsku môžem rýchlo nabíjať výkonom 150 kW?",
+      "find_hydrogen_station": "Kde je najbližšia vodíková stanica pri Stuttgarte?",
+      "find_speed_cameras": "Kde stoja pevné radary na mojej ceste cez Bielefeld?",
+      "find_place": "Kde presne leží Garmisch-Partenkirchen?",
+      "find_poi": "Je pri hlavnej stanici v Erfurte lekáreň?",
+      "find_address": "Kde je Unter den Linden 77 v Berlíne?",
+      "describe_location": "Čo je na súradniciach 50,94, 6,96?",
+      "find_nearby": "Čo je v blízkosti hlavnej stanice v Münsteri: nabíjanie, parkovanie, zastávky?",
+      "find_sharing": "Je pri Hamburg Dammtor zdieľaný bicykel?",
+      "get_driving_rules": "Kedy platí nedeľný zákaz jazdy pre nákladné autá?",
+      "check_transit_disruption": "Ako presne teraz jazdia autobusy a vlaky v Bavorsku?",
+      "check_weather_warnings": "Je dnes pre Hamburg výstraha pred počasím?",
+      "get_train_departures": "Kedy odchádzajú ďalšie vlaky z hlavnej stanice v Hannoveri?",
+      "get_departures": "Kedy ide ďalšia električka z Leipzig Augustusplatz?",
+      "check_station_facilities": "Fungujú výťahy na hlavnej stanici vo Frankfurte?",
+      "describe_station": "Aká je hlavná stanica v Norimbergu: nástupištia, výťahy, odchody?",
+      "watch_situation": "Daj mi vedieť, keď bude A7 pri Hamburgu znova prejazdná.",
+      "stop_watch": "Prestaň sledovať A7."
+    }
+  },
+  "bizPage": {
+    "title": "ViaFrei pre firmy",
+    "lead": "Otvorené dáta o mobilite z celého Nemecka, čisto zlúčené a vždy so zdrojom – ako jeden koncový bod, ktorého sa môžu pýtať vaše systémy aj vaši asistenti.",
+    "casesHeading": "Na čo firmy ViaFrei používajú",
+    "u1t": "Logistika a flotily",
+    "u1": "Práce na ceste a uzávierky na diaľniciach plánovanej trasy, parkovanie kamiónov pozdĺž nej a nedeľný zákaz jazdy z pravidiel cestnej premávky.",
+    "u1q": "Aké uzávierky sú na A7 medzi Würzburgom a Ulmom?",
+    "u1a": "{n, plural, one {# uzávierka} few {# uzávierky} many {# uzávierky} other {# uzávierok}} na A7 do {to}; medzi Würzburgom a Ulmom okrem iného {a} – {b} a {b} – {c}, v oboch smeroch.",
+    "u2t": "Nabíjacia infraštruktúra",
+    "u2": "Kde je sieť riedka a ktoré body sú práve voľné – z kanálov prevádzkovateľov, ktorých pôvod sme overili. Uložená história dostupnosti je plánovaná ako súčasť spolupráce.",
+    "u2q": "Kde sú rýchlonabíjačky s aspoň 150 kW blízko Kasselu?",
+    "u2a": "Áno: {s1}, {a1}, {m} m odtiaľto, do {kw1} kW, voľných {free} z {total} bodov so stavom; ďalej {s2}, {a2}, do {kw2} kW, bez živého stavu.",
+    "u3t": "Cestovný ruch, hotely a miesta podujatí",
+    "u3": "Informácie o príjazde pre hostí v ich jazyku: situácia na diaľnici, odchody vlakov, parkovanie a nabíjanie v cieli.",
+    "u3q": "Môj hotel je v Garmisch-Partenkirchene – musia hostia dnes rátať s varovaním pred počasím?",
+    "u3a": "Nie: pre lokalitu {place} neplatí žiadne úradné varovanie DWD, overené pre teraz a najbližšie {hours} h – to však nie je odvolanie pre zvyšok cesty.",
+    "u4t": "Navigačné, mapové a mobilitné aplikácie",
+    "u4": "Jeden koncový bod MCP namiesto mnohých samostatných napojení na poskytovateľov – a ako súčasť spolupráce plánovaná uložená história zdrojov, ktorých licencia povoľuje analýzu.",
+    "u4q": "Aké práce na ceste sú plánované na A3 v najbližších dňoch?",
+    "u4a": "Od {from} do {to} je na A3 plánovaných prác: {n}, okrem iného {a} – {b}: uzavretý 1 zo 4 pruhov, {speed} km/h, do {until}.",
+    "u5t": "Poisťovne a výskum mobility",
+    "u5": "Archív nameraných hodnôt zo zdrojov, ktorých licencia to povoľuje: aká bola situácia na úseku v danom okamihu? Dotazy na históriu sú plánované ako súčasť spolupráce; na to, čo platí práve teraz, napríklad na oficiálne výstrahy spolkovej krajiny, verejná služba odpovedá už dnes.",
+    "u5q": "Aké uzávierky práve platia na A8?",
+    "u5a": "{n, plural, one {# uzávierka} few {# uzávierky} many {# uzávierky} other {# uzávierok}} na A8 do {to}, okrem iného {a} – {b} smerom na Mníchov a na križovatke {c} smerom na A81.",
+    "u6t": "Obce a spolkové krajiny",
+    "u6": "Celoštátny pohľad na vlastné zverejnené dáta – a spôsob, ako navrhnúť kanály, ktoré by sme mali pridať.",
+    "u6q": "Platí práve pre Kolín nad Rýnom úradné varovanie pred počasím?",
+    "u6a": "Nie: pre lokalitu {place} neplatí žiadne úradné varovanie DWD, ani teraz, ani v najbližších {hours} h.",
+    "futureLabel": "plánované",
+    "coopHeading": "Čo znamená spolupráca",
+    "price": "Ceny na požiadanie.",
+    "contactHeading": "Porozprávajme sa",
+    "contactLead": "Napíšte nám – odpovieme do dvoch pracovných dní.",
+    "postal": "Poštová adresa: pozri tiráž.",
+    "noForm": "Žiadny formulár, žiadna databáza: len e-mail.",
+    "licenceScope": "Čo firmám ponúkame, sa riadi licenciou každého zdroja: dáta uvoľnené len na informovanie spotrebiteľov do toho nepatria a dáta pod licenciou share-alike odovzdávame len pod tou istou licenciou.",
+    "licenceScopeCredits": "Všetky uvedenia zdrojov sú na",
+    "heroPilot": "Spustiť pilotný projekt",
+    "heroLive": "Pozrieť si odpoveď naživo",
+    "heroSteps": "Ako asistent odpovedá s ViaFrei",
+    "proofHeading": "Naživo z databázy",
+    "proofLead": "Každé číslo nižšie bolo pre túto stránku prečítané z našej databázy, s okamihom, ku ktorému sa vzťahuje. Číslo, ktoré sa nedá prečítať, je uvedené ako chýbajúce, nikdy ako staršie číslo.",
+    "proofError": "Toto číslo sa teraz nepodarilo prečítať.",
+    "proofCatalogue": "Stav k vydaniu {version}.",
+    "proofSources": "uvedených zdrojov údajov",
+    "proofTools": "nástrojov pre asistentov",
+    "proofMotorways": "diaľnic s vlastnou stránkou",
+    "proofLanguages": "jazykov",
+    "caseShow": "Ukázať, čo práve zobrazuje",
+    "howHeading": "Ako to funguje",
+    "how1": "Úrady a prevádzkovatelia zverejňujú otvorené údaje: doprava, cestovné poriadky, nabíjanie, parkovanie, výstrahy pred počasím.",
+    "how2": "Zbierame ich nepretržite, spájame do jedného obrazu Nemecka a uchovávame každé meranie s časom a zdrojom.",
+    "how3": "Vaše systémy a asistenti sa pýtajú jedného koncového bodu a dostanú odpoveď, ktorá uvádza svoj zdroj.",
+    "howData": "Otvorené údaje",
+    "howYou": "Váš asistent alebo systém",
+    "licenceHeading": "Aké údaje smie firma používať a ako",
+    "licenceColClass": "Trieda licencie",
+    "licenceColCount": "Zdroje",
+    "licenceColUse": "Čo firma smie",
+    "lic": {
+      "open": {
+        "name": "Otvorená",
+        "use": "Voľne používať a odovzdávať ďalej."
+      },
+      "attribution": {
+        "name": "Uvedenie autora",
+        "use": "Používať a odovzdávať ďalej, s uvedením zdroja."
+      },
+      "shareAlike": {
+        "name": "Zachovať licenciu",
+        "use": "Používať; odvodené údaje odovzdávať len pod rovnakou licenciou."
+      },
+      "terms": {
+        "name": "Pre firmy zatiaľ nevyjasnené",
+        "use": "Zatiaľ nie je súčasťou ponuky pre firmy: vydavateľ nezverejňuje podmienky používania alebo jeho podmienky vyžadujú zmluvu, ktorú zatiaľ neponúkame."
+      },
+      "consumerOnly": {
+        "name": "Len informácie pre spotrebiteľov",
+        "use": "Nie je súčasťou žiadnej ponuky pre firmy."
+      },
+      "own": {
+        "name": "Obsah ViaFrei",
+        "use": "Súčasťou spolupráce."
+      }
+    },
+    "coopPilotTitle": "Pilotný projekt",
+    "coopPilot": "Niekoľko týždňov nad vašou vlastnou otázkou: vlastný kľúč API, vyššie limity a priama linka k nám.",
+    "coopDataTitle": "Dátové partnerstvo",
+    "coopData": "Exporty z uloženej histórie, pre zdroje, ktorých licencia to dovoľuje, a vlastné sledovania a kanály.",
+    "coopPublisherTitle": "Vydavateľ údajov",
+    "coopPublisher": "Zverejňujete údaje o mobilite: prinesieme ich ku každému asistentovi AI, s vami ako zdrojom, a spoločne na nich postavíme nové nástroje."
+  },
+  "fuelPage": {
+    "title": "Čerpacie stanice podľa spolkových krajín – výber s cenami",
+    "lead": "Až tri čerpacie stanice v každej spolkovej krajine, najlacnejší Super E10 prvý. Vybrané zo staníc, ktoré sledujeme – teda nie nutne najlacnejšie v krajine. Každá cena je uvedená s časom, keď sme ju zaznamenali. Informácia pre spotrebiteľov, nie zoznam všetkých čerpacích staníc.",
+    "back": "Na úvodnú stránku",
+    "unavailable": "Zoznam čerpacích staníc podľa spolkových krajín teraz nie je dostupný.",
+    "boardHead": "Až tri čerpacie stanice v každej spolkovej krajine",
+    "hereHead": "Najlacnejšie otvorené čerpacie stanice: {place}",
+    "hereHeadNone": "Najlacnejšie otvorené čerpacie stanice vo vašom okolí",
+    "hereNone": "Vaše miesto teraz nepoznáme. Vyberte mesto nižšie alebo svoje miesto na úvodnej stránke; tam sú ceny.",
+    "hereNoScript": "Ceny sa načítajú pomocou JavaScriptu, keď je táto časť viditeľná. Bez JavaScriptu sú na stránke miesta.",
+    "hereLoading": "Načítavajú sa ceny …",
+    "hereFailed": "Ceny teraz nemožno načítať.",
+    "cities": "Mestá",
+    "citiesLead": "Ceny každého mesta sú na jeho stránke."
+  },
+  "quote": {
+    "open": "„",
+    "close": "“"
+  },
+  "place": {
+    "change": "Zmeniť miesto",
+    "how": {
+      "exact": "zaokrúhlené, asi 500 m",
+      "approx": "približne (podľa vášho internetového pripojenia)",
+      "chosen": "vybrané",
+      "saved": "uložené",
+      "rough": "približne (prehliadač)"
+    },
+    "germany": "Celé Nemecko",
+    "outsideFar": "Vaša poloha je mimo Nemecka. Zobrazujeme celé Nemecko – vyberte miesto a uvidíte jeho karty.",
+    "choose": "Vybrať miesto",
+    "loaded": "Karty pre miesto {place} sú načítané",
+    "failed": "Toto miesto sa teraz nepodarilo načítať.",
+    "noGeo": "Prehliadač neposkytol polohu – vyberte miesto.",
+    "locating": "Zisťuje sa vaša poloha …",
+    "geoNo": "Prehliadač neposkytol polohu: {why}. Naďalej sa zobrazuje: {place}.",
+    "geoDenied": "prístup je zablokovaný – povoľte ho cez ikonu vedľa adresy",
+    "geoUnavailable": "vaše zariadenie ju nedokázalo určiť",
+    "geoTimeout": "žiadna do 15 s",
+    "geoApprox": "Váš prehliadač pozná vašu polohu len približne (viac ako 1 km).",
+    "why": "Pre nabíjačky, čerpacie stanice a varovania priamo pri vás – vaša presná poloha zostáva vo vašom zariadení.",
+    "kept": "Váš prehliadač si toto miesto pamätá",
+    "sheet": {
+      "useLocation": "Použiť moju polohu",
+      "forget": "Zabudnúť miesto"
+    },
+    "privacy": {
+      "title": "Vaše miesto zostáva u vás.",
+      "body": "ViaFrei nevytvára žiadny účet ani profil a vaše miesto neukladá. Váš prehliadač si miesto v tomto zariadení zapamätá, len keď ho vyberiete v lište miesta – miesto alebo adresu, „Použiť moju polohu“ alebo „Celé Nemecko“ – spolu s naposledy vybranými miestami; kým táto stránka používa zapamätané miesto, uvádza to riadok pod lištou miesta a „Zabudnúť miesto“ ho okamžite vymaže. O vašu polohu stránka požiada, len keď zvolíte „Použiť moju polohu“; ak ste ju v prehliadači už natrvalo povolili, stránka ju prečíta bez pýtania a nič neukladá. Vaša poloha sa vo vašom zariadení zaokrúhli na oblasť asi 500 m a náš server z tejto oblasti odvodí názov ulice alebo miesta; drží ho v pamäti najviac hodinu pre každú oblasť, bez akéhokoľvek spojenia s vami, a neukladá ho. Iba hneď po tomto kliknutí a iba vtedy, keď prehliadač udáva vašu polohu s presnosťou najviac 150 m, odošle stránka presnú polohu raz na náš server, aby overil, či stojíte pri stanici, čerpacej stanici, nabíjacej stanici alebo diaľničnom odpočívadle; tam sa neukladá ani nezaznamenáva. Rovnako drží v pamäti najviac hodinu názov stanice, miesta alebo adresy vybranej tu. Vaša IP adresa sa používa len v pamäti na približné určenie polohy a na tento účel sa neukladá. Platí to na každej stránke s lištou miesta, aj v prehľade staníc. V prehľade staníc slúži takto určené miesto len na zobrazenie najbližších staníc a zastávok.",
+      "more": "Viac v zásadách ochrany súkromia"
+    },
+    "geoipCredit": "Približné miesto podľa IP adresy:",
+    "pageTitle": "{place}: uzávierky, práce na ceste, doprava – ViaFrei",
+    "pageDescription": "Kolóny, práce na ceste a uzávierky v lokalite {place}, k tomu parkovanie, nabíjačky, ceny palív a varovania – naživo z otvorených dát, so zdrojom.",
+    "pageLead": "Všetko, čo ViaFrei práve vie o mieste {place} – z otvorených dát, so zdrojom pri každom čísle.",
+    "pageMissing": "Toto miesto nepoznáme.",
+    "geoipModified": "výňatok upravený",
+    "loadingCards": "Karty pre toto miesto sa načítavajú …",
+    "reloadCards": "Načítajte stránku znova a uvidíte karty",
+    "fuelUnavailable": "Ceny sa teraz nepodarilo znova zistiť. Toto je posledný známy stav s časom.",
+    "motorway": {
+      "why": "Pre to, čo je okolo vás na tejto diaľnici – vaša presná poloha zostáva vo vašom zariadení.",
+      "radius": "Okruh",
+      "radiusOther": "Vybrať ľubovoľný okruh (1–100 km)",
+      "updating": "aktualizuje sa …",
+      "failed": "Nepodarilo sa aktualizovať – zostáva predchádzajúce zobrazenie.",
+      "zoomGroup": "Priblížiť mapu – každý krok je okruh",
+      "zoomIn": "Priblížiť – okruh {r} km",
+      "zoomOut": "Oddialiť – okruh {r} km",
+      "zoomInEnd": "Priblížiť – dosiahnutý najmenší okruh",
+      "zoomOutEnd": "Oddialiť – dosiahnutý najväčší okruh",
+      "filter": {
+        "legend": "Zobraziť",
+        "all": "Zobraziť všetko",
+        "none": "Skryť všetko",
+        "allLabel": "Zobraziť všetko – vybrať všetky druhy",
+        "noneLabel": "Skryť všetko – zrušiť výber všetkých druhov",
+        "save": "Zapamätať výber",
+        "saved": "Výber uložený v tomto zariadení.",
+        "forget": "Nepamätať",
+        "everything": "Všetky údaje",
+        "nothing": "Nič nie je vybrané – vyberte aspoň jeden druh.",
+        "sum": "{kinds}: {n}",
+        "sumR": "{kinds} do {r} km: {n}",
+        "entriesOne": "{n} záznam",
+        "entriesFew": "{n} záznamy",
+        "entriesMany": "{n} záznamu",
+        "entriesOther": "{n} záznamov",
+        "entriesZero": "{n} záznamov",
+        "ampel": "Semafor naďalej hodnotí všetko – niektoré jeho dôvody sú teraz skryté."
+      }
+    },
+    "pageDescriptionRoads": "{place}: uzávierky a práce na ceste teraz na {roads} – k tomu kolóny, parkovanie, nabíjanie a výstrahy, naživo so zdrojom.",
+    "topics": {
+      "legend": "Témy",
+      "apply": "Použiť",
+      "none": "Nie je vybraná žiadna téma.",
+      "shown": "Zobrazené témy: {n} z {total}",
+      "attention": "Skryté, ale teraz dôležité: {topic} – zobraziť"
+    },
+    "head": {
+      "live": "Naživo pre",
+      "scope": "Oblasť",
+      "search": "Hľadať miesto",
+      "searchHint": "Adresa, PSČ, štvrť alebo stanica",
+      "locate": "Použiť moju polohu",
+      "confirmQ": "Je to správne miesto?",
+      "yes": "Áno",
+      "other": "Iné miesto",
+      "confirmed": "potvrdené",
+      "updated": "aktualizované pre {place}",
+      "outside": "poloha mimo Nemecka",
+      "germanyHow": "zvolené celé Nemecko",
+      "germanyNote": "Zvolené celé Nemecko: všetky celoštátne údaje sú hneď nižšie – každý s časom a zdrojom."
+    },
+    "bar": {
+      "label": "Vyberte alebo vyhľadajte miesto",
+      "close": "Zavrieť",
+      "hint": "Miesto, adresa, diaľnica, stanica …",
+      "recent": "Nedávne",
+      "popular": "Obľúbené",
+      "drop": "Odstrániť {place}",
+      "found": "Návrhy: {n}",
+      "how": "Miesto, adresa alebo stanica zo zoznamu zobrazí karty odtiaľ; Enter prehľadá celý web."
+    }
+  },
+  "newsPage": {
+    "readMore": "Čítať ďalej",
+    "title": "Novinky",
+    "lead": "Čo je vo ViaFrei nové, čo príde ďalej a dlhé uzávierky, ktoré práve evidujeme – každé so svojím zdrojom.",
+    "filterLabel": "Zobraziť",
+    "chipNew": "Nové",
+    "chipPlans": "Plány",
+    "chipTraffic": "Doprava",
+    "newHeading": "Nové vo ViaFrei",
+    "plansHeading": "Plány",
+    "plansLead": "Čo chceme pridať ako ďalšie. Plánované znamená plánované: nič z toho ešte vo ViaFrei nie je a neuvádzame žiadne termíny.",
+    "trafficHeading": "Dlhé uzávierky",
+    "trafficLead": "Z našich vlastných dát: uzávierky s uvedeným koncom, dlhé aspoň jeden deň. Každá zmizne, len čo sa dosiahne jej koniec.",
+    "badgeNew": "Nové",
+    "badgePlan": "Plánované",
+    "askLabel": "Opýtajte sa asistenta",
+    "askLabelPlan": "Keď to bude k dispozícii, opýtajte sa asistenta",
+    "plannedNote": "zatiaľ bez termínu",
+    "connect": "Pripojiť ViaFrei",
+    "sources": "Zdroj",
+    "feed": "Novinky ako kanál Atom",
+    "released": "Verzia {v} · {d}",
+    "teaserHeading": "Nové vo ViaFrei",
+    "teaserAll": "Všetky novinky",
+    "trafficError": "Dopravné hlásenia sa teraz nepodarilo načítať.",
+    "noEntries": "V tomto jazyku zatiaľ nie sú žiadne záznamy."
+  },
+  "examplesPage": {
+    "title": "Všetky vzorové otázky",
+    "lead": "Každá otázka, ktorú ViaFrei na tomto webe ukazuje ako príklad – s nástrojom, ktorý na ňu odpovedá, a s odpoveďou, zoradené podľa oblastí.",
+    "live": "Kde ViaFrei kladie otázku sám v pravidelných intervaloch, vidíte tu jeho najnovšiu odpoveď; inde zaznamenanú odpoveď s dátumom.",
+    "toc": "Oblasti",
+    "domain": {
+      "transit": "Autobus, vlak a stanica",
+      "roads": "Cesty a diaľnice",
+      "parking": "Parkovanie",
+      "charging": "Nabíjanie",
+      "fuel": "Palivo",
+      "more": "Miesta a sledovania"
+    },
+    "question": "Otázka {n}",
+    "fuelNote": "Vzorové odpovede o cenách palív ukazujeme len s dátumom a len na dvoch miestach: {home} a {connect}.",
+    "fuelHome": "na úvodnej stránke",
+    "fuelConnect": "na stránke pripojenia"
+  },
+  "seo": {
+    "connectTitle": "Dopravné dáta v ChatGPT a Claude cez MCP – ViaFrei",
+    "connectDescription": "Jedna adresa, žiadny kľúč: pripojte ViaFrei v Claude, ChatGPT, Copilot, Cursor, Gemini CLI alebo Le Chat a pýtajte sa naživo na kolóny a vlaky.",
+    "motorwayTitle": "Kolóna {road} naživo: uzávierky, práce na ceste – ViaFrei",
+    "motorwayDescription": "Doprava {road} v Nemecku naživo: kolóny, uzávierky a práce na ceste podľa smeru, z otvorených dát, s plánovanými uzávierkami a pravidlami.",
+    "motorwaysTitle": "Kolóny a práce na diaľniciach teraz – Nemecko – ViaFrei",
+    "motorwaysDescription": "Všetky nemecké diaľnice naživo: kolóny, uzávierky, práce na ceste, obchádzky, parkovanie a nabíjanie, s mapou a stránkou pre každú diaľnicu.",
+    "motorwayH1": "Diaľnica {road} teraz",
+    "motorwayLead": "Kolóny, uzávierky a práce na ceste na diaľnici {road}, naživo z otvorených dát, každé so zdrojom a časom.",
+    "motorwaysH1": "Diaľnice v Nemecku",
+    "motorwaysLead": "Každá diaľnica s aktuálnymi hláseniami. Vyberte si jednu pre kolóny, uzávierky, práce na ceste a jej priebeh.",
+    "stationsTitle": "Stanice v Nemecku: nástupištia, vybavenie – ViaFrei",
+    "stationsDescription": "Každá stanica Deutsche Bahn: nástupištia s výškou a bezbariérovým prístupom, vybavenie, služba pre cestujúcich s obmedzenou pohyblivosťou a čo je do 300 m – z otvorených dát.",
+    "stationsH1": "Železničné stanice v Nemecku",
+    "crumbStations": "Stanice",
+    "stationTitle": "{name}: odchody, nástupištia, výťahy, výluky – ViaFrei",
+    "stationDescription": "{name}: najbližšie odchody naživo s koľajou, ktoré výťahy a eskalátory teraz fungujú, bezbariérové nástupištia, vybavenie a okolie – z otvorených údajov, so zdrojom a dátumom.",
+    "crumbHome": "Úvod",
+    "crumbMotorways": "Diaľnice",
+    "linksMotorways": "Diaľnice naživo",
+    "linksPlaces": "Mestá naživo",
+    "allMotorways": "Všetky diaľnice",
+    "allPlaces": "Ďalšie mestá",
+    "imprintDescription": "Tiráž viafrei.de: kto prevádzkuje ViaFrei, platformu mobility v reálnom čase pre AI asistentov, a ako kontaktovať prevádzkovateľa.",
+    "privacyDescription": "Zásady ochrany súkromia viafrei.de: čo ViaFrei ukladá a čo nie, ako funguje súhlas a aké máte práva – bez účtu a bez profilu.",
+    "termsDescription": "Podmienky používania ViaFrei: za akých podmienok smiete používať údaje, ako je obsadenosť parkovísk pre nákladné vozidlá od Toll Collect GmbH.",
+    "businessTitle": "API živých údajov o mobilite pre firmy",
+    "businessDescription": "Doprava, verejná doprava, nabíjanie a parkovanie v celom Nemecku ako jeden živý koncový bod so zdrojmi. Začnite pilotným projektom.",
+    "developersTitle": "MCP server pre nemecké údaje o mobilite",
+    "developersDescription": "Pripojte ľubovoľného klienta MCP za minútu: rýchly štart pre každého klienta, skutočné volanie s odpoveďou a každý nástroj s jeho schémou."
+  },
+  "ask": {
+    "live": "Živá odpoveď od ViaFrei",
+    "asOf": "Stav dát: {time}",
+    "tool": "Nástroj",
+    "question": "Otázka",
+    "answer": "Odpoveď",
+    "cta": "Opýtajte sa svojho asistenta",
+    "roads": {
+      "question": "Je práve kolóna na A8?",
+      "clear": "Na {road} nie je práve hlásená žiadna kolóna. Platné – uzávierky: {closures}, práce na ceste: {works}.",
+      "jams": "Hlásené kolóny na {road}: {jams}; najdlhšia stojí {delay} min. Uzávierky: {closures}, práce na ceste: {works}.",
+      "jamsNoDelay": "Hlásené kolóny na {road}: {jams}. Uzávierky: {closures}, práce na ceste: {works}."
+    },
+    "lorryPark": {
+      "question": "Koľko parkovísk pre kamióny má A3 a koľko z nich zverejňuje svoju obsadenosť?",
+      "listed": "Parkoviská pre kamióny na {road}: {total}; so zverejnenou obsadenosťou: {live}."
+    },
+    "hydrogen": {
+      "question": "Kde môže natankovať vodíkový kamión neďaleko Frankfurt am Main?",
+      "near": "{name}, {address}: 350 barov pre kamióny a autobusy, vzdialenosť {km} km.",
+      "none": "V okruhu {km} km nie je uvedená žiadna vodíková stanica pre kamióny."
+    },
+    "weatherLand": {
+      "question": "Platí teraz v Bavorsku (Bayern) oficiálna výstraha pred počasím?",
+      "none": "{place}: Žiadne platné úradné varovanie DWD, overené pre teraz a najbližšie {hours} h.",
+      "warn": "{place}: Platné úradné varovania: {count}, najvyšší stupeň {level} zo 4, medzi nimi „{event}“."
+    },
+    "transit": {
+      "question": "Ako presne jazdia autobusy a vlaky v Severnom Porýní-Vestfálsku práve teraz?",
+      "share": "{region}: {pct} % jázd za posledných {minutes} minút mešká ({late} z {trips}).",
+      "thin": "{region}: sledované jazdy za posledných {minutes} minút: {trips} – príliš málo na podiel."
+    },
+    "charging": {
+      "question": "Kde môžem v Lipsku nabíjať výkonom 150 kW alebo viac?",
+      "live": "{operator}, {address}: do {kw} kW, {km} km odtiaľto – voľných {free} z {total} nabíjacích bodov.",
+      "liveNoOp": "{address}: do {kw} kW, {km} km odtiaľto – voľných {free} z {total} nabíjacích bodov.",
+      "noStatus": "{operator}, {address}: do {kw} kW, {km} km odtiaľto. Prevádzkovateľ práve nehlási aktuálnu dostupnosť.",
+      "noStatusNoOp": "{address}: do {kw} kW, {km} km odtiaľto. Prevádzkovateľ práve nehlási aktuálnu dostupnosť.",
+      "none": "V okolí nie je uvedená žiadna nabíjacia stanica s výkonom 150 kW alebo viac."
+    },
+    "parking": {
+      "question": "Kde je pri hlavnej stanici v Münsteri práve parkovací dom s voľnými miestami?",
+      "free": "{name}: voľných {free} z {total} miest, {km} km odtiaľto.",
+      "none": "Žiadny parkovací dom v okolí práve nehlási voľné miesta.",
+      "unpublished": "Prevádzkovatelia parkovacích domov v okolí nezverejňujú živú obsadenosť, preto nie je známe, či sú miesta voľné."
+    },
+    "roadsNear": {
+      "question": "Čo sa práve deje na cestách tu?",
+      "clear": "Do {km} km nie je práve nič hlásené: žiadna kolóna, žiadna uzávierka.",
+      "noJams": "Do {km} km žiadna kolóna. Platné – uzávierky: {closed}, obmedzenia: {restricted}.",
+      "jams": "Do {km} km – kolóny: {jams}, uzávierky: {closed}, obmedzenia: {restricted}."
+    },
+    "weather": {
+      "question": "Platí tu úradné varovanie pred počasím?",
+      "none": "Žiadne platné úradné varovanie DWD, overené pre teraz a najbližšie {hours} h.",
+      "warn": "Platné úradné varovania: {count}, najvyšší stupeň {level} zo 4, medzi nimi „{event}“."
+    },
+    "nearby": {
+      "question": "Čo je tu v okolí?",
+      "near": "Do {km} km: stanica {station}; nabíjacie stanice: {charging}, parkovanie: {parking} (z každého najviac tri).",
+      "noStation": "Do {km} km žiadna stanica; nabíjacie stanice: {charging}, parkovanie: {parking} (z každého najviac tri).",
+      "none": "Do {km} km nie je uvedená žiadna stanica, nabíjacia stanica ani parkovanie."
+    },
+    "poi": {
+      "question": "Kde je najbližšia lekáreň?",
+      "found": "{name}, {street} – {km} km odtiaľto.",
+      "foundNoStreet": "{name} – {km} km odtiaľto.",
+      "none": "Do 5 km nie je uvedená žiadna lekáreň."
+    },
+    "chargingNear": {
+      "question": "Kde je najbližšia nabíjacia stanica?",
+      "live": "{operator}, {address}: do {kw} kW, {km} km odtiaľto – voľných {free} z {total} nabíjacích bodov.",
+      "liveNoOp": "{address}: do {kw} kW, {km} km odtiaľto – voľných {free} z {total} nabíjacích bodov.",
+      "noStatus": "{operator}, {address}: do {kw} kW, {km} km odtiaľto. Prevádzkovateľ práve nehlási aktuálnu dostupnosť.",
+      "noStatusNoOp": "{address}: do {kw} kW, {km} km odtiaľto. Prevádzkovateľ práve nehlási aktuálnu dostupnosť.",
+      "none": "V okolí nie je uvedená žiadna nabíjacia stanica."
+    },
+    "offerOsm": "Tieto záznamy pochádzajú z našej databázy odvodenej z OpenStreetMap. Úplnú strojovo čitateľnú kópiu (CSV) pod licenciou ODbL 1.0 pošleme na požiadanie bezplatne – kontakt nájdete v {link}.",
+    "offerDb": "Tieto záznamy pochádzajú z našej databázy odvodenej z „{db}“. Databázu, ktorú verejne používame – bez záznamov, ktoré vydavateľ označuje ako dôverné –, pošleme ako strojovo čitateľnú kópiu (CSV) pod licenciou ODbL 1.0 na požiadanie bezplatne – kontakt nájdete v {link}.",
+    "offerLink": "tiráži"
+  },
+  "connectNote": {
+    "text": "Túto odpoveď vám AI asistent dá iba vtedy, keď je ViaFrei pripojený.",
+    "link": "Ako pripojiť ViaFrei",
+    "guide": "Úplný návod pre všetkých klientov",
+    "clients": "Krok za krokom pre",
+    "copy": "Kopírovať adresu",
+    "copied": "Skopírované"
+  },
+  "next": {
+    "label": "Ďalej",
+    "ask": "Opýtajte sa svojej AI: {place}",
+    "motorways": "Všetky diaľnice"
+  },
+  "search": {
+    "label": "Hľadať na ViaFrei",
+    "placeholder": "Miesto, diaľnica, stanica, stránka …",
+    "submit": "Hľadať",
+    "title": "Vyhľadávanie",
+    "description": "Nájdite miesta, diaľnice, križovatky, stanice a stránky ViaFrei.",
+    "hint": "Zadajte aspoň dva znaky.",
+    "alt": "Zobraziť karty tu",
+    "partial": "Niektoré výsledky nie sú zobrazené: zdroj neodpovedal včas.",
+    "allResults": "Všetky výsledky",
+    "showAll": "Všetky výsledky tohto druhu",
+    "prev": "Späť",
+    "next": "Ďalej",
+    "pageOf": "Strana {page} z {pages}",
+    "pager": "Stránky výsledkov",
+    "none": "Pre „{q}“ sme nič nenašli.",
+    "nearest": "Podobný zápis:",
+    "motorwayIndex": "Všetky diaľnice",
+    "kind": {
+      "motorway": "Diaľnice",
+      "road": "Spolkové a krajinské cesty",
+      "place": "Miesta",
+      "station": "Stanice",
+      "exit": "Zjazdy a križovatky",
+      "area": "Oblasti a adresy",
+      "poi": "Zaujímavé miesta",
+      "page": "Stránky",
+      "news": "Novinky"
+    }
+  },
+  "header": {
+    "how": "Miesto, adresa alebo bod zo zoznamu sa stane vaším miestom na všetkých stránkach; diaľnica, stanica alebo stránka sa otvorí. Enter prehľadá celý web.",
+    "makeMine": "Nastaviť ako moje miesto"
+  },
+  "statePages": {
+    "title": "Spolkové krajiny: diaľnice teraz, mestá, fakty – ViaFrei",
+    "description": "Všetkých 16 spolkových krajín Nemecka na jednom mieste: uzávierky, kolóny a práce na diaľniciach práve teraz, rozloha, hlavné mesto, susedné krajiny a najväčšie mestá.",
+    "h1": "16 spolkových krajín",
+    "crumb": "Spolkové krajiny"
+  },
+  "ai": {
+    "placeWarn": "Sú teraz pre {place} výstrahy pred nebezpečným počasím?",
+    "placePark": "Kde môžem teraz v {place} parkovať alebo nabíjať?",
+    "landRoads": "Ktoré diaľnice v {place} sú teraz najviac postihnuté?",
+    "roadUsual": "Ako dlho zvyčajne trvajú kolóny na {road}?",
+    "roadPlans": "Aké práce a uzávierky sú na {road} plánované?",
+    "open": "Opýtať sa v {app}",
+    "copy": "Kopírovať otázku",
+    "copied": "Skopírované"
+  },
+  "star": {
+    "add": "Uložiť stránku",
+    "remove": "Uložené",
+    "neu": "nové",
+    "gone": "Zrušené od vašej poslednej návštevy: {list}",
+    "longer": "dlhšie",
+    "install": "Pridať na plochu",
+    "commute": "Vaša trasa"
+  },
+  "pwa": {
+    "offline": "Stav {t}, offline"
+  }
+}

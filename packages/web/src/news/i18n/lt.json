@@ -1,0 +1,282 @@
+{
+  "blitzer-autobahnseiten": {
+    "title": "Greičio kontrolės vietos autostradų puslapiuose",
+    "body": "Autostrados puslapis ir jos sankryžų puslapiai dabar rodo ir paskelbtas greičio kontrolės vietas palei maršrutą, kiekvieną su sankryža, kuriai ji priskirta, – iš oficialių miestų sąrašų, o ten, kur joks miestas sąrašo neskelbia, – iš OpenStreetMap. Duomenys skirti tik planuoti prieš kelionę arba sustojus; kortelėje pateikiama pastaba pagal § 23 Abs. 1c StVO.",
+    "ask": "Planuoju kelionę A 5 autostrada ties Karlsruhe: kur ten stovi stacionarūs greičio matuokliai?"
+  },
+  "flixbus-flixtrain-abfahrten": {
+    "title": "FlixBus ir FlixTrain išvykimuose",
+    "body": "Šalia vietinio transporto išvykimų ViaFrei dabar rodo ir FlixBus autobusus bei FlixTrain traukinius, išvykstančius netoli stotelės, stotelėje ir stoties kortelėje. Kur FlixBus pateikia dabartinę prognozę, nurodomas numatomas laikas, kitaip laikas pagal tvarkaraštį. Rezervacijos ir kainos tik pas FlixBus.",
+    "ask": "Kada išvyksta kitas FlixBus iš Berlin ZOB?"
+  },
+  "blitzer-bottrop-essen-konstanz": {
+    "title": "Greičio matavimo vietos Botrope, Esene ir Konstance",
+    "body": "ViaFrei dabar žino ir greičio matavimo vietas, kurias skelbia Botropas, Esenas ir Konstancas: Botrope – dabartines matavimo vietas, Esene – savaitės paskelbtų mobiliųjų patikrų gatves, Konstance – nuolatines miesto matavimo vietas. Duomenys skirti tik planuoti prieš kelionę arba sustojus; kiekviename atsakyme yra pastaba pagal § 23 Abs. 1c StVO.",
+    "ask": "Planuoju kelionę į Eseną: kur šią savaitę tikrinama?"
+  },
+  "aufzuege-u-bahnhoefe-berlin-brandenburg": {
+    "title": "Berlynas ir Brandenburgas: liftai ir įėjimai metro ir tramvajų stotyse",
+    "body": "ViaFrei dabar skaito VBB stočių įėjimų sąrašą. Kiekvienai Berlyno ir Brandenburgo stočiai, kurioje sąraše nurodyti liftai, ViaFrei nurodo, kiek yra liftų ir kiek įėjimų iš gatvės bei kiek iš jų turi liftą – taip pat tik metro stotyse, tokiose kaip Hermannplatz, kurios nėra DB stotys. Sąrašas sako, kas pastatyta, o ne ar liftas dabar veikia; ViaFrei nurodo failo datą.",
+    "ask": "Ar Hermannplatz metro stotyje yra liftas?"
+  },
+  "stadtbahn-stationen-unter-der-erde": {
+    "title": "Požeminės lengvojo metro stotys turi savo puslapį",
+    "body": "ViaFrei dabar ir požeminėms lengvojo metro (Stadtbahn) stotims suteikia atskirą stoties puslapį. Tvarkaraštis nenurodo, ar tramvajaus stotelė yra po žeme; ViaFrei tai atpažįsta iš OpenStreetMap duomenų, kai ten 300 metrų spinduliu pažymėta požeminė stotis. Puslapyje nurodomos ten sustojančios linijos ir artimiausi jų išvykimai, o šaltiniu nurodomas OpenStreetMap.",
+    "ask": "Kas artimiausiai išvyksta iš Neumarkto Kelne?"
+  },
+  "blitzer-standorte-planung": {
+    "title": "Greičio kamerų vietos kelionei planuoti",
+    "body": "ViaFrei dabar žino greičio kontrolės vietas, kurias skelbia Achenas, Diuseldorfas, Karlsrūjė ir Kelnas. Jos skirtos tik planuoti prieš kelionę arba sustojus: pagal § 23 Abs. 1c StVO vairuotojas negali naudoti programėlės, rodančios eismo kontrolę. Kiekviename atsakyme pateikiamas šis įspėjimas.",
+    "ask": "Planuoju kelionę į Diuseldorfą: kur ten stovi stacionarios greičio kameros?"
+  },
+  "parken-trier": {
+    "title": "Tryro automobilių stovėjimo aikštelės su laisvomis vietomis",
+    "body": "ViaFrei dabar tiesiogiai skaito Tryro miesto įmonės (SWT) automobilių stovėjimo aikšteles ir garažus su laisvomis vietomis. Iki šiol ViaFrei nežinojo nė vienos Tryro stovėjimo aikštelės; dabar jis nurodo 28 aikšteles ir garažus bei kiek vietų ten šiuo metu laisva.",
+    "ask": "Kur Tryre dabar yra stovėjimo aikštelė su laisvomis vietomis?"
+  },
+  "parken-konstanz": {
+    "title": "Konstanco automobilių stovėjimo aikštelės su laisvomis vietomis",
+    "body": "ViaFrei dabar tiesiogiai skaito Konstanco miesto automobilių stovėjimo aikšteles su laisvomis vietomis. Iki šiol ViaFrei žinojo tik, kur yra Konstanco aikštelės; dabar jis pasako, kiek vietų laisva šiuo metu. Aikštelė, kurią skelbia du šaltiniai, atsakyme nurodoma vieną kartą, ir įvardijami abu leidėjai.",
+    "ask": "Kur Konstance dabar yra stovėjimo aikštelė su laisvomis vietomis?"
+  },
+  "parken-wiesbaden": {
+    "title": "Wiesbadeno automobilių stovėjimo aikštelės ir jų užimtumas",
+    "body": "ViaFrei dabar tiesiogiai skaito Wiesbadeno miesto daugiaaukštes ir požemines automobilių stovėjimo aikšteles bei jų užimtumą: kiekvienos, kiek procentų ji dabar užimta pagal miesto duomenis. Jei pranešimas senesnis, ViaFrei pasako, kada jis gautas, užuot pateikęs jį kaip dabartinį.",
+    "ask": "Kur Wiesbadene dabar yra stovėjimo aikštelė su laisvomis vietomis?"
+  },
+  "kurzzeitbaustellen-hessen": {
+    "title": "Naktiniai darbai greitkeliuose ir kelių darbai Heseno žemėje",
+    "body": "ViaFrei dabar žino Autobahn GmbH planuojamus trumpalaikius darbus: naktinius uždarymus ir vienos dienos eismo juostų uždarymus, kiekvieną su savo laiko langais. Už savo lango tokie darbai vadinami planuojamais, nurodant jų datas. Kartu pateikiami ir Hessen Mobil kelių darbai federaliniuose bei žemės keliuose ir dalyje apskričių kelių Heseno žemėje.",
+    "ask": "Ar A3 šiąnakt uždarytas?"
+  },
+  "nrw-baustellen-landesstrassen": {
+    "title": "Šiaurės Reinas-Vestfalija: darbai federaliniuose, žemės ir apskrities keliuose",
+    "body": "ViaFrei dabar skaito Straßen.NRW kelio darbus Šiaurės Reino-Vestfalijos federaliniuose, žemės ir apskrities keliuose. Paklauskite apie kelią ar vietą, ir ViaFrei įvardys ten vykstančius darbus. Dar neprasidėję darbai nurodomi kaip planuojami, su pradžios data.",
+    "ask": "Ar L968 kelyje vyksta darbai?"
+  },
+  "ausfallsicherheit-verkehrsmeldungen": {
+    "title": "Didesnis eismo pranešimų ir eismo padėties patikimumas",
+    "body": "ViaFrei dabar skaito ir VIZ.NRW bei Hamburgo žemės eismo pranešimų centro eismo pranešimus. Taip pat skaito planuojamus kelio darbus Meklenburge-Pomeranijoje ir eismą pagal juostas Šiaurės Reino-Vestfalijos greitkeliuose. Kiekvienas pranešimas rodomas vieną kartą, o kiekvienas jį perduodantis šaltinis įvardijamas. Jei vienas šaltinis sutrinka, ViaFrei atsako iš kito.",
+    "ask": "Ar dabar Hamburge yra eismo pranešimų?"
+  },
+  "lkw-beschraenkungen-koeln": {
+    "title": "Kelno masės ir aukščio apribojimai",
+    "body": "ViaFrei dabar skaito Kelno miesto skelbiamus kelių apribojimus: masės ribas ant tiltų, pravažiavimo aukščius po viadukais ir kitus sunkvežimių eismo draudimus. Vietai Kelne ViaFrei nurodo artimiausius su jų rūšimi, verte ir gatve; kur vertės nėra, ViaFrei tai pasako. Galioja ženklai vietoje.",
+    "ask": "Kokie pravažiavimo aukščiai sunkvežimiams galioja netoli Kelno katedros?"
+  },
+  "parken-kiel": {
+    "title": "Automobilių stovėjimo aikštelės, daugiaaukštės aikštelės ir P+R Kylyje",
+    "body": "ViaFrei dabar skaito Kylio miesto skelbiamas automobilių stovėjimo aikšteles, daugiaaukštes ir požemines aikšteles bei „Park and Ride“ vietas: 194 objektai su vieta ir rūšimi. Miestas neskelbia nei vietų skaičiaus, nei užimtumo, ir ViaFrei tai pasako, užuot išgalvojęs skaičių.",
+    "ask": "Kur Kylyje yra daugiaaukštė automobilių stovėjimo aikštelė?"
+  },
+  "behindertenparkplaetze-frankfurt": {
+    "title": "Neįgaliųjų stovėjimo vietos Frankfurte prie Maino",
+    "body": "ViaFrei dabar žino 458 objektus su neįgaliųjų stovėjimo vietomis, kuriuos skelbia Frankfurto prie Maino miestas, iš viso 615 rezervuotų vietų, kiekviena su adresu, vietų skaičiumi ir rezervavimo laiku. Joks jutiklis nepraneša, ar vieta laisva, ir ViaFrei tai pasako, užuot spėliojęs.",
+    "ask": "Kur netoli Frankfurto rotušės (Rėmerio) yra neįgaliųjų stovėjimo vieta?"
+  },
+  "lkw-netz-koeln": {
+    "title": "Kelno savas sunkvežimių tinklas",
+    "body": "ViaFrei dabar skaito Kelno miesto skelbiamas sunkvežimių jungtis: gatves, kuriomis miestas nukreipia sunkvežimių eismą, keturiomis klasėmis – nuo greitkelio iki privažiavimo pristatymui. Vietai Kelne ViaFrei nurodo artimiausią kiekvienos klasės atkarpą su jos gatvėmis ir duomenų data, šalia SEVAS sunkvežimių apribojimų. Tinklas nereiškia, kad kliūčių nėra: galioja ženklai vietoje.",
+    "ask": "Kuriomis gatvėmis Kelnas netoli katedros nukreipia sunkvežimius?"
+  },
+  "verkehrslage-hamburg-bonn": {
+    "title": "Hamburgas ir Bona: išmatuota eismo būklė mieste",
+    "body": "ViaFrei dabar kas penkias minutes skaito Hamburgo ir Bonos skelbiamą jų gatvių eismo būklę ir vietai nurodo, kiek atkarpų 10 km spinduliu yra su tankiu, lėtu ar stovinčiu eismu ir kaip toli artimiausia spūstis. Spūstimi laikomas tik lėtas ar stovintis eismas, tankus – ne. Hamburgas skelbia tik atkarpas, kuriose eismas nėra laisvas, todėl ViaFrei ten laisvų atkarpų skaičiaus nepateikia. Kai miesto rodmuo senesnis nei 30 minučių, ViaFrei apie jį nieko nesako.",
+    "ask": "Koks šiuo metu eismas Hamburge?"
+  },
+  "muenchen-baustellen-umweltzone": {
+    "title": "Miunchenas: miesto kelio darbai ir sava mažos taršos zonos riba",
+    "body": "ViaFrei dabar skaito Miuncheno miesto skelbiamus artimiausių keturių savaičių kelio darbus ir jo mažos taršos zonos ribą su išimties perėjimo teritorijomis. Miestas kelio darbus registruoja daugiausia centriniuose rajonuose ir pagrindinėse gatvėse; kiekvienas atsakymas tai nurodo. Laikina sustoti draudžiama zona nelaikoma važiuojamosios dalies ribojimu. Zonai lemia paties miesto riba, o šalia jos pateikiamas Umweltbundesamt registras.",
+    "ask": "Kokie kelio darbai šią savaitę vyksta Miunchene?"
+  },
+  "lang-lkw-positivnetz": {
+    "title": "Ar čia gali važiuoti ilgasis sunkvežimis? BASt leidžiamų kelių tinklas",
+    "body": "ViaFrei dabar skaito Federalinio kelių tyrimų instituto ilgųjų sunkvežimių leidžiamų kelių tinklo ištrauką ir kelio atžvilgiu nurodo, ar jis įtrauktas, o vietos atžvilgiu – kurie netoliese esantys keliai jam priklauso. BASt nurodo, kad ištrauka nėra nei išsami, nei teisiškai privaloma ir neskirta navigacijai; privalomas yra reglamentas, ir ViaFrei tai pasako kiekviename atsakyme. Hamburgo tinklas iš lauko bandymo pateikiamas su 2015 m. data.",
+    "ask": "Ar galiu važiuoti ilguoju sunkvežimiu greitkeliu A7?"
+  },
+  "durchfahrtshoehen-bremen": {
+    "title": "Aukščio ir masės apribojimai Brėmene",
+    "body": "ViaFrei dabar skaito sunkvežimių aukščio ir masės apribojimus, kuriuos skelbia Verkehrsmanagementzentrale Bremen. Vietai Brėmene ViaFrei pateikia artimiausius įrašus tiksliai taip, kaip juos skelbia VMZ Bremen, su nuskaitymo diena. Privalomi tik ženklai vietoje; įrašai neskirti maršrutui nurodyti, o jei įrašo nėra, tai nereiškia, kad apribojimo nėra.",
+    "ask": "Kokie aukščio apribojimai mano sunkvežimiui galioja Brėmeno Grėpelingeno rajone?"
+  },
+  "lkw-beschraenkungen-nrw-rheinmain": {
+    "title": "Aukščio ir masės apribojimai bei sunkvežimių draudimai Šiaurės Reine-Vestfalijoje ir Reino–Maino regione",
+    "body": "ViaFrei dabar skaito Šiaurės Reino-Vestfalijos savivaldybių sunkvežimių duomenis per NRW.Mobidrom (SEVAS) ir ivm sunkvežimių prioritetinį tinklą bei sunkvežimių ženklus Frankfurto Reino–Maino regionui. Vietai ViaFrei nurodo, kokie aukščio, masės ir pločio apribojimai bei sunkvežimių draudimai yra netoliese, kam taikomos išimtys ir kur eina artimiausias sunkvežimių prioritetinis maršrutas. Kur joks leidėjas tokių duomenų neskelbia, ViaFrei tai pasako, o ne praneša, kad kliūčių nėra.",
+    "ask": "Ar Haane yra žemų pravažiavimo aukščių mano sunkvežimiui?"
+  },
+  "barrierefreie-haltestellen-dresden-muenster": {
+    "title": "Drezdenas ir Miunsteris: kuri stotelė be laiptų?",
+    "body": "ViaFrei dabar skaito Drezdeno miesto 750 autobusų ir tramvajų stotelių registrą ir Stadtwerke Münster sąrašą autobusų stotelių be laiptų. Drezdeno stotelei nurodoma, kiek įlipimo vietų yra be pakopos, kur reikia transporto priemonės rampos, kur įlipimas ribotas ar ne be laiptų, su bortelio aukščiu. Miunsteriui nurodoma, ar stotelė yra be laiptų ar iš dalies, su Stadtwerke Münster pastaba. Stotelė, kurios sąraše nėra, nelaikoma neprieinama.",
+    "ask": "Ar Drezdeno stotelė Theaterplatz yra be laiptų?"
+  },
+  "barrierefreiheit-aus-openstreetmap": {
+    "title": "Prieinamumas iš OpenStreetMap: bortelių aukščiai, taktilinės dangos ir liftai stotelėse visoje Vokietijoje",
+    "body": "ViaFrei dabar skaito Chemnico technikos universiteto (TU Chemnitz) eksportą, kuris iš OpenStreetMap surenka, ką savanoriai pažymėjo stotelėse visoje Vokietijoje: bortelių aukščius, paaukštintus bortelius, taktilinę dangą, liftus, pandusus, laiptus ir eskalatorius – apie 4000 stotelių. ViaFrei rodo šiuos faktus ten, kur stotelės neaprašo jokia oficiali apžiūra, ir nurodo, kad jie pažymėti, o ne patikrinti: ko niekas neįvedė, to nėra.",
+    "ask": "Ar Chemnico stotelėje Lichtenauer Straße yra paaukštintas bortelis?"
+  },
+  "auslastung-mvv-regionalbus": {
+    "title": "MVV regioniniai autobusai: kiek paprastai užpildytas autobusas",
+    "body": "Miuncheno transporto asociacijos MVV regioninio autobuso išvykimai dabar nurodo, kiek jis tuo metu paprastai užpildytas – nuo laisvo iki labai pilno, kai lieka tik stovimų vietų. Vertės gaunamos iš MVV automatinio keleivių skaičiavimo ir yra tipinės, o ne realaus laiko. Darbo dienomis ViaFrei mokslo dienas ir atostogas pateikia atskirai, kai jos skiriasi.",
+    "ask": "Kiek rytoj ryte bus užpildytas 210 autobusas iš Ottobrunn, Jahnstraße?"
+  },
+  "ladestatus-hamburg": {
+    "title": "Hamburgas: ar viešoji įkrovimo stotelė šiuo metu laisva – dabar ir iš miesto",
+    "body": "ViaFrei dabar skaito apie 2500 Hamburgo viešųjų įkrovimo taškų būseną, kurią Laisvasis ir hanzinis Hamburgo miestas skelbia jai pasikeitus. Ji papildo ViaFrei jau žinomas įkrovimo stoteles: Hamburgo įkrovimo stotelė dabar rodo, ar ji laisva, užimta ar sugedusi, ir nuo kada, o miestas nurodomas kaip šaltinis.",
+    "ask": "Kur Hamburgo Altonos rajone šiuo metu yra laisva įkrovimo stotelė?"
+  },
+  "barrierefreiheit-baden-wuerttemberg": {
+    "title": "Badenas-Viurtembergas: liftai, pandusai ir orientavimo juostos stotyse ir stotelėse",
+    "body": "ViaFrei dabar skaito NVBW atliktą 1104 geležinkelio stočių ir 14 065 autobusų bei tramvajų stotelių Badene-Viurtemberge prieinamumo apžiūrą. Šalia stoties liftų būklės dabar rodoma, kas patikrinta vietoje: kiek liftų, kokio durų pločio ir kabinos dydžio, koks pandusų nuolydis ir kiek peronų turi taktilinę orientavimo juostą. Tai nepatikrinti apžiūros neapdoroti duomenys, ir ViaFrei tai pasako.",
+    "ask": "Kiek Manheimo centrinė stotis pritaikyta judėti be laiptų?"
+  },
+  "vrn-echtzeit-rhein-neckar": {
+    "title": "Autobusai ir tramvajai Reino–Nekaro regione: realaus laiko duomenys ir iš VRN",
+    "body": "ViaFrei dabar skaito Verkehrsverbund Rhein-Neckar realaus laiko autobusų ir tramvajų duomenis nuo Manheimo ir Heidelbergo iki Mainco ir Kaizerslauterno. Kai šalies duomenys apie kurią nors iš šių apskričių nieko nepraneša arba yra pasenę, ViaFrei punktualumą rodo iš VRN duomenų ir nurodo, kad traukinių juose nėra.",
+    "ask": "Kaip punktualiai šiuo metu Manheime važiuoja autobusai ir traukiniai?"
+  },
+  "vbn-echtzeit-niedersachsen-bremen": {
+    "title": "Brėmenas ir Žemutinė Saksonija: realaus laiko duomenys ir iš VBN",
+    "body": "ViaFrei dabar skaito Verkehrsverbund Bremen/Niedersachsen realaus laiko prognozes autobusams, tramvajams ir traukiniams – nuo Brėmeno ir Oldenburgo per Hanoverį ir Braunšveigą iki Getingeno ir Osnabriuko. Kai šalies duomenys apie Brėmeną ar kurią nors iš šių apskričių nieko nepraneša arba yra pasenę, ViaFrei punktualumą rodo iš VBN duomenų ir nurodo šaltinį.",
+    "ask": "Kaip punktualiai šiuo metu Brėmene važiuoja autobusai ir traukiniai?"
+  },
+  "baustellen-staedte-laender": {
+    "title": "Miestų ir federalinių žemių kelio darbai",
+    "body": "ViaFrei dabar žino ir kelio darbus, kuriuos patys skelbia miestai ir federalinės žemės – nuo Kylio ir Šlėzvigo-Holšteino per Brandenburgą, Berlyną, Kelną, Dortmundą, Miunsterį, Duisburgą ir Acheną iki Frankfurto, Karlsrūhės, Štutgarto, Freiburgo ir Ingolštato. Kiekvieni darbai nurodomi vieną kartą, su visais juos pranešančiais šaltiniais.",
+    "ask": "Kokie kelio darbai šiuo metu vyksta Dortmunde?"
+  },
+  "umweltzone-am-punkt": {
+    "title": "Ar ši vieta yra mažos taršos zonoje?",
+    "body": "ViaFrei patikrina adresą ar tašką pagal paskelbtas mažos taršos zonų ribas: viduje, išimties teritorijoje, už ribų su atstumu – arba nežinoma. Jis skaito pačių miestų ribas ir Umweltbundesamt registrą su kiekviena Vokietijos zona, kiekvieną su duomenų data.",
+    "ask": "Ar Aleksandro aikštė (Alexanderplatz) yra Berlyno mažos taršos zonoje?"
+  },
+  "dortmund-sensoren-behindertenparkplaetze-ladeplaetze": {
+    "title": "Dortmundas: laisvos neįgaliųjų vietos ir vieta prie įkrovimo stotelės",
+    "body": "Dortmunde gatvės jutikliai praneša, ar neįgaliųjų stovėjimo vieta ar vieta prie įkrovimo taško šiuo metu laisva. Kai ieškote vietos automobiliui, ViaFrei nurodo artimiausias neįgaliųjų vietas, o prie įkrovimo taško pasako, ar jo vieta užimta – kiekvieną kartą su paskutinio jutiklio pranešimo laiku.",
+    "ask": "Ar netoli Dortmundo centrinės stoties yra laisva neįgaliųjų stovėjimo vieta?"
+  },
+  "zweite-quelle-berlin-sachsen-autobahn": {
+    "title": "Kelio darbai ir uždarymai iš dviejų šaltinių: Berlynas, Saksonija ir greitkeliai",
+    "body": "ViaFrei dabar skaito Berlyno eismo informacijos centro, Landesmeldestelle Berlin, Saksonijos uždarymų informacinės sistemos ir Autobahn GmbH artimiausių 14 dienų kelio darbų duomenis. Pranešimas, kurį teikia du šaltiniai, atsakyme nurodomas vieną kartą, ir nurodomi abu; kai vienas šaltinis neaktualus, atsako kitas, o apvažiavimus Saksonijoje ViaFrei pateikia kaip ženklinimo kontekstą, niekada ne kaip maršrutą.",
+    "ask": "Kokie keliai šiuo metu uždaryti netoli manęs Berlyno Mitte rajone?"
+  },
+  "baustellen-bayern-mv-umleitungen-nrw": {
+    "title": "Kelio darbai Bavarijoje ir Meklenburge-Pomeranijoje, apvažiavimai Šiaurės Reine-Vestfalijoje",
+    "body": "ViaFrei dabar skaito Bavarijos eismo valdymo centro kelio darbus ir eismo pranešimus, Meklenburgo-Pomeranijos kelių institucijos darbus federaliniuose ir regioniniuose keliuose bei Straßen.NRW pažymėtus apvažiavimus. Apvažiavimą ViaFrei pateikia kaip ženklinimo kontekstą, niekada ne kaip maršruto rekomendaciją.",
+    "ask": "Ar kitą savaitę B14 kelyje vyks kelio darbai?"
+  },
+  "verkehrslage-autobahn-nrw": {
+    "title": "Eismo būklė greitkelių matavimo vietose Šiaurės Reine-Vestfalijoje",
+    "body": "ViaFrei dabar skaito eismo būklę, kurią Autobahn GmbH matuoja maždaug 2000 vietų Šiaurės Reine-Vestfalijoje, ir greitkeliui nurodo, kur eismas laisvas, tankus, lėtas ar stovi.",
+    "ask": "Koks šiuo metu eismas greitkelyje A1 Šiaurės Reine-Vestfalijoje?"
+  },
+  "parken-wuppertal-leipzig-pr": {
+    "title": "Daugiau aikštelių Vupertalyje ir Leipcigo P+R aikštelės su laisvomis vietomis",
+    "body": "ViaFrei dabar skaito Vupertalio miesto aikštelių lentelę, kurioje 33 aikštelėmis daugiau nei anksčiau, ir Leipcigo miesto eismo ir inžinerinių statinių tarnybos P+R aikšteles su gyvai skelbiamomis laisvomis vietomis, pirmą kartą ir su laisvomis vietomis prie Tautų mūšio paminklo. Aikštelė, kurią skelbia du šaltiniai, atsakyme nurodoma vieną kartą, ir nurodomi abu leidėjai.",
+    "ask": "Kur Leipcige šiuo metu yra laisvų P+R vietų?"
+  },
+  "parken-freiburg-herrenberg-jena-vrr-karlsruhe": {
+    "title": "Parkavimas Freiburge, Herenberge, Jenoje, VRR teritorijoje ir sunkvežimių vietos aplink Karlsrūhę",
+    "body": "ViaFrei dabar tiesiogiai skaito dar penkis leidėjus: Freiburgo miesto parkavimo nukreipimo sistemą ir P+R aikšteles su gyvai skelbiamomis laisvomis vietomis, Herenbergo miesto aikšteles, Kommunalservice Jena aikšteles, Reino–Rūro transporto asociacijos „Park and Ride“ aikšteles ir TechnologieRegion Karlsruhe sunkvežimių vietas. Kur leidėjas užimtumo neskelbia, ViaFrei tai pasako, užuot išgalvojęs skaičių.",
+    "ask": "Kurioje Freiburgo automobilių stovėjimo aikštelėje šiuo metu yra laisvų vietų?"
+  },
+  "live-antworten-auf-der-seite": {
+    "title": "Gyvi jūsų DI asistento atsakymai pradžios puslapyje ir kiekvienai vietai",
+    "body": "Šalia kiekvieno skaičiaus pradžios puslapyje dabar yra klausimas, kurį galite užduoti savo DI asistentui, ir tai, ką ViaFrei įrankiai į jį atsako šiuo metu: su įrankiu, duomenų laiku ir kiekvienu šaltiniu. Vietos kortelės rodo ir tos vietos atsakymus – apie įspėjimus, kelius, vietas netoliese, įkrovimą ir parkavimą. Tai tas pats atsakymas, kurį gauna jūsų asistentas, prijungtas prie ViaFrei.",
+    "ask": "Ar šiuo metu kas nors uždaryta keliuose aplink Pulheimą?"
+  },
+  "autobahn-seiten": {
+    "title": "Gyvas puslapis kiekvienam Vokietijos greitkeliui",
+    "body": "Visi 122 greitkeliai dabar turi savo puslapį su kelio žemėlapiu, dabartiniais uždarymais, spūstimis ir kelio darbais bei artimiausioms septynioms dienoms planuojamais visiškais uždarymais su apvažiavimais. Taip pat yra sunkvežimių aikštelės su laisvomis vietomis, įkrovimo stotelės pagal galią, kelių orai ir įspėjimai, kameros, sunkvežimių eismo draudimas ir greitkelių sankryžos. Pradžios puslapis rodo dešimt greitkelių, kuriuose šiuo metu vyksta daugiausia.",
+    "ask": "Kokia šiuo metu padėtis greitkelyje A7?"
+  },
+  "wasserstoff-bruecken-bahnhoefe": {
+    "title": "Vandenilio stotelės, Šlėzvigo-Holšteino tiltai ir daugiau apie kiekvieną stotį",
+    "body": "ViaFrei dabar žino H2 Mobility vandenilio stoteles su kolonėlėmis lengviesiems automobiliams ir sunkvežimiams, didžiųjų Šlėzvigo-Holšteino tiltų būklę ir Kaselio miesto automobilių stovėjimo aikšteles su užimtumu. Vietų puslapiuose kiekviena stotis dabar nurodo, kurie liftai ir eskalatoriai veikia, kurie peronai be laiptų ir kurios aikštelės yra visai šalia. Orų kortelė rodo artimiausias valandas artimiausioje kelių orų stotyje, o punktualumas dabar pateikiamas apskričiai.",
+    "ask": "Kur netoli Hamburgo artimiausia vandenilio stotelė sunkvežimiui?"
+  },
+  "baustellen-bremen-kassel-leipzig": {
+    "title": "Kelio darbai ir uždarymai Brėmene, Kaselyje, Leipcige ir Riuselsheime",
+    "body": "ViaFrei dabar skaito Brėmeno, Kaselio, Leipcigo ir Riuselsheimo prie Maino miestų eismo pranešimus bei Žemutinės Saksonijos kelių institucijos darbus ir uždarymus už greitkelių ribų. Miestų pranešimai pateikiami ir vietų puslapiuose, kaip ir Kelno bei Hanoverio.",
+    "ask": "Ar šiuo metu Brėmeno centre yra uždarymų?"
+  },
+  "ladepunkte-23-betreiber": {
+    "title": "Įkrovimo taškai iš dar 23 operatorių",
+    "body": "ViaFrei dabar skaito dar 23 įkrovimo taškų operatorių pačių Mobilithek publikacijas, tarp jų EWE Go, LichtBlick, Qwello, Wirelane, chargecloud ir vaylens. Kur operatorius praneša, ar įkrovimo taškas laisvas, tai rodome, bet niekada, jei pranešimas senesnis nei 30 minučių.",
+    "ask": "Kur Miunsteryje šiuo metu yra laisva įkrovimo stotelė?"
+  },
+  "autobahn-verkehrsmeldungen": {
+    "title": "Autobahn GmbH eismo pranešimai, susieti su vieta",
+    "body": "ViaFrei dabar kas penkias minutes skaito Autobahn GmbH eismo pranešimus apie uždarymus ir vėlavimus. Pranešimai susiejami su jų greitkeliu ir atskaitos taškais, pavyzdžiui, sankryžomis, per BASt TMC vietų sąrašą.",
+    "ask": "Ar greitkelis A620 netoli Saarbriukeno šiuo metu uždarytas?"
+  },
+  "muenchen-pr-prognosen": {
+    "title": "Automobilių stovėjimo aikštelės ir „Park and Ride“ Miunchene, su prognozėmis",
+    "body": "ViaFrei dabar žino Miuncheno automobilių stovėjimo aikšteles ir „Park and Ride“ vietas. Kur P+R aikštelė gyvo užimtumo nepraneša, pateikiame miesto prognozę dabartinei valandai, su jos data, ir niekada kaip laisvas vietas.",
+    "ask": "Kur Miunchene galiu palikti automobilį „Park and Ride“ aikštelėje ir toliau važiuoti metro?"
+  },
+  "parkapi-baden-wuerttemberg": {
+    "title": "Laisvos parkavimo vietos Badene-Viurtemberge",
+    "body": "Gyvas automobilių stovėjimo aikštelių užimtumas visame Badene-Viurtemberge dabar gaunamas iš MobiData BW ParkAPI kas penkias minutes, tik iš licencijuotų šaltinių. Rodmuo, pagal leidėjo laikrodį senesnis nei 30 minučių, nerodomas kaip užimtumas.",
+    "ask": "Kur Karlsrūhėje šiuo metu rasti laisvą vietą automobilių stovėjimo aikštelėje?"
+  },
+  "bw-bedarfsumleitungen": {
+    "title": "Pažymėti apvažiavimai Badene-Viurtemberge",
+    "body": "Kai greitkelio uždarymas Badene-Viurtemberge atitinka paskelbtą atsarginį apvažiavimą, ViaFrei nurodo U maršrutą – kaip pastabą apie ženklinimą, o ne kaip maršruto rekomendaciją.",
+    "ask": "Ar yra pažymėtas apvažiavimas dėl uždarymo greitkelyje A8 netoli Štutgarto?"
+  },
+  "hamburg-baustellen-kameras": {
+    "title": "Kelio darbai ir eismo kameros Hamburge",
+    "body": "Hamburgo miesto gatvėms ViaFrei dabar nurodo patvirtintus kelio darbus iš Bauweiser, dabartinius ar planuojamus, nuskaitomus kas valandą, ir iki dviejų netoliese esančių eismo kamerų vietų – tik vietas, niekada vaizdo.",
+    "ask": "Kokie kelio darbai šiuo metu vyksta Hamburgo Eimsbiutelio rajone?"
+  },
+  "bemas-baden-wuerttemberg": {
+    "title": "Kelio darbai federaliniuose ir regioniniuose Badeno-Viurtembergo keliuose",
+    "body": "ViaFrei dabar žino dabartinius ir planuojamus kelio darbus Badeno-Viurtembergo federaliniuose ir regioniniuose keliuose, kas 15 minučių nuskaitomus iš žemės atvirųjų judumo duomenų paslaugos. Objektai, kurių leidėjas neleidžia skelbti, niekada nerodomi.",
+    "ask": "Kokie kelio darbai laukia B27 kelyje tarp Štutgarto ir Tiubingeno?"
+  },
+  "dwd-strassenzustand": {
+    "title": "DWD kelio dangos prognozė",
+    "body": "Kartu su įspėjimais dėl orų ViaFrei dabar pateikia prognozuojamą kelio būklę ir dangos temperatūrą artimiausiose kelių orų stotyse – pažymėtą kaip modelio prognozę, o ne matavimą ir ne oficialų įspėjimą.",
+    "ask": "Kokia bus kelio danga netoli Kaselio rytoj ryte?"
+  },
+  "rastanlagen-lkw-stellplaetze": {
+    "title": "Greitkelių poilsio aikštelės su sunkvežimių vietomis",
+    "body": "Planuojame pridėti Federalinės logistikos ir judumo tarnybos duomenis apie prižiūrimas Vokietijos greitkelių poilsio aikšteles: vieta, pavadinimas ir apytikslis sunkvežimių vietų skaičius visoje Vokietijoje. Tas skaičius yra tarnybos įvertis, o ne gyvas užimtumas.",
+    "ask": "Kurioje A2 poilsio aikštelėje tarp Hanoverio ir Dortmundo daugiausia sunkvežimių vietų?"
+  },
+  "autobahn-umleitungsempfehlungen": {
+    "title": "Rekomenduojami apvažiavimai iš greitkelių operatoriaus",
+    "body": "Planuojame pridėti federalinio greitkelių operatoriaus apvažiavimų rekomendacijas: maršrutą, kurį per spūstis ir uždarymus rekomenduoja dinaminiai nuorodų ženklai. Tada ViaFrei galėtų uždarymui nurodyti apvažiavimą, kurį rekomenduoja pats operatorius.",
+    "ask": "Kaip apvažiuoti uždarymą greitkelyje A3?"
+  },
+  "viafrei-2-3": {
+    "title": "ViaFrei 2.3: greitkelių puslapiai, daugiau šaltinių ir asistentų",
+    "body": "Kiekvienas greitkelis dabar turi savo puslapį su eismo, kelio darbų, parkavimo ir įkrovimo skydeliais, kiekviename matyti, kokie seni duomenys. Nauja: kelio darbai ir eismo pranešimai iš daugiau žemių, daugiau įkrovimo operatorių ir strateginės Autobahn GmbH apvažiavimo rekomendacijos, kai ji jas skelbia. Išvykimai teisingi ir keičiant laiką. Prijunkite ViaFrei prie Claude, ChatGPT ir kitų prisijungimo puslapio asistentų – tik tada atsakymai gyvi.",
+    "ask": "Kokia dabar padėtis A3 greitkelyje?"
+  },
+  "lkw-stellplatzbelegung": {
+    "title": "Sunkvežimių stovėjimo aikštelių užimtumas greitkeliuose",
+    "body": "ViaFrei dabar rodo sunkvežimių stovėjimo aikštelių prie greitkelių užimtumą pagal Toll Collect GmbH paslaugą Stellplatz-Informationsdienst (SID). Skaičiai rodomi tik sutikus su naudojimo sąlygų 2 skirsniu: viafrei.de mygtuku „Rodyti užimtumą“, jūsų dirbtinio intelekto asistente – atsakius į jo klausimą. Duomenys gali būti netikslūs arba pasenę.",
+    "ask": "Kur dabar yra laisvų vietų sunkvežimiams A9 kelyje prie Niurnbergo?"
+  },
+  "lkw-parken-thiersheim": {
+    "title": "Autohof Thiersheim prie A93",
+    "body": "ViaFrei dabar žino Autohof Thiersheim prie A93 sunkvežimių vietas iš pačios aikštelės lentelės: 55 sunkvežimių vietos, adresas ir vieta. Aikštelė atsakyme nurodoma vieną kartą, nors ją pateikia ir nacionalinė sunkvežimių stovėjimo aikštelių lentelė, ir nurodomi abu šaltiniai. Užimtumo ViaFrei čia nerodo, nes leidėjas jo nepraneša nuo balandžio.",
+    "ask": "Kur galiu pastatyti sunkvežimį prie A93 netoli Thiersheimo?"
+  },
+  "echtzeit-vbn-connect": {
+    "title": "Realaus laiko duomenys autobusams ir traukiniams VBN zonoje",
+    "body": "ViaFrei dabar skaito Brėmeno ir Žemutinės Saksonijos transporto susivienijimo (VBN, duomenų rinkinys Connect) realaus laiko duomenis. Brėmeno ir visos VBN zonos stotelėse išvykimai rodo vėlavimą pagal šiuos duomenis, kai jokio kito realaus laiko šaltinio apie reisą nėra. Kiekvienas išvykimas rodomas vieną kartą, ir nurodomas kiekvienas jį perduodantis šaltinis.",
+    "ask": "Kada iš Brėmeno pagrindinės stoties išvyksta kitas autobusas?"
+  },
+  "strassen-auf-den-karten": {
+    "title": "Gatvės žemėlapiuose",
+    "body": "Greitkelių ir vietų puslapių žemėlapiai dabar braižo savo ištraukos gatves iš OpenStreetMap: federalinius, žemių ir apskričių kelius bei gyvenamąsias gatves, nubraižytas mūsų, be trečiųjų šalių žemėlapių paslaugos; pačius greitkelius braižome pagal BASt vietovių kodų sąrašą. Taip pranešimą žemėlapyje galima susieti su jo gatve.",
+    "ask": "Kokia padėtis A7 kelyje prie Kaselio?"
+  },
+  "einzelmeldungen-viz-nrw": {
+    "title": "Atskiri VIZ.NRW pranešimai kaip dar vienas atsarginis šaltinis",
+    "body": "ViaFrei dabar skaito ir atskirus VIZ.NRW Šiaurės Reino-Vestfalijos eismo informacijos pranešimus. Jie dar kartą apsaugo eismo pranešimus Šiaurės Reine-Vestfalijoje: jei vienas šaltinis sutrinka, ViaFrei atsako iš kito. Kiekvienas pranešimas rodomas vieną kartą, ir nurodomas kiekvienas jį perduodantis šaltinis.",
+    "ask": "Ar dabar yra eismo pranešimų A1 kelyje prie Kelno?"
+  }
+}

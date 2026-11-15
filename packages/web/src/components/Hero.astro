@@ -1,0 +1,92 @@
+---
+/**
+ * The hero (#379, second ask; assistant first since #742; the brand line since
+ * #935): the headline is the tagline and the pitch sits under it, in the page's
+ * language — "One MCP. No API key. No sign-up." is the reason to click now —
+ * then the connect button with the clients the connect page documents; the
+ * Wegweiser carries ONE real conversation — the question, the answer of a
+ * ViaFrei tool a few minutes ago, the tool's name, the data's time and the
+ * source lines (`Sign.astro`, live since #744) — then the lead, the trust chips
+ * and the phase sentence. The pitch is the one place above the fold a protocol
+ * word may stand (`e2e/tiles.e2e.ts`).
+ *
+ * The DOM order is the phone's reading order, tagline → pitch → button →
+ * conversation → lead → chips (owner 2026-10-22, #935 rule 2: the connect call
+ * to action straight after the pitch); from 861 px up the grid puts the sign in
+ * the right column beside the text.
+ *
+ * #1088 (owner: the place block in the first screen): the hero is rendered in two PARTS around the place block —
+ * `head` (tagline, pitch, connect button) and `rest` (the conversation, the lead, the chips), so the visitor's place
+ * stands right under the call to action and the connect button still follows the pitch (#935 rule 2).
+ */
+import Sign from "./Sign.astro";
+import { t } from "../i18n/index.js";
+import type { AskSet } from "../lib/ask.js";
+import type { Lang } from "../site/pages.js";
+import { NOTE_CLIENTS } from "../site/connect-clients.js";
+
+interface Props {
+  lang: Lang;
+  /** The live assistant answers (#744); the sign carries the roads one. */
+  asks: AskSet;
+  /** #1088: which part — the head before the place block, the rest after it; both when absent. */
+  part?: "head" | "rest" | "all";
+}
+const { lang, asks, part = "all" } = Astro.props;
+const head = part !== "rest";
+const rest = part !== "head";
+const chips = ["free", "account", "app", "sources"] as const;
+/**
+ * The assistants the note names (#1003, `NOTE_CLIENTS` of the connect page's list), each a name rendered
+ * `translate="no"`: Claude, ChatGPT, GitHub Copilot, Cursor, Gemini CLI, Windsurf, Codex and Le Chat.
+ */
+const clients = NOTE_CLIENTS.map((c) => c.name);
+---
+
+<section class:list={["hero wrap", { "hero--head": part === "head", "hero--rest": part === "rest" }]} id={rest && !head ? "hero-more" : "hero"}>
+  <div class="hero__grid">
+    {head && (<>
+    <div class="hero__head">
+      <h1>{t(lang, "meta.tagline")}</h1>
+      <p class="hero__pitch">{t(lang, "meta.pitch")}</p>
+    </div>
+    <div class="hero__act">
+      <div class="hero__actions">
+        <a class="btn btn--primary" href="#start"><span class="cta-long">{t(lang, "hero.primary")}</span><span class="cta-short">{t(lang, "nav.cta")}</span></a>
+        <a class="btn" href="#day">{t(lang, "hero.secondary")}</a>
+      </div>
+      <p class="hero__clients">
+        {t(lang, "hero.clients")}{" "}
+        {clients.map((c, i) => (
+          <>
+            {i > 0 && " · "}
+            <span translate="no">{c}</span>
+          </>
+        ))}
+      </p>
+      {/* #1153 (lead 2026-11-03): the note under the button, so the button stays on a phone's first screen under the
+          header's place row */}
+      <p class="hero__connected">{t(lang, "hero.connected")}</p>
+    </div>
+    </>)}
+    {rest && (<>
+    <div class="hero__talk">
+      <Sign lang={lang} live={asks.get("roads")} />
+    </div>
+    <p class="hero__lead lead">{t(lang, "hero.lead")}</p>
+    <div class="hero__more">
+      <ul class="chips">
+        {
+          chips.map((c) => (
+            <li class="chip chip--trust">
+              <span class="chip__check" aria-hidden="true"></span>
+              {t(lang, `hero.trust.${c}`)}
+            </li>
+          ))
+        }
+      </ul>
+      <p class="hero__phase">{t(lang, "hero.phase")}</p>
+    </div>
+    </>)}
+  </div>
+</section>

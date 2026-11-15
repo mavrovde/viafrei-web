@@ -1,0 +1,44 @@
+---
+/**
+ * One News entry (#588): badge, release and date, title with its permalink, one sentence, the question, the sources' lines.
+ * A plan carries the "planned" badge and "no date yet" instead of a release, its question under "once it is there",
+ * and no source lines (nothing of its source is served yet).
+ */
+import CreditItem from "./CreditItem.astro";
+import catalogue from "../generated/catalogue.json" with { type: "json" };
+import { t } from "../i18n/index.js";
+import { calendarDay } from "../lib/dates.js";
+import type { NewsEntry, NewsText } from "../news/entries.js";
+import { pathFor, type Lang } from "../site/pages.js";
+
+interface Props {
+  e: NewsEntry & { readonly t: NewsText };
+  lang: Lang;
+}
+const { e, lang } = Astro.props;
+const credits = new Map(catalogue.credits.map((c) => [c.id, c]));
+const sources = [...new Set(e.credits)].map((id) => credits.get(id)).filter((c) => c !== undefined);
+const connect = pathFor("connect", lang);
+---
+
+<article class={`news-entry news-entry--${e.kind}`} id={e.id} aria-labelledby={`${e.id}-t`}>
+  <p class="news-entry__meta">
+    <span class={`news-badge news-badge--${e.kind}`}>{t(lang, e.kind === "new" ? "newsPage.badgeNew" : "newsPage.badgePlan")}</span>{" "}
+    {
+      e.kind === "new" && e.release !== null ? (
+        <span class="news-entry__when"><time datetime={e.date}>{t(lang, "newsPage.released", { v: e.release, d: calendarDay(e.date, lang) })}</time></span>
+      ) : (
+        <span class="news-entry__when">{t(lang, "newsPage.plannedNote")}</span>
+      )
+    }
+  </p>
+  <h3 class="news-entry__title" id={`${e.id}-t`}><a href={`#${e.id}`}>{e.t.title}</a></h3>
+  <p class="news-entry__text">{e.t.body}</p>
+  <details class="news-entry__fold">
+  <summary>{t(lang, "newsPage.readMore")}</summary>
+  <p class="news-entry__ask">
+    <span class="news-entry__asklabel">{t(lang, e.kind === "plan" ? "newsPage.askLabelPlan" : "newsPage.askLabel")}:</span> <q>{e.t.ask}</q> <a href={connect}>{t(lang, "newsPage.connect")}</a>
+  </p>
+  </details>
+  {sources.length > 0 && <ul class="credits news-entry__foot">{sources.map((c) => <CreditItem c={c} lang={lang} />)}</ul>}
+</article>

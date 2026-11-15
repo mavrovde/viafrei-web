@@ -1,0 +1,282 @@
+{
+  "blitzer-autobahnseiten": {
+    "title": "Miejsca kontroli prędkości na stronach autostrad",
+    "body": "Strona autostrady i strony jej węzłów pokazują teraz także opublikowane miejsca kontroli prędkości wzdłuż trasy, każde z węzłem, do którego jest przypisane — z oficjalnych list miast, a tam, gdzie żadne miasto jej nie publikuje, z OpenStreetMap. Dane służą wyłącznie do planowania przed podróżą lub podczas postoju; karta zawiera uwagę zgodnie z § 23 Abs. 1c StVO.",
+    "ask": "Planuję podróż autostradą A 5 przy Karlsruhe: gdzie są tam stałe fotoradary?"
+  },
+  "flixbus-flixtrain-abfahrten": {
+    "title": "FlixBus i FlixTrain w odjazdach",
+    "body": "Obok odjazdów transportu lokalnego ViaFrei pokazuje teraz także autokary FlixBus i pociągi FlixTrain odjeżdżające w pobliżu przystanku, na przystanku i na karcie dworca. Gdy FlixBus podaje aktualną prognozę, widać przewidywaną godzinę, w przeciwnym razie godzinę z rozkładu. Rezerwacje i ceny tylko w FlixBus.",
+    "ask": "Kiedy odjeżdża następny FlixBus z Berlin ZOB?"
+  },
+  "blitzer-bottrop-essen-konstanz": {
+    "title": "Miejsca kontroli prędkości w Bottrop, Essen i Konstancji",
+    "body": "ViaFrei zna teraz także miejsca kontroli prędkości publikowane przez Bottrop, Essen i Konstancję: w Bottrop aktualne miejsca pomiaru, w Essen ulice zapowiedzianych kontroli mobilnych na dany tydzień, w Konstancji stałe miejsca pomiaru miasta. Dane służą wyłącznie do planowania przed podróżą lub podczas postoju; każda odpowiedź zawiera uwagę zgodnie z § 23 Abs. 1c StVO.",
+    "ask": "Planuję podróż do Essen: gdzie w tym tygodniu są kontrole?"
+  },
+  "aufzuege-u-bahnhoefe-berlin-brandenburg": {
+    "title": "Berlin i Brandenburgia: windy i wejścia na stacjach metra i tramwaju",
+    "body": "ViaFrei czyta teraz wykaz wejść na stacje VBB. Dla każdej stacji w Berlinie i Brandenburgii, przy której wykaz podaje windy, ViaFrei mówi, ile jest wind i ile wejść z ulicy oraz ile z nich ma windę — także na stacjach samego metra, takich jak Hermannplatz, które nie są stacjami DB. Wykaz mówi, co zostało zbudowane, a nie czy winda teraz działa; ViaFrei podaje datę pliku.",
+    "ask": "Czy stacja metra Hermannplatz ma windę?"
+  },
+  "stadtbahn-stationen-unter-der-erde": {
+    "title": "Podziemne stacje szybkiego tramwaju mają własną stronę",
+    "body": "ViaFrei daje teraz także podziemnym stacjom szybkiego tramwaju (Stadtbahn) własną stronę stacji. Rozkład jazdy nie mówi, czy przystanek tramwajowy leży pod ziemią; ViaFrei rozpoznaje to na podstawie danych OpenStreetMap, gdy w promieniu 300 metrów zaznaczono tam podziemną stację. Strona podaje linie, które się tam zatrzymują, i ich najbliższe odjazdy, a jako źródło wskazuje OpenStreetMap.",
+    "ask": "Co odjeżdża najbliżej z Neumarkt w Kolonii?"
+  },
+  "blitzer-standorte-planung": {
+    "title": "Lokalizacje fotoradarów do planowania podróży",
+    "body": "ViaFrei zna teraz miejsca kontroli prędkości publikowane przez Akwizgran, Düsseldorf, Karlsruhe i Kolonię. Służą one wyłącznie do planowania przed podróżą lub podczas postoju: zgodnie z § 23 Abs. 1c StVO kierowca nie może korzystać z aplikacji pokazującej kontrole drogowe. Każda odpowiedź zawiera tę informację.",
+    "ask": "Planuję podróż do Düsseldorfu: gdzie stoją tam stałe fotoradary?"
+  },
+  "parken-trier": {
+    "title": "Parkingi w Trewirze z wolnymi miejscami",
+    "body": "ViaFrei odczytuje teraz na żywo parkingi i garaże miejskiego przedsiębiorstwa Trewiru (SWT) wraz z wolnymi miejscami. Dotąd ViaFrei nie znał żadnego parkingu w Trewirze; teraz podaje 28 parkingów i garaży oraz liczbę wolnych miejsc w tej chwili.",
+    "ask": "Gdzie w Trewirze jest teraz parking z wolnymi miejscami?"
+  },
+  "parken-konstanz": {
+    "title": "Parkingi w Konstancji z wolnymi miejscami",
+    "body": "ViaFrei odczytuje teraz na żywo parkingi miasta Konstancja z wolnymi miejscami. Dotąd ViaFrei wiedział tylko, gdzie są parkingi w Konstancji; teraz podaje, ile miejsc jest wolnych w tej chwili. Parking publikowany przez dwa źródła jest w odpowiedzi wymieniony raz, a obaj wydawcy są podani.",
+    "ask": "Gdzie w Konstancji jest teraz parking z wolnymi miejscami?"
+  },
+  "parken-wiesbaden": {
+    "title": "Parkingi w Wiesbaden i ich zajętość",
+    "body": "ViaFrei odczytuje teraz parkingi wielopoziomowe i podziemne miasta Wiesbaden oraz ich zajętość na żywo: dla każdego, w ilu procentach jest teraz zajęty według danych miasta. Gdy komunikat jest starszy, ViaFrei podaje, kiedy nadszedł, zamiast przedstawiać go jako aktualny.",
+    "ask": "Gdzie w Wiesbaden jest teraz parking z wolnymi miejscami?"
+  },
+  "kurzzeitbaustellen-hessen": {
+    "title": "Nocne roboty na autostradach i roboty drogowe w Hesji",
+    "body": "ViaFrei zna teraz planowane krótkotrwałe roboty Autobahn GmbH: nocne zamknięcia i pasy wyłączone na jeden dzień, każde z własnymi oknami czasowymi. Poza swoim oknem takie roboty są określane jako planowane, z ich datami. Dochodzą do nich roboty drogowe Hessen Mobil na drogach federalnych i krajowych oraz na części dróg powiatowych w Hesji.",
+    "ask": "Czy A3 jest dziś w nocy zamknięta?"
+  },
+  "nrw-baustellen-landesstrassen": {
+    "title": "Nadrenia Północna-Westfalia: roboty na drogach federalnych, krajowych i powiatowych",
+    "body": "ViaFrei czyta teraz roboty drogowe Straßen.NRW na drogach federalnych, krajowych i powiatowych Nadrenii Północnej-Westfalii. Zapytaj o drogę lub miejsce, a ViaFrei poda tamtejsze roboty. Roboty, które jeszcze się nie zaczęły, podaje jako planowane, z datą rozpoczęcia.",
+    "ask": "Czy na L968 są roboty drogowe?"
+  },
+  "ausfallsicherheit-verkehrsmeldungen": {
+    "title": "Większa niezawodność komunikatów drogowych i sytuacji na drogach",
+    "body": "ViaFrei czyta teraz także komunikaty drogowe VIZ.NRW i hamburskiego krajowego centrum komunikatów drogowych. Czyta też planowane roboty drogowe w Meklemburgii-Pomorzu Przednim oraz ruch na poszczególnych pasach autostrad Nadrenii Północnej-Westfalii. Każdy komunikat jest pokazywany raz, a każde źródło, które go podaje, jest wymienione. Gdy jedno źródło zawiedzie, ViaFrei odpowiada z drugiego.",
+    "ask": "Czy w Hamburgu są teraz komunikaty drogowe?"
+  },
+  "lkw-beschraenkungen-koeln": {
+    "title": "Ograniczenia masy i wysokości w Kolonii",
+    "body": "ViaFrei odczytuje teraz ograniczenia drogowe publikowane przez miasto Kolonia: limity masy na mostach, wysokości przejazdu pod wiaduktami i inne zakazy dla ciężarówek. Dla miejsca w Kolonii ViaFrei podaje najbliższe z rodzajem, wartością i ulicą; jeśli brakuje wartości, ViaFrei to mówi. Obowiązują znaki na miejscu.",
+    "ask": "Jakie wysokości przejazdu obowiązują ciężarówki w pobliżu katedry w Kolonii?"
+  },
+  "parken-kiel": {
+    "title": "Parkingi, parkingi wielopoziomowe i P+R w Kilonii",
+    "body": "ViaFrei odczytuje teraz parkingi, parkingi wielopoziomowe, garaże podziemne i parkingi Park & Ride publikowane przez stolicę kraju związkowego, Kilonię: 194 lokalizacje z położeniem i rodzajem. Miasto nie publikuje ani liczby miejsc, ani zajętości, a ViaFrei to mówi, zamiast wymyślać liczbę.",
+    "ask": "Gdzie w Kilonii jest parking wielopoziomowy?"
+  },
+  "behindertenparkplaetze-frankfurt": {
+    "title": "Miejsca parkingowe dla niepełnosprawnych we Frankfurcie nad Menem",
+    "body": "ViaFrei zna teraz 458 lokalizacji z miejscami dla osób niepełnosprawnych, które publikuje miasto Frankfurt nad Menem, łącznie 615 zastrzeżonych miejsc, każde z adresem, liczbą miejsc i godzinami zastrzeżenia. Żaden czujnik nie zgłasza, czy miejsce jest wolne, a ViaFrei to mówi, zamiast zgadywać.",
+    "ask": "Gdzie w pobliżu Römera we Frankfurcie jest miejsce parkingowe dla niepełnosprawnych?"
+  },
+  "lkw-netz-koeln": {
+    "title": "Własna sieć dla ciężarówek w Kolonii",
+    "body": "ViaFrei odczytuje teraz połączenia dla ciężarówek publikowane przez miasto Kolonia: ulice, którymi miasto prowadzi ruch ciężarówek, w czterech klasach od autostrady po dojazd do dostaw. Dla miejsca w Kolonii ViaFrei podaje najbliższy odcinek każdej klasy z ulicami i datą danych, obok ograniczeń dla ciężarówek z SEVAS. Sieć nie oznacza wolnej drogi: obowiązują znaki na miejscu.",
+    "ask": "Którymi ulicami Kolonia prowadzi ciężarówki w pobliżu katedry?"
+  },
+  "verkehrslage-hamburg-bonn": {
+    "title": "Hamburg i Bonn: zmierzona sytuacja na drogach w mieście",
+    "body": "ViaFrei odczytuje teraz co pięć minut sytuację na drogach, którą Hamburg i Bonn publikują dla swoich ulic, i podaje dla miejsca, ile odcinków w promieniu 10 km ma duży ruch, wolną jazdę lub zastój oraz jak daleko jest najbliższy korek. Za korek uznaje się tylko wolną jazdę lub zastój, duży ruch – nie. Hamburg publikuje tylko odcinki, na których ruch nie jest płynny, dlatego ViaFrei nie podaje tam liczby odcinków z płynnym ruchem. Gdy odczyt miasta jest starszy niż 30 minut, ViaFrei nic o nim nie mówi.",
+    "ask": "Jak wygląda teraz ruch w Hamburgu?"
+  },
+  "muenchen-baustellen-umweltzone": {
+    "title": "Monachium: miejskie roboty drogowe i własna granica strefy ekologicznej",
+    "body": "ViaFrei odczytuje teraz roboty drogowe, które miasto Monachium publikuje na najbliższe cztery tygodnie, oraz granicę jego strefy ekologicznej z wyłączonymi obszarami przejazdu. Miasto rejestruje roboty głównie w dzielnicach śródmiejskich i na głównych drogach; każda odpowiedź to mówi. Tymczasowa strefa zakazu zatrzymywania się nie jest liczona jako ograniczenie jezdni. O strefie decyduje własna granica miasta, a obok niej rejestr Umweltbundesamt.",
+    "ask": "Jakie roboty drogowe są w tym tygodniu w Monachium?"
+  },
+  "lang-lkw-positivnetz": {
+    "title": "Czy może tu jechać długa ciężarówka? Sieć pozytywna BASt",
+    "body": "ViaFrei odczytuje teraz wyciąg Federalnego Instytutu Badań Drogowych (BASt) z sieci pozytywnej dla długich ciężarówek i podaje dla drogi, czy jest na liście, a dla miejsca – które drogi w pobliżu do niej należą. BASt zaznacza, że wyciąg nie jest ani kompletny, ani prawnie wiążący i nie służy do nawigacji; wiążące jest rozporządzenie, a ViaFrei mówi to przy każdej odpowiedzi. Sieć Hamburga z próby terenowej jest podana z datą z 2015 roku.",
+    "ask": "Czy mogę jechać długą ciężarówką autostradą A7?"
+  },
+  "durchfahrtshoehen-bremen": {
+    "title": "Ograniczenia wysokości i masy w Bremie",
+    "body": "ViaFrei odczytuje teraz ograniczenia wysokości i masy dla ciężarówek publikowane przez Verkehrsmanagementzentrale Bremen. Dla miejsca w Bremie ViaFrei podaje najbliższe wpisy dokładnie tak, jak publikuje je VMZ Bremen, z dniem odczytu. Wiążące są tylko znaki na miejscu; wpisy nie służą do prowadzenia trasy, a brak wpisu nie oznacza braku ograniczenia.",
+    "ask": "Jakie ograniczenia wysokości dotyczą mojej ciężarówki w dzielnicy Gröpelingen w Bremie?"
+  },
+  "lkw-beschraenkungen-nrw-rheinmain": {
+    "title": "Ograniczenia wysokości i masy oraz zakazy dla ciężarówek w Nadrenii Północnej-Westfalii i regionie Ren-Men",
+    "body": "ViaFrei odczytuje teraz dane gmin Nadrenii Północnej-Westfalii dla ciężarówek z NRW.Mobidrom (SEVAS) oraz sieć priorytetową i znaki dla ciężarówek ivm dla regionu Frankfurt RheinMain. Dla miejsca ViaFrei podaje, jakie ograniczenia wysokości, masy i szerokości oraz zakazy dla ciężarówek są w pobliżu, kto jest z nich zwolniony i gdzie biegnie najbliższa trasa priorytetowa dla ciężarówek. Gdzie żaden wydawca nie publikuje takich danych, ViaFrei to mówi, zamiast zgłaszać wolną drogę.",
+    "ask": "Czy w Haan są niskie przejazdy dla mojej ciężarówki?"
+  },
+  "barrierefreie-haltestellen-dresden-muenster": {
+    "title": "Drezno i Münster: który przystanek jest bez barier?",
+    "body": "ViaFrei odczytuje teraz rejestr 750 przystanków autobusowych i tramwajowych stolicy kraju związkowego, Drezna, oraz listę przystanków autobusowych bez barier Stadtwerke Münster. Dla przystanku w Dreźnie podaje, w ilu miejscach wsiadania wejście jest na poziomie, wymaga rampy pojazdu, jest ograniczone lub nie jest bez barier, z wysokością krawężnika. Dla Münster podaje, czy przystanek jest bez barier lub częściowo bez barier, z uwagą Stadtwerke Münster. Przystanek, którego nie ma na liście, nie jest zgłaszany jako niedostępny.",
+    "ask": "Czy przystanek Theaterplatz w Dreźnie jest bez barier?"
+  },
+  "barrierefreiheit-aus-openstreetmap": {
+    "title": "Dostępność z OpenStreetMap: wysokość krawężnika, ścieżki dotykowe i windy na przystankach w całych Niemczech",
+    "body": "ViaFrei odczytuje teraz eksport TU Chemnitz, który zbiera z OpenStreetMap to, co wolontariusze zmapowali na przystankach w całych Niemczech: wysokości krawężników, podwyższone krawężniki, ścieżki dotykowe, windy, rampy, schody i schody ruchome, dla około 4000 przystanków. ViaFrei pokazuje te informacje tam, gdzie żadne urzędowe badanie nie opisuje przystanku, i mówi, że są zmapowane, a nie zmierzone: czego nikt nie wpisał, tego brak.",
+    "ask": "Czy przystanek Lichtenauer Straße w Chemnitz ma podwyższony krawężnik?"
+  },
+  "auslastung-mvv-regionalbus": {
+    "title": "Autobusy regionalne MVV: jak bardzo zwykle jest pełny autobus",
+    "body": "Odjazdy autobusu regionalnego w monachijskim związku komunikacyjnym MVV podają teraz, jak bardzo jest on zwykle zapełniony o tej porze – od małego obłożenia po bardzo duże, tylko miejsca stojące. Wartości pochodzą z automatycznego liczenia pasażerów MVV i są wartościami typowymi, nie danymi na żywo. W dni powszednie ViaFrei podaje osobno dni szkolne i ferie, gdy się różnią.",
+    "ask": "Jak bardzo będzie jutro rano zapełniony autobus 210 z przystanku Ottobrunn, Jahnstraße?"
+  },
+  "ladestatus-hamburg": {
+    "title": "Hamburg: czy publiczna ładowarka jest teraz wolna – także od miasta",
+    "body": "ViaFrei odczytuje teraz stan ładowania około 2500 publicznych punktów ładowania w Hamburgu, który Wolne i Hanzeatyckie Miasto Hamburg publikuje przy każdej zmianie. Uzupełnia to ładowarki, które ViaFrei już zna: ładowarka w Hamburgu pokazuje teraz, czy jest wolna, zajęta czy nieczynna, i od kiedy, a miasto jest podane jako źródło.",
+    "ask": "Gdzie w dzielnicy Altona w Hamburgu jest teraz wolna ładowarka?"
+  },
+  "barrierefreiheit-baden-wuerttemberg": {
+    "title": "Badenia-Wirtembergia: windy, rampy i ścieżki prowadzące na dworcach i przystankach",
+    "body": "ViaFrei odczytuje teraz badanie dostępności NVBW obejmujące 1104 dworce kolejowe i 14 065 przystanków autobusowych i tramwajowych w Badenii-Wirtembergii. Obok stanu wind na dworcu pokazuje teraz, co zbadano na miejscu: ile jest wind, z jaką szerokością drzwi i wielkością kabiny, jak strome są rampy i ile peronów ma dotykową ścieżkę prowadzącą. Dane to niesprawdzone dane surowe z badania, a ViaFrei to mówi.",
+    "ask": "Na ile Mannheim Hbf jest dostępny bez barier?"
+  },
+  "vrn-echtzeit-rhein-neckar": {
+    "title": "Autobusy i tramwaje w regionie Ren-Neckar: dane na żywo także od VRN",
+    "body": "ViaFrei odczytuje teraz dane na żywo Verkehrsverbund Rhein-Neckar dla autobusów i tramwajów od Mannheim i Heidelbergu po Moguncję i Kaiserslautern. Gdy dane ogólnokrajowe nic nie zgłaszają dla jednego z tych powiatów lub są nieaktualne, ViaFrei pokazuje punktualność z danych VRN i mówi, że nie obejmują one pociągów.",
+    "ask": "Jak punktualne są teraz autobusy i pociągi w Mannheim?"
+  },
+  "vbn-echtzeit-niedersachsen-bremen": {
+    "title": "Brema i Dolna Saksonia: dane na żywo także od VBN",
+    "body": "ViaFrei odczytuje teraz prognozy na żywo Verkehrsverbund Bremen/Niedersachsen dla autobusów, tramwajów i pociągów, od Bremy i Oldenburga przez Hanower i Brunszwik po Getyngę i Osnabrück. Gdy dane ogólnokrajowe nic nie zgłaszają dla Bremy lub jednego z tych powiatów albo są nieaktualne, ViaFrei pokazuje punktualność z danych VBN i podaje źródło.",
+    "ask": "Jak punktualne są teraz autobusy i pociągi w Bremie?"
+  },
+  "baustellen-staedte-laender": {
+    "title": "Roboty drogowe od miast i krajów związkowych",
+    "body": "ViaFrei zna teraz także roboty drogowe, które miasta i kraje związkowe publikują same — od Kilonii i Szlezwiku-Holsztynu przez Brandenburgię, Berlin, Kolonię, Dortmund, Münster, Duisburg i Akwizgran po Frankfurt, Karlsruhe, Stuttgart, Fryburg i Ingolstadt. Każde roboty są podane raz, z każdym źródłem, które je zgłasza.",
+    "ask": "Jakie roboty drogowe są teraz w Dortmundzie?"
+  },
+  "umweltzone-am-punkt": {
+    "title": "Czy to miejsce leży w strefie ekologicznej?",
+    "body": "ViaFrei sprawdza adres lub punkt względem opublikowanych granic stref ekologicznych: wewnątrz, w obszarze wyłączonym, na zewnątrz z odległością — albo nieznane. Odczytuje własne granice miast i rejestr Umweltbundesamt obejmujący każdą strefę w Niemczech, każdą z datą jej danych.",
+    "ask": "Czy Alexanderplatz leży w berlińskiej strefie ekologicznej?"
+  },
+  "dortmund-sensoren-behindertenparkplaetze-ladeplaetze": {
+    "title": "Dortmund: wolne miejsca dla niepełnosprawnych i miejsce przy ładowarce",
+    "body": "W Dortmundzie czujniki w jezdni zgłaszają, czy miejsce dla osoby niepełnosprawnej albo miejsce przy punkcie ładowania jest teraz wolne. Gdy szukasz parkingu, ViaFrei podaje najbliższe miejsca dla niepełnosprawnych, a przy punkcie ładowania mówi, czy jego miejsce jest zajęte — za każdym razem z godziną ostatniego komunikatu czujnika.",
+    "ask": "Czy w pobliżu Dortmund Hauptbahnhof jest wolne miejsce dla niepełnosprawnych?"
+  },
+  "zweite-quelle-berlin-sachsen-autobahn": {
+    "title": "Roboty drogowe i zamknięcia z dwóch źródeł: Berlin, Saksonia i autostrady",
+    "body": "ViaFrei odczytuje teraz berlińską centralę informacji drogowej, Landesmeldestelle Berlin, saksoński system informacji o zamknięciach oraz roboty drogowe Autobahn GmbH na najbliższe 14 dni. Komunikat podawany przez dwa źródła jest w odpowiedzi wymieniony raz, a oba źródła są podane; gdy jedno źródło nie jest aktualne, odpowiada samo drugie, a objazdy w Saksonii ViaFrei podaje jako kontekst oznakowania, nigdy jako trasę.",
+    "ask": "Które drogi są teraz zamknięte w pobliżu mnie w dzielnicy Mitte w Berlinie?"
+  },
+  "baustellen-bayern-mv-umleitungen-nrw": {
+    "title": "Roboty drogowe w Bawarii i Meklemburgii-Pomorzu Przednim, objazdy w Nadrenii Północnej-Westfalii",
+    "body": "ViaFrei odczytuje teraz roboty drogowe i komunikaty drogowe bawarskiej centrali zarządzania ruchem, roboty zarządu dróg Meklemburgii-Pomorza Przedniego na drogach federalnych i drogach kraju związkowego oraz oznakowane objazdy Straßen.NRW. Objazd ViaFrei podaje jako kontekst oznakowania, nigdy jako zalecaną trasę.",
+    "ask": "Czy w przyszłym tygodniu są roboty drogowe na B14?"
+  },
+  "verkehrslage-autobahn-nrw": {
+    "title": "Sytuacja na drogach w punktach pomiarowych autostrad w Nadrenii Północnej-Westfalii",
+    "body": "ViaFrei odczytuje teraz sytuację na drogach, którą Autobahn GmbH mierzy w około 2000 punktach w Nadrenii Północnej-Westfalii, i podaje dla autostrady, gdzie ruch jest płynny, duży, wolny lub gdzie jest zastój.",
+    "ask": "Jak wygląda teraz ruch na A1 w Nadrenii Północnej-Westfalii?"
+  },
+  "parken-wuppertal-leipzig-pr": {
+    "title": "Więcej parkingów w Wuppertalu i parkingi P+R w Lipsku z wolnymi miejscami",
+    "body": "ViaFrei odczytuje teraz tabelę parkingów miasta Wuppertal, która zna o 33 parkingi więcej niż dotąd, oraz parkingi P+R lipskiego Verkehrs- und Tiefbauamt z wolnymi miejscami na żywo, po raz pierwszy z wolnymi miejscami przy Völkerschlachtdenkmal. Parking publikowany przez dwa źródła jest w odpowiedzi wymieniony raz, a obaj wydawcy są podani.",
+    "ask": "Gdzie w Lipsku są teraz wolne miejsca P+R?"
+  },
+  "parken-freiburg-herrenberg-jena-vrr-karlsruhe": {
+    "title": "Parkowanie we Fryburgu, Herrenbergu, Jenie, na obszarze VRR i miejsca dla ciężarówek w okolicach Karlsruhe",
+    "body": "ViaFrei odczytuje teraz bezpośrednio pięciu kolejnych wydawców: system naprowadzania na parkingi i parkingi P+R miasta Fryburg z wolnymi miejscami na żywo, parkingi miasta Herrenberg, parkingi Kommunalservice Jena, parkingi Park&Ride związku komunikacyjnego Ren-Ruhra oraz miejsca dla ciężarówek TechnologieRegion Karlsruhe. Gdzie wydawca nie publikuje zajętości, ViaFrei to mówi, zamiast wymyślać liczbę.",
+    "ask": "Który parking we Fryburgu ma teraz wolne miejsca?"
+  },
+  "live-antworten-auf-der-seite": {
+    "title": "Odpowiedzi Twojego asystenta AI na żywo na stronie głównej i dla każdego miejsca",
+    "body": "Obok każdej liczby na stronie głównej jest teraz pytanie, które możesz zadać swojemu asystentowi AI, oraz to, co narzędzia ViaFrei teraz na nie odpowiadają: z narzędziem, czasem danych i każdym źródłem. Karty miejsca też pokazują odpowiedzi dla tego miejsca – o ostrzeżeniach, drogach, miejscach w pobliżu, ładowaniu i parkowaniu. To ta sama odpowiedź, którą dostaje Twój asystent, gdy jest połączony z ViaFrei.",
+    "ask": "Czy na drogach wokół Pulheim jest teraz coś zamknięte?"
+  },
+  "autobahn-seiten": {
+    "title": "Strona na żywo dla każdej niemieckiej autostrady",
+    "body": "Wszystkie 122 autostrady mają teraz własną stronę z mapą drogi, jej aktualnymi zamknięciami, korkami i robotami drogowymi oraz całkowitymi zamknięciami planowanymi na najbliższe siedem dni z objazdami. Są też parkingi dla ciężarówek z wolnymi miejscami, ładowarki według mocy, pogoda drogowa i ostrzeżenia, kamery, zakaz ruchu ciężarówek i skrzyżowania autostrad. Strona główna pokazuje dziesięć autostrad, na których teraz dzieje się najwięcej.",
+    "ask": "Jaka jest teraz sytuacja na A7?"
+  },
+  "wasserstoff-bruecken-bahnhoefe": {
+    "title": "Stacje wodoru, mosty Szlezwiku-Holsztynu i więcej przy każdej stacji",
+    "body": "ViaFrei zna teraz stacje wodoru H2 Mobility z dystrybutorami dla samochodów osobowych i ciężarówek, stan dużych mostów w Szlezwiku-Holsztynie oraz parkingi miasta Kassel z ich zajętością. Na stronach miejsc każda stacja podaje teraz, które windy i schody ruchome działają, które perony są bez barier i które parkingi są tuż obok. Karta pogody pokazuje najbliższe godziny w najbliższej stacji pogody drogowej, a punktualność jest teraz podawana dla powiatu.",
+    "ask": "Gdzie w pobliżu Hamburga jest najbliższa stacja wodoru dla ciężarówki?"
+  },
+  "baustellen-bremen-kassel-leipzig": {
+    "title": "Roboty drogowe i zamknięcia w Bremie, Kassel, Lipsku i Rüsselsheim",
+    "body": "ViaFrei odczytuje teraz komunikaty drogowe miast Brema, Kassel, Lipsk i Rüsselsheim am Main oraz roboty i zamknięcia zarządu dróg Dolnej Saksonii poza autostradami. Komunikaty miast są też na stronach miejsc, podobnie jak komunikaty Kolonii i Hanoweru.",
+    "ask": "Czy w centrum Bremy są teraz jakieś zamknięcia?"
+  },
+  "ladepunkte-23-betreiber": {
+    "title": "Punkty ładowania 23 kolejnych operatorów",
+    "body": "ViaFrei odczytuje teraz własne publikacje w Mobilithek 23 kolejnych operatorów punktów ładowania, wśród nich EWE Go, LichtBlick, Qwello, Wirelane, chargecloud i vaylens. Gdy operator zgłasza, czy punkt ładowania jest wolny, pokazujemy to, ale nigdy, gdy zgłoszenie jest starsze niż 30 minut.",
+    "ask": "Gdzie w Münster jest teraz wolna stacja ładowania?"
+  },
+  "autobahn-verkehrsmeldungen": {
+    "title": "Komunikaty drogowe Autobahn GmbH, umiejscowione",
+    "body": "ViaFrei odczytuje teraz co pięć minut komunikaty drogowe Autobahn GmbH o zamknięciach i utrudnieniach. Komunikaty są umieszczane na ich autostradzie i w punktach odniesienia, takich jak węzły, za pomocą listy lokalizacji TMC BASt.",
+    "ask": "Czy A620 w pobliżu Saarbrücken jest teraz zamknięta?"
+  },
+  "muenchen-pr-prognosen": {
+    "title": "Parkingi i Park & Ride w Monachium, z prognozami",
+    "body": "ViaFrei zna teraz parkingi i parkingi Park & Ride w Monachium. Gdy parking P+R nie zgłasza zajętości na żywo, podajemy prognozę miasta na bieżącą godzinę, z jej datą, i nigdy jako wolne miejsca.",
+    "ask": "Gdzie w Monachium mogę zaparkować na parkingu Park & Ride i pojechać dalej metrem?"
+  },
+  "parkapi-baden-wuerttemberg": {
+    "title": "Wolne miejsca parkingowe w Badenii-Wirtembergii",
+    "body": "Zajętość parkingów na żywo w całej Badenii-Wirtembergii pochodzi teraz z ParkAPI MobiData BW, co pięć minut, wyłącznie z licencjonowanych źródeł. Odczyt starszy niż 30 minut według zegara wydawcy nie jest pokazywany jako zajętość.",
+    "ask": "Gdzie w Karlsruhe znajdę teraz wolne miejsce na parkingu?"
+  },
+  "bw-bedarfsumleitungen": {
+    "title": "Oznakowane objazdy w Badenii-Wirtembergii",
+    "body": "Gdy zamknięcie autostrady w Badenii-Wirtembergii pasuje do opublikowanego objazdu (Bedarfsumleitung), ViaFrei podaje trasę U — jako wskazówkę co do oznakowania, nie jako zalecaną trasę.",
+    "ask": "Czy dla zamknięcia na A8 w pobliżu Stuttgartu jest oznakowany objazd?"
+  },
+  "hamburg-baustellen-kameras": {
+    "title": "Roboty drogowe i kamery drogowe w Hamburgu",
+    "body": "Dla ulic miejskich Hamburga ViaFrei podaje teraz udostępnione roboty drogowe z Bauweiser, bieżące lub planowane, odczytywane co godzinę, oraz do dwóch lokalizacji kamer drogowych w pobliżu — tylko lokalizacje, nigdy obraz.",
+    "ask": "Jakie roboty drogowe są teraz w dzielnicy Eimsbüttel w Hamburgu?"
+  },
+  "bemas-baden-wuerttemberg": {
+    "title": "Roboty drogowe na drogach federalnych i drogach kraju związkowego w Badenii-Wirtembergii",
+    "body": "ViaFrei zna teraz bieżące i planowane roboty drogowe na drogach federalnych i drogach kraju związkowego w Badenii-Wirtembergii, odczytywane co 15 minut z otwartej usługi danych o mobilności tego kraju związkowego. Miejsca, których wydawca nie udostępnia do publikacji, nigdy nie są pokazywane.",
+    "ask": "Jakie roboty drogowe szykują się na B27 między Stuttgartem a Tybingą?"
+  },
+  "dwd-strassenzustand": {
+    "title": "Prognoza stanu nawierzchni od DWD",
+    "body": "Wraz z ostrzeżeniami pogodowymi ViaFrei podaje teraz prognozowany stan drogi i temperaturę nawierzchni w najbliższych stacjach pogody drogowej — oznaczone jako prognoza modelowa, nie pomiar i nie urzędowe ostrzeżenie.",
+    "ask": "Jaka będzie nawierzchnia w pobliżu Kassel jutro rano?"
+  },
+  "rastanlagen-lkw-stellplaetze": {
+    "title": "MOP-y przy autostradach z miejscami dla ciężarówek",
+    "body": "Planujemy dodać dane Federalnego Urzędu Logistyki i Mobilności o obsługiwanych MOP-ach przy niemieckich autostradach: położenie, nazwę i szacowaną liczbę miejsc dla ciężarówek, dla całych Niemiec. Ta liczba to szacunek urzędu, a nie zajętość na żywo.",
+    "ask": "Który MOP na A2 między Hanowerem a Dortmundem ma najwięcej miejsc dla ciężarówek?"
+  },
+  "autobahn-umleitungsempfehlungen": {
+    "title": "Zalecane objazdy od operatora autostrad",
+    "body": "Planujemy dodać zalecenia objazdów federalnego operatora autostrad: trasę, którą zalecają dynamiczne znaki kierunkowe podczas korków i zamknięć. ViaFrei mógłby wtedy podać dla zamknięcia objazd, który zaleca sam operator.",
+    "ask": "Jak ominąć zamknięcie na A3?"
+  },
+  "viafrei-2-3": {
+    "title": "ViaFrei 2.3: strony autostrad, więcej źródeł i asystentów",
+    "body": "Każda autostrada ma teraz swoją stronę z panelami ruchu, robót drogowych, parkowania i ładowania, każdy z wiekiem swoich danych. Nowe są roboty drogowe i komunikaty z kolejnych krajów związkowych, więcej operatorów ładowarek oraz strategiczne zalecenia objazdów Autobahn GmbH, gdy je publikuje. Odjazdy są poprawne także przy zmianie czasu. Podłącz ViaFrei w Claude, ChatGPT i innych asystentach ze strony połączenia – tylko wtedy odpowiedzi są na żywo.",
+    "ask": "Jaka jest teraz sytuacja na A3?"
+  },
+  "lkw-stellplatzbelegung": {
+    "title": "Zajętość parkingów dla ciężarówek na autostradach",
+    "body": "ViaFrei pokazuje teraz zajętość parkingów dla ciężarówek przy autostradach na podstawie Stellplatz-Informationsdienst (SID) spółki Toll Collect GmbH. Liczby pojawiają się dopiero po zaakceptowaniu warunków korzystania, sekcja 2: na viafrei.de przyciskiem „Pokaż zajętość”, w asystencie AI w odpowiedzi na jego pytanie. Dane mogą być niedokładne lub nieaktualne.",
+    "ask": "Gdzie są teraz wolne miejsca dla ciężarówek na A9 koło Norymbergi?"
+  },
+  "lkw-parken-thiersheim": {
+    "title": "Autohof Thiersheim przy A93",
+    "body": "ViaFrei zna teraz miejsca dla ciężarówek w Autohof Thiersheim przy A93 z własnej tabeli tego parkingu: 55 miejsc dla ciężarówek, adres i położenie. Parking występuje w odpowiedzi tylko raz, choć zawiera go też ogólnoniemiecka tabela parkingów dla ciężarówek, a oba źródła są wymienione. ViaFrei nie pokazuje tu zajętości, ponieważ wydawca nie podaje jej od kwietnia.",
+    "ask": "Gdzie mogę zaparkować ciężarówkę przy A93 koło Thiersheim?"
+  },
+  "echtzeit-vbn-connect": {
+    "title": "Dane w czasie rzeczywistym dla autobusów i pociągów w obszarze VBN",
+    "body": "ViaFrei odczytuje teraz dane w czasie rzeczywistym związku komunikacyjnego Brema/Dolna Saksonia (VBN, zbiór danych Connect). Na przystankach w Bremie i w całym obszarze VBN odjazdy pokazują opóźnienie z tych danych tam, gdzie żadne inne źródło czasu rzeczywistego nie zgłasza kursu. Każdy odjazd pojawia się raz i wymieniane jest każde źródło, które go przekazuje.",
+    "ask": "Kiedy odjeżdża następny autobus z dworca głównego w Bremie?"
+  },
+  "strassen-auf-den-karten": {
+    "title": "Ulice na mapach",
+    "body": "Mapy stron autostrad i stron miejscowości rysują teraz ulice swojego wycinka z OpenStreetMap: drogi federalne, krajowe i powiatowe oraz ulice mieszkalne, rysowane przez nas, bez usługi mapowej osób trzecich; same autostrady rysujemy według listy kodów lokalizacji BASt. Dzięki temu komunikat na mapie można przypisać do jego ulicy.",
+    "ask": "Jaka jest sytuacja na A7 koło Kassel?"
+  },
+  "einzelmeldungen-viz-nrw": {
+    "title": "Pojedyncze komunikaty VIZ.NRW jako kolejne zabezpieczenie",
+    "body": "ViaFrei czyta teraz także pojedyncze komunikaty informacji drogowej Nadrenii Północnej-Westfalii od VIZ.NRW. Jeszcze raz zabezpieczają one komunikaty drogowe w Nadrenii Północnej-Westfalii: gdy jedno źródło zawiedzie, ViaFrei odpowiada z innego. Każdy komunikat pojawia się tylko raz, a każde źródło, które go przekazuje, jest wymienione.",
+    "ask": "Czy są teraz komunikaty drogowe na A1 koło Kolonii?"
+  }
+}

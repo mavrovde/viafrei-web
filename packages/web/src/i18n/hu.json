@@ -1,0 +1,1274 @@
+{
+  "meta": {
+    "tagline": "A valós idejű német mobilitási platform az MI számára",
+    "pitch": "A ViaFrei valós idejű tudást ad az MI-asszisztenseknek Németországról. Vonatok és buszok, forgalom és útépítések, üzemanyag, töltés, parkolás és időjárás. Egy MCP. Nincs API-kulcs. Nincs regisztráció.",
+    "description": "Dugók, lezárások, útfelújítások, vasút, parkolás, töltés és üzemanyag Németországban – élőben, nyílt adatokból, az MI-asszisztens válaszaként, forrással.",
+    "siteName": "ViaFrei"
+  },
+  "a11y": {
+    "skip": "Ugrás a tartalomra",
+    "mainNav": "Főmenü",
+    "langNav": "Nyelv választása",
+    "currentLang": "jelenlegi nyelv",
+    "sample": "Mintaértékek, nem élő adatok",
+    "crumbs": "Itt jár"
+  },
+  "nav": {
+    "brand": "ViaFrei",
+    "claim": "Közlekedési adatok, szóban",
+    "tools": "Fejlesztőknek",
+    "cta": "Csatlakozás az MI-hez",
+    "day": "Az Ön napja",
+    "start": "Indulás",
+    "ctaShort": "MI csatlakozás",
+    "ctaLabel": "A ViaFrei csatlakoztatása az MI-asszisztenséhez ({clients})"
+  },
+  "beta": {
+    "label": "Beta",
+    "short": "A ViaFrei béta állapotban van: a válaszok és a lefedettség változhatnak, és az MI tévedhet. A fontos adatokat ellenőrizze a megnevezett forrásnál.",
+    "more": "Mit jelent ez",
+    "sign": "Közlekedési tábla: veszélyes hely",
+    "line": "Ellenőrizze a forrásnál"
+  },
+  "hero": {
+    "lead": "Mint egy jól értesült barát: jár a vonatom? Szabad az autópálya? Hol van szabad töltő? A ViaFrei a mai számokat adja az asszisztensének, mindegyiket forrással.",
+    "primary": "Csatlakoztassa MI-jét egy perc alatt",
+    "secondary": "Az Ön napja a ViaFreivel",
+    "clients": "Ehhez:",
+    "phase": "Kiépítési szakasz: a válaszok tájékoztatások, nem jogi tanácsok.",
+    "trust": {
+      "free": "Ingyenes",
+      "account": "Nálunk nincs fiók",
+      "app": "Nincs külön alkalmazás",
+      "sources": "Minden szám forrással"
+    },
+    "connected": "Az AI-asszisztense csak akkor használja ezeket az élő adatokat, ha a ViaFrei csatlakoztatva van hozzá – kapcsolat nélkül a tanítási adataiból válaszol."
+  },
+  "sign": {
+    "label": "Mintaválasz, rövidítve",
+    "question": "Szabad az A8 München felé?",
+    "answerBefore": "Stuttgart és Ulm között két útépítés, lezárás nincs — az útszakasz",
+    "answerHighlight": "szabad",
+    "answerAfter": ".",
+    "meta": "Példa: így válaszol asszisztense a ViaFreivel — rövidítve, mintaértékekkel.",
+    "badge": "{road} – az autópálya oldala"
+  },
+  "proof": {
+    "tiles": {
+      "reports": {
+        "title": "Bejelentések az autópályákon"
+      },
+      "charging": {
+        "title": "Töltőpontok"
+      },
+      "lorry": {
+        "title": "Kamionparkolók"
+      },
+      "lifts": {
+        "title": "Liftek és mozgólépcsők"
+      }
+    }
+  },
+  "tile": {
+    "error": "most nem olvasható",
+    "errorNote": "Ez a forrás most nem válaszol. Inkább nem mutatunk semmit, mint hogy egy régi számot újként mutassunk.",
+    "loading": "betöltés …",
+    "loadingNote": "Ez a szám mindjárt megérkezik. Amint a forrás válaszol, betöltődik."
+  },
+  "tools": {
+    "heading": "Eszközök témák szerint",
+    "lead": "Asszisztense maga választja ki a megfelelő eszközt. A lista a szerverről jön, nem egy prospektusból.",
+    "showAll": "Mind a(z) {n} eszköz mutatása",
+    "groups": {
+      "roads": "Autópálya és út",
+      "rail": "Vasút",
+      "transit": "Helyi közlekedés",
+      "energy": "Töltés és tankolás",
+      "places": "Helyek és címek",
+      "rules": "Szabályok és időjárás"
+    },
+    "count": "Eszközök: {n}"
+  },
+  "connect": {
+    "heading": "Csatlakozás 60 másodperc alatt",
+    "lead": "Egy végpont, nincs fiók, nincs kulcs. Válassza ki a kliensét, és kövesse a lépéseket.",
+    "endpointLabel": "MCP-végpont (Streamable HTTP)",
+    "legacyLabel": "Régebbi kliensekhez (HTTP + SSE)",
+    "clients": {
+      "claude": "Claude (asztali és claude.ai)",
+      "chatgpt": "ChatGPT",
+      "other": "Más MCP-kliensek"
+    },
+    "draft": "Vázlat — ezeket a lépéseket még nem ellenőriztük a kliensen.",
+    "steps": {
+      "claude": {
+        "s1": "Beállítások → Connectors → „Add custom connector”.",
+        "s2": "Illessze be a fenti végpontot, és mentse.",
+        "s3": "Kérdezze meg: „Szabad az A8 München felé?”"
+      },
+      "chatgpt": {
+        "s1": "Beállítások → Connectors → „Create” (fejlesztői mód).",
+        "s2": "Adja meg a fenti végpontot MCP-szerverként.",
+        "s3": "Válassza ki a csevegésben a connectort, és kérdezzen."
+      },
+      "other": {
+        "s1": "Streamable HTTP a fenti végponton; a régebbi kliensek az SSE-útvonalat használják.",
+        "s2": "A kiépítési szakaszban nincs hitelesítés.",
+        "s3": "A tools/list adja a katalógust; minden válasz hordozza a forrását."
+      }
+    },
+    "cta": "A fejlesztői útmutatóhoz",
+    "showClients": "Az Ön kliensének lépései"
+  },
+  "sources": {
+    "heading": "Források és bizalom",
+    "lead": "Minden adat azt a forrást viseli, amely engedélyezi — szó szerint és fordítás nélkül, azon a csempén, amely mutatja.",
+    "creditsLabel": "Az oldalon látható számok forrásai",
+    "creditsShow": "Mind a(z) {n} forrássor mutatása",
+    "licenceText": "licencszöveg",
+    "notAnswered": {
+      "heading": "Amire nem válaszolunk",
+      "routing": "Nincs útvonaltervezés — megmondjuk, mi történik az úton, nem azt, melyiken menjen.",
+      "legal": "Nincs jogi tanácsadás — a szabályokra adott válaszok megnevezik forrásukat és ellenőrzési dátumukat, és tájékoztató jellegűek.",
+      "fuelFeed": "Nincsenek továbbhasználható áradatok — az üzemanyagárak fogyasztói tájékoztatást szolgálnak, nem interfészt."
+    },
+    "privacy": {
+      "heading": "Adatvédelem három mondatban",
+      "s1": "Az Ön hozzájárulása előtt ez az oldal nem tölt be idegen betűtípust, szkriptet vagy képet.",
+      "s2": "A látogatásokat sütik nélkül számoljuk, csak napi összesítésként a saját szerverünkön; a Google Analytics csak akkor fut, ha hozzájárul.",
+      "s2Clarity": "A látogatásokat sütik nélkül számoljuk, csak napi összesítésként a saját szerverünkön; a Google Analytics és a Microsoft Clarity csak akkor fut, ha hozzájárul.",
+      "s3": "Asszisztense a szerverünkkel beszél — nem tárolunk fiókokat és profilokat."
+    }
+  },
+  "audience": {
+    "heading": "Kinek szól",
+    "travellers": {
+      "title": "Utazóknak",
+      "text": "Kérdezze meg asszisztensét indulás előtt, a peronon vagy a töltőnél — és kapjon választ forrással.",
+      "cta": "Így csatlakozhat"
+    },
+    "developers": {
+      "title": "Fejlesztőknek",
+      "text": "Egy MCP-szerver Streamable HTTP-n, nyilvános katalógus, stdio-híd az npm-en. A kiépítési szakaszban nincs kulcs.",
+      "cta": "A dokumentációhoz"
+    },
+    "business": {
+      "title": "Vállalatoknak",
+      "text": "Minden valós idejű bejelentés előzménye, flotta- és telephelyi kérdések, világos licenchelyzet. Beszéljen velünk, mielőtt fejleszt.",
+      "cta": "Kapcsolatfelvétel"
+    },
+    "show": "Kinek szól a ViaFrei"
+  },
+  "footer": {
+    "imprint": "Impresszum",
+    "privacy": "Adatvédelem",
+    "privacySettings": "Adatvédelmi beállítások",
+    "terms": "Felhasználási feltételek",
+    "languages": "Nyelvek",
+    "refresh": "Ez az oldal 20 percenként újratöltődik; minden csempe mutatja, milyen régi a száma.",
+    "openData": "Nyílt adatokból készült. Minden szám megnevezi a forrását."
+  },
+  "consent": {
+    "title": "Használhatjuk a Google Analyticset?",
+    "titleClarity": "Használhatjuk a Google Analyticset és a Microsoft Clarityt?",
+    "body": "A Google Analytics csak az Ön hozzájárulása után töltődik be. Az elutasítás ugyanúgy egy kattintás, és megjegyezzük. Saját, sütik nélküli látogatószámlálásunk ettől függetlenül működik (lásd Adatvédelem).",
+    "bodyClarity": "A Google Analytics és a Microsoft Clarity csak az Ön hozzájárulása után töltődik be. A Clarity rögzíti a kattintásokat, a görgetést és az egérmozgást ezen az oldalon, miközben minden szöveg és bevitel rejtve marad. A Microsoft ezeket az adatokat saját céljaira is felhasználja, reklámcélokra is. Az elutasítás is csak egy kattintás, és megjegyezzük. Saját, sütik nélküli látogatószámlálásunk ettől függetlenül működik (lásd Adatvédelem).",
+    "accept": "Elfogadom",
+    "decline": "Elutasítom",
+    "more": "Adatvédelem",
+    "state": {
+      "none": "Még nem döntött.",
+      "denied": "Jelenlegi döntése: elutasítva ekkor: {date}.",
+      "granted": "Jelenlegi döntése: elfogadva ekkor: {date}."
+    }
+  },
+  "notFound": {
+    "title": "Ez az oldal nem létezik",
+    "text": "A cím sehová sem vezet. A kezdőlap egy kattintásra van.",
+    "choiceTitle": "Több hely viseli ezt a nevet",
+    "choiceText": "Melyikre gondol?",
+    "back": "A kezdőlapra",
+    "connect": "Asszisztense csatlakoztatása",
+    "developers": "Fejlesztőknek",
+    "business": "Vállalatoknak"
+  },
+  "now": {
+    "heading": "Egész Németország",
+    "lead": "Minden országos adat egy helyen, témák szerint – mindegyik az időponttal és a forrással.",
+    "stationTop": {
+      "head": "Állomások most: kimaradások, késések, zavarokról szóló közlemények, liftek",
+      "all": "Összes pályaudvar",
+      "search": "Pályaudvar keresése",
+      "go": "Keresés"
+    }
+  },
+  "tiles": {
+    "punctuality": "Pontosság, buszok és vonatok",
+    "lifts": "Liftek és mozgólépcsők",
+    "reports": "A legfontosabb bejelentések",
+    "jams": "Dugók a városokban, most",
+    "station": "Élőben a főpályaudvarokon",
+    "lorry": "Kamionparkolók és pihenők",
+    "carparks": "Parkolóházak és P+R a városokban",
+    "charging": "Töltőpontok",
+    "fuel": "Üzemanyagárak, megfigyelve"
+  },
+  "day": {
+    "heading": "Az Ön napja a ViaFreivel",
+    "lead": "Kilenc pillanat, amikor egy rövid kérdés időt takarít meg — a mai számmal, amely mutatja, hogy a válasz megállja a helyét.",
+    "howTo": "Hogyan kérdezze az asszisztensét",
+    "howToText": "Tartsa lenyomva a kérdést (vagy jelölje ki), másolja, illessze be a csevegésbe. Asszisztense maga választja ki a megfelelő eszközt.",
+    "more": "Még két kérdés és egy korlát",
+    "answer": {
+      "label": "A ViaFrei válasza",
+      "asOf": "Állapot: {asOf}"
+    },
+    "limitLabel": "Őszintén szólva",
+    "cta": "Indulás",
+    "moments": {
+      "commute": {
+        "title": "Reggeli munkába járás",
+        "scene": "7:10, kávéval a kézben: rendben jár a tömegközlekedés — és pontos a vonatom?",
+        "q1": "Pontosan járnak most a buszok és vonatok Hamburgban?",
+        "a1": "Az elmúlt órában megfigyelt járatok {share} %-a késett 5 percnél többet — nagyjából annyi, mint az előző órában ({before} %).",
+        "limit": "A pontosságot régiónként mutatjuk, nem vonalanként.",
+        "q2": "Mikor indul a következő vonat a hannoveri főpályaudvarról, és késik-e?",
+        "q3": "Kimarad valamelyik vonat a kölni főpályaudvar indulási tábláján a következő órában?",
+        "a2": "Következik: {l1}, cél: {d1} (menetrend szerint {t1}, vágány: {p1}), +{delay} perc, indulás kb. {exp}; utána {l2}, cél: {d2}, {t2}, pontosan.",
+        "a3": "Egyik sem marad ki: {n} indulás eddig: {last}; a legnagyobb késés: {l1}, cél: {d1}, +{delay} perc."
+      },
+      "bus": {
+        "title": "Busszal és villamossal",
+        "scene": "Úton a városban: hol a legközelebbi állomás, és jár-e a közlekedés?",
+        "q1": "Melyik vasútállomás van a legközelebb a kölni dómhoz?",
+        "q2": "Mikor indul a következő S-Bahn a frankfurti Hauptwache megállóból?",
+        "a1": "{s1}, {km},{kmd} km távolságra; utána: {s2} és {s3}.",
+        "limit": "Minden busz- és villamosmegálló menetrendjét megmutatjuk, amint betöltöttük — addig az állomásokat és a régió helyzetét.",
+        "board": "Menetrend a megállójában",
+        "a2": "Következik: {l1}, cél: {d1}, {t1}-kor a(z) {p1}. vágányról, pontosan; a(z) {l2}, cél: {d2}, menetrend szerint {t2}, +{delay2} perc, indulás kb. {exp2}.",
+        "q3": "Késnek most a vonatok a lipcsei főpályaudvarról?",
+        "a3": "Igen, kettő: {l1}, cél: {d1}, +{dl1} perc, vágány: {p1}, és {l2}, cél: {d2}, +{dl2} perc; a többi következő indulás ({n}) pontos."
+      },
+      "station": {
+        "title": "Az állomáson",
+        "scene": "Babakocsival, kerekesszékkel vagy csomaggal: működik a lift a peronhoz?",
+        "q1": "Működik a lift a kölni főpályaudvaron?",
+        "a1": "Állomás: {station} – a bejelentett liftek közül {working} / {total} üzemel; egy nem üzemel, egynél a vasút nem jelez állapotot.",
+        "limit": "Liftek és mozgólépcsők a Deutsche Bahn állomásain; más üzemeltetőknél még nem.",
+        "q2": "Üzemel minden lift Erlangen állomáson?",
+        "a2": "Igen: az egyetlen bejelentett lift ({station}, peron: {platforms}) üzemel.",
+        "q3": "Melyik vágányról indul a következő ICE a nürnbergi főpályaudvarról?",
+        "a3": "{train}, cél: {dest}, {t}, vágány: {p}, pontosan."
+      },
+      "driving": {
+        "title": "Az úton",
+        "scene": "Indulás előtt: dugók, lezárások, útépítések — és hol olcsó most az üzemanyag.",
+        "q1": "Szabad most az A8 München felé?",
+        "a1": "Nem egészen: a(z) {a} – {b} szakaszon München felé a rendőrség balesetet jelez; a leállósáv el van zárva.",
+        "a1more": "A teljes A8-on emellett lezárások ({closures}) és útépítések ({works}) is szerepelnek.",
+        "limit": "Nincs útvonaltervezés: megmondjuk, mi történik az autópályán, nem azt, merre menjen.",
+        "q2": "Milyen útépítések vannak most az A7-en?",
+        "a2": "Útépítések: {count}, eddig: {to}; például a(z) {a} – {b} szakaszon: új híd, három sávból egy lezárva, {speed} km/h, eddig: {until}.",
+        "q3": "Hétvégén az A2-n megyek — milyen útépítésekre számítsak?",
+        "a3": "Útépítések: {count}, szakasz: {from} – {to}; például a(z) {a} csomópontnál: a pályaszerkezet felújítása, a rámpa teljesen le van zárva, eddig: {until}."
+      },
+      "jam": {
+        "title": "Dugóban",
+        "scene": "Dugók az autópályán és a városok körül: hol áll a forgalom, mennyi időbe kerül — és lesz-e ma éjjel lezárás.",
+        "q1": "Mennyi időt veszít most az ember az A3 dugójában Frankfurt és Würzburg között?",
+        "a1": "A(z) {a} – {b} szakaszon Frankfurt felé kb. +{delay} perc egy baleset után; a teljes A3-on dugók: {jams}.",
+        "a1more": "Az A3-on szerepel még: lezárások: {closures}, útépítések: {works}.",
+        "limit": "A városokban a városi autópályákat látjuk, Berlinben, Kölnben és Hannoverben a város saját forgalmi híreit is — de még nem minden utca helyzetét. Hamburg híreit és Köln forgalmi állapotát kértük a szolgáltatóktól.",
+        "q2": "Áll most a forgalom a kölni autópálya-gyűrűn — az A1-en, A3-on vagy A4-en?",
+        "q3": "Le van zárva ma az A7 Hamburgban?",
+        "a3": "Lezárás van bejelentve a(z) {a} és {b} csomópont között (bővítés nyolc sávra, új {tunnel}); a teljes A7-en lezárások: {n}.",
+        "a2": "Igen, az A4-en: a(z) {a} – {b} szakaszon Köln felé torlódik a forgalom, kb. +{delay} perc; a kérdezett autópályákon dugók: {n}."
+      },
+      "parking": {
+        "title": "Parkolás",
+        "scene": "Az autót az állomáson hagyni — vagy kamionsofőrként megtervezni a pihenőt.",
+        "q1": "Hol van parkolóház a kölni főpályaudvar közelében?",
+        "a1": "{p1}: legutóbb jelzett szabad hely {f1} / {t1}; {p2}: {f2} / {t2} — mindkettő 300 m-en belül.",
+        "limit": "Szabad helyek csak ott, ahol az üzemeltető közzéteszi őket — egyébként a helyek száma, nem a telítettség.",
+        "q2": "Hol van kamionparkoló az A9 mentén?",
+        "a2": "Például {p1} (kamionhelyek: {n1}), {p2} ({n2}) és {p3} ({n3}); ott senki sem teszi közzé a szabad helyeket.",
+        "q3": "Hol van P+R parkoló az esseni főpályaudvar közelében?",
+        "a3": "{p1}, {k1},{k1d} km távolságra, és {p2}, {k2},{k2d} km; a ViaFrei ebből a forrásból nem veszi át a telítettséget."
+      },
+      "charging": {
+        "title": "Töltés",
+        "scene": "Elektromos autóval: hol a legközelebbi töltő, és van-e szabad pont?",
+        "q1": "Hol tölthetek gyorsan Lipcse közelében?",
+        "q2": "Milyen gyorstöltők vannak Ingolstadt közelében?",
+        "a1": "Legalább 150 kW-tal például: {site}, {address} — legfeljebb {kw} kW.",
+        "a1more": "Az üzemeltető nem tesz közzé élő állapotot, ezért a ViaFrei azt mondja: „ismeretlen”, nem azt, hogy „szabad”.",
+        "limit": "Elérhetőség azoknál a hálózatoknál, amelyek közzéteszik; a többinél a helyet mutatjuk, nem az állapotot.",
+        "a2": "Legközelebb: {op1}, {a1}, max. {kw1} kW: szabad {free1} / {total1} töltőpont; továbbá {s2}, {a2}, max. {kw2} kW, állapot nélkül.",
+        "q3": "Van most szabad hely a hildeni Superchargeren?",
+        "a3": "{brand} utolsó állapotjelentése: {t} — túl régi ahhoz, hogy „szabad” legyen; cím: {address}, legfeljebb {kw} kW."
+      },
+      "places": {
+        "title": "Helyek keresése",
+        "scene": "Elég egy név: a koncertterem, a gyógyszertár, a cég — címmel és koordinátával a következő kérdéshez.",
+        "q1": "A navigációm ezt mutatja: 50.1109, 8.6821 — milyen cím ez, és hol a legközelebbi autópálya-csomópont?",
+        "a1": "{address}, {m} m távolságra. Legközelebbi autópálya-csomópont: {junction}, {km},{kmd} km.",
+        "limit": "A helyek és címek az OpenStreetMapből származnak; minden válasz megadja az adatok dátumát. Amit ott nem térképeztek fel, azt nem találjuk — nyitvatartás és értékelés nem része.",
+        "q2": "Milyen gyógyszertárak vannak Fuldában — címmel?",
+        "a2": "Például {p1}, {a1}; {p2}, {a2}; {p3}, {a3} (OpenStreetMap, {osm}).",
+        "q3": "Mi a hamburgi Elbphilharmonie címe?",
+        "a3": "{poi} címe: {address} (OpenStreetMap-adatok, {osm})."
+      },
+      "watch": {
+        "title": "Szóljon, ha…",
+        "scene": "Nem kell folyton ellenőrizni: a ViaFrei figyel Ön helyett, és minden változást megőriz a beszélgetésben — asszisztense megmutatja, amint rákérdez, vagy magától, ha támogatja az értesítéseket.",
+        "q1": "Szóljon, amint feloldják az A7 egyik lezárását.",
+        "limit": "Csak ebben a beszélgetésben, amíg nyitva van — nincs e-mail, nincs SMS. Beszélgetésenként legfeljebb 10 figyelés, mindegyik legfeljebb 24 órára; egy utat egészben figyelünk, nem szakaszonként.",
+        "a1": "Figyelés beállítva: {road}, eddig: {until}. A ViaFrei ebben a csevegésben jelez, amint ott feloldanak egy lezárást; használatban: {used} / 10 figyelés.",
+        "q2": "Szóljon, ha Kölnben a busz- és vonatjáratok legalább negyede késik.",
+        "a2": "Figyelés beállítva: régió {ags} ({city}), jelzés a járatok {pct} %-os késésétől, eddig: {until} — csak ebben a csevegésben.",
+        "q3": "Figyelmeztessen, ha a Német Meteorológiai Szolgálat viharos időjárásra vonatkozó figyelmeztetése érvénybe lép Kölnre.",
+        "a3": "Figyelés beállítva: DWD figyelmeztetési terület {cell} ({city}), eddig: {until} — a ViaFrei itt jelez, amint a helyzet változik."
+      }
+    },
+    "fuelAsks": {
+      "heading": "Egy kérdés, amely pénzt takaríthat meg a kútnál",
+      "whyLabel": "Miért érdemes kérdezni",
+      "goerlitz": {
+        "q": "Hol a legolcsóbb most a dízel Görlitzben?",
+        "why": "Az árak naponta többször változnak, és egy városon belül néhány kút között is eltérnek: a ViaFrei megnevezi a legolcsóbbat az árával és azzal az időponttal, amikor a kút jelentette.",
+        "a": "Még nincs új ár — a legalacsonyabb utolsó ismert: {euro},{cent} € literenként: {station}, {address}, jelentve: {reported}; a ViaFrei újat kér."
+      },
+      "muenchen": {
+        "q": "Hol a legolcsóbb most az E10 benzin Münchenben?",
+        "why": "Egy ár lehet reggeli is: Münchenre azon a délutánon a ViaFrei csak a reggeli árakat ismerte, mindegyiket az időpontjával adta meg, és újakat kért.",
+        "a": "Még nincs új ár — a legalacsonyabb utolsó ismert: {euro},{cent} € literenként: {station}, {address}, jelentve: {reported}; a ViaFrei újat kér."
+      },
+      "leipzig": {
+        "q": "Hol a legolcsóbb most az E5 benzin Lipcsében?",
+        "why": "Egy ár lehet órákkal korábbi is: a ViaFrei megmondja, mikor jelentette a kút az egyes árakat — azon a délutánon a legolcsóbb lipcsei ár még délelőttről származott.",
+        "a": "Még nincs új ár — a legalacsonyabb utolsó ismert: {euro},{cent} € literenként: {station}, {address}, jelentve: {reported}."
+      },
+      "nuernberg": {
+        "q": "Hol a legolcsóbb most a dízel Nürnbergben?",
+        "why": "A legközelebbi kút nem mindig a legolcsóbb: a ViaFrei minden árhoz megadja a távolságot.",
+        "a": "{euro},{cent} € literenként: {station}, {address} — jelentve: {reported}."
+      }
+    },
+    "fuelAll": "Tartományonként legfeljebb három benzinkút, címmel és árral",
+    "allExamples": "Minden példakérdés a válaszaival"
+  },
+  "start": {
+    "heading": "Egy perc alatt kész",
+    "lead": "A ViaFrei abban az asszisztensben él, amely már megvan Önnek. Három lépés, egyszer:",
+    "s1": "A Claude-ban vagy a ChatGPT-ben: beállítások → „Connectors”.",
+    "s2": "Adja hozzá a ViaFreit az alábbi címmel.",
+    "s3": "Kérdezze meg: „Szabad most az A8 München felé?”",
+    "draft": "Vázlat — ezeket a lépéseket még nem ellenőriztük minden asszisztensben."
+  },
+  "legal": {
+    "bindingNote": "Ez az oldal a német jog szerinti jogi közlemény. Kizárólag az alábbi német szöveg a kötelező érvényű változat."
+  },
+  "connectPage": {
+    "moreExamples": "További példák",
+    "title": "Csatlakoztassa a ViaFreit az asszisztenséhez",
+    "lead": "Egy cím, nincs fiók, nincs kulcs. Adja hozzá a ViaFreit egyszer connectorként – aztán csak kérdezzen.",
+    "askHeading": "Hogyan kérdezzen",
+    "askLead": "Öt kérdés, ahogy asszisztense ma válaszol rájuk:",
+    "asks": {
+      "train": "Mikor indul a következő vonat a kölni főpályaudvarról?",
+      "parking": "Hol van parkolóház Köln belvárosában?",
+      "charging": "Hol tölthetem fel az elektromos autómat Lipcsében?",
+      "road": "Szabad most az A3 Frankfurt felé?",
+      "weather": "Van most viharos időjárásra vonatkozó figyelmeztetés Drezdára?"
+    },
+    "live": {
+      "heading": "Válaszok, ahogy érkeztek",
+      "lead": "Rövidítve, az adatok időpontjával és forrásaival. A számok annak a pillanatnak a pillanatképei, nem élő kijelzés.",
+      "asOf": "Állapot: {asOf}",
+      "fuelExample": "Mintaválasz, időpont: {asOf} — az árak ma mások",
+      "stadtbahn": {
+        "title": "A Stadtbahn liftjei és mozgólépcsői",
+        "q": "Mi nem üzemel most Kölnben a(z) {stop} Stadtbahn-megállóban?",
+        "a": "Üzemen kívül {out} / {total}: {e1}, {e2} mozgólépcső {since} óta, {e3} {since3} óta, {e4} {since4} óta; mindkét lift üzemel. A {publisher} az adatokat szavatosság nélkül adja közre.",
+        "note": "A kölni Stadtbahn megállóira, a közzétett hibalistából – azzal az időponttal, amióta egy berendezés be van jelentve."
+      },
+      "bikes": {
+        "title": "Közbringák az állomásnál, élőben",
+        "q": "Hol találok szabad közbringát ennek közelében: {station}?",
+        "a": "{dock} állomás ({operator}): szabad kerékpárok: {free} – és állomások {radius} km-es körzetben: {docks}, mindegyik saját készlettel.",
+        "note": "A szabad kerékpárok élőben érkeznek a kölcsönzőrendszerek nyílt adataiból; a ViaFrei csak azt nevezi meg, amit egy állomás éppen jelent."
+      },
+      "lift": {
+        "title": "Liftek az állomáson",
+        "q": "Melyik lift nem üzemel most ezen az állomáson: {station}?",
+        "a": "Egyet üzemen kívülinek jelentettek, egy liftet a(z) {platforms} vágányhoz: {working} / {total} lift üzemel. A(z) {platforms} vágányhoz vezető másik liftet nem felügyelik – állapota ismeretlen.",
+        "note": "A Deutsche Bahn állomásaira, 20 percenként újraolvasva. Amit a legutóbbi jelentés nem említ, az „ismeretlen” – soha nem „üzemel”."
+      },
+      "alert": {
+        "title": "Zavarjelentések buszra és vasútra",
+        "q": "Vannak most zavarjelentések buszra és vasútra Alsó-Szászországban?",
+        "a": "Bejelentések: {count}, pl.: a(z) {lines} járat terelési menetrend szerint jár, mert a(z) {road} lezárva {a} és {b} között; érvényes: {from} – {to}.",
+        "note": "A közlekedési szövetségek bejelentései a DELFI-n keresztül, csak amíg érvényesek. Egy megálló nélküli bejelentést a ViaFrei a közlekedési hálózata alapján egy tartományhoz rendel, és hozzáteszi, hogy egy szomszédos tartományt is érinthet."
+      },
+      "enbw": {
+        "title": "Gyorstöltő élő foglaltsággal",
+        "q": "Van most szabad töltőpont ezen a(z) {brand} töltőállomáson: {address}?",
+        "a": "Legfeljebb {kw} kW, {euro},{cent} €/kWh – de a(z) {n} töltőpont egyikéről sincs állapot, ezért a ViaFrei nem mondja, hogy „szabad”.",
+        "note": "A helyeket és a foglaltságot maga az üzemeltető jelenti; az állapot az utolsó jelentés ideje."
+      },
+      "ecomove": {
+        "title": "Élő foglaltság egy adatgyűjtőn keresztül",
+        "q": "Van most szabad töltőpont ennél a gyorstöltőnél: {address}?",
+        "a": "{site}: legfeljebb {kw} kW, {euro},{cent} €/kWh; az utolsó állapot ideje: {t} – túl régi ahhoz, hogy „szabad” legyen.",
+        "note": "A foglaltság itt egy olyan szolgáltatástól jön, amely sok üzemeltető jelentéseit gyűjti össze. Jelentés nélküli pont soha nem számít szabadnak."
+      },
+      "ocpdb": {
+        "title": "Élőben szabad vagy foglalt – Köln közepén",
+        "q": "Van most szabad töltőpont ennél a töltőoszlopnál: {address}?",
+        "a": "Igen, egy: a legfeljebb {kw2} kW-os Type 2 szabad, a legfeljebb {kw} kW-os CCS-pont üzemen kívül – {euro},{cent} €/kWh nettó.",
+        "note": "A foglaltság élőben jön Baden-Württemberg adatportálján keresztül, amely a tartományon messze túli oszlopokat is nyilvántart."
+      },
+      "lsr": {
+        "title": "Ott is, ahol senki sem jelent élőben",
+        "q": "Hol tölthetek ennek közelében: {address}?",
+        "a": "{m} m-re: Type 2, legfeljebb {kw} kW – a Bundesnetzagentur töltőregisztere szerint (állapot: {register}), élő állapot nélkül, a helyesség és teljesség garanciája nélkül.",
+        "note": "Ahol egyetlen üzemeltető sem tesz közzé élő adatot, a ViaFrei a hivatalos regiszterből nevezi meg az oszlopokat – foglaltság nélkül, mert az ismeretlen soha nem „szabad”."
+      },
+      "hamburg": {
+        "title": "Parkolóház Hamburg belvárosában",
+        "q": "Hol találok parkolóhelyet Hamburgban, itt: {stop}?",
+        "a": "{park}: szabad {free} / {total} hely. Hamburg városa maga mondja: „Ezek a valós idejű adatok ellenőrizetlenek.”",
+        "note": "A hamburgi parkolóházak foglaltsága élőben jön a várostól; a ViaFrei mindig továbbadja a figyelmeztetését az ellenőrizetlen adatokról."
+      },
+      "hhworks": {
+        "title": "Városi útépítés Hamburgban",
+        "q": "Milyen útépítések vannak tervben Hamburgban, itt: {street}?",
+        "a": "{street}, {b} / útátépítés, időszak: {from} – {to}; teljes útlezárás várhatóan 2027 tavaszán.",
+        "note": "Hamburg városi útépítései a város Bauweiser rendszeréből jönnek: csak jóváhagyott építkezések, naptári napok szerint; a „tervezett” azt jelenti, hogy a munka ma után kezdődik. A rendőrség bejelentései külön tételek maradnak."
+      },
+      "muenster": {
+        "title": "Münster parkolásirányító rendszere, élőben",
+        "q": "Hány szabad hely van Münsterben, itt: {name}?",
+        "a": "Szabad {free} / {total} hely – emellett további parkolóházak a közelben: {more}, mindegyik saját foglaltsággal.",
+        "note": "A foglaltság élőben jön Münster városának parkolásirányító rendszeréből. Egy parkolóház, amely nem jelent semmit, a ViaFreinél soha nem „tele”."
+      },
+      "motorway": {
+        "title": "Lezárt felhajtó az autópályán",
+        "q": "Le van most zárva valami az A6-on, itt: {place}?",
+        "a": "Igen: a(z) {place} felhajtó az A6-ra lezárva, műtárgy újjáépítése miatt – építési szakasz: {from} – {to}. A teljes A6-on a válasz szerint lezárások: {count}.",
+        "note": "Az autópályák lezárásai és útépítései az Autobahn GmbH-tól jönnek, minden építési szakasz időtartamával. Egy autópályáról kérdezve a ViaFrei először a lezárásokat nevezi meg."
+      },
+      "citywork": {
+        "title": "Útépítés a városban",
+        "q": "Le van zárva valami Berlinben, itt: {street}?",
+        "a": "Igen: mindkét irányban, {a} – {b}: vezetéképítés, a szenátusi hivatal szerint gépjárművek elől teljesen lezárva, {from} – {to}.",
+        "note": "A berlini bejelentések utcát és szakaszt neveznek meg, útszámot nem. A ViaFrei a hely alapján találja meg őket, 25 km-es körzetben, a legközelebbit először."
+      },
+      "landroad": {
+        "title": "Útépítés egy tartományi úton",
+        "q": "Van ezen a héten útépítés az L1025-ön Türingiában?",
+        "a": "Munkaterületek: {count}, köztük {site}, közlekedési lámpával szabályozott szűkület, időszak: {from} – {to}.",
+        "note": "Tartományi utakat ismerünk Baden-Württembergben, Alsó-Szászországban, Türingiában és Szászországban – az útügyi hatóságok adataiból: szakasz és időszak, koordináták és élő késés nélkül."
+      },
+      "saxony": {
+        "title": "Útépítés egy szövetségi úton Szászországban",
+        "q": "Van ezen a héten útépítés a B6-on Szászországban?",
+        "a": "Munkaterületek ezen a héten: {count}, köztük: Drezdában, {place} közelében bővítik az utat, időszak: {from} – {to}.",
+        "note": "A szász útügyi és közlekedési hivatal háromóránként újra közzéteszi hosszabb idejű munkaterületeit. A ViaFrei ezekből a szövetségi és tartományi utakra válaszol, szakasz és időszak szerint – koordináták és élő késés nélkül."
+      },
+      "bwroad": {
+        "title": "Útépítés egy szövetségi úton Baden-Württembergben",
+        "q": "Terveznek jövő héten útépítést a B27-en Baden-Württembergben?",
+        "a": "Baden-Württembergben {count} / {all} munkaterület, pl. {a} – {b}: új útburkolat, {from} – {to}.",
+        "note": "Baden-Württemberg közlekedési minisztériuma a MobiData BW-n keresztül teszi közzé útépítéseit (BEMaS). A ViaFrei ezekből a szövetségi és tartományi utakra válaszol, szakasz és időszak szerint – a tervezettet tervezettként, élő késés nélkül."
+      },
+      "kiel": {
+        "title": "Útépítés Kielben",
+        "q": "Járható most a(z) {street} Kielben?",
+        "a": "Nem: a(z) {street} a(z) {no}. számú ház és a(z) {b} között csatornaépítés miatt le van zárva, időszak: {from} – {to}. (Példa, összefoglalva; az eszköz teljes egészében mutatja)",
+        "note": "Kiel városa helyszínnel, okkal és időszakkal teszi közzé az útépítéseit. Ez a kártya egy bejelentést foglal össze; az eszköz rövidítés nélkül mutatja őket, és a hely alapján talál meg egy bejelentést – 25 km-es körzetben, a legközelebbit először."
+      },
+      "truckstop": {
+        "title": "Őrzött kamionparkoló az A7 mentén",
+        "q": "Van ma éjjel szabad kamionhely az A7 mentén, itt: {name}?",
+        "a": "Szabad {free} / {total} hely, ahogy az üzemeltető jelenti.",
+        "note": "Ezeknek az őrzött kamionparkolóknak az üzemeltetője közzéteszi a szabad helyeket; a ViaFrei a pihenőhelyek mellett mutatja őket, amelyek nem jelentenek foglaltságot, és a kettőt soha nem adja össze."
+      },
+      "parkride": {
+        "title": "P+R a vonat előtt",
+        "q": "Hol hagyhatom az autót Dortmundban, hogy vonatra szálljak?",
+        "a": "{p1} ({t1} hely) és {p2} ({t2} hely) – ezeknél a létesítményeknél foglaltság nélkül.",
+        "note": "Az észak-rajna-vesztfáliai P+R parkolók a tartomány összesített adataiból származnak, és külön blokkban állnak, soha nem vetjük össze őket más forrásokkal. A foglaltságukat nem vesszük át."
+      },
+      "platform": {
+        "title": "Késés, élőben",
+        "q": "Pontosan indul a(z) {train}, cél: {dest}, innen: {station}?",
+        "a": "+{delay} perc, várható indulás {expected} ({planned} helyett) – a(z) {platform} vágányról, a terv szerint.",
+        "note": "A késések és vágányváltozások a Deutsche Bahn menetrendi interfészéből jönnek, az állomás minden részére – a berlini főpályaudvar mélyszinti és S-Bahn-vágányaira is."
+      },
+      "region": {
+        "title": "Pontosság egy agglomerációban",
+        "q": "Pontosan járnak most a buszok és vonatok a Rajna–Ruhr-vidéken?",
+        "a": "Az elmúlt órában megfigyelt járatok {share} %-a késett 5 percnél többet — több, mint az előző órában ({before} %).",
+        "note": "A Rajna–Ruhr-vidék egy régióként válaszol: 30 járás és járási jogú város együtt. A ViaFrei régiónkénti összesítést ad, nem vonalanként."
+      },
+      "tomorrow": {
+        "title": "Útépítések a holnapi útvonalon",
+        "q": "Milyen útépítések vannak tervben holnap az A7-en?",
+        "a": "Munkaterületek: {count}, ebből {started} már folyamatban. Az egyik: {a} – {b}: új híd épül, {km} km-en, {speed} km/h, eddig: {until}.",
+        "note": "Tervezett munkaterületek a Szövetségi Közúti Kutatóintézettől (BASt): szakasz és időszak, koordináták és élő késés nélkül – ami éppen most történik, arra a ViaFrei az autópálya-bejelentésekből válaszol."
+      },
+      "closure": {
+        "title": "Lezárás az úton előttünk",
+        "q": "Le van most zárva valami az A7-en Hamburg közelében?",
+        "a": "Igen: az Autobahn GmbH lezárt fel- vagy lehajtót jelent a(z) {at} csomópontnál — a(z) {a} – {b} építési szakaszon. Ez az építési szakasz véget ér: {until}, {end}.",
+        "note": "Az autópályák lezárásai és útépítései az Autobahn GmbH-tól jönnek, minden építési szakasz időtartamával."
+      },
+      "weather": {
+        "title": "Időjárás-ellenőrzés a hegyek előtt",
+        "q": "Van ma időjárási figyelmeztetés erre a helyre: {name}?",
+        "a": "Igen, a következő éjszakára: a Német Meteorológiai Szolgálat gyenge fagyra figyelmeztet, {temp} °C-ig, érvényes: {day}, {from} és {to} között – {level}. fokozat, a legalacsonyabb.",
+        "note": "A figyelmeztetéseket 5 percenként olvassuk, és területenként érvényesek; új figyelmeztetést rövid időn belül is kiadhatnak."
+      },
+      "fuelcity": {
+        "title": "A legolcsóbb E10 a városban",
+        "q": "Hol a legolcsóbb most a Super E10 Kölnben?",
+        "a": "{euro},{cent} € literenként: {station}, {address} — jelentve: {reported}.",
+        "note": "Az üzemanyagárak percenként változnak: ez a szám egy példa arról a délutánról, nem a mai ár. A ViaFrei minden árhoz megadja, mikor jelentette a kút."
+      },
+      "charger": {
+        "a": "{site}: {points} töltőpont, Type 2, max. {kw},{kwd} kW, {euro},{cent} €/kWh nettó. Egyik sem jelez foglaltat; {stale} pontnál az utolsó állapot: {t}, {unknown} pontnál nincs – így nem „szabad”.",
+        "title": "Élő állapot a töltőoszlopnál",
+        "q": "Van most szabad töltőpont itt: {address}?",
+        "note": "Élő foglaltságot csak ott adunk meg, ahol az üzemeltető közzéteszi – itt az e-clearing.net-en keresztül. Jelentés nélkül a válasz „nincs állapotadat”, soha nem „szabad”."
+      },
+      "roadworks": {
+        "a": "Alsó-Szászországban: {count}, mind már elkezdődött; az első: {section}, időszak: {start} – {end}.",
+        "note": "Szövetségi utakat ismerünk Alsó-Szászországban, Szászországban, Türingiában és Baden-Württembergben, az útügyi hatóságok adataiból: szakasz és időszak, élő késés nélkül. Máshol egy szövetségi útra a ViaFrei azt válaszolja: „nincs lefedve” – nem azt, hogy „szabad”.",
+        "title": "Útépítések egy szövetségi úton",
+        "q": "Milyen útépítések vannak tervben ezen a héten a B3-on Alsó-Szászországban?"
+      },
+      "train": {
+        "title": "Pontosság a regionális forgalomban",
+        "q": "Pontosan indul a következő regionális vonat, innen: {station}, cél: {dest}?",
+        "a": "Igen: {line}, {planned}, vágány: {platform}, pontosan – mint {all} regionális vonatból {n} eddig: {last}.",
+        "note": "Ha a Deutsche Bahn menetrendi interfésze nem ad valós idejű adatot, a ViaFrei a DELFI SIRI ET-ből nevezi meg a regionális és S-Bahn-vonatokat – külön blokkban, soha nem keverve a vasút soraiba."
+      },
+      "fuelroad": {
+        "a": "Még nincs új ár – utoljára a legolcsóbb: {euro},{cent} €/l, {station}, {address}, jelentve: {reported}; a ViaFrei éppen újra lekérdezi.",
+        "title": "Dízel útközben, az autópálya mellett",
+        "q": "Ma este az A3-on haladok el Würzburg mellett: hol a legolcsóbb a dízel a közelben?",
+        "note": "Az üzemanyagárak percenként változnak: ez a szám egy példa arról a délutánról, nem a mai ár. A ViaFrei minden árhoz megadja, mikor jelentette a kút."
+      },
+      "fuelland": {
+        "a": "Még nincs új ár – utoljára a legolcsóbb: {euro},{cent} €/l, {station}, {address}, jelentve: {reported}; a ViaFrei éppen újra lekérdezi.",
+        "title": "A legolcsóbb ár egy tartományi fővárosban",
+        "q": "Hol tankolhatok most a legolcsóbban E10-et Stuttgartban, Baden-Württembergben?",
+        "note": "Az üzemanyagárak percenként változnak: ez a szám egy példa arról a délutánról, nem a mai ár. A ViaFrei minden árhoz megadja, mikor jelentette a kút."
+      },
+      "carpark": {
+        "title": "Parkolóház szabad helyekkel",
+        "q": "Hány szabad hely van Kölnben ebben a parkolóházban: {name}?",
+        "a": "Legutóbb jelzett szabad hely {free} / {total} – régebbi jelentés, nem a mostani állapot.",
+        "note": "Név, hely és helyszám Köln városának parkolóház-táblázatából, a foglaltság az élő adatfolyamából. Ha a legutóbbi jelentés túl régi, a ViaFrei azt mondja: „utoljára jelentve”, nem azt, hogy „szabad”."
+      },
+      "lorry": {
+        "title": "Kamionparkolás szabad helyekkel",
+        "q": "Hány szabad kamionhely van most itt: {name}?",
+        "a": "Szabad kamionhelyek: {free}, ahogy az üzemeltető jelenti.",
+        "note": "Szabad helyeket csak ott adunk meg, ahol az üzemeltető közzéteszi – itt 15 percenként. Ha egy érték hat órán át változatlan, a ViaFrei azt mondja: „utoljára jelentve”, nem azt, hogy „szabad”."
+      }
+    },
+    "betaHeading": "Beta: mit jelent ez Önnek",
+    "beta1": "A ViaFrei stabilizációs szakaszban van: újabb adatforrások érkeznek, a válaszok és a lefedettség változhatnak.",
+    "beta2": "A válaszokat egy MI-asszisztens fogalmazza meg az adataink alapján – az MI tévedhet.",
+    "beta3": "A fontos adatokat (lezárások, indulások, árak) ellenőrizze annál a forrásnál, amelyet a válasz megnevez.",
+    "endpointHeading": "A cím",
+    "endpointNote": "Streamable HTTP. Ingyenes, amíg kiépítjük, fiók nélkül; a kérések száma korlátozott, hogy mindenkinek jusson.",
+    "legacyNote": "A Streamable HTTP nélküli régebbi kliensek az SSE-címet használják:",
+    "clientsHeading": "Lépésről lépésre",
+    "claudeAi": "claude.ai (web)",
+    "claudeAiSteps": "Testreszabás (Customize) → Connectors → „+ Add” → „Add custom connector”. Nevezze el ViaFrei-nek, illessze be a fenti címet MCP-szerver-URL-ként, majd „Continue”. Kérdezze például: „Szabad az A8 München felé?” Első használatkor engedélyezze a ViaFrei eszközt.",
+    "claudeDesktop": "Claude Desktop",
+    "claudeDesktopSteps": "Ugyanaz a csatlakozó, mint a claude.ai-on, a Claude-fiókjához tartozik: adja hozzá ott a fentiek szerint, és az asztali alkalmazásban is megjelenik.",
+    "claudeCode": "Claude Code",
+    "claudeCodeSteps": "Futtassa egyszer egy terminálban:",
+    "chatgpt": "ChatGPT",
+    "chatgptSteps": "Plugins → „+” → „Add custom MCP server”. Nevezze el ViaFrei-nek, illessze be a fenti címet a „Connection” alá, hitelesítés: nincs; jelölje be: „I understand and want to continue”, majd „Create as a plugin”. Egy új csevegésben írja be: @, válassza a ViaFrei-t, majd kérdezzen.",
+    "editorsSteps": "Adja hozzá az MCP-konfigurációhoz (mcp.json):",
+    "copilotSteps": "Parancspaletta → „MCP: Add Server” → „HTTP” → illessze be a fenti címet → szerverazonosító: viafrei → „Global” → „Copilot Global”. Ez a ~/.copilot/mcp-config.json fájlba ír; kézzel adja hozzá:",
+    "copilotSandbox": "Ha a Copilot 403-mal és a „x-ms-block-by: sandbox-broker” fejléccel válaszol, a homokozója letiltotta a címet: engedélyezze az mcp.viafrei.de-t (a felhőügynökhöz: tároló beállításai → Copilot → Internet access → Custom allowlist).",
+    "geminiTrust": "A Gemini CLI csak olyan mappában indít MCP-szervereket, amelyben megbízik; ezt az ottani első indításkor kérdezi meg.",
+    "windsurfSteps": "Cascade panel → „…” → MCPs → nyissa meg az MCP-konfigurációs fájlt (mcp_config.json), és adja hozzá:",
+    "leChatSteps": "Connectors → „+ Add Connector” → „Custom MCP Connector” → név: viafrei, szerver-URL: a fenti cím → Connect, hitelesítés nélkül. Rendszergazda adja hozzá – a Free és Pro csomagban ez Ön.",
+    "generic": "Bármely más MCP-kliens",
+    "genericSteps": "Minden kliens, amely Streamable HTTP-t beszél, a fenti címhez csatlakozik – fejlécek és kulcs nélkül.",
+    "stdio": "Csak stdio-t ismerő kliensek",
+    "stdioSteps": "A nyilvános npm-csomag hídja helyi stdio-szervert indít, amely a fenti címre továbbít:",
+    "notCoveredHeading": "Amire a ViaFrei nem válaszol",
+    "notCoveredLead": "Hogy ne keresse azt, ami nincs:",
+    "notCovered": {
+      "routing": "Nincs háztól házig útvonaltervezés vagy utazástervezés — a ViaFrei helyekről, utakról és adatfolyamokról válaszol, soha nem arról, „hogyan jutok oda”.",
+      "cityStreets": "Nincs városi utcai forgalom az általunk átvett városi és tartományi adatfolyamokon túl: útépítések, lezárások és forgalmi hírek Berlinre, Kölnre (rendezvények miatti lezárások), Hannoverre (amint az adatfolyama megjelenik), Schleswig-Holsteinra Kiellel együtt és Baden-Württembergre Stuttgarttal együtt. Más városok nincsenek lefedve; máshol az élő forgalom, amelyet ismerünk, a szövetségi autópálya-hálózat (Autobahn GmbH) és – ahol egy adatfolyam tartalmazza – a szövetségi utak, továbbá a tartományi utak útépítései Baden-Württembergben, Alsó-Szászországban, Szászországban és Türingiában.",
+      "fares": "Nincsenek viteldíjak, jegyek és semmiféle foglalás.",
+      "lineRealtime": "Nincs pontossági szám egy megnevezett vonalra — „pontos az S1?”: erre vonatonként válaszolunk egy vasútállomáson (minden induló vonat élő késése, az S-Bahnt is beleértve) és régiónként a vonal zavarjelentéseivel; egy busz-, villamos- vagy U-Bahn-megálló csak menetrendet kap.",
+      "forecast": "Nincs időjárás-előrejelzés — csak a DWD hivatalos figyelmeztetései, és csak amíg érvényesek.",
+      "parkingTariffs": "Nincsenek parkolási díjak, és nincs ígéret arra, hogy egy hely szabad, hacsak az üzemeltető nem teszi közzé a foglaltságot."
+    },
+    "privacyHeading": "Adatvédelem három mondatban",
+    "privacy1": "Nem kell nálunk fiók, és nem tárolunk kérdéseket az Ön nevén.",
+    "privacy2": "Harmadik féltől származó mérés csak az Ön hozzájárulásával fut; előtte semmit sem töltünk be harmadik felektől. A látogatásokat sütik nélkül, napi összesítésként számoljuk a saját szerverünkön.",
+    "privacy3": "A szervernaplókat legkésőbb hét nap után töröljük – minden más itt olvasható:",
+    "privacyLink": "adatvédelmi tájékoztató (német nyelven)",
+    "sourcesHeading": "Honnan származnak az adatok",
+    "sourcesLead": "Minden válasz megnevezi a forrását. Ezek mind azok a források, amelyekből a ViaFrei ma válaszol, a licencük által előírt forrássorral (németül, ahogy írták):",
+    "askAnswers": {
+      "train": "{t1}: {l1}, cél: {d1}, vágány: {p1}; {t2}: {l2}, cél: {d2}, vágány: {p2} – mindkettő pontos.",
+      "parking": "{p1}: szabad {f1} / {t1} hely; {p2}: szabad {f2} / {t2}.",
+      "charging": "Legközelebb: {a1}, {m} m-re, Type 2, legfeljebb {kw1} kW; utána {a2}, {m2} m, legfeljebb {kw2} kW – élő állapot nélkül.",
+      "road": "Igen: a teljes A3-on most nincs bejelentett dugó; szerepel: lezárások: {closures}, útépítési bejegyzések: {works}.",
+      "weather": "{place}: nincs érvényben a DWD hivatalos időjárási figyelmeztetése – ellenőrizve mostanra és a következő {hours} órára."
+    },
+    "allExamples": "Minden példakérdés a válaszaival, témák szerint",
+    "claudeFlow": {
+      "s1": "Testreszabás (Customize) → Connectors → „+ Add” → „Add custom connector”.",
+      "s2": "Nevezze el ViaFrei-nek, illessze be a fenti címet MCP-szerver-URL-ként, majd „Continue”.",
+      "s3": "Kérdezze például: „Szabad az A8 München felé?” Első használatkor engedélyezze a ViaFrei eszközt."
+    },
+    "chatgptFlow": {
+      "s1": "Plugins → „+” → „Add custom MCP server”.",
+      "s2": "Nevezze el ViaFrei-nek, illessze be a fenti címet a „Connection” alá, hitelesítés: nincs; jelölje be: „I understand and want to continue”, majd „Create as a plugin”.",
+      "s3": "Egy új csevegésben írja be: @, válassza a ViaFrei-t, majd kérdezzen.",
+      "avail": "Saját MCP-szerverek a ChatGPT webes felületén működnek: Business és Enterprise/Edu munkaterületeken, ahol adminok és tulajdonosok hozzák létre őket, valamint Pro-felhasználóknak olvasási és lekérési jogokkal – a ViaFrei csak olvas, így a Pro működik. A mobilappokban nem; a Free és Plus csomagban nem érhető el.",
+      "d1": "Plugins → + → Add custom MCP server",
+      "d2": "Név: ViaFrei · Connection: a cím · hitelesítés: nincs · Create as a plugin",
+      "d3": "Új csevegés: @ViaFrei, majd kérdés",
+      "dtitle": "A három lépés a ChatGPT-ben"
+    },
+    "shot": {
+      "claude1": "claude.ai, Customize → Connectors: a „+ Add” menü nyitva, benne „Add custom connector”.",
+      "claude2": "Az „Add custom connector” ablak: a ViaFrei név, az MCP-szerver-URL https://mcp.viafrei.de/mcp és a „Continue” gomb.",
+      "claude3": "Claude engedélyt kér a ViaFrei eszköz használatára az A8-hoz: elutasítás, mindig engedélyezés vagy egyszeri engedélyezés.",
+      "claude4": "Claude válasza az A8 München felé tartó szakaszáról szóló kérdésre, ViaFrei-használatként jelölve, a végén a forrássorral.",
+      "phone1": "claude.ai egy telefon böngészőjében, Customize → Connectors: a „+ Add” menü nyitva, benne „Add custom connector”.",
+      "phone2": "Az „Add custom connector” ablak: a ViaFrei név, az MCP-szerver-URL https://mcp.viafrei.de/mcp és a „Continue” gomb.",
+      "phone3": "Egy csevegés a claude.ai-ban: „+” → Connectors, a ViaFrei bekapcsolva; a többi összekötő elmosva.",
+      "phone4": "Claude válasza arra a kérdésre, hogy van-e most dugó az A7-esen, a ViaFrei használataként jelölve.",
+      "phone4b": "Ugyanaz a válasz a végén: a forrássor, amely az Autobahn GmbH des Bundest nevezi meg.",
+      "phoneCaption": "Képernyőkép: claude.ai egy telefon böngészőjében, {date}",
+      "caption": "Képernyőkép: claude.ai, {date}",
+      "diagram": "Ábra, nem képernyőkép",
+      "claudeCode1": "Terminál: claude mcp add a ViaFrei címével, majd a claude mcp list ezt jelzi: „viafrei … ✔ Connected”.",
+      "geminiCli1": "Terminál: gemini mcp add --scope user a ViaFrei címével, majd a gemini mcp list ezt jelzi: „viafrei … Connected”.",
+      "generic1": "Terminál: az MCP Inspector lekéri a ViaFrei címétől az eszközeit (tools/list), és megkapja a nevüket.",
+      "stdio1": "Terminál: a Claude Code felveszi az npx -y viafrei hidat, majd a claude mcp list ezt jelzi: „viafrei: npx -y viafrei – ✔ Connected”.",
+      "terminal": "Terminálfelvétel a tesztünkből: {what}, {date}",
+      "open": "A kép megnyitása teljes méretben",
+      "close": "A nagy kép bezárása"
+    },
+    "guide": "Hivatalos útmutató",
+    "otherGuides": "Saját útmutatóik:",
+    "check": {
+      "verified": "A kliensben ellenőrizve: {date}, {version}.",
+      "docs": "A lépések a hivatalos útmutató alapján ellenőrizve: {date}; a kliensben még nem. {reason}",
+      "pending": {
+        "account": "Ehhez bejelentkezett fiók kell; ez az ellenőrzés még hátravan.",
+        "app": "Ez egy saját bejelentkezésű asztali alkalmazás; ez az ellenőrzés még hátravan.",
+        "signIn": "Egy munkamenethez bejelentkezés vagy API-kulcs kell; ez az ellenőrzés még hátravan."
+      }
+    },
+    "about": {
+      "lead": "Másolja ki ezt a kérdést, és tegye fel asszisztensének, ha a ViaFrei csatlakoztatva van:",
+      "place": "{place}: milyen most a helyzet az utakon, a közlekedésben és az időjárásban?",
+      "road": "Szabad most az {road}?",
+      "exit": "{road}, {exit}: szabad most az út?"
+    },
+    "phone": {
+      "heading": "Telefonon (Android, iPhone)",
+      "jump": "Telefonon? Így működik Androidon és iPhone-on",
+      "lead": "A legtöbb asszisztensalkalmazásban a ViaFrei nem adható hozzá magában az alkalmazásban. A kapcsolatot egyszer állítja be a böngészőben – telefonon is megy –, és az alkalmazás használja, amint ugyanazzal a fiókkal bejelentkezik.",
+      "where": "Az Anthropic szerint minden Claude-előfizetéssel működik (Free: egy saját csatlakozó). Csatlakozó hozzáadása az alkalmazásban még béta, ezért a lépések a böngészőben, a claude.ai oldalon át vezetnek.",
+      "claude": {
+        "s1": "A telefon böngészőjében (vagy számítógépen) nyissa meg a claude.ai oldalt, és jelentkezzen be. Majd Customize → Connectors → „+ Add” → „Add custom connector”.",
+        "s2": "Név: ViaFrei. URL: {url}. Koppintson a „Continue” gombra.",
+        "s3": "Nyissa meg a Claude alkalmazást, és jelentkezzen be ugyanazzal a fiókkal. Egy csevegésben koppintson a „+” → Connectors elemre, és kapcsolja be a ViaFreit.",
+        "s4": "Kérdezze meg: „Szabad az A7 Kassel közelében?”, és első alkalommal engedélyezze a ViaFrei eszközt. A helyes válasz leírja az A7 Kassel közeli állapotát most, és a forrássorral zárul, amely megnevezi az adatok kiadóját."
+      },
+      "unclear": "{name}: a hivatalos útmutató saját MCP-szervert csak a weben ad hozzá, és nem mondja meg, hogy a telefonos alkalmazás utána használja-e – ezért itt nincsenek lépések. Állapot: {date}",
+      "gemini": "Gemini: saját alkalmazások (MCP-szerverek) csak a webalkalmazásban adhatók hozzá, és csak személyes fiókkal az USA-ban, 18 éves kortól, angolul – Németországból tehát nem. Állapot: {date}",
+      "copilot": "Microsoft Copilot: a hivatalos dokumentáció saját MCP-szervereket csak a Microsoft 365 Copilothoz (egy szervezet adminisztrációja állítja be) és a Copilot Studióhoz ír le, a Copilot alkalmazáshoz nem. Állapot: {date}",
+      "checked": "Ellenőrizve: {date}, a hivatalos útmutató alapján; telefonon még nem kipróbálva.",
+      "device": "Telefonon csatlakoztatva: {date}, ezzel: {app}."
+    }
+  },
+  "devPage": {
+    "title": "ViaFrei fejlesztőknek",
+    "lead": "MCP-szerver Streamable HTTP-n, nyílt adatok Németországból, minden válasz forrással. Ezt tudja ma – magától a szervertől olvasva, nem másolva.",
+    "releaseHeading": "Aktuális kiadás",
+    "releaseLine": "Verzió: {version}",
+    "releaseDate": "kiadva: {date}",
+    "toolsHeading": "Eszközök",
+    "toolsLead": "Eszközök: {n}, ahogy a szerver jelenti őket:",
+    "promptsHeading": "Promptok",
+    "resourcesHeading": "Erőforrások",
+    "codeHeading": "Kód és közreműködés",
+    "closed": "A szerver hosztolt szolgáltatás, a forráskódja zárt. A híd nyilvános – és ott minden segítő kéz szívesen látott.",
+    "bridge": "A nyilvános híd a GitHubon",
+    "discussions": "Beszélgetések",
+    "goodFirst": "Kezdőknek való feladatok",
+    "contributing": "Hogyan járulhat hozzá",
+    "security": "Sebezhetőség bejelentése",
+    "licence": "Licenc: Apache-2.0",
+    "contractHeading": "A szerződés, amelyet minden eszköz betart",
+    "contract1": "Egy eszköz egy dolgot csinál, és arról kapja a nevét (verb_noun).",
+    "contract2": "Minden válasz szó szerint hordozza a forrássorát; ahol egy licenc célmegjelölést ír elő, az is ott van.",
+    "contract3": "Az időpontok Europe/Berlin szerintiek; a tárolás UTC-ben történik.",
+    "contract4": "A tesztek soha nem hívnak élő szolgáltatót; minden hozzájárulást függetlenül ellenőrzünk.",
+    "npmHeading": "npm",
+    "npmLead": "Olyan klienseknek, amelyek csak stdio-t ismernek:",
+    "npmReserved": "A @viafrei névteret későbbi SDK-csomagoknak tartjuk fenn.",
+    "listingsHeading": "Listák",
+    "listingsLead": "A ViaFrei itt szerepel:",
+    "listingNpm": "npm – a viafrei csomag, a stdio-híd HTTP nélküli klienseknek",
+    "listingSmithery": "Smithery – hosztolt kapcsolat, helyi telepítés nélkül",
+    "listingGlama": "Glama – a bejegyzés az MCP-szerverek katalógusában",
+    "statusHeading": "Állapot",
+    "statusText": "Az adatforrások állapotnézete kérésre elérhető.",
+    "tools": {
+      "check_autobahn_traffic": "Forgalom az autópályán",
+      "find_cheapest_fuel": "Legolcsóbb üzemanyag a közelben",
+      "find_fuel_station": "Benzinkút keresése",
+      "find_parking": "Parkolás a közelben",
+      "check_road_status": "Útállapot és lezárások",
+      "find_roadworks_ahead": "Tervezett útépítések",
+      "find_sharing": "Közbringák a közelben",
+      "find_charging_station": "Elektromos töltés a közelben",
+      "find_hydrogen_station": "Hidrogénkutak a közelben",
+      "find_speed_cameras": "Traffipaxok a tervezéshez",
+      "find_place": "Hely keresése",
+      "find_poi": "Megnevezett hely keresése",
+      "find_address": "Utcacím keresése",
+      "describe_location": "Koordináta leírása",
+      "find_nearby": "Mi van a közelben",
+      "get_driving_rules": "Német közlekedési szabályok",
+      "check_transit_disruption": "Tömegközlekedési zavarok egy régióban",
+      "check_weather_warnings": "Hivatalos időjárási figyelmeztetések",
+      "get_train_departures": "Vonatindulások",
+      "get_departures": "Menetrend szerinti indulások (busz, villamos, vonat)",
+      "check_station_facilities": "Állomási liftek és mozgólépcsők",
+      "describe_station": "Vasútállomás áttekintése",
+      "watch_situation": "Változás figyelése",
+      "stop_watch": "Figyelés leállítása"
+    },
+    "prompts": {
+      "plan_departure": "Felkészít egy induló útra: időjárási figyelmeztetések mindkét végponton, nyitott autópályák és élő dugók, a végén egy mondat: indulni vagy várni.",
+      "compare_travel_options": "Összeveti ugyanazt az utat autóval és vasúttal: az egyik oldalon lezárások és dugók, a másikon indulások és pontosság.",
+      "prepare_car_trip": "Összegyűjti, mit kell egy autósnak magánál tartania és tudnia, mielőtt Németországban és egy városban vezet: környezetvédelmi matrica, sebességhatárok, téli gumi, alkoholhatár, útdíjak, kötelező felszerelés.",
+      "plan_fuel_stop": "Megkeresi, hol lehet útközben tankolni vagy tölteni: egy üzemanyagfajta legolcsóbb kútjait, vagy a megfelelő csatlakozójú és teljesítményű töltőket, és a mellettük lévő pihenőt.",
+      "plan_commute": "Megtervez egy tömegközlekedési szakaszt az adott napra: a következő indulások késésekkel, vágányokkal és kimaradásokkal, és hogy a régióban rendben jár-e a közlekedés.",
+      "plan_arrival_parking": "Megkeresi, hol hagyható az autó az út végén: parkolóház a városban, P+R a szélén továbbinduló járatokkal, vagy pihenőhely, ha korán érkezik.",
+      "find_a_place": "Egy puszta nevet helyre, megnevezett objektumra vagy címre old fel, sorban kipróbálva mindegyiket.",
+      "plan_local_errand": "Egy helyre válaszol arra, „mi van itt a közelben”: a legközelebbi benzinkút, töltő, parkoló, állomás és autópálya-csomópont egy pillantásra.",
+      "explain_this_coordinate": "Egy puszta szélességi/hosszúsági koordinátát egy utazó számára érthető mondattá alakít: a legközelebbi cím, település, városrész és autópálya-csomópont, mindegyik távolsággal."
+    },
+    "quickHeading": "Csatlakozás egy perc alatt",
+    "quickLead": "Válassza ki a kliensét, illessze be ezt, és tegye fel az első kérdést.",
+    "quickTabs": "Kliensprogramok",
+    "quickWhere": "Hová kerül:",
+    "quickFirst": "Az első hívása",
+    "quickFirstLead": "Csatlakozás után egyszerű szavakkal kérdezzen; az eszközt az asszisztens maga választja:",
+    "copy": "Másolás",
+    "copyCurl": "Másolás curl-ként",
+    "tryHeading": "Próbálja ki",
+    "tryLead": "Egy valódi hívás a nyilvános végpontra: előbb a munkamenet, aztán az eszköz. Alatta a válasz, amelyet szerverünk néhány perce pontosan erre a hívásra adott.",
+    "tryRequest": "Kérés",
+    "tryResponse": "Válasz",
+    "tryAsOf": "Megválaszolva: {time}",
+    "tryError": "Most nincs friss válasz. Futtassa a fenti kérést, hogy élőben lásson egyet.",
+    "argsLabel": "Argumentumok",
+    "askLabel": "Kérdezzen így:",
+    "schemaLabel": "Bemeneti séma",
+    "otherGroup": "További eszközök",
+    "newHeading": "Újdonságok a szerződésben",
+    "newLine": "{version} verzió, {date}",
+    "newTools": "módosult:",
+    "contract5": "A túl sok kérést a JSON-RPC {code} hibával utasítjuk el; várjon, majd küldje újra.",
+    "contract6": "A lejárt munkamenetet a {code} hibával utasítjuk el; indítson újat az initialize hívással.",
+    "ask": {
+      "check_autobahn_traffic": "Van most dugó az A9-esen München és Nürnberg között?",
+      "find_cheapest_fuel": "Hol a legolcsóbb most a gázolaj Kassel közelében?",
+      "find_fuel_station": "Melyik benzinkút van nyitva a würzburgi főpályaudvar közelében?",
+      "find_parking": "Van szabad hely egy parkolóházban a kölni főpályaudvar közelében?",
+      "check_road_status": "Vannak lezárások a Drezda körüli utakon?",
+      "find_roadworks_ahead": "Milyen útépítések várhatók jövő héten az A3-ason?",
+      "find_charging_station": "Hol tölthetek gyorsan 150 kW-tal Lipcsében?",
+      "find_hydrogen_station": "Hol van a legközelebbi hidrogéntöltő Stuttgart közelében?",
+      "find_speed_cameras": "Hol vannak fix traffipaxok az utamon Bielefelden át?",
+      "find_place": "Hol fekszik pontosan Garmisch-Partenkirchen?",
+      "find_poi": "Van gyógyszertár az erfurti főpályaudvar közelében?",
+      "find_address": "Hol van az Unter den Linden 77 Berlinben?",
+      "describe_location": "Mi található az 50,94, 6,96 pontnál?",
+      "find_nearby": "Mi van a münsteri főpályaudvar közelében: töltés, parkolás, megállók?",
+      "find_sharing": "Van közösségi kerékpár a Hamburg Dammtor közelében?",
+      "get_driving_rules": "Mikor érvényes a teherautók vasárnapi közlekedési tilalma?",
+      "check_transit_disruption": "Mennyire pontosak most a buszok és vonatok Bajorországban?",
+      "check_weather_warnings": "Van ma időjárási figyelmeztetés Hamburgra?",
+      "get_train_departures": "Mikor indulnak a következő vonatok a hannoveri főpályaudvarról?",
+      "get_departures": "Mikor indul a következő villamos a lipcsei Augustusplatzról?",
+      "check_station_facilities": "Működnek a liftek a frankfurti főpályaudvaron?",
+      "describe_station": "Milyen a nürnbergi főpályaudvar: vágányok, liftek, indulások?",
+      "watch_situation": "Szólj, ha az A7-es Hamburg közelében újra szabad.",
+      "stop_watch": "Ne figyeld tovább az A7-est."
+    }
+  },
+  "bizPage": {
+    "title": "ViaFrei vállalatoknak",
+    "lead": "Nyílt mobilitási adatok egész Németországból, tisztán összefésülve és mindig forrással – egyetlen végpontként, amelyet rendszerei és asszisztensei megkérdezhetnek.",
+    "casesHeading": "Mire használják a vállalatok a ViaFreit",
+    "u1t": "Logisztika és flották",
+    "u1": "Útépítések és lezárások a tervezett útvonal autópályáin, kamionparkolók mentén, és a vasárnapi teherforgalmi tilalom a közlekedési szabályokból.",
+    "u1q": "Milyen lezárások vannak az A7-en Würzburg és Ulm között?",
+    "u1a": "Lezárások az A7-en eddig: {to}: {n}; Würzburg és Ulm között köztük: {a} – {b} és {b} – {c}, mindkét irányban.",
+    "u2t": "Töltőinfrastruktúra",
+    "u2": "Hol ritka a hálózat, és melyik pont szabad éppen most – azokból az üzemeltetői adatfolyamokból, amelyek eredetét ellenőriztük. A tárolt elérhetőségi előzményeket egy együttműködés részeként tervezzük.",
+    "u2q": "Hol vannak legalább 150 kW-os gyorstöltők Kassel közelében?",
+    "u2a": "Igen: {s1}, {a1}, {m} m-re, legfeljebb {kw1} kW, az állapotot jelentő pontok közül szabad: {free} / {total}; továbbá {s2}, {a2}, legfeljebb {kw2} kW, élő állapot nélkül.",
+    "u3t": "Turizmus, szállodák és rendezvényhelyszínek",
+    "u3": "Érkezési tájékoztató a vendégeknek a saját nyelvükön: autópálya-helyzet, vonatindulások, parkolás és töltés a célnál.",
+    "u3q": "A szállodám Garmisch-Partenkirchenben van – számítsanak ma a vendégek időjárási figyelmeztetésre?",
+    "u3a": "Nem: {place} területére nincs érvényben a DWD hivatalos figyelmeztetése, ellenőrizve mostanra és a következő {hours} órára — ez nem jelent veszélyelhárítást az út további részére.",
+    "u4t": "Navigációs, térkép- és mobilitási alkalmazások",
+    "u4": "Egy MCP-végpont sok külön szolgáltatói integráció helyett – és egy együttműködés részeként tervezve azoknak a forrásoknak a tárolt előzményei, amelyek licence megengedi az elemzést.",
+    "u4q": "Milyen útépítések vannak tervben a következő napokban az A3-on?",
+    "u4a": "Időszak: {from} – {to}, tervezett munkák az A3-on: {n}, köztük {a} – {b}: 4 sávból 1 lezárva, {speed} km/h, eddig: {until}.",
+    "u5t": "Biztosítók és mobilitáskutatás",
+    "u5": "Azoknak a forrásoknak a mérési archívuma, amelyek licence ezt megengedi: milyen volt a helyzet egy szakaszon egy adott pillanatban? Az előzmények lekérdezését egy együttműködés részeként tervezzük; arra, ami éppen most érvényes, például egy tartomány hivatalos figyelmeztetéseire, a nyilvános szolgáltatás már ma válaszol.",
+    "u5q": "Milyen lezárások vannak most érvényben az A8-on?",
+    "u5a": "Lezárások az A8-on eddig: {to}: {n}, köztük {a} – {b} München felé és a(z) {c} csomópontnál az A81 felé.",
+    "u6t": "Települések és tartományok",
+    "u6": "Országos áttekintés saját közzétett adataikról – és lehetőség olyan adatfolyamok javaslására, amelyeket fel kellene vennünk.",
+    "u6q": "Van most érvényben hivatalos időjárási figyelmeztetés Kölnre?",
+    "u6a": "Nem: {place} területére nem vonatkozik a DWD hivatalos figyelmeztetése, sem most, sem a következő {hours} órában.",
+    "futureLabel": "tervezett",
+    "coopHeading": "Mit jelent az együttműködés",
+    "price": "Árak kérésre.",
+    "contactHeading": "Beszéljünk",
+    "contactLead": "Írjon nekünk – két munkanapon belül válaszolunk.",
+    "postal": "Postacím: lásd az impresszumot.",
+    "noForm": "Nincs űrlap, nincs adatbázis: csak egy e-mail.",
+    "licenceScope": "Amit vállalatoknak kínálunk, az minden forrás licencét követi: a csak fogyasztói tájékoztatásra kiadott adatok nem részei, és az azonos feltételek melletti terjesztést előíró adatokat csak ugyanazzal a licenccel adjuk tovább.",
+    "licenceScopeCredits": "Minden forrássor itt található:",
+    "heroPilot": "Kísérleti projekt indítása",
+    "heroLive": "Válasz élőben",
+    "heroSteps": "Hogyan válaszol egy asszisztens a ViaFrei segítségével",
+    "proofHeading": "Élőben az adatbázisból",
+    "proofLead": "Az alábbi minden számot ehhez az oldalhoz olvastunk ki az adatbázisunkból, azzal az időponttal, amelyre vonatkozik. Egy ki nem olvasható szám hiányzóként jelenik meg, sosem régebbi számként.",
+    "proofError": "Ezt a számot most nem sikerült kiolvasni.",
+    "proofCatalogue": "Számlálás a(z) {version} kiadás szerint.",
+    "proofSources": "forrásmegjelöléssel közölt adatforrás",
+    "proofTools": "eszköz asszisztenseknek",
+    "proofMotorways": "autópálya saját oldallal",
+    "proofLanguages": "nyelv",
+    "caseShow": "Megnézni, mit mutat most",
+    "howHeading": "Hogyan működik",
+    "how1": "Hatóságok és üzemeltetők nyílt adatokat tesznek közzé: forgalom, menetrendek, töltés, parkolás, időjárási figyelmeztetések.",
+    "how2": "Éjjel-nappal gyűjtjük őket, egyetlen képpé egyesítjük Németországról, és minden mérést megőrzünk idővel és forrással.",
+    "how3": "Rendszerei és asszisztensei egyetlen végpontot kérdeznek, és olyan választ kapnak, amely megnevezi a forrását.",
+    "howData": "Nyílt adatok",
+    "howYou": "Az Ön asszisztense vagy rendszere",
+    "licenceHeading": "Milyen adatokat használhat egy vállalat, és hogyan",
+    "licenceColClass": "Licencosztály",
+    "licenceColCount": "Források",
+    "licenceColUse": "Mit tehet egy vállalat",
+    "lic": {
+      "open": {
+        "name": "Nyílt",
+        "use": "Szabadon használható és továbbadható."
+      },
+      "attribution": {
+        "name": "Forrásmegjelölés",
+        "use": "Használható és továbbadható, a forrássorral együtt."
+      },
+      "shareAlike": {
+        "name": "Azonos feltételekkel",
+        "use": "Használható; a származtatott adatok csak ugyanazzal a licenccel adhatók tovább."
+      },
+      "terms": {
+        "name": "Vállalkozások számára még nem tisztázott",
+        "use": "Még nem része vállalkozásoknak szóló ajánlatnak: a kiadó nem tesz közzé felhasználási feltételeket, vagy a feltételei olyan szerződést követelnek meg, amelyet még nem kínálunk."
+      },
+      "consumerOnly": {
+        "name": "Csak fogyasztói tájékoztatás",
+        "use": "Nem része egyetlen vállalati ajánlatnak sem."
+      },
+      "own": {
+        "name": "A ViaFrei tartalma",
+        "use": "Egy együttműködés része."
+      }
+    },
+    "coopPilotTitle": "Kísérleti projekt",
+    "coopPilot": "Néhány hét az Ön saját kérdésén: saját API-kulcs, magasabb korlátok és közvetlen vonal hozzánk.",
+    "coopDataTitle": "Adatpartnerség",
+    "coopData": "Exportok a tárolt előzményekből azoknál a forrásoknál, amelyek licence megengedi, valamint saját figyelések és csatornák.",
+    "coopPublisherTitle": "Adatkiadó",
+    "coopPublisher": "Ön mobilitási adatokat tesz közzé: mi eljuttatjuk őket minden MI-asszisztenshez, Önt megnevezve forrásként, és együtt építünk rájuk új eszközöket."
+  },
+  "fuelPage": {
+    "title": "Benzinkutak tartományonként – válogatás árakkal",
+    "lead": "Tartományonként legfeljebb három benzinkút, elöl a legolcsóbb Super E10. Az általunk megfigyelt kutak közül válogatva – tehát nem feltétlenül a tartomány legolcsóbbjai. Minden ár azzal az időponttal szerepel, amikor megfigyeltük. Tájékoztatás fogyasztóknak, nem az összes benzinkút listája.",
+    "back": "Vissza a kezdőlapra",
+    "unavailable": "A benzinkutak tartományonkénti listája most nem érhető el.",
+    "boardHead": "Tartományonként legfeljebb három benzinkút",
+    "hereHead": "A legolcsóbb nyitva tartó benzinkutak: {place}",
+    "hereHeadNone": "A legolcsóbb nyitva tartó benzinkutak az Ön közelében",
+    "hereNone": "Most nem ismerjük a helyét. Válasszon alább egy várost, vagy a kezdőlapon a helyét; ott vannak az árak.",
+    "hereNoScript": "Az árak JavaScripttel töltődnek be, amint ez a rész látható. JavaScript nélkül a hely oldalán találhatók.",
+    "hereLoading": "Árak betöltése …",
+    "hereFailed": "Az árak most nem kérhetők le.",
+    "cities": "Városok",
+    "citiesLead": "Minden város árai a saját oldalán vannak."
+  },
+  "quote": {
+    "open": "„",
+    "close": "”"
+  },
+  "place": {
+    "change": "Hely módosítása",
+    "how": {
+      "exact": "kerekítve, kb. 500 m",
+      "approx": "hozzávetőleges (az internetkapcsolat alapján)",
+      "chosen": "kiválasztva",
+      "saved": "mentve",
+      "rough": "hozzávetőleges (böngésző)"
+    },
+    "germany": "Egész Németország",
+    "outsideFar": "A tartózkodási helye Németországon kívül van. Egész Németországot mutatjuk – válasszon egy helyet a kártyái megtekintéséhez.",
+    "choose": "Hely kiválasztása",
+    "loaded": "Kártyák betöltve, hely: {place}",
+    "failed": "Ezt a helyet most nem sikerült betölteni.",
+    "noGeo": "A böngésző nem adott helyet – kérjük, válasszon helyet.",
+    "locating": "Helymeghatározás …",
+    "geoNo": "A böngésző nem adott helyet: {why}. Továbbra is látható: {place}.",
+    "geoDenied": "a hozzáférés tiltva – engedélyezze a cím melletti ikonnal",
+    "geoUnavailable": "az eszköze nem tudta meghatározni",
+    "geoTimeout": "15 mp alatt nem érkezett",
+    "geoApprox": "A böngészője csak hozzávetőlegesen ismeri a helyét (több mint 1 km).",
+    "why": "Töltőkért, benzinkutakért és figyelmeztetésekért ott, ahol éppen van – a pontos helye az eszközén marad.",
+    "kept": "A böngészője megjegyzi ezt a helyet",
+    "sheet": {
+      "useLocation": "A helyzetem használata",
+      "forget": "Hely elfelejtése"
+    },
+    "privacy": {
+      "title": "A helye Önnél marad.",
+      "body": "A ViaFrei nem hoz létre fiókot és profilt, és nem tárolja a helyét. A böngészője csak akkor jegyez meg egy helyet ezen az eszközön, ha a helysávban kiválasztja – egy helyet vagy címet, „A helyzetem használata” vagy „Egész Németország” lehetőséget – a legutóbbi helyeivel együtt; amíg ez az oldal egy megjegyzett helyet használ, a helysáv alatti sor jelzi ezt, és a „Hely elfelejtése” azonnal törli. Az oldal csak akkor kéri a helyzetét, ha „A helyzetem használata” lehetőséget választja; ha a böngészőjében már tartósan engedélyezte, az oldal kérdés nélkül olvassa, és semmit sem tárol. A helyzetét az eszköze kb. 500 m-es területre kerekíti, és a szerverünk ebből a területből vezeti le az utca vagy hely nevét; ezt a nevet területenként legfeljebb egy óráig tartja a memóriában, Önhöz való bármilyen kapcsolat nélkül, és nem tárolja. Csak közvetlenül e kattintás után, és csak ha a böngészője legfeljebb 150 m pontossággal adja meg a helyzetét, küldi el az oldal egyszer a pontos helyzetet a szerverünknek, hogy ellenőrizze, egy pályaudvarnál, benzinkútnál, töltőállomásnál vagy autópálya-pihenőnél áll-e; ott sem nem tárolja, sem nem naplózza. Az itt kiválasztott állomás, hely vagy cím nevét ugyanígy legfeljebb egy óráig tartja a memóriában. Az IP-címét csak a memóriában használjuk, a hozzávetőleges helyhez, és ehhez nem tároljuk. Ez minden helysávot tartalmazó oldalra érvényes, a pályaudvarok áttekintésére is. A pályaudvarok áttekintésén az így meghatározott hely csak a legközelebbi pályaudvarok és megállók megjelenítésére szolgál.",
+      "more": "Bővebben az adatvédelmi tájékoztatóban"
+    },
+    "geoipCredit": "Hozzávetőleges hely az IP-cím alapján:",
+    "pageTitle": "{place}: lezárások, útépítések, forgalom – ViaFrei",
+    "pageDescription": "Dugók, útépítések és lezárások – hely: {place}; továbbá parkolás, töltők, üzemanyagárak és időjárási figyelmeztetések, élőben, nyílt adatokból, forrással.",
+    "pageLead": "Minden, amit a ViaFrei most tud erről a helyről: {place} – nyílt adatokból, minden szám forrásával.",
+    "pageMissing": "Ezt a helyet nem ismerjük.",
+    "geoipModified": "kivonat módosítva",
+    "loadingCards": "A hely kártyái betöltődnek …",
+    "reloadCards": "Töltse be újra az oldalt a kártyák megtekintéséhez",
+    "fuelUnavailable": "Az árakat most nem sikerült újra lekérdezni. Ez az utolsó ismert ár az idejével.",
+    "motorway": {
+      "why": "Ahhoz, ami ezen az autópályán Ön körül van – a pontos helyzete az eszközén marad.",
+      "radius": "Sugár",
+      "radiusOther": "Tetszőleges sugár (1–100 km)",
+      "updating": "frissítés …",
+      "failed": "Nem sikerült frissíteni – az előző nézet marad.",
+      "zoomGroup": "Térkép nagyítása – minden lépés egy sugár",
+      "zoomIn": "Nagyítás – sugár: {r} km",
+      "zoomOut": "Kicsinyítés – sugár: {r} km",
+      "zoomInEnd": "Nagyítás – elérte a legkisebb sugarat",
+      "zoomOutEnd": "Kicsinyítés – elérte a legnagyobb sugarat",
+      "filter": {
+        "legend": "Mutasd",
+        "all": "Összes mutatása",
+        "none": "Összes elrejtése",
+        "allLabel": "Összes mutatása – minden fajta kiválasztása",
+        "noneLabel": "Összes elrejtése – minden fajta kijelölésének törlése",
+        "save": "Választás megjegyzése",
+        "saved": "A választás megjegyezve ezen az eszközön.",
+        "forget": "Ne jegyezze meg",
+        "everything": "Minden adat",
+        "nothing": "Nincs kiválasztva semmi – válasszon legalább egy fajtát.",
+        "sum": "{kinds}: {n}",
+        "sumR": "{kinds} {r} km-en belül: {n}",
+        "entriesOne": "{n} tétel",
+        "entriesFew": "{n} tétel",
+        "entriesMany": "{n} tétel",
+        "entriesOther": "{n} tétel",
+        "entriesZero": "{n} tétel",
+        "ampel": "A lámpa továbbra is mindent értékel – egyes okai most rejtve vannak."
+      }
+    },
+    "pageDescriptionRoads": "{place}: lezárások és útépítések most ezeken: {roads} – plusz dugók, parkolás, töltés és figyelmeztetések, élőben forrással.",
+    "topics": {
+      "legend": "Témák",
+      "apply": "Alkalmaz",
+      "none": "Nincs kiválasztott téma.",
+      "shown": "Megjelenített témák: {n}/{total}",
+      "attention": "Elrejtve, de most fontos: {topic} – megjelenítés"
+    },
+    "head": {
+      "live": "Élőben:",
+      "scope": "Terület",
+      "search": "Hely keresése",
+      "searchHint": "Cím, irányítószám, városrész vagy állomás",
+      "locate": "Saját helyzetem használata",
+      "confirmQ": "Ez a helyes hely?",
+      "yes": "Igen",
+      "other": "Másik hely",
+      "confirmed": "megerősítve",
+      "updated": "frissítve: {place}",
+      "outside": "helyzet Németországon kívül",
+      "germanyHow": "egész Németország kiválasztva",
+      "germanyNote": "Egész Németország kiválasztva: minden országos adat közvetlenül alább található, időponttal és forrással."
+    },
+    "bar": {
+      "label": "Hely kiválasztása vagy keresése",
+      "close": "Bezárás",
+      "hint": "Hely, cím, autópálya, állomás …",
+      "recent": "Legutóbbiak",
+      "popular": "Népszerűek",
+      "drop": "{place} eltávolítása",
+      "found": "Javaslatok: {n}",
+      "how": "A lista egy helye, címe vagy állomása az ottani kártyákat mutatja; az Enter az egész oldalon keres."
+    }
+  },
+  "newsPage": {
+    "readMore": "Tovább olvasom",
+    "title": "Hírek",
+    "lead": "Mi új a ViaFreinél, mi következik, és a hosszú lezárások, amelyeket most ismerünk — mindegyik forrással.",
+    "filterLabel": "Mutasd",
+    "chipNew": "Új",
+    "chipPlans": "Tervek",
+    "chipTraffic": "Forgalom",
+    "newHeading": "Újdonságok a ViaFreinél",
+    "plansHeading": "Tervek",
+    "plansLead": "Amit legközelebb fel akarunk venni. A tervezett tervezettet jelent: egyik sincs még a ViaFreiben, és dátumot nem ígérünk.",
+    "trafficHeading": "Hosszú lezárások",
+    "trafficLead": "Saját adatainkból: megadott végű, legalább egynapos lezárások. Mindegyik eltűnik, amint eléri a végét.",
+    "badgeNew": "Új",
+    "badgePlan": "Tervezett",
+    "askLabel": "Kérdezze meg asszisztensét",
+    "askLabelPlan": "Ha már elérhető, kérdezze meg asszisztensét",
+    "plannedNote": "még nincs dátum",
+    "connect": "ViaFrei csatlakoztatása",
+    "sources": "Forrás",
+    "feed": "Hírek Atom-hírcsatornaként",
+    "released": "Verzió: {v} · {d}",
+    "teaserHeading": "Újdonságok a ViaFreinél",
+    "teaserAll": "Minden hír",
+    "trafficError": "A forgalmi bejelentéseket most nem sikerült betölteni.",
+    "noEntries": "Ezen a nyelven még nincsenek bejegyzések."
+  },
+  "examplesPage": {
+    "title": "Minden példakérdés",
+    "lead": "Minden kérdés, amelyet a ViaFrei példaként mutat ezen az oldalon – azzal az eszközzel, amely megválaszolja, és a válaszával, témák szerint csoportosítva.",
+    "live": "Ahol a ViaFrei rendszeres időközönként maga teszi fel a kérdést, itt a legújabb válaszát látja; máshol a rögzített választ a dátumával.",
+    "toc": "Témák",
+    "domain": {
+      "transit": "Busz, vonat és állomás",
+      "roads": "Utak és autópályák",
+      "parking": "Parkolás",
+      "charging": "Töltés",
+      "fuel": "Üzemanyag",
+      "more": "Helyek és figyelések"
+    },
+    "question": "Kérdés: {n}",
+    "fuelNote": "Az üzemanyagárakra vonatkozó példaválaszok csak a dátumukkal és csak két helyen jelennek meg: {home} és {connect}.",
+    "fuelHome": "a kezdőlapon",
+    "fuelConnect": "a csatlakozási oldalon"
+  },
+  "seo": {
+    "connectTitle": "Forgalmi adatok ChatGPT-ben és Claude-ban, MCP-vel – ViaFrei",
+    "connectDescription": "Egy cím, kulcs nélkül: kösse be a ViaFreit a Claude, ChatGPT, Copilot, Cursor, Gemini CLI vagy Le Chat alá, és kérdezzen dugókról, vonatokról.",
+    "motorwayTitle": "Dugó {road} élőben: útlezárás, útfelújítás – ViaFrei",
+    "motorwayDescription": "Forgalom {road} Németországban élőben: dugók, útlezárások és útfelújítások irányonként, nyílt adatokból, tervezett lezárásokkal és szabályokkal.",
+    "motorwaysTitle": "Dugó és útfelújítás az autópályán most – Németország – ViaFrei",
+    "motorwaysDescription": "Minden német autópálya élőben: dugók, lezárások, útépítések, terelések, parkolás és töltés, térképpel és autópályánként egy oldallal.",
+    "motorwayH1": "{road} autópálya most",
+    "motorwayLead": "Dugók, lezárások és útépítések – autópálya: {road}, élőben, nyílt adatokból, mindegyik forrással és időponttal.",
+    "motorwaysH1": "Autópályák Németországban",
+    "motorwaysLead": "Minden autópálya az aktuális bejelentéseivel. Válasszon egyet a dugókhoz, lezárásokhoz, útépítésekhez és a nyomvonalához.",
+    "stationsTitle": "Vasútállomások Németországban: peronok, felszereltség – ViaFrei",
+    "stationsDescription": "A Deutsche Bahn minden állomása: peronok magassággal és lépcsőmentes hozzáféréssel, felszereltség, utassegítő szolgálat és ami 300 m-en belül van – nyílt adatokból.",
+    "stationsH1": "Vasútállomások Németországban",
+    "crumbStations": "Állomások",
+    "stationTitle": "{name}: indulások, vágányok, liftek, zavarok – ViaFrei",
+    "stationDescription": "{name}: a következő indulások élőben vágánnyal, mely liftek és mozgólépcsők működnek most, lépcsőmentes peronok, felszereltség és környék – nyílt adatokból, forrással és dátummal.",
+    "crumbHome": "Kezdőlap",
+    "crumbMotorways": "Autópályák",
+    "linksMotorways": "Autópályák élőben",
+    "linksPlaces": "Városok élőben",
+    "allMotorways": "Minden autópálya",
+    "allPlaces": "További városok",
+    "imprintDescription": "A viafrei.de impresszuma: ki üzemelteti a ViaFreit, a valós idejű mobilitási platformot MI-asszisztensek számára, és hogyan érhető el.",
+    "privacyDescription": "A viafrei.de adatvédelmi tájékoztatója: mit tárol a ViaFrei és mit nem, hogyan működik a hozzájárulás és milyen jogai vannak – fiók nélkül.",
+    "termsDescription": "A ViaFrei felhasználási feltételei: milyen feltételekkel használhat olyan adatokat, mint a Toll Collect GmbH kamionparkolóinak foglaltsága.",
+    "businessTitle": "Élő mobilitási adatok API-ja vállalatoknak",
+    "businessDescription": "Forgalom, közösségi közlekedés, töltés és parkolás egész Németországban, egyetlen élő végponton, forrásokkal. Kezdje kísérleti projekttel.",
+    "developersTitle": "MCP-szerver német mobilitási adatokhoz",
+    "developersDescription": "Csatlakoztasson bármely MCP-klienst egy perc alatt: gyorsindítás kliensenként, egy valódi hívás a válaszával és minden eszköz a sémájával."
+  },
+  "ask": {
+    "live": "Élő válasz a ViaFreitől",
+    "asOf": "Adatok állapota: {time}",
+    "tool": "Eszköz",
+    "question": "Kérdés",
+    "answer": "Válasz",
+    "cta": "Kérdezze meg asszisztensét",
+    "roads": {
+      "question": "Van most dugó az A8-on?",
+      "clear": "Nincs most bejelentett dugó – út: {road}. Érvényben – lezárások: {closures}, útépítések: {works}.",
+      "jams": "Bejelentett dugók – út: {road}: {jams}; a leghosszabb {delay} percet vesz el. Lezárások: {closures}, útépítések: {works}.",
+      "jamsNoDelay": "Bejelentett dugók – út: {road}: {jams}. Lezárások: {closures}, útépítések: {works}."
+    },
+    "lorryPark": {
+      "question": "Hány kamionparkolója van az A3-nak, és hány teszi közzé a foglaltságát?",
+      "listed": "Kamionparkolók – {road}: {total}; közzétett foglaltsággal: {live}."
+    },
+    "hydrogen": {
+      "question": "Hol tankolhat egy hidrogénes teherautó Frankfurt am Main közelében?",
+      "near": "{name}, {address}: 350 bar teherautóknak és buszoknak, {km} km-re.",
+      "none": "{km} km-es körzetben nincs nyilvántartott hidrogéntöltő teherautóknak."
+    },
+    "weatherLand": {
+      "question": "Van most érvényben hivatalos időjárási figyelmeztetés Bajorországban (Bayern)?",
+      "none": "{place}: Nincs érvényben a DWD hivatalos figyelmeztetése, ellenőrizve mostanra és a következő {hours} órára.",
+      "warn": "{place}: Érvényes hivatalos figyelmeztetések: {count}, legmagasabb fokozat: {level} / 4, köztük: „{event}”."
+    },
+    "transit": {
+      "question": "Mennyire pontosak most a buszok és vonatok Észak-Rajna-Vesztfáliában (Nordrhein-Westfalen)?",
+      "share": "{region}: az utolsó {minutes} perc járatainak {pct}%-a késik ({late} / {trips}).",
+      "thin": "{region}: az utolsó {minutes} percben megfigyelt járatok: {trips} – túl kevés egy arányhoz."
+    },
+    "charging": {
+      "question": "Hol tölthetek 150 kW-tal vagy többel Lipcsében?",
+      "live": "{operator}, {address}: legfeljebb {kw} kW, {km} km-re – szabad {free} / {total} töltőpont.",
+      "liveNoOp": "{address}: legfeljebb {kw} kW, {km} km-re – szabad {free} / {total} töltőpont.",
+      "noStatus": "{operator}, {address}: legfeljebb {kw} kW, {km} km-re. Az üzemeltető most nem jelent aktuális elérhetőséget.",
+      "noStatusNoOp": "{address}: legfeljebb {kw} kW, {km} km-re. Az üzemeltető most nem jelent aktuális elérhetőséget.",
+      "none": "A közelben nincs nyilvántartva 150 kW-os vagy erősebb töltőállomás."
+    },
+    "parking": {
+      "question": "Hol van most szabad helyekkel rendelkező parkolóház a münsteri főpályaudvarnál (Münster Hbf)?",
+      "free": "{name}: szabad {free} / {total} hely, {km} km-re.",
+      "none": "A közelben most egyetlen parkolóház sem jelent szabad helyet.",
+      "unpublished": "A közeli parkolóházak üzemeltetői nem tesznek közzé élő foglaltságot, ezért nem ismert, van-e szabad hely."
+    },
+    "roadsNear": {
+      "question": "Mi történik most az utakon itt?",
+      "clear": "{km} km-en belül most nincs bejelentés: se dugó, se lezárás.",
+      "noJams": "{km} km-en belül nincs dugó. Érvényben – lezárások: {closed}, korlátozások: {restricted}.",
+      "jams": "{km} km-en belül – dugók: {jams}, lezárások: {closed}, korlátozások: {restricted}."
+    },
+    "weather": {
+      "question": "Van itt hivatalos időjárási figyelmeztetés?",
+      "none": "Nincs érvényben a DWD hivatalos figyelmeztetése, ellenőrizve mostanra és a következő {hours} órára.",
+      "warn": "Érvényes hivatalos figyelmeztetések: {count}, legmagasabb fokozat: {level} / 4, köztük: „{event}”."
+    },
+    "nearby": {
+      "question": "Mi van itt a közelben?",
+      "near": "{km} km-en belül: állomás: {station}; töltőállomások: {charging}, parkolás: {parking} (mindegyikből legfeljebb három látható).",
+      "noStation": "{km} km-en belül nincs állomás; töltőállomások: {charging}, parkolás: {parking} (mindegyikből legfeljebb három látható).",
+      "none": "{km} km-en belül nincs nyilvántartva állomás, töltőállomás vagy parkoló."
+    },
+    "poi": {
+      "question": "Hol a legközelebbi gyógyszertár?",
+      "found": "{name}, {street} – {km} km-re.",
+      "foundNoStreet": "{name} – {km} km-re.",
+      "none": "5 km-en belül nincs nyilvántartva gyógyszertár."
+    },
+    "chargingNear": {
+      "question": "Hol a legközelebbi töltőállomás?",
+      "live": "{operator}, {address}: legfeljebb {kw} kW, {km} km-re – szabad {free} / {total} töltőpont.",
+      "liveNoOp": "{address}: legfeljebb {kw} kW, {km} km-re – szabad {free} / {total} töltőpont.",
+      "noStatus": "{operator}, {address}: legfeljebb {kw} kW, {km} km-re. Az üzemeltető most nem jelent aktuális elérhetőséget.",
+      "noStatusNoOp": "{address}: legfeljebb {kw} kW, {km} km-re. Az üzemeltető most nem jelent aktuális elérhetőséget.",
+      "none": "A közelben nincs nyilvántartva töltőállomás."
+    },
+    "offerOsm": "Ezek a bejegyzések az OpenStreetMapből származtatott adatbázisunkból származnak. Kérésre ingyenesen elküldjük teljes, géppel olvasható másolatát (CSV) az ODbL 1.0 alatt – elérhetőség: {link}.",
+    "offerDb": "Ezek a bejegyzések a(z) „{db}” adatbázisból származtatott adatbázisunkból származnak. Az általunk nyilvánosan használt adatbázist – a kiadó által bizalmasnak jelölt bejegyzések nélkül – géppel olvasható másolatként (CSV) az ODbL 1.0 alatt kérésre ingyenesen elküldjük – elérhetőség: {link}.",
+    "offerLink": "impresszum"
+  },
+  "connectNote": {
+    "text": "Ezt a választ az MI-asszisztense csak akkor adja meg, ha a ViaFrei csatlakoztatva van.",
+    "link": "Így csatlakoztathatja a ViaFreit",
+    "guide": "Teljes útmutató minden klienshez",
+    "clients": "Lépésről lépésre",
+    "copy": "Cím másolása",
+    "copied": "Másolva"
+  },
+  "next": {
+    "label": "Tovább",
+    "ask": "Kérdezze meg a MI-t: {place}",
+    "motorways": "Minden autópálya"
+  },
+  "search": {
+    "label": "Keresés a ViaFrein",
+    "placeholder": "Hely, autópálya, állomás, oldal …",
+    "submit": "Keresés",
+    "title": "Keresés",
+    "description": "Helyek, autópályák, csomópontok, állomások és oldalak keresése a ViaFrein.",
+    "hint": "Írjon be legalább két karaktert.",
+    "alt": "Kártyák itt",
+    "partial": "Néhány találat nem látható: egy forrás nem válaszolt időben.",
+    "allResults": "Minden találat",
+    "showAll": "Minden ilyen fajta találat",
+    "prev": "Előző",
+    "next": "Következő",
+    "pageOf": "{page}. oldal / {pages}",
+    "pager": "Találati oldalak",
+    "none": "„{q}” keresésre nem találtunk semmit.",
+    "nearest": "Hasonló írásmód:",
+    "motorwayIndex": "Minden autópálya",
+    "kind": {
+      "motorway": "Autópályák",
+      "road": "Szövetségi és tartományi utak",
+      "place": "Helyek",
+      "station": "Állomások",
+      "exit": "Kijáratok és csomópontok",
+      "area": "Területek és címek",
+      "poi": "Látnivalók",
+      "page": "Oldalak",
+      "news": "Hírek"
+    }
+  },
+  "header": {
+    "how": "A listából választott hely, cím vagy pont lesz a helye minden oldalon; egy autópálya, egy állomás vagy egy oldal megnyílik. Az Enter az egész webhelyen keres.",
+    "makeMine": "Legyen ez a helyem"
+  },
+  "statePages": {
+    "title": "Német tartományok: autópályák most, városok – ViaFrei",
+    "description": "Mind a 16 német szövetségi tartomány egy pillantásra: lezárások, dugók és útépítések az autópályákon most, terület, főváros, szomszédos tartományok és a legnagyobb városok.",
+    "h1": "A 16 német tartomány",
+    "crumb": "Tartományok"
+  },
+  "ai": {
+    "placeWarn": "Van most időjárási figyelmeztetés {place} területére?",
+    "placePark": "Hol tudok most parkolni vagy tölteni {place} területén?",
+    "landRoads": "Mely autópályák a legérintettebbek most {place} területén?",
+    "roadUsual": "Mennyi ideig tartanak általában a dugók a {road} úton?",
+    "roadPlans": "Milyen útfelújítások és lezárások várhatók a {road} úton?",
+    "open": "Kérdezd a(z) {app} alkalmazásban",
+    "copy": "Kérdés másolása",
+    "copied": "Másolva"
+  },
+  "star": {
+    "add": "Oldal megjegyzése",
+    "remove": "Megjegyezve",
+    "neu": "új",
+    "gone": "Feloldva legutóbbi látogatása óta: {list}",
+    "longer": "hosszabb",
+    "install": "Hozzáadás a kezdőképernyőhöz",
+    "commute": "Az Ön útvonala"
+  },
+  "pwa": {
+    "offline": "Állapot: {t}, offline"
+  }
+}

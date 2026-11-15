@@ -1,0 +1,50 @@
+---
+/**
+ * The 404 in one language (#379 PR-06): one sentence, the way back, and the
+ * three places most people were looking for. No analytics (GA rule 6), no
+ * alternates (the missing address has no twin), status 404.
+ */
+import Base from "./Base.astro";
+import { t } from "../i18n/index.js";
+import { pathFor, type Lang } from "../site/pages.js";
+
+interface Props {
+  lang: Lang;
+  /** #739: the place pages a name alone matched, when there are several; the page then asks which one. */
+  choices?: readonly { readonly name: string; readonly path: string }[];
+}
+const { lang, choices } = Astro.props;
+Astro.response.status = 404;
+---
+
+<Base lang={lang} page="404" withAlternates={false}>
+  <section class="wrap notfound">
+    <p class="notfound__code" aria-hidden="true">404</p>
+    {
+      choices !== undefined && choices.length > 0 ? (
+        <>
+          <h1>{t(lang, "notFound.choiceTitle")}</h1>
+          <p class="lead">{t(lang, "notFound.choiceText")}</p>
+          <ul class="notfound__choices">
+            {choices.map((c) => (
+              <li>
+                <a href={c.path} translate="no">{c.name}</a>
+              </li>
+            ))}
+          </ul>
+        </>
+      ) : (
+        <>
+          <h1>{t(lang, "notFound.title")}</h1>
+          <p class="lead">{t(lang, "notFound.text")}</p>
+        </>
+      )
+    }
+    <p><a class="btn btn--primary" href={pathFor("start", lang)}>{t(lang, "notFound.back")}</a></p>
+    <ul class="notfound__links">
+      <li><a href={pathFor("connect", lang)}>{t(lang, "notFound.connect")}</a></li>
+      <li><a href={pathFor("developers", lang)}>{t(lang, "notFound.developers")}</a></li>
+      <li><a href={pathFor("business", lang)}>{t(lang, "notFound.business")}</a></li>
+    </ul>
+  </section>
+</Base>

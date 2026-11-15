@@ -1,0 +1,34 @@
+# #922 B2: the markup pins that stay literal, one per line — reason<TAB>file<TAB>the quoted literal as written.
+# The reasons are defined in markup-pins.test.ts. A new literal pin fails that test until it is converted or listed here; a listed one that is gone fails it too.
+escaping	packages/design/test/connect-note.test.ts	<b>
+escaping	packages/design/test/endpoint-chip.test.ts	<b>
+escaping	packages/design/test/html.test.ts	<b>
+escaping	packages/web/test/site-search-1111.test.ts	<b>x
+csp	packages/web/test/csp.test.ts	<script type="application/ld+json" nonce="${nonce}">{}</script>
+csp	packages/web/test/csp.test.ts	<script nonce="${nonce}">1</script>
+feed	packages/web/test/news.test.ts	<category term="plan"/>
+feed	packages/web/test/news.test.ts	<link rel="self" type="application/atom+xml" href="https://viafrei.de${feedPath(l)}"/>
+feed	packages/web/test/place-routes.test.ts	<loc>https://viafrei.de/${l}/place/koeln</loc><lastmod>${lastmodOf("place", l)!}</lastmod>
+source	packages/web/test/credit-links.test.ts	<li lang="de"><a href={c.url}
+source	packages/web/test/example-ledger.test.ts	<a href={pathFor("examples", lang)}>{t(lang, "day.allExamples")}</a>
+source	packages/web/test/example-ledger.test.ts	<a href={pathFor("examples", lang)}>{t(lang, "connectPage.allExamples")}</a>
+source	packages/web/test/live-examples.test.ts	e.credits.includes("tankerkoenig") && <p class="answer__note" lang="de">{register.mtskNote}</p>
+source	packages/web/test/live-examples.test.ts	{e.credits.includes("tankerkoenig") && <p class="answer__note" lang="de">{register.mtskNote}</p>}
+source	packages/web/test/location.test.ts	<p class="placebar__kept" id="place-kept" hidden>{t(lang, "place.kept")}
+source	packages/web/test/meta.test.ts	<title>{meta.title}</title>
+source	packages/web/test/meta.test.ts	<meta property="og:site_name" content={t(lang, "meta.siteName")} />
+source	packages/web/test/motorway-716.test.ts	<a href="${safe(motorwayPath(lang, v.other.road))}">
+source	packages/web/test/motorway-716.test.ts	<div class="wrap motorway-page" id="motorway-main"
+source	packages/web/test/motorway-716.test.ts	<form class="motorway-search" method="get"
+source	packages/web/test/place-asks.test.ts	`<article class="pcard pcard--${c.verdict}" id="pcard-${c.id}" aria-labelledby="pcard-${c.id}-t"${refreshData(lang, c.id, refresh)}>`
+source	packages/web/test/place-asks.test.ts	`<p class="pcard__ask"><span class="pcard__asklabel">${safe(copy.ask.label)}:</span> <q class="pcard__q">${fillHtml(cardAsk(lang, c.id), { place: nameHtml(place) })}</q></p>`
+sequence	packages/web/e2e/motorway-amenities.e2e.ts	<span class="mw-key mw-key--amen" aria-hidden="true"></span>${legend}</li>
+sequence	packages/web/e2e/site.e2e.ts	class="credit__licence" href="${licenceTextFor(r.license)!.url}"
+sequence	packages/web/test/place-stations.test.ts	<span class="pcard__sub pcard__fac">Aufzüge: 5 von 6 in Betrieb · Fahrtreppen: 6 von 6 in Betrieb · Parkhaus oder Parkplatz <span translate="no">Parkhaus Dom</span> (200 m, 520 Plätze)
+feed	packages/web/test/seo-241.test.ts	<lastmod>2026-10-20</lastmod>
+feed	packages/web/e2e/seo-241.e2e.ts	<loc>${ORIGIN}/sitemap-exits-de.xml</loc>
+feed	packages/web/e2e/seo-241.e2e.ts	<loc>${ORIGIN}/sitemap-exits-${l}.xml</loc>
+source	packages/web/test/home-990.test.ts	<script is:inline set:html={fillScript()} />
+source	packages/web/test/motorway-716.test.ts	<form class="tpf" id="tpf" method="get"
+source	packages/web/test/topic-filter-1050.test.ts	`<article class="pcard pcard--${c.verdict}" id="pcard-${c.id}"
+source	packages/web/test/topic-filter-1050.test.ts	<h3 class="pcard__title" id="pcard-${c.id}-t"><span class="pcard__icon" aria-hidden="true">

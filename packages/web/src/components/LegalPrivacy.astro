@@ -1,0 +1,931 @@
+---
+/**
+ * The Art. 13 DSGVO privacy notice, German and binding, carried over verbatim
+ * from the pre-1.6 static `the pre-1.6 static page` (#379 PR-07, GA
+ * rule 6; that tree was retired by #405, so this is the text now). Changed
+ * where the old wording would be false on the new site, and only there:
+ * analytics runs on the pages of `ANALYTICS_PAGES` (`site/pages.ts`: the four
+ * content pages and, since #716, the motorway index and pages), not only the
+ * start page, and
+ * the withdraw control is the `ConsentWithdraw` island. The Google Analytics
+ * section is shown exactly when a tag is configured (the old
+ * `<!--IF:GOOGLE_TAG-->` branches); `e2e/legal.e2e.ts` renders both. The
+ * "Themenauswahl" paragraph (anchor `themen`, #1050) replaces the "Mein Tag"
+ * paragraph of #798 (data-steward text of 2026-10-18), because the filter it
+ * described is gone: the topic filter's choice IS the address (`?topics=`,
+ * reaching the server log and, with consent, GA's page address), and
+ * `viafrei.topics` is written only after the "merken" click. Lane draft for
+ * the data-steward's re-ruling of #798 C1 ("never submitted"), which this
+ * filter reverses on the owner's #1050; it ships with the filter
+ * (src/lib/topic-filter.ts, test/topic-filter-1050.test.ts,
+ * e2e/topic-filter-1050.e2e.ts). The
+ * "Nutzungsstatistik" paragraph (#532, the MCP usage ledger) is mcp-dev's
+ * draft, corrected and signed by the data-steward on 2026-10-08; its recipient
+ * sentence for a render WITH a tag (the daily totals to GA4, #536) is the
+ * data-steward's text of 2026-10-11, and without a tag the export is off
+ * (`offReason` in packages/ingest/src/cli/usage-analytics.ts needs GOOGLE_TAG),
+ * so the old "an niemanden weitergegeben" stays true there. Section 3's
+ * GPC/DNT fields, purpose and seven-day retention, the whole of section 4
+ * "Besucherzählung ohne Cookies" with its separate objection box, the no-tag
+ * sentence of section 5 and the pointer under "Ihre Rechte" are the
+ * data-steward's text of 2026-10-11 (#535), verbatim; they ship together with
+ * the mechanism they describe (the edge configuration, the edge log rotation,
+ * packages/ingest/src/cli/site-visits.ts — ruling C10). The interest balancing
+ * behind section 4 is packages/ingest/PRIVACY-visitor-count.md.
+ * Section 3 "Fehlermeldungen unserer Dienste" and the MCP amendment:
+ * data-steward text of 2026-10-14 (#741), verbatim; they ship with the
+ * collector they describe (the host error collector, migration 0132).
+ * The motorway pages' position (#890): the data-steward's text of 2026-10-21
+ * (G5 as amended, G5.10) — the paragraph `#ort-autobahn` and the heading that
+ * names the motorway pages are rendered exactly when `motorwayAroundOn()` is
+ * true, so the notice and the switch cannot disagree; § 5's motorway item is
+ * true in both states. § 5's paragraph `#ga-ereignisse` ("Automatisch erfasste
+ * Ereignisse") and the motorway item's "beim Laden der Seite" are the
+ * data-steward's text of 2026-10-21 (G5.7 interim): they describe the GA
+ * stream's enhanced measurement: page changes and outbound clicks are OFF
+ * since 2026-10-21 (owner, Admin API; v2.3.7 removed their items), and the
+ * list names the five still ON. When an event changes, G5.7 says what moves.
+ * § 5's subsection `#clarity` (Microsoft Clarity, #717) is rendered exactly
+ * when a Clarity id is configured and switched on beside the tag; its text is
+ * the data-steward's ruling of 2026-10-27 (register section "Microsoft Clarity
+ * — data-steward ruling (#717)", C-1 to C-14): Microsoft is an INDEPENDENT
+ * controller under the Clarity Terms of Use v5 § 4.4 c) i., never our Art. 28
+ * processor, and its own purposes (§ 4.4 c) iii.) are named because § 4.4 b)
+ * and d) require it. Its "beendet die Seite Clarity vor dem Klick" sentence is
+ * true only with C-4 in code. Its first sentence names the pages Clarity runs on
+ * (`measurementOf` in `site/pages.ts`): since the C-4 fallback of 2026-10-27, not
+ * the motorway pages, which keep Google Analytics.
+ * Section 2's subsection `#cloudflare` (#1267) is the data-steward's text of
+ * 2026-11-09, verified that day against Cloudflare's privacy policy (effective
+ * 2025-11-04), its customer DPA v6.4 (2026-04-03), the Self-Serve Subscription
+ * Agreement § 6.1, the cookie reference (`__cf_bm`), the Challenge Passage
+ * docs (`cf_clearance`, 30 min default) and the analytics changelog of
+ * 2026-10-02 (31 days on Free). It must be live BEFORE viafrei.de is proxied,
+ * and it is true only while JavaScript detections stay off (no Cloudflare
+ * script on our own pages) and Challenge Passage stays at 30 minutes — and
+ * while nothing else of Cloudflare's injects into our pages: Email Address
+ * Obfuscation (on by default; it would also break the § 5 DDG e-mail under our
+ * CSP), Rocket Loader, Server-Side Excludes, Web Analytics/RUM
+ * (cloudflareinsights), Zaraz and Cloudflare Fonts all stay off. After the
+ * switch, `/`, `/de/datenschutz` and `/de/impressum` fetched through the proxy
+ * must carry no `cdn-cgi`, `email-protection` or `cloudflareinsights`
+ * (recorded on #1267). Its present-tense routing sentences are true from the
+ * cutover, which runs deploy → edge gate → proxy in one sitting (#1267).
+ * Its scope since the new host's cutover (#1233, #1235 S4 bullet 4; data-steward
+ * ruling of 2026-11-11, DPA v6.4 re-read that day — Annex 1 covers end users of
+ * "domains, networks, websites, and APIs"): ALL five names (apex, www, mcp,
+ * admin, status) are proxied, each origin site requires Cloudflare's
+ * Authenticated Origin Pulls client certificate from our own CA
+ * (the edge runbook, decision 2026-11-10), mail stays DNS-only, so
+ * no name bypasses Cloudflare and the objection paragraph offers no bypass.
+ * This wording is true only from that cutover (branch
+ * wip/2.6-privacy-cutover); the "nicht zwischengespeichert" sentence for mcp,
+ * status and admin is true only while the zone's cache-bypass rules for those
+ * hosts and paths hold (scripts/check_cf_zone.sh --after-cutover).
+ * Section 2's host paragraphs (#1235, data-steward ruling S4 on #1232's copy
+ * set, 2026-11-10): Hetzner Online GmbH as the Art. 28 processor, true since
+ * the AVV concluded in Robot on 2026-11-10 (#1276), the data centre read off
+ * the server's own Robot page (FSN1, Falkenstein/Vogtland). Contabo stays
+ * named until the old host's personal data is actually deleted (S19); the
+ * sentence saying it was deleted goes in only after the deletion, and no
+ * retention period of section 3 changes with the move.
+ */
+import ConsentWithdraw from "./ConsentWithdraw.svelte";
+import { ADDRESS_PENDING_NOTE, type Identity } from "../lib/identity.js";
+import { motorwayAroundOn } from "../lib/motorway-around.js";
+
+interface Props {
+  id: Identity;
+  imprintHref: string;
+  /** Whether a GOOGLE_TAG is configured for this render. */
+  analytics: boolean;
+  /** #717: whether Microsoft Clarity is configured (an id, switched on) beside the tag. */
+  clarity?: boolean;
+}
+const { id, imprintHref, analytics, clarity = false } = Astro.props;
+// #890 (G5.10): the motorway pages determine a place exactly when this is true.
+const motorwayAround = motorwayAroundOn();
+---
+
+<article class="legal" lang="de">
+  <h1>Datenschutzerklärung</h1>
+  {/* #1182 AC 1: the page's H1 first in main; the binding note in the page's language stands under it (`Legal.astro`) */}
+  <slot name="note" />
+
+  <h2>1. Verantwortlicher</h2>
+  <p>Verantwortlicher im Sinne der Datenschutz-Grundverordnung (DSGVO) ist:</p>
+  {
+    id.addressPending ? (
+      <p>{id.name}<br /><em>{ADDRESS_PENDING_NOTE}.</em><br />Deutschland<br />E-Mail: <a href={`mailto:${id.email}`}>{id.email}</a></p>
+    ) : (
+      <p>{id.name}<br />{id.street}<br />{id.city}<br />Deutschland<br />E-Mail: <a href={`mailto:${id.email}`}>{id.email}</a></p>
+    )
+  }
+  {id.phone !== undefined && <p>Telefon: {id.phone}</p>}
+  <p>Ein Datenschutzbeauftragter ist nicht bestellt; die Voraussetzungen des Art. 37 DSGVO bzw. § 38 BDSG liegen nicht vor.</p>
+
+  <h2>2. Hosting</h2>
+  <p id="hetzner">
+    Diese Seite wird auf einem Server der Hetzner Online GmbH, Industriestr. 25, 91710 Gunzenhausen, betrieben. Der Server steht in Deutschland
+    (Rechenzentrum Falkenstein/Vogtland). Beim Betrieb des Servers verarbeitet der Anbieter die unter Punkt 3 genannten Daten in unserem Auftrag
+    (Art. 28 DSGVO).
+  </p>
+  <p id="contabo">
+    Bis zum Umzug auf diesen Server wurde die Seite auf einem virtuellen Server der Contabo GmbH betrieben, der in Deutschland steht (Rechenzentrum Nürnberg).
+    Die dort aus dieser Zeit noch gespeicherten, unter Punkt 3 genannten Daten verarbeitet die Contabo GmbH weiterhin in unserem Auftrag.
+  </p>
+
+  <h3 id="cloudflare">Auslieferung über Cloudflare</h3>
+  <p>
+    Alle Adressen dieses Angebots – die Website viafrei.de und www.viafrei.de, den MCP-Endpunkt mcp.viafrei.de, die Statusseite status.viafrei.de und die
+    Betriebskonsole admin.viafrei.de – leiten wir über das Netz der Cloudflare, Inc., 101 Townsend St., San Francisco, CA 94107, USA („Cloudflare“).
+    Cloudflare steht als Reverse-Proxy und Content-Delivery-Netz zwischen dem anfragenden Gerät und unserem Server: Ihr Browser oder das Programm, das unsere
+    Werkzeuge abfragt, verbindet sich mit einem Rechenzentrum von Cloudflare, in der Regel einem in seiner Nähe; dort endet die verschlüsselte Verbindung, und
+    Cloudflare leitet die Anfrage über eine neue, ebenfalls verschlüsselte Verbindung an unseren Server weiter und dessen Antwort zurück. Unser Server nimmt
+    Anfragen an diese Adressen nur von Cloudflare an; Cloudflare weist sich ihm dabei mit einem Zertifikat aus, das allein unser Server anerkennt. Unser
+    E-Mail-Verkehr läuft nicht über Cloudflare. Cloudflare betreibt außerdem die Namensserver (DNS) unserer Domain; bei einer Namensauflösung erfährt
+    Cloudflare in der Regel nur die Adresse des Namensservers, den Ihr Gerät dafür verwendet, nicht Ihre eigene.
+  </p>
+  <p>
+    <strong>Auftragsverarbeitung:</strong> Cloudflare verarbeitet die Daten in unserem Auftrag (Art. 28 DSGVO). Grundlage ist das Data Processing Addendum
+    von Cloudflare (Version 6.4 vom 3. April 2026), das Bestandteil der Self-Serve-Nutzungsbedingungen von Cloudflare ist, unter denen wir den Dienst im
+    kostenlosen Tarif nutzen; es erfasst Anfragen an Websites ebenso wie an Programmierschnittstellen wie unseren MCP-Endpunkt.
+  </p>
+  <p><strong>Verarbeitete Daten:</strong> Cloudflare erhält jede Anfrage an eine dieser Adressen vollständig, also</p>
+  <ul>
+    <li>
+      die IP-Adresse des anfragenden Geräts – bei der Website die Ihres Geräts; beim MCP-Endpunkt die des Programms, das die Anfrage stellt: bei einem
+      KI-Assistenten, der im Netz läuft, in der Regel ein Server seines Anbieters, bei einem Programm auf Ihrem Rechner Ihr Gerät,
+    </li>
+    <li>Datum und Uhrzeit der Anfrage,</li>
+    <li>die aufgerufene Adresse einschließlich ihrer Parameter (etwa gewählte Themen oder einen abgeschickten Suchbegriff),</li>
+    <li>
+      die Kopfzeilen der Anfrage, darunter die Browserkennung (User-Agent), die zuvor besuchte Seite (Referrer), die Spracheinstellung und die Cookies dieser
+      Website, beim MCP-Endpunkt auch die Sitzungskennung und jede weitere Kopfzeile, die das anfragende Programm mitsendet,
+    </li>
+    <li>
+      den Inhalt der Anfrage, etwa den Text der Ortssuche, ein gerundetes Gebiet oder die einmalige genaue Position nach „Meinen Standort verwenden“ (siehe
+      „Ihr Ort auf der Startseite“), beim MCP-Endpunkt die Werkzeugaufrufe mit ihren Argumenten, etwa einem Ort, einer Straße oder Koordinaten,
+    </li>
+    <li>technische Merkmale der Verbindung (etwa TLS-Version und Verschlüsselungsverfahren),</li>
+    <li>die Antwort unseres Servers.</li>
+  </ul>
+  <p>
+    Das gilt auch für Anfragen an die Statusseite und die Betriebskonsole: Cloudflare erhält sie, bevor unser Server prüft, ob sie von einer zugelassenen
+    Adresse kommen, also auch die, die unser Server danach ohne Inhalt abweist (Punkt 3).
+    Zum Schutz vor automatisierten Zugriffen bewertet Cloudflare anhand dieser Angaben, ob eine Anfrage von einem Menschen oder von einem Programm stammt.
+    Hält Cloudflare eine Anfrage für verdächtig, kann es statt der Seite zunächst eine Prüfseite zeigen, auf der ein Skript von Cloudflare in Ihrem Browser
+    technische Merkmale des Browsers prüft; meist geschieht das ohne Ihr Zutun. Unveränderliche Dateien unserer Seite (etwa Stilangaben, Skripte und Bilder)
+    kann Cloudflare in seinen Rechenzentren zwischenspeichern; sie enthalten keine Angaben zu Ihnen. Antworten des MCP-Endpunkts, der Statusseite und der
+    Betriebskonsole speichert Cloudflare nicht zwischen. Die IP-Adresse, die unsere Server nach Punkt 3 protokollieren oder prüfen, ist die Adresse, die
+    Cloudflare uns als die des anfragenden Geräts übermittelt.
+  </p>
+  <p id="cloudflare-cookies">
+    <strong>Cookies:</strong> Für seine Bot-Erkennung kann Cloudflare unter unserer Domain das Cookie <code>__cf_bm</code> setzen. Es enthält nach Angaben von
+    Cloudflare verschlüsselte Angaben, aus denen Cloudflare berechnet, ob eine Anfrage automatisiert ist, sowie Zeitangaben; es entspricht keiner Kennung in
+    unserer Anwendung, und Cloudflare verfolgt damit nach eigenen Angaben keine Nutzer von Website zu Website. Es läuft nach 30 Minuten ohne Aktivität ab.
+    Haben Sie eine Prüfseite bestanden, setzt Cloudflare zusätzlich das Cookie <code>cf_clearance</code>, das den Nachweis der bestandenen Prüfung enthält,
+    damit Sie nicht bei jeder Seite erneut geprüft werden; seine Gültigkeit stellen wir bei Cloudflare ein, wir verwenden die Voreinstellung von 30 Minuten.
+    Wir selbst werten keines dieser Cookies aus. Das Speichern und Auslesen dieser Cookies und das Auslesen von Merkmalen Ihres Browsers bei einer Prüfung sind
+    unbedingt erforderlich, damit wir Ihnen die von Ihnen aufgerufene Seite trotz automatisierter Massenabrufe sicher ausliefern können (§ 25 Abs. 2 Nr. 2
+    TDDDG), und erfordern daher keine Einwilligung.
+  </p>
+  <p>
+    <strong>Zweck:</strong> die Sicherheit des Angebots, der Schutz vor automatisierten Massenabrufen, Angriffen und Überlastung sowie eine schnelle und
+    zuverlässige Auslieferung der Seiten und Antworten sowie die Abschirmung unseres Servers, der nur über Cloudflare erreichbar ist.
+    <strong>Rechtsgrundlage:</strong> Art. 6 Abs. 1 lit. f DSGVO; unser berechtigtes Interesse ist es, die Website und den MCP-Endpunkt für Besucher und
+    ihre Programme erreichbar und schnell zu halten und sie vor Angriffen und vor Programmen zu schützen, die sie massenhaft und entgegen unseren Regeln
+    abrufen (vgl. Erwägungsgrund 49 DSGVO). Für die Cookies gilt zusätzlich § 25 Abs. 2 Nr. 2 TDDDG, wie oben beschrieben.
+  </p>
+  <p>
+    <strong>Speicherdauer:</strong> Nach Angaben von Cloudflare werden die einzelnen Anfrageprotokolle (HTTP-Request-Logs) standardmäßig nicht aufbewahrt;
+    wir schalten ihre Aufbewahrung nicht ein. Zusammengefasste Auswertungen und Sicherheitsereignisse – Angaben zu Anfragen, die Cloudflare geprüft oder
+    abgewiesen hat und die die IP-Adresse, die aufgerufene Adresse und die Browserkennung enthalten können – stellt Cloudflare uns im kostenlosen Tarif nach
+    eigenen Angaben mindestens 31 Tage lang in seinem Dashboard bereit; wir sehen sie nur dort ein und übernehmen sie nicht zu uns. Eine feste Frist für diese
+    Daten nennt Cloudflare nicht; nach dem Data Processing Addendum bewahrt Cloudflare die Daten auf, bis sie für die Erbringung des Dienstes nicht mehr
+    erforderlich sind, längstens bis zum Ende des Vertrags. Die Cookies laufen nach den oben genannten Zeiten ab.
+  </p>
+  <p>
+    <strong>Übermittlung in Drittländer:</strong> Cloudflare, Inc. hat ihren Sitz in den USA und betreibt Rechenzentren weltweit; eine Verarbeitung in den
+    USA oder anderen Drittländern ist deshalb nicht ausgeschlossen. Grundlage ist der Angemessenheitsbeschluss der Europäischen Kommission zum EU-U.S. Data
+    Privacy Framework vom 10. Juli 2023 (Art. 45 DSGVO); Cloudflare, Inc. ist nach eigenen Angaben unter diesem Rahmen zertifiziert. Ergänzend gelten die im
+    Data Processing Addendum vereinbarten Standarddatenschutzklauseln der Kommission (Art. 46 Abs. 2 lit. c DSGVO), falls der Beschluss wegfallen sollte. Es
+    lässt sich nicht ausschließen, dass US-Behörden auf diese Daten zugreifen.
+  </p>
+  <p id="cloudflare-widerspruch">
+    <strong>Widerspruch:</strong> Sie können dieser Verarbeitung nach Art. 21 DSGVO aus Gründen, die sich aus Ihrer besonderen Situation ergeben, jederzeit
+    widersprechen, formlos per E-Mail an die oben genannte Adresse. Weil jede Anfrage an jede unserer Adressen über Cloudflare geleitet wird, gibt es keinen
+    Weg zu unserer Website oder zu unseren Werkzeugen, der Cloudflare umgeht: Auch jedes Programm, das unsere Werkzeuge nutzt, erreicht sie über
+    mcp.viafrei.de und damit über Cloudflare. Ohne diese Verarbeitung können wir Ihnen weder die Website noch unsere Werkzeuge bereitstellen; vermeiden
+    können Sie sie nur, indem Sie unsere Adressen nicht aufrufen. Die Daten, auf denen unsere Antworten beruhen, sind offene Daten; jede Antwort nennt ihre
+    Quelle, bei der Sie diese Daten ohne uns abrufen können.
+  </p>
+  <p>
+    Weitere Informationen bei Cloudflare: <a href="https://www.cloudflare.com/privacypolicy/" rel="noopener noreferrer">cloudflare.com/privacypolicy</a>,
+    das Data Processing Addendum: <a href="https://www.cloudflare.com/cloudflare-customer-dpa/" rel="noopener noreferrer">cloudflare.com/cloudflare-customer-dpa</a>,
+    und die Cookies von Cloudflare:
+    <a href="https://developers.cloudflare.com/fundamentals/reference/policies-compliances/cloudflare-cookies/" rel="noopener noreferrer">developers.cloudflare.com</a>.
+  </p>
+
+  <h2>3. Server-Logfiles</h2>
+  <p>
+    Dieses Angebot besteht aus vier Adressen: der Website viafrei.de, dem MCP-Endpunkt mcp.viafrei.de, über den KI-Assistenten unsere Werkzeuge abfragen,
+    der Statusseite status.viafrei.de und der Betriebskonsole admin.viafrei.de; die letzten beiden sind nur dem Betreiber zugänglich. Für sie fallen
+    unterschiedliche Protokolle an.
+  </p>
+
+  <h3>Website viafrei.de</h3>
+  <p>Beim Aufruf von viafrei.de schreibt der ausliefernde Webserver (nginx) einen Eintrag in ein Zugriffsprotokoll. Erfasst werden:</p>
+  <ul>
+    <li>die IP-Adresse des anfragenden Geräts,</li>
+    <li>Datum und Uhrzeit der Anfrage,</li>
+    <li>die Anfragezeile (Methode, angefragte Adresse, Protokollversion),</li>
+    <li>der HTTP-Statuscode und die übertragene Datenmenge in Bytes,</li>
+    <li>die zuvor besuchte Seite (Referrer), sofern der Browser sie sendet,</li>
+    <li>die Browserkennung (User-Agent),</li>
+    <li>die Signale „Global Privacy Control“ (Sec-GPC) und „Do Not Track“ (DNT), sofern Ihr Browser sie sendet.</li>
+  </ul>
+  <p>
+    <strong>Zweck:</strong> der technische Betrieb, die Stabilität und die Sicherheit des Angebots — insbesondere das Erkennen und Nachvollziehen von Störungen
+    und missbräuchlichen Zugriffen — sowie die unter Punkt 4 beschriebene Besucherzählung.
+  </p>
+  <p>
+    <strong>Rechtsgrundlage:</strong> Art. 6 Abs. 1 lit. f DSGVO. Unser berechtigtes Interesse ist der sichere und störungsfreie Betrieb dieser Seite. Eine
+    Zusammenführung dieser Daten mit anderen Datenquellen oder eine Auswertung zu Werbezwecken findet nicht statt.
+  </p>
+  <p id="speicherdauer-website">
+    <strong>Speicherdauer:</strong> Die Zugriffs- und Fehlerprotokolle werden jede Nacht um Mitternacht (deutsche Zeit) in eine neue Datei geschrieben, und jede
+    Datei wird am siebten Tag danach automatisch gelöscht. War der Webserver zu diesem Zeitpunkt nicht in Betrieb, wird die Löschung beim nächsten Start
+    nachgeholt; bei jeder Bereitstellung prüfen wir außerdem, dass kein Eintrag älter als sieben Tage und eine Stunde ist. Es gibt keine Sicherung und keine
+    Archivierung dieser Protokolle; ältere Einträge existieren nirgends mehr.
+  </p>
+  <h3 id="ueberlastschutz">Schutz vor Überlastung</h3>
+  <p>
+    Rufen automatisierte Programme unsere Seiten so häufig ab, dass sie für Besucher nicht mehr rechtzeitig geladen werden könnten, schalten wir – und nur
+    für diese Zeit – eine unsichtbare Prüfung vor die Seiten, die Daten aus unserer Datenbank zeigen. Nur in dieser Zeit zählen wir, wie viele solcher
+    Seiten ein Anschluss in einem Zeitfenster von 10 Sekunden abruft. Dazu bildet unser Server aus der IP-Adresse der Anfrage (bei IPv6 aus ihren ersten
+    64 Bit) mit einem geheimen Schlüssel einen Prüfwert (HMAC-SHA-256). Den Schlüssel erzeugt er bei jedem Start neu und speichert ihn nirgends. Die
+    Adresse selbst hält er dafür nicht fest. Prüfwert und Zähler liegen nur im Arbeitsspeicher, für höchstens 20 000 Anschlüsse zugleich. Sie werden
+    nicht gespeichert, nicht protokolliert und mit dem ersten Abruf nach dem Ende der Überlastung verworfen. Wer in 10 Sekunden nicht mehr als 4 solcher
+    Seiten abruft, erhält sie wie immer. Ruft ein Anschluss mehr ab, kann sein Browser zuerst eine kurze Zwischenseite erhalten, deren Skript von
+    unserem eigenen Server eine kleine Rechenaufgabe löst; das dauert in der Regel weniger als eine Sekunde und verlangt keine Eingabe. Das Skript liest dabei keine
+    Eigenschaften Ihres Geräts aus und speichert selbst nichts darauf. Ist die Aufgabe gelöst, setzt unser Server ein Cookie (<code>__Host-vf_pass</code>),
+    das nur eine Versionsangabe, den Zeitpunkt seiner Ausstellung (auf die Minute), eine Zufallszahl und eine Signatur enthält – weder Ihre IP-Adresse noch
+    Ihre Browserkennung noch eine daraus gebildete Kennung. Es ist ein Cookie dieser Website (kein Drittanbieter), für Skripte nicht lesbar, wird nur über
+    HTTPS übertragen, beim Schließen des Browsers gelöscht und von uns höchstens zwölf Stunden nach seiner Ausstellung anerkannt. Solange keine
+    Überlastung besteht, wird es weder gesetzt noch verlangt. Es wird nicht protokolliert, mit keinen anderen Daten zusammengeführt, weder für die
+    Besucherzählung (Punkt 4) noch für Google Analytics verwendet und an niemanden weitergegeben. Es ist unbedingt erforderlich, damit wir Ihnen die von
+    Ihnen aufgerufene Seite auch unter Überlastung ausliefern können (§ 25 Abs. 2 Nr. 2 TDDDG), und erfordert daher keine Einwilligung.
+    Mit gültigem Cookie erhalten Sie die Seiten ohne Zwischenseite, und Ihre Abrufe werden nicht gezählt.
+  </p>
+  <p>
+    Suchmaschinen erkennen wir dabei nicht an ihrer Browserkennung, sondern an ihrer IP-Adresse: Gibt sich eine Anfrage als Crawler einer Suchmaschine aus,
+    gleichen wir ihre IP-Adresse mit den Adressbereichen ab, die der Betreiber der Suchmaschine veröffentlicht, oder fragen über den Namensdienst (DNS)
+    unseres Servers ab, zu welchem Namen die Adresse gehört, und prüfen, ob dieser Name wieder auf dieselbe Adresse verweist. Dabei erfährt der für die
+    Adresse zuständige Namensserver – in der Regel der Betreiber des Netzes, zu dem die Adresse gehört – dass die Adresse abgefragt wurde. Diese Prüfung
+    findet nur für Anfragen statt, die sich als Suchmaschine ausgeben, nie für Anfragen gewöhnlicher Browser. Das Ergebnis (bestätigt oder nicht, und
+    welche Suchmaschine) halten wir nur im Arbeitsspeicher, ein bestätigtes höchstens 24 Stunden, ein nicht bestätigtes höchstens eine Stunde; es wird
+    nicht gespeichert und nicht protokolliert und geht bei einem Neustart verloren. Bestätigte Suchmaschinen und KI-Assistenten werden nicht gezählt und
+    erhalten die Zwischenseite nie.
+  </p>
+  <p>
+    Für den Betrieb schreibt die Website-Anwendung einmal pro Stunde nur Summen in ihr Containerprotokoll: wie viele dieser Seiten ausgeliefert und wie viele
+    Zwischenseiten gezeigt wurden, getrennt nur nach der Art des Abrufs (Besucher, Crawler, SEO-Werkzeug) und gegebenenfalls dem Namen des Crawlers.
+    Diese Summen enthalten keine IP-Adresse, keinen Prüfwert und keine Browserkennung; in die Tabelle der Fehlermeldungen (unten) gehen sie nicht ein.
+    Darüber hinaus protokolliert die Prüfung keinen einzelnen
+    Abruf; im Zugriffsprotokoll der Website (oben) erscheint eine Zwischenseite wie jede Antwort nur mit ihrem Statuscode.
+  </p>
+  <p>
+    <strong>Zweck:</strong> die Verfügbarkeit und Sicherheit dieses Angebots. <strong>Rechtsgrundlage:</strong> Art. 6 Abs. 1 lit. f DSGVO; unser
+    berechtigtes Interesse ist es, die Seiten für Besucher auch dann erreichbar zu halten, wenn automatisierte Abrufe den Server überlasten (vgl.
+    Erwägungsgrund 49 DSGVO).
+  </p>
+  <p>
+    Der vorgelagerte TLS-Proxy des Servers (Caddy) führt für die Domain viafrei.de kein Zugriffsprotokoll. Dort fallen lediglich Betriebsmeldungen des Dienstes
+    (etwa Fehler beim Verbindungsaufbau) an; sie gehen in das systemd-Journal des Servers ein und unterliegen dessen Größen- und Zeitbegrenzung.
+  </p>
+  <p id="kartenlinks">
+    Bei Einträgen mit Ortsangabe zeigen wir Links, die die Stelle bei OpenStreetMap, bei Google Maps, bei Apple Karten oder in der Karten-App Ihres Geräts öffnen. Welcher dieser Links erscheint, leitet unser Server allein aus der Browserkennung (User-Agent) Ihrer Anfrage ab (Android, iPhone/iPad oder anderes Gerät); diese Einordnung wird nicht protokolliert und keiner Person zugeordnet. Vor einem Klick besteht keine Verbindung zu diesen Anbietern. Erst wenn Sie einen solchen Link anklicken, ruft Ihr Gerät den jeweiligen Anbieter auf und übermittelt ihm dabei die Koordinaten oder die Adresse des Eintrags sowie, wie bei jedem Seitenaufruf, Ihre IP-Adresse und Browserkennung; die Adresse unserer Seite wird dabei nicht mitgesendet. Für die weitere Verarbeitung ist der jeweilige Anbieter verantwortlich; es gilt dessen Datenschutzerklärung. Rechtsgrundlage für die Auswahl des Links ist Art. 6 Abs. 1 lit. f DSGVO; unser berechtigtes Interesse ist, Ihnen den Ort in der passenden Karten-App anzubieten.
+  </p>
+
+  <h3>MCP-Endpunkt mcp.viafrei.de</h3>
+  <p>
+    Für Anfragen an mcp.viafrei.de führt der vorgelagerte TLS-Proxy (Caddy) ein eigenes Zugriffsprotokoll. Je Anfrage wird eine Zeile (im JSON-Format)
+    geschrieben. Sie enthält:
+  </p>
+  <ul>
+    <li>Datum und Uhrzeit der Anfrage,</li>
+    <li>
+      die gekürzte IP-Adresse des anfragenden Geräts (bei IPv4 die ersten drei Blöcke, also /24; bei IPv6 die ersten 48 Bit, also /48), und zwar sowohl als
+      Adresse der Verbindung (das ist die Adresse des Cloudflare-Servers, über den die Anfrage kam) als auch als ermittelte Client-Adresse,
+    </li>
+    <li>den Quellport der Verbindung,</li>
+    <li>das Protokoll und die HTTP-Version,</li>
+    <li>die HTTP-Methode,</li>
+    <li>den angefragten Hostnamen,</li>
+    <li>den angefragten Pfad einschließlich seiner Abfrageparameter, mit Ausnahme des Sitzungsparameters <code>sessionId</code>,</li>
+    <li>die empfangene Datenmenge, die Größe der Antwort in Bytes, den HTTP-Statuscode und die Bearbeitungsdauer,</li>
+    <li>
+      bei HTTPS die Parameter der verschlüsselten Verbindung zwischen Cloudflare und unserem Server (TLS-Protokollversion, Verschlüsselungsverfahren, angefragter
+      Servername) — die verschlüsselte Verbindung Ihres Geräts endet bei Cloudflare, ihre Parameter erreichen uns nicht,
+    </li>
+    <li>genau drei Kopfzeilen der Anfrage: die Kennung des anfragenden Programms (User-Agent), Accept und Content-Type.</li>
+  </ul>
+  <p>
+    Alle übrigen Kopfzeilen der Anfrage und sämtliche Kopfzeilen der Antwort werden vollständig verworfen und nicht gespeichert — darunter Authorization, Cookie,
+    Sitzungskennungen, der Referrer und Weiterleitungs-Kopfzeilen, die eine vollständige IP-Adresse enthalten könnten.
+  </p>
+  <p>
+    <strong>Speicherdauer:</strong> Das Protokoll wird täglich rotiert (und zusätzlich, sobald es 50 MB erreicht). Rotierte Dateien werden komprimiert und
+    spätestens nach fünf Tagen gelöscht; ein Eintrag bleibt damit höchstens etwa sieben Tage erhalten. Es werden höchstens sieben rotierte Dateien vorgehalten.
+    Rotation und Löschung finden statt, wenn die nächste Anfrage eintrifft; erhält der Endpunkt keine Anfragen, bleibt die alte Datei bis dahin bestehen.
+  </p>
+  <p>
+    Zusätzlich schreibt der MCP-Server selbst je Anfrage eine Protokollzeile. Sie enthält: den Zeitpunkt, den Zugangsweg (Streamable HTTP oder das ältere
+    HTTP+SSE), die aufgerufene JSON-RPC-Methode, bei einem Werkzeugaufruf den Namen des Werkzeugs, den Statuscode, bei einer Antwort über HTTP+SSE die Angabe,
+    ob sie eine Fehlermeldung war, bei einer Ablehnung wegen zu vieler Anfragen die Art des überschrittenen Limits, die Bearbeitungsdauer und die Zahl der
+    Anfragen, die beim Eintreffen auf eine freie Datenbankverbindung warteten. Diese Anfragezeile enthält keine IP-Adresse, keine Sitzungskennung, keinen
+    User-Agent und keine Werkzeugargumente.
+  </p>
+  <p>
+    Die Anfragezeilen landen im Containerprotokoll des MCP-Servers, zusammen mit dessen Betriebs- und Fehlermeldungen; diese können im Einzelfall eine abgefragte
+    Haltestellennummer oder, wenn die Zustellung einer Beobachtungsmeldung fehlschlägt, eine Sitzungskennung enthalten. Das Containerprotokoll wird nicht nach
+    Zeit, sondern nach Größe begrenzt: ein rotierender Puffer von höchstens fünf Dateien zu je 10 MB (zusammen also maximal rund 50 MB). Ist der Puffer voll,
+    werden die ältesten Einträge automatisch überschrieben; wie viele Tage das umfasst, hängt allein vom Anfrageaufkommen ab. Beim Neuaufbau des Containers wird
+    das Protokoll vollständig gelöscht; eine Sicherung oder Archivierung findet nicht statt.
+    Ausgenommen sind allein die darin enthaltenen Warn- und Fehlermeldungen: Sie übernehmen wir zuvor bereinigt in unsere Datenbank, wie unter
+    „<a href="#fehlermeldungen">Fehlermeldungen unserer Dienste</a>“ beschrieben.
+  </p>
+  <p>
+    <strong>Zweck:</strong> der Betrieb und die Sicherheit des Dienstes sowie die Diagnose von Fehlern und Antwortzeiten.
+  </p>
+  <p>
+    <strong>Rechtsgrundlage:</strong> Art. 6 Abs. 1 lit. f DSGVO. Unser berechtigtes Interesse ist der sichere, störungsfreie und ausreichend schnelle Betrieb
+    des MCP-Endpunkts. Eine Zusammenführung dieser Daten mit anderen Datenquellen findet nicht statt, ebenso wenig eine Profilbildung.
+  </p>
+  <p id="nutzungsstatistik">
+    <strong>Nutzungsstatistik:</strong> Aus denselben Anfragen führt der MCP-Server außerdem eine Zählung in unserer Datenbank auf diesem Server. Sie enthält
+    ausschließlich zusammengefasste Werte je Stunde: Zugangsweg, JSON-RPC-Methode, Werkzeugname und das verwendete Client-Programm, dazu die Zahl der
+    Anfragen, der Fehler und der neu eröffneten Sitzungen sowie die Antwortzeiten als Summe und in groben Stufen. Als Client-Programm wird nur ein Name aus
+    einer festen Liste bekannter Programme gespeichert (etwa „claude-ai“ oder „cursor“), und nur dann, wenn der Name, den das Programm beim Verbindungsaufbau
+    selbst meldet, mit einem Eintrag dieser Liste übereinstimmt oder mit ihm beginnt; gespeichert wird dann der Listeneintrag, nie der gemeldete Name selbst.
+    Jeder andere Name wird als „other“ gezählt, ein fehlender als „unknown“. Die Zählwerte enthalten keine IP-Adressen, keine Sitzungskennungen, keine
+    Werkzeugargumente, keine Fragetexte, keine Ortsangaben und keine Browserkennung (User-Agent), und sie werden nicht mit anderen Daten zusammengeführt.
+    Die Stundenwerte werden nach 90 Tagen zu Tageswerten zusammengefasst; die Tageswerte werden unbefristet aufbewahrt. {
+      analytics ? (
+        <>
+          Die Auswertung im Einzelnen ist nur uns zugänglich. Einmal täglich übermitteln wir von unserem Server aus die Tagessummen eines Kalendertags (nach
+          koordinierter Weltzeit, UTC) an Google Analytics 4 (Google Ireland Limited, Punkt 5), um die Nutzung des MCP-Endpunkts dort neben den Zahlen der
+          Website auszuwerten. Übermittelt werden ausschließlich Zahlen unter festen Namen: die Zahl der Anfragen, der neu eröffneten Sitzungen, der
+          Werkzeugaufrufe, der Fehler (auch aufgeschlüsselt nach Werkzeug- und Serverfehlern) und der abgelehnten Anfragen, die Anfragen je Zugangsweg und
+          getrennt nach gewöhnlichen Anfragen und automatisierten Abrufen durch Scanner, die Aufrufe je Werkzeug und die Anfragen je Client-Programm aus der
+          genannten festen Liste; unsere eigenen Testabrufe werden nur getrennt davon als eine Zahl übermittelt. In den Standardberichten von Google Analytics
+          bleiben diese Tagessummen ohne festes Ende erhalten; die unter Punkt 5 beschriebene Aufbewahrungsdauer der Property (höchstens 14 Monate) gilt nur
+          für die Daten auf Ereignisebene in den explorativen Auswertungen. Die Übermittlung trägt eine feste, für jeden
+          Tag gleiche Kennung des Übermittlungsvorgangs und keine IP-Adresse, keinen Standort, keine Sitzungskennung und keine sonstige Angabe zu einer Person;
+          auf Ihrem Gerät wird dafür nichts gespeichert oder ausgelesen. Google erhält damit keine personenbezogenen Daten. Sollten die Tagessummen im Einzelfall
+          doch einen Personenbezug haben, verarbeitet Google sie als unser Auftragsverarbeiter zu den unter Punkt 5 genannten Bedingungen, einschließlich der
+          dort genannten Grundlage für eine Übermittlung in die USA. Aus der Besucherzählung der Website (Punkt 4) wird nichts übermittelt.
+        </>
+      ) : (
+        <>Die Auswertung ist nur uns zugänglich und wird an niemanden weitergegeben.</>
+      )
+    } Zweck ist es zu erkennen, ob und wie der Dienst genutzt wird, welche Werkzeuge gebraucht werden und ob
+    er ausreichend schnell antwortet. Soweit dabei überhaupt personenbezogene Daten verarbeitet werden, ist die Rechtsgrundlage Art. 6 Abs. 1 lit. f DSGVO;
+    unser berechtigtes Interesse ist der bedarfsgerechte, störungsfreie und ausreichend schnelle Betrieb des MCP-Endpunkts.
+  </p>
+
+  <h3 id="statusseite">Statusseite und Betriebskonsole</h3>
+  <p>
+    Die Statusseite status.viafrei.de zeigt, ob unsere Datenquellen und der MCP-Endpunkt arbeiten. Sie ist wie die Betriebskonsole nur dem Betreiber
+    zugänglich: Anfragen von anderen Adressen werden ohne Inhalt abgewiesen; ihre Adresse wird dabei nicht gespeichert, und für den Aufruf schreiben wir
+    kein Zugriffsprotokoll.
+  </p>
+  <p>
+    Die Betriebskonsole admin.viafrei.de ist nur dem Betreiber zugänglich: Anfragen von anderen Adressen werden ohne Inhalt abgewiesen; ihre Adresse wird
+    dabei nicht gespeichert. Für die Anmeldung des Betreibers setzt sie ein technisch notwendiges Sitzungs-Cookie (<code>__Host-vf_console</code>, gültig
+    acht Stunden) und, nur während einer Anmeldung mit Passkey, ein ebenfalls technisch notwendiges Cookie (<code>__Host-vf_passkey</code>, gültig zwei
+    Minuten), das diese Anmeldung an den Browser bindet, in dem sie begonnen wurde; beide nach § 25 Abs. 2 Nr. 2 TDDDG. Weitere Cookies oder Analysedienste
+    verwendet sie nicht. Jede Anmeldung, jeden abgelehnten Anmeldeversuch und jede Aktion hält sie mit der IP-Adresse, von der die Anfrage kam, in einem Prüfprotokoll fest, um Änderungen am Betrieb nachvollziehen und Missbrauch erkennen
+    zu können (Art. 6 Abs. 1 lit. f DSGVO). Dieses Protokoll kann nachträglich nicht geändert werden, mit einer Ausnahme: Zwölf Monate nach einem Eintrag wird
+    dessen IP-Adresse automatisch gelöscht. Der Eintrag bleibt danach ohne IP-Adresse erhalten (Zeitpunkt, Aktion, betroffene Funktion
+    oder Einstellung und Ergebnis) und lässt sich keiner Person außer dem Betreiber mehr zuordnen. In unseren nächtlichen
+    Datensicherungen ist die Adresse noch enthalten, bis die jeweilige Sicherung im regelmäßigen Wechsel gelöscht wird; wir bewahren nur
+    die sieben jüngsten Sicherungen auf.
+  </p>
+
+  <h3 id="live-abfragen">Live-Abfragen bei Datenanbietern</h3>
+  <p>
+    Vier Werkzeuge des MCP-Endpunkts fragen während einer Anfrage einen Datenanbieter ab, statt allein aus unserer Datenbank zu antworten.
+    <strong>Kraftstoffpreise</strong> (<code>find_cheapest_fuel</code>, <code>find_fuel_station</code>): Fragen Sie nach Kraftstoff an einem eindeutig
+    bestimmten Ort, für den wir Tankstellen halten, kann unser Server bei Tankerkönig (creativecommons.tankerkoenig.de), der Quelle der Preisdaten der
+    Markttransparenzstelle für Kraftstoffe, die aktuellen Preise der nächstgelegenen dieser Tankstellen abfragen — höchstens zehn je Frage und nur, wenn
+    deren Preis älter als 30 Minuten ist (ein von uns einstellbarer Wert, nie unter fünf Minuten); übermittelt werden dafür allein deren Tankstellen-Kennungen. Halten wir für den abgefragten Ort noch keine Tankstelle
+    oder verzeichnet OpenStreetMap dort nähere Tankstellen in Deutschland als die uns bekannten, übermittelt unser Server bei
+    <code>find_cheapest_fuel</code> stattdessen die Koordinaten dieses Ortes und den Suchradius an Tankerkönig. Ein so abgefragtes Gebiet fragt unser Server danach 30 Tage lang nicht erneut ab (ein von uns einstellbarer Wert, nie unter einem Tag; nach einer gescheiterten Abfrage oder einem Neustart unseres Servers auch früher); dafür behält er eine auf etwa fünf Kilometer gerundete Kennung dieses Ortes so lange und eine auf etwa 100 Meter gerundete 24 Stunden lang im Arbeitsspeicher, ohne Bezug zum Fragenden, und speichert oder protokolliert sie nicht. In der Regel fragt unser Server bei <code>find_cheapest_fuel</code> statt einzelner Tankstellen einmal nach
+    allen Tankstellen und deren Preisen im Umkreis von 25 Kilometern um den Mittelpunkt des auf etwa fünf Kilometer gerundeten Gebiets, in dem der abgefragte
+    Ort liegt — nie um den Ort selbst; übermittelt werden dafür allein dieser Mittelpunkt und der Suchradius von 25 Kilometern. Diesen Mittelpunkt behält er
+    danach bis zu 30 Minuten (die Dauer des Preisfensters) im Arbeitsspeicher, um weitere Fragen aus diesem Umkreis ohne neue Abfrage zu beantworten, ohne
+    Bezug zum Fragenden, und speichert oder protokolliert ihn nicht; ist die Tagesgrenze an so abgefragten Tankstellen erreicht oder diese Abfrageart
+    abgeschaltet, gilt der zuvor beschriebene Weg. Diese Abfragen bei Tankerkönig stellt unser Server — für die Werkzeuge wie für die Website — nacheinander über eine Warteschlange, grundsätzlich in der Reihenfolge ihres Eingangs und höchstens eine je Minute; bis eine Abfrage an der Reihe ist, hält er dafür nur die Tankstellen-Kennungen oder die Koordinaten und den Suchradius sowie eine auf etwa fünf Kilometer gerundete Kennung des Gebiets im Arbeitsspeicher, nach einer Preisabfrage diese Kennung noch höchstens fünf Minuten (nach einer Abfrage im Umkreis von 25 Kilometern dessen Mittelpunkt bis zu 30 Minuten), ohne Bezug zum Fragenden, und speichert oder protokolliert sie nicht; ein Neustart unseres Servers leert die Warteschlange. <strong>Zugabfahrten</strong> (<code>get_train_departures</code>) und <strong>Aufzüge und Fahrtreppen</strong>
+    (<code>check_station_facilities</code>): Unser Server übermittelt die Nummer des abgefragten Bahnhofs — bei Abfahrten zusätzlich Datum und Stunde — an
+    die DB API Marketplace der Deutschen Bahn (apis.deutschebahn.com). Dieselbe Preisabfrage — in der Regel die im Umkreis von 25 Kilometern um den Mittelpunkt der Gemeinde, sonst die einzelner Tankstellen, und, wo wir für einen Ort weniger als drei Tankstellen
+    oder nicht die nächstgelegenen kennen, die Suche nach dessen Tankstellen um den Mittelpunkt der Gemeinde — stellt unser Server auch für die Tankkarte der Website, wie unter „<a href="#ort-tanken">Aktuelle Preise für Ihren Ort</a>“ beschrieben.
+  </p>
+  <p>
+    Übermittelt wird jeweils nur, was den abgefragten Ort betrifft — Tankstellen-Kennungen, Koordinaten oder eine Bahnhofsnummer —, niemals der eingegebene
+    Text, Ihre IP-Adresse, eine Sitzungskennung oder eine sonstige Angabe zu Ihrer Person; die Anfrage stellt unser Server unter eigener Kennung, mit unserem
+    eigenen Zugangsschlüssel. Haben Sie nach einer Anschrift gefragt,
+    erreicht den Anbieter allein deren Koordinate, nicht die Anschrift selbst.
+  </p>
+  <p>
+    <strong>Rechtsgrundlage:</strong> Art. 6 Abs. 1 lit. f DSGVO. Unser berechtigtes Interesse ist es, die gestellte Frage mit aktuellen Daten zu beantworten.
+    Die übermittelten Orte und Tankstellen-Kennungen werden bei uns nicht mit Angaben zum Fragenden verknüpft.
+  </p>
+
+  <h3 id="fehlermeldungen">Fehlermeldungen unserer Dienste</h3>
+  <p>
+    Damit wir Störungen auch nach einem Neustart oder einer Aktualisierung unserer Dienste noch nachvollziehen können, übernimmt ein Programm auf unserem Server alle fünf Minuten und vor jeder Aktualisierung die Warn- und Fehlermeldungen unserer Dienste – des MCP-Servers, der Website-Anwendung, des Dienstes, der die Karten erstellt, der Statusseite und Betriebskonsole, der Datenbank und der Datenabrufe – aus deren Containerprotokollen in eine Tabelle unserer Datenbank auf diesem Server. Die Protokolle des ausliefernden Webservers der Website (oben unter „Website viafrei.de“) gehören nicht dazu. Gespeichert werden je Meldung nur: der Dienst, die Art des Fehlers als festes Kürzel, die betroffene Funktion (etwa der Name eines Werkzeugs oder die Art einer Seite, nie die vollständige aufgerufene Adresse), der HTTP-Statuscode, die Bearbeitungsdauer, ein auf 300 Zeichen gekürzter Meldungstext und ein auf 2 KB gekürzter technischer Ablaufbericht sowie je Stunde der Zeitpunkt und die Anzahl. Vor dem Speichern entfernen wir aus dem Text IP-Adressen, Sitzungskennungen, Zugangsschlüssel und andere Kennungen, Koordinaten und Gebietskennungen, Zahlen mit zwei oder mehr Nachkommastellen, Zahlenfolgen ab fünf Ziffern, Anfrageparameter und alles, was in Anführungszeichen steht. Werkzeugargumente, Suchtexte, Orte oder Gebiete, nach denen gefragt wurde, Browserkennungen (User-Agent), Cookies und Anfrageinhalte werden nicht gespeichert. Die Einträge sind nur dem Betreiber in der Betriebskonsole zugänglich, werden an niemanden weitergegeben, nicht in die nächtliche Datensicherung aufgenommen und nach 30 Tagen automatisch gelöscht; bei jeder Bereitstellung prüfen wir, dass kein älterer Eintrag besteht. <strong>Zweck:</strong> das Erkennen, Nachvollziehen und Beheben von Störungen. <strong>Rechtsgrundlage:</strong> Soweit die Einträge nach dieser Bereinigung überhaupt noch personenbezogene Daten enthalten, Art. 6 Abs. 1 lit. f DSGVO; unser berechtigtes Interesse ist der sichere und störungsfreie Betrieb des Angebots.
+  </p>
+
+  <h2 id="besucherzaehlung">4. Besucherzählung ohne Cookies</h2>
+  <p>
+    Damit wir wissen, wie viele Menschen diese Seite nutzen, werten wir das unter Punkt 3 beschriebene Zugriffsprotokoll auf unserem eigenen Server statistisch
+    aus. Auf Ihrem Gerät wird dafür nichts gespeichert und nichts ausgelesen: kein Cookie, kein lokaler Speicher, kein Zählpixel, kein Skript. Verwendet werden
+    nur die Angaben, die Ihr Browser beim Aufruf einer Seite ohnehin sendet.
+  </p>
+  <p>
+    <strong>So zählen wir:</strong> Damit ein Besucher an einem Tag nur einmal gezählt wird, bildet ein Programm aus der IP-Adresse (bei IPv6 nur aus deren
+    ersten 64 Bit) und der Browserkennung einen kryptografischen Prüfwert (HMAC-SHA-256). Der Schlüssel dafür wird für jeden Kalendertag neu und zufällig
+    erzeugt, nur im Arbeitsspeicher gehalten und nach der Auswertung des Tages verworfen; er wird nie gespeichert. Auch die Prüfwerte werden nicht gespeichert.
+    Ohne den Schlüssel lässt sich aus einem Prüfwert weder die IP-Adresse zurückgewinnen noch ein Besuch an einem anderen Tag demselben Besucher zuordnen. Wer
+    an zwei Tagen kommt, wird an beiden Tagen gezählt. Aufrufe mit demselben Prüfwert, zwischen denen höchstens 30 Minuten liegen, zählen wir als einen
+    Besuch; ein Besuch endet spätestens mit dem Kalendertag.
+  </p>
+  <p id="was-gespeichert-wird">
+    <strong>Was gespeichert wird:</strong> ausschließlich Summen. Je Tag: die Zahl der Besucher und der Besuche; wie viele Besuche 1, 2, 3, 4–5, 6–10 oder
+    mehr als 10 Seiten umfassten; die Zahl der Seitenaufrufe je Seite und Sprache (auf den Autobahnseiten je Autobahn); die Zahl der Besuche je
+    Einstiegsseite, je verweisender Domain (etwa „google.com“, ohne Pfad und ohne Suchbegriffe; eine Domain, von der an einem Tag weniger als drei Besuche
+    kamen, nur als „sonstige“) und je Suchmaschine; die Zahl der Seitenaufrufe je Geräteklasse (Desktop, Mobilgerät, Tablet oder „sonstige“, wenn keine dieser
+    drei erkennbar ist). Je Stunde nur die Gesamtzahl der Besuche und der Seitenaufrufe. Keine dieser Summen wird nach einer anderen aufgeschlüsselt. Die
+    Geräteklasse wird aus der Browserkennung abgeleitet; die Kennung selbst wird nicht gespeichert. Eine IP-Adresse, eine Zeile je Besucher oder je Besuch
+    oder ein Nutzungsprofil gibt es in dieser Statistik nicht.
+  </p>
+  <p id="automatische-abrufe">
+    <strong>Automatische Abrufe:</strong> Aufrufe durch Suchmaschinen und andere automatische Programme werden herausgefiltert – Programme, die sich in ihrer
+    Browserkennung als solche zu erkennen geben, und Abrufe, die an diesem Tag keine der zur Darstellung der Seite nötigen Dateien laden oder nach Häufigkeit
+    und Muster einem automatischen Abruf entsprechen. Diese Einordnung geschieht nur während der Auswertung im Arbeitsspeicher; gespeichert wird nur die Zahl
+    der so herausgefilterten Aufrufe je Tag. Dafür wird weder eine Adressliste geführt noch eine Adresse nachgeschlagen.
+  </p>
+  <p>
+    <strong>Zweck und Rechtsgrundlage:</strong> Art. 6 Abs. 1 lit. f DSGVO. Unser berechtigtes Interesse ist es zu wissen, wie viele Menschen dieses kostenlose
+    Angebot erreicht und welche Seiten und Sprachen gebraucht werden, um es zu betreiben und zu verbessern. Eine Zählung nur mit Einwilligung würde die Nutzung
+    nicht annähernd abbilden. Die Auswertung ist eine Weiterverarbeitung der unter Punkt 3 erhobenen Daten zu einem damit vereinbaren Zweck (Art. 6 Abs. 4
+    DSGVO). Eine Einwilligung nach § 25 TDDDG ist nicht erforderlich, weil weder Informationen auf Ihrem Gerät gespeichert noch von dort ausgelesen werden.
+  </p>
+  <p>
+    <strong>Speicherdauer:</strong> Die zugrunde liegenden Protokolle werden nach sieben Tagen gelöscht, wie unter Punkt 3 beschrieben. Die Tages- und
+    Stundensummen lassen keinen Rückschluss auf einzelne Personen zu und werden unbefristet aufbewahrt.
+  </p>
+  <p>
+    <strong>Empfänger:</strong> keine. Die Auswertung läuft ausschließlich auf unserem Server in Deutschland, den unser Hoster (Punkt 2) in unserem Auftrag
+    betreibt. Weder die Protokolle noch die Tagessummen werden an Dritte übermittelt; auch Google Analytics erhält aus dieser Zählung nichts.
+  </p>
+  <section class="legal__box" id="widerspruch-besucherzaehlung" aria-labelledby="widerspruch-besucherzaehlung-h">
+    <h3 id="widerspruch-besucherzaehlung-h">Ihr Widerspruchsrecht (Art. 21 DSGVO)</h3>
+    <p>
+      Sie können der Besucherzählung jederzeit widersprechen. Am einfachsten geht das automatisiert (Art. 21 Abs. 5 DSGVO): Sendet Ihr Browser das Signal
+      „Global Privacy Control“ (Sec-GPC: 1) oder „Do Not Track“ (DNT: 1), werden Ihre Aufrufe nicht gezählt; sie gehen weder in die Besucherzahl noch in eine
+      andere Tagessumme ein. Sie können auch formlos per E-Mail an die oben genannte Adresse widersprechen. Weil wir Ihre Aufrufe in der Statistik nicht
+      wiedererkennen können (Art. 11 DSGVO), lässt sich ein Widerspruch technisch nur über eines dieser Signale umsetzen; darauf weisen wir Sie in unserer Antwort
+      hin. Die Protokollierung nach Punkt 3 zum Schutz des Betriebs bleibt davon unberührt; diese Protokolle werden nach sieben Tagen gelöscht, wie dort beschrieben.
+    </p>
+  </section>
+
+  {
+    !analytics && (
+      <>
+        <h2>5. Kein Tracking, keine Drittanbieter</h2>
+        <p>
+          Diese Seite setzt selbst kein Cookie außer den beiden unter „Sprachauswahl“ und „Schutz vor Überlastung“ beschriebenen, die nur Ihre selbst gewählte Sprache bzw. den
+          Nachweis der bestandenen Prüfung enthalten, und verwendet keine
+          Analyse-, Tracking- oder Werbedienste Dritter. Die eigene Besucherzählung nach Punkt 4 kommt ohne Cookies aus und verlässt unseren Server nicht. Die
+          Sicherheits-Cookies, die Cloudflare zum Schutz vor automatisierten Zugriffen setzen kann, sind unter Punkt 2 („<a href="#cloudflare-cookies">Auslieferung
+          über Cloudflare</a>“) beschrieben. Sämtliche Inhalte (Text, Bild, Stilangaben) werden vom
+          eigenen Server über Cloudflare ausgeliefert; es werden keine Inhalte von Dritten nachgeladen — keine Schriftarten, keine Skripte, keine eingebetteten Karten. Beim
+          Aufruf dieser Seite entsteht deshalb keine Verbindung zu einem anderen Anbieter als Cloudflare.
+        </p>
+      </>
+    )
+  }
+  {
+    analytics && (
+      <>
+        <h2>5. Google Analytics — nur mit Ihrer Einwilligung</h2>
+        <p>
+          Auf den Inhaltsseiten dieses Angebots (Start, Verbinden, Entwickler, Unternehmen, die Übersicht der Autobahnen und die Seite jeder Autobahn) können wir die Nutzung mit Google Analytics 4 messen. Der Dienst wird
+          erst geladen, nachdem Sie im Hinweisfenster auf „Einverstanden“ geklickt haben. Bis dahin wird nichts von Google nachgeladen, es entsteht keine
+          Verbindung zu Google und es wird kein Cookie von Google gesetzt (Google Consent Mode v2 im Basic-Modus). Lehnen Sie ab, bleibt es dabei — auch bei jedem
+          späteren Aufruf, bis wir Sie frühestens nach sechs Monaten noch einmal fragen. Das Impressum, diese Erklärung, die Fehlerseite, die Ortsseiten, die Kraftstoffseite, die Übersicht der Bahnhöfe und die Seite jedes Bahnhofs enthalten keine Analyse.
+        </p>
+        <p>
+          <strong>Anbieter:</strong> Google Ireland Limited, Gordon House, Barrow Street, Dublin 4, Irland („Google“). Google verarbeitet die Daten für uns als
+          Auftragsverarbeiter; Grundlage sind die Auftragsverarbeitungsbedingungen (Art. 28 DSGVO), die Bestandteil der Nutzungsbedingungen von Google Analytics
+          sind.
+        </p>
+        <p><strong>Verarbeitete Daten:</strong></p>
+        <ul>
+          <li>die IP-Adresse Ihres Geräts (nach Angaben von Google gekürzt und nicht gespeichert),</li>
+          <li>die aufgerufene Seite, Zeitpunkt und Dauer des Aufrufs,</li>
+          <li>auf den Autobahnseiten die Autobahn als Teil der Seitenadresse — beim Laden der Seite ohne gewählten Abschnitt, Richtung, Filter oder Umkreis und nie Ihr Ort oder der Weg, auf dem die Seite ihn bestimmt hat,</li>
+          <li>auf der Startseite die Seitenadresse ohne die gewählten Themen der Themenauswahl — weder beim Laden der Seite noch wenn Sie die Auswahl danach ändern, und auf den Ortsseiten, wo dieselbe Auswahl steht, wird nicht gemessen (siehe „Themenauswahl“),</li>
+          <li>die zuvor besuchte Seite (Referrer), sofern der Browser sie sendet,</li>
+          <li>Gerät, Betriebssystem, Browser, Bildschirmgröße und Spracheinstellung,</li>
+          <li>ein ungefährer Standort (Land und Region), aus der IP-Adresse abgeleitet,</li>
+          <li>auf der Startseite, auf welchem Weg die Seite Ihren Ort bestimmt hat (Browser, IP-Adresse, eigene Auswahl, gespeicherte Auswahl oder keiner) —
+            nie der Ort selbst,</li>
+          <li>wenn Sie bei einer Karte weitere Einträge laden oder sie aktualisieren: welche Art von Karte, der wievielte Schritt, von Hand oder automatisch
+            (Stichprobe) und ob sich der Inhalt geändert hat — nie, was die Karte zeigt, und nie Ihr Ort,</li>
+          <li>auf der Seite für Unternehmen, welchen der Knöpfe Sie anklicken (Pilotprojekt, Kontakt oder Live-Antwort) — nie die E-Mail-Adresse, und
+            ob Sie danach eine Nachricht schreiben, erfährt die Seite nicht,</li>
+          <li>auf der Seite für Entwickler, dass Sie eine Konfiguration oder einen curl-Befehl kopiert haben und aus welchem Reiter — nie, was kopiert
+            wurde,</li>
+          <li>
+            eine pseudonyme Kennung, die Google nach Ihrer Einwilligung in den Cookies <code>_ga</code> und <code>_ga_&lt;Container-ID&gt;</code> auf Ihrem Gerät
+            speichert.
+          </li>
+        </ul>
+        <p id="ga-ereignisse">
+          <strong>Automatisch erfasste Ereignisse:</strong> Für unsere Property ist die „erweiterte Messung“ von Google Analytics eingeschaltet. Nach Ihrer
+          Einwilligung erfasst Google Analytics deshalb neben den Seitenaufrufen, die die Seite selbst meldet, von sich aus die folgenden Ereignisse.
+        </p>
+        <ul>
+          <li>
+            <strong>Scrollen:</strong> dass Sie das Ende einer Seite (90 Prozent ihrer Höhe) erreicht haben, mit der bis dahin aktiven Zeit auf der Seite.
+          </li>
+          <li>
+            <strong>Suche:</strong> auf der Übersicht der Autobahnen den Begriff, den Sie in deren Suchfeld eingegeben haben; er steht nach dem Suchen als
+            <code>q</code> in der Adresse, etwa <code>?q=7</code>. Keine andere gemessene Seite trägt einen der Adressparameter, an denen Google eine Suche
+            erkennt (<code>q</code>, <code>s</code>, <code>search</code>, <code>query</code>, <code>keyword</code>). Was Sie in das Suchfeld oben auf jeder Seite
+            oder in das der Ortsleiste tippen, steht erst nach dem Absenden in einer Adresse, der der Ergebnisseite der Suche, und diese Seite misst Google
+            Analytics nicht (siehe „Suche“); ein in der Ortsleiste gewählter Ort steht nie in einem Suchparameter und erreicht Google nicht.
+          </li>
+          <li>
+            <strong>Formulare:</strong> dass Sie beginnen, ein Formular zu benutzen, und dass Sie es absenden, mit dessen Kennung, Namen und Zieladresse und
+            beim Absenden der Beschriftung der Schaltfläche — nie, was Sie darin eingetragen oder gewählt haben (zum Suchbegriff siehe „Suche“). Formulare gibt es
+            auf den gemessenen Seiten nur sechs: die Suche oben auf jeder Seite und die Suche der Ortsleiste, deren Zieladresse die nicht gemessene
+            Ergebnisseite der Suche ist, die Themenauswahl über den Karten der Startseite, deren gewählte Themen als <code>topics</code> in der Adresse stehen, die Suche der Autobahnübersicht, die
+            Suche auf einer Autobahnseite, deren Begriff als <code>find</code> in der Adresse steht und damit nicht als Suche erkannt wird, und die
+            Auswahl von Abschnitt, Richtung und Ebenen auf einer Autobahnseite.
+          </li>
+          <li>
+            <strong>Dateien:</strong> klicken Sie einen Link auf eine Datei, etwa eine ZIP-Datei, auf die die Quellenangabe eines Datenanbieters verweist, deren
+            Adresse, Name und Endung und die Beschriftung des Links.
+          </li>
+          <li>
+            <strong>Videos:</strong> Unsere Seiten binden keine Videos ein; hierzu entsteht daher kein Ereignis.
+          </li>
+        </ul>
+        <p>
+          <strong>Zweck:</strong> Reichweitenmessung — wie viele Menschen die Seite aufrufen und welche Inhalte gefunden werden. Wir führen diese Daten mit keiner
+          anderen Datenquelle zusammen, nutzen sie nicht für Werbung und ziehen keine Schlüsse auf einzelne Personen.
+        </p>
+        <p>
+          <strong>Rechtsgrundlage:</strong> Ihre Einwilligung nach Art. 6 Abs. 1 lit. a DSGVO; für das Speichern und Auslesen von Informationen auf Ihrem Gerät §
+          25 Abs. 1 TDDDG.
+        </p>
+        <p>
+          <strong>Übermittlung in die USA:</strong> Google Ireland kann Daten an Google LLC in den USA übermitteln. Grundlage ist der Angemessenheitsbeschluss der
+          Europäischen Kommission zum EU-U.S. Data Privacy Framework vom 10. Juli 2023; Google LLC ist unter diesem Rahmen zertifiziert. Ergänzend gelten die
+          Standarddatenschutzklauseln der Kommission (Art. 46 Abs. 2 lit. c DSGVO), falls der Beschluss wegfallen sollte. Es lässt sich nicht ausschließen, dass
+          US-Behörden auf diese Daten zugreifen.
+        </p>
+        <p>
+          <strong>Speicherdauer:</strong> Wie lange Google die Ereignis- und Nutzerdaten aufbewahrt, ist in den Einstellungen der Property festgelegt; Google
+          Analytics 4 lässt dafür höchstens 14 Monate zu. Die genannten Cookies laufen spätestens nach zwei Jahren ab. Die aktuell eingestellte Aufbewahrungsdauer
+          teilen wir Ihnen auf Anfrage an die oben genannte E-Mail-Adresse mit.
+        </p>
+        <p>
+          <strong>Widerruf:</strong> Sie können Ihre Einwilligung jederzeit mit Wirkung für die Zukunft widerrufen — so einfach, wie Sie sie erteilt haben (Art. 7
+          Abs. 3 DSGVO):
+        </p>
+        <ul>
+          <li>
+            <ConsentWithdraw
+              client:load
+              label="Einwilligung widerrufen"
+              done="Ihre gespeicherte Entscheidung ist gelöscht."
+              none="Auf diesem Gerät war keine Entscheidung gespeichert."
+            />
+            <br />
+            Das löscht die auf diesem Gerät gespeicherte Entscheidung und die Cookies <code>_ga</code> und <code>_ga_&lt;Container-ID&gt;</code>, die Google nach
+            Ihrer Einwilligung gesetzt hatte. Beim nächsten Aufruf einer Inhaltsseite werden Sie wieder gefragt, und bis dahin wird nichts geladen.
+          </li>
+          <li>
+            Unabhängig davon können Sie das Browser-Add-on von Google zur Deaktivierung von Google Analytics installieren:
+            <a href="https://tools.google.com/dlpage/gaoptout" rel="noopener noreferrer">tools.google.com/dlpage/gaoptout</a>.
+          </li>
+          <li>Oder Sie löschen die Websitedaten dieser Seite in den Einstellungen Ihres Browsers.</li>
+        </ul>
+        <p id="datenschutz-einstellungen">
+          Ihre Entscheidung selbst speichern wir nicht bei uns: sie steht im <code>localStorage</code> Ihres Browsers (Schlüssel
+          <code>viafrei.consent.analytics</code>), verlässt Ihr Gerät nicht und ist kein Cookie. Gespeichert werden nur die Entscheidung und der Tag, an dem Sie sie
+          getroffen haben. Eine Einwilligung gilt zwölf Monate, eine Ablehnung sechs Monate (180 Tage); danach fragen wir Sie beim nächsten Aufruf einer
+          Inhaltsseite erneut, nie früher, und bis Sie antworten, wird nichts geladen. Über den Link „Datenschutz-Einstellungen“ unten auf jeder Seite sehen Sie
+          Ihre aktuelle Entscheidung und können sie jederzeit in beide Richtungen ändern; auf Seiten ohne Analyse wird dabei auch nach einer Einwilligung nichts
+          geladen. § 25 TDDDG gilt für jedes Speichern von Informationen in Ihrer Endeinrichtung, nicht nur für Cookies; dieser eine Eintrag ist jedoch unbedingt
+          erforderlich, um Ihre Entscheidung — insbesondere eine Ablehnung — überhaupt beachten zu können, und daher nach § 25 Abs. 2 Nr. 2 TDDDG
+          einwilligungsfrei.
+        </p>
+        <p>
+          Weitere Informationen bei Google: <a href="https://policies.google.com/privacy" rel="noopener noreferrer">policies.google.com/privacy</a>.
+        </p>
+        {
+          clarity && (
+            <section id="clarity">
+              <h3>Microsoft Clarity — mit derselben Einwilligung</h3>
+              <p>
+                Auf der Startseite, den Seiten „Verbinden“, „Entwickler“ und „Unternehmen“ und der Übersicht der Autobahnen setzen wir mit derselben
+                Einwilligung Microsoft Clarity ein; auf den Seiten der einzelnen Autobahnen läuft Clarity nicht, auch wenn wir dort Google Analytics
+                verwenden. Clarity wird
+                erst geladen, nachdem Sie im Hinweisfenster auf „Einverstanden“ geklickt haben; bis dahin entsteht keine Verbindung zu Microsoft und es wird
+                kein Cookie von Microsoft gesetzt. Lehnen Sie ab, bleibt es dabei.
+              </p>
+              <p>
+                <strong>Anbieter und Verantwortlichkeit:</strong> Microsoft Ireland Operations Limited, One Microsoft Place, South County Business Park,
+                Leopardstown, Dublin 18, Irland, und die Microsoft Corporation, One Microsoft Way, Redmond, WA 98052, USA („Microsoft“). Anders als Google
+                bei Google Analytics ist Microsoft bei Clarity <em>nicht</em> unser Auftragsverarbeiter: Nach den Nutzungsbedingungen von Microsoft Clarity
+                sind wir und Microsoft jeweils eigenständig für die Daten verantwortlich. Für das Einbinden von Clarity auf unseren Seiten und das Erheben
+                und Übermitteln der Daten an Microsoft sind wir verantwortlich; für alles, was Microsoft danach mit den Daten tut, ist Microsoft
+                verantwortlich. Ihre Rechte (Punkt 7) können Sie bei uns und bei Microsoft geltend machen.
+              </p>
+              <p>
+                <strong>Was erhoben wird:</strong> wie Sie die Seite benutzen — Mausbewegungen, Klicks, Tippen und Scrollen und der Aufbau der Seite, die Sie
+                sehen —, woraus Clarity Sitzungsaufzeichnungen und Heatmaps erstellt; außerdem die Adresse der Seite mit ihren Parametern (etwa die
+                gewählten Themen der Startseite — nie Ihr Ort und nie ein Suchbegriff, den Sie eingegeben haben), bei einem Klick auf
+                einen Link dessen Ziel (Ausnahmen im nächsten Absatz), der Titel der Seite, die Seite, von der Sie kamen, soweit Ihr Browser sie
+                übermittelt (von unseren eigenen Seiten übermittelt er sie nicht), Gerät, Betriebssystem, Browser, Bildschirmgröße und Ihre IP-Adresse,
+                aus der Microsoft das Land ableitet, sowie eine pseudonyme Kennung in den Cookies <code>_clck</code> (ein Jahr) und <code>_clsk</code>
+                (ein Tag). Microsoft kann außerdem eigene Cookies auf den Domains <code>clarity.ms</code> und <code>bing.com</code> setzen und lesen (etwa
+                <code>MUID</code> und <code>CLID</code>).
+              </p>
+              <p>
+                <strong>Was verdeckt bleibt:</strong> Alle Texte der Seite und alles, was Sie eingeben, sind maskiert und werden nicht an Microsoft
+                übertragen — auch die gezeigten Orte, Preise und Live-Werte; Bilder und Linkziele erscheinen in der Aufzeichnung nicht. Die Seite selbst
+                kennzeichnet ihren ganzen Inhalt zum Maskieren, und das Projekt ist bei Microsoft auf strikte Maskierung eingestellt. Klicken Sie in einen
+                Bereich, dessen Inhalt sich nach Ihrem Ort richtet (auf der Startseite der gezeigte Ort und seine Karten), oder in eine Kraftstoffangabe,
+                beendet die Seite Clarity vor dem Klick für den Rest dieses Seitenaufrufs; so
+                erreicht Microsoft kein Link, der Ihren Ort oder eine Tankstelle nennt.
+              </p>
+              <p>
+                <strong>Unser Zweck:</strong> zu verstehen, wie die Seiten benutzt werden und wo sie hakeln (etwa wiederholte oder wirkungslose Klicks), um
+                sie zu verbessern. Wir führen diese Daten mit keiner anderen Datenquelle zusammen, nutzen sie nicht für Werbung, bilden keine Profile und
+                ziehen keine Schlüsse auf einzelne Personen.
+              </p>
+              <p>
+                <strong>Zwecke von Microsoft:</strong> Microsoft erhebt und erhält diese Daten auch, um Microsoft Advertising bereitzustellen. Nach den
+                Nutzungsbedingungen von Clarity darf Microsoft die personenbezogenen Daten nach seiner Datenschutzerklärung für eigene Zwecke verwenden,
+                darunter zur Verbesserung seiner Produkte und Dienste und zur Bildung von Nutzerprofilen, auch für Werbung, und nicht personenbezogene Daten
+                auch für Forschung und für das Training von KI-Modellen. Mit Ihrer Zustimmung teilen wir Clarity mit, dass Sie dem Speichern für die Analyse
+                zustimmen und dem Speichern für Werbung nicht (Einwilligungssignal mit <code>ad_Storage</code> „denied“); wie Microsoft dieses Signal bei
+                seinen eigenen Zwecken beachtet, bestimmt Microsoft. Ihre Einwilligung umfasst diese Übermittlung an Microsoft; ohne sie wird Clarity nicht
+                geladen.
+              </p>
+              <p>
+                <strong>Rechtsgrundlage:</strong> Ihre Einwilligung nach Art. 6 Abs. 1 lit. a DSGVO; für das Speichern und Auslesen von Informationen auf
+                Ihrem Gerät § 25 Abs. 1 TDDDG.
+              </p>
+              <p>
+                <strong>Übermittlung in die USA:</strong> Microsoft verarbeitet die Daten auch in den USA. Microsoft nimmt nach eigener Angabe am EU-U.S.
+                Data Privacy Framework teil, für das der Angemessenheitsbeschluss der Europäischen Kommission vom 10. Juli 2023 gilt (Art. 45 DSGVO).
+              </p>
+              <p>
+                <strong>Speicherdauer:</strong> In Clarity stehen uns Sitzungsaufzeichnungen 30 Tage nach der Aufnahme zur Verfügung; als Favoriten markierte
+                Aufzeichnungen, eine von Microsoft zufällig gewählte Stichprobe von Aufzeichnungen und die Heatmaps bis zu neun Monate. Wie lange Microsoft
+                die Daten für seine eigenen Zwecke aufbewahrt, richtet sich nach der Datenschutzerklärung von Microsoft. Die Cookies laufen nach den oben
+                genannten Zeiten ab.
+              </p>
+              <p>
+                <strong>Widerruf:</strong> Der Widerruf oben gilt auch für Clarity: er löscht Ihre gespeicherte Entscheidung und die Cookies
+                <code>_clck</code> und <code>_clsk</code> dieser Website; danach wird Clarity nicht mehr geladen, bis Sie erneut zustimmen. Auf dieser
+                Seite selbst läuft Clarity nie. Die Cookies von Microsoft auf <code>clarity.ms</code> und <code>bing.com</code> können wir nicht löschen;
+                das können Sie in den Einstellungen Ihres Browsers tun. Die Rechtmäßigkeit der bis zum Widerruf erfolgten Verarbeitung bleibt unberührt.
+              </p>
+              <p>
+                Weitere Informationen bei Microsoft: <a href="https://privacy.microsoft.com/de-de/privacystatement" rel="noopener noreferrer">privacy.microsoft.com/de-de/privacystatement</a>
+                und die Nutzungsbedingungen von Clarity: <a href="https://clarity.microsoft.com/terms" rel="noopener noreferrer">clarity.microsoft.com/terms</a>.
+              </p>
+            </section>
+          )
+        }
+      </>
+    )
+  }
+
+  <h3 id="themen">Themenauswahl</h3>
+  <p>
+    Über den Karten der Startseite und jeder Ortsseite können Sie wählen, welche Themen angezeigt werden, etwa „Straßen“ oder „Tanken“. Ihre Auswahl steht
+    in der Adresse der Seite (<code>?topics=roads,fuel</code>), damit Sie sie teilen oder als Lesezeichen behalten können. Bei eingeschaltetem JavaScript
+    ändert die Auswahl nur die Adresse in Ihrem Browser, ohne die Seite neu zu laden. Sie erreicht unseren Server, wenn eine Seite mit dieser Adresse
+    geladen wird — wie jede andere Adresse, die Sie aufrufen (siehe „3. Server-Logfiles“). Google erreicht sie auch dann nicht, wenn Sie Google
+    Analytics zugestimmt haben: Gemessen wird nur die Startseite, nie eine Ortsseite; deren Seitenaufruf meldet die Seite selbst ohne den Teil der
+    Adresse nach dem Fragezeichen, eine Änderung der Adresse ohne Neuladen erfasst die „erweiterte Messung“ für unsere Property nicht (siehe 5.), und
+    beim Formular erfährt Google nur die Adresse der Seite, nicht die gewählten Themen. Die Auswahl enthält nur die Namen der gewählten Themen — keine Kennung, keinen Ort und keinen
+    Standort. Nur wenn Sie „Auswahl merken“ anklicken, speichert Ihr Browser die Auswahl zusätzlich im <code>localStorage</code> (Schlüssel
+    <code>viafrei.topics</code>), damit sie beim nächsten Besuch gilt; dieser Eintrag verlässt Ihr Gerät nicht, ist kein Cookie und ist dafür unbedingt
+    erforderlich (§ 25 Abs. 2 Nr. 2 TDDDG). Er bleibt, bis Sie „Nicht mehr merken“ anklicken oder die Websitedaten dieser Seite in Ihrem Browser löschen. Ein
+    älterer Eintrag der früheren Auswahl „Mein Tag“ (Schlüssel <code>viafrei.board</code>) wird beim nächsten Aufruf der Startseite oder einer Ortsseite
+    gelöscht.
+  </p>
+
+  <h3 id="sprache">Sprachauswahl</h3>
+  <p>
+    Öffnen Sie eine deutsche Seite dieses Angebots von außen — etwa über eine Suchmaschine, einen Link oder ein Lesezeichen —, leiten wir Sie einmal auf
+    dieselbe Seite in der Sprache weiter, die Ihr Browser in der Kopfzeile „Accept-Language“ als bevorzugt meldet, sofern es die Seite in dieser Sprache gibt;
+    sonst bleibt sie deutsch. Ausgewertet wird dafür nur diese Kopfzeile, und nur im Augenblick der Anfrage; gespeichert wird dabei nichts. Wählen Sie im
+    Sprachmenü selbst eine Sprache, setzt unser Server ein Cookie (<code>vf_lang</code>), das nur den Code der gewählten Sprache enthält (etwa
+    <code>de</code>) — keine Kennung, keinen Zeitpunkt, keinen Ort. Solange es besteht, leiten wir Sie nie mehr automatisch weiter: Ihre eigene Wahl
+    hat Vorrang vor der Spracheinstellung Ihres Browsers. Es wird nur durch diesen Klick gesetzt, ist ein Cookie dieser Website (kein Drittanbieter), für Skripte nicht lesbar, wird nur über HTTPS
+    übertragen und läuft nach einem Jahr ab; Sie können es jederzeit löschen, indem Sie die Websitedaten dieser Seite in Ihrem Browser löschen, oder
+    überschreiben, indem Sie eine andere Sprache wählen. Es ist für die von Ihnen ausdrücklich gewünschte Einstellung unbedingt erforderlich (§ 25 Abs. 2 Nr. 2
+    TDDDG) und erfordert daher keine Einwilligung; es wird nicht protokolliert und an niemanden weitergegeben. <strong>Rechtsgrundlage:</strong> Art. 6
+    Abs. 1 lit. f DSGVO; unser berechtigtes Interesse ist es, Ihnen die Seiten in der Sprache zu zeigen, die Sie gewählt haben.
+  </p>
+
+  <h3 id="suche">Suche</h3>
+  <p>
+    Was Sie in das Suchfeld oben auf jeder Seite tippen, wird nur zur Beantwortung dieser einen Suche an unseren Server übermittelt und weder von unserer
+    Anwendung protokolliert noch gespeichert noch an Google Analytics, Microsoft Clarity oder andere Dritte weitergegeben; die Vorschläge während des Tippens
+    werden im Inhalt der Anfrage gesendet, nicht in der Adresse. Erst wenn Sie die Suche abschicken, öffnet sich die Ergebnisseite, deren Adresse den Suchbegriff
+    enthält — sie steht dann wie jede aufgerufene Adresse im Zugriffsprotokoll des Webservers (Punkt 3) und wird mit ihm gelöscht.
+    <strong>Rechtsgrundlage:</strong> Art. 6 Abs. 1 lit. f DSGVO; unser berechtigtes Interesse ist es, Ihnen die gesuchte Seite zu zeigen.
+  </p>
+
+  <h3 id="ort">{motorwayAround ? "Ihr Ort auf der Startseite und den Autobahnseiten" : "Ihr Ort auf der Startseite"}</h3>
+  <p>
+    <strong>Ihr Ort bleibt bei Ihnen.</strong> Die Startseite zeigt Angaben für Ihre Gegend — Warnungen, Straßen, Ladesäulen, Tankstellen, Parken und Aufzüge.
+    Dafür legen wir kein Konto und kein Profil an, und Ihr Ort wird bei uns nicht gespeichert. Den Ort bestimmt die Seite auf einem von drei Wegen:
+  </p>
+  <p id="ort-ip">
+    <strong>Ungefähr, aus der IP-Adresse:</strong> Beim Aufruf der Startseite schlägt unser Webserver die IP-Adresse Ihres Geräts in einer Datei auf unserem
+    eigenen Server nach. Die Datei beruht auf „IP to City Lite“ von DB-IP (<a href="https://db-ip.com" lang="en" rel="noopener noreferrer">IP Geolocation by
+    DB-IP</a>, Lizenz <a href="https://creativecommons.org/licenses/by/4.0/" rel="license noopener noreferrer">CC BY 4.0</a>, von uns gekürzt) und enthält nur
+    Adressbereiche, Ländercodes und auf etwa einen Kilometer gerundete Koordinaten; sie wird einmal im Monat auf unseren Server geladen. Beim Nachschlagen
+    entsteht keine Verbindung zu DB-IP oder einem anderen Dritten. Die IP-Adresse wird dafür nur im Arbeitsspeicher verwendet und für diesen Zweck weder
+    gespeichert noch protokolliert noch weitergegeben; an den Dienst auf unserem Server, der die Karten erstellt, geht nur der dabei gefundene, auf etwa
+    einen Kilometer gerundete Punkt, und erst dieser Dienst bestimmt daraus die Gemeinde. Das Zugriffsprotokoll nach Punkt 3 bleibt davon unberührt. Suchmaschinen und andere automatische Programme werden nicht verortet. Sendet Ihr Browser das Signal
+    „Global Privacy Control“ (Sec-GPC: 1) oder „Do Not Track“ (DNT: 1), unterbleibt die Ortsbestimmung aus der IP-Adresse ganz.
+    <strong>Rechtsgrundlage:</strong> Art. 6 Abs. 1 lit. f DSGVO; unser berechtigtes Interesse ist es, die Startseite gleich mit Angaben für Ihre Gegend zu
+    zeigen. Sie können dem jederzeit widersprechen (Art. 21 DSGVO), am einfachsten über eines der beiden Signale.
+  </p>
+  <p id="ort-browser">
+    <strong>Genau, über Ihren Browser:</strong> Die Seite fragt nicht von sich aus nach Ihrem Standort. Erst wenn Sie in der Ortsleiste „Meinen Standort
+    verwenden“ wählen, lässt sie Ihren Browser über dessen Standortfunktion (Geolocation-API) fragen, ob sie Ihren Standort verwenden darf; die Frage
+    stellt Ihr Browser, und Sie entscheiden. Haben Sie die Standortfreigabe für diese Seite in Ihrem Browser schon erteilt, verwendet die Startseite den
+    Standort bei jedem Besuch, ohne zu fragen, und speichert dabei nichts auf Ihrem Gerät; ist die Freigabe gesperrt oder noch nicht entschieden, fragt die
+    Seite nicht und verwendet einen gemerkten Ort oder die ungefähre Ortsbestimmung aus der IP-Adresse. Die Seite rundet die Position noch auf Ihrem Gerät
+    auf ein Gebiet von etwa 500 Metern; um die passenden Karten zu laden, wird an unseren Server nur ein solches gerundetes Gebiet übertragen.
+    <span id="ort-objekt">Eine Ausnahme gibt es, und nur unmittelbar nach Ihrem Klick auf „Meinen Standort verwenden“: Gibt Ihr Browser Ihren Standort
+    auf höchstens 150 Meter genau an, sendet die Seite einmal die genaue Position mit dieser Genauigkeitsangabe im Inhalt der Anfrage, nicht in deren
+    Adresse, an unseren Server, damit er prüft, ob Sie an einem Bahnhof, einer Tankstelle oder einer Ladestation stehen, die auf dieser Website eine
+    eigene Seite hat, oder an einer Tank- und Rastanlage oder einem Rastplatz an der Autobahn; trifft das zu, öffnet die Seite die Seite dieser Stelle,
+    bei einer Rastanlage die Seite der Autobahn, sonst zeigt sie wie sonst die Karten des gerundeten Gebiets. Die genaue Position wird nur für diese
+    eine Suche verwendet und danach verworfen; sie wird bei uns weder gespeichert noch protokolliert, die Anfrage selbst erscheint nicht im
+    Zugriffsprotokoll nach Punkt 3, und auch auf Ihrem Gerät wird sie nicht gespeichert – gemerkt wird, wie bei jedem Klick auf „Meinen Standort verwenden“, nur das
+    gerundete Gebiet, hier mit dem Namen der gefundenen Stelle.</span> Haben Sie ein
+    Gebiet über „Meinen Standort verwenden“ gemerkt (siehe „Gewählt“), kann statt des aktuellen Gebiets dieses gemerkte übertragen werden: wenn Ihr Standort
+    höchstens 400 Meter davon entfernt liegt, wenn Ihr Browser ihn ungenauer als auf 250 Meter angibt oder er höchstens doppelt so weit davon entfernt
+    liegt, wie Ihr Browser ihn ungenau angibt, oder wenn Ihr Browser keinen Standort liefert. Liegt Ihr Standort höchstens 400 Meter vom Gebiet der schon
+    angezeigten Karten entfernt, wird nichts übertragen, außer ein gemerktes Gebiet ersetzt nach dieser Regel diese Karten. Ist kein Gebiet gemerkt und
+    gibt Ihr Browser Ihren Standort ungenauer als auf 2 Kilometer an, wird er nicht verwendet und nichts übertragen. Das Gebiet steht im Inhalt der Anfrage und nicht in deren Adresse, erscheint daher nicht im
+    Zugriffsprotokoll nach Punkt 3, und es wird bei uns nicht gespeichert. Aus diesem gerundeten Gebiet leitet unser Server den Namen ab, mit dem die Seite
+    die Gegend bezeichnet: einen Bahnhof oder einen benannten Ort nahe der Mitte des Gebiets, sonst die nächste Straße, jeweils mit der Gemeinde, etwa
+    „nahe Dachsweg, Alsdorf“, nie eine Hausnummer. Diesen Namen hält er je Gebiet höchstens eine Stunde im Arbeitsspeicher, ohne Bezug zu Ihnen, und speichert ihn nicht; ebenso den Namen eines in der Ortsleiste gewählten Bahnhofs, Orts oder einer Adresse. Auf Ihrem Gerät wird das Gebiet nur gespeichert, wenn Sie es über „Meinen Standort verwenden“ selbst angefordert haben.
+    <strong>Rechtsgrundlage:</strong> Ihre Einwilligung über die Abfrage Ihres Browsers (Art. 6 Abs. 1 lit. a DSGVO, § 25 Abs. 1 TDDDG); Sie widerrufen sie
+    in den Einstellungen Ihres Browsers.
+  </p>
+  <p id="ort-gewaehlt">
+    <strong>Gewählt:</strong> Ihr Browser merkt sich einen Ort nur, wenn Sie ihn in der Ortsleiste der Seite selbst wählen, damit die Startseite beim nächsten
+    Besuch wieder damit beginnt: einen Ort, einen Bahnhof oder eine Adresse, die Sie dort auswählen, das Gebiet, das „Meinen Standort verwenden“ gefunden
+    hat, und die Wahl „Ganz Deutschland“. Ohne einen solchen Klick schreibt die Seite keinen Ort auf Ihr Gerät. Das geschieht im <code>localStorage</code>:
+    unter dem Schlüssel <code>viafrei.place</code> eine Gebietskennung (bei einem ausgewählten Bahnhof oder einer ausgewählten Adresse deren Punkt), den
+    angezeigten Namen, etwa „Dachsweg 12, Alsdorf“ oder „Aachen Hbf, Aachen“, und auf welchem Weg der Ort gefunden wurde (bei „Ganz Deutschland“ nur dieser
+    Vermerk, ohne Gebiet und ohne Namen), unter <code>viafrei.place.recent</code> bis zu fünf zuletzt selbst ausgewählte Orte mit ihrem Namen, darunter das über „Meinen Standort verwenden“ gefundene Gebiet, wenn Sie es mit „Als meinen Ort merken“ dazunehmen (seine Gebietskennung, nie Ihr Standort selbst). Solange die
+    Startseite einen so gemerkten Ort verwendet, steht unter der Ortsleiste „Ihr Browser merkt sich diesen Ort“ und daneben „Ort vergessen“, das ihn sofort
+    löscht; dass dieser Hinweis gezeigt wurde, hält die Seite nirgends fest. Einen selbst ausgewählten Ort und die Wahl „Ganz Deutschland“ ersetzt beim
+    nächsten Besuch weder die Ortsbestimmung aus der IP-Adresse noch der Standort Ihres Browsers. Das über „Meinen Standort verwenden“ gefundene Gebiet verwendet die Startseite beim nächsten Besuch, solange Ihr Browser keinen aktuellen Standort liefert; sperren Sie die Standortfreigabe für diese Seite in Ihrem Browser, löscht die Seite dieses Gebiet beim nächsten Besuch der Startseite, sofern Ihr Browser diese Sperre meldet; sonst löscht es „Ort vergessen“.
+    Zwei Einträge, die frühere Versionen der Seite ohne einen solchen Klick angelegt haben — <code>viafrei.place.asked</code> und einen als „automatisch“
+    vermerkten Eintrag unter <code>viafrei.place</code> —, löscht die Seite beim nächsten Besuch. Für die Live-Antworten einer Ortskarte fragt unser Server seine eigenen Werkzeuge nach dem
+    Mittelpunkt der Gemeinde; die Antworten hält er je Gemeinde höchstens 15 Minuten im Arbeitsspeicher, ohne Bezug zu Ihnen, und speichert oder
+    protokolliert sie nicht. Was Sie in die Ortssuche tippen, wird zum Vorschlagen
+    passender Orte und Adressen an unseren Server übertragen, ebenfalls im Inhalt der Anfrage; er hält den Suchtext mit den Vorschlägen dazu höchstens zehn
+    Minuten im Arbeitsspeicher, ohne Bezug zu Ihnen, und speichert ihn nicht. Die Einträge sind keine Cookies
+    und verlassen Ihr Gerät nur wie beschrieben, um Karten zu laden. Ihre selbst getroffene Wahl unter <code>viafrei.place</code> und die zuletzt gewählten Orte unter <code>viafrei.place.recent</code> entstehen erst, wenn Sie in der Ortsleiste selbst einen Ort, „Meinen Standort verwenden“ oder „Ganz Deutschland“ wählen; die Ortsleiste sagt Ihnen vorher, dass Ihr Browser sich diese Wahl merkt. Sie sind unbedingt erforderlich, damit die Seite die Einstellung, die
+    Sie selbst vorgenommen haben, beim nächsten Besuch beibehält, statt Ihre Gegend erneut selbst zu bestimmen (§ 25 Abs. 2 Nr. 2 TDDDG).
+    „Ort vergessen“ löscht den gemerkten Ort und die zuletzt gewählten sofort; danach bestimmt die Startseite Ihre Gegend wieder wie oben beschrieben.
+    „Ganz Deutschland“ zeigt wieder die Angaben für das ganze Land und ersetzt dabei den gemerkten Ort durch diese Wahl, nicht aber die zuletzt gewählten.
+    Ihre Wahl unter <code>viafrei.place</code> bleibt, bis Sie eine andere treffen oder „Ort vergessen“ wählen,
+    <code>viafrei.place.recent</code>, bis Sie „Ort vergessen“ wählen, und beide, bis Sie die Websitedaten dieser Seite in Ihrem Browser löschen,
+    höchstens aber zwölf Monate ohne Verwendung: Jeder Eintrag trägt den Monat, in dem er zuletzt verwendet wurde (ohne Tag und Uhrzeit), und beginnt die
+    Startseite mit Ihrer Wahl, setzt sie diesen Monat auf den laufenden. Einen Eintrag, der zwölf Monate lang nicht verwendet wurde, löscht die Seite beim
+    nächsten Besuch.
+  </p>
+  <p id="ort-bahnhoefe">
+    <strong>Auf jeder Seite mit der Ortsleiste, auch auf der Bahnhofsübersicht:</strong> Was in diesem Abschnitt steht, gilt nicht nur für die
+    Startseite, sondern für jede Seite mit der Ortsleiste, auch für die Bahnhofsübersicht (<code>/de/station</code>) — dieselben Wege, dieselben Regeln und
+    dieselbe Rechtsgrundlage, auch für die Signale „Global Privacy Control“ und „Do Not Track“, für das Runden auf Ihrem Gerät auf ein Gebiet von etwa 500
+    Metern und dafür, dass Ihre IP-Adresse nur im Arbeitsspeicher verwendet und nicht gespeichert wird. Auf der Bahnhofsübersicht dient der so bestimmte Ort nur dazu, die nächstgelegenen Bahnhöfe und Haltestellen zu zeigen.
+    Die genaue Position fragt die Bahnhofsübersicht nie ab: Die oben beschriebene Ausnahme nach einem Klick auf „Meinen Standort verwenden“ gilt dort nicht,
+    das gerundete Gebiet genügt, um die Bahnhöfe zu ordnen. Eine Antwort, die nach Ihrem Ort gewählte Bahnhöfe enthält, hält kein gemeinsamer
+    Zwischenspeicher fest.
+  </p>
+  {
+    motorwayAround && (
+      <p id="ort-autobahn">
+        <strong>Auf den Autobahnseiten:</strong> Die Seite einer Autobahn (etwa <code>/de/autobahn/a7</code>) bestimmt Ihren Ort auf denselben drei Wegen,
+        nach denselben Regeln und mit derselben Rechtsgrundlage wie die Startseite; was oben dazu steht, gilt dort ebenso — auch für die Signale „Global
+        Privacy Control“ und „Do Not Track“, für das Runden auf Ihrem Gerät und für die Einträge unter <code>viafrei.place</code> und
+        <code>viafrei.place.recent</code>, die beide Seiten gemeinsam verwenden. Statt der Karten der Startseite zeigt sie, was im gewählten Umkreis um dieses Gebiet auf
+        dieser Autobahn liegt, und liegt das Gebiet abseits der Autobahn, wie weit es entfernt ist und an welcher Anschlussstelle Sie auffahren können. Die Seite kann die
+        nächste Anschlussstelle mit Namen, Nummer und Entfernung in Luftlinie nennen und sie auf einem Kartendienst (OpenStreetMap) verlinken; dieser erfährt nur
+        den Punkt dieser Anschlussstelle, nie Ihr Gebiet, und erst, wenn Sie den Link anklicken. Das berechnet unser
+        Server aus dem gerundeten Gebiet und den Daten der Autobahn, die er ohnehin hält; dafür fragt er bei keinem Dritten an, auch nicht nach
+        Kraftstoffpreisen. Das Gebiet verwendet er nur für diese eine Antwort im Arbeitsspeicher und speichert, puffert und protokolliert es nicht. Den
+        Umkreis (1 bis 100 Kilometer) trägt die Adresse der Seite, etwa <code>?r=25</code>; er erscheint daher in der Anfragezeile des Zugriffsprotokolls
+        nach Punkt 3 und wird darüber hinaus weder auf Ihrem Gerät noch sonst bei uns gespeichert. Google Analytics (Punkt 5) erhält von einer Autobahnseite als Seitenadresse nur
+        die der Autobahn, ohne Umkreis, und weder das Gebiet noch den Weg, auf dem die Seite Ihren Ort bestimmt hat.
+      </p>
+    )
+  }
+  <p>
+    Die Ortsseiten (etwa <code>/de/place/…</code>) zeigen den Ort, der in ihrer Adresse steht; dort wird weder die IP-Adresse noch der Browser-Standort
+    verwendet.
+  </p>
+  <p id="ort-tanken">
+    <strong>Aktuelle Preise für Ihren Ort:</strong> Zeigt Ihnen die Startseite oder eine Ortsseite einen Ort — gleich auf welchem der drei Wege er bestimmt
+    wurde oder ob er in der Adresse einer Ortsseite steht —, fragt unser Server für die Tankkarte die aktuellen Preise der nächstgelegenen Tankstellen dieses
+    Ortes bei Tankerkönig (creativecommons.tankerkoenig.de) ab, der Quelle der Preisdaten der Markttransparenzstelle für Kraftstoffe: höchstens zehn
+    Tankstellen je Abfrage, nur solche, deren Preis älter als 30 Minuten ist (ein von uns einstellbarer Wert, nie unter fünf Minuten), und für dasselbe Gebiet höchstens einmal in fünf Minuten. In der Regel fragt er stattdessen einmal nach allen Tankstellen und deren Preisen im
+    Umkreis von 25 Kilometern um den Mittelpunkt der nächstgelegenen Gemeinde (auf einer Autobahnseite um den unten beschriebenen festen Punkt des
+    Abschnitts); <strong>übermittelt werden dafür allein dieser öffentlich bekannte Punkt und der Suchradius von 25 Kilometern.</strong> Diesen Punkt behält
+    unser Server danach bis zu 30 Minuten (die Dauer des Preisfensters) im Arbeitsspeicher, um Abfragen aus diesem Umkreis ohne neue Abfrage zu beantworten,
+    und speichert oder protokolliert ihn nicht; ist die Tagesgrenze an so abgefragten Tankstellen erreicht oder diese Abfrageart abgeschaltet, fragt er wie
+    zuvor beschrieben nach einzelnen Tankstellen. Dafür geht
+    innerhalb unseres Servers die Gebietskennung, die die Karten ohnehin lädt (die Gemeinde, das auf etwa 500 Meter gerundete Gebiet oder der aus der
+    IP-Adresse gefundene, auf etwa einen Kilometer gerundete Punkt), vom Webserver an den Dienst, der die Abfrage stellt; dieser behält von Ihrem Gebiet nur eine auf etwa fünf Kilometer gerundete Kennung im Arbeitsspeicher, solange die Abfrage in seiner Warteschlange auf ihre Reihe wartet, und danach höchstens fünf Minuten, um dasselbe Gebiet nicht zweimal abzufragen, und speichert oder
+    protokolliert sie nicht. Die Warteschlange stellt die Abfragen nacheinander, grundsätzlich in der Reihenfolge ihres Eingangs und höchstens eine je Minute; ein Eintrag enthält nur Tankstellen-Kennungen oder den Mittelpunkt der Gemeinde (auf einer Autobahnseite den festen Punkt des Abschnitts) und diese Gebietskennung, keine Angabe zu Ihnen, und ein Neustart unseres Servers leert sie. <strong>Für die Preisabfrage einzelner Tankstellen übermittelt unser Server an Tankerkönig allein die Kennungen der Tankstellen.</strong> Kennen wir
+    im Umkreis von fünf Kilometern um den gezeigten Ort weniger als drei Tankstellen oder verzeichnet OpenStreetMap um den Mittelpunkt der Gemeinde nähere Tankstellen in Deutschland als die uns bekannten, fragt unser Server stattdessen bei Tankerkönig nach den Tankstellen dieses Ortes; dieselbe Gemeinde fragt er danach 30 Tage lang nicht erneut ab (ein von uns einstellbarer Wert, nie unter einem Tag; nach einer gescheiterten Abfrage oder einem Neustart unseres Servers auch früher) und behält dafür so lange nur den Mittelpunkt der Gemeinde im Arbeitsspeicher; übermittelt werden dafür allein der Mittelpunkt der nächstgelegenen Gemeinde und ein
+    Suchradius von fünf Kilometern. Dieser Mittelpunkt ist ein öffentlich bekannter Punkt, für alle in dieser Gemeinde derselbe — nie Ihr Standort, das auf
+    etwa 500 Meter gerundete Gebiet oder der aus Ihrer IP-Adresse gefundene Punkt. <strong>Ihre IP-Adresse oder eine sonstige Angabe zu Ihrer Person erreicht
+    Tankerkönig in keinem dieser Fälle</strong>; die Abfrage stellt unser Server unter eigener Kennung, mit unserem eigenen Zugangsschlüssel. Für
+    Suchmaschinen und andere automatische Programme wird nichts abgefragt. Auf einer Autobahnseite fragt unser Server erst, wenn Sie dort die Kraftstoffpreise aufrufen und für den gezeigten Abschnitt keine Preise aus diesem 30-Minuten-Fenster vorliegen, auf demselben Weg die Preise um einen festen Punkt dieses Abschnitts ab — die Rastanlage nahe seiner Mitte oder, gibt es dort keine, einen anderen Punkt der Autobahn —, der für alle, die diesen Abschnitt ansehen, derselbe ist; Ihr Standort wird dafür nicht verwendet. Was die Seite beim ersten Laden nicht rechtzeitig hatte, lädt sie danach im
+    Hintergrund von unserem eigenen Server nach, solange sie geöffnet ist und die Abfrage noch aussteht, in Abständen zwischen zwei Sekunden und fünf Minuten; für die Ortskarten geht dabei dieselbe Gebietskennung im Inhalt der Anfrage an unseren Server, an niemanden
+    sonst. <strong>Rechtsgrundlage:</strong> Art. 6 Abs. 1 lit. f DSGVO; unser berechtigtes Interesse ist es, für Ihre Gegend aktuelle statt veralteter
+    Preise zu zeigen.
+  </p>
+
+  <h3 id="gemerkt">Gemerkte Seiten, Ihre Strecke und die Offline-Ansicht</h3>
+  <p>
+    Erst wenn Sie auf einer Autobahn-, Orts-, Bahnhofs- oder Bundeslandseite die Schaltfläche „Merken“ drücken, speichert Ihr Browser unter dem
+    Schlüssel <code>viafrei.star</code> in seinem lokalen Speicher (localStorage): den Pfad und den Namen der Seite, bei einer Autobahn ihre Nummer,
+    wann Sie die Seite zuletzt gesehen haben, wie oft, und die Kennungen und Längen der ersten Meldungen dieses Besuchs — nur, was die Seite selbst zeigt,
+    höchstens zwölf Seiten. Daraus zeigt die Seite beim nächsten Besuch, was neu, aufgehoben oder länger geworden ist. Heben Sie die letzte gemerkte Seite
+    auf, wird der Schlüssel gelöscht. Haben Sie eine Autobahn gemerkt, fragt die Startseite unseren eigenen Server nach deren Lage; dabei gehen nur die
+    Autobahnnummer und die Sprache im Inhalt der Anfrage an unseren Server, an niemanden sonst, und nichts davon wird gespeichert. Ebenfalls erst nach dem
+    Merken richtet Ihr Browser einen Service Worker ein, der höchstens 20 zuletzt geöffnete öffentliche Seiten im Cache <code>vf-pages-1</code> Ihres
+    Geräts ablegt, damit sie ohne Verbindung mit ihrem Stand lesbar bleiben — nie eine Seite mit Kraftstoffpreisen, nie eine persönliche oder private
+    Seite und nie einen nachgeladenen Teil einer Seite. All das verlässt Ihr Gerät nicht; Sie löschen es mit den Website-Daten Ihres Browsers.
+    <strong>Rechtsgrundlage:</strong> § 25 Abs. 2 Nr. 2 TDDDG (von Ihnen ausdrücklich gewünscht) und Art. 6 Abs. 1 lit. b DSGVO.
+  </p>
+
+  <h2>6. Kontaktaufnahme per E-Mail</h2>
+  <p>
+    Schreiben Sie uns an die oben genannte Adresse, verarbeiten wir Ihre Angaben ausschließlich zur Bearbeitung Ihrer Anfrage (Art. 6 Abs. 1 lit. f DSGVO, bei
+    vertraglichen Anliegen Art. 6 Abs. 1 lit. b DSGVO). Die Nachrichten werden gelöscht, sobald die Anfrage erledigt ist und keine gesetzlichen
+    Aufbewahrungsfristen entgegenstehen.
+  </p>
+
+  <h2>7. Ihre Rechte</h2>
+  <p>Sie haben uns gegenüber das Recht auf:</p>
+  <ul>
+    <li>Auskunft über die zu Ihrer Person gespeicherten Daten (Art. 15 DSGVO),</li>
+    <li>Berichtigung unrichtiger Daten (Art. 16 DSGVO),</li>
+    <li>Löschung (Art. 17 DSGVO),</li>
+    <li>Einschränkung der Verarbeitung (Art. 18 DSGVO),</li>
+    <li>Datenübertragbarkeit (Art. 20 DSGVO),</li>
+    <li>
+      Widerspruch gegen eine Verarbeitung, die auf Art. 6 Abs. 1 lit. f DSGVO beruht (Art. 21 DSGVO) — zur Besucherzählung siehe den
+      <a href="#widerspruch-besucherzaehlung">Hinweis zum Widerspruch unter Punkt 4</a>.
+    </li>
+  </ul>
+  <p>Für die Ausübung genügt eine formlose Nachricht an die oben genannte E-Mail-Adresse.</p>
+
+  <h2>8. Beschwerderecht bei der Aufsichtsbehörde</h2>
+  <p>
+    Unabhängig davon können Sie sich nach Art. 77 DSGVO bei einer Datenschutz-Aufsichtsbehörde beschweren. Zuständig ist {id.authority}; Sie können sich auch an die
+    Aufsichtsbehörde Ihres gewöhnlichen Aufenthaltsorts wenden.
+  </p>
+
+  <h2>9. Anbieterangaben</h2>
+  <p>Name und Anschrift des Verantwortlichen stehen zusätzlich im <a href={imprintHref}>Impressum</a>.</p>
+</article>

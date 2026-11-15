@@ -1,0 +1,1274 @@
+{
+  "meta": {
+    "tagline": "Vokietijos realaus laiko judumo platforma, skirta DI",
+    "pitch": "ViaFrei suteikia DI asistentams realaus laiko žinių apie Vokietiją. Traukiniai ir autobusai, eismas ir kelio darbai, degalai, įkrovimas, stovėjimas ir orai. Vienas MCP. Jokio API rakto. Jokios registracijos.",
+    "description": "Spūstys, uždarymai, kelio darbai, traukiniai, parkavimas, įkrovimas ir degalai Vokietijoje – gyvai iš atvirųjų duomenų, su šaltiniu, per jūsų DI asistentą.",
+    "siteName": "ViaFrei"
+  },
+  "a11y": {
+    "skip": "Pereiti prie turinio",
+    "mainNav": "Pagrindinė navigacija",
+    "langNav": "Pasirinkite kalbą",
+    "currentLang": "dabartinė kalba",
+    "sample": "Pavyzdinės vertės, ne gyvi duomenys",
+    "crumbs": "Jūs esate čia"
+  },
+  "nav": {
+    "brand": "ViaFrei",
+    "claim": "Transporto duomenys, papasakoti",
+    "tools": "Kūrėjams",
+    "cta": "Prijungti prie jūsų DI",
+    "day": "Jūsų diena",
+    "start": "Pradėti",
+    "ctaShort": "Prijungti DI",
+    "ctaLabel": "Prijunkite ViaFrei prie savo DI asistento ({clients})"
+  },
+  "beta": {
+    "label": "Beta",
+    "short": "ViaFrei yra beta versijos: atsakymai ir aprėptis gali keistis, o DI gali suklysti. Svarbius duomenis pasitikrinkite nurodytame šaltinyje.",
+    "more": "Ką tai reiškia",
+    "sign": "Įspėjamasis kelio ženklas: pavojus kelyje",
+    "line": "Patikrinkite šaltinyje"
+  },
+  "hero": {
+    "lead": "Kaip gerai informuotas draugas: ar mano traukinys važiuoja? Ar greitkelis laisvas? Ar yra laisva įkrovimo stotelė? ViaFrei jūsų asistentui pateikia šiandienos skaičius, kiekvieną su šaltiniu.",
+    "primary": "Prijunkite savo DI per minutę",
+    "secondary": "Jūsų diena su ViaFrei",
+    "clients": "Skirta:",
+    "phase": "Ankstyvas etapas: atsakymai yra informacija, o ne teisinė konsultacija.",
+    "trust": {
+      "free": "Nemokamai",
+      "account": "Jokios paskyros pas mus",
+      "app": "Jokios papildomos programėlės",
+      "sources": "Kiekvienas skaičius su šaltiniu"
+    },
+    "connected": "Jūsų DI asistentas šiuos tiesioginius duomenis naudoja tik tada, kai prie jo prijungtas ViaFrei – be ryšio jis atsako remdamasis mokymo duomenimis."
+  },
+  "sign": {
+    "label": "Pavyzdinis atsakymas, sutrumpintas",
+    "question": "Ar A8 Miuncheno kryptimi laisvas?",
+    "answerBefore": "Du kelio darbų ruožai tarp Štutgarto ir Ulmo, uždarymų nėra — kelias",
+    "answerHighlight": "laisvas",
+    "answerAfter": ".",
+    "meta": "Pavyzdys: kaip jūsų asistentas atsako su ViaFrei — sutrumpinta, su pavyzdinėmis vertėmis.",
+    "badge": "{road} – automagistralės puslapis"
+  },
+  "proof": {
+    "tiles": {
+      "reports": {
+        "title": "Greitkelių pranešimai"
+      },
+      "charging": {
+        "title": "Įkrovimo taškai"
+      },
+      "lorry": {
+        "title": "Sunkvežimių stovėjimo vietos"
+      },
+      "lifts": {
+        "title": "Liftai ir eskalatoriai"
+      }
+    }
+  },
+  "tile": {
+    "error": "šiuo metu neįskaitoma",
+    "errorNote": "Šis šaltinis šiuo metu neatsako. Verčiau nerodysime nieko, nei pateiksime seną skaičių kaip naują.",
+    "loading": "įkeliama …",
+    "loadingNote": "Šis skaičius jau pakeliui. Jis pasirodys, kai tik šaltinis atsakys."
+  },
+  "tools": {
+    "heading": "Įrankiai pagal sritis",
+    "lead": "Jūsų asistentas pats pasirenka tinkamą įrankį. Sąrašas gaunamas iš serverio, ne iš brošiūros.",
+    "showAll": "Rodyti visus įrankius ({n})",
+    "groups": {
+      "roads": "Greitkeliai ir keliai",
+      "rail": "Geležinkelis",
+      "transit": "Viešasis transportas",
+      "energy": "Įkrovimas ir degalai",
+      "places": "Vietos ir adresai",
+      "rules": "Taisyklės ir orai"
+    },
+    "count": "{n, plural, one {# įrankis} few {# įrankiai} many {# įrankio} other {# įrankių}}"
+  },
+  "connect": {
+    "heading": "Prijungta per 60 sekundžių",
+    "lead": "Vienas galinis taškas, jokios paskyros, jokio rakto. Pasirinkite savo klientą ir sekite žingsnius.",
+    "endpointLabel": "MCP galinis taškas (Streamable HTTP)",
+    "legacyLabel": "Senesniems klientams (HTTP + SSE)",
+    "clients": {
+      "claude": "Claude (darbalaukis ir claude.ai)",
+      "chatgpt": "ChatGPT",
+      "other": "Kiti MCP klientai"
+    },
+    "draft": "Juodraštis — šie žingsniai kliente dar nepatikrinti.",
+    "steps": {
+      "claude": {
+        "s1": "Settings → Connectors → „Add custom connector“.",
+        "s2": "Įklijuokite aukščiau esantį galinį tašką ir išsaugokite.",
+        "s3": "Paklauskite: „Ar A8 Miuncheno kryptimi laisvas?“"
+      },
+      "chatgpt": {
+        "s1": "Settings → Connectors → „Create“ (kūrėjo režimas).",
+        "s2": "Aukščiau esantį galinį tašką įveskite kaip MCP serverį.",
+        "s3": "Pokalbyje pasirinkite jungtį ir klauskite."
+      },
+      "other": {
+        "s1": "Streamable HTTP aukščiau esančiu galiniu tašku; senesni klientai naudoja SSE kelią.",
+        "s2": "Kūrimo etape jokio autentifikavimo.",
+        "s3": "tools/list grąžina katalogą; kiekvienas atsakymas nurodo savo šaltinį."
+      }
+    },
+    "cta": "Į kūrėjo vadovą",
+    "showClients": "Rodyti žingsnius jūsų klientui"
+  },
+  "sources": {
+    "heading": "Šaltiniai ir pasitikėjimas",
+    "lead": "Kiekvienas skaičius nurodo šaltinį, kuris jį leidžia naudoti — pažodžiui ir neišverstą, toje kortelėje, kuri jį rodo.",
+    "creditsLabel": "Šiame puslapyje pateiktų skaičių šaltiniai",
+    "creditsShow": "Rodyti visas šaltinių eilutes ({n})",
+    "licenceText": "licencijos tekstas",
+    "notAnswered": {
+      "heading": "Į ką neatsakome",
+      "routing": "Jokio maršruto planavimo — sakome, kas vyksta kelyje, o ne kuriuo keliu jums važiuoti.",
+      "legal": "Jokių teisinių konsultacijų — taisyklių atsakymai nurodo savo šaltinį ir peržiūros datą ir yra informacija.",
+      "fuelFeed": "Jokių kainų duomenų tolesniam naudojimui — degalų kainos yra informacija vartotojams, o ne API."
+    },
+    "privacy": {
+      "heading": "Privatumas trimis sakiniais",
+      "s1": "Kol nesutinkate, šis puslapis neįkelia jokio trečiųjų šalių šrifto, scenarijaus ar paveikslėlio.",
+      "s2": "Apsilankymus skaičiuojame be slapukų, tik kaip dienos sumas savo serveryje; Google Analytics veikia tik jums sutikus.",
+      "s2Clarity": "Apsilankymus skaičiuojame be slapukų, tik kaip dienos sumas savo serveryje; Google Analytics ir Microsoft Clarity veikia tik jums sutikus.",
+      "s3": "Jūsų asistentas kalbasi su mūsų serveriu — nesaugome jokių paskyrų ir jokių profilių."
+    }
+  },
+  "audience": {
+    "heading": "Kam tai skirta",
+    "travellers": {
+      "title": "Keliautojams",
+      "text": "Paklauskite asistento prieš išvykdami, ant perono ar prie įkrovimo stotelės — ir gaukite atsakymą su šaltiniu.",
+      "cta": "Kaip prisijungti"
+    },
+    "developers": {
+      "title": "Kūrėjams",
+      "text": "Vienas MCP serveris per Streamable HTTP, viešas katalogas, stdio tiltas npm. Kūrimo etape be rakto.",
+      "cta": "Į dokumentaciją"
+    },
+    "business": {
+      "title": "Verslui",
+      "text": "Kiekvieno realaus laiko pranešimo istorija, automobilių parko ir objektų klausimai, aiški licencijų padėtis. Pasikalbėkite su mumis prieš kurdami.",
+      "cta": "Susisiekite"
+    },
+    "show": "Kam skirtas ViaFrei"
+  },
+  "footer": {
+    "imprint": "Rekvizitai",
+    "privacy": "Privatumas",
+    "privacySettings": "Privatumo nustatymai",
+    "terms": "Naudojimo sąlygos",
+    "languages": "Kalbos",
+    "refresh": "Šis puslapis atsinaujina kas 20 minučių; kiekviena kortelė rodo, koks senas jos skaičius.",
+    "openData": "Sukurta iš atvirųjų duomenų. Kiekvienas skaičius nurodo savo šaltinį."
+  },
+  "consent": {
+    "title": "Ar galime naudoti Google Analytics?",
+    "titleClarity": "Ar galime naudoti Google Analytics ir Microsoft Clarity?",
+    "body": "Google Analytics įkeliama tik jums sutikus. Atsisakyti — taip pat vienas paspaudimas, ir tai įsimenama. Mūsų pačių lankytojų skaičiavimas be slapukų veikia nepriklausomai nuo to (žr. Privatumas).",
+    "bodyClarity": "Google Analytics ir Microsoft Clarity įkeliami tik jums sutikus. Clarity įrašo paspaudimus, slinkimą ir pelės judesius šiame puslapyje, o visi tekstai ir įvesti duomenys lieka paslėpti. Microsoft šiuos duomenis naudoja ir savo tikslams, taip pat reklamai. Atsisakyti taip pat galima vienu paspaudimu, ir tai įsimenama. Mūsų pačių lankytojų skaičiavimas be slapukų veikia nepriklausomai nuo to (žr. Privatumas).",
+    "accept": "Sutinku",
+    "decline": "Atsisakau",
+    "more": "Privatumas",
+    "state": {
+      "none": "Dar nepasirinkote.",
+      "denied": "Jūsų dabartinis pasirinkimas: atsisakyta {date}.",
+      "granted": "Jūsų dabartinis pasirinkimas: sutikta {date}."
+    }
+  },
+  "notFound": {
+    "title": "Šio puslapio nėra",
+    "text": "Šis adresas niekur neveda. Pradžia — vienu paspaudimu.",
+    "choiceTitle": "Šį pavadinimą turi kelios vietos",
+    "choiceText": "Kurią turite omenyje?",
+    "back": "Į pradžios puslapį",
+    "connect": "Prijunkite savo asistentą",
+    "developers": "Kūrėjams",
+    "business": "Įmonėms"
+  },
+  "now": {
+    "heading": "Visa Vokietija",
+    "lead": "Visi šalies duomenys vienoje vietoje, pagal temą – kiekvienas su laiku ir šaltiniu.",
+    "stationTop": {
+      "head": "Stotys dabar: atšaukti reisai, vėlavimai, pranešimai apie sutrikimus, liftai",
+      "all": "Visos stotys",
+      "search": "Ieškoti stoties",
+      "go": "Ieškoti"
+    }
+  },
+  "tiles": {
+    "punctuality": "Punktualumas: autobusai ir traukiniai",
+    "lifts": "Liftai ir eskalatoriai",
+    "reports": "Svarbiausi pranešimai",
+    "jams": "Spūstys miestuose dabar",
+    "station": "Gyvai didžiosiose stotyse",
+    "lorry": "Sunkvežimių stovėjimo vietos ir poilsio aikštelės",
+    "carparks": "Automobilių stovėjimo aikštelės ir P+R miestuose",
+    "charging": "Įkrovimo taškai",
+    "fuel": "Degalų kainos, stebimos"
+  },
+  "day": {
+    "heading": "Jūsų diena su ViaFrei",
+    "lead": "Devynios akimirkos, kai vienas trumpas klausimas sutaupo laiko — su šiandienos skaičiumi, rodančiu, kad atsakymas galioja.",
+    "howTo": "Kaip klausti asistento",
+    "howToText": "Palaikykite pirštą ant klausimo (arba jį pažymėkite), nukopijuokite ir įklijuokite į pokalbį. Jūsų asistentas pats pasirenka tinkamą įrankį.",
+    "more": "Dar 2 klausimai ir vienas apribojimas",
+    "answer": {
+      "label": "ViaFrei atsakė",
+      "asOf": "Duomenys: {asOf}"
+    },
+    "limitLabel": "Atvirai kalbant",
+    "cta": "Pradėti",
+    "moments": {
+      "commute": {
+        "title": "Rytinė kelionė į darbą",
+        "scene": "7:10, kava rankoje: ar viešasis transportas važiuoja įprastai — ir ar mano traukinys laiku?",
+        "q1": "Ar autobusai ir traukiniai Hamburge šiuo metu važiuoja laiku?",
+        "a1": "{share} % per pastarąją valandą stebėtų reisų vėlavo daugiau nei 5 minutes — panašiai kaip valandą prieš tai ({before} %).",
+        "limit": "Punktualumą rodome pagal regioną, ne pagal liniją.",
+        "q2": "Kada išvyksta kitas traukinys iš Hanoverio centrinės stoties ir ar jis vėluoja?",
+        "q3": "Ar per artimiausią valandą atšauktas koks nors traukinys iš Kelno centrinės stoties išvykimų lentos?",
+        "a2": "Kitas — {l1} į {d1} (pagal tvarkaraštį {t1}, kelias {p1}), vėluoja +{delay} min, išvyks apie {exp}; po jo {l2} į {d2} {t2}, laiku.",
+        "a3": "Neatšauktas nė vienas: {n, plural, one {# išvykimas} few {# išvykimai} many {# išvykimo} other {# išvykimų}} iki {last}; labiausiai vėluoja {l1} į {d1}, +{delay} min."
+      },
+      "bus": {
+        "title": "Autobusu ir tramvajumi",
+        "scene": "Mieste: kur artimiausia stotis ir ar transportas važiuoja?",
+        "q1": "Kuri geležinkelio stotis arčiausiai Kelno katedros?",
+        "q2": "Kada išvyksta kitas S-Bahn traukinys iš Frankfurto Hauptwache stotelės?",
+        "a1": "{s1}, už {km},{kmd} km; toliau {s2} ir {s3}.",
+        "limit": "Kiekvienos autobusų ir tramvajų stotelės tvarkaraštį rodysime, kai tik jis bus įkeltas — iki tol stotis ir padėtį jūsų regione.",
+        "board": "Tvarkaraštis jūsų stotelėje",
+        "a2": "Kitas — {l1} į {d1} {t1} iš kelio {p1}, laiku; {l2} į {d2}, numatytas {t2}, +{delay2} min, išvyks apie {exp2}.",
+        "q3": "Ar traukiniai iš Leipcigo centrinės stoties šiuo metu vėluoja?",
+        "a3": "Taip, du: {l1} į {d1}, +{dl1} min, iš kelio {p1}, ir {l2} į {d2}, +{dl2} min; {n, plural, one {kitas # artimiausias išvykimas laiku} few {kiti # artimiausi išvykimai laiku} many {kiti # artimiausio išvykimo laiku} other {kiti # artimiausių išvykimų laiku}}."
+      },
+      "station": {
+        "title": "Stotyje",
+        "scene": "Su vežimėliu, neįgaliojo vežimėliu ar bagažu: ar veikia liftas į peroną?",
+        "q1": "Ar veikia liftas Kelno centrinėje stotyje?",
+        "a1": "{station}: veikia {working} iš {total} nurodytų liftų; vienas neveikia, vieno būsenos geležinkelis nepraneša.",
+        "limit": "Liftai ir eskalatoriai Deutsche Bahn stotyse; kitų operatorių kol kas ne.",
+        "q2": "Ar veikia visi liftai Erlangeno stotyje?",
+        "a2": "Taip: vienintelis nurodytas liftas stotyje {station}, į peroną {platforms}, veikia.",
+        "q3": "Iš kurio kelio išvyksta kitas ICE iš Niurnbergo centrinės stoties?",
+        "a3": "{train} į {dest} {t} iš kelio {p}, laiku."
+      },
+      "driving": {
+        "title": "Kelyje",
+        "scene": "Prieš išvykstant: spūstys, uždarymai, kelio darbai — ir kur degalai šiuo metu pigūs.",
+        "q1": "Ar A8 Miuncheno kryptimi šiuo metu laisvas?",
+        "a1": "Ne visai: tarp {a} ir {b} Miuncheno kryptimi policija praneša apie avariją; avarinė juosta užblokuota.",
+        "a1more": "Visame A8 dar nurodyta: uždarymų {closures}, kelio darbų įrašų {works}.",
+        "limit": "Jokio maršruto planavimo: sakome, kas vyksta greitkelyje, o ne kuriuo keliu jums važiuoti.",
+        "q2": "Kokie kelio darbai šiuo metu vyksta A7?",
+        "a2": "{count, plural, one {# kelio darbų ruožas} few {# kelio darbų ruožai} many {# kelio darbų ruožo} other {# kelio darbų ruožų}} iki {to}; pavyzdžiui, tarp {a} ir {b}: naujas tiltas, uždaryta viena iš trijų eismo juostų, {speed} km/h, iki {until}.",
+        "q3": "Savaitgalį važiuoju A2 — kokių kelio darbų tikėtis?",
+        "a3": "{count, plural, one {# kelio darbų ruožas} few {# kelio darbų ruožai} many {# kelio darbų ruožo} other {# kelio darbų ruožų}} nuo {from} iki {to}; pavyzdžiui, sankryžoje {a}: atnaujinama kelio danga, nuovaža visiškai uždaryta, iki {until}."
+      },
+      "jam": {
+        "title": "Spūstyje",
+        "scene": "Spūstys greitkelyje ir aplink miestus: kur eismas stovi, kiek laiko tai kainuoja — ir ar šiąnakt bus uždarymas.",
+        "q1": "Kiek laiko šiuo metu kainuoja spūstis A3 tarp Frankfurto ir Viurcburgo?",
+        "a1": "Tarp {a} ir {b} Frankfurto kryptimi apie +{delay} min po avarijos; visame A3 pranešta spūsčių: {jams}.",
+        "a1more": "A3 nurodyta: uždarymų {closures}, kelio darbų įrašų {works}.",
+        "limit": "Miestuose matome miesto greitkelius, o Berlyne, Kelne ir Hanoveryje — ir pačių miestų eismo pranešimus, bet kol kas ne padėtį kiekvienoje gatvėje. Hamburgo pranešimų ir Kelno eismo būklės paprašėme tiekėjų.",
+        "q2": "Ar šiuo metu yra spūsčių Kelno greitkelių žiede — A1, A3 ar A4?",
+        "q3": "Ar šiandien A7 Hamburge uždarytas?",
+        "a3": "Pranešta apie uždarymą tarp {a} ir {b} sankryžų (platinama iki aštuonių eismo juostų, naujas {tunnel}); visame A7 {n, plural, one {# uždarymas} few {# uždarymai} many {# uždarymo} other {# uždarymų}}.",
+        "a2": "Taip, A4: tarp {a} ir {b} Kelno kryptimi eismas lėtas, apie +{delay} min; klaustuose greitkeliuose pranešta spūsčių: {n}."
+      },
+      "parking": {
+        "title": "Parkavimas",
+        "scene": "Palikite automobilį prie stoties — arba, jei vairuojate sunkvežimį, susiplanuokite poilsį.",
+        "q1": "Kur yra automobilių stovėjimo aikštelė prie Kelno centrinės stoties?",
+        "a1": "{p1}: paskutiniais duomenimis laisvų vietų {f1} iš {t1}; {p2}: {f2} iš {t2} — abi iki 300 m.",
+        "limit": "Laisvos vietos tik ten, kur operatorius jas skelbia — kitur vietų skaičius, o ne užimtumas.",
+        "q2": "Kur prie A9 yra sunkvežimių stovėjimo vietų?",
+        "a2": "Pavyzdžiui, {p1} (sunkvežimių vietų: {n1}), {p2} ({n2}) ir {p3} ({n3}); laisvų vietų ten niekas neskelbia.",
+        "q3": "Kur prie Eseno centrinės stoties yra „Park and Ride“ aikštelė?",
+        "a3": "{p1}, už {k1},{k1d} km, ir {p2}, už {k2},{k2d} km; užimtumo iš šio šaltinio ViaFrei neima."
+      },
+      "charging": {
+        "title": "Įkrovimas",
+        "scene": "Važiuojant elektromobiliu: kur artimiausia įkrovimo stotelė ir ar yra laisvas taškas?",
+        "q1": "Kur netoli Leipcigo galiu greitai įsikrauti?",
+        "q2": "Kokių greitojo įkrovimo stotelių yra netoli Ingolštato?",
+        "a1": "Ne mažiau kaip 150 kW, pavyzdžiui: {site}, {address} — iki {kw} kW.",
+        "a1more": "Operatorius neskelbia gyvos būsenos, todėl ViaFrei sako „nežinoma“, o ne „laisva“.",
+        "limit": "Užimtumas tų tinklų, kurie jį skelbia; visiems kitiems rodome vietą, o ne būseną.",
+        "a2": "Artimiausia — {op1}, {a1}, iki {kw1} kW: laisvų taškų {free1} iš {total1}; taip pat {s2}, {a2}, iki {kw2} kW, be dabartinės būsenos.",
+        "q3": "Ar šiuo metu yra kas nors laisva Hildeno Supercharger stotelėje?",
+        "a3": "{brand} paskutinį kartą būseną pranešė {t} — per sena, kad sakytume „laisva“; adresas {address}, iki {kw} kW."
+      },
+      "places": {
+        "title": "Vietų paieška",
+        "scene": "Užtenka pavadinimo: koncertų salė, vaistinė, įmonė — su adresu ir koordinatėmis kitam klausimui.",
+        "q1": "Mano navigacija rodo 50.1109, 8.6821 — koks tai adresas ir kur artimiausia greitkelio sankryža?",
+        "a1": "{address}, už {m} m. Artimiausia greitkelio sankryža: {junction}, už {km},{kmd} km.",
+        "limit": "Vietos ir adresai gaunami iš OpenStreetMap; kiekvienas atsakymas nurodo duomenų datą. Ko ten nėra žemėlapyje, negalime rasti — darbo valandos ir įvertinimai į tai neįeina.",
+        "q2": "Kokios vaistinės yra Fuldoje — su adresais?",
+        "a2": "Pavyzdžiui, {p1}, {a1}; {p2}, {a2}; {p3}, {a3} (OpenStreetMap duomenys: {osm}).",
+        "q3": "Koks Hamburgo Elbės filharmonijos adresas?",
+        "a3": "{poi}: adresas {address} (OpenStreetMap duomenys: {osm})."
+      },
+      "watch": {
+        "title": "Praneškite, kai…",
+        "scene": "Nebereikia vis tikrinti: ViaFrei stebi už jus ir kiekvieną pokytį išsaugo pokalbyje — asistentas jį parodo, kai tik paklausiate, arba pats, jei palaiko pranešimus.",
+        "q1": "Praneškite, kai tik bus atšauktas uždarymas A7.",
+        "limit": "Tik šiame pokalbyje, kol jis atidarytas — jokio el. laiško, jokios SMS. Iki 10 stebėjimų viename pokalbyje, kiekvienas iki 24 valandų; stebimas visas kelias, ne vienas ruožas.",
+        "a1": "Stebėjimas nustatytas: {road}, iki {until}. ViaFrei praneš šiame pokalbyje, kai tik ten uždarymas bus atšauktas; naudojama stebėjimų: {used} iš 10.",
+        "q2": "Praneškite, kai Kelne vėluos ketvirtadalis ar daugiau autobusų ir traukinių reisų.",
+        "a2": "Stebėjimas nustatytas: regionas {ags} ({city}), pranešimas nuo {pct} % vėluojančių reisų, iki {until} — tik šiame pokalbyje.",
+        "q3": "Įspėkite mane, kai Kelnui įsigalios Vokietijos orų tarnybos įspėjimas apie pavojingus orus.",
+        "a3": "Stebėjimas nustatytas: DWD įspėjimų zona {cell} ({city}), iki {until} — ViaFrei praneš čia, kai tik padėtis pasikeis."
+      }
+    },
+    "fuelAsks": {
+      "heading": "Klausimas, kuris degalinėje gali sutaupyti pinigų",
+      "whyLabel": "Kodėl verta klausti",
+      "goerlitz": {
+        "q": "Kur Gerlice šiuo metu pigiausias dyzelinas?",
+        "why": "Kainos keičiasi kelis kartus per dieną ir skiriasi net tarp kelių degalinių viename mieste: ViaFrei nurodo pigiausią su kaina ir laiku, kada degalinė ją pranešė.",
+        "a": "Naujos kainos dar nėra — mažiausia paskutinė žinoma: {euro},{cent} €/l degalinėje {station}, {address}, pranešta {reported}; ViaFrei prašo naujos."
+      },
+      "muenchen": {
+        "q": "Kur Miunchene šiuo metu pigiausias benzinas E10?",
+        "why": "Kaina gali būti rytinė: tą popietę ViaFrei Miunchene turėjo tik ryto kainas, kiekvieną pateikė su laiku ir paprašė naujų.",
+        "a": "Naujos kainos dar nėra — mažiausia paskutinė žinoma: {euro},{cent} €/l degalinėje {station}, {address}, pranešta {reported}; ViaFrei prašo naujos."
+      },
+      "leipzig": {
+        "q": "Kur Leipcige šiuo metu pigiausias benzinas E5?",
+        "why": "Kaina gali būti kelių valandų senumo: ViaFrei nurodo, kada degalinė pranešė kiekvieną kainą — tą popietę pigiausia Leipcige vis dar buvo iš ryto.",
+        "a": "Naujos kainos dar nėra — mažiausia paskutinė žinoma: {euro},{cent} €/l degalinėje {station}, {address}, pranešta {reported}."
+      },
+      "nuernberg": {
+        "q": "Kur Niurnberge šiuo metu pigiausias dyzelinas?",
+        "why": "Artimiausia degalinė ne visada pigiausia: ViaFrei prie kiekvienos kainos nurodo atstumą.",
+        "a": "{euro},{cent} €/l degalinėje {station}, {address} — pranešta {reported}."
+      }
+    },
+    "fuelAll": "Iki trijų degalinių kiekvienoje žemėje, su adresu ir kaina",
+    "allExamples": "Visi pavyzdiniai klausimai su atsakymais"
+  },
+  "start": {
+    "heading": "Paruošta per minutę",
+    "lead": "ViaFrei gyvena jūsų jau turimame asistente. Trys žingsniai, vieną kartą:",
+    "s1": "Claude arba ChatGPT: nustatymai → „Connectors“.",
+    "s2": "Pridėkite ViaFrei žemiau nurodytu adresu.",
+    "s3": "Paklauskite: „Ar A8 Miuncheno kryptimi šiuo metu laisvas?“",
+    "draft": "Juodraštis — šie žingsniai dar ne visuose asistentuose patikrinti."
+  },
+  "legal": {
+    "bindingNote": "Šis puslapis yra teisinis pranešimas pagal Vokietijos teisę. Privalomas yra tik toliau pateiktas tekstas vokiečių kalba."
+  },
+  "connectPage": {
+    "moreExamples": "Daugiau pavyzdžių",
+    "title": "Prijunkite ViaFrei prie savo asistento",
+    "lead": "Vienas adresas, jokios paskyros, jokio rakto. Vieną kartą pridėkite ViaFrei kaip jungtį – o tada tiesiog klauskite.",
+    "askHeading": "Kaip klausti",
+    "askLead": "Penki klausimai, į kuriuos jūsų asistentas šiandien atsako taip:",
+    "asks": {
+      "train": "Kada išvyksta kitas traukinys iš Kelno centrinės stoties?",
+      "parking": "Kur yra automobilių stovėjimo aikštelė Kelno centre?",
+      "charging": "Kur Leipcige galiu įkrauti savo elektromobilį?",
+      "road": "Ar A3 Frankfurto kryptimi šiuo metu laisvas?",
+      "weather": "Ar šiuo metu galioja įspėjimas apie pavojingus orus Dresdenui?"
+    },
+    "live": {
+      "heading": "Atsakymai, tokie, kokie atėjo",
+      "lead": "Sutrumpinta, su duomenų laiku ir jų šaltiniais. Skaičiai yra to momento nuotrauka, o ne gyvas rodinys.",
+      "asOf": "Duomenys: {asOf}",
+      "fuelExample": "Pavyzdinis atsakymas, {asOf} — šiandien kainos kitos",
+      "stadtbahn": {
+        "title": "Lengvojo metro (Stadtbahn) liftai ir eskalatoriai",
+        "q": "Kas šiuo metu neveikia Kelno lengvojo metro stotelėje {stop}?",
+        "a": "Neveikia {out} iš {total} įrenginių: eskalatoriai {e1} ir {e2} nuo {since}, {e3} nuo {since3} ir {e4} nuo {since4}; abu liftai veikia. {publisher} teikia duomenis be jokios garantijos.",
+        "note": "Kelno lengvojo metro stotelėms, iš paskelbto gedimų sąrašo – su laiku, kada pranešta apie kiekvieną gedimą."
+      },
+      "bikes": {
+        "title": "Bendrinami dviračiai prie stoties, gyvai",
+        "q": "Kur netoli {station} rasti laisvą nuomojamą dviratį?",
+        "a": "{dock} stotelė, operatorius {operator}: laisvų dviračių {free}, o {radius} km spinduliu dar stotelių: {docks}, kiekviena su savo skaičiumi.",
+        "note": "Laisvi dviračiai gaunami gyvai iš dviračių nuomos sistemų atvirųjų duomenų; ViaFrei sako tik tai, ką stotelė praneša šiuo metu."
+      },
+      "lift": {
+        "title": "Liftai stotyje",
+        "q": "Kurie liftai stotyje {station} šiuo metu neveikia?",
+        "a": "Vienas praneštas kaip neveikiantis — liftas į peronus {platforms}: veikia {working} iš {total} liftų. Kitas liftas į peronus {platforms} nestebimas – jo būsena nežinoma.",
+        "note": "Deutsche Bahn stotims, nuskaitoma kas 20 minučių. Tai, ko naujausias pranešimas nemini, yra „nežinoma“ – niekada ne „veikia“."
+      },
+      "alert": {
+        "title": "Autobusų ir geležinkelio eismo pranešimai",
+        "q": "Ar šiuo metu Žemutinėje Saksonijoje yra autobusų ir geležinkelio eismo pranešimų?",
+        "a": "Galioja pranešimų: {count}, tarp jų: linijos {lines} važiuoja pagal laikiną tvarkaraštį, nes {road} uždarytas tarp {a} ir {b}, nuo {from} iki {to}.",
+        "note": "Transporto asociacijų pranešimai per DELFI, tik kol galioja. Pranešimą, kuriame nenurodyta stotelė, pagal tinklą priskiriame žemei, o ViaFrei nurodo, kad jis gali liesti ir kaimyninę žemę."
+      },
+      "enbw": {
+        "title": "Greitojo įkrovimo stotelė su gyvu užimtumu",
+        "q": "Ar šiuo metu laisvas įkrovimo taškas {brand} stotelėje adresu {address}?",
+        "a": "Iki {kw} kW, {euro},{cent} €/kWh — bet nė vieno iš {n} įkrovimo taškų būsenos nėra, todėl ViaFrei nesako „laisva“.",
+        "note": "Operatorius pats skelbia savo stoteles ir užimtumą; laikas „duomenys“ yra jo naujausias pranešimas."
+      },
+      "ecomove": {
+        "title": "Gyvas užimtumas per agregatorių",
+        "q": "Ar šiuo metu laisvas įkrovimo taškas greitojo įkrovimo stotelėje adresu {address}?",
+        "a": "{site}: iki {kw} kW, {euro},{cent} €/kWh; paskutinė būsena iš {t} — per sena, kad sakytume „laisva“.",
+        "note": "Čia užimtumas gaunamas iš paslaugos, kuri renka daugelio operatorių pranešimus. Taškas be pranešimo niekada nelaikomas laisvu."
+      },
+      "ocpdb": {
+        "title": "Gyvai laisva ar užimta, pačiame Kelne",
+        "q": "Ar šiuo metu laisvas įkrovimo taškas stotelėje adresu {address}?",
+        "a": "Taip, vienas: 2 tipo iki {kw2} kW laisvas, CCS taškas iki {kw} kW neveikia — {euro},{cent} €/kWh be PVM.",
+        "note": "Užimtumas gaunamas gyvai per Badeno-Viurtembergo duomenų portalą, kuriame nurodytos ir toli už šios žemės ribų esančios stotelės."
+      },
+      "lsr": {
+        "title": "Net ten, kur niekas nepraneša gyvai",
+        "q": "Kur galiu įsikrauti netoli adreso {address}?",
+        "a": "Už {m} m: 2 tipo jungtis, iki {kw} kW, pagal Federalinės tinklų agentūros įkrovimo stotelių registrą ({register}), be gyvos būsenos, be tikslumo ar išsamumo garantijos.",
+        "note": "Kur joks operatorius neskelbia gyvų duomenų, ViaFrei įkrovimo stoteles nurodo iš oficialaus registro, be užimtumo, nes nežinoma niekada nėra „laisva“."
+      },
+      "hamburg": {
+        "title": "Automobilių stovėjimo aikštelė Hamburgo centre",
+        "q": "Kur Hamburge galiu pastatyti automobilį netoli {stop}?",
+        "a": "{park}: laisvų vietų {free} iš {total}. Pats Hamburgo miestas sako, kad šie realaus laiko duomenys nepatikrinti.",
+        "note": "Hamburgo aikštelių užimtumas gaunamas gyvai iš miesto; ViaFrei visada perduoda jo pastabą, kad duomenys nepatikrinti."
+      },
+      "hhworks": {
+        "title": "Miesto kelio darbai Hamburge",
+        "q": "Kokie kelio darbai planuojami Hamburge, gatvėje {street}?",
+        "a": "{street}, {b}: gatvės rekonstrukcija nuo {from} iki {to}; visiškas uždarymas numatomas 2027 m. pavasarį.",
+        "note": "Hamburgo miesto kelio darbai gaunami iš miesto sistemos Bauweiser: tik patvirtinti ruožai, pagal kalendorines dienas, o „planuojama“ reiškia, kad darbai prasideda po šiandien. Policijos pranešimai lieka atskiri įrašai."
+      },
+      "muenster": {
+        "title": "Miunsterio parkavimo nukreipimo sistema, gyvai",
+        "q": "Kiek laisvų vietų yra {name} Miunsteryje?",
+        "a": "Laisvų vietų {free} iš {total}, ir dar netoliese aikštelių: {more}, kiekviena su savo skaičiumi.",
+        "note": "Užimtumas gaunamas gyvai iš Miunsterio miesto parkavimo nukreipimo sistemos. Aikštelės, kuri nieko nepraneša, ViaFrei niekada nevadina „pilna“."
+      },
+      "motorway": {
+        "title": "Uždaryta nuovaža greitkelyje",
+        "q": "Ar šiuo metu A6 kas nors uždaryta vietovėje {place}?",
+        "a": "Taip: įvažiavimas į A6 vietovėje {place} uždarytas, kol rekonstruojamas statinys – šis etapas truks nuo {from} iki {to}. Visam A6 nurodyta uždarymų: {count}.",
+        "note": "Greitkelių uždarymai ir kelio darbai gaunami iš Autobahn GmbH, su kiekvieno statybų etapo laikotarpiu. Paklaustas apie greitkelį, ViaFrei pirmiausia nurodo uždarymus."
+      },
+      "citywork": {
+        "title": "Kelio darbai mieste",
+        "q": "Ar Berlyne, gatvėje {street}, kas nors uždaryta?",
+        "a": "Taip: komunikacijų darbai abiem kryptimis tarp {a} ir {b}; pasak Senato departamento, uždaryta motoriniam transportui nuo {from} iki {to}.",
+        "note": "Berlyno pranešimuose nurodoma gatvė ir ruožas, o ne kelio numeris, todėl ViaFrei juos randa pagal vietą – 25 km spinduliu, artimiausius pirmiau."
+      },
+      "landroad": {
+        "title": "Kelio darbai regioniniame kelyje",
+        "q": "Ar šią savaitę L1025 kelyje Tiuringijoje vyksta kelio darbai?",
+        "a": "{count, plural, one {# kelio darbų ruožas} few {# kelio darbų ruožai} many {# kelio darbų ruožo} other {# kelio darbų ruožų}}, tarp jų: {site}, susiaurėjimas su šviesoforu, nuo {from} iki {to}.",
+        "note": "Regioninius kelius aprėpiame Badene-Viurtemberge, Žemutinėje Saksonijoje, Tiuringijoje ir Saksonijoje, pagal kelių institucijų duomenis: ruožas ir laikotarpis, be koordinačių ir be gyvo vėlavimo."
+      },
+      "saxony": {
+        "title": "Kelio darbai federaliniame kelyje Saksonijoje",
+        "q": "Ar šią savaitę B6 kelyje Saksonijoje vyksta kelio darbai?",
+        "a": "Šią savaitę kelio darbų ruožų: {count}, tarp jų: Drezdene, netoli {place}, kelias tobulinamas, nuo {from} iki {to}.",
+        "note": "Saksonijos kelių institucija savo ilgalaikius kelio darbus perskelbia kas tris valandas. ViaFrei į juos atsako federaliniams ir regioniniams keliams, pagal ruožą ir laikotarpį – be koordinačių ir be gyvo vėlavimo."
+      },
+      "bwroad": {
+        "title": "Kelio darbai federaliniame kelyje Badene-Viurtemberge",
+        "q": "Ar kitą savaitę B27 kelyje Badene-Viurtemberge planuojami kelio darbai?",
+        "a": "Ruožų Badene-Viurtemberge: {count} iš {all}, pvz., {a} – {b}: nauja kelio danga nuo {from} iki {to}.",
+        "note": "Badeno-Viurtembergo transporto ministerija savo kelio darbus (BEMaS) skelbia per MobiData BW. ViaFrei į juos atsako federaliniams ir regioniniams keliams, pagal ruožą ir laikotarpį – planuojami darbai kaip planuojami, be gyvo vėlavimo."
+      },
+      "kiel": {
+        "title": "Kelio darbai Kylyje",
+        "q": "Ar {street} Kylyje šiuo metu pravažiuojamas?",
+        "a": "Ne: {street} uždarytas tarp namo Nr. {no} ir {b} dėl kanalizacijos darbų, nuo {from} iki {to} (Pavyzdys, apibendrintas; įrankis jį rodo visą).",
+        "note": "Kylio miestas skelbia savo kelio darbus su vieta, priežastimi ir laikotarpiu. Ši kortelė apibendrina vieną pranešimą; įrankis juos rodo nesutrumpintus ir randa pranešimą pagal vietą – 25 km spinduliu, artimiausią pirmiau."
+      },
+      "truckstop": {
+        "title": "Saugomos sunkvežimių stovėjimo vietos prie A7",
+        "q": "Ar šiąnakt yra laisva sunkvežimio vieta {name} prie A7?",
+        "a": "Laisvų vietų {free} iš {total}, kaip praneša operatorius.",
+        "note": "Šių saugomų sunkvežimių aikštelių operatorius skelbia laisvas vietas; ViaFrei jas rodo šalia poilsio aikštelių, kurios užimtumo neskelbia, ir niekada jų nesumuoja."
+      },
+      "parkride": {
+        "title": "„Park and Ride“ prieš traukinį",
+        "q": "Kur Dortmunde galiu palikti automobilį ir persėsti į traukinį?",
+        "a": "{p1} (vietų: {t1}) ir {p2} (vietų: {t2}) — šių aikštelių užimtumo nėra.",
+        "note": "„Park and Ride“ aikštelės Šiaurės Reine-Vestfalijoje gaunamos iš žemės suvestinių duomenų ir pateikiamos atskirame bloke, niekada nesiejamos su kitais šaltiniais. Jų užimtumas neperimamas."
+      },
+      "platform": {
+        "title": "Vėlavimas, gyvai",
+        "q": "Ar {train} į {dest} iš {station} išvyksta laiku?",
+        "a": "+{delay} min, numatoma {expected} vietoj {planned} — iš kelio {platform}, kaip planuota.",
+        "note": "Vėlavimai ir kelių pakeitimai gaunami iš Deutsche Bahn tvarkaraščių sąsajos, visoms stoties dalims — įskaitant Berlyno centrinės stoties požeminius ir priemiestinių traukinių peronus."
+      },
+      "region": {
+        "title": "Punktualumas visoje aglomeracijoje",
+        "q": "Ar autobusai ir traukiniai Reino–Rūro regione šiuo metu važiuoja laiku?",
+        "a": "{share} % per pastarąją valandą stebėtų reisų vėlavo daugiau nei 5 minutes — daugiau nei valandą prieš tai ({before} %).",
+        "note": "Reino–Rūro regionas atsako kaip vienas regionas: 30 apskričių ir miestų kartu. ViaFrei pateikia sumas pagal regioną, ne pagal liniją."
+      },
+      "tomorrow": {
+        "title": "Kelio darbai rytojaus maršrute",
+        "q": "Kokie kelio darbai rytoj planuojami A7?",
+        "a": "Kelio darbų ruožų: {count}, iš jų jau vykdomi {started}. Vienas jų: tarp {a} ir {b} statomas naujas tiltas, {km} km ruože, greičio riba {speed} km/h, iki {until}.",
+        "note": "Planuojami kelio darbai iš Federalinio kelių tyrimų instituto: ruožas ir laikotarpis, be koordinačių ir be gyvo vėlavimo — kas vyksta šiuo metu, ViaFrei atsako iš greitkelių pranešimų."
+      },
+      "closure": {
+        "title": "Uždarymas priekyje",
+        "q": "Ar šiuo metu A7 kas nors uždaryta netoli Hamburgo?",
+        "a": "Taip: Autobahn GmbH praneša apie uždarytą nuovažą {at} sankryžoje — darbų ruože tarp {a} ir {b}. Šis statybų etapas baigiasi {until} {end}.",
+        "note": "Greitkelių uždarymai ir kelio darbai gaunami iš Autobahn GmbH, su kiekvieno statybų etapo laikotarpiu."
+      },
+      "weather": {
+        "title": "Orų patikra prieš kalnus",
+        "q": "Ar šiandien yra įspėjimas dėl orų vietovei {name}?",
+        "a": "Taip, ateinančiai nakčiai: Vokietijos orų tarnyba įspėja apie silpnas šalnas iki {temp} °C, galioja {day} nuo {from} iki {to} — įspėjimo lygis {level}, žemiausias.",
+        "note": "Įspėjimai nuskaitomi kas 5 minutes ir galioja pagal zonas; naujas gali būti paskelbtas netikėtai."
+      },
+      "fuelcity": {
+        "title": "Pigiausias E10 mieste",
+        "q": "Kur Kelne šiuo metu pigiausias Super E10?",
+        "a": "{euro},{cent} €/l degalinėje {station}, {address} — pranešta {reported}.",
+        "note": "Degalų kainos keičiasi kas kelias minutes: šis skaičius yra tos popietės pavyzdys, o ne šiandienos kaina. ViaFrei nurodo, kada degalinė pranešė kiekvieną pateikiamą kainą."
+      },
+      "charger": {
+        "a": "{site}: įkrovimo taškų {points}, 2 tipo jungtis, iki {kw},{kwd} kW, {euro},{cent} €/kWh be PVM. Nė vienas nepraneša esąs užimtas; {stale} paskutinė būsena iš {t}, {unknown} jos nėra — todėl ne „laisva“.",
+        "title": "Gyva būsena įkrovimo stotelėje",
+        "q": "Ar šiuo metu laisvas įkrovimo taškas adresu {address}?",
+        "note": "Gyvą užimtumą pateikiame tik ten, kur operatorius jį skelbia – čia per e-clearing.net. Be pranešimo atsakymas yra „nėra būsenos duomenų“, niekada ne „laisva“."
+      },
+      "roadworks": {
+        "a": "Žemutinėje Saksonijoje: {count}, visi jau prasidėję; pirmasis: {section}, nuo {start} iki {end}.",
+        "note": "Federalinius kelius aprėpiame Žemutinėje Saksonijoje, Saksonijoje, Tiuringijoje ir Badene-Viurtemberge, pagal jų kelių institucijų duomenis: ruožas ir laikotarpis, be gyvo vėlavimo. Dėl federalinio kelio kitur ViaFrei atsako „neaprėpiama“, o ne „laisvas“.",
+        "title": "Kelio darbai federaliniame kelyje",
+        "q": "Kokie kelio darbai šią savaitę planuojami B3 kelyje Žemutinėje Saksonijoje?"
+      },
+      "train": {
+        "title": "Regioniniai traukiniai: laiku ar ne",
+        "q": "Ar kitas regioninis traukinys iš {station} į {dest} važiuoja laiku?",
+        "a": "Taip: {line} {planned} iš kelio {platform}, laiku — kaip ir {n} iš {all} regioninių traukinių iki {last}.",
+        "note": "Kai Deutsche Bahn tvarkaraščių sąsaja neduoda gyvų laikų, ViaFrei prideda regioninius ir S-Bahn traukinius iš DELFI SIRI ET – atskirame bloke, niekada nesumaišytus su geležinkelio linijomis."
+      },
+      "fuelroad": {
+        "a": "Naujos kainos dar nėra — mažiausia paskutinė žinoma: {euro},{cent} €/l degalinėje {station}, {address}, pranešta {reported}; ViaFrei prašo naujos.",
+        "title": "Dyzelinas pakeliui, prie greitkelio",
+        "q": "Šįvakar važiuoju A3 pro Viurcburgą: kur netoliese pigiausias dyzelinas?",
+        "note": "Degalų kainos keičiasi kas kelias minutes: šis skaičius yra tos popietės pavyzdys, o ne šiandienos kaina. ViaFrei nurodo, kada degalinė pranešė kiekvieną pateikiamą kainą."
+      },
+      "fuelland": {
+        "a": "Naujos kainos dar nėra — mažiausia paskutinė žinoma: {euro},{cent} €/l degalinėje {station}, {address}, pranešta {reported}; ViaFrei prašo naujos.",
+        "title": "Pigiausia kaina žemės sostinėje",
+        "q": "Kur Štutgarte, Badene-Viurtemberge, šiuo metu pigiausias E10?",
+        "note": "Degalų kainos keičiasi kas kelias minutes: šis skaičius yra tos popietės pavyzdys, o ne šiandienos kaina. ViaFrei nurodo, kada degalinė pranešė kiekvieną pateikiamą kainą."
+      },
+      "carpark": {
+        "title": "Automobilių stovėjimo aikštelė su laisvomis vietomis",
+        "q": "Kiek laisvų vietų yra Kelno automobilių stovėjimo aikštelėje {name}?",
+        "a": "Paskutiniais duomenimis laisvų vietų {free} iš {total} — senesnis pranešimas, ne dabartinė padėtis.",
+        "note": "Pavadinimas, vieta ir vietų skaičius gaunami iš Kelno miesto aikštelių lentelės, užimtumas – iš jo gyvo srauto. Jei naujausias pranešimas per senas, ViaFrei sako „paskutinį kartą pranešta“, o ne „laisva“."
+      },
+      "lorry": {
+        "title": "Sunkvežimių stovėjimo vietos su laisvomis vietomis",
+        "q": "Kiek sunkvežimių vietų šiuo metu laisva {name}?",
+        "a": "Laisvų sunkvežimių vietų: {free}, kaip praneša operatorius.",
+        "note": "Laisvas vietas pateikiame tik ten, kur operatorius jas skelbia – čia kas 15 minučių. Jei vertė nesikeičia šešias valandas, ViaFrei sako „paskutinį kartą pranešta“, o ne „laisva“."
+      }
+    },
+    "betaHeading": "Beta: ką tai jums reiškia",
+    "beta1": "ViaFrei yra stabilizavimo etape: pridedami duomenų šaltiniai, o atsakymai ir aprėptis gali keistis.",
+    "beta2": "Atsakymus mūsų duomenų pagrindu formuluoja DI asistentas – DI gali suklysti.",
+    "beta3": "Svarbius duomenis (uždarymus, išvykimus, kainas) pasitikrinkite atsakyme nurodytame šaltinyje.",
+    "endpointHeading": "Adresas",
+    "endpointNote": "Streamable HTTP. Nemokamai, kol jį kuriame, be paskyros; užklausų dažnis ribojamas, kad užtektų visiems.",
+    "legacyNote": "Senesni klientai be Streamable HTTP naudoja SSE adresą:",
+    "clientsHeading": "Žingsnis po žingsnio",
+    "claudeAi": "claude.ai (žiniatinklis)",
+    "claudeAiSteps": "Tinkinti (Customize) → Connectors → „+ Add“ → „Add custom connector“. Pavadinkite ViaFrei, įklijuokite adresą aukščiau kaip MCP serverio URL, tada „Continue“. Paklauskite, pavyzdžiui: „Ar A8 Miuncheno kryptimi laisva?“ Pirmą kartą leiskite ViaFrei įrankį.",
+    "claudeDesktop": "Claude Desktop",
+    "claudeDesktopSteps": "Tas pats jungiklis kaip claude.ai, saugomas jūsų Claude paskyroje: pridėkite jį ten, kaip aprašyta aukščiau, ir jis atsiras ir kompiuterio programoje.",
+    "claudeCode": "Claude Code",
+    "claudeCodeSteps": "Vieną kartą paleiskite terminale:",
+    "chatgpt": "ChatGPT",
+    "chatgptSteps": "Plugins → „+“ → „Add custom MCP server“. Pavadinkite ViaFrei, įklijuokite adresą aukščiau į „Connection“, autentifikavimas: nėra; pažymėkite „I understand and want to continue“, tada „Create as a plugin“. Naujame pokalbyje įveskite @, pasirinkite ViaFrei ir klauskite.",
+    "editorsSteps": "Pridėkite prie MCP konfigūracijos (mcp.json):",
+    "copilotSteps": "Komandų paletė → „MCP: Add Server“ → „HTTP“ → įklijuokite aukščiau esantį adresą → serverio ID viafrei → „Global“ → „Copilot Global“. Tai įrašoma į ~/.copilot/mcp-config.json; rankiniu būdu pridėkite:",
+    "copilotSandbox": "Jei Copilot atsako 403 su antrašte „x-ms-block-by: sandbox-broker“, jo smėlio dėžė užblokavo adresą: leiskite mcp.viafrei.de (debesų agentui: saugyklos nustatymai → Copilot → Internet access → Custom allowlist).",
+    "geminiTrust": "Gemini CLI paleidžia MCP serverius tik aplanke, kuriuo pasitikite; pirmą kartą ten paleidus jis to paklausia.",
+    "windsurfSteps": "Cascade skydelis → „…“ → MCPs → atidarykite MCP konfigūracijos failą (mcp_config.json) ir pridėkite:",
+    "leChatSteps": "Connectors → „+ Add Connector“ → „Custom MCP Connector“ → pavadinimas viafrei, serverio URL: aukščiau esantis adresas → Connect, be autentifikavimo. Prideda administratorius – Free ir Pro planuose tai esate jūs.",
+    "generic": "Bet kuris kitas MCP klientas",
+    "genericSteps": "Bet kuris klientas, palaikantis Streamable HTTP, jungiasi prie aukščiau esančio adreso – be antraščių, be rakto.",
+    "stdio": "Tik stdio palaikantys klientai",
+    "stdioSteps": "Tiltas iš viešo npm paketo paleidžia vietinį stdio serverį, kuris persiunčia į aukščiau esantį adresą:",
+    "notCoveredHeading": "Į ką ViaFrei neatsako",
+    "notCoveredLead": "Kad neieškotumėte to, ko nėra:",
+    "notCovered": {
+      "routing": "Jokio maršruto „nuo durų iki durų“ ar kelionės planavimo — ViaFrei atsako apie vietas, kelius ir duomenų srautus, niekada „kaip ten nuvykti“.",
+      "cityStreets": "Jokio miesto gatvių eismo už mūsų turimų miestų ir žemių srautų ribų: gatvių darbai, uždarymai ir eismo pranešimai Berlynui, Kelnui (uždarymai dėl renginių), Hanoveriui (kai tik jo srautas pradės skelbti), Šlėzvigui-Holšteinui kartu su Kyliu ir Badenui-Viurtembergui kartu su Štutgartu. Kiti miestai neaprėpiami; kitur turimas gyvas eismas yra federalinis greitkelių tinklas (Autobahn GmbH) ir, kur srautas juos teikia, federaliniai keliai, taip pat kelio darbai regioniniuose keliuose Badene-Viurtemberge, Žemutinėje Saksonijoje, Saksonijoje ir Tiuringijoje.",
+      "fares": "Jokių kainų, bilietų ar bet kokio užsakymo.",
+      "lineRealtime": "Jokio punktualumo skaičiaus vienai nurodytai linijai — į klausimą „ar S1 laiku?“ atsakoma traukinys po traukinio geležinkelio stotyje (kiekvieno išvykstančio traukinio gyvas vėlavimas, įskaitant S-Bahn) ir pagal regioną su linijos eismo pranešimais; autobusų, tramvajų ar metro (U-Bahn) stotelė gauna tik tvarkaraštį.",
+      "forecast": "Jokių orų prognozių — tik oficialūs DWD įspėjimai ir tik kol jie galioja.",
+      "parkingTariffs": "Jokių parkavimo tarifų ir jokio pažado, kad vieta laisva, nebent operatorius skelbia užimtumą."
+    },
+    "privacyHeading": "Privatumas trimis sakiniais",
+    "privacy1": "Jums nereikia paskyros pas mus, ir jokių klausimų nesaugome jūsų vardu.",
+    "privacy2": "Trečiųjų šalių matavimas veikia tik jums sutikus; iki tol nieko neįkeliama iš trečiųjų šalių. Apsilankymus skaičiuojame be slapukų, kaip dienos sumas savo serveryje.",
+    "privacy3": "Serverio žurnalai ištrinami ne vėliau kaip po septynių dienų – visa kita rasite",
+    "privacyLink": "privatumo pranešime (vokiečių kalba)",
+    "sourcesHeading": "Iš kur gaunami duomenys",
+    "sourcesLead": "Kiekvienas atsakymas nurodo savo šaltinį. Tai visi šaltiniai, iš kurių ViaFrei šiandien atsako, su jų licencijos reikalaujama šaltinio eilute (vokiečių kalba, kaip parašyta):",
+    "askAnswers": {
+      "train": "{t1} — {l1} į {d1} iš kelio {p1}, {t2} — {l2} į {d2} iš kelio {p2} — abu laiku.",
+      "parking": "{p1}: laisvų vietų {f1} iš {t1}; {p2}: laisvų {f2} iš {t2}.",
+      "charging": "Artimiausia: {a1}, už {m} m, 2 tipo jungtis iki {kw1} kW; toliau {a2}, už {m2} m, iki {kw2} kW — be gyvos būsenos.",
+      "road": "Taip: visame A3 šiuo metu spūsčių nepranešta; nurodyta uždarymų {closures} ir kelio darbų įrašų {works}.",
+      "weather": "{place}: oficialaus DWD įspėjimo dėl orų nėra — patikrinta dabar ir artimiausioms {hours} val."
+    },
+    "allExamples": "Visi pavyzdiniai klausimai su atsakymais, pagal sritis",
+    "claudeFlow": {
+      "s1": "Tinkinti (Customize) → Connectors → „+ Add“ → „Add custom connector“.",
+      "s2": "Pavadinkite ViaFrei, įklijuokite adresą aukščiau kaip MCP serverio URL, tada „Continue“.",
+      "s3": "Paklauskite, pavyzdžiui: „Ar A8 Miuncheno kryptimi laisva?“ Pirmą kartą leiskite ViaFrei įrankį."
+    },
+    "chatgptFlow": {
+      "s1": "Plugins → „+“ → „Add custom MCP server“.",
+      "s2": "Pavadinkite ViaFrei, įklijuokite adresą aukščiau į „Connection“, autentifikavimas: nėra; pažymėkite „I understand and want to continue“, tada „Create as a plugin“.",
+      "s3": "Naujame pokalbyje įveskite @, pasirinkite ViaFrei ir klauskite.",
+      "avail": "Savi MCP serveriai veikia ChatGPT naršyklėje: Business ir Enterprise/Edu darbo srityse, kur juos kuria administratoriai ir savininkai, ir Pro naudotojams su skaitymo ir gavimo teisėmis – ViaFrei tik skaito, todėl Pro tinka. Ne mobiliosiose programėlėse; Free ir Plus neprieinama.",
+      "d1": "Plugins → + → Add custom MCP server",
+      "d2": "Pavadinimas ViaFrei · Connection: adresas · autentifikavimas: nėra · Create as a plugin",
+      "d3": "Naujas pokalbis: @ViaFrei, tada klausimas",
+      "dtitle": "Trys žingsniai ChatGPT"
+    },
+    "shot": {
+      "claude1": "claude.ai, Customize → Connectors: atidarytas meniu „+ Add“ su „Add custom connector“.",
+      "claude2": "Langas „Add custom connector“: pavadinimas ViaFrei, MCP serverio URL https://mcp.viafrei.de/mcp ir mygtukas „Continue“.",
+      "claude3": "Claude prašo leidimo naudoti ViaFrei įrankį A8 keliui: atmesti, leisti visada arba leisti kartą.",
+      "claude4": "Claude atsakymas į klausimą apie A8 Miuncheno kryptimi, pažymėtas kaip ViaFrei naudojimas, su šaltinio eilute pabaigoje.",
+      "phone1": "claude.ai telefono naršyklėje, Customize → Connectors: atidarytas meniu „+ Add“ su „Add custom connector“.",
+      "phone2": "Langas „Add custom connector“: pavadinimas ViaFrei, MCP serverio URL https://mcp.viafrei.de/mcp ir mygtukas „Continue“.",
+      "phone3": "Pokalbis claude.ai: „+“ → Connectors, ViaFrei įjungtas; kitos jungtys suliejtos.",
+      "phone4": "Claude atsakymas į klausimą, ar dabar A7 yra kamštis, pažymėtas kaip naudojantis ViaFrei.",
+      "phone4b": "Tas pats atsakymas pabaigoje: šaltinio eilutė, nurodanti Autobahn GmbH des Bundes.",
+      "phoneCaption": "Ekrano kopija: claude.ai telefono naršyklėje, {date}",
+      "caption": "Ekrano kopija: claude.ai, {date}",
+      "diagram": "Schema, ne ekrano kopija",
+      "claudeCode1": "Terminalas: claude mcp add su ViaFrei adresu, tada claude mcp list praneša „viafrei … ✔ Connected“.",
+      "geminiCli1": "Terminalas: gemini mcp add --scope user su ViaFrei adresu, tada gemini mcp list praneša „viafrei … Connected“.",
+      "generic1": "Terminalas: MCP Inspector paklausia ViaFrei adreso jo įrankių (tools/list) ir gauna jų pavadinimus.",
+      "stdio1": "Terminalas: Claude Code prideda tiltą npx -y viafrei, tada claude mcp list praneša „viafrei: npx -y viafrei – ✔ Connected“.",
+      "terminal": "Mūsų bandymo terminalo įrašas: {what}, {date}",
+      "open": "Atverti paveikslėlį visu dydžiu",
+      "close": "Uždaryti padidintą paveikslėlį"
+    },
+    "guide": "Oficialus vadovas",
+    "otherGuides": "Jų pačių vadovai:",
+    "check": {
+      "verified": "Patikrinta kliente {date} su {version}.",
+      "docs": "Žingsniai patikrinti pagal oficialų vadovą {date}, kliente dar ne. {reason}",
+      "pending": {
+        "account": "Tam reikia prisijungusios paskyros; šis patikrinimas dar laukia.",
+        "app": "Tai darbalaukio programa su savo prisijungimu; šis patikrinimas dar laukia.",
+        "signIn": "Sesijai reikia prisijungimo arba API rakto; šis patikrinimas dar laukia."
+      }
+    },
+    "about": {
+      "lead": "Nukopijuokite šį klausimą ir užduokite jį asistentui, kai ViaFrei prijungtas:",
+      "place": "{place}: kokia dabar padėtis keliuose, transporte ir su orais?",
+      "road": "Ar {road} dabar laisvas?",
+      "exit": "{road}, {exit}: ar kelias dabar laisvas?"
+    },
+    "phone": {
+      "heading": "Telefone (Android, iPhone)",
+      "jump": "Telefone? Štai kaip tai veikia „Android“ ir „iPhone“",
+      "lead": "Daugumoje asistentų programėlių ViaFrei negalima pridėti pačioje programėlėje. Ryšį nustatote vieną kartą naršyklėje – galima ir telefone – ir programėlė jį naudoja, kai tik prisijungiate ta pačia paskyra.",
+      "where": "Pasak „Anthropic“, tai veikia su bet kuriuo „Claude“ planu (Free: viena sava jungtis). Jungties pridėjimas programėlėje dar yra beta versijos, todėl žingsniai eina per claude.ai naršyklėje.",
+      "claude": {
+        "s1": "Telefono naršyklėje (arba kompiuteryje) atidarykite claude.ai ir prisijunkite. Tada Customize → Connectors → „+ Add“ → „Add custom connector“.",
+        "s2": "Pavadinimas: ViaFrei. URL: {url}. Bakstelėkite „Continue“.",
+        "s3": "Atidarykite „Claude“ programėlę ir prisijunkite ta pačia paskyra. Pokalbyje bakstelėkite „+“ → Connectors ir įjunkite ViaFrei.",
+        "s4": "Paklauskite: „Ar A7 prie Kaselio laisva?“ ir pirmą kartą leiskite ViaFrei įrankį. Teisingas atsakymas aprašo A7 prie Kaselio dabar ir baigiasi šaltinio eilute, kurioje nurodytas duomenų leidėjas."
+      },
+      "unclear": "{name}: oficialus vadovas savą MCP serverį prideda tik žiniatinklyje ir nesako, ar telefono programėlė jį vėliau naudoja – todėl čia žingsnių nėra. Būklė {date}.",
+      "gemini": "Gemini: savos programėlės (MCP serveriai) gali būti pridėtos tik žiniatinklio programėlėje ir tik su asmenine paskyra JAV, nuo 18 metų, anglų kalba – vadinasi, ne iš Vokietijos. Būklė {date}.",
+      "copilot": "Microsoft Copilot: oficiali dokumentacija savus MCP serverius aprašo tik „Microsoft 365 Copilot“ (juos nustato organizacijos administracija) ir „Copilot Studio“, o ne „Copilot“ programėlei. Būklė {date}.",
+      "checked": "Patikrinta {date} pagal oficialų vadovą; telefone dar neišbandyta.",
+      "device": "Prijungta telefone {date} su {app}."
+    }
+  },
+  "devPage": {
+    "title": "ViaFrei kūrėjams",
+    "lead": "MCP serveris per Streamable HTTP, atvirieji Vokietijos duomenys, kiekvienas atsakymas su šaltiniu. Čia aprašyta, ką jis moka šiandien – perskaityta iš paties serverio, ne nukopijuota.",
+    "releaseHeading": "Dabartinė versija",
+    "releaseLine": "Versija {version}",
+    "releaseDate": "išleista {date}",
+    "toolsHeading": "Įrankiai",
+    "toolsLead": "Įrankiai ({n}), kaip juos pateikia serveris:",
+    "promptsHeading": "Raginimai",
+    "resourcesHeading": "Ištekliai",
+    "codeHeading": "Kodas ir prisidėjimas",
+    "closed": "Serveris yra talpinama paslauga, jo kodas uždaras. Tiltas yra viešas – ir ten laukiama kiekvienos pagalbos.",
+    "bridge": "Viešas tiltas GitHub",
+    "discussions": "Diskusijos",
+    "goodFirst": "Tinkamos pirmosios užduotys",
+    "contributing": "Kaip prisidėti",
+    "security": "Pranešti apie pažeidžiamumą",
+    "licence": "Licencija: Apache-2.0",
+    "contractHeading": "Sutartis, kurios laikosi kiekvienas įrankis",
+    "contract1": "Įrankis daro vieną dalyką ir pavadintas pagal jį (verb_noun).",
+    "contract2": "Kiekvienas atsakymas pažodžiui nurodo šaltinio eilutę; kur licencija reikalauja paskirties pastabos, ji taip pat pateikiama.",
+    "contract3": "Laikas pagal Europe/Berlin; saugojimas UTC.",
+    "contract4": "Testai niekada nekreipiasi į gyvą tiekėją; kiekvienas indėlis peržiūrimas nepriklausomai.",
+    "npmHeading": "npm",
+    "npmLead": "Klientams, palaikantiems tik stdio:",
+    "npmReserved": "Sritis @viafrei rezervuota būsimiems SDK paketams.",
+    "listingsHeading": "Katalogai",
+    "listingsLead": "ViaFrei įtrauktas čia:",
+    "listingNpm": "npm – paketas viafrei, stdio tiltas klientams be HTTP",
+    "listingSmithery": "Smithery – talpinamas ryšys, be vietinio diegimo",
+    "listingGlama": "Glama – įrašas MCP serverių kataloge",
+    "statusHeading": "Būsena",
+    "statusText": "Duomenų šaltinių būsenos apžvalga pateikiama paprašius.",
+    "tools": {
+      "check_autobahn_traffic": "Eismas greitkeliuose",
+      "find_cheapest_fuel": "Pigiausi degalai netoliese",
+      "find_fuel_station": "Rasti degalinę",
+      "find_parking": "Parkavimas netoliese",
+      "check_road_status": "Kelio būklė ir uždarymai",
+      "find_roadworks_ahead": "Planuojami kelio darbai",
+      "find_sharing": "Bendrinami dviračiai netoliese",
+      "find_charging_station": "Elektromobilių įkrovimas netoliese",
+      "find_hydrogen_station": "Vandenilio stotelės netoliese",
+      "find_speed_cameras": "Greičio kameros planavimui",
+      "find_place": "Ieškoti vietos",
+      "find_poi": "Rasti pavadintą vietą",
+      "find_address": "Ieškoti gatvės adreso",
+      "describe_location": "Aprašyti koordinatę",
+      "find_nearby": "Kas netoliese",
+      "get_driving_rules": "Vokietijos eismo taisyklės",
+      "check_transit_disruption": "Viešojo transporto sutrikimai regione",
+      "check_weather_warnings": "Oficialūs įspėjimai dėl orų",
+      "get_train_departures": "Traukinių išvykimai",
+      "get_departures": "Išvykimai pagal tvarkaraštį (autobusas, tramvajus, traukinys)",
+      "check_station_facilities": "Stočių liftai ir eskalatoriai",
+      "describe_station": "Geležinkelio stoties apžvalga",
+      "watch_situation": "Stebėti pokytį",
+      "stop_watch": "Nutraukti stebėjimą"
+    },
+    "prompts": {
+      "plan_departure": "Parengia santrauką prieš prasidedančią kelionę automobiliu: įspėjimai dėl orų abiejuose galuose, atviri greitkeliai ir gyvos spūstys, pabaigoje sakinys „važiuoti ar ne“.",
+      "compare_travel_options": "Palygina vieną kelionę automobiliu su ta pačia kelione traukiniu: vienoje pusėje uždarymai ir spūstys, kitoje išvykimai ir punktualumas.",
+      "prepare_car_trip": "Surenka, ką vairuotojas turi turėti ir žinoti prieš važiuodamas Vokietijoje ir į vieną miestą: taršos ženklelis, greičio ribos, žieminės padangos, alkoholio riba, kelių mokesčiai, privaloma įranga.",
+      "plan_fuel_stop": "Randa, kur pakeliui įsipilti degalų ar įsikrauti: pigiausios degalinės vienai degalų rūšiai arba įkrovimo stotelės su tinkama jungtimi ir galia, ir šalia esanti poilsio aikštelė.",
+      "plan_commute": "Suplanuoja vieną viešojo transporto kelionės dalį tą dieną: artimiausi išvykimai su vėlavimais, keliais ir atšaukimais, ir ar regione viskas važiuoja įprastai.",
+      "plan_arrival_parking": "Randa, kur kelionės pabaigoje palikti automobilį: aikštelė mieste, „Park and Ride“ pakraštyje su tolesniais išvykimais arba poilsio aikštelė, jei atvykstate anksti.",
+      "find_a_place": "Paverčia vien pavadinimą vieta, pavadintu objektu ar adresu, išbandydamas kiekvieną iš eilės.",
+      "plan_local_errand": "Atsako į klausimą „kas čia aplink“ vienai vietai: artimiausi degalai, įkrovimas, parkavimas, stotis ir greitkelio sankryža vienu žvilgsniu.",
+      "explain_this_coordinate": "Paverčia vien platumą ir ilgumą keliautojui suprantamu sakiniu: artimiausias adresas, gyvenvietė, rajonas ir greitkelio sankryža, kiekvienas su atstumu."
+    },
+    "quickHeading": "Prisijungimas per minutę",
+    "quickLead": "Pasirinkite klientą, įklijuokite tai ir užduokite pirmą klausimą.",
+    "quickTabs": "Klientų programos",
+    "quickWhere": "Kur tai dėti:",
+    "quickFirst": "Jūsų pirmasis iškvietimas",
+    "quickFirstLead": "Prisijungę klauskite paprastais žodžiais; įrankį asistentas pasirenka pats:",
+    "copy": "Kopijuoti",
+    "copyCurl": "Kopijuoti kaip curl",
+    "tryHeading": "Išbandykite",
+    "tryLead": "Tikras viešojo prieigos taško iškvietimas: pirma sesija, tada įrankis. Žemiau – atsakymas, kurį mūsų serveris prieš kelias minutes davė būtent šiam iškvietimui.",
+    "tryRequest": "Užklausa",
+    "tryResponse": "Atsakymas",
+    "tryAsOf": "Atsakyta {time}",
+    "tryError": "Šiuo metu naujo atsakymo nėra. Paleiskite užklausą viršuje, kad pamatytumėte atsakymą tiesiogiai.",
+    "argsLabel": "Argumentai",
+    "askLabel": "Klauskite taip:",
+    "schemaLabel": "Įvesties schema",
+    "otherGroup": "Daugiau įrankių",
+    "newHeading": "Kas naujo sutartyje",
+    "newLine": "Versija {version}, {date}",
+    "newTools": "pakeista:",
+    "contract5": "Per daug užklausų atmetama su JSON-RPC klaida {code}; palaukite ir siųskite dar kartą.",
+    "contract6": "Pasibaigusi sesija atmetama su klaida {code}; pradėkite naują per initialize.",
+    "ask": {
+      "check_autobahn_traffic": "Ar dabar yra spūstis A9 tarp Miuncheno ir Niurnbergo?",
+      "find_cheapest_fuel": "Kur dabar pigiausias dyzelinas prie Kaselio?",
+      "find_fuel_station": "Kuri degalinė atidaryta prie Viurcburgo centrinės stoties?",
+      "find_parking": "Ar yra laisva vieta automobilių aikštelėje prie Kelno centrinės stoties?",
+      "check_road_status": "Ar keliuose aplink Drezdeną yra uždarymų?",
+      "find_roadworks_ahead": "Kokie kelio darbai planuojami A3 kitą savaitę?",
+      "find_charging_station": "Kur Leipcige galiu greitai įkrauti 150 kW galia?",
+      "find_hydrogen_station": "Kur artimiausia vandenilio stotelė prie Štutgarto?",
+      "find_speed_cameras": "Kur stovi stacionarūs greičio matuokliai mano kelyje per Bylefeldą?",
+      "find_place": "Kur tiksliai yra Garmišas-Partenkirchenas?",
+      "find_poi": "Ar prie Erfurto centrinės stoties yra vaistinė?",
+      "find_address": "Kur yra Unter den Linden 77 Berlyne?",
+      "describe_location": "Kas yra taške 50,94, 6,96?",
+      "find_nearby": "Kas yra prie Miunsterio centrinės stoties: įkrovimas, stovėjimas, stotelės?",
+      "find_sharing": "Ar prie Hamburgo Dammtor yra dalijimosi dviratis?",
+      "get_driving_rules": "Kada galioja sekmadienio eismo draudimas sunkvežimiams?",
+      "check_transit_disruption": "Kiek punktualiai dabar važiuoja autobusai ir traukiniai Bavarijoje?",
+      "check_weather_warnings": "Ar šiandien yra orų įspėjimas Hamburgui?",
+      "get_train_departures": "Kada išvyksta kiti traukiniai iš Hanoverio centrinės stoties?",
+      "get_departures": "Kada išvyksta kitas tramvajus iš Leipcigo Augustusplatz?",
+      "check_station_facilities": "Ar veikia liftai Frankfurto centrinėje stotyje?",
+      "describe_station": "Kokia yra Niurnbergo centrinė stotis: peronai, liftai, išvykimai?",
+      "watch_situation": "Pranešk man, kai A7 prie Hamburgo vėl bus laisva.",
+      "stop_watch": "Nustok stebėti A7."
+    }
+  },
+  "bizPage": {
+    "title": "ViaFrei įmonėms",
+    "lead": "Atvirieji visos Vokietijos judumo duomenys, tvarkingai sujungti ir visada su šaltiniu – kaip vienas galinis taškas, kurio gali klausti jūsų sistemos ir jūsų asistentai.",
+    "casesHeading": "Kam įmonės naudoja ViaFrei",
+    "u1t": "Logistika ir automobilių parkai",
+    "u1": "Kelio darbai ir uždarymai planuojamo maršruto greitkeliuose, sunkvežimių stovėjimo vietos pakeliui ir sekmadienio eismo draudimas iš eismo taisyklių.",
+    "u1q": "Kokie uždarymai yra A7 tarp Viurcburgo ir Ulmo?",
+    "u1a": "A7 iki {to}: {n, plural, one {# uždarymas} few {# uždarymai} many {# uždarymo} other {# uždarymų}}; tarp Viurcburgo ir Ulmo tarp jų {a} – {b} ir {b} – {c}, abiem kryptimis.",
+    "u2t": "Įkrovimo infrastruktūra",
+    "u2": "Kur tinklas retas ir kurie taškai šiuo metu laisvi – iš operatorių srautų, kurių kilmę patikrinome. Saugoma užimtumo istorija planuojama kaip bendradarbiavimo dalis.",
+    "u2q": "Kur netoli Kaselio yra ne mažiau kaip 150 kW greitojo įkrovimo stotelių?",
+    "u2a": "Taip: {s1}, {a1}, už {m} m, iki {kw1} kW, laisvų taškų su būsena {free} iš {total}; taip pat {s2}, {a2}, iki {kw2} kW, be gyvos būsenos.",
+    "u3t": "Turizmas, viešbučiai ir renginių vietos",
+    "u3": "Atvykimo santrauka svečiams jų kalba: padėtis greitkeliuose, traukinių išvykimai, parkavimas ir įkrovimas kelionės tikslo vietoje.",
+    "u3q": "Mano viešbutis yra Garmišas-Partenkirchene – ar svečiai šiandien turėtų tikėtis įspėjimo dėl orų?",
+    "u3a": "Ne: {place} — oficialaus DWD įspėjimo nėra, patikrinta dabar ir artimiausioms {hours} val. — tai nereiškia, kad likusioje kelionėje pavojaus nėra.",
+    "u4t": "Navigacijos, žemėlapių ir judumo programėlės",
+    "u4": "Vienas MCP galinis taškas vietoj daugybės atskirų tiekėjų integracijų – ir, planuojama kaip bendradarbiavimo dalis, saugoma šaltinių, kurių licencija leidžia analizę, istorija.",
+    "u4q": "Kokie kelio darbai artimiausiomis dienomis planuojami A3?",
+    "u4a": "Nuo {from} iki {to} A3 planuojama {n, plural, one {# kelio darbų vieta} few {# kelio darbų vietos} many {# kelio darbų vietos} other {# kelio darbų vietų}}, tarp jų {a} – {b}: uždaryta 1 iš 4 eismo juostų, {speed} km/h, iki {until}.",
+    "u5t": "Draudikai ir judumo tyrimai",
+    "u5": "Šaltinių, kurių licencija tai leidžia, rodmenų archyvas: kokia buvo padėtis ruože tam tikru momentu? Istorijos užklausos planuojamos kaip bendradarbiavimo dalis; į tai, kas galioja šiuo metu, pavyzdžiui, oficialius žemės įspėjimus, viešoji paslauga atsako jau šiandien.",
+    "u5q": "Kokie uždarymai šiuo metu galioja A8?",
+    "u5a": "A8 iki {to}: {n, plural, one {# uždarymas} few {# uždarymai} many {# uždarymo} other {# uždarymų}}, tarp jų {a} – {b} Miuncheno kryptimi ir {c} sankryžoje į A81.",
+    "u6t": "Savivaldybės ir federalinės žemės",
+    "u6": "Visos šalies vaizdas apie jų pačių paskelbtus duomenis – ir galimybė pasiūlyti srautus, kuriuos turėtume pridėti.",
+    "u6q": "Ar šiuo metu Kelnui galioja oficialus įspėjimas dėl orų?",
+    "u6a": "Ne: {place} — oficialus DWD įspėjimas negalioja nei dabar, nei per artimiausias {hours} val.",
+    "futureLabel": "planuojama",
+    "coopHeading": "Ką reiškia bendradarbiavimas",
+    "price": "Kainos – pagal užklausą.",
+    "contactHeading": "Pasikalbėkime",
+    "contactLead": "Parašykite mums – atsakome per dvi darbo dienas.",
+    "postal": "Pašto adresas: žr. rekvizitus.",
+    "noForm": "Jokios formos, jokios duomenų bazės: tik el. laiškas.",
+    "licenceScope": "Tai, ką siūlome įmonėms, atitinka kiekvieno šaltinio licenciją: duomenys, išleisti tik vartotojų informavimui, į tai neįeina, o „share-alike“ duomenys perduodami tik pagal tą pačią licenciją.",
+    "licenceScopeCredits": "Visos šaltinių eilutės pateiktos čia:",
+    "heroPilot": "Pradėti bandomąjį projektą",
+    "heroLive": "Pamatyti atsakymą tiesiogiai",
+    "heroSteps": "Kaip asistentas atsako su ViaFrei",
+    "proofHeading": "Tiesiogiai iš duomenų bazės",
+    "proofLead": "Kiekvienas skaičius žemiau šiam puslapiui perskaitytas iš mūsų duomenų bazės, kartu su laiku, kuriam jis galioja. Neperskaitomas skaičius rodomas kaip trūkstamas, niekada kaip senesnis skaičius.",
+    "proofError": "Šio skaičiaus dabar nepavyko perskaityti.",
+    "proofCatalogue": "Suskaičiuota pagal leidimą {version}.",
+    "proofSources": "nurodytų duomenų šaltinių",
+    "proofTools": "įrankių asistentams",
+    "proofMotorways": "greitkelių su savo puslapiu",
+    "proofLanguages": "kalbų",
+    "caseShow": "Pamatyti, ką rodo dabar",
+    "howHeading": "Kaip tai veikia",
+    "how1": "Institucijos ir operatoriai skelbia atviruosius duomenis: eismą, tvarkaraščius, įkrovimą, stovėjimą, orų įspėjimus.",
+    "how2": "Renkame juos visą parą, sujungiame į vieną Vokietijos vaizdą ir saugome kiekvieną matavimą su laiku ir šaltiniu.",
+    "how3": "Jūsų sistemos ir asistentai klausia vieno prieigos taško ir gauna atsakymą, kuris nurodo savo šaltinį.",
+    "howData": "Atvirieji duomenys",
+    "howYou": "Jūsų asistentas ar sistema",
+    "licenceHeading": "Kokius duomenis įmonė gali naudoti ir kaip",
+    "licenceColClass": "Licencijos klasė",
+    "licenceColCount": "Šaltiniai",
+    "licenceColUse": "Ką įmonė gali daryti",
+    "lic": {
+      "open": {
+        "name": "Atvira",
+        "use": "Laisvai naudoti ir perduoti toliau."
+      },
+      "attribution": {
+        "name": "Autorystės nurodymas",
+        "use": "Naudoti ir perduoti toliau kartu su šaltinio eilute."
+      },
+      "shareAlike": {
+        "name": "Platinti tomis pačiomis sąlygomis",
+        "use": "Naudoti; išvestiniai duomenys perduodami tik su ta pačia licencija."
+      },
+      "terms": {
+        "name": "Įmonėms dar neišaiškinta",
+        "use": "Dar neįtraukta į pasiūlymą įmonėms: leidėjas neskelbia naudojimo sąlygų arba jo sąlygos reikalauja sutarties, kurios dar nesiūlome."
+      },
+      "consumerOnly": {
+        "name": "Tik vartotojų informavimui",
+        "use": "Nėra jokio pasiūlymo įmonėms dalis."
+      },
+      "own": {
+        "name": "ViaFrei turinys",
+        "use": "Įtrauktas į bendradarbiavimą."
+      }
+    },
+    "coopPilotTitle": "Bandomasis projektas",
+    "coopPilot": "Kelios savaitės prie jūsų pačių klausimo: savas API raktas, aukštesnės ribos ir tiesioginė linija su mumis.",
+    "coopDataTitle": "Duomenų partnerystė",
+    "coopData": "Eksportai iš saugomos istorijos tiems šaltiniams, kurių licencija tai leidžia, ir jūsų pačių stebėjimai bei kanalai.",
+    "coopPublisherTitle": "Duomenų leidėjas",
+    "coopPublisher": "Skelbiate judumo duomenis: mes juos pristatome kiekvienam DI asistentui, nurodydami jus kaip šaltinį, ir kartu kuriame naujus įrankius."
+  },
+  "fuelPage": {
+    "title": "Degalinės pagal žemes – atranka su kainomis",
+    "lead": "Iki trijų degalinių kiekvienoje žemėje, pirmiausia pigiausias Super E10. Atrinkta iš mūsų stebimų degalinių – todėl nebūtinai pigiausios žemėje. Kiekviena kaina rodoma su laiku, kada ją pastebėjome. Informacija vartotojams, o ne visų degalinių sąrašas.",
+    "back": "Atgal į pradžios puslapį",
+    "unavailable": "Degalinių sąrašas pagal žemes šiuo metu nepasiekiamas.",
+    "boardHead": "Iki trijų degalinių kiekvienoje žemėje",
+    "hereHead": "Pigiausios atviros degalinės: {place}",
+    "hereHeadNone": "Pigiausios atviros degalinės šalia jūsų",
+    "hereNone": "Šiuo metu nežinome jūsų vietovės. Pasirinkite miestą žemiau arba savo vietovę pradiniame puslapyje; ten nurodytos kainos.",
+    "hereNoScript": "Kainos įkeliamos su JavaScript, kai šis skyrius matomas. Be JavaScript jos yra vietovės puslapyje.",
+    "hereLoading": "Įkeliamos kainos …",
+    "hereFailed": "Kainų dabar gauti nepavyksta.",
+    "cities": "Miestai",
+    "citiesLead": "Kiekvieno miesto kainos yra jo puslapyje."
+  },
+  "quote": {
+    "open": "„",
+    "close": "“"
+  },
+  "place": {
+    "change": "Keisti vietą",
+    "how": {
+      "exact": "suapvalinta, apie 500 m",
+      "approx": "apytiksliai (pagal jūsų interneto ryšį)",
+      "chosen": "pasirinkta",
+      "saved": "išsaugota",
+      "rough": "apytiksliai (naršyklė)"
+    },
+    "germany": "Visa Vokietija",
+    "outsideFar": "Jūsų buvimo vieta yra už Vokietijos ribų. Rodome visą Vokietiją – pasirinkite vietą, kad pamatytumėte jos korteles.",
+    "choose": "Pasirinkite vietą",
+    "loaded": "Įkeltos kortelės: {place}",
+    "failed": "Šios vietos ką tik nepavyko įkelti.",
+    "noGeo": "Naršyklė nepateikė vietos – pasirinkite vietą.",
+    "locating": "Nustatoma jūsų vieta …",
+    "geoNo": "Naršyklė nepateikė vietos: {why}. Vis dar rodoma: {place}.",
+    "geoDenied": "prieiga užblokuota – leiskite ją per piktogramą šalia adreso",
+    "geoUnavailable": "jūsų įrenginys negalėjo jos nustatyti",
+    "geoTimeout": "per 15 s negauta",
+    "geoApprox": "Jūsų naršyklė jūsų vietą žino tik apytiksliai (daugiau nei 1 km).",
+    "why": "Įkrovimo stotelėms, degalinėms ir įspėjimams ten, kur esate – jūsų tiksli vieta lieka jūsų įrenginyje.",
+    "kept": "Jūsų naršyklė įsimena šią vietą",
+    "sheet": {
+      "useLocation": "Naudoti mano vietą",
+      "forget": "Pamiršti vietą"
+    },
+    "privacy": {
+      "title": "Jūsų vieta lieka pas jus.",
+      "body": "ViaFrei nesukuria jokios paskyros ir jokio profilio ir nesaugo jūsų vietos. Jūsų naršyklė šiame įrenginyje įsimena vietą tik tada, kai ją pasirenkate vietos juostoje – vietą ar adresą, „Naudoti mano vietą“ arba „Visa Vokietija“ – kartu su neseniai pasirinktomis vietomis; kol šis puslapis naudoja įsimintą vietą, tai nurodo eilutė po vietos juosta, o „Pamiršti vietą“ ją iškart ištrina. Puslapis jūsų vietos klausia tik tada, kai pasirenkate „Naudoti mano vietą“; jei naršyklėje jau esate tai leidę visam laikui, šis puslapis ją nuskaito neklausdamas ir nieko nesaugo. Jūsų vieta jūsų įrenginyje suapvalinama iki maždaug 500 m zonos, o mūsų serveris pagal tą zoną nustato gatvės ar vietovės pavadinimą; tą pavadinimą jis laiko atmintyje ne ilgiau kaip valandą vienai zonai, be jokio ryšio su jumis, ir jo nesaugo. Tik iškart po šio paspaudimo ir tik jei naršyklė nurodo jūsų buvimo vietą ne didesniu kaip 150 m tikslumu, puslapis vieną kartą siunčia tikslią padėtį mūsų serveriui, kad šis patikrintų, ar esate prie stoties, degalinės, įkrovimo stotelės ar greitkelio poilsio aikštelės; ten ji nei saugoma, nei registruojama žurnale. Taip pat ne ilgiau kaip valandą atmintyje jis laiko čia pasirinktos stoties, vietos ar adreso pavadinimą. Jūsų IP adresas naudojamas tik atmintyje, apytikslei vietai nustatyti, ir tam nesaugomas. Tai galioja kiekviename puslapyje su vietos juosta, taip pat stočių apžvalgoje. Stočių apžvalgoje taip nustatyta vieta naudojama tik artimiausioms stotims ir stotelėms parodyti.",
+      "more": "Daugiau privatumo politikoje"
+    },
+    "geoipCredit": "Apytikslė vieta pagal IP adresą:",
+    "pageTitle": "{place}: uždarymai, kelio darbai, eismas – ViaFrei",
+    "pageDescription": "Spūstys, kelio darbai ir uždarymai vietovėje {place}, taip pat parkavimas, įkrovimas, degalų kainos ir įspėjimai dėl orų – gyvai iš atvirųjų duomenų, su šaltiniu.",
+    "pageLead": "Viskas, ką ViaFrei šiuo metu žino apie vietovę {place} – iš atvirųjų duomenų, su kiekvieno skaičiaus šaltiniu.",
+    "pageMissing": "Šios vietos nežinome.",
+    "geoipModified": "ištrauka pakeista",
+    "loadingCards": "Šios vietos kortelės įkeliamos …",
+    "reloadCards": "Įkelkite puslapį iš naujo, kad pamatytumėte korteles",
+    "fuelUnavailable": "Kainų ką tik nepavyko užklausti iš naujo. Tai paskutinė žinoma kaina su jos laiku.",
+    "motorway": {
+      "why": "Tam, kas yra aplink jus šiame greitkelyje – jūsų tiksli padėtis lieka jūsų įrenginyje.",
+      "radius": "Spindulys",
+      "radiusOther": "Pasirinkite bet kokį spindulį (1–100 km)",
+      "updating": "atnaujinama …",
+      "failed": "Nepavyko atnaujinti – lieka ankstesnis vaizdas.",
+      "zoomGroup": "Žemėlapio mastelis – kiekvienas žingsnis yra spindulys",
+      "zoomIn": "Priartinti – spindulys {r} km",
+      "zoomOut": "Nutolinti – spindulys {r} km",
+      "zoomInEnd": "Priartinti – pasiektas mažiausias spindulys",
+      "zoomOutEnd": "Nutolinti – pasiektas didžiausias spindulys",
+      "filter": {
+        "legend": "Rodyti",
+        "all": "Rodyti viską",
+        "none": "Nerodyti nieko",
+        "allLabel": "Rodyti viską – pasirinkti visas rūšis",
+        "noneLabel": "Nerodyti nieko – atžymėti visas rūšis",
+        "save": "Įsiminti pasirinkimą",
+        "saved": "Pasirinkimas įsimintas šiame įrenginyje.",
+        "forget": "Nebeįsiminti",
+        "everything": "Visi duomenys",
+        "nothing": "Nieko nepasirinkta – pasirinkite bent vieną rūšį.",
+        "sum": "{kinds}: {n}",
+        "sumR": "{kinds} {r} km spinduliu: {n}",
+        "entriesOne": "{n} įrašas",
+        "entriesFew": "{n} įrašai",
+        "entriesMany": "{n} įrašo",
+        "entriesOther": "{n} įrašų",
+        "entriesZero": "{n} įrašų",
+        "ampel": "Šviesoforas vis tiek vertina viską – kai kurios jo priežastys dabar paslėptos."
+      }
+    },
+    "pageDescriptionRoads": "{place}: uždarymai ir kelio darbai dabar keliuose {roads} – taip pat spūstys, parkavimas, įkrovimas ir įspėjimai, gyvai su šaltiniu.",
+    "topics": {
+      "legend": "Temos",
+      "apply": "Taikyti",
+      "none": "Nepasirinkta jokių temų.",
+      "shown": "Rodomos temos: {n} iš {total}",
+      "attention": "Paslėpta, bet dabar svarbu: {topic} – rodyti"
+    },
+    "head": {
+      "live": "Tiesiogiai:",
+      "scope": "Sritis",
+      "search": "Ieškoti vietos",
+      "searchHint": "Adresas, pašto kodas, rajonas ar stotis",
+      "locate": "Naudoti mano vietą",
+      "confirmQ": "Ar tai tinkama vieta?",
+      "yes": "Taip",
+      "other": "Kita vieta",
+      "confirmed": "patvirtinta",
+      "updated": "atnaujinta: {place}",
+      "outside": "vieta už Vokietijos ribų",
+      "germanyHow": "pasirinkta visa Vokietija",
+      "germanyNote": "Pasirinkta visa Vokietija: visi šalies duomenys yra iškart žemiau – kiekvienas su laiku ir šaltiniu."
+    },
+    "bar": {
+      "label": "Pasirinkite arba ieškokite vietos",
+      "close": "Uždaryti",
+      "hint": "Vieta, adresas, autostrada, stotis …",
+      "recent": "Naujausios",
+      "popular": "Populiarios",
+      "drop": "Pašalinti {place}",
+      "found": "Pasiūlymai: {n}",
+      "how": "Vieta, adresas ar stotis iš sąrašo rodo ten esančias korteles; Enter ieško visoje svetainėje."
+    }
+  },
+  "newsPage": {
+    "readMore": "Skaityti toliau",
+    "title": "Naujienos",
+    "lead": "Kas naujo ViaFrei, kas laukia toliau ir ilgalaikiai uždarymai, kuriuos šiuo metu turime — kiekvienas su šaltiniu.",
+    "filterLabel": "Rodyti",
+    "chipNew": "Nauja",
+    "chipPlans": "Planai",
+    "chipTraffic": "Eismas",
+    "newHeading": "Nauja ViaFrei",
+    "plansHeading": "Planai",
+    "plansLead": "Ką ketiname pridėti toliau. Planuojama reiškia planuojama: nieko iš to ViaFrei dar nėra, ir datų nežadame.",
+    "trafficHeading": "Ilgalaikiai uždarymai",
+    "trafficLead": "Iš mūsų pačių duomenų: uždarymai su nurodyta pabaiga, trunkantys ne mažiau kaip parą. Kiekvienas išnyksta, kai tik pasiekiama jo pabaiga.",
+    "badgeNew": "Nauja",
+    "badgePlan": "Planuojama",
+    "askLabel": "Paklauskite savo asistento",
+    "askLabelPlan": "Kai tai atsiras, paklauskite savo asistento",
+    "plannedNote": "datos dar nėra",
+    "connect": "Prijungti ViaFrei",
+    "sources": "Šaltinis",
+    "feed": "Naujienos kaip Atom srautas",
+    "released": "Versija {v} · {d}",
+    "teaserHeading": "Nauja ViaFrei",
+    "teaserAll": "Visos naujienos",
+    "trafficError": "Eismo pranešimų ką tik nepavyko įkelti.",
+    "noEntries": "Šia kalba įrašų dar nėra."
+  },
+  "examplesPage": {
+    "title": "Visi pavyzdiniai klausimai",
+    "lead": "Kiekvienas klausimas, kurį ViaFrei šioje svetainėje rodo kaip pavyzdį – su įrankiu, kuris į jį atsako, ir jo atsakymu, sugrupuota pagal sritis.",
+    "live": "Kur ViaFrei pats reguliariai užduoda klausimą, čia matote naujausią jo atsakymą; visur kitur – įrašytą atsakymą su data.",
+    "toc": "Sritys",
+    "domain": {
+      "transit": "Autobusas, traukinys ir stotis",
+      "roads": "Keliai ir greitkeliai",
+      "parking": "Parkavimas",
+      "charging": "Įkrovimas",
+      "fuel": "Degalai",
+      "more": "Vietos ir stebėjimai"
+    },
+    "question": "Klausimas {n}",
+    "fuelNote": "Pavyzdiniai atsakymai apie degalų kainas rodomi tik su data ir tik dviejose vietose: {home} ir {connect}.",
+    "fuelHome": "pradžios puslapyje",
+    "fuelConnect": "prijungimo puslapyje"
+  },
+  "seo": {
+    "connectTitle": "Eismo duomenys ChatGPT ir Claude per MCP – ViaFrei",
+    "connectDescription": "Vienas adresas, be rakto: prijunkite ViaFrei prie Claude, ChatGPT, Copilot, Cursor, Gemini CLI ar Le Chat ir klauskite apie spūstis, traukinius.",
+    "motorwayTitle": "{road} spūstys Vokietijoje: kelio darbai, uždarymai – ViaFrei",
+    "motorwayDescription": "{road} eismas Vokietijoje: spūstys, uždarymai ir kelio darbai gyvai pagal kryptį, iš atvirųjų duomenų, su planuojamais uždarymais ir greitkelių taisyklėmis.",
+    "motorwaysTitle": "Spūstys ir kelio darbai greitkeliuose dabar – Vokietija – ViaFrei",
+    "motorwaysDescription": "Visi Vokietijos greitkeliai gyvai: spūstys, uždarymai, kelio darbai, apvažiavimai, parkavimas ir įkrovimas, su žemėlapiu ir puslapiu kiekvienam.",
+    "motorwayH1": "Greitkelis {road} dabar",
+    "motorwayLead": "Spūstys, uždarymai ir kelio darbai greitkelyje {road}, gyvai iš atvirųjų duomenų, kiekvienas su šaltiniu ir laiku.",
+    "motorwaysH1": "Vokietijos greitkeliai",
+    "motorwaysLead": "Kiekvienas greitkelis su dabartiniais pranešimais. Pasirinkite vieną – spūstys, uždarymai, kelio darbai ir jo trasa.",
+    "stationsTitle": "Geležinkelio stotys Vokietijoje: peronai, įranga – ViaFrei",
+    "stationsDescription": "Kiekviena Deutsche Bahn stotis: peronai su aukščiu ir prieiga be laiptelių, įranga, judumo paslauga ir kas yra 300 m spinduliu – iš atvirųjų duomenų.",
+    "stationsH1": "Geležinkelio stotys Vokietijoje",
+    "crumbStations": "Stotys",
+    "stationTitle": "{name}: išvykimai, peronai, liftai, sutrikimai – ViaFrei",
+    "stationDescription": "{name}: artimiausi išvykimai tiesiogiai su keliu, kurie liftai ir eskalatoriai dabar veikia, peronai be laiptų, įranga ir apylinkės – iš atvirųjų duomenų, su šaltiniu ir data.",
+    "crumbHome": "Pradžia",
+    "crumbMotorways": "Greitkeliai",
+    "linksMotorways": "Greitkeliai gyvai",
+    "linksPlaces": "Miestai gyvai",
+    "allMotorways": "Visi greitkeliai",
+    "allPlaces": "Daugiau miestų",
+    "imprintDescription": "viafrei.de rekvizitai: kas valdo ViaFrei – realaus laiko judumo platformą DI asistentams – ir kaip susisiekti su operatoriumi.",
+    "privacyDescription": "viafrei.de privatumo politika: ką ViaFrei saugo ir ko ne, kaip veikia sutikimas ir kokias teises turite – be paskyros ir profilio.",
+    "termsDescription": "ViaFrei naudojimo sąlygos: kokiomis sąlygomis galite naudoti duomenis, pvz., Toll Collect GmbH sunkvežimių aikštelių užimtumą.",
+    "businessTitle": "Tiesioginių judumo duomenų API įmonėms",
+    "businessDescription": "Eismas, viešasis transportas, įkrovimas ir stovėjimas visoje Vokietijoje viename tiesioginiame prieigos taške su šaltiniais. Pradėkite nuo bandomojo projekto.",
+    "developersTitle": "MCP serveris Vokietijos judumo duomenims",
+    "developersDescription": "Prijunkite bet kurį MCP klientą per minutę: greita pradžia kiekvienam klientui, tikras iškvietimas su atsakymu ir kiekvienas įrankis su savo schema."
+  },
+  "ask": {
+    "live": "Gyvas ViaFrei atsakymas",
+    "asOf": "Duomenys: {time}",
+    "tool": "Įrankis",
+    "question": "Klausimas",
+    "answer": "Atsakymas",
+    "cta": "Paklauskite savo asistento",
+    "roads": {
+      "question": "Ar šiuo metu A8 yra spūstis?",
+      "clear": "{road}: šiuo metu spūsčių nepranešta. Galioja – uždarymų: {closures}, kelio darbų: {works}.",
+      "jams": "{road}: pranešta spūsčių: {jams}; ilgiausia kainuoja {delay} min. Uždarymų: {closures}, kelio darbų: {works}.",
+      "jamsNoDelay": "{road}: pranešta spūsčių: {jams}. Uždarymų: {closures}, kelio darbų: {works}."
+    },
+    "lorryPark": {
+      "question": "Kiek sunkvežimių stovėjimo aikštelių yra prie A3 ir kiek jų skelbia užimtumą?",
+      "listed": "Sunkvežimių stovėjimo aikštelės prie {road}: {total}; skelbiančios užimtumą: {live}."
+    },
+    "hydrogen": {
+      "question": "Kur prie Frankfurt am Main gali pasipildyti vandeniliu varomas sunkvežimis?",
+      "near": "{name}, {address}: 350 barų sunkvežimiams ir autobusams, už {km} km.",
+      "none": "{km} km spinduliu nenurodyta jokia vandenilio degalinė sunkvežimiams."
+    },
+    "weatherLand": {
+      "question": "Ar šiuo metu Bavarijoje (Bayern) galioja oficialus įspėjimas dėl orų?",
+      "none": "{place}: Oficialaus DWD įspėjimo negalioja, patikrinta dabar ir artimiausioms {hours} val.",
+      "warn": "{place}: Galiojančių oficialių įspėjimų: {count}, aukščiausias lygis {level} iš 4, tarp jų „{event}“."
+    },
+    "transit": {
+      "question": "Kaip punktualiai šiuo metu važiuoja autobusai ir traukiniai Šiaurės Reine-Vestfalijoje?",
+      "share": "{region}: per pastarąsias {minutes} min. vėluoja {pct} % reisų ({late} iš {trips}).",
+      "thin": "{region}: per pastarąsias {minutes} min. stebėta reisų: {trips} – per mažai daliai apskaičiuoti."
+    },
+    "charging": {
+      "question": "Kur Leipcige galiu įsikrauti 150 kW ar didesne galia?",
+      "live": "{operator}, {address}: iki {kw} kW, už {km} km – laisvų įkrovimo taškų {free} iš {total}.",
+      "liveNoOp": "{address}: iki {kw} kW, už {km} km – laisvų įkrovimo taškų {free} iš {total}.",
+      "noStatus": "{operator}, {address}: iki {kw} kW, už {km} km. Operatorius šiuo metu nepraneša dabartinio užimtumo.",
+      "noStatusNoOp": "{address}: iki {kw} kW, už {km} km. Operatorius šiuo metu nepraneša dabartinio užimtumo.",
+      "none": "Netoliese nenurodyta jokios 150 kW ar galingesnės įkrovimo stotelės."
+    },
+    "parking": {
+      "question": "Kur prie Miunsterio centrinės stoties šiuo metu yra automobilių stovėjimo aikštelė su laisvomis vietomis?",
+      "free": "{name}: laisvų vietų {free} iš {total}, už {km} km.",
+      "none": "Jokia netoliese esanti aikštelė šiuo metu laisvų vietų nepraneša.",
+      "unpublished": "Netoliese esančių aikštelių operatoriai gyvo užimtumo neskelbia, todėl nežinoma, ar yra laisvų vietų."
+    },
+    "roadsNear": {
+      "question": "Kas šiuo metu vyksta keliuose čia?",
+      "clear": "{km} km spinduliu šiuo metu nieko nepranešta: nei spūsčių, nei uždarymų.",
+      "noJams": "{km} km spinduliu spūsčių nėra. Galioja – uždarymų: {closed}, ribojimų: {restricted}.",
+      "jams": "{km} km spinduliu – spūsčių: {jams}, uždarymų: {closed}, ribojimų: {restricted}."
+    },
+    "weather": {
+      "question": "Ar čia galioja oficialus įspėjimas dėl orų?",
+      "none": "Oficialaus DWD įspėjimo negalioja, patikrinta dabar ir artimiausioms {hours} val.",
+      "warn": "Galiojančių oficialių įspėjimų: {count}, aukščiausias lygis {level} iš 4, tarp jų „{event}“."
+    },
+    "nearby": {
+      "question": "Kas yra netoliese?",
+      "near": "{km} km spinduliu: stotis {station}; įkrovimo stotelių: {charging}, parkavimo vietų: {parking} (rodoma ne daugiau kaip po tris).",
+      "noStation": "{km} km spinduliu stoties nėra; įkrovimo stotelių: {charging}, parkavimo vietų: {parking} (rodoma ne daugiau kaip po tris).",
+      "none": "{km} km spinduliu nenurodyta jokios stoties, įkrovimo stotelės ar parkavimo vietos."
+    },
+    "poi": {
+      "question": "Kur artimiausia vaistinė?",
+      "found": "{name}, {street} – už {km} km.",
+      "foundNoStreet": "{name} – už {km} km.",
+      "none": "5 km spinduliu vaistinių nenurodyta."
+    },
+    "chargingNear": {
+      "question": "Kur artimiausia įkrovimo stotelė?",
+      "live": "{operator}, {address}: iki {kw} kW, už {km} km – laisvų įkrovimo taškų {free} iš {total}.",
+      "liveNoOp": "{address}: iki {kw} kW, už {km} km – laisvų įkrovimo taškų {free} iš {total}.",
+      "noStatus": "{operator}, {address}: iki {kw} kW, už {km} km. Operatorius šiuo metu nepraneša dabartinio užimtumo.",
+      "noStatusNoOp": "{address}: iki {kw} kW, už {km} km. Operatorius šiuo metu nepraneša dabartinio užimtumo.",
+      "none": "Netoliese nenurodyta jokios įkrovimo stotelės."
+    },
+    "offerOsm": "Šie įrašai gauti iš mūsų duomenų bazės, išvestos iš OpenStreetMap. Paprašius nemokamai atsiunčiame visą mašininio skaitymo kopiją (CSV) pagal ODbL 1.0 – kontaktai {link}.",
+    "offerDb": "Šie įrašai gauti iš mūsų duomenų bazės, išvestos iš „{db}“. Mūsų viešai naudojamą duomenų bazę – be įrašų, kuriuos leidėjas pažymi kaip konfidencialius – paprašius nemokamai atsiunčiame kaip mašininio skaitymo kopiją (CSV) pagal ODbL 1.0 – kontaktai {link}.",
+    "offerLink": "rekvizituose"
+  },
+  "connectNote": {
+    "text": "Šį atsakymą jūsų DI asistentas pateikia tik tada, kai ViaFrei prijungtas.",
+    "link": "Kaip prijungti ViaFrei",
+    "guide": "Išsamus vadovas visiems klientams",
+    "clients": "Žingsnis po žingsnio",
+    "copy": "Kopijuoti adresą",
+    "copied": "Nukopijuota"
+  },
+  "next": {
+    "label": "Toliau",
+    "ask": "Paklauskite savo DI: {place}",
+    "motorways": "Visi greitkeliai"
+  },
+  "search": {
+    "label": "Paieška ViaFrei",
+    "placeholder": "Vieta, greitkelis, stotis, puslapis …",
+    "submit": "Ieškoti",
+    "title": "Paieška",
+    "description": "Raskite ViaFrei vietas, greitkelius, mazgus, stotis ir puslapius.",
+    "hint": "Įveskite bent du simbolius.",
+    "alt": "Rodyti korteles čia",
+    "partial": "Kai kurie rezultatai nerodomi: šaltinis laiku neatsakė.",
+    "allResults": "Visi rezultatai",
+    "showAll": "Visi šios rūšies rezultatai",
+    "prev": "Atgal",
+    "next": "Toliau",
+    "pageOf": "Puslapis {page} iš {pages}",
+    "pager": "Rezultatų puslapiai",
+    "none": "Pagal „{q}“ nieko neradome.",
+    "nearest": "Panaši rašyba:",
+    "motorwayIndex": "Visi greitkeliai",
+    "kind": {
+      "motorway": "Greitkeliai",
+      "road": "Federaliniai ir žemių keliai",
+      "place": "Vietos",
+      "station": "Stotys",
+      "exit": "Nuovažos ir mazgai",
+      "area": "Vietovės ir adresai",
+      "poi": "Lankytinos vietos",
+      "page": "Puslapiai",
+      "news": "Naujienos"
+    }
+  },
+  "header": {
+    "how": "Vieta, adresas ar taškas iš sąrašo tampa jūsų vieta visuose puslapiuose; greitkelis, stotis ar puslapis atsidaro. Enter ieško visoje svetainėje.",
+    "makeMine": "Padaryti tai mano vieta"
+  },
+  "statePages": {
+    "title": "Vokietijos žemės: greitkeliai dabar, miestai – ViaFrei",
+    "description": "Visos 16 Vokietijos federalinių žemių: uždarymai, spūstys ir kelio darbai greitkeliuose dabar, plotas, sostinė, kaimyninės žemės ir didžiausi miestai.",
+    "h1": "16 Vokietijos žemių",
+    "crumb": "Federalinės žemės"
+  },
+  "ai": {
+    "placeWarn": "Ar dabar yra perspėjimų dėl orų {place}?",
+    "placePark": "Kur dabar galiu pastatyti ar įkrauti automobilį {place}?",
+    "landRoads": "Kurie greitkeliai {place} dabar labiausiai paveikti?",
+    "roadUsual": "Kiek paprastai trunka spūstys {road}?",
+    "roadPlans": "Kokie kelio darbai ir uždarymai planuojami {road}?",
+    "open": "Klausti {app}",
+    "copy": "Kopijuoti klausimą",
+    "copied": "Nukopijuota"
+  },
+  "star": {
+    "add": "Įsiminti puslapį",
+    "remove": "Įsiminta",
+    "neu": "nauja",
+    "gone": "Atšaukta nuo paskutinio apsilankymo: {list}",
+    "longer": "ilgiau",
+    "install": "Pridėti į pradžios ekraną",
+    "commute": "Jūsų maršrutas"
+  },
+  "pwa": {
+    "offline": "Būklė {t}, neprisijungus"
+  }
+}

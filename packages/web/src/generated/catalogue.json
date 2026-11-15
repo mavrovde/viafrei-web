@@ -1,0 +1,3505 @@
+{
+  "release": {
+    "version": "2.6.17",
+    "date": "2026-11-14",
+    "anchor": "2617"
+  },
+  "tools": [
+    {
+      "name": "check_autobahn_traffic",
+      "title": "Autobahn traffic",
+      "description": "Per motorway (≤ 5), or one Bundesland's motorways with land: an Ampel, then jams, closures, roadworks in force, with place/delay/speed/map."
+    },
+    {
+      "name": "find_cheapest_fuel",
+      "title": "Cheapest fuel nearby",
+      "description": "Returns the cheapest stations for one fuel grade near a place or coordinate: price per litre, brand, address, distance, open state."
+    },
+    {
+      "name": "find_fuel_station",
+      "title": "Find a filling station",
+      "description": "Finds filling stations around a place or coordinate under any combination of filters — grade, brand, name, open now, open at a time you name, open 24 h — sorted by distance, price or name."
+    },
+    {
+      "name": "find_parking",
+      "title": "Parking nearby",
+      "description": "Parking near a place, a coordinate or along one motorway: lorry parks, car parks, P+R and disabled-badge bays, with total spaces, stated amenities (WC, shower) and published free spaces."
+    },
+    {
+      "name": "check_road_status",
+      "title": "Road status and closures",
+      "description": "If a motorway/B/Land road (NI, NW, HE, BW, MV, SN, TH; B also SH, BY, BE; pass Land/town as place) is open/closed/restricted now/soon; by place, jams, city/Land messages, Hamburg traffic cameras; lorry limits, Lang-Lkw (vehicle)."
+    },
+    {
+      "name": "find_roadworks_ahead",
+      "title": "Planned roadworks",
+      "description": "Returns roadworks PLANNED on one motorway, one Bundes-/Landesstraße in NI, NW, HE, BW, MV, SN or TH (BY: B only), or city streets by place, in a date window: where, impact, dates, map links."
+    },
+    {
+      "name": "find_charging_station",
+      "title": "EV charging nearby",
+      "description": "Returns EV charging sites near a place or coordinate: operator, plugs, max power, price per kWh where published, and points free now where live status is published."
+    },
+    {
+      "name": "find_hydrogen_station",
+      "title": "Hydrogen stations nearby",
+      "description": "Returns hydrogen (H2) filling stations near a place or coordinate, nearest first, with operator, address, pumps (700 bar car, 350 bar truck/bus), opening hours where published and the age of the record."
+    },
+    {
+      "name": "find_speed_cameras",
+      "title": "Speed enforcement locations (planning)",
+      "description": "A town's published speed-enforcement locations (fixed, red-light, section control, announced mobile checks, measuring sites) by kind and street plus OpenStreetMap's fixed cameras. § 23 Abs. 1c StVO binds a driver's device use, not…"
+    },
+    {
+      "name": "find_place",
+      "title": "Look up a place",
+      "description": "Looks up a place name and returns every match, each with its kind, population, English name and coordinate; the official key (AGS/RS) only in the structured result."
+    },
+    {
+      "name": "find_poi",
+      "title": "Find a named place",
+      "description": "Finds a business or landmark by name or kind — company, shop, clinic, hotel, hostel — with address, category and coordinate."
+    },
+    {
+      "name": "find_address",
+      "title": "Look up a street address",
+      "description": "Looks up a street address: its coordinate, and the named OpenStreetMap objects at it (company, shop, office) or that none are."
+    },
+    {
+      "name": "describe_location",
+      "title": "Describe a coordinate",
+      "description": "Turns a coordinate into words: the nearest address, settlement and motorway junction with their distances, and the Gemeinde, Kreis and Land the point lies in; also any low-emission zone."
+    },
+    {
+      "name": "find_nearby",
+      "title": "What is nearby",
+      "description": "Overview of what is around a place or coordinate: fuel, EV charging, parking, nearest railway station and motorway junction, with distances; everyday places (shop, pharmacy, cash, food, hotel, workshop, police) only when named in…"
+    },
+    {
+      "name": "find_sharing",
+      "title": "Shared bikes nearby",
+      "description": "Returns rentable shared bikes near a place or coordinate: bike-sharing stations with bikes and free docks now, and free-floating bikes around, with distance and data age (nextbike incl. KVB Rad, MyRadl, VAG_Rad; Donkey Republic)."
+    },
+    {
+      "name": "get_driving_rules",
+      "title": "German driving rules",
+      "description": "Returns the German road rules a visitor needs: low-emission zones (Umweltzone) and the Feinstaubplakette, speed limits (advisory 130), winter tyres, alcohol, the Sunday lorry ban, tolls, Rettungsgasse, what must be in the car, electric…"
+    },
+    {
+      "name": "check_transit_disruption",
+      "title": "Public-transport disruption in a region",
+      "description": "Public-transport punctuality now in a German region: share of trips >5 min late, skipped stops, cancellations, trend, alerts in force."
+    },
+    {
+      "name": "check_weather_warnings",
+      "title": "Weather warnings and road-surface forecast",
+      "description": "Returns the official DWD weather warnings in force for a place — storm, snow, ice, heavy rain, thunderstorm, heat — with Warnstufe 1–4, area, validity and the official text unaltered."
+    },
+    {
+      "name": "get_train_departures",
+      "title": "Train departures",
+      "description": "Next trains at a German railway station: platform, delay, cancellations."
+    },
+    {
+      "name": "get_departures",
+      "title": "Scheduled departures (bus, tram, train)",
+      "description": "Scheduled departures from any German stop — bus, tram, U-/S-Bahn, train, ferry — or the nearest stops around a place (\"Abfahrten in der Nähe\")."
+    },
+    {
+      "name": "check_station_facilities",
+      "title": "Station lifts and escalators",
+      "description": "Whether the lifts and escalators of a railway station or Köln Stadtbahn stop work now: each with place, state, reason."
+    },
+    {
+      "name": "describe_station",
+      "title": "Describe a railway station",
+      "description": "One German railway station as its viafrei.de page shows it: address, step-free platforms now, lifts and escalators (out of service first), platforms, the next departures with live delays, service alerts, parking and charging."
+    },
+    {
+      "name": "watch_situation",
+      "title": "Watch for a change",
+      "description": "Opens a watch so THIS conversation is told when something changes: a road closed or restricted, a motorway jam, a stop running late, a weather warning, a charger freeing up."
+    },
+    {
+      "name": "stop_watch",
+      "title": "Stop a watch",
+      "description": "Ends a watch this conversation opened with watch_situation, so no further notifications arrive for it."
+    }
+  ],
+  "prompts": [
+    {
+      "name": "plan_departure",
+      "description": "Briefs a drive that is about to start: the official weather warnings at both ends, whether each motorway is open, and the jams in force this minute, ending in one go/no-go sentence."
+    },
+    {
+      "name": "compare_travel_options",
+      "description": "Weighs one trip by car against the same trip by rail: closures and live jams on the motorway side, the next departures and the region's punctuality on the rail side, as two paragraphs the traveller ca"
+    },
+    {
+      "name": "prepare_car_trip",
+      "description": "Collects what a driver must carry and know before driving in Germany and into one particular city: the low-emission-zone badge, speed limits, winter tyres, the alcohol limit, tolls, mandatory equipmen"
+    },
+    {
+      "name": "plan_fuel_stop",
+      "description": "Finds where this traveller fills up or charges on the way: the cheapest stations for one fuel grade around one place, or the charging points with the right connector and power, and the rest area besid"
+    },
+    {
+      "name": "plan_commute",
+      "description": "Plans one public-transport leg on the day itself: the next departures from the station with delays, platforms and cancellations, and whether the region's buses and trains are running normally at this "
+    },
+    {
+      "name": "plan_arrival_parking",
+      "description": "Finds where to leave the car at the end of the drive: the car park in town, the park-and-ride at the edge with the onward departures, or the rest area if the traveller is early."
+    },
+    {
+      "name": "find_a_place",
+      "description": "Resolves a bare name of unknown kind into a place, a named thing, or an address, trying each table in turn and stopping at the first that answers."
+    },
+    {
+      "name": "plan_local_errand",
+      "description": "Answers \"what is around here\" for one place: the nearest fuel, EV charging, parking, railway station and motorway junction in one glance, then — only if the traveller wants more than the nearest one —"
+    },
+    {
+      "name": "explain_this_coordinate",
+      "description": "Turns a bare lat/lon into a sentence a traveller understands: the nearest address, settlement and motorway junction with their distances, and the Gemeinde, Kreis and Land the point lies in."
+    }
+  ],
+  "resources": [
+    {
+      "uri": "viafrei://attribution",
+      "name": "attribution"
+    },
+    {
+      "uri": "viafrei://coverage",
+      "name": "coverage"
+    },
+    {
+      "uri": "viafrei://rules/driving-in-germany",
+      "name": "rules-driving-in-germany"
+    },
+    {
+      "uri": "viafrei://rules/low-emission-zones",
+      "name": "rules-low-emission-zones"
+    },
+    {
+      "uri": "viafrei://emergency",
+      "name": "emergency"
+    },
+    {
+      "uri": "viafrei://rules/electric-driving",
+      "name": "rules-electric-driving"
+    },
+    {
+      "uri": "viafrei://status/feeds",
+      "name": "feed-status"
+    },
+    {
+      "uri": "viafrei://watches",
+      "name": "watches"
+    },
+    {
+      "uri": "viafrei://gazetteer",
+      "name": "gazetteer"
+    },
+    {
+      "uri": "viafrei://addresses",
+      "name": "addresses"
+    }
+  ],
+  "notCovered": [
+    "No door-to-door routing or journey planning — ViaFrei answers about places, roads and feeds, never 'how do I get there'.",
+    "No city-street traffic beyond the city and Land feeds we carry: street works, closures and traffic messages for Berlin, Cologne (closures for events), Hannover (once its feed publishes), Schleswig-Holstein including Kiel, and Baden-Württemberg including Stuttgart. Other cities are not covered; elsewhere the live traffic we hold is the federal motorway network (Autobahn GmbH) and, where a feed carries them, federal roads, plus roadworks on Land roads in Lower Saxony, Saxony and Thuringia.",
+    "No fares, tickets or booking of any kind.",
+    "No punctuality figure for one named line — 'is the S1 on time?' is answered train by train at a railway station (the live delay of each departing train, S-Bahn included) and per region with the line's service alerts; a bus, tram or U-Bahn stop gets the timetable only.",
+    "No weather forecast — official DWD warnings only, and only while they are in force.",
+    "No parking tariffs, and no promise that a space is free unless the operator publishes occupancy (see the parking section)."
+  ],
+  "serverCard": {
+    "$schema": "https://static.modelcontextprotocol.io/schemas/v1/server-card.schema.json",
+    "name": "de.viafrei/mcp",
+    "version": "2.6.17",
+    "title": "ViaFrei",
+    "description": "ViaFrei gives AI assistants real-time awareness of Germany. One MCP. No API key. No sign-up.",
+    "websiteUrl": "https://viafrei.de",
+    "repository": {
+      "url": "https://github.com/mavrovde/viafrei-mcp",
+      "source": "github"
+    },
+    "remotes": [
+      {
+        "type": "streamable-http",
+        "url": "https://mcp.viafrei.de/mcp",
+        "supportedProtocolVersions": [
+          "2025-11-25",
+          "2025-06-18",
+          "2025-03-26"
+        ]
+      }
+    ],
+    "_meta": {
+      "de.viafrei/authentication": "none",
+      "de.viafrei/attribution": "viafrei://attribution",
+      "de.viafrei/llms": "https://viafrei.de/llms.txt",
+      "de.viafrei/sitemap": "https://viafrei.de/sitemap-index.xml",
+      "de.viafrei/tools": [
+        {
+          "name": "check_autobahn_traffic",
+          "title": "Autobahn traffic"
+        },
+        {
+          "name": "find_cheapest_fuel",
+          "title": "Cheapest fuel nearby"
+        },
+        {
+          "name": "find_fuel_station",
+          "title": "Find a filling station"
+        },
+        {
+          "name": "find_parking",
+          "title": "Parking nearby"
+        },
+        {
+          "name": "check_road_status",
+          "title": "Road status and closures"
+        },
+        {
+          "name": "find_roadworks_ahead",
+          "title": "Planned roadworks"
+        },
+        {
+          "name": "find_charging_station",
+          "title": "EV charging nearby"
+        },
+        {
+          "name": "find_hydrogen_station",
+          "title": "Hydrogen stations nearby"
+        },
+        {
+          "name": "find_speed_cameras",
+          "title": "Speed enforcement locations (planning)"
+        },
+        {
+          "name": "find_place",
+          "title": "Look up a place"
+        },
+        {
+          "name": "find_poi",
+          "title": "Find a named place"
+        },
+        {
+          "name": "find_address",
+          "title": "Look up a street address"
+        },
+        {
+          "name": "describe_location",
+          "title": "Describe a coordinate"
+        },
+        {
+          "name": "find_nearby",
+          "title": "What is nearby"
+        },
+        {
+          "name": "find_sharing",
+          "title": "Shared bikes nearby"
+        },
+        {
+          "name": "get_driving_rules",
+          "title": "German driving rules"
+        },
+        {
+          "name": "check_transit_disruption",
+          "title": "Public-transport disruption in a region"
+        },
+        {
+          "name": "check_weather_warnings",
+          "title": "Weather warnings and road-surface forecast"
+        },
+        {
+          "name": "get_train_departures",
+          "title": "Train departures"
+        },
+        {
+          "name": "get_departures",
+          "title": "Scheduled departures (bus, tram, train)"
+        },
+        {
+          "name": "check_station_facilities",
+          "title": "Station lifts and escalators"
+        },
+        {
+          "name": "describe_station",
+          "title": "Describe a railway station"
+        },
+        {
+          "name": "watch_situation",
+          "title": "Watch for a change"
+        },
+        {
+          "name": "stop_watch",
+          "title": "Stop a watch"
+        }
+      ]
+    }
+  },
+  "credits": [
+    {
+      "id": "autobahn",
+      "text": "Verkehrsdaten: Autobahn GmbH des Bundes",
+      "url": "https://verkehr.autobahn.de",
+      "licence": null,
+      "condition": null,
+      "altered": null,
+      "verbatim": false,
+      "parts": null
+    },
+    {
+      "id": "delfi_rt_tu",
+      "text": "Echtzeitdaten: DELFI e.V. via Mobilithek, CC BY-SA, bearbeitet",
+      "url": "https://mobilithek.info/offers/858688352316981248",
+      "licence": {
+        "name": "CC BY-SA",
+        "url": "https://www.dcat-ap.de/def/licenses/cc-by-sa"
+      },
+      "condition": null,
+      "altered": null,
+      "verbatim": false,
+      "parts": null
+    },
+    {
+      "id": "vbb_rt",
+      "text": "Echtzeitdaten: VBB Verkehrsverbund Berlin-Brandenburg GmbH, CC BY 4.0, bearbeitet",
+      "url": "https://production.gtfsrt.vbb.de",
+      "licence": {
+        "name": "CC BY 4.0",
+        "url": "https://creativecommons.org/licenses/by/4.0/"
+      },
+      "condition": null,
+      "altered": null,
+      "verbatim": false,
+      "parts": null
+    },
+    {
+      "id": "vrn_rt",
+      "text": "Echtzeitdaten: Verkehrsverbund Rhein-Neckar GmbH (VRN), CC BY 4.0, bearbeitet",
+      "url": "https://opendata.vrn.de/nutzungsbedingungen",
+      "licence": {
+        "name": "CC BY 4.0",
+        "url": "https://creativecommons.org/licenses/by/4.0/"
+      },
+      "condition": null,
+      "altered": null,
+      "verbatim": false,
+      "parts": null
+    },
+    {
+      "id": "vbn_siri_et",
+      "text": "Echtzeitdaten: Verkehrsverbund Bremen/Niedersachsen GmbH (VBN) via Mobilithek, Datensatz „SIRI-ET Niedersachsen und Bremen“, CC BY 4.0, bearbeitet",
+      "url": "https://mobilithek.info/offers/782935022861258752",
+      "licence": {
+        "name": "CC BY 4.0",
+        "url": "https://creativecommons.org/licenses/by/4.0/"
+      },
+      "condition": null,
+      "altered": null,
+      "verbatim": false,
+      "parts": null
+    },
+    {
+      "id": "mobilithek_connect_gtfs",
+      "text": "Fahrplan Connect: Verkehrsverbund Bremen/Niedersachsen GmbH (VBN) via Mobilithek, Datensatz „GTFS Datensatz Connect (Niedersachsen und Bremen)“, CC BY 4.0, bearbeitet",
+      "url": "https://mobilithek.info/offers/761212971867910144",
+      "licence": {
+        "name": "CC BY 4.0",
+        "url": "https://creativecommons.org/licenses/by/4.0/"
+      },
+      "condition": null,
+      "altered": null,
+      "verbatim": false,
+      "parts": null
+    },
+    {
+      "id": "mobilithek_connect_gtfs_rt",
+      "text": "Echtzeit Connect: Verkehrsverbund Bremen/Niedersachsen GmbH (VBN) via Mobilithek, Datensatz „GTFS-RT Datensatz Connect (Niedersachsen und Bremen)“, CC BY 4.0, bearbeitet",
+      "url": "https://mobilithek.info/offers/761221412930105344",
+      "licence": {
+        "name": "CC BY 4.0",
+        "url": "https://creativecommons.org/licenses/by/4.0/"
+      },
+      "condition": null,
+      "altered": null,
+      "verbatim": false,
+      "parts": null
+    },
+    {
+      "id": "bfrk_spnv",
+      "text": "Barrierefreiheit: NVBW Nahverkehrsgesellschaft Baden-Württemberg mbH (BFRK, Bahnhöfe) via MobiData BW, Datenlizenz Deutschland – Namensnennung – Version 2.0 (www.govdata.de/dl-de/by-2-0), bearbeitet",
+      "url": "https://www.mobidata-bw.de/dataset/bfrk-barrierefreiheit-an-bw-bahnhoefen",
+      "licence": {
+        "name": "dl-de/by-2-0",
+        "url": "https://www.govdata.de/dl-de/by-2-0"
+      },
+      "condition": null,
+      "altered": null,
+      "verbatim": false,
+      "parts": null
+    },
+    {
+      "id": "bfrk_oepnv",
+      "text": "Barrierefreiheit: NVBW Nahverkehrsgesellschaft Baden-Württemberg mbH (BFRK, Haltestellen) via MobiData BW, Datenlizenz Deutschland – Namensnennung – Version 2.0 (www.govdata.de/dl-de/by-2-0), bearbeitet",
+      "url": "https://www.mobidata-bw.de/dataset/bfrk-barrierefreiheit-an-bw-haltestellen",
+      "licence": {
+        "name": "dl-de/by-2-0",
+        "url": "https://www.govdata.de/dl-de/by-2-0"
+      },
+      "condition": null,
+      "altered": null,
+      "verbatim": false,
+      "parts": null
+    },
+    {
+      "id": "dresden_bf_haltestellen",
+      "text": "Barrierefreiheit: Landeshauptstadt Dresden (Haltestellen Dresden – Barrierefreiheit), Datenlizenz Deutschland – Namensnennung – Version 2.0 (www.govdata.de/dl-de/by-2-0), bearbeitet",
+      "url": "https://www.govdata.de/daten/-/details/haltestellen-dresden-barrierefreiheit40969",
+      "licence": {
+        "name": "dl-de/by-2-0",
+        "url": "https://www.govdata.de/dl-de/by-2-0"
+      },
+      "condition": null,
+      "altered": null,
+      "verbatim": false,
+      "parts": null
+    },
+    {
+      "id": "muenster_bf_haltestellen",
+      "text": "Barrierefreie Bushaltestellen Münster — Datenquelle: Stadt Münster, Datenlizenz Deutschland – Namensnennung – Version 2.0 (www.govdata.de/dl-de/by-2-0), Daten verändert",
+      "url": "https://opendata.stadt-muenster.de/dataset/%C3%B6pnv-barrierefreie-bushaltestellen",
+      "licence": {
+        "name": "dl-de/by-2-0",
+        "url": "https://www.govdata.de/dl-de/by-2-0"
+      },
+      "condition": null,
+      "altered": null,
+      "verbatim": false,
+      "parts": null
+    },
+    {
+      "id": "vbb_haltestellenzugaenge",
+      "text": "Aufzüge und Zugänge: VBB Verkehrsverbund Berlin-Brandenburg GmbH (Haltestellenzugänge), CC BY 4.0, bearbeitet",
+      "url": "https://unternehmen.vbb.de/digitale-services/datensaetze/",
+      "licence": {
+        "name": "CC BY 4.0",
+        "url": "https://creativecommons.org/licenses/by/4.0/"
+      },
+      "condition": null,
+      "altered": null,
+      "verbatim": false,
+      "parts": null
+    },
+    {
+      "id": "tuc_vdv462",
+      "text": "Barrierefreiheit (aus OpenStreetMap): TU Chemnitz (OPENER next, osm2vdv462) via Mobilithek — © OpenStreetMap-Mitwirkende, Open Database License 1.0 (opendatacommons.org/licenses/odbl/1-0/), bearbeitet",
+      "url": "https://github.com/OPENER-next/osm2vdv462",
+      "licence": {
+        "name": "ODbL 1.0",
+        "url": "https://opendatacommons.org/licenses/odbl/1-0/"
+      },
+      "condition": null,
+      "altered": null,
+      "verbatim": false,
+      "parts": null
+    },
+    {
+      "id": "osm_streets",
+      "text": "Straßen: © OpenStreetMap-Mitwirkende, ODbL 1.0",
+      "url": "https://www.openstreetmap.org/copyright",
+      "licence": {
+        "name": "ODbL 1.0",
+        "url": "https://opendatacommons.org/licenses/odbl/1-0/"
+      },
+      "condition": null,
+      "altered": null,
+      "verbatim": false,
+      "parts": null
+    },
+    {
+      "id": "osm_speed_cameras",
+      "text": "Blitzer (OpenStreetMap): © OpenStreetMap-Mitwirkende, ODbL 1.0",
+      "url": "https://www.openstreetmap.org/copyright",
+      "licence": {
+        "name": "ODbL 1.0",
+        "url": "https://opendatacommons.org/licenses/odbl/1-0/"
+      },
+      "condition": null,
+      "altered": null,
+      "verbatim": false,
+      "parts": null
+    },
+    {
+      "id": "osm_underground_stations",
+      "text": "Als U-Bahn- oder Stadtbahnstation erkannt mit Daten von OpenStreetMap: © OpenStreetMap-Mitwirkende, ODbL 1.0",
+      "url": "https://www.openstreetmap.org/copyright",
+      "licence": {
+        "name": "ODbL 1.0",
+        "url": "https://opendatacommons.org/licenses/odbl/1-0/"
+      },
+      "condition": null,
+      "altered": null,
+      "verbatim": false,
+      "parts": null
+    },
+    {
+      "id": "delfi_rt_sa",
+      "text": "Störungsmeldungen: DELFI e.V. via Mobilithek, Datensatz „DELFI-Datensatz GTFS-RT Service Alerts“, CC BY-SA 4.0, bearbeitet",
+      "url": "https://mobilithek.info/offers/747118037921857536",
+      "licence": {
+        "name": "CC BY-SA 4.0",
+        "url": "https://creativecommons.org/licenses/by-sa/4.0/"
+      },
+      "condition": null,
+      "altered": null,
+      "verbatim": false,
+      "parts": null
+    },
+    {
+      "id": "delfi_siri_sx",
+      "text": "Störungsmeldungen: DELFI e.V. via Mobilithek, Datensatz „DELFI-Datensatz SIRI SX“, CC BY-SA 4.0, bearbeitet",
+      "url": "https://mobilithek.info/offers/836244707009785856",
+      "licence": {
+        "name": "CC BY-SA 4.0",
+        "url": "https://creativecommons.org/licenses/by-sa/4.0/"
+      },
+      "condition": null,
+      "altered": null,
+      "verbatim": false,
+      "parts": null
+    },
+    {
+      "id": "delfi_siri_et",
+      "text": "Echtzeitdaten: DELFI e.V. via Mobilithek, Datensätze „DELFI-Realtime SIRI ET“ (Bahndaten und 14 Regionen), CC BY-SA, bearbeitet",
+      "url": "https://mobilithek.info/offers/832259263033151488",
+      "licence": {
+        "name": "CC BY-SA",
+        "url": "https://www.dcat-ap.de/def/licenses/cc-by-sa"
+      },
+      "condition": null,
+      "altered": null,
+      "verbatim": false,
+      "parts": null
+    },
+    {
+      "id": "delfi_static",
+      "text": "Fahrplandaten: DELFI e.V., CC BY 4.0, bearbeitet",
+      "url": "https://www.opendata-oepnv.de",
+      "licence": {
+        "name": "CC BY 4.0",
+        "url": "https://creativecommons.org/licenses/by/4.0/"
+      },
+      "condition": null,
+      "altered": null,
+      "verbatim": false,
+      "parts": null
+    },
+    {
+      "id": "tankerkoenig",
+      "text": "Tankstellenpreise: Tankerkönig.de — MTS-K, CC BY 4.0, bearbeitet",
+      "url": "https://creativecommons.tankerkoenig.de",
+      "licence": {
+        "name": "CC BY 4.0",
+        "url": "https://creativecommons.org/licenses/by/4.0/"
+      },
+      "condition": null,
+      "altered": null,
+      "verbatim": false,
+      "parts": null
+    },
+    {
+      "id": "db_timetables",
+      "text": "Fahrplandaten: Deutsche Bahn AG, DB API Marketplace, CC BY 4.0, bearbeitet",
+      "url": "https://developers.deutschebahn.com",
+      "licence": {
+        "name": "CC BY 4.0",
+        "url": "https://creativecommons.org/licenses/by/4.0/"
+      },
+      "condition": null,
+      "altered": null,
+      "verbatim": false,
+      "parts": null
+    },
+    {
+      "id": "dbinfrago_streckennetz",
+      "text": "Datenquelle: DB InfraGO AG, Bahn-Geodaten / 2026, CC BY 4.0, bearbeitet",
+      "url": "https://registry.gdi-de.org/id/de.bund.dbinfragoag/DE.DBINFRAGOAG.STRECKENNETZ",
+      "licence": {
+        "name": "CC BY 4.0",
+        "url": "https://creativecommons.org/licenses/by/4.0/"
+      },
+      "condition": null,
+      "altered": null,
+      "verbatim": false,
+      "parts": null
+    },
+    {
+      "id": "db_stada",
+      "text": "Bahnhofsdaten: Deutsche Bahn AG, DB API Marketplace, CC BY 4.0, bearbeitet",
+      "url": "https://developers.deutschebahn.com",
+      "licence": {
+        "name": "CC BY 4.0",
+        "url": "https://creativecommons.org/licenses/by/4.0/"
+      },
+      "condition": null,
+      "altered": null,
+      "verbatim": false,
+      "parts": null
+    },
+    {
+      "id": "db_fasta",
+      "text": "Aufzüge und Fahrtreppen: Deutsche Bahn AG, DB API Marketplace, CC BY 4.0, bearbeitet",
+      "url": "https://developers.deutschebahn.com",
+      "licence": {
+        "name": "CC BY 4.0",
+        "url": "https://creativecommons.org/licenses/by/4.0/"
+      },
+      "condition": null,
+      "altered": null,
+      "verbatim": false,
+      "parts": null
+    },
+    {
+      "id": "dwd",
+      "text": "Quelle: Deutscher Wetterdienst",
+      "url": "https://www.dwd.de/copyright",
+      "licence": {
+        "name": "CC BY 4.0",
+        "url": "https://creativecommons.org/licenses/by/4.0/"
+      },
+      "condition": null,
+      "altered": "Datenbasis: Deutscher Wetterdienst, zusammengefasst",
+      "verbatim": false,
+      "parts": null
+    },
+    {
+      "id": "dwd_road",
+      "text": "Quelle: Deutscher Wetterdienst. Datenquelle: BMVBS und Straßenbauverwaltungen der Länder",
+      "url": "https://www.dwd.de/copyright",
+      "licence": {
+        "name": "CC BY 4.0",
+        "url": "https://creativecommons.org/licenses/by/4.0/"
+      },
+      "condition": "Die Daten der Glättemeldeanlagen stellen ungeprüfte Punktmessungen dar und spiegeln nicht die Verhältnisse auf einem Straßenabschnitt wider. Es besteht kein Anspruch auf regelmäßige und vollständige Datenlieferungen.",
+      "altered": "Datenbasis: Deutscher Wetterdienst, zusammengefasst. Datenquelle: BMVBS und Straßenbauverwaltungen der Länder",
+      "verbatim": false,
+      "parts": null
+    },
+    {
+      "id": "geonames",
+      "text": "Ortsdaten: © GeoNames (CC BY 4.0), bearbeitet",
+      "url": "https://download.geonames.org/export/dump/",
+      "licence": {
+        "name": "CC BY 4.0",
+        "url": "https://creativecommons.org/licenses/by/4.0/"
+      },
+      "condition": null,
+      "altered": null,
+      "verbatim": false,
+      "parts": null
+    },
+    {
+      "id": "bkg_gvisys",
+      "text": "Verwaltungseinheiten: © BKG (2026) dl-de/by-2-0, Datenquellen: https://sgx.geodatenzentrum.de/web_public/gdz/datenquellen/datenquellen_gn250.pdf (Daten verändert)",
+      "url": "https://gdz.bkg.bund.de/index.php/default/open-data/geographische-namen-1-250-000-gn250.html",
+      "licence": {
+        "name": "dl-de/by-2-0",
+        "url": "https://www.govdata.de/dl-de/by-2-0"
+      },
+      "condition": null,
+      "altered": null,
+      "verbatim": false,
+      "parts": [
+        {
+          "text": "Verwaltungseinheiten: © ",
+          "href": null
+        },
+        {
+          "text": "BKG",
+          "href": "https://www.bkg.bund.de"
+        },
+        {
+          "text": " (2026) ",
+          "href": null
+        },
+        {
+          "text": "dl-de/by-2-0",
+          "href": "https://www.govdata.de/dl-de/by-2-0"
+        },
+        {
+          "text": ", Datenquellen: https://sgx.geodatenzentrum.de/web_public/gdz/datenquellen/datenquellen_gn250.pdf (Daten verändert)",
+          "href": null
+        }
+      ]
+    },
+    {
+      "id": "destatis_gv_laender",
+      "text": "Fläche: © Statistisches Bundesamt (Destatis), Gemeindeverzeichnis, Stand 31.12.2024",
+      "url": "https://www.destatis.de/DE/Themen/Laender-Regionen/Regionales/Gemeindeverzeichnis/Administrativ/02-bundeslaender.html",
+      "licence": {
+        "name": "dl-de/by-2-0",
+        "url": "https://www.govdata.de/dl-de/by-2-0"
+      },
+      "condition": null,
+      "altered": null,
+      "verbatim": false,
+      "parts": null
+    },
+    {
+      "id": "delfi_zhv",
+      "text": "Haltestellendaten: DELFI e.V. (zentrales Haltestellenverzeichnis), CC BY 4.0, bearbeitet",
+      "url": "https://www.opendata-oepnv.de/ht/de/organisation/delfi/startseite",
+      "licence": {
+        "name": "CC BY 4.0",
+        "url": "https://creativecommons.org/licenses/by/4.0/"
+      },
+      "condition": null,
+      "altered": null,
+      "verbatim": false,
+      "parts": null
+    },
+    {
+      "id": "osm",
+      "text": "OSM-Standortdaten: © OpenStreetMap-Mitwirkende, ODbL 1.0",
+      "url": "https://www.openstreetmap.org/copyright",
+      "licence": {
+        "name": "ODbL 1.0",
+        "url": "https://opendatacommons.org/licenses/odbl/1-0/"
+      },
+      "condition": null,
+      "altered": null,
+      "verbatim": false,
+      "parts": null
+    },
+    {
+      "id": "mobilithek_nms_events",
+      "text": "Verkehrsmeldungen der Polizei: Landesbetrieb Straßenbau NRW (VIZ.NRW) via Mobilithek, Datenlizenz Deutschland – Zero – Version 2.0",
+      "url": "https://mobilithek.info/offers/648516815296524288",
+      "licence": null,
+      "condition": null,
+      "altered": null,
+      "verbatim": false,
+      "parts": null
+    },
+    {
+      "id": "mobilithek_bab_messages",
+      "text": "Verkehrsmeldungen: Die Autobahn GmbH des Bundes (Mobilithek), Nutzungsbestimmungen nach GeoNutzV, Daten verändert; Ortsangaben: TMC Location Code List der Bundesanstalt für Straßenwesen (BASt), CC BY 4.0 (https://creativecommons.org/licenses/by/4.0/), bearbeitet",
+      "url": "https://mobilithek.info/offers/110000000003091005",
+      "licence": null,
+      "condition": null,
+      "altered": null,
+      "verbatim": false,
+      "parts": null
+    },
+    {
+      "id": "bast_lcl",
+      "text": "TMC Location Code List (LCL 22.0): Bundesanstalt für Straßenwesen (BASt), CC BY 4.0 (https://creativecommons.org/licenses/by/4.0/), bearbeitet",
+      "url": "https://www.bast.de/DE/Themen/Digitales/HF_1/Massnahmen/LCL/location-code-list.html",
+      "licence": {
+        "name": "CC BY 4.0",
+        "url": "https://creativecommons.org/licenses/by/4.0/"
+      },
+      "condition": null,
+      "altered": null,
+      "verbatim": false,
+      "parts": null
+    },
+    {
+      "id": "mobilithek_roadworks_bast",
+      "text": "Arbeitsstellen: Bundesanstalt für Straßen- und Verkehrswesen (BASt) via Mobilithek, CC BY 4.0, bearbeitet",
+      "url": "https://mobilithek.info/offers/608447464874934272",
+      "licence": {
+        "name": "CC BY 4.0",
+        "url": "https://creativecommons.org/licenses/by/4.0/"
+      },
+      "condition": null,
+      "altered": null,
+      "verbatim": false,
+      "parts": null
+    },
+    {
+      "id": "mobilithek_roadworks_ald_ni",
+      "text": "Arbeitsstellen Niedersachsen: Niedersächsische Landesbehörde für Straßenbau und Verkehr via Mobilithek, Datenlizenz Deutschland – Zero – Version 2.0",
+      "url": "https://mobilithek.info/offers/951153778962972672",
+      "licence": null,
+      "condition": null,
+      "altered": null,
+      "verbatim": false,
+      "parts": null
+    },
+    {
+      "id": "mobilithek_traffic_bw",
+      "text": "Verkehrsmeldungen Baden-Württemberg: Landesmeldestelle für den Verkehrswarndienst Baden-Württemberg (Innenministerium Baden-Württemberg) via Mobilithek, Datenlizenz Deutschland – Namensnennung – Version 2.0 (www.govdata.de/dl-de/by-2-0), Daten verändert",
+      "url": "https://mobilithek.info/offers/857127500689977344",
+      "licence": {
+        "name": "dl-de/by-2-0",
+        "url": "https://www.govdata.de/dl-de/by-2-0"
+      },
+      "condition": "Amtliche Meldungen des Verkehrswarndienstes der Landesmeldestelle Baden-Württemberg, veröffentlicht auf Grundlage der Rahmenrichtlinie für den Verkehrswarndienst (RVWD); Nutzungsbedingung ist die RVWD. Der Meldungstext wird ungekürzt und nur aktuell wiedergegeben.",
+      "altered": null,
+      "verbatim": true,
+      "parts": null
+    },
+    {
+      "id": "mobilithek_traffic_berlin",
+      "text": "Verkehrsmeldungen Berlin: Senatsverwaltung für Mobilität, Verkehr, Klimaschutz und Umwelt Berlin via Mobilithek, Datenlizenz Deutschland – Namensnennung – Version 2.0 (www.govdata.de/dl-de/by-2-0), Daten verändert",
+      "url": "https://mobilithek.info/offers/801096621061234688",
+      "licence": {
+        "name": "dl-de/by-2-0",
+        "url": "https://www.govdata.de/dl-de/by-2-0"
+      },
+      "condition": null,
+      "altered": null,
+      "verbatim": false,
+      "parts": null
+    },
+    {
+      "id": "mobilithek_viz_berlin",
+      "text": "Baustellen und Sperrungen Berlin: Digitale Plattform Stadtverkehr Berlin / Baustellen, Sperrungen und sonstige Störungen von besonderem verkehrlichem Interesse, Datenlizenz Deutschland – Namensnennung – Version 2.0 (www.govdata.de/dl-de/by-2-0), Daten verändert",
+      "url": "https://mobilithek.info/offers/-1932860367105391879",
+      "licence": {
+        "name": "dl-de/by-2-0",
+        "url": "https://www.govdata.de/dl-de/by-2-0"
+      },
+      "condition": null,
+      "altered": null,
+      "verbatim": false,
+      "parts": null
+    },
+    {
+      "id": "mobilithek_traffic_koeln_events",
+      "text": "Verkehrsereignisse Köln: Stadt Köln via Mobilithek, Datenlizenz Deutschland – Zero – Version 2.0",
+      "url": "https://mobilithek.info/offers/110000000002900004",
+      "licence": null,
+      "condition": null,
+      "altered": null,
+      "verbatim": false,
+      "parts": null
+    },
+    {
+      "id": "mobilithek_traffic_sh",
+      "text": "Verkehrsmeldungen Schleswig-Holstein: Landesmeldestelle Polizei Schleswig-Holstein via Mobilithek, Open Data (freie Nutzung)",
+      "url": "https://mobilithek.info/offers/993124774653632512",
+      "licence": null,
+      "condition": null,
+      "altered": null,
+      "verbatim": false,
+      "parts": null
+    },
+    {
+      "id": "mobilithek_traffic_hannover",
+      "text": "Verkehrsmeldungen Hannover: Landeshauptstadt Hannover – Fachbereich Tiefbau via Mobilithek, Open Data (freie Nutzung)",
+      "url": "https://mobilithek.info/offers/633691473746571264",
+      "licence": null,
+      "condition": null,
+      "altered": null,
+      "verbatim": false,
+      "parts": null
+    },
+    {
+      "id": "mobilithek_roadworks_bremen",
+      "text": "Baustellen Bremen: Verkehrsmanagementzentrale Bremen via Mobilithek, Datenlizenz Deutschland – Namensnennung – Version 2.0 (www.govdata.de/dl-de/by-2-0), Daten verändert",
+      "url": "https://mobilithek.info/offers/608390979298140160",
+      "licence": {
+        "name": "dl-de/by-2-0",
+        "url": "https://www.govdata.de/dl-de/by-2-0"
+      },
+      "condition": null,
+      "altered": null,
+      "verbatim": false,
+      "parts": null
+    },
+    {
+      "id": "mobilithek_traffic_ruesselsheim",
+      "text": "Verkehrsmeldungen Rüsselsheim am Main: © Stadt Rüsselsheim am Main {Jahr} — GeoNutzV, Daten verändert",
+      "url": "https://mobilithek.info/offers/110000000003176000",
+      "licence": null,
+      "condition": null,
+      "altered": null,
+      "verbatim": false,
+      "parts": null
+    },
+    {
+      "id": "mobilithek_roadworks_nlstbv",
+      "text": "Arbeitsstellen und Sperrungen Niedersachsen (außerhalb der Autobahnen): Niedersächsische Landesbehörde für Straßenbau und Verkehr via Mobilithek, Datenlizenz Deutschland – Zero – Version 2.0",
+      "url": "https://mobilithek.info/offers/110000000002749000",
+      "licence": null,
+      "condition": null,
+      "altered": null,
+      "verbatim": false,
+      "parts": null
+    },
+    {
+      "id": "mobilithek_traffic_kassel",
+      "text": "Verkehrsmeldungen Kassel: Stadt Kassel, Straßenverkehrs- und Tiefbauamt via Mobilithek, Datenlizenz Deutschland – Namensnennung – Version 2.0 (www.govdata.de/dl-de/by-2-0), Daten verändert",
+      "url": "https://mobilithek.info/offers/609820812490186752",
+      "licence": {
+        "name": "dl-de/by-2-0",
+        "url": "https://www.govdata.de/dl-de/by-2-0"
+      },
+      "condition": null,
+      "altered": null,
+      "verbatim": false,
+      "parts": null
+    },
+    {
+      "id": "mobilithek_park_kassel_static",
+      "text": "Parkhäuser Kassel: Stadt Kassel, Straßenverkehrs- und Tiefbauamt via Mobilithek, Datenlizenz Deutschland – Namensnennung – Version 2.0 (www.govdata.de/dl-de/by-2-0), Daten verändert",
+      "url": "https://mobilithek.info/offers/110000000002249000",
+      "licence": {
+        "name": "dl-de/by-2-0",
+        "url": "https://www.govdata.de/dl-de/by-2-0"
+      },
+      "condition": null,
+      "altered": null,
+      "verbatim": false,
+      "parts": null
+    },
+    {
+      "id": "mobilithek_park_kassel_dyn",
+      "text": "Parkhaus-Belegung Kassel: Stadt Kassel, Straßenverkehrs- und Tiefbauamt via Mobilithek, Datenlizenz Deutschland – Namensnennung – Version 2.0 (www.govdata.de/dl-de/by-2-0), Daten verändert",
+      "url": "https://mobilithek.info/offers/110000000002248002",
+      "licence": {
+        "name": "dl-de/by-2-0",
+        "url": "https://www.govdata.de/dl-de/by-2-0"
+      },
+      "condition": null,
+      "altered": null,
+      "verbatim": false,
+      "parts": null
+    },
+    {
+      "id": "mobilithek_bridges_sh",
+      "text": "Brückenzustände Schleswig-Holstein: Landesbetrieb Straßenbau und Verkehr Schleswig-Holstein (LBV.SH) via Mobilithek, Datenlizenz Deutschland – Zero – Version 2.0",
+      "url": "https://mobilithek.info/offers/732554158793453568",
+      "licence": null,
+      "condition": null,
+      "altered": null,
+      "verbatim": false,
+      "parts": null
+    },
+    {
+      "id": "mobilithek_roadworks_bayern",
+      "text": "Baustellen Bayern: © Bayerische Straßenbauverwaltung – Zentralstelle für Verkehrsmanagement {Jahr} — GeoNutzV, Daten verändert",
+      "url": "https://mobilithek.info/offers/110000000002507001",
+      "licence": null,
+      "condition": null,
+      "altered": null,
+      "verbatim": false,
+      "parts": null
+    },
+    {
+      "id": "mobilithek_roadworks_mv",
+      "text": "Arbeitsstellen Mecklenburg-Vorpommern: © Landesamt für Straßenbau und Verkehr Mecklenburg-Vorpommern {Jahr} — GeoNutzV, Daten verändert",
+      "url": "https://mobilithek.info/offers/110000000002802000",
+      "licence": null,
+      "condition": null,
+      "altered": null,
+      "verbatim": false,
+      "parts": null
+    },
+    {
+      "id": "mobilithek_roadworks_mv_planned",
+      "text": "Arbeitsstellen Mecklenburg-Vorpommern: © Landesamt für Straßenbau und Verkehr Mecklenburg-Vorpommern {Jahr} — GeoNutzV, Daten verändert",
+      "url": "https://mobilithek.info/offers/818137060259840000",
+      "licence": null,
+      "condition": null,
+      "altered": null,
+      "verbatim": false,
+      "parts": null
+    },
+    {
+      "id": "mobilithek_detours_nrw",
+      "text": "Umleitungen Nordrhein-Westfalen: Landesbetrieb Straßenbau Nordrhein-Westfalen via Mobilithek, Datenlizenz Deutschland – Zero – Version 2.0",
+      "url": "https://mobilithek.info/offers/648509554457178112",
+      "licence": null,
+      "condition": null,
+      "altered": null,
+      "verbatim": false,
+      "parts": null
+    },
+    {
+      "id": "mobilithek_roadworks_nrw_lvz",
+      "text": "Arbeitsstellen Nordrhein-Westfalen (ohne Autobahnen): Landesbetrieb Straßenbau Nordrhein-Westfalen via Mobilithek, Datenlizenz Deutschland – Zero – Version 2.0",
+      "url": "https://mobilithek.info/offers/648508602333433856",
+      "licence": null,
+      "condition": null,
+      "altered": null,
+      "verbatim": false,
+      "parts": null
+    },
+    {
+      "id": "mobilithek_los_nrw",
+      "text": "Verkehrslage Nordrhein-Westfalen: © Die Autobahn GmbH des Bundes {Jahr} — GeoNutzV, Daten verändert",
+      "url": "https://mobilithek.info/offers/110000000003476002",
+      "licence": null,
+      "condition": null,
+      "altered": null,
+      "verbatim": false,
+      "parts": null
+    },
+    {
+      "id": "mobilithek_los_nrw_lanes",
+      "text": "Verkehrslage Nordrhein-Westfalen: © Die Autobahn GmbH des Bundes {Jahr} — GeoNutzV, Daten verändert",
+      "url": "https://mobilithek.info/offers/110000000003478000",
+      "licence": null,
+      "condition": null,
+      "altered": null,
+      "verbatim": false,
+      "parts": null
+    },
+    {
+      "id": "mobilithek_traffic_lms_berlin",
+      "text": "Verkehrsmeldungen Berlin: Landesmeldestelle Berlin (LMST BE) via Mobilithek, Datenlizenz Deutschland – Zero – Version 2.0",
+      "url": "https://mobilithek.info/offers/674192785122717696",
+      "licence": null,
+      "condition": null,
+      "altered": null,
+      "verbatim": false,
+      "parts": null
+    },
+    {
+      "id": "mobilithek_h2_stations",
+      "text": "Wasserstofftankstellen: H2 Mobility Deutschland GmbH & Co. KG via Mobilithek, CC BY 4.0, bearbeitet",
+      "url": "https://mobilithek.info/offers/608445319190814720",
+      "licence": {
+        "name": "CC BY 4.0",
+        "url": "https://creativecommons.org/licenses/by/4.0/"
+      },
+      "condition": null,
+      "altered": null,
+      "verbatim": false,
+      "parts": null
+    },
+    {
+      "id": "mobilithek_speed_aachen",
+      "text": "Geschwindigkeitskontrollen der Stadt Aachen: Stadt Aachen, Fachbereich Sicherheit und Ordnung, Datenlizenz Deutschland – Namensnennung – Version 2.0 (www.govdata.de/dl-de/by-2-0), Daten verändert",
+      "url": "https://offenedaten.aachen.de/dataset/geschwindigkeitskontrollen-der-stadt-aachen-2026",
+      "licence": {
+        "name": "dl-de/by-2-0",
+        "url": "https://www.govdata.de/dl-de/by-2-0"
+      },
+      "condition": null,
+      "altered": null,
+      "verbatim": false,
+      "parts": null
+    },
+    {
+      "id": "mobilithek_speed_duesseldorf",
+      "text": "Stationäre Verkehrsüberwachung Düsseldorf: Landeshauptstadt Düsseldorf – Ordnungsamt, Datenlizenz Deutschland – Zero – Version 2.0",
+      "url": "https://mobilithek.info/offers/-6521336555933090398",
+      "licence": null,
+      "condition": null,
+      "altered": null,
+      "verbatim": false,
+      "parts": null
+    },
+    {
+      "id": "mobilithek_speed_karlsruhe",
+      "text": "Blitzer Stationär Karlsruhe: Digitale Mobilität, CC BY 4.0, bearbeitet",
+      "url": "https://mobilithek.info/offers/-2020125283095781082",
+      "licence": {
+        "name": "CC BY 4.0",
+        "url": "https://creativecommons.org/licenses/by/4.0/"
+      },
+      "condition": null,
+      "altered": null,
+      "verbatim": false,
+      "parts": null
+    },
+    {
+      "id": "mobilithek_speed_koeln",
+      "text": "Geschwindigkeitsüberwachung Köln: Stadt Köln, Datenlizenz Deutschland – Zero – Version 2.0",
+      "url": "https://mobilithek.info/offers/-5159788214135716335",
+      "licence": null,
+      "condition": null,
+      "altered": null,
+      "verbatim": false,
+      "parts": null
+    },
+    {
+      "id": "mobilithek_speed_bottrop",
+      "text": "Blitzerstandorte Bottrop: Stadt Bottrop, Datenlizenz Deutschland – Zero – Version 2.0",
+      "url": "https://mobilithek.info/offers/-3998197975377664146",
+      "licence": null,
+      "condition": null,
+      "altered": null,
+      "verbatim": false,
+      "parts": null
+    },
+    {
+      "id": "mobilithek_speed_konstanz",
+      "text": "Blitzerdaten Konstanz: Stadt Konstanz, Bürgeramt – Abt. Verkehrswesen (Offene Daten Konstanz), CC BY 4.0, bearbeitet",
+      "url": "https://offenedaten-konstanz.de/dataset/geschwindigkeits-berwachung-jahresstatistik",
+      "licence": {
+        "name": "CC BY 4.0",
+        "url": "https://creativecommons.org/licenses/by/4.0/"
+      },
+      "condition": null,
+      "altered": null,
+      "verbatim": false,
+      "parts": null
+    },
+    {
+      "id": "mobilithek_traffic_leipzig",
+      "text": "Verkehrsmeldungen Leipzig: Stadt Leipzig, Verkehrs- und Tiefbauamt via Mobilithek, Datenlizenz Deutschland – Namensnennung – Version 2.0 (www.govdata.de/dl-de/by-2-0), Daten verändert",
+      "url": "https://mobilithek.info/offers/110000000002877004",
+      "licence": {
+        "name": "dl-de/by-2-0",
+        "url": "https://www.govdata.de/dl-de/by-2-0"
+      },
+      "condition": null,
+      "altered": null,
+      "verbatim": false,
+      "parts": null
+    },
+    {
+      "id": "mobilithek_roadworks_ald_sn",
+      "text": "Arbeitsstellen Sachsen: Landesamt für Straßenbau und Verkehr des Freistaates Sachsen (LASuV) via Mobilithek, CC BY 4.0, bearbeitet",
+      "url": "https://mobilithek.info/offers/608439575154401280",
+      "licence": {
+        "name": "CC BY 4.0",
+        "url": "https://creativecommons.org/licenses/by/4.0/"
+      },
+      "condition": null,
+      "altered": null,
+      "verbatim": false,
+      "parts": null
+    },
+    {
+      "id": "mobilithek_sperrinfosys_sn",
+      "text": "Sperrungen und Umleitungen Sachsen — Quelle: Baustelleninformationssystem Freistaat Sachsen, Datenlizenz Deutschland – Namensnennung – Version 2.0 (www.govdata.de/dl-de/by-2-0), Daten verändert",
+      "url": "https://mobilithek.info/offers/-2102129055146091928",
+      "licence": {
+        "name": "dl-de/by-2-0",
+        "url": "https://www.govdata.de/dl-de/by-2-0"
+      },
+      "condition": "Für die Richtigkeit und Vollständigkeit der Angaben sind die angeschlossenen, jeweils zuständigen Verkehrsbehörden verantwortlich.",
+      "altered": null,
+      "verbatim": false,
+      "parts": null
+    },
+    {
+      "id": "mobilithek_ald_14d",
+      "text": "Arbeitsstellen auf Autobahnen (14 Tage): Die Autobahn GmbH des Bundes | MIA via Mobilithek, eingeschränkte Nutzung, kostenfrei, bearbeitet",
+      "url": "https://mobilithek.info/offers/641228542228467712",
+      "licence": null,
+      "condition": null,
+      "altered": null,
+      "verbatim": false,
+      "parts": null
+    },
+    {
+      "id": "toll_collect_sid",
+      "text": "Lkw-Stellplätze: Toll Collect GmbH, Stellplatz-Informationsdienst (SID) via Mobilithek, Nutzungsbedingungen Version 1.0 (Stand 10.04.2026)",
+      "url": "https://company.toll-collect.de/static/media/dokumente/sid/agb-sid.pdf",
+      "licence": null,
+      "condition": "Lkw-Stellplatzbelegung: Toll Collect GmbH, Stellplatz-Informationsdienst (SID) via Mobilithek. Die Angaben können ungenau, unvollständig oder veraltet sein; keine Gewähr. Es gelten die Nutzungsbedingungen, Abschnitt 2: https://viafrei.de/terms#sid",
+      "altered": null,
+      "verbatim": false,
+      "parts": null
+    },
+    {
+      "id": "mobilithek_roadworks_akd",
+      "text": "Arbeitsstellen kürzerer Dauer auf Autobahnen (geplant): Die Autobahn GmbH des Bundes | MIA via Mobilithek, eingeschränkte Nutzung, kostenfrei",
+      "url": "https://mobilithek.info/offers/641235133820284928",
+      "licence": null,
+      "condition": "Geplante Arbeitsstellen kürzerer Dauer werden kurzfristig geplant und oft geändert; sie ersetzen weder eine Genehmigung für Großraum- und Schwertransporte noch die Wegkontrolle vor Fahrtantritt.",
+      "altered": null,
+      "verbatim": false,
+      "parts": null
+    },
+    {
+      "id": "mobilithek_routing_bab",
+      "text": "Strategisches Routing: Die Autobahn des Bundes GmbH via Mobilithek, Open Data (freie Nutzung)",
+      "url": "https://mobilithek.info/offers/1021494109163888640",
+      "licence": null,
+      "condition": null,
+      "altered": null,
+      "verbatim": false,
+      "parts": null
+    },
+    {
+      "id": "mobilithek_routing_bayern",
+      "text": "Strategisches Routing Bayern: © Die Autobahn GmbH des Bundes {Jahr} — GeoNutzV, Daten verändert",
+      "url": "https://mobilithek.info/offers/763374701385560064",
+      "licence": null,
+      "condition": null,
+      "altered": null,
+      "verbatim": false,
+      "parts": null
+    },
+    {
+      "id": "mobilithek_routing_dvl_ni",
+      "text": "Verkehrsstrategien Niedersachsen (DVL-NI): Niedersächsische Landesbehörde für Straßenbau und Verkehr via Mobilithek, Datenlizenz Deutschland – Zero – Version 2.0",
+      "url": "https://mobilithek.info/offers/555085084313444352",
+      "licence": null,
+      "condition": null,
+      "altered": null,
+      "verbatim": false,
+      "parts": null
+    },
+    {
+      "id": "mobilithek_roadworks_he",
+      "text": "Arbeitsstellen Hessen: Hessen Mobil (Daten verändert) via Mobilithek, GeoNutzV",
+      "url": "https://mobilithek.info/",
+      "licence": null,
+      "condition": null,
+      "altered": null,
+      "verbatim": false,
+      "parts": null
+    },
+    {
+      "id": "mobilithek_roadworks_he_gesammelt",
+      "text": "Arbeitsstellen Hessen (gesammelt): Hessen Mobil (Daten verändert) via Mobilithek, GeoNutzV",
+      "url": "https://mobilithek.info/",
+      "licence": null,
+      "condition": null,
+      "altered": null,
+      "verbatim": false,
+      "parts": null
+    },
+    {
+      "id": "mobilithek_roadworks_ald_th",
+      "text": "Arbeitsstellen Thüringen: © Thüringer Landesamt für Bau und Verkehr (TLBV) {Jahr} — GeoNutzV, Daten verändert",
+      "url": "https://mobilithek.info/offers/110000000003051000",
+      "licence": null,
+      "condition": null,
+      "altered": null,
+      "verbatim": false,
+      "parts": null
+    },
+    {
+      "id": "mobilithek_traffic_nrw",
+      "text": "Verkehrsinformationen NRW: Landesbetrieb Straßenbau NRW (VIZ.NRW) via Mobilithek, Datenlizenz Deutschland – Zero – Version 2.0",
+      "url": "https://mobilithek.info/offers/648512079906336768",
+      "licence": null,
+      "condition": null,
+      "altered": null,
+      "verbatim": false,
+      "parts": null
+    },
+    {
+      "id": "mobilithek_traffic_nrw_einzel",
+      "text": "Verkehrsinformationen NRW (Einzelmeldungen): Landesbetrieb Straßenbau NRW (VIZ.NRW) via Mobilithek, Datenlizenz Deutschland – Zero – Version 2.0",
+      "url": "https://mobilithek.info/offers/648515616677687296",
+      "licence": null,
+      "condition": null,
+      "altered": null,
+      "verbatim": false,
+      "parts": null
+    },
+    {
+      "id": "mobilithek_traffic_hamburg",
+      "text": "Verkehrsmeldungen Hamburg: Polizei Hamburg – Landesmeldestelle via Mobilithek, Open Data (freie Nutzung)",
+      "url": "https://mobilithek.info/offers/608084381757480960",
+      "licence": null,
+      "condition": null,
+      "altered": null,
+      "verbatim": false,
+      "parts": null
+    },
+    {
+      "id": "polizei_hamburg_lms",
+      "text": "Verkehrsmeldungen Hamburg: Polizei Hamburg – Landesmeldestelle, übermittelt im NMS-Gesamtdatensatz der VIZ.NRW via Mobilithek",
+      "url": "https://mobilithek.info/offers/608084381757480960",
+      "licence": null,
+      "condition": null,
+      "altered": null,
+      "verbatim": false,
+      "parts": null
+    },
+    {
+      "id": "mobilithek_truckpark_static_geonutzv",
+      "text": "LKW-Parken: © Lkw-Parken BAB Deutschland / Bundesministerium für Verkehr (BMV) {Jahr} — GeoNutzV, Daten verändert",
+      "url": "https://mobilithek.info/offers/110000000002465001",
+      "licence": null,
+      "condition": null,
+      "altered": null,
+      "verbatim": false,
+      "parts": null
+    },
+    {
+      "id": "mobilithek_afir_ecomovement",
+      "text": "Ladepunkte: Eco-Movement via Mobilithek, CC BY 4.0, bearbeitet",
+      "url": "https://mobilithek.info/offers/954064102947180544",
+      "licence": {
+        "name": "CC BY 4.0",
+        "url": "https://creativecommons.org/licenses/by/4.0/"
+      },
+      "condition": null,
+      "altered": null,
+      "verbatim": false,
+      "parts": null
+    },
+    {
+      "id": "mobilithek_afir_enbw_stat",
+      "text": "Ladepunkte: EnBW AG via Mobilithek, CC BY 4.0, bearbeitet",
+      "url": "https://mobilithek.info/offers/907574882292453376",
+      "licence": {
+        "name": "CC BY 4.0",
+        "url": "https://creativecommons.org/licenses/by/4.0/"
+      },
+      "condition": null,
+      "altered": null,
+      "verbatim": false,
+      "parts": null
+    },
+    {
+      "id": "mobilithek_afir_tesla_dyn",
+      "text": "Ladepunkt-Verfügbarkeit: Tesla Germany GmbH via Mobilithek, CC0 1.0",
+      "url": "https://mobilithek.info/offers/953843379766972416",
+      "licence": null,
+      "condition": null,
+      "altered": null,
+      "verbatim": false,
+      "parts": null
+    },
+    {
+      "id": "mobilithek_afir_vw_dyn",
+      "text": "Ladepunkt-Verfügbarkeit: Volkswagen Group Charging GmbH via Mobilithek, CC0 1.0",
+      "url": "https://mobilithek.info/offers/983006934617260032",
+      "licence": null,
+      "condition": null,
+      "altered": null,
+      "verbatim": false,
+      "parts": null
+    },
+    {
+      "id": "mobilithek_afir_tesla_stat",
+      "text": "Ladepunkte: Tesla Germany GmbH via Mobilithek, CC0 1.0",
+      "url": "https://mobilithek.info/offers/953828817873125376",
+      "licence": null,
+      "condition": null,
+      "altered": null,
+      "verbatim": false,
+      "parts": null
+    },
+    {
+      "id": "mobilithek_afir_vw_stat",
+      "text": "Ladepunkte: Volkswagen Group Charging GmbH via Mobilithek, CC0 1.0",
+      "url": "https://mobilithek.info/offers/983008874583728128",
+      "licence": null,
+      "condition": null,
+      "altered": null,
+      "verbatim": false,
+      "parts": null
+    },
+    {
+      "id": "mobilithek_afir_enbw_dyn",
+      "text": "Ladepunkt-Verfügbarkeit: EnBW AG via Mobilithek, CC BY 4.0, bearbeitet",
+      "url": "https://mobilithek.info/offers/907575401287241728",
+      "licence": {
+        "name": "CC BY 4.0",
+        "url": "https://creativecommons.org/licenses/by/4.0/"
+      },
+      "condition": null,
+      "altered": null,
+      "verbatim": false,
+      "parts": null
+    },
+    {
+      "id": "mobilithek_afir_ecomovement_dyn",
+      "text": "Ladepunkt-Verfügbarkeit: Eco-Movement via Mobilithek, CC BY 4.0, bearbeitet",
+      "url": "https://mobilithek.info/offers/955166494396665856",
+      "licence": {
+        "name": "CC BY 4.0",
+        "url": "https://creativecommons.org/licenses/by/4.0/"
+      },
+      "condition": null,
+      "altered": null,
+      "verbatim": false,
+      "parts": null
+    },
+    {
+      "id": "mobilithek_afir_eclearing_stat",
+      "text": "Ladepunkte: e-clearing.net (smartlab Innovationsgesellschaft mbH) via Mobilithek, CC0 1.0",
+      "url": "https://mobilithek.info/offers/996825300704600064",
+      "licence": null,
+      "condition": null,
+      "altered": null,
+      "verbatim": false,
+      "parts": null
+    },
+    {
+      "id": "mobilithek_afir_eclearing_dyn",
+      "text": "Ladepunkt-Verfügbarkeit: e-clearing.net (smartlab Innovationsgesellschaft mbH) via Mobilithek, CC0 1.0",
+      "url": "https://mobilithek.info/offers/996823601386508288",
+      "licence": null,
+      "condition": null,
+      "altered": null,
+      "verbatim": false,
+      "parts": null
+    },
+    {
+      "id": "mobilithek_afir_pump_stat",
+      "text": "Ladepunkte: 800 Volt Technologies GmbH (PUMP) via Mobilithek, CC0 1.0",
+      "url": "https://mobilithek.info/offers/969322788846231552",
+      "licence": null,
+      "condition": null,
+      "altered": null,
+      "verbatim": false,
+      "parts": null
+    },
+    {
+      "id": "mobilithek_afir_edri_stat",
+      "text": "Ladepunkte: Ampeco Ltd. (EDRI) via Mobilithek, CC0 1.0",
+      "url": "https://mobilithek.info/offers/972837891969273856",
+      "licence": null,
+      "condition": null,
+      "altered": null,
+      "verbatim": false,
+      "parts": null
+    },
+    {
+      "id": "mobilithek_afir_edri_dyn",
+      "text": "Ladepunkt-Verfügbarkeit: Ampeco Ltd. (EDRI) via Mobilithek, Open Data (freie Nutzung)",
+      "url": "https://mobilithek.info/offers/972842599324557312",
+      "licence": null,
+      "condition": null,
+      "altered": null,
+      "verbatim": false,
+      "parts": null
+    },
+    {
+      "id": "mobilithek_afir_audi_stat",
+      "text": "Ladepunkte: Audi AG (Audi charging hub) via Mobilithek, CC0 1.0",
+      "url": "https://mobilithek.info/offers/998571342932365312",
+      "licence": null,
+      "condition": null,
+      "altered": null,
+      "verbatim": false,
+      "parts": null
+    },
+    {
+      "id": "mobilithek_afir_audi_dyn",
+      "text": "Ladepunkt-Verfügbarkeit: Audi AG (Audi charging hub) via Mobilithek, CC0 1.0",
+      "url": "https://mobilithek.info/offers/998567365272563712",
+      "licence": null,
+      "condition": null,
+      "altered": null,
+      "verbatim": false,
+      "parts": null
+    },
+    {
+      "id": "mobilithek_afir_enerando_dyn",
+      "text": "Ladepunkt-Verfügbarkeit: ENERANDO Technologies GmbH via Mobilithek, Open Data (freie Nutzung)",
+      "url": "https://mobilithek.info/offers/1037038702374617088",
+      "licence": null,
+      "condition": null,
+      "altered": null,
+      "verbatim": false,
+      "parts": null
+    },
+    {
+      "id": "mobilithek_afir_enio_stat",
+      "text": "Ladepunkte: ENIO GmbH via Mobilithek, CC0 1.0",
+      "url": "https://mobilithek.info/offers/963766220171735040",
+      "licence": null,
+      "condition": null,
+      "altered": null,
+      "verbatim": false,
+      "parts": null
+    },
+    {
+      "id": "mobilithek_afir_enio_dyn",
+      "text": "Ladepunkt-Verfügbarkeit: ENIO GmbH via Mobilithek, CC0 1.0",
+      "url": "https://mobilithek.info/offers/968541134128902144",
+      "licence": null,
+      "condition": null,
+      "altered": null,
+      "verbatim": false,
+      "parts": null
+    },
+    {
+      "id": "mobilithek_afir_evprice_stat",
+      "text": "Ladepunkte: EW Pricing GmbH (EV Price) via Mobilithek, CC0 1.0",
+      "url": "https://mobilithek.info/offers/989311807176560640",
+      "licence": null,
+      "condition": null,
+      "altered": null,
+      "verbatim": false,
+      "parts": null
+    },
+    {
+      "id": "mobilithek_afir_evprice_dyn",
+      "text": "Ladepunkt-Verfügbarkeit: EW Pricing GmbH (EV Price) via Mobilithek, CC0 1.0",
+      "url": "https://mobilithek.info/offers/989311073915731968",
+      "licence": null,
+      "condition": null,
+      "altered": null,
+      "verbatim": false,
+      "parts": null
+    },
+    {
+      "id": "mobilithek_afir_ewe_stat",
+      "text": "Ladepunkte: EWE via Mobilithek, CC0 1.0",
+      "url": "https://mobilithek.info/offers/1024264572575293440",
+      "licence": null,
+      "condition": null,
+      "altered": null,
+      "verbatim": false,
+      "parts": null
+    },
+    {
+      "id": "mobilithek_afir_ewe_dyn",
+      "text": "Ladepunkt-Verfügbarkeit: EWE via Mobilithek, CC0 1.0",
+      "url": "https://mobilithek.info/offers/1006184570533171200",
+      "licence": null,
+      "condition": null,
+      "altered": null,
+      "verbatim": false,
+      "parts": null
+    },
+    {
+      "id": "mobilithek_afir_gls_stat",
+      "text": "Ladepunkte: GLS Mobility GmbH via Mobilithek, CC BY 4.0, bearbeitet",
+      "url": "https://mobilithek.info/offers/980559859451379712",
+      "licence": {
+        "name": "CC BY 4.0",
+        "url": "https://creativecommons.org/licenses/by/4.0/"
+      },
+      "condition": null,
+      "altered": null,
+      "verbatim": false,
+      "parts": null
+    },
+    {
+      "id": "mobilithek_afir_gls_dyn",
+      "text": "Ladepunkt-Verfügbarkeit: GLS Mobility GmbH via Mobilithek, CC BY 4.0, bearbeitet",
+      "url": "https://mobilithek.info/offers/980563757096464384",
+      "licence": {
+        "name": "CC BY 4.0",
+        "url": "https://creativecommons.org/licenses/by/4.0/"
+      },
+      "condition": null,
+      "altered": null,
+      "verbatim": false,
+      "parts": null
+    },
+    {
+      "id": "mobilithek_afir_gpjoule_stat",
+      "text": "Ladepunkte: GP JOULE Connect GmbH via Mobilithek, CC0 1.0",
+      "url": "https://mobilithek.info/offers/997111469996658688",
+      "licence": null,
+      "condition": null,
+      "altered": null,
+      "verbatim": false,
+      "parts": null
+    },
+    {
+      "id": "mobilithek_afir_gpjoule_dyn",
+      "text": "Ladepunkt-Verfügbarkeit: GP JOULE Connect GmbH via Mobilithek, CC0 1.0",
+      "url": "https://mobilithek.info/offers/997190851637440512",
+      "licence": null,
+      "condition": null,
+      "altered": null,
+      "verbatim": false,
+      "parts": null
+    },
+    {
+      "id": "mobilithek_afir_gridco_stat",
+      "text": "Ladepunkte: Grid & Co. GmbH via Mobilithek, Open Data (freie Nutzung)",
+      "url": "https://mobilithek.info/offers/984104561811357696",
+      "licence": null,
+      "condition": null,
+      "altered": null,
+      "verbatim": false,
+      "parts": null
+    },
+    {
+      "id": "mobilithek_afir_gridco_dyn",
+      "text": "Ladepunkt-Verfügbarkeit: Grid & Co. GmbH via Mobilithek, Open Data (freie Nutzung)",
+      "url": "https://mobilithek.info/offers/984103903968534528",
+      "licence": null,
+      "condition": null,
+      "altered": null,
+      "verbatim": false,
+      "parts": null
+    },
+    {
+      "id": "mobilithek_afir_eround_stat",
+      "text": "Ladepunkte: Hamburger Energienetze GmbH (eRound) via Mobilithek, CC0 1.0",
+      "url": "https://mobilithek.info/offers/961625658278940672",
+      "licence": null,
+      "condition": null,
+      "altered": null,
+      "verbatim": false,
+      "parts": null
+    },
+    {
+      "id": "mobilithek_afir_eround_dyn",
+      "text": "Ladepunkt-Verfügbarkeit: Hamburger Energienetze GmbH (eRound) via Mobilithek, CC0 1.0",
+      "url": "https://mobilithek.info/offers/961629419076456448",
+      "licence": null,
+      "condition": null,
+      "altered": null,
+      "verbatim": false,
+      "parts": null
+    },
+    {
+      "id": "mobilithek_afir_inergia_stat",
+      "text": "Ladepunkte: INERGIA GmbH via Mobilithek, CC0 1.0",
+      "url": "https://mobilithek.info/offers/1043944773714128896",
+      "licence": null,
+      "condition": null,
+      "altered": null,
+      "verbatim": false,
+      "parts": null
+    },
+    {
+      "id": "mobilithek_afir_inergia_dyn",
+      "text": "Ladepunkt-Verfügbarkeit: INERGIA GmbH via Mobilithek, CC0 1.0",
+      "url": "https://mobilithek.info/offers/1043947032435105792",
+      "licence": null,
+      "condition": null,
+      "altered": null,
+      "verbatim": false,
+      "parts": null
+    },
+    {
+      "id": "mobilithek_afir_rudnick_stat",
+      "text": "Ladepunkte: K.u.L. Rudnick Bau und Bauträger GmbH via Mobilithek, CC0 1.0",
+      "url": "https://mobilithek.info/offers/983747474988376064",
+      "licence": null,
+      "condition": null,
+      "altered": null,
+      "verbatim": false,
+      "parts": null
+    },
+    {
+      "id": "mobilithek_afir_lichtblick_stat",
+      "text": "Ladepunkte: LichtBlick eMobility GmbH via Mobilithek, CC0 1.0",
+      "url": "https://mobilithek.info/offers/962721207430316032",
+      "licence": null,
+      "condition": null,
+      "altered": null,
+      "verbatim": false,
+      "parts": null
+    },
+    {
+      "id": "mobilithek_afir_lichtblick_dyn",
+      "text": "Ladepunkt-Verfügbarkeit: LichtBlick eMobility GmbH via Mobilithek, CC0 1.0",
+      "url": "https://mobilithek.info/offers/962731482363617280",
+      "licence": null,
+      "condition": null,
+      "altered": null,
+      "verbatim": false,
+      "parts": null
+    },
+    {
+      "id": "mobilithek_afir_monta_stat",
+      "text": "Ladepunkte: Monta ApS via Mobilithek, Open Data (freie Nutzung)",
+      "url": "https://mobilithek.info/offers/963836072152719360",
+      "licence": null,
+      "condition": null,
+      "altered": null,
+      "verbatim": false,
+      "parts": null
+    },
+    {
+      "id": "mobilithek_afir_monta_dyn",
+      "text": "Ladepunkt-Verfügbarkeit: Monta ApS via Mobilithek, CC0 1.0",
+      "url": "https://mobilithek.info/offers/963870983660167168",
+      "licence": null,
+      "condition": null,
+      "altered": null,
+      "verbatim": false,
+      "parts": null
+    },
+    {
+      "id": "mobilithek_afir_qwello_stat",
+      "text": "Ladepunkte: Qwello Deutschland GmbH via Mobilithek, CC0 1.0",
+      "url": "https://mobilithek.info/offers/972963216296222720",
+      "licence": null,
+      "condition": null,
+      "altered": null,
+      "verbatim": false,
+      "parts": null
+    },
+    {
+      "id": "mobilithek_afir_qwello_dyn",
+      "text": "Ladepunkt-Verfügbarkeit: Qwello Deutschland GmbH via Mobilithek, CC0 1.0",
+      "url": "https://mobilithek.info/offers/972966368902897664",
+      "licence": null,
+      "condition": null,
+      "altered": null,
+      "verbatim": false,
+      "parts": null
+    },
+    {
+      "id": "mobilithek_afir_road_stat",
+      "text": "Ladepunkte: Road B.V. (Road Public Network) via Mobilithek, Open Data (freie Nutzung)",
+      "url": "https://mobilithek.info/offers/1021366453630017536",
+      "licence": null,
+      "condition": null,
+      "altered": null,
+      "verbatim": false,
+      "parts": null
+    },
+    {
+      "id": "mobilithek_afir_road_dyn",
+      "text": "Ladepunkt-Verfügbarkeit: Road B.V. (Road Public Network) via Mobilithek, Open Data (freie Nutzung)",
+      "url": "https://mobilithek.info/offers/1021364001002217472",
+      "licence": null,
+      "condition": null,
+      "altered": null,
+      "verbatim": false,
+      "parts": null
+    },
+    {
+      "id": "mobilithek_afir_smatrics_stat",
+      "text": "Ladepunkte: SMATRICS GmbH & Co KG via Mobilithek, CC0 1.0",
+      "url": "https://mobilithek.info/offers/980809280034390016",
+      "licence": null,
+      "condition": null,
+      "altered": null,
+      "verbatim": false,
+      "parts": null
+    },
+    {
+      "id": "mobilithek_afir_smatrics_dyn",
+      "text": "Ladepunkt-Verfügbarkeit: SMATRICS GmbH & Co KG via Mobilithek, CC0 1.0",
+      "url": "https://mobilithek.info/offers/961319990963605504",
+      "licence": null,
+      "condition": null,
+      "altered": null,
+      "verbatim": false,
+      "parts": null
+    },
+    {
+      "id": "mobilithek_afir_wirelane_stat",
+      "text": "Ladepunkte: Wirelane GmbH via Mobilithek, CC0 1.0",
+      "url": "https://mobilithek.info/offers/869246425829892096",
+      "licence": null,
+      "condition": null,
+      "altered": null,
+      "verbatim": false,
+      "parts": null
+    },
+    {
+      "id": "mobilithek_afir_wirelane_dyn",
+      "text": "Ladepunkt-Verfügbarkeit: Wirelane GmbH via Mobilithek, CC0 1.0",
+      "url": "https://mobilithek.info/offers/876587237907525632",
+      "licence": null,
+      "condition": null,
+      "altered": null,
+      "verbatim": false,
+      "parts": null
+    },
+    {
+      "id": "mobilithek_afir_chargecloud_stat",
+      "text": "Ladepunkte: chargecloud GmbH via Mobilithek, CC0 1.0",
+      "url": "https://mobilithek.info/offers/978597062404620288",
+      "licence": null,
+      "condition": null,
+      "altered": null,
+      "verbatim": false,
+      "parts": null
+    },
+    {
+      "id": "mobilithek_afir_chargecloud_dyn",
+      "text": "Ladepunkt-Verfügbarkeit: chargecloud GmbH via Mobilithek, CC0 1.0",
+      "url": "https://mobilithek.info/offers/980862594474274816",
+      "licence": null,
+      "condition": null,
+      "altered": null,
+      "verbatim": false,
+      "parts": null
+    },
+    {
+      "id": "mobilithek_afir_vaylens_stat",
+      "text": "Ladepunkte: vaylens GmbH via Mobilithek, CC0 1.0",
+      "url": "https://mobilithek.info/offers/979363267193040896",
+      "licence": null,
+      "condition": null,
+      "altered": null,
+      "verbatim": false,
+      "parts": null
+    },
+    {
+      "id": "mobilithek_afir_vaylens_dyn",
+      "text": "Ladepunkt-Verfügbarkeit: vaylens GmbH via Mobilithek, CC0 1.0",
+      "url": "https://mobilithek.info/offers/979364650281549824",
+      "licence": null,
+      "condition": null,
+      "altered": null,
+      "verbatim": false,
+      "parts": null
+    },
+    {
+      "id": "mobilithek_afir_tcbackend_stat",
+      "text": "Ladepunkte: Taubert Consulting GmbH (TC-Backend) via Mobilithek, CC0 1.0",
+      "url": "https://mobilithek.info/offers/1000749522967314432",
+      "licence": null,
+      "condition": null,
+      "altered": null,
+      "verbatim": false,
+      "parts": null
+    },
+    {
+      "id": "mobilithek_afir_tcbackend_dyn",
+      "text": "Ladepunkt-Verfügbarkeit: Taubert Consulting GmbH (TC-Backend) via Mobilithek, CC0 1.0",
+      "url": "https://mobilithek.info/offers/1000746576770711552",
+      "licence": null,
+      "condition": null,
+      "altered": null,
+      "verbatim": false,
+      "parts": null
+    },
+    {
+      "id": "mobilithek_afir_elu_stat",
+      "text": "Ladepunkte: ELU Mobility via Mobilithek, Open Data (freie Nutzung)",
+      "url": "https://mobilithek.info/offers/936298491949047808",
+      "licence": null,
+      "condition": null,
+      "altered": null,
+      "verbatim": false,
+      "parts": null
+    },
+    {
+      "id": "mobilithek_afir_elu_dyn",
+      "text": "Ladepunkt-Verfügbarkeit: ELU Mobility via Mobilithek, Open Data (freie Nutzung)",
+      "url": "https://mobilithek.info/offers/971513500454850560",
+      "licence": null,
+      "condition": null,
+      "altered": null,
+      "verbatim": false,
+      "parts": null
+    },
+    {
+      "id": "mobilithek_afir_chargepool",
+      "text": "Ladepunkte und Verfügbarkeit: Chargepool Enerando Technologies GmbH via Mobilithek, lizenzfrei",
+      "url": "https://mobilithek.info/offers/1033716358314917888",
+      "licence": null,
+      "condition": null,
+      "altered": null,
+      "verbatim": false,
+      "parts": null
+    },
+    {
+      "id": "mobilithek_afir_eliso_stat",
+      "text": "Ladepunkte und Verfügbarkeit: eliso GmbH via Mobilithek (AFIR-Datenbereitstellung, Art. 20 VO (EU) 2023/1804)",
+      "url": "https://mobilithek.info/offers/843477276990078976",
+      "licence": null,
+      "condition": null,
+      "altered": null,
+      "verbatim": false,
+      "parts": null
+    },
+    {
+      "id": "mobilithek_afir_eliso_dyn",
+      "text": "Ladepunkte und Verfügbarkeit: eliso GmbH via Mobilithek (AFIR-Datenbereitstellung, Art. 20 VO (EU) 2023/1804)",
+      "url": "https://mobilithek.info/offers/843502085052710912",
+      "licence": null,
+      "condition": null,
+      "altered": null,
+      "verbatim": false,
+      "parts": null
+    },
+    {
+      "id": "mobilithek_afir_ladenetz_stat",
+      "text": "Ladepunkte: Smartlab Innovationsgesellschaft mbH (ladenetz.de) via Mobilithek, CC0 1.0",
+      "url": "https://mobilithek.info/offers/902547569133924352",
+      "licence": null,
+      "condition": null,
+      "altered": null,
+      "verbatim": false,
+      "parts": null
+    },
+    {
+      "id": "mobilithek_afir_ladenetz_dyn",
+      "text": "Ladepunkt-Verfügbarkeit: Smartlab Innovationsgesellschaft mbH (ladenetz.de) via Mobilithek, CC0 1.0",
+      "url": "https://mobilithek.info/offers/903240716507836416",
+      "licence": null,
+      "condition": null,
+      "altered": null,
+      "verbatim": false,
+      "parts": null
+    },
+    {
+      "id": "mobilithek_afir_ladebusiness_stat",
+      "text": "Ladepunkte: Smartlab Innovationsgesellschaft mbH (ladebusiness) via Mobilithek, CC0 1.0",
+      "url": "https://mobilithek.info/offers/903241622921695232",
+      "licence": null,
+      "condition": null,
+      "altered": null,
+      "verbatim": false,
+      "parts": null
+    },
+    {
+      "id": "mobilithek_afir_ladebusiness_dyn",
+      "text": "Ladepunkt-Verfügbarkeit: Smartlab Innovationsgesellschaft mbH (ladebusiness) via Mobilithek, CC0 1.0",
+      "url": "https://mobilithek.info/offers/903321397006716928",
+      "licence": null,
+      "condition": null,
+      "altered": null,
+      "verbatim": false,
+      "parts": null
+    },
+    {
+      "id": "bnetza_lsr",
+      "text": "Ladesäulenregister: Bundesnetzagentur.de, CC BY 4.0, bearbeitet",
+      "url": "https://www.bundesnetzagentur.de/DE/Fachthemen/ElektrizitaetundGas/E-Mobilitaet/Ladesaeulenkarte/start.htm",
+      "licence": {
+        "name": "CC BY 4.0",
+        "url": "https://creativecommons.org/licenses/by/4.0/"
+      },
+      "condition": null,
+      "altered": null,
+      "verbatim": false,
+      "parts": null
+    },
+    {
+      "id": "ocpdb_chargecloud",
+      "text": "Ladepunkte und Verfügbarkeit: chargecloud (CC0 1.0) via MobiData BW (NVBW), Datenlizenz Deutschland – Namensnennung – Version 2.0 (www.govdata.de/dl-de/by-2-0), Daten geändert",
+      "url": "https://mobidata-bw.de/dataset/e-ladesaulen",
+      "licence": {
+        "name": "dl-de/by-2-0",
+        "url": "https://www.govdata.de/dl-de/by-2-0"
+      },
+      "condition": null,
+      "altered": null,
+      "verbatim": false,
+      "parts": null
+    },
+    {
+      "id": "ocpdb_taubert",
+      "text": "Ladepunkte und Verfügbarkeit: Taubert Consulting (CC0 1.0) via MobiData BW (NVBW), Datenlizenz Deutschland – Namensnennung – Version 2.0 (www.govdata.de/dl-de/by-2-0), Daten geändert",
+      "url": "https://mobidata-bw.de/dataset/e-ladesaulen",
+      "licence": {
+        "name": "dl-de/by-2-0",
+        "url": "https://www.govdata.de/dl-de/by-2-0"
+      },
+      "condition": null,
+      "altered": null,
+      "verbatim": false,
+      "parts": null
+    },
+    {
+      "id": "mobilithek_openstation_netex",
+      "text": "Aufzüge, Fahrtreppen und Bahnsteige (Bestand): Deutsche Bahn AG / DB InfraGO AG (OpenStation) via Mobilithek, CC0 1.0",
+      "url": "https://mobilithek.info/offers/879076212433727488",
+      "licence": null,
+      "condition": null,
+      "altered": null,
+      "verbatim": false,
+      "parts": null
+    },
+    {
+      "id": "mobilithek_openstation_siri_fm",
+      "text": "Aufzüge und Fahrtreppen (Status): Deutsche Bahn AG / DB InfraGO AG (OpenStation) via Mobilithek, CC0 1.0",
+      "url": "https://mobilithek.info/offers/930558234532405248",
+      "licence": null,
+      "condition": null,
+      "altered": null,
+      "verbatim": false,
+      "parts": null
+    },
+    {
+      "id": "mobilithek_park_koeln_dyn",
+      "text": "Parkhaus-Belegung: Stadt Köln via Mobilithek, Datenlizenz Deutschland – Zero – Version 2.0",
+      "url": "https://mobilithek.info/offers/110000000002898001",
+      "licence": null,
+      "condition": null,
+      "altered": null,
+      "verbatim": false,
+      "parts": null
+    },
+    {
+      "id": "mobilithek_park_nrw_parken",
+      "text": "Parkhäuser NRW: NRW.Mobidrom via Mobilithek, Datenlizenz Deutschland – Namensnennung – Version 2.0 (www.govdata.de/dl-de/by-2-0), Daten verändert",
+      "url": "https://mobilithek.info/offers/884461297383403520",
+      "licence": {
+        "name": "dl-de/by-2-0",
+        "url": "https://www.govdata.de/dl-de/by-2-0"
+      },
+      "condition": null,
+      "altered": null,
+      "verbatim": false,
+      "parts": null
+    },
+    {
+      "id": "mobilithek_park_christophorus",
+      "text": "Lkw-Parken: Florence Knuellwald GmbH (Christophorus Parking) via Mobilithek, Datenlizenz Deutschland – Namensnennung – Version 2.0 (www.govdata.de/dl-de/by-2-0), Daten verändert",
+      "url": "https://mobilithek.info/offers/872174540205998080",
+      "licence": {
+        "name": "dl-de/by-2-0",
+        "url": "https://www.govdata.de/dl-de/by-2-0"
+      },
+      "condition": null,
+      "altered": null,
+      "verbatim": false,
+      "parts": null
+    },
+    {
+      "id": "mobilithek_park_christophorus_occ",
+      "text": "Lkw-Parken (Belegung): Florence Knuellwald GmbH (Christophorus Parking) via Mobilithek, Datenlizenz Deutschland – Namensnennung – Version 2.0 (www.govdata.de/dl-de/by-2-0), Daten verändert",
+      "url": "https://mobilithek.info/offers/872182598248316928",
+      "licence": {
+        "name": "dl-de/by-2-0",
+        "url": "https://www.govdata.de/dl-de/by-2-0"
+      },
+      "condition": null,
+      "altered": null,
+      "verbatim": false,
+      "parts": null
+    },
+    {
+      "id": "mobilithek_park_bosch_dyn",
+      "text": "Lkw-Parken (Belegung): Bosch Service Solutions via Mobilithek, CC BY 4.0, bearbeitet",
+      "url": "https://mobilithek.info/offers/608434388310130688",
+      "licence": {
+        "name": "CC BY 4.0",
+        "url": "https://creativecommons.org/licenses/by/4.0/"
+      },
+      "condition": null,
+      "altered": null,
+      "verbatim": false,
+      "parts": null
+    },
+    {
+      "id": "mobilithek_park_trucklounge",
+      "text": "Lkw-Parken: ENMO GmbH & Co.KG (Trucklounge Ecopark) via Mobilithek — enthält Daten aus „Trucklounge Ecopark“, Open Database License 1.0 (opendatacommons.org/licenses/odbl/1-0/), bearbeitet",
+      "url": "https://mobilithek.info/offers/953737601668071424",
+      "licence": {
+        "name": "ODbL 1.0",
+        "url": "https://opendatacommons.org/licenses/odbl/1-0/"
+      },
+      "condition": null,
+      "altered": null,
+      "verbatim": false,
+      "parts": null
+    },
+    {
+      "id": "mobilithek_park_trucklounge_occ",
+      "text": "Lkw-Parken (Belegung): ENMO GmbH & Co.KG (Trucklounge Ecopark) via Mobilithek — enthält Daten aus „Trucklounge Ecopark (dynamisch)“, Open Database License 1.0 (opendatacommons.org/licenses/odbl/1-0/), bearbeitet",
+      "url": "https://mobilithek.info/offers/953739275522670592",
+      "licence": {
+        "name": "ODbL 1.0",
+        "url": "https://opendatacommons.org/licenses/odbl/1-0/"
+      },
+      "condition": null,
+      "altered": null,
+      "verbatim": false,
+      "parts": null
+    },
+    {
+      "id": "mobilithek_park_nrw_pr",
+      "text": "P+R NRW: NRW.Mobidrom via Mobilithek, Datensatz „Gebündelte Daten Park+Ride NRW“, CC BY-SA, bearbeitet",
+      "url": "https://mobilithek.info/offers/884472451086315520",
+      "licence": {
+        "name": "CC BY-SA",
+        "url": "https://www.dcat-ap.de/def/licenses/cc-by-sa"
+      },
+      "condition": null,
+      "altered": null,
+      "verbatim": false,
+      "parts": null
+    },
+    {
+      "id": "mobilithek_park_bosch_static",
+      "text": "Lkw-Parken: Bosch Service Solutions via Mobilithek, CC BY 4.0, bearbeitet",
+      "url": "https://mobilithek.info/offers/608434988204843008",
+      "licence": {
+        "name": "CC BY 4.0",
+        "url": "https://creativecommons.org/licenses/by/4.0/"
+      },
+      "condition": null,
+      "altered": null,
+      "verbatim": false,
+      "parts": null
+    },
+    {
+      "id": "mobilithek_park_koeln_static",
+      "text": "Parkhäuser: Stadt Köln via Mobilithek, Datenlizenz Deutschland – Zero – Version 2.0",
+      "url": "https://mobilithek.info/offers/110000000002898000",
+      "licence": null,
+      "condition": null,
+      "altered": null,
+      "verbatim": false,
+      "parts": null
+    },
+    {
+      "id": "mobilithek_park_thiersheim_static",
+      "text": "Lkw-Parken: Bosch Service Solutions (Autohof Thiersheim) via Mobilithek, CC BY 4.0, bearbeitet",
+      "url": "https://mobilithek.info/offers/608434098878160896",
+      "licence": {
+        "name": "CC BY 4.0",
+        "url": "https://creativecommons.org/licenses/by/4.0/"
+      },
+      "condition": null,
+      "altered": null,
+      "verbatim": false,
+      "parts": null
+    },
+    {
+      "id": "hamburg_park_ride",
+      "text": "P+R-Anlagen: Freie und Hansestadt Hamburg, Behörde für Verkehr und Mobilitätswende, (BVM), Datenlizenz Deutschland – Namensnennung – Version 2.0 (www.govdata.de/dl-de/by-2-0), Daten geändert (bearbeitet)",
+      "url": "https://suche.transparenz.hamburg.de/dataset/park-ride-anlagen-hamburg33",
+      "licence": {
+        "name": "dl-de/by-2-0",
+        "url": "https://www.govdata.de/dl-de/by-2-0"
+      },
+      "condition": null,
+      "altered": null,
+      "verbatim": false,
+      "parts": null
+    },
+    {
+      "id": "hamburg_parkhaeuser",
+      "text": "Parkhäuser: Freie und Hansestadt Hamburg, Behörde für Verkehr und Mobilitätswende, Datenlizenz Deutschland – Namensnennung – Version 2.0 (www.govdata.de/dl-de/by-2-0), Daten geändert (bearbeitet)",
+      "url": "https://suche.transparenz.hamburg.de/dataset/parkhaeuser-hamburg17",
+      "licence": {
+        "name": "dl-de/by-2-0",
+        "url": "https://www.govdata.de/dl-de/by-2-0"
+      },
+      "condition": null,
+      "altered": null,
+      "verbatim": false,
+      "parts": null
+    },
+    {
+      "id": "hh_bauweiser",
+      "text": "Baustellen (Bauweiser): Freie und Hansestadt Hamburg, Behörde für Verkehr und Mobilitätswende, Datenlizenz Deutschland – Namensnennung – Version 2.0, bearbeitet",
+      "url": "https://suche.transparenz.hamburg.de/dataset/baustellen-hamburg10",
+      "licence": {
+        "name": "dl-de/by-2-0",
+        "url": "https://www.govdata.de/dl-de/by-2-0"
+      },
+      "condition": null,
+      "altered": null,
+      "verbatim": false,
+      "parts": null
+    },
+    {
+      "id": "hh_verkehrskameras",
+      "text": "Verkehrskameras: Freie und Hansestadt Hamburg, Behörde für Verkehr und Mobilitätswende, (BVM), Datenlizenz Deutschland – Namensnennung – Version 2.0",
+      "url": "https://suche.transparenz.hamburg.de/dataset/verkehrskameras-hamburg36",
+      "licence": {
+        "name": "dl-de/by-2-0",
+        "url": "https://www.govdata.de/dl-de/by-2-0"
+      },
+      "condition": "„… wird die Übertragung ins Internet gelegentlich aus Datenschutzgründen von der Verkehrsleitzentrale unterbunden, sodass die Kamerabilder für Außenstehende nicht zuverlässig 24h am Tag verfügbar sind.“ (Freie und Hansestadt Hamburg)",
+      "altered": null,
+      "verbatim": false,
+      "parts": null
+    },
+    {
+      "id": "kiel_baustellen",
+      "text": "Baustellen: © Landeshauptstadt Kiel, Amt für Bauordnung, Vermessung und Geoinformation, CC BY 4.0, bearbeitet",
+      "url": "https://www.govdata.de/daten/-/details/baustellen-in-kiel",
+      "licence": {
+        "name": "CC BY 4.0",
+        "url": "https://creativecommons.org/licenses/by/4.0/"
+      },
+      "condition": null,
+      "altered": null,
+      "verbatim": false,
+      "parts": null
+    },
+    {
+      "id": "sh_baustellen",
+      "text": "Baustellen Schleswig-Holstein: © LBV.SH/CC BY 4.0; © Geokompetenz/LVermGeo SH/CC BY 4.0, bearbeitet",
+      "url": "https://opendata.schleswig-holstein.de/dataset/baustellen-schleswig-holstein",
+      "licence": {
+        "name": "CC BY 4.0",
+        "url": "https://creativecommons.org/licenses/by/4.0/"
+      },
+      "condition": null,
+      "altered": null,
+      "verbatim": false,
+      "parts": null
+    },
+    {
+      "id": "sh_umleitungsstrecken",
+      "text": "Umleitungsstrecken Schleswig-Holstein: © LBV.SH/CC BY 4.0; © Geokompetenz/LVermGeo SH/CC BY 4.0, bearbeitet",
+      "url": "https://www.govdata.de/daten/-/details/umleitungsstrecken-schleswig-holstein",
+      "licence": {
+        "name": "CC BY 4.0",
+        "url": "https://creativecommons.org/licenses/by/4.0/"
+      },
+      "condition": null,
+      "altered": null,
+      "verbatim": false,
+      "parts": null
+    },
+    {
+      "id": "muenchen_lieferzonen",
+      "text": "Datenquelle: dl-de/by-2-0: Landeshauptstadt München – opendata.muenchen.de (bearbeitet)",
+      "url": "https://opendata.muenchen.de/dataset/opendata_ruhver_parkseiten_laden_liefern_leisten",
+      "licence": {
+        "name": "dl-de/by-2-0",
+        "url": "https://www.govdata.de/dl-de/by-2-0"
+      },
+      "condition": null,
+      "altered": null,
+      "verbatim": false,
+      "parts": null
+    },
+    {
+      "id": "muenchen_3l_zonen",
+      "text": "Datenquelle: dl-de/by-2-0: Landeshauptstadt München – opendata.muenchen.de (bearbeitet)",
+      "url": "https://opendata.muenchen.de/dataset/g_sensor_3l_zonen",
+      "licence": {
+        "name": "dl-de/by-2-0",
+        "url": "https://www.govdata.de/dl-de/by-2-0"
+      },
+      "condition": null,
+      "altered": null,
+      "verbatim": false,
+      "parts": null
+    },
+    {
+      "id": "bb_baustellen",
+      "text": "Baustelleninformationen: Landesbetrieb Straßenwesen Brandenburg, Datenlizenz Deutschland – Namensnennung – Version 2.0, bearbeitet",
+      "url": "https://ogc-api.geobasis-bb.de/datasets/baustelleninfo",
+      "licence": {
+        "name": "dl-de/by-2-0",
+        "url": "https://www.govdata.de/dl-de/by-2-0"
+      },
+      "condition": null,
+      "altered": null,
+      "verbatim": false,
+      "parts": null
+    },
+    {
+      "id": "bb_grenzuebergaenge",
+      "text": "Grenzübergänge: © Landesbetrieb Straßenwesen Brandenburg, © Die Autobahn GmbH des Bundes, Datenlizenz Deutschland – Namensnennung – Version 2.0, bearbeitet",
+      "url": "https://ogc-api.geobasis-bb.de/datasets/strassennetz/collections/Grenzuebergaenge",
+      "licence": {
+        "name": "dl-de/by-2-0",
+        "url": "https://www.govdata.de/dl-de/by-2-0"
+      },
+      "condition": null,
+      "altered": null,
+      "verbatim": false,
+      "parts": null
+    },
+    {
+      "id": "freiburg_baustellen",
+      "text": "Verkehrsrelevante Baustellen Freiburg — Datengrundlage: Stadt Freiburg, www.freiburg.de (Geodaten © Stadt Freiburg, geoportal.freiburg.de), Datenlizenz Deutschland – Namensnennung – Version 2.0, bearbeitet",
+      "url": "https://www.govdata.de/daten/-/details/verkehrsrelevante-baustellen-im-offentlichen-verkehrsraum-der-stadt-freiburg-i-br2ad19",
+      "licence": {
+        "name": "dl-de/by-2-0",
+        "url": "https://www.govdata.de/dl-de/by-2-0"
+      },
+      "condition": null,
+      "altered": null,
+      "verbatim": false,
+      "parts": null
+    },
+    {
+      "id": "karlsruhe_tba",
+      "text": "Baustellen und Veranstaltungen: Stadt Karlsruhe, Tiefbauamt – Digitale Mobilität, über MobiData BW, CC BY 4.0, bearbeitet",
+      "url": "https://mobidata-bw.de/dataset/baustellen",
+      "licence": {
+        "name": "CC BY 4.0",
+        "url": "https://creativecommons.org/licenses/by/4.0/"
+      },
+      "condition": null,
+      "altered": null,
+      "verbatim": false,
+      "parts": null
+    },
+    {
+      "id": "karlsruhe_winterdienst",
+      "text": "Winterdienst: Stadt Karlsruhe, Tiefbauamt – Digitale Mobilität, über MobiData BW, CC BY 4.0, bearbeitet",
+      "url": "https://mobidata-bw.de/dataset/winterdienst-auto",
+      "licence": {
+        "name": "CC BY 4.0",
+        "url": "https://creativecommons.org/licenses/by/4.0/"
+      },
+      "condition": null,
+      "altered": null,
+      "verbatim": false,
+      "parts": null
+    },
+    {
+      "id": "aachen_fussgaengerzonen",
+      "text": "Zugang Fußgängerzonen: Stadt Aachen ({Jahr}), Datenlizenz Deutschland – Namensnennung – Version 2.0, bearbeitet",
+      "url": "https://www.govdata.de/daten/-/details/zugang-fussgangerzonen-stadt-aachen21415",
+      "licence": {
+        "name": "dl-de/by-2-0",
+        "url": "https://www.govdata.de/dl-de/by-2-0"
+      },
+      "condition": null,
+      "altered": null,
+      "verbatim": false,
+      "parts": null
+    },
+    {
+      "id": "frankfurt_lsa",
+      "text": "Ampeln (Lichtsignalanlagen, mit Akustik): Stadt Frankfurt am Main – Straßenverkehrsamt, www.frankfurt.de, Datenlizenz Deutschland – Namensnennung – Version 2.0, bearbeitet",
+      "url": "https://www.govdata.de/daten/-/details/wfs-verkehrsrelevante-baustellen-lichtsignalanlagen-lsa-mit-akustik-und-verkehrsmeldungen",
+      "licence": {
+        "name": "dl-de/by-2-0",
+        "url": "https://www.govdata.de/dl-de/by-2-0"
+      },
+      "condition": null,
+      "altered": null,
+      "verbatim": false,
+      "parts": null
+    },
+    {
+      "id": "frankfurt_verkehr",
+      "text": "Baustellen und Verkehrsmeldungen: Stadt Frankfurt am Main – Straßenverkehrsamt, www.frankfurt.de, Datenlizenz Deutschland – Namensnennung – Version 2.0, bearbeitet",
+      "url": "https://www.govdata.de/daten/-/details/wfs-verkehrsrelevante-baustellen-lichtsignalanlagen-lsa-mit-akustik-und-verkehrsmeldungen",
+      "licence": {
+        "name": "dl-de/by-2-0",
+        "url": "https://www.govdata.de/dl-de/by-2-0"
+      },
+      "condition": null,
+      "altered": null,
+      "verbatim": false,
+      "parts": null
+    },
+    {
+      "id": "berlin_umweltzone",
+      "text": "Umweltzone: Land Berlin, Senatsverwaltung für Mobilität, Verkehr, Klimaschutz und Umwelt, Datenlizenz Deutschland – Zero – Version 2.0",
+      "url": "https://gdi.berlin.de/services/wfs/umweltzone?SERVICE=WFS&REQUEST=GetCapabilities",
+      "licence": null,
+      "condition": null,
+      "altered": null,
+      "verbatim": false,
+      "parts": null
+    },
+    {
+      "id": "aachen_umweltzone",
+      "text": "Umweltzone: Stadt Aachen ({Jahr}), Datenlizenz Deutschland – Namensnennung – Version 2.0, bearbeitet",
+      "url": "https://geoserver.aachen.de/opendata/umwelt/wfs?SERVICE=WFS&REQUEST=GetCapabilities",
+      "licence": {
+        "name": "dl-de/by-2-0",
+        "url": "https://www.govdata.de/dl-de/by-2-0"
+      },
+      "condition": null,
+      "altered": null,
+      "verbatim": false,
+      "parts": null
+    },
+    {
+      "id": "duisburg_umweltzone",
+      "text": "Umweltzonen Duisburg — Datenquelle: Stadt Duisburg – opendata-duisburg.de, CC BY 3.0 DE, bearbeitet",
+      "url": "https://opendata-duisburg.de/dataset/umweltzonen-duisburg",
+      "licence": {
+        "name": "CC BY 3.0 DE",
+        "url": "https://creativecommons.org/licenses/by/3.0/de/"
+      },
+      "condition": null,
+      "altered": null,
+      "verbatim": false,
+      "parts": null
+    },
+    {
+      "id": "bochum_umweltzone",
+      "text": "Umweltzone: Stadt Bochum, Datenlizenz Deutschland – Namensnennung – Version 2.0, bearbeitet",
+      "url": "https://opendata.ruhr/dataset/bochum-kfz-umweltzone",
+      "licence": {
+        "name": "dl-de/by-2-0",
+        "url": "https://www.govdata.de/dl-de/by-2-0"
+      },
+      "condition": null,
+      "altered": null,
+      "verbatim": false,
+      "parts": null
+    },
+    {
+      "id": "essen_umweltzone",
+      "text": "Umweltzone: Datenquelle: Stadt Essen – opendata.essen.de, Datenlizenz Deutschland – Namensnennung – Version 2.0, bearbeitet",
+      "url": "https://opendata.essen.de/dataset/umweltzone-essen",
+      "licence": {
+        "name": "dl-de/by-2-0",
+        "url": "https://www.govdata.de/dl-de/by-2-0"
+      },
+      "condition": null,
+      "altered": null,
+      "verbatim": false,
+      "parts": null
+    },
+    {
+      "id": "essen_geschwindigkeit",
+      "text": "Geschwindigkeitsüberwachung Essen: Datenquelle: Stadt Essen – opendata.essen.de, Datenlizenz Deutschland – Namensnennung – Version 2.0, bearbeitet",
+      "url": "https://opendata.essen.de/dataset/geschwindigkeits%C3%BCberwachungen-2026",
+      "licence": {
+        "name": "dl-de/by-2-0",
+        "url": "https://www.govdata.de/dl-de/by-2-0"
+      },
+      "condition": null,
+      "altered": null,
+      "verbatim": false,
+      "parts": null
+    },
+    {
+      "id": "uba_umweltzonen",
+      "text": "Umweltzonen in Deutschland: Umweltbundesamt, Datenlizenz Deutschland – Namensnennung – Version 2.0, bearbeitet",
+      "url": "https://metadaten.uba.de/smartfinder-client/?lang=de#/datasets/iso/56718d24-4087-4b8f-9340-8186721eec9a",
+      "licence": {
+        "name": "dl-de/by-2-0",
+        "url": "https://www.govdata.de/dl-de/by-2-0"
+      },
+      "condition": null,
+      "altered": null,
+      "verbatim": false,
+      "parts": null
+    },
+    {
+      "id": "muenchen_umweltzone",
+      "text": "Datenquelle: dl-de/by-2-0: Landeshauptstadt München – opendata.muenchen.de (bearbeitet)",
+      "url": "https://opendata.muenchen.de/dataset/opendata_miv_umweltzone_poly",
+      "licence": {
+        "name": "dl-de/by-2-0",
+        "url": "https://www.govdata.de/dl-de/by-2-0"
+      },
+      "condition": null,
+      "altered": null,
+      "verbatim": false,
+      "parts": null
+    },
+    {
+      "id": "berlin_planb",
+      "text": "Ereignisse im Straßenland: Land Berlin, Senatsverwaltung für Mobilität, Verkehr, Klimaschutz und Umwelt, Datenlizenz Deutschland – Zero – Version 2.0",
+      "url": "https://www.govdata.de/daten/-/details/planbare-ereignisse-im-offentlichen-strassenland",
+      "licence": null,
+      "condition": null,
+      "altered": null,
+      "verbatim": false,
+      "parts": null
+    },
+    {
+      "id": "duisburg_baustellen",
+      "text": "Baustellen: Daten der Stadt Duisburg, WBD, DVG, Nerra, Netze-Duisburg (© Stadt Duisburg; Amt für Bodenordnung, Geomanagement und Kataster), CC BY 3.0 DE, bearbeitet",
+      "url": "https://geoportal2.duisburg.de/arcgisserver/rest/services/Masterportal/MP_Verkehrsportal/MapServer/2",
+      "licence": {
+        "name": "CC BY 3.0 DE",
+        "url": "https://creativecommons.org/licenses/by/3.0/de/"
+      },
+      "condition": null,
+      "altered": null,
+      "verbatim": false,
+      "parts": null
+    },
+    {
+      "id": "aachen_baustellen",
+      "text": "Baustellen: Stadt Aachen ({Jahr}), Datenlizenz Deutschland – Namensnennung – Version 2.0, bearbeitet",
+      "url": "https://www.govdata.de/daten/-/details/baustellen-stadt-aachen391bb",
+      "licence": {
+        "name": "dl-de/by-2-0",
+        "url": "https://www.govdata.de/dl-de/by-2-0"
+      },
+      "condition": null,
+      "altered": null,
+      "verbatim": false,
+      "parts": null
+    },
+    {
+      "id": "ingolstadt_baustellen",
+      "text": "Baustellen: Stadt Ingolstadt, CC BY 4.0, bearbeitet",
+      "url": "https://open.bydata.de/datasets/baustellen_stadt_ingolstadt",
+      "licence": {
+        "name": "CC BY 4.0",
+        "url": "https://creativecommons.org/licenses/by/4.0/"
+      },
+      "condition": null,
+      "altered": null,
+      "verbatim": false,
+      "parts": null
+    },
+    {
+      "id": "koeln_baustellen",
+      "text": "Genehmigte Baustellen: Stadt Köln, Datenlizenz Deutschland – Zero – Version 2.0",
+      "url": "https://geoportal.stadt-koeln.de/wss/service/baustellen_wfs/guest?SERVICE=WFS&REQUEST=GetCapabilities",
+      "licence": null,
+      "condition": null,
+      "altered": null,
+      "verbatim": false,
+      "parts": null
+    },
+    {
+      "id": "stuttgart_baustellen",
+      "text": "Baustellen: Landeshauptstadt Stuttgart, Stadtmessungsamt, CC BY 4.0, bearbeitet",
+      "url": "https://opendata.stuttgart.de/dataset/baustellen",
+      "licence": {
+        "name": "CC BY 4.0",
+        "url": "https://creativecommons.org/licenses/by/4.0/"
+      },
+      "condition": null,
+      "altered": null,
+      "verbatim": false,
+      "parts": null
+    },
+    {
+      "id": "muenster_baustellen",
+      "text": "Baustellen Münster — Datenquelle: Stadt Münster, Datenlizenz Deutschland – Namensnennung – Version 2.0 (www.govdata.de/dl-de/by-2-0), Daten verändert",
+      "url": "https://opendata.stadt-muenster.de/dataset/baustellen",
+      "licence": {
+        "name": "dl-de/by-2-0",
+        "url": "https://www.govdata.de/dl-de/by-2-0"
+      },
+      "condition": null,
+      "altered": null,
+      "verbatim": false,
+      "parts": null
+    },
+    {
+      "id": "dortmund_baustellen",
+      "text": "Baustellen Dortmund: Stadt Dortmund (Tiefbauamt), Open Data Dortmund, Datenlizenz Deutschland – Zero – Version 2.0",
+      "url": "https://open-data.dortmund.de/explore/dataset/fb66-baustellen-tagesaktuell-flachen/",
+      "licence": null,
+      "condition": null,
+      "altered": null,
+      "verbatim": false,
+      "parts": null
+    },
+    {
+      "id": "muenchen_baustellen",
+      "text": "Datenquelle: dl-de/by-2-0: Landeshauptstadt München – opendata.muenchen.de (bearbeitet)",
+      "url": "https://opendata.muenchen.de/dataset/baustellen_4_weeks_opendata",
+      "licence": {
+        "name": "dl-de/by-2-0",
+        "url": "https://www.govdata.de/dl-de/by-2-0"
+      },
+      "condition": null,
+      "altered": null,
+      "verbatim": false,
+      "parts": null
+    },
+    {
+      "id": "hh_emobility",
+      "text": "Ladestatus: Freie und Hansestadt Hamburg, Behörde für Wirtschaft und Innovation, Datenlizenz Deutschland – Namensnennung – Version 2.0 (www.govdata.de/dl-de/by-2-0), bearbeitet",
+      "url": "https://suche.transparenz.hamburg.de/dataset/elektro-ladestandorte-hamburg40",
+      "licence": {
+        "name": "dl-de/by-2-0",
+        "url": "https://www.govdata.de/dl-de/by-2-0"
+      },
+      "condition": null,
+      "altered": null,
+      "verbatim": false,
+      "parts": null
+    },
+    {
+      "id": "hh_verkehrslage",
+      "text": "Verkehrslage: Freie und Hansestadt Hamburg, Behörde für Verkehr und Mobilitätswende, Datenlizenz Deutschland – Namensnennung – Version 2.0 (www.govdata.de/dl-de/by-2-0), bearbeitet",
+      "url": "https://suche.transparenz.hamburg.de/dataset/verkehrslage-hamburg16",
+      "licence": {
+        "name": "dl-de/by-2-0",
+        "url": "https://www.govdata.de/dl-de/by-2-0"
+      },
+      "condition": null,
+      "altered": null,
+      "verbatim": false,
+      "parts": null
+    },
+    {
+      "id": "bonn_verkehrslage",
+      "text": "Verkehrslage Bonn — Datenquelle: Bundesstadt Bonn, Amt 66, https://opendata.bonn.de (Daten verändert), CC BY",
+      "url": "https://opendata.bonn.de/dataset/stra%C3%9Fenverkehrslage-realtime",
+      "licence": {
+        "name": "CC BY",
+        "url": "https://www.dcat-ap.de/def/licenses/cc-by"
+      },
+      "condition": null,
+      "altered": null,
+      "verbatim": false,
+      "parts": null
+    },
+    {
+      "id": "hh_verkehrszaehlung",
+      "text": "Verkehrszählung: Freie und Hansestadt Hamburg, Behörde für Verkehr und Mobilitätswende, Datenlizenz Deutschland – Namensnennung – Version 2.0 (www.govdata.de/dl-de/by-2-0), bearbeitet",
+      "url": "https://www.govdata.de/daten/-/details/verkehrsdaten-kfz-infrarotdetektoren-hamburg",
+      "licence": {
+        "name": "dl-de/by-2-0",
+        "url": "https://www.govdata.de/dl-de/by-2-0"
+      },
+      "condition": null,
+      "altered": null,
+      "verbatim": false,
+      "parts": null
+    },
+    {
+      "id": "berlin_verkehrsdetektion",
+      "text": "Digitale Plattform Stadtverkehr Berlin / Verkehrsdetektion Berlin, Datenlizenz Deutschland – Namensnennung – Version 2.0 (www.govdata.de/dl-de/by-2-0), bearbeitet",
+      "url": "https://api.viz.berlin.de/daten/verkehrsdetektion",
+      "licence": {
+        "name": "dl-de/by-2-0",
+        "url": "https://www.govdata.de/dl-de/by-2-0"
+      },
+      "condition": null,
+      "altered": null,
+      "verbatim": false,
+      "parts": null
+    },
+    {
+      "id": "hh_reisebusparkplaetze",
+      "text": "Reisebusparkplätze: Freie und Hansestadt Hamburg, Behörde für Verkehr und Mobilitätswende (BVM), Datenlizenz Deutschland – Namensnennung – Version 2.0 (www.govdata.de/dl-de/by-2-0), bearbeitet",
+      "url": "https://www.govdata.de/daten/-/details/reisebusparkplatze-hamburg35e4d",
+      "licence": {
+        "name": "dl-de/by-2-0",
+        "url": "https://www.govdata.de/dl-de/by-2-0"
+      },
+      "condition": null,
+      "altered": null,
+      "verbatim": false,
+      "parts": null
+    },
+    {
+      "id": "hh_bedarfsumleitungen",
+      "text": "Bedarfsumleitungen: Freie und Hansestadt Hamburg, Behörde für Verkehr und Mobilitätswende, Datenlizenz Deutschland – Namensnennung – Version 2.0 (www.govdata.de/dl-de/by-2-0), bearbeitet",
+      "url": "https://www.govdata.de/daten/-/details/bedarfsumleitungen-hamburgba064",
+      "licence": {
+        "name": "dl-de/by-2-0",
+        "url": "https://www.govdata.de/dl-de/by-2-0"
+      },
+      "condition": null,
+      "altered": null,
+      "verbatim": false,
+      "parts": null
+    },
+    {
+      "id": "hh_parkraum",
+      "text": "Öffentlicher Parkraum: Freie und Hansestadt Hamburg, Landesbetrieb Verkehr, Datenlizenz Deutschland – Namensnennung – Version 2.0 (www.govdata.de/dl-de/by-2-0), bearbeitet",
+      "url": "https://www.govdata.de/daten/-/details/offentlicher-parkraum-hamburg01746",
+      "licence": {
+        "name": "dl-de/by-2-0",
+        "url": "https://www.govdata.de/dl-de/by-2-0"
+      },
+      "condition": null,
+      "altered": null,
+      "verbatim": false,
+      "parts": null
+    },
+    {
+      "id": "hh_lichtsignalanlagen",
+      "text": "Lichtsignalanlagen: Freie und Hansestadt Hamburg, Landesbetrieb Straßen, Brücken und Gewässer, Datenlizenz Deutschland – Namensnennung – Version 2.0 (www.govdata.de/dl-de/by-2-0), bearbeitet",
+      "url": "https://www.govdata.de/daten/-/details/lichtsignalanlagen-hamburg",
+      "licence": {
+        "name": "dl-de/by-2-0",
+        "url": "https://www.govdata.de/dl-de/by-2-0"
+      },
+      "condition": null,
+      "altered": null,
+      "verbatim": false,
+      "parts": null
+    },
+    {
+      "id": "hh_tld",
+      "text": "Traffic Lights Data Hamburg: Freie und Hansestadt Hamburg, zuständige Behörde, Datenlizenz Deutschland – Namensnennung – Version 2.0 (www.govdata.de/dl-de/by-2-0), bearbeitet",
+      "url": "https://www.govdata.de/daten/-/details/traffic-lights-data-hamburg",
+      "licence": {
+        "name": "dl-de/by-2-0",
+        "url": "https://www.govdata.de/dl-de/by-2-0"
+      },
+      "condition": null,
+      "altered": null,
+      "verbatim": false,
+      "parts": null
+    },
+    {
+      "id": "muenster_pls",
+      "text": "Parkhausbelegung Münster — Datenquelle: Stadt Münster, Datenlizenz Deutschland – Namensnennung – Version 2.0 (www.govdata.de/dl-de/by-2-0), Daten verändert",
+      "url": "https://opendata.stadt-muenster.de/dataset/parkleitsystem-parkhausbelegung-aktuell",
+      "licence": {
+        "name": "dl-de/by-2-0",
+        "url": "https://www.govdata.de/dl-de/by-2-0"
+      },
+      "condition": null,
+      "altered": null,
+      "verbatim": false,
+      "parts": null
+    },
+    {
+      "id": "mobilithek_park_wuppertal_dyn",
+      "text": "Parkhaus-Belegung: Stadt Wuppertal via Mobilithek, Datenlizenz Deutschland – Zero – Version 2.0",
+      "url": "https://mobilithek.info/offers/110000000002025001",
+      "licence": null,
+      "condition": null,
+      "altered": null,
+      "verbatim": false,
+      "parts": null
+    },
+    {
+      "id": "mobilithek_park_wuppertal_static",
+      "text": "Parkhäuser Wuppertal: Stadt Wuppertal via Mobilithek, Datenlizenz Deutschland – Zero – Version 2.0",
+      "url": "https://mobilithek.info/offers/110000000002025002",
+      "licence": null,
+      "condition": null,
+      "altered": null,
+      "verbatim": false,
+      "parts": null
+    },
+    {
+      "id": "mobilithek_park_leipzig_pr_static",
+      "text": "P+R-Anlagen Leipzig: Stadt Leipzig, Verkehrs- und Tiefbauamt via Mobilithek, Datenlizenz Deutschland – Namensnennung – Version 2.0 (www.govdata.de/dl-de/by-2-0), Daten verändert",
+      "url": "https://mobilithek.info/offers/110000000002902000",
+      "licence": {
+        "name": "dl-de/by-2-0",
+        "url": "https://www.govdata.de/dl-de/by-2-0"
+      },
+      "condition": null,
+      "altered": null,
+      "verbatim": false,
+      "parts": null
+    },
+    {
+      "id": "mobilithek_park_leipzig_pr_dyn",
+      "text": "P+R-Belegung Leipzig: Stadt Leipzig, Verkehrs- und Tiefbauamt via Mobilithek, Datenlizenz Deutschland – Namensnennung – Version 2.0 (www.govdata.de/dl-de/by-2-0), Daten verändert",
+      "url": "https://mobilithek.info/offers/110000000002902001",
+      "licence": {
+        "name": "dl-de/by-2-0",
+        "url": "https://www.govdata.de/dl-de/by-2-0"
+      },
+      "condition": null,
+      "altered": null,
+      "verbatim": false,
+      "parts": null
+    },
+    {
+      "id": "mobilithek_park_wiesbaden_static",
+      "text": "Parkhäuser Wiesbaden: Landeshauptstadt Wiesbaden, Tiefbau- und Vermessungsamt via Mobilithek, Datenlizenz Deutschland – Namensnennung – Version 2.0 (www.govdata.de/dl-de/by-2-0), Daten verändert",
+      "url": "https://mobilithek.info/offers/110000000003166000",
+      "licence": {
+        "name": "dl-de/by-2-0",
+        "url": "https://www.govdata.de/dl-de/by-2-0"
+      },
+      "condition": null,
+      "altered": null,
+      "verbatim": false,
+      "parts": null
+    },
+    {
+      "id": "mobilithek_park_wiesbaden_dyn",
+      "text": "Parkhaus-Belegung Wiesbaden: Landeshauptstadt Wiesbaden, Tiefbau- und Vermessungsamt via Mobilithek, Datenlizenz Deutschland – Namensnennung – Version 2.0 (www.govdata.de/dl-de/by-2-0), Daten verändert",
+      "url": "https://mobilithek.info/offers/110000000003165000",
+      "licence": {
+        "name": "dl-de/by-2-0",
+        "url": "https://www.govdata.de/dl-de/by-2-0"
+      },
+      "condition": null,
+      "altered": null,
+      "verbatim": false,
+      "parts": null
+    },
+    {
+      "id": "mobilithek_park_konstanz_static",
+      "text": "Parkhäuser Konstanz: Stadt Konstanz via Mobilithek, Datensatz „Parkdaten Stadt Konstanz statisch“, CC BY 4.0, bearbeitet",
+      "url": "https://mobilithek.info/offers/922438393208209408",
+      "licence": {
+        "name": "CC BY 4.0",
+        "url": "https://creativecommons.org/licenses/by/4.0/"
+      },
+      "condition": null,
+      "altered": null,
+      "verbatim": false,
+      "parts": null
+    },
+    {
+      "id": "mobilithek_park_konstanz_dyn",
+      "text": "Parkhaus-Belegung Konstanz: Stadt Konstanz via Mobilithek, Datensatz „Parkdaten Stadt Konstanz dynamisch“, CC BY 4.0, bearbeitet",
+      "url": "https://mobilithek.info/offers/922439615692623872",
+      "licence": {
+        "name": "CC BY 4.0",
+        "url": "https://creativecommons.org/licenses/by/4.0/"
+      },
+      "condition": null,
+      "altered": null,
+      "verbatim": false,
+      "parts": null
+    },
+    {
+      "id": "mobilithek_park_trier_static",
+      "text": "Parkhäuser und Parkplätze Trier: SWT Anstalt des öffentlichen Rechts der Stadt Trier via Mobilithek, Datensatz „Parkdatenerfassung Stadt Trier statisch (SWT)“, Datenlizenz Deutschland – Namensnennung – Version 2.0 (www.govdata.de/dl-de/by-2-0), Daten verändert",
+      "url": "https://mobilithek.info/offers/966395563687505920",
+      "licence": {
+        "name": "dl-de/by-2-0",
+        "url": "https://www.govdata.de/dl-de/by-2-0"
+      },
+      "condition": null,
+      "altered": null,
+      "verbatim": false,
+      "parts": null
+    },
+    {
+      "id": "mobilithek_park_trier_dyn",
+      "text": "Parkhaus-Belegung Trier: SWT Anstalt des öffentlichen Rechts der Stadt Trier via Mobilithek, Datensatz „Parkdatenerfassung Stadt Trier dynamisch (SWT)“, Datenlizenz Deutschland – Namensnennung – Version 2.0 (www.govdata.de/dl-de/by-2-0), Daten verändert",
+      "url": "https://mobilithek.info/offers/973909405749452800",
+      "licence": {
+        "name": "dl-de/by-2-0",
+        "url": "https://www.govdata.de/dl-de/by-2-0"
+      },
+      "condition": null,
+      "altered": null,
+      "verbatim": false,
+      "parts": null
+    },
+    {
+      "id": "mobilithek_park_dortmund_static",
+      "text": "Parkhäuser: Stadt Dortmund via Mobilithek, Datenlizenz Deutschland – Zero – Version 2.0",
+      "url": "https://mobilithek.info/offers/555358777795076096",
+      "licence": null,
+      "condition": null,
+      "altered": null,
+      "verbatim": false,
+      "parts": null
+    },
+    {
+      "id": "dortmund_parkhauser",
+      "text": "Parkhaus-Belegung Dortmund: Stadt Dortmund (Tiefbauamt), Open Data Dortmund, Datenlizenz Deutschland – Zero – Version 2.0",
+      "url": "https://open-data.dortmund.de/explore/dataset/parkhauser/",
+      "licence": null,
+      "condition": null,
+      "altered": null,
+      "verbatim": false,
+      "parts": null
+    },
+    {
+      "id": "dortmund_parksensoren",
+      "text": "Parksensoren Dortmund: Stadt Dortmund (Dortmunder Systemhaus – Smart City), Open Data Dortmund, Datenlizenz Deutschland – Zero – Version 2.0",
+      "url": "https://open-data.dortmund.de/explore/dataset/parkplatzsensoren/",
+      "licence": null,
+      "condition": null,
+      "altered": null,
+      "verbatim": false,
+      "parts": null
+    },
+    {
+      "id": "leipzig_pr_belegung",
+      "text": "Park+Ride-Belegung Leipzig — Parkdaten: Stadt Leipzig, Datenlizenz Deutschland – Namensnennung – Version 2.0 (www.govdata.de/dl-de/by-2-0), Daten verändert",
+      "url": "https://opendata.leipzig.de/dataset/aktuelle-belegung-parkride-anlagen-stadt-leipzig",
+      "licence": {
+        "name": "dl-de/by-2-0",
+        "url": "https://www.govdata.de/dl-de/by-2-0"
+      },
+      "condition": null,
+      "altered": null,
+      "verbatim": false,
+      "parts": null
+    },
+    {
+      "id": "leipzig_pr_standorte",
+      "text": "Park+Ride-Standorte Leipzig — Parkdaten: Stadt Leipzig, Datenlizenz Deutschland – Namensnennung – Version 2.0 (www.govdata.de/dl-de/by-2-0), Daten verändert",
+      "url": "https://opendata.leipzig.de/dataset/parkride-anlagen-standorte-stadt-leipzig",
+      "licence": {
+        "name": "dl-de/by-2-0",
+        "url": "https://www.govdata.de/dl-de/by-2-0"
+      },
+      "condition": null,
+      "altered": null,
+      "verbatim": false,
+      "parts": null
+    },
+    {
+      "id": "freiburg_parkleitsystem",
+      "text": "Parkleitsystem Freiburg — Datengrundlage: Stadt Freiburg, www.freiburg.de, Datenlizenz Deutschland – Namensnennung – Version 2.0 (www.govdata.de/dl-de/by-2-0), Daten verändert",
+      "url": "https://www.freiburg.de/pb/,Lde/231355.html",
+      "licence": {
+        "name": "dl-de/by-2-0",
+        "url": "https://www.govdata.de/dl-de/by-2-0"
+      },
+      "condition": null,
+      "altered": null,
+      "verbatim": false,
+      "parts": null
+    },
+    {
+      "id": "freiburg_park_ride",
+      "text": "P+R-Belegung Freiburg — Datengrundlage: Stadt Freiburg, www.freiburg.de, Datenlizenz Deutschland – Namensnennung – Version 2.0 (www.govdata.de/dl-de/by-2-0), Daten verändert",
+      "url": "https://geoportal.freiburg.de/wms/gdm_pls/gdm_pls?REQUEST=GetCapabilities&SERVICE=WMS&VERSION=1.3.0",
+      "licence": {
+        "name": "dl-de/by-2-0",
+        "url": "https://www.govdata.de/dl-de/by-2-0"
+      },
+      "condition": null,
+      "altered": null,
+      "verbatim": false,
+      "parts": null
+    },
+    {
+      "id": "herrenberg_parkapi",
+      "text": "Parkplätze Herrenberg: Stadt Herrenberg (stadtnavi), Datenlizenz Deutschland – Namensnennung – Version 2.0 (www.govdata.de/dl-de/by-2-0), Daten verändert",
+      "url": "https://www.herrenberg.de/de/Stadtleben/Erlebnis-Herrenberg/Service/Parkplaetze",
+      "licence": {
+        "name": "dl-de/by-2-0",
+        "url": "https://www.govdata.de/dl-de/by-2-0"
+      },
+      "condition": null,
+      "altered": null,
+      "verbatim": false,
+      "parts": null
+    },
+    {
+      "id": "jena_parkdaten",
+      "text": "Parkdaten Jena: Kommunalservice Jena, CC BY 3.0 DE, bearbeitet",
+      "url": "https://piveau-hub-store.nomad-dmz.jena.de/data/64c27d71028162587b492f0e",
+      "licence": {
+        "name": "CC BY 3.0 DE",
+        "url": "https://creativecommons.org/licenses/by/3.0/de/"
+      },
+      "condition": null,
+      "altered": null,
+      "verbatim": false,
+      "parts": null
+    },
+    {
+      "id": "mvv_bus_load",
+      "text": "Auslastung Regionalbus: Münchner Verkehrs- und Tarifverbund GmbH (MVV) via opendata-oepnv.de, CC BY, bearbeitet",
+      "url": "https://api.opendata-oepnv.de/dataset/auslastungsdaten_mvv",
+      "licence": {
+        "name": "CC BY",
+        "url": "https://www.dcat-ap.de/def/licenses/cc-by"
+      },
+      "condition": null,
+      "altered": null,
+      "verbatim": false,
+      "parts": null
+    },
+    {
+      "id": "vrr_park_ride",
+      "text": "Park&Ride-Anlagen: VRR AöR via opendata-oepnv.de, CC BY, bearbeitet",
+      "url": "https://api.opendata-oepnv.de/dataset/park_vrr",
+      "licence": {
+        "name": "CC BY",
+        "url": "https://www.dcat-ap.de/def/licenses/cc-by"
+      },
+      "condition": null,
+      "altered": null,
+      "verbatim": false,
+      "parts": null
+    },
+    {
+      "id": "trk_lkw_parken",
+      "text": "Lkw-Parkplätze: Digitale Mobilität (TechnologieRegion Karlsruhe), CC BY 4.0, bearbeitet",
+      "url": "https://mobil.trk.de/graphiql",
+      "licence": {
+        "name": "CC BY 4.0",
+        "url": "https://creativecommons.org/licenses/by/4.0/"
+      },
+      "condition": null,
+      "altered": null,
+      "verbatim": false,
+      "parts": null
+    },
+    {
+      "id": "kiel_parkplaetze",
+      "text": "Parkplätze und -häuser: © Landeshauptstadt Kiel, Amt für Bauordnung, Vermessung und Geoinformation, CC BY 4.0, bearbeitet",
+      "url": "https://www.govdata.de/daten/-/details/parkplatze-und-hauser-in-kiel",
+      "licence": {
+        "name": "CC BY 4.0",
+        "url": "https://creativecommons.org/licenses/by/4.0/"
+      },
+      "condition": null,
+      "altered": null,
+      "verbatim": false,
+      "parts": null
+    },
+    {
+      "id": "kiel_park_ride",
+      "text": "Park & Ride: © Landeshauptstadt Kiel, Amt für Bauordnung, Vermessung und Geoinformation, CC BY 4.0, bearbeitet",
+      "url": "https://www.govdata.de/daten/-/details/park-ride-kiel99197",
+      "licence": {
+        "name": "CC BY 4.0",
+        "url": "https://creativecommons.org/licenses/by/4.0/"
+      },
+      "condition": null,
+      "altered": null,
+      "verbatim": false,
+      "parts": null
+    },
+    {
+      "id": "berlin_park_ride",
+      "text": "Park-and-Ride-Anlagen: Land Berlin, Senatsverwaltung für Mobilität, Verkehr, Klimaschutz und Umwelt (Umland: Verkehrsverbund Berlin-Brandenburg), Datenlizenz Deutschland – Zero – Version 2.0",
+      "url": "https://gdi.berlin.de/geonetwork/srv/ger/catalog.search#/metadata/30457071-d837-4552-85f7-28935aee3d08",
+      "licence": null,
+      "condition": null,
+      "altered": null,
+      "verbatim": false,
+      "parts": null
+    },
+    {
+      "id": "frankfurt_behindertenparkplaetze",
+      "text": "Behindertenparkplätze: Stadt Frankfurt am Main – Straßenverkehrsamt, www.frankfurt.de, Datenlizenz Deutschland – Namensnennung – Version 2.0, bearbeitet",
+      "url": "https://www.govdata.de/daten/-/details/wfs-parken-in-der-stadt-frankfurt-am-main",
+      "licence": {
+        "name": "dl-de/by-2-0",
+        "url": "https://www.govdata.de/dl-de/by-2-0"
+      },
+      "condition": null,
+      "altered": null,
+      "verbatim": false,
+      "parts": null
+    },
+    {
+      "id": "parkapi_bw_karlsruhe",
+      "text": "Parkdaten: Stadt Karlsruhe via MobiData BW, CC BY 4.0, bearbeitet",
+      "url": "https://mobidata-bw.de/dataset/gebuendelte-parkdaten-bw",
+      "licence": {
+        "name": "CC BY 4.0",
+        "url": "https://creativecommons.org/licenses/by/4.0/"
+      },
+      "condition": null,
+      "altered": null,
+      "verbatim": false,
+      "parts": null
+    },
+    {
+      "id": "parkapi_bw_freiburg",
+      "text": "Parkdaten: Stadt Freiburg via MobiData BW, Datenlizenz Deutschland – Namensnennung – Version 2.0, bearbeitet",
+      "url": "https://mobidata-bw.de/dataset/gebuendelte-parkdaten-bw",
+      "licence": {
+        "name": "dl-de/by-2-0",
+        "url": "https://www.govdata.de/dl-de/by-2-0"
+      },
+      "condition": null,
+      "altered": null,
+      "verbatim": false,
+      "parts": null
+    },
+    {
+      "id": "parkapi_bw_vrs",
+      "text": "Parkdaten: Verband Region Stuttgart via MobiData BW, Datenlizenz Deutschland – Namensnennung – Version 2.0, bearbeitet",
+      "url": "https://mobidata-bw.de/dataset/gebuendelte-parkdaten-bw",
+      "licence": {
+        "name": "dl-de/by-2-0",
+        "url": "https://www.govdata.de/dl-de/by-2-0"
+      },
+      "condition": null,
+      "altered": null,
+      "verbatim": false,
+      "parts": null
+    },
+    {
+      "id": "parkapi_bw_mannheim",
+      "text": "Parkdaten: Stadt Mannheim via MobiData BW, Datenlizenz Deutschland – Namensnennung – Version 2.0, bearbeitet",
+      "url": "https://mobidata-bw.de/dataset/gebuendelte-parkdaten-bw",
+      "licence": {
+        "name": "dl-de/by-2-0",
+        "url": "https://www.govdata.de/dl-de/by-2-0"
+      },
+      "condition": null,
+      "altered": null,
+      "verbatim": false,
+      "parts": null
+    },
+    {
+      "id": "parkapi_bw_stuttgart",
+      "text": "Parkdaten: Stadt Stuttgart via MobiData BW, Datenlizenz Deutschland – Namensnennung – Version 2.0, bearbeitet",
+      "url": "https://mobidata-bw.de/dataset/gebuendelte-parkdaten-bw",
+      "licence": {
+        "name": "dl-de/by-2-0",
+        "url": "https://www.govdata.de/dl-de/by-2-0"
+      },
+      "condition": null,
+      "altered": null,
+      "verbatim": false,
+      "parts": null
+    },
+    {
+      "id": "parkapi_bw_heidelberg",
+      "text": "Parkdaten: Stadt Heidelberg via MobiData BW, CC BY 4.0, bearbeitet",
+      "url": "https://mobidata-bw.de/dataset/gebuendelte-parkdaten-bw",
+      "licence": {
+        "name": "CC BY 4.0",
+        "url": "https://creativecommons.org/licenses/by/4.0/"
+      },
+      "condition": null,
+      "altered": null,
+      "verbatim": false,
+      "parts": null
+    },
+    {
+      "id": "parkapi_bw_konstanz",
+      "text": "Parkdaten: Stadt Konstanz via MobiData BW, CC BY 4.0, bearbeitet",
+      "url": "https://mobidata-bw.de/dataset/gebuendelte-parkdaten-bw",
+      "licence": {
+        "name": "CC BY 4.0",
+        "url": "https://creativecommons.org/licenses/by/4.0/"
+      },
+      "condition": null,
+      "altered": null,
+      "verbatim": false,
+      "parts": null
+    },
+    {
+      "id": "parkapi_bw_buchen",
+      "text": "Parkdaten: Stadt Buchen via MobiData BW, Datenlizenz Deutschland – Namensnennung – Version 2.0, bearbeitet",
+      "url": "https://mobidata-bw.de/dataset/gebuendelte-parkdaten-bw",
+      "licence": {
+        "name": "dl-de/by-2-0",
+        "url": "https://www.govdata.de/dl-de/by-2-0"
+      },
+      "condition": null,
+      "altered": null,
+      "verbatim": false,
+      "parts": null
+    },
+    {
+      "id": "parkapi_bw_aalen",
+      "text": "Parkdaten: Stadt Aalen via MobiData BW, Datenlizenz Deutschland – Namensnennung – Version 2.0, bearbeitet",
+      "url": "https://mobidata-bw.de/dataset/gebuendelte-parkdaten-bw",
+      "licence": {
+        "name": "dl-de/by-2-0",
+        "url": "https://www.govdata.de/dl-de/by-2-0"
+      },
+      "condition": null,
+      "altered": null,
+      "verbatim": false,
+      "parts": null
+    },
+    {
+      "id": "parkapi_bw_ulm",
+      "text": "Parkdaten: Stadt Ulm via MobiData BW, Datenlizenz Deutschland – Namensnennung – Version 2.0, bearbeitet",
+      "url": "https://mobidata-bw.de/dataset/gebuendelte-parkdaten-bw",
+      "licence": {
+        "name": "dl-de/by-2-0",
+        "url": "https://www.govdata.de/dl-de/by-2-0"
+      },
+      "condition": null,
+      "altered": null,
+      "verbatim": false,
+      "parts": null
+    },
+    {
+      "id": "parkapi_bw_friedrichshafen",
+      "text": "Parkdaten: Stadt Friedrichshafen via MobiData BW, Datenlizenz Deutschland – Namensnennung – Version 2.0, bearbeitet",
+      "url": "https://mobidata-bw.de/dataset/gebuendelte-parkdaten-bw",
+      "licence": {
+        "name": "dl-de/by-2-0",
+        "url": "https://www.govdata.de/dl-de/by-2-0"
+      },
+      "condition": null,
+      "altered": null,
+      "verbatim": false,
+      "parts": null
+    },
+    {
+      "id": "parkapi_bw_herrenberg",
+      "text": "Parkdaten: Stadt Herrenberg via MobiData BW, Datenlizenz Deutschland – Namensnennung – Version 2.0, bearbeitet",
+      "url": "https://mobidata-bw.de/dataset/gebuendelte-parkdaten-bw",
+      "licence": {
+        "name": "dl-de/by-2-0",
+        "url": "https://www.govdata.de/dl-de/by-2-0"
+      },
+      "condition": null,
+      "altered": null,
+      "verbatim": false,
+      "parts": null
+    },
+    {
+      "id": "parkapi_bw_vrn",
+      "text": "Parkdaten: Verkehrsverbund Rhein-Neckar via MobiData BW, Datenlizenz Deutschland – Namensnennung – Version 2.0, bearbeitet",
+      "url": "https://mobidata-bw.de/dataset/gebuendelte-parkdaten-bw",
+      "licence": {
+        "name": "dl-de/by-2-0",
+        "url": "https://www.govdata.de/dl-de/by-2-0"
+      },
+      "condition": null,
+      "altered": null,
+      "verbatim": false,
+      "parts": null
+    },
+    {
+      "id": "parkapi_bw_pbw",
+      "text": "Parkdaten: Parkraumgesellschaft Baden-Württemberg mbh (PBW) via MobiData BW, Datenlizenz Deutschland – Namensnennung – Version 2.0, bearbeitet",
+      "url": "https://mobidata-bw.de/dataset/gebuendelte-parkdaten-bw",
+      "licence": {
+        "name": "dl-de/by-2-0",
+        "url": "https://www.govdata.de/dl-de/by-2-0"
+      },
+      "condition": null,
+      "altered": null,
+      "verbatim": false,
+      "parts": null
+    },
+    {
+      "id": "parkapi_bw_p_m_bw",
+      "text": "Parkdaten: Parken und Mitfahren via MobiData BW, Datenlizenz Deutschland – Namensnennung – Version 2.0, bearbeitet",
+      "url": "https://mobidata-bw.de/dataset/gebuendelte-parkdaten-bw",
+      "licence": {
+        "name": "dl-de/by-2-0",
+        "url": "https://www.govdata.de/dl-de/by-2-0"
+      },
+      "condition": null,
+      "altered": null,
+      "verbatim": false,
+      "parts": null
+    },
+    {
+      "id": "muc_parken_parkhaeuser",
+      "text": "Datenquelle: dl-de/by-2-0: Landeshauptstadt München – opendata.muenchen.de (bearbeitet)",
+      "url": "https://opendata.muenchen.de/dataset/parkhaeuser-munchen",
+      "licence": {
+        "name": "dl-de/by-2-0",
+        "url": "https://www.govdata.de/dl-de/by-2-0"
+      },
+      "condition": null,
+      "altered": null,
+      "verbatim": false,
+      "parts": null
+    },
+    {
+      "id": "muc_parken_pr",
+      "text": "Datenquelle: dl-de/by-2-0: Landeshauptstadt München – opendata.muenchen.de (bearbeitet)",
+      "url": "https://opendata.muenchen.de/dataset/p-r-anlagen-muenchen",
+      "licence": {
+        "name": "dl-de/by-2-0",
+        "url": "https://www.govdata.de/dl-de/by-2-0"
+      },
+      "condition": null,
+      "altered": null,
+      "verbatim": false,
+      "parts": null
+    },
+    {
+      "id": "muc_parken_prognosen",
+      "text": "Datenquelle: dl-de/by-2-0: Landeshauptstadt München – opendata.muenchen.de (bearbeitet)",
+      "url": "https://opendata.muenchen.de/dataset/p-r-anlagen-belegungsprognosen",
+      "licence": {
+        "name": "dl-de/by-2-0",
+        "url": "https://www.govdata.de/dl-de/by-2-0"
+      },
+      "condition": null,
+      "altered": null,
+      "verbatim": false,
+      "parts": null
+    },
+    {
+      "id": "bemas_bw",
+      "text": "Baustellen: Verkehrsministerium Baden-Württemberg (BEMaS) via MobiData BW, Datenlizenz Deutschland – Namensnennung – Version 2.0 (www.govdata.de/dl-de/by-2-0), bearbeitet",
+      "url": "https://mobidata-bw.de/dataset/baustelleninformationen-baden-wurttemberg",
+      "licence": {
+        "name": "dl-de/by-2-0",
+        "url": "https://www.govdata.de/dl-de/by-2-0"
+      },
+      "condition": null,
+      "altered": null,
+      "verbatim": false,
+      "parts": null
+    },
+    {
+      "id": "bw_bedarfsumleitungen",
+      "text": "Bedarfsumleitungen: Verkehrsministerium Baden-Württemberg via MobiData BW, Datenlizenz Deutschland – Zero – Version 2.0",
+      "url": "https://mobidata-bw.de/dataset/bedarfsumleitungen-baden-wurttemberg",
+      "licence": null,
+      "condition": null,
+      "altered": null,
+      "verbatim": false,
+      "parts": null
+    },
+    {
+      "id": "lorry_bast_langlkw",
+      "text": "Lang-Lkw-Netz: Bundesanstalt für Straßen- und Verkehrswesen (BASt), Positivnetz Lang-LKW (Auszug Bundesfernstraßen), CC BY 4.0 (https://creativecommons.org/licenses/by/4.0/), bearbeitet",
+      "url": "https://www.bast.de/DE/Publikationen/Daten/Verkehrstechnik/Lang-Lkw.html",
+      "licence": {
+        "name": "CC BY 4.0",
+        "url": "https://creativecommons.org/licenses/by/4.0/"
+      },
+      "condition": "Die hier vorliegenden Daten erheben keinen Anspruch auf Vollständigkeit oder Richtigkeit. Sie sind auch von keiner rechtlichen oder amtlichen Bedeutung. Die Daten sind weder für Navigation noch für ähnliche Zwecke geeignet.",
+      "altered": null,
+      "verbatim": false,
+      "parts": null
+    },
+    {
+      "id": "lorry_hh_langlkw",
+      "text": "Lang-Lkw-Netz Hamburg (Feldversuch 2015): Freie und Hansestadt Hamburg, Behörde für Verkehr und Mobilitätswende, (BVM), Datenlizenz Deutschland – Namensnennung – Version 2.0 (www.govdata.de/dl-de/by-2-0), Daten verändert",
+      "url": "https://www.daten-hamburg.de/transport_verkehr/positinetz_feldvergleich_lang_lkw/Positivnetz_Feldversuch_LangLKW_HH_2015-09-25.zip",
+      "licence": {
+        "name": "dl-de/by-2-0",
+        "url": "https://www.govdata.de/dl-de/by-2-0"
+      },
+      "condition": null,
+      "altered": null,
+      "verbatim": false,
+      "parts": null
+    },
+    {
+      "id": "lorry_sevas_nrw",
+      "text": "Lkw-Navigationsdaten NRW: NRW.Mobidrom GmbH (SEVAS), Datenlizenz Deutschland – Zero – Version 2.0; Geometrie: © OpenStreetMap-Mitwirkende, Open Database License 1.0 (opendatacommons.org/licenses/odbl/1-0/)",
+      "url": "https://sevas.nrw.de/osm/sevas?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetCapabilities",
+      "licence": {
+        "name": "ODbL 1.0",
+        "url": "https://opendatacommons.org/licenses/odbl/1-0/"
+      },
+      "condition": null,
+      "altered": null,
+      "verbatim": false,
+      "parts": null
+    },
+    {
+      "id": "lorry_ivm_vorrangnetz",
+      "text": "Lkw-Vorrangnetz Frankfurt RheinMain: ivm Region Frankfurt RheinMain, Datenlizenz Deutschland – Namensnennung – Version 2.0 (www.govdata.de/dl-de/by-2-0), Lkw-Lotse Region Frankfurt RheinMain – Lkw-Vorrangnetz (Mobilithek-Datensatz https://mobilithek.info/offers/551813029077901312), Februar 2021: Darstellung für ViaFrei angepasst; Geometrie: © OpenStreetMap-Mitwirkende, Open Database License 1.0 (opendatacommons.org/licenses/odbl/1-0/)",
+      "url": "https://mobilithek.info/offers/551813029077901312",
+      "licence": {
+        "name": "ODbL 1.0",
+        "url": "https://opendatacommons.org/licenses/odbl/1-0/"
+      },
+      "condition": null,
+      "altered": null,
+      "verbatim": false,
+      "parts": null
+    },
+    {
+      "id": "lorry_ivm_beschilderung",
+      "text": "Lkw-Beschilderung Frankfurt RheinMain: ivm Region Frankfurt RheinMain, Datenlizenz Deutschland – Namensnennung – Version 2.0 (www.govdata.de/dl-de/by-2-0), Lkw-relevante Beschilderung Region Frankfurt RheinMain (Mobilithek-Datensatz https://mobilithek.info/offers/551817835771256832), Dezember 2021: Darstellung für ViaFrei angepasst",
+      "url": "https://mobilithek.info/offers/551817835771256832",
+      "licence": {
+        "name": "dl-de/by-2-0",
+        "url": "https://www.govdata.de/dl-de/by-2-0"
+      },
+      "condition": null,
+      "altered": null,
+      "verbatim": false,
+      "parts": null
+    },
+    {
+      "id": "flix_transit",
+      "text": "Fahrplan und Echtzeit FlixBus/FlixTrain: Flixbus France (FlixMobility) via transport.data.gouv.fr — Open Database License 1.0 (opendatacommons.org/licenses/odbl/1-0/), bearbeitet",
+      "url": "https://transport.data.gouv.fr/datasets/flixbus-horaires-theoriques-du-reseau-europeen-1",
+      "licence": {
+        "name": "ODbL 1.0",
+        "url": "https://opendatacommons.org/licenses/odbl/1-0/"
+      },
+      "condition": null,
+      "altered": null,
+      "verbatim": false,
+      "parts": null
+    },
+    {
+      "id": "lorry_hb_durchfahrtshoehen",
+      "text": "Daten: Verkehrsmanagementzentrale Bremen (ASV Bremen), dl-de/by-2-0, bearbeitet",
+      "url": "https://vmz.bremen.de/lkw/durchfahrtshoehen",
+      "licence": {
+        "name": "dl-de/by-2-0",
+        "url": "https://www.govdata.de/dl-de/by-2-0"
+      },
+      "condition": "Höhen und Gewichte der VMZ Bremen stehen hier so, wie sie veröffentlicht sind (gelesen am Datum im jeweiligen Ergebnis). Verbindlich ist allein die Beschilderung vor Ort; die Daten sind nicht für die Routenführung bestimmt. Fehlt eine Angabe, heißt das nicht, dass keine Beschränkung besteht.",
+      "altered": null,
+      "verbatim": false,
+      "parts": null
+    },
+    {
+      "id": "lorry_hb_fuehrungshoehen",
+      "text": "Daten: Verkehrsmanagementzentrale Bremen (ASV Bremen), dl-de/by-2-0, bearbeitet",
+      "url": "https://vmz.bremen.de/lkw-fuehrung",
+      "licence": {
+        "name": "dl-de/by-2-0",
+        "url": "https://www.govdata.de/dl-de/by-2-0"
+      },
+      "condition": "Höhen und Gewichte der VMZ Bremen stehen hier so, wie sie veröffentlicht sind (gelesen am Datum im jeweiligen Ergebnis). Verbindlich ist allein die Beschilderung vor Ort; die Daten sind nicht für die Routenführung bestimmt. Fehlt eine Angabe, heißt das nicht, dass keine Beschränkung besteht.",
+      "altered": null,
+      "verbatim": false,
+      "parts": null
+    },
+    {
+      "id": "lorry_koeln_verbindungen",
+      "text": "Lkw-Verbindungen Köln: Stadt Köln, Datenlizenz Deutschland – Zero – Version 2.0",
+      "url": "https://www.offenedaten-koeln.de/dataset/lkw-verbindungen-koeln",
+      "licence": null,
+      "condition": null,
+      "altered": null,
+      "verbatim": false,
+      "parts": null
+    },
+    {
+      "id": "lorry_koeln_beschraenkungen",
+      "text": "Straßenbeschränkungen Köln: Stadt Köln, Datenlizenz Deutschland – Zero – Version 2.0",
+      "url": "https://www.offenedaten-koeln.de/dataset/strassenbeschraenkungen-koeln",
+      "licence": null,
+      "condition": null,
+      "altered": null,
+      "verbatim": false,
+      "parts": null
+    },
+    {
+      "id": "lorry_dresden_verbotszonen",
+      "text": "Lkw-Verbotszonen: Landeshauptstadt Dresden (Quelle: Geodaten Sachsen), Datenlizenz Deutschland – Namensnennung – Version 2.0 (www.govdata.de/dl-de/by-2-0), bearbeitet",
+      "url": "https://www.govdata.de/daten/-/details/lkw-verbotszonen08e7f",
+      "licence": {
+        "name": "dl-de/by-2-0",
+        "url": "https://www.govdata.de/dl-de/by-2-0"
+      },
+      "condition": "Lkw-Verbote stehen hier als Information, nicht als Rechtsberatung: wen und wann ein Verbot bindet, sagt allein die Beschilderung vor Ort.",
+      "altered": null,
+      "verbatim": false,
+      "parts": null
+    },
+    {
+      "id": "lorry_hh_gst_netz",
+      "text": "Großraum- und Schwertransport-Netz Hamburg: Freie und Hansestadt Hamburg, Landesbetrieb Verkehr (LBV), Datenlizenz Deutschland – Namensnennung – Version 2.0 (www.govdata.de/dl-de/by-2-0), Daten verändert",
+      "url": "https://www.govdata.de/daten/-/details/grossraum-und-schwertransport-routen-in-hamburgd1586",
+      "licence": {
+        "name": "dl-de/by-2-0",
+        "url": "https://www.govdata.de/dl-de/by-2-0"
+      },
+      "condition": "Das Großraum- und Schwertransport-Netz hilft beim Antrag in VEMAGS und ist keine Erlaubnis: ein Großraum- oder Schwertransport braucht seine eigene Erlaubnis oder Genehmigung (§ 29 Abs. 3, § 46 Abs. 1 StVO), und es gilt die Beschilderung vor Ort. Das Netz ist die Zusammenstellung des LBV der am häufigsten benötigten Strecken; es nennt keine zulässigen Maße, Gewichte oder Achslasten, und welche Strecke ein Transport fahren darf, legt seine Erlaubnis fest.",
+      "altered": null,
+      "verbatim": false,
+      "parts": null
+    },
+    {
+      "id": "lorry_dresden_vorrangrouten",
+      "text": "Lkw-Vorrangroutennetz: Landeshauptstadt Dresden (Quelle: Geodaten Sachsen), Datenlizenz Deutschland – Namensnennung – Version 2.0 (www.govdata.de/dl-de/by-2-0), bearbeitet",
+      "url": "https://www.govdata.de/daten/-/details/lkw-vorrangroutennetz",
+      "licence": {
+        "name": "dl-de/by-2-0",
+        "url": "https://www.govdata.de/dl-de/by-2-0"
+      },
+      "condition": null,
+      "altered": null,
+      "verbatim": false,
+      "parts": null
+    },
+    {
+      "id": "gbfs_nextbike",
+      "text": "Bikesharing: nextbike GmbH (GBFS), CC0 1.0",
+      "url": "https://www.nextbike.de",
+      "licence": null,
+      "condition": null,
+      "altered": null,
+      "verbatim": false,
+      "parts": null
+    },
+    {
+      "id": "gbfs_donkey",
+      "text": "Bikesharing: Donkey Republic (GBFS), CC0 1.0",
+      "url": "https://www.donkey.bike",
+      "licence": null,
+      "condition": null,
+      "altered": null,
+      "verbatim": false,
+      "parts": null
+    },
+    {
+      "id": "kvb_lifts",
+      "text": "Aufzugsdaten: Kölner Verkehrs-Betriebe AG, Datenlizenz Deutschland – Zero – Version 2.0",
+      "url": "https://kvb.koeln/service/open_data.html",
+      "licence": null,
+      "condition": "Die Kölner Verkehrs-Betriebe AG stellt die Daten ohne jede Gewähr bereit.",
+      "altered": null,
+      "verbatim": false,
+      "parts": null
+    },
+    {
+      "id": "viafrei_rules",
+      "text": "Verkehrsregeln: ViaFrei, eigene Zusammenstellung aus amtlichen Quellen (StVO, StVZO, 35. BImSchV, StVG, EmoG, AFIR); jede Aussage mit Quelle und Prüfdatum — informativ, keine Rechtsberatung / Road rules: ViaFrei, our own compilation from official sources; every statement carries its source and the date it was read — informational, not legal advice",
+      "url": "https://viafrei.de",
+      "licence": null,
+      "condition": null,
+      "altered": null,
+      "verbatim": false,
+      "parts": null
+    },
+    {
+      "id": "viafrei_watch",
+      "text": "Beobachtung: ViaFrei, eigener Dienst — jede Meldung nennt die Quelle der Daten, die sie ausgelöst haben / Watch: ViaFrei, our own service — every report names the source of the data behind it",
+      "url": "https://viafrei.de",
+      "licence": null,
+      "condition": null,
+      "altered": null,
+      "verbatim": false,
+      "parts": null
+    }
+  ]
+}

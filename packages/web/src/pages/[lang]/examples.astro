@@ -1,0 +1,10 @@
+---
+/** `/<lang>/examples` (#747), every language (#892: `/de/beispiele` until then, a temporary 301 in `lib/legacy-redirects.ts`). */
+import ExamplesPage from "../../layouts/ExamplesPage.astro";
+import { isLang } from "../../i18n/index.js";
+
+const lang = Astro.params["lang"] ?? "";
+if (!isLang(lang)) return Astro.rewrite("/404");
+---
+
+<ExamplesPage lang={lang} />

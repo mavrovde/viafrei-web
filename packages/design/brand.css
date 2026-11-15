@@ -1,0 +1,14 @@
+/*
+ * The ViaFrei header: ONE definition for viafrei.de, status.viafrei.de and
+ * admin.viafrei.de (owner 2026-10-12: "All pages must have the same icon and
+ * style, main, status, admin"). The site imports this file (Base.astro); the
+ * status process carries it through packages/status/src/generated/design-tokens.ts
+ * (generate-sources.ts, drift-tested). Colours come from tokens.css only.
+ */
+.site-head { position: sticky; top: 0; z-index: 20; background: var(--surface); border-bottom: 1px solid var(--line); }
+.site-head__row { display: flex; align-items: center; gap: var(--s-4); min-height: 64px; width: min(100% - 2 * var(--gutter), var(--max)); margin-inline: auto; }
+.site-head__end { margin-left: auto; display: flex; flex-wrap: wrap; align-items: center; gap: var(--s-3); }
+.brand { display: inline-flex; align-items: center; gap: var(--s-2); color: var(--fg); text-decoration: none; font-weight: var(--weight-strong); font-size: var(--fs-3); letter-spacing: -0.01em; }
+.brand__mark { display: inline-block; width: 1.25em; height: 1.25em; border-radius: 4px; background: var(--sign-bg); position: relative; flex: none; }
+.brand__mark::after { content: ""; position: absolute; inset: 18% 22%; border-left: 2px dashed var(--on-sign); transform: skewX(-12deg); }
+.brand__claim { color: var(--fg-muted); font-weight: 400; font-size: var(--fs-1); }

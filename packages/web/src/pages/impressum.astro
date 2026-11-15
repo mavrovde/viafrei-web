@@ -1,0 +1,10 @@
+---
+/** `/impressum` — German, binding (#379 PR-07). */
+import Legal from "../layouts/Legal.astro";
+import { identityOrError } from "../lib/identity.js";
+
+const id = identityOrError();
+if (id instanceof Response) return id;
+---
+
+<Legal lang="de" which="impressum" id={id} />

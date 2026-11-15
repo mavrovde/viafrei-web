@@ -1,0 +1,202 @@
+---
+/**
+ * The document shell every page shares (#375 A1, A6, A8).
+ *
+ * What is here and why: both stylesheets (Astro bundles them into the ONE
+ * external file), the meta refresh only where a page asks for it (D3, amended by
+ * the owner 2026-10-03: the home reloads every 20 min, `HOME_REFRESH_S`), the hreflang alternates for the LIVE languages only (D6),
+ * no font, no image but the favicon, no inline style, and — only when a tag
+ * is configured — the consent island as the one script on the site. Every
+ * page also carries the beta notice (#471) — since #1153 in the header, with the
+ * place row and the one search (`Header.astro`).
+ */
+import "../../../design/tokens.css";
+import "../../../design/brand.css";
+import "../styles/site.css";
+import Consent from "../components/Consent.svelte";
+import ConsentSettings from "../components/ConsentSettings.svelte";
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+import { t } from "../i18n/index.js";
+import { DEFAULT_LANG, measurementOf, pathFor, type Lang, type PageId } from "../site/pages.js";
+import { htmlLangOf, reviewedLocales } from "../i18n/locales.js";
+import { SITE_ORIGIN } from "../site/endpoints.js";
+import { OG_IMAGE, OG_LOCALE, pageMeta, type PageMeta } from "../site/meta.js";
+import { deployedVersion, pageJsonLd } from "../site/structured-data.js";
+import { suggestScript } from "../lib/suggest.js";
+import { DEGRADED_WAIT_PARAM, DROP_WAIT_SCRIPT } from "../lib/degraded.js";
+import type { HeaderPlace } from "../lib/header-place.js";
+
+interface Props {
+  lang: Lang;
+  page: PageId;
+  /** Seconds between automatic reloads, or none. The home passes `HOME_REFRESH_S` (D3). */
+  refresh?: number;
+  /** Where the automatic reload goes (the home: its marked address, `HOME_REFRESH_URL`, #564); none = the same URL. */
+  refreshTo?: string;
+  /** When the current path is not a page of the map (the 404), the alternates are omitted. */
+  withAlternates?: boolean;
+  /**
+   * A `<meta name="robots">` directive, or none. Only the fuel page and the place pages pass one,
+   * `noarchive` (data-steward ruling of 2026-10-06, C5): a search engine's cached copy of a station board
+   * would be a stale price list outside our control, which condition 4 ("latest only, no archive of
+   * rendered boards") forbids — and a place page carries the same board as its fuel card (#564).
+   */
+  robots?: "noarchive" | "noindex, follow" | "noindex, noarchive" | "noindex, follow, noarchive";
+  /**
+   * A page that is not a row of the map (a place page, #564 § 5): its own title,
+   * description, canonical and alternates. Such a page carries no consent bar — it
+   * is not one of the measured pages (GA rule 6) — and the JSON-LD it hands over
+   * itself (`jsonLd`, #715: a place or a motorway page's WebPage and breadcrumbs).
+   */
+  dynamic?: { readonly title: string; readonly description: string; readonly path: `/${string}`; readonly alternates: Readonly<Record<Lang, `/${string}`>>; readonly jsonLd?: string };
+  /**
+   * G1 (#716): a dynamic page that IS measured — the motorway pages only
+   * (`MEASURED_DYNAMIC_PAGES`). Absent or false: a dynamic page carries no
+   * consent bar and no tag, as before (the place pages).
+   */
+  measure?: boolean;
+  /**
+   * #1028: a page of the map whose description is the live read's (the motorway index's national sums); absent: the
+   * map's. The title, canonical and JSON-LD stay the map's.
+   */
+  description?: string;
+  /** The page's Atom feed (#588, the News page): its path and title, announced in the head. */
+  feed?: { readonly href: string; readonly title: string };
+  /** #1153: what the server knows of the page's place, for the header's place row (`lib/header-place.ts`); absent: nothing. */
+  place?: HeaderPlace;
+  /** #1153: the search page's query, shown in the header's one search field. */
+  searchQuery?: string;
+}
+const { lang, page, refresh, refreshTo, withAlternates = true, robots, dynamic, feed, measure = false, description: liveDescription, place, searchQuery } = Astro.props;
+const here = dynamic?.path ?? pathFor(page, lang);
+const alternateOf = (l: Lang): string => dynamic?.alternates[l] ?? pathFor(page, l);
+const tag = Astro.locals.googleTag;
+const where = measurementOf(page, dynamic !== undefined, measure);
+const measured = tag !== undefined && where.ga;
+/**
+ * #717: Microsoft Clarity rides on the SAME consent island, on the island's
+ * pages that `measurementOf` names for it — never a motorway page (the C-4
+ * fallback of 2026-10-27, `CLARITY_DYNAMIC_PAGES`). Such a page declares itself
+ * to the middleware (`locals.clarityPage`), which names Clarity's origins in the
+ * CSP then and only then; and the whole <body> carries `data-clarity-mask`, so
+ * every text of the page — the place bar, the position line, every price and
+ * live figure, and every card a script inserts later — is masked in a
+ * recording by inheritance, not by a list that a new card could miss.
+ */
+const clarity = measured && where.clarity ? Astro.locals.clarityId : undefined;
+if (clarity !== undefined) Astro.locals.clarityPage = true;
+/** F-20: this page's own title and description, in its own language. */
+const mapMeta: PageMeta = dynamic ?? pageMeta(page, lang);
+const meta: PageMeta = liveDescription === undefined || dynamic !== undefined ? mapMeta : { ...mapMeta, description: liveDescription };
+/** #935: the social card's title and description — the page's own, except the home's, which is the tagline and the whole pitch. */
+const og = meta.og ?? { title: meta.title, description: meta.description };
+/**
+ * #531: the page's JSON-LD (`site/structured-data.ts`), in its language — on
+ * every page but the fuel board's, which may carry nothing machine-readable.
+ * A data block, never executed, so it changes no CSP case; it carries this
+ * request's nonce all the same, so every <script> element on the site does.
+ */
+const jsonLd = dynamic === undefined ? pageJsonLd(page, lang, deployedVersion()) : (dynamic.jsonLd ?? null);
+/**
+ * The station and list type-ahead (`lib/suggest.ts`) and the header's scripts, on every page. The header's one search
+ * suggests through the location island (#1153). #1187: a fuel STATION's page carries the island so the visitor's place
+ * stays on the pill there; #1198 (owner 2026-11-06, "add the place script"): so does the fuel board, which ran no script
+ * at all from v1.8.18 — it still carries no analytics, no consent island and nothing machine-readable
+ * (`scripts/budget.ts` refuses an analytics script or the consent island there).
+ */
+// Kept as a name on purpose: Header takes it as its `scripts` prop, and a page that ever drops the scripts again sets it here.
+const suggests = true;
+Astro.locals.hasScript = true;
+/**
+ * #1185 R3/R4: with a tag, a page outside the measured set gets the settings dialog only — it never opens by itself
+ * and loads nothing — except the fuel board, which runs the header's scripts (#1198) but still gets no settings dialog (its footer link goes to the Datenschutz anchor).
+ * Its question names Clarity when Clarity is configured anywhere, because the decision it records governs the pages
+ * where Clarity runs.
+ */
+const settingsOnly = tag !== undefined && !measured && page !== "fuel";
+const clarityAnywhere = Astro.locals.clarityId !== undefined;
+/** R3: the state sentences, `{date}` left for the island to fill in the page's language. */
+const consentStates = { none: t(lang, "consent.state.none"), denied: t(lang, "consent.state.denied", { date: "{date}" }), granted: t(lang, "consent.state.granted", { date: "{date}" }) };
+---
+
+<!doctype html>
+<html lang={htmlLangOf(lang)}>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{meta.title}</title>
+    <meta name="description" content={meta.description} />
+    <meta name="color-scheme" content="light dark" />
+    {robots !== undefined && <meta name="robots" content={robots} />}
+    {refresh !== undefined && <meta http-equiv="refresh" content={refreshTo === undefined ? String(refresh) : `${String(refresh)};url=${refreshTo}`} />}
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    {/* #1181 feature 7: the installable site, and the sentence a kept page says when it is served offline (`lib/pwa.ts`) */}
+    <link rel="manifest" href="/manifest.webmanifest" />
+    <meta name="vf-offline" content={t(lang, "pwa.offline", { t: "{t}" })} />
+    {feed !== undefined && <link rel="alternate" type="application/atom+xml" href={feed.href} title={feed.title} />}
+    {withAlternates && <link rel="canonical" href={`${SITE_ORIGIN}${here}`} />}
+    {withAlternates && reviewedLocales().map((x) => x.code as Lang).map((l) => <link rel="alternate" hreflang={l} href={`${SITE_ORIGIN}${alternateOf(l)}`} />)}
+    {withAlternates && <link rel="alternate" hreflang="x-default" href={`${SITE_ORIGIN}${alternateOf(DEFAULT_LANG)}`} />}
+    {/* The social card (F-20): the same title and description (the home: the tagline and the pitch, #935), one static image; og:url only where there is a canonical. */}
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content={t(lang, "meta.siteName")} />
+    <meta property="og:title" content={og.title} />
+    <meta property="og:description" content={og.description} />
+    <meta property="og:locale" content={OG_LOCALE[lang]} />
+    {withAlternates && <meta property="og:url" content={`${SITE_ORIGIN}${here}`} />}
+    <meta property="og:image" content={OG_IMAGE.url} />
+    <meta property="og:image:type" content={OG_IMAGE.type} />
+    <meta property="og:image:width" content={String(OG_IMAGE.width)} />
+    <meta property="og:image:height" content={String(OG_IMAGE.height)} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={og.title} />
+    <meta name="twitter:description" content={og.description} />
+    <meta name="twitter:image" content={OG_IMAGE.url} />
+    {jsonLd !== null && <script is:inline type="application/ld+json" nonce={Astro.locals.nonce} set:html={jsonLd} />}
+    {/* #901: a page's own inline rules (the motorway page's cards and filter), under the request's nonce; empty on every other page. */}
+    <slot name="head" />
+  </head>
+  <body data-clarity-mask={clarity !== undefined ? "true" : undefined}>
+    <a class="skip" href="#main">{t(lang, "a11y.skip")}</a>
+    <Header lang={lang} page={page} hrefs={dynamic?.alternates} place={place} q={searchQuery} scripts={suggests} onHome={page === "start" && dynamic === undefined} />
+    <main id="main">
+      <slot />
+    </main>
+    {/* The footer's "reloads every 20 minutes" sentence is said exactly when this page sets that reload (#564: place pages share the home's page id and set none). */}
+    <Footer lang={lang} page={page} hrefs={dynamic?.alternates} refreshes={refresh !== undefined} settings={tag !== undefined} />
+    {suggests && <script is:inline set:html={suggestScript()} />}
+    {/* #1205 review N5: the degraded page's reload landed on the real page — its wait counter leaves the address. */}
+    {Astro.url.searchParams.has(DEGRADED_WAIT_PARAM) && <script is:inline set:html={DROP_WAIT_SCRIPT} />}
+    {
+      measured && tag !== undefined && (
+        <Consent
+          client:load
+          tag={tag}
+          {...(clarity !== undefined ? { clarity } : {})}
+          title={t(lang, clarity !== undefined ? "consent.titleClarity" : "consent.title")}
+          body={t(lang, clarity !== undefined ? "consent.bodyClarity" : "consent.body")}
+          accept={t(lang, "consent.accept")}
+          decline={t(lang, "consent.decline")}
+          more={t(lang, "consent.more")}
+          privacyHref={pathFor("datenschutz", lang)}
+          states={consentStates}
+        />
+      )
+    }
+    {
+      settingsOnly && (
+        <ConsentSettings
+          client:load
+          title={t(lang, clarityAnywhere ? "consent.titleClarity" : "consent.title")}
+          body={t(lang, clarityAnywhere ? "consent.bodyClarity" : "consent.body")}
+          accept={t(lang, "consent.accept")}
+          decline={t(lang, "consent.decline")}
+          more={t(lang, "consent.more")}
+          privacyHref={pathFor("datenschutz", lang)}
+          states={consentStates}
+        />
+      )
+    }
+  </body>
+</html>

@@ -1,0 +1,10 @@
+---
+/** `/terms` — ViaFrei's terms of use, German, binding (#707). */
+import Legal from "../layouts/Legal.astro";
+import { identityOrError } from "../lib/identity.js";
+
+const id = identityOrError();
+if (id instanceof Response) return id;
+---
+
+<Legal lang="de" which="terms" id={id} />

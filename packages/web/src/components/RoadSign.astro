@@ -1,0 +1,141 @@
+---
+/**
+ * The German traffic signs the site's panels carry (owner 2026-10-05: "It
+ * should look familiar for the drivers"), each drawn here as inline SVG — our
+ * own drawing of the StVO sign, no copied artwork, no request (A8), no image
+ * source in the CSP, and no SVG text element (a letter a sign carries is a path,
+ * so a translated page's language check reads no Latin letter out of a sign).
+ * Colours are tokens, never literals:
+ *
+ * - `autobahn` VZ 330.1 Autobahn — blue field, the white bridge-over-road;
+ * - `parking`  VZ 314 Parken — blue square, white P;
+ * - `lorry`    VZ 314 with the Lkw symbol (Zusatzzeichen 1010-51 folded in);
+ * - `charging` VZ 365-65 Ladestation — blue, white panel, the black plug;
+ * - `fuel`     VZ 365-52 Tankstelle — blue, white panel, the black pump;
+ * - `stop`     VZ 224 Haltestelle — the yellow disc, green ring and green H;
+ * - `warning`  VZ 101 Gefahrstelle — white triangle, red rim, black "!";
+ * - `info`     the information "i" of the service-sign family (Zeichen 365):
+ *              blue, white panel, black "i";
+ * - `train`    the same service-sign panel with a black train front — the
+ *              station panel and the rail tools (owner 2026-10-07: the station
+ *              is not only information, it is the trains and their schedule).
+ *
+ * Decorative by default (`aria-hidden`): the panel's heading says what the
+ * sign shows. With `label` it is an image with that name (the beta panel,
+ * where the sign IS the warning).
+ *
+ * Drawn ONCE per page and kind (owner 2026-10-06, the 100 KB page budget): the
+ * first sign of a kind carries its shapes in a `<g id="rs-<kind>">`, every later
+ * one is a `<use>` of it — the connect page's cards repeated the same drawing up
+ * to nine times. The styles are class rules on the shapes themselves, which a
+ * `<use>` clone matches, and the colours are inherited tokens, so the sign looks
+ * the same. Which instance draws does not matter: a `<use>` finds its shapes
+ * anywhere in the document.
+ */
+import type { SignKind } from "../site/signs.js";
+
+interface Props {
+  kind: SignKind;
+  label?: string;
+  class?: string;
+}
+const { kind, label, class: extra } = Astro.props;
+const cls = ["roadsign", `roadsign--${kind}`, extra].filter(Boolean).join(" ");
+const a11y = label === undefined ? { "aria-hidden": "true" as const } : { role: "img", "aria-label": label };
+const square = kind !== "warning" && kind !== "stop";
+const drawn = (Astro.locals.signsDrawn ??= new Set<string>());
+const first = !drawn.has(kind);
+drawn.add(kind);
+const id = `rs-${kind}`;
+---
+
+<svg class={cls} viewBox={kind === "warning" ? "0 0 100 90" : "0 0 40 40"} focusable="false" {...a11y}>
+  {
+    first ? (
+      <g id={id}>
+      {square && <rect class="roadsign__field" x="1" y="1" width="38" height="38" rx="5"></rect>}
+      {square && <rect class="roadsign__rim" x="3" y="3" width="34" height="34" rx="3.5"></rect>}
+      {
+        kind === "autobahn" && (
+          <Fragment>
+            <path class="roadsign__line" d="M8 15 H32 M11 15 V20 M29 15 V20"></path>
+            <path class="roadsign__line" d="M13 34 L18 21 M27 34 L22 21"></path>
+            <path class="roadsign__dash" d="M20 23 V26 M20 29 V33"></path>
+          </Fragment>
+        )
+      }
+      {kind === "parking" && <path class="roadsign__glyph" d="M14 32 V8 H22.5 A6.5 6.5 0 0 1 22.5 21 H14"></path>}
+      {
+        kind === "lorry" && (
+          <Fragment>
+            <path class="roadsign__glyph roadsign__glyph--small" d="M15 21 V6 H21 A4.2 4.2 0 0 1 21 14.4 H15"></path>
+            <path class="roadsign__fill" d="M8 25 H23 V32 H8 Z M24 27 H29 L32 30 V32 H24 Z"></path>
+            <circle class="roadsign__wheel" cx="12" cy="33" r="2"></circle>
+            <circle class="roadsign__wheel" cx="28" cy="33" r="2"></circle>
+          </Fragment>
+        )
+      }
+      {
+        kind === "charging" && (
+          <Fragment>
+            <rect class="roadsign__panel" x="8" y="7" width="24" height="26" rx="2"></rect>
+            <path class="roadsign__ink" d="M15 11 V15 M25 11 V15"></path>
+            <path class="roadsign__inkfill" d="M12 15 H28 V20 A8 8 0 0 1 12 20 Z"></path>
+            <path class="roadsign__ink" d="M20 27 V31"></path>
+          </Fragment>
+        )
+      }
+      {
+        kind === "fuel" && (
+          <Fragment>
+            <rect class="roadsign__panel" x="8" y="7" width="24" height="26" rx="2"></rect>
+            <path class="roadsign__inkfill" d="M12 11 H22 V30 H12 Z"></path>
+            <rect class="roadsign__panel" x="14" y="13" width="6" height="5"></rect>
+            <path class="roadsign__ink roadsign__ink--thin" d="M22 14 H25 L27 17 V27 A1.5 1.5 0 0 1 24 27 V22 H22"></path>
+          </Fragment>
+        )
+      }
+      {
+        kind === "info" && (
+          <Fragment>
+            <rect class="roadsign__panel" x="8" y="7" width="24" height="26" rx="2"></rect>
+            <circle class="roadsign__inkfill" cx="20" cy="12.5" r="2.4"></circle>
+            <path class="roadsign__inkfill" d="M17 17 H22 V28 H24 V30 H16 V28 H18 V19 H17 Z"></path>
+          </Fragment>
+        )
+      }
+      {
+        kind === "train" && (
+          <Fragment>
+            <rect class="roadsign__panel" x="8" y="7" width="24" height="26" rx="2"></rect>
+            <path class="roadsign__inkfill" d="M15 9.5 H25 A3 3 0 0 1 28 12.5 V25 A2 2 0 0 1 26 27 H14 A2 2 0 0 1 12 25 V12.5 A3 3 0 0 1 15 9.5 Z"></path>
+            <rect class="roadsign__panel" x="14.5" y="12.5" width="11" height="6" rx="1"></rect>
+            <circle class="roadsign__panel" cx="16" cy="23" r="1.4"></circle>
+            <circle class="roadsign__panel" cx="24" cy="23" r="1.4"></circle>
+            <path class="roadsign__ink roadsign__ink--thin" d="M15 27 L12.5 31 M25 27 L27.5 31 M13.5 29.5 H26.5"></path>
+          </Fragment>
+        )
+      }
+      {
+        kind === "stop" && (
+          <Fragment>
+            <circle class="roadsign__stop" cx="20" cy="20" r="17.5"></circle>
+            <path class="roadsign__h" d="M14 11 V29 M26 11 V29 M14 20 H26"></path>
+          </Fragment>
+        )
+      }
+      {
+        kind === "warning" && (
+          <Fragment>
+            <path class="roadsign__tri" d="M50 7 L94 83 L6 83 Z"></path>
+            <rect class="roadsign__inkfill" x="45" y="32" width="10" height="30" rx="3"></rect>
+            <circle class="roadsign__inkfill" cx="50" cy="71" r="5.5"></circle>
+          </Fragment>
+        )
+      }
+      </g>
+    ) : (
+      <use href={`#${id}`}></use>
+    )
+  }
+</svg>

@@ -1,0 +1,55 @@
+---
+/**
+ * A Land page (#1074): `/<lang>/state/bayern` — the motorways now (counts, the longest jams, the motorways with
+ * reports), the facts (area, capital, neighbours), the largest towns, each a link, and a plain link to the fuel page:
+ * the digest's fragment (`/internal/state/<slug>`). The title, description and the Land's name are the fragment's
+ * (`lib/state-page.ts` `stateHeadOf`). Unmeasured, like a station page. `no-store`: the page carries a per-request CSP
+ * nonce. #1182: the H1 and the fragment's first block through `PageHead` (#1173 order). The language switcher points at the SAME Land in every language (the slug is the same in all). The JSON-LD
+ * (`stateJsonLd`) is built from the name and the table, never from a card: no fuel data, no figure (MF1).
+ */
+import Base from "./Base.astro";
+import Crumbs from "../components/Crumbs.astro";
+import PageHead from "../components/PageHead.astro";
+import AskBox from "../components/AskBox.astro";
+import Star from "../components/Star.astro";
+import { LIVE_LANGS, type Lang } from "../site/pages.js";
+import { STATES, statePath } from "../site/states.js";
+import { fitDescription, fitTitle } from "../site/meta.js";
+import { stateCrumbs, stateJsonLd } from "../site/structured-data.js";
+import type { StateHead } from "../lib/state-page.js";
+import { liftPlaceFirst } from "../lib/place-head.js";
+import statePageCss from "../styles/state-page.css?raw";
+import { hasLiveMap, liveMapScript } from "../lib/live-map.js";
+
+interface Props {
+  lang: Lang;
+  slug: string;
+  head: StateHead;
+}
+const { lang, slug, head } = Astro.props;
+const row = STATES.find((s) => s.slug === slug);
+const name = head.name ?? (lang === "en" ? (row?.nameEn ?? slug) : slug);
+const path = statePath(lang, slug);
+const title = head.title ?? `${name} – ViaFrei`;
+const meta = { title: fitTitle(title), description: fitDescription(head.description ?? title) };
+const h1 = title.replace(/\s[—–]\sViaFrei$/u, "");
+// #1182: the first block (lamp, top items, jump links) stands under the H1, like every page type of #1173
+const lifted = liftPlaceFirst(head.html);
+const alternates = Object.fromEntries(LIVE_LANGS.map((l) => [l, statePath(l, slug)])) as Record<Lang, `/${string}`>;
+Astro.response.headers.set("Cache-Control", "no-store");
+// #1183 part 5: the live map cropped to the Land, declared like every inline script (the middleware writes the nonce)
+const liveMap = hasLiveMap(lifted.html);
+if (liveMap) Astro.locals.hasScript = true;
+const pageCss = statePageCss.replace(/\/\*[\s\S]*?\*\//g, "").replace(/\s+/g, " ").trim();
+---
+
+<Base lang={lang} page="states" dynamic={{ ...meta, path, alternates, jsonLd: stateJsonLd(lang, name, row?.iso ?? "", meta.title, meta.description, path) }}>
+  <style is:inline slot="head" set:html={pageCss}></style>
+  <Crumbs lang={lang} crumbs={stateCrumbs(lang, name, path)} namesFrom={2} />
+  <PageHead h1={h1} first={lifted.first} />
+  {/* #1182 with #1181: the star ("seit Ihrem letzten Besuch" over the first block's items), and at the end the Land's questions */}
+  <Star lang={lang} path={path} label={name} />
+  <div class="wrap" set:html={lifted.html} />
+  <AskBox lang={lang} about={{ kind: "land", place: name }} />
+  {liveMap && <script is:inline set:html={liveMapScript(lang)} />}
+</Base>

@@ -1,0 +1,16 @@
+---
+/**
+ * `/<lang>/terms` for every live language except German — the terms in the page's language, with one sentence
+ * naming the German text at `/terms` as binding (#707). `/de/terms` is the 404, like every legal page.
+ */
+import Legal from "../../layouts/Legal.astro";
+import { isLang } from "../../i18n/index.js";
+import { identityOrError } from "../../lib/identity.js";
+
+const lang = Astro.params["lang"] ?? "";
+if (!isLang(lang) || lang === "de") return Astro.rewrite("/404");
+const id = identityOrError();
+if (id instanceof Response) return id;
+---
+
+<Legal lang={lang} which="terms" id={id} />

@@ -1,0 +1,326 @@
+/*
+ * ViaFrei design tokens — the ONE source for colour, type, spacing, radius and
+ * motion on viafrei.de (#376 PR-02, within the owner's D1–D6 of #377).
+ *
+ * Every token is a custom property on :root; the dark theme redefines the
+ * colours under `prefers-color-scheme: dark` and nothing else. Components read
+ * tokens and never a literal, so a palette change is one edit here.
+ *
+ * CONTRAST IS A GATE, NOT A PROMISE. Each `@contrast` line below names a text
+ * token on a ground token; `scripts/web-contrast.mjs` recomputes every one in
+ * both themes from THIS file (floor 4.5:1, `body` 7:1) and goes red when a
+ * token moves. A colour that carries no text says so with `@unpaired` and a
+ * reason, so no colour is left unjudged. The ratios computed for the values
+ * below on 2026-10-03 (`node scripts/web-contrast.mjs`):
+ *
+ *   pair                           light     dark     floor
+ *   --fg on --bg                   16.01     15.70    7 (body)
+ *   --fg on --surface              17.49     14.13    7 (body)
+ *   --fg on --surface-2            14.87     12.24    7 (body)
+ *   --fg-muted on --bg              6.44      8.49    4.5
+ *   --fg-muted on --surface         7.03      7.64    4.5
+ *   --accent on --bg                6.58      9.29    4.5
+ *   --accent on --surface           7.19      8.36    4.5
+ *   --on-accent on --accent         7.19      9.29    4.5
+ *   --fg on --accent-soft          14.64     11.72    4.5
+ *   --on-sign on --sign-bg          8.70      8.39    4.5
+ *   --on-sign-hi on --sign-hi      12.60     12.60    4.5
+ *   --on-works on --works-bg       11.59      9.71    7 (body)   (the beta panel, 2026-10-05)
+ *   --stop-ink on --stop-bg         5.22      5.22    4.5        (VZ 224, 2026-10-05)
+ *   --on-sign-hi on --on-sign      17.49     17.49    4.5        (sign symbols, 2026-10-05)
+ *   --ok on --surface               6.21      9.48    4.5
+ *   --ok on --ok-bg                 5.28      7.64    4.5
+ *   --stale on --surface            6.43     10.25    4.5
+ *   --stale on --stale-bg           5.51      8.22    4.5
+ *   --empty on --surface            6.22      8.35    4.5
+ *   --empty on --empty-bg           5.29      6.66    4.5
+ *   --error on --surface            6.68      7.78    4.5
+ *   --error on --error-bg           5.46      6.46    4.5
+ *   --lamp-stop on --lamp-housing    see `node scripts/web-contrast.mjs` (#895, 2026-10-21)
+ *   --lamp-wait on --lamp-housing
+ *   --lamp-go on --lamp-housing
+ *   --chip-host on --chip-bg        8.06      9.47    7 (body)   (the endpoint chip, #1003, 2026-10-25)
+ *   --chip-ink on --chip-bg        11.46     11.48    7 (body)
+ *
+ * The weakest pair is light `--fg-muted on --bg` at 6.44:1 — above the 4.5:1
+ * floor, and muted text is never set at body size on the page ground.
+ *
+ * Palette, in one sentence: a cool near-black ink on a very light grey ground,
+ * white cards, ONE accent — the Autobahn sign blue — and a sign yellow that
+ * appears on the Wegweiser alone; the beta panel has its own Baustelle yellow. The four tile states each have a text colour
+ * and a soft ground, but colour is never the only signal: every state also has
+ * a word and a shape (components.md, the tile contract).
+ */
+
+:root {
+  color-scheme: light dark;
+
+  /* --- colour: grounds and ink ------------------------------------------- */
+  --bg: #f3f5f8;          /* page ground */
+  --surface: #ffffff;     /* cards, tiles, the header */
+  --surface-2: #e9edf2;   /* the selectable endpoint block, table stripes */
+  --fg: #131a24;          /* ink */
+  --fg-muted: #4d5a6a;    /* secondary text, labels, the age pill text */
+  --line: #d6dce4;        /* hairlines */
+  --shadow: #0f1b2b;      /* the one shadow colour, used at low alpha */
+
+  /* --- colour: the accent (Autobahn sign blue, RAL 5017 family) --------- */
+  --accent: #0b57a5;      /* links, the filled button, focus ring */
+  --on-accent: #ffffff;
+  --accent-soft: #e2ecf8; /* chip ground */
+  --you: #7a1fa2;         /* #890: the "you are here" pin and the radius edge on the motorway map — since 2.3.8 a violet of its own, never the line's sign blue it vanished into */
+  --you-ring: #ffffff;    /* the pin's ring, and the label's halo */
+  --map-land: #f4f6ef;    /* #984: the motorway maps' land — the zoomed map's frame fill and the land inside Germany's outline; quiet, under every mark */
+  --map-road: #b3bcc8;    /* #984: the OTHER motorways on a motorway map, thin and grey so the page's own blue line and the event marks lead */
+
+  /* --- colour: the endpoint chip (#1003) — the MCP address on an accent-tinted
+     ground, the host in a deep sign blue, scheme and path in ink; its own
+     tokens so the chip reads the same on a card, on the page ground and on the
+     Wegweiser's blue band. */
+  --chip-bg: #e3edfb;
+  --chip-host: #08448a;
+  --chip-ink: #1f2f45;
+  --chip-rim: #9dbbe6;
+
+  /* --- colour: the Wegweiser --------------------------------------------- */
+  --sign-bg: #0a4a93;     /* sign ground */
+  --on-sign: #ffffff;
+  --sign-hi: #ffd75e;     /* the one yellow word */
+  --on-sign-hi: #131a24;
+
+  /* --- colour: the beta panel (#471, owner 2026-10-05) — a road-sign panel in
+     the yellow of temporary Baustelle signage, with VZ 101's red rim. Its own
+     tokens: the route badge's --sign-hi stays the Wegweiser's. */
+  --works-bg: #f7cf2e;
+  --on-works: #131a24;
+  --warn-rim: #c1121c;
+
+  /* --- colour: VZ 224 Haltestelle (owner 2026-10-05, RoadSign.astro) — the
+     sulphur-yellow disc (RAL 1016) and its traffic-green H (RAL 6024 family,
+     darkened to carry the H at 4.5:1). A sign keeps its colours at night. */
+  --stop-bg: #f1dd38;
+  --stop-ink: #006442;
+
+  /* --- colour: the four tile states (each with a word, never colour alone) */
+  --ok: #1a6f3c;
+  --ok-bg: #dff1e5;
+  --stale: #875300;
+  --stale-bg: #fbecd0;
+  --empty: #566270;
+  --empty-bg: #e9edf2;
+  --error: #ad2b22;
+  --error-bg: #fbe3e1;
+
+  /* --- colour: the motorway Ampel (#895) — a dark housing, three lamps; the lit
+     one filled, the others outlines, each with its word (never colour alone).
+     The housing is dark in both themes, as a traffic light is. */
+  --lamp-housing: #1d232b;
+  --lamp-stop: #ff5a4e;
+  --lamp-wait: #ffc93d;
+  --lamp-go: #3ddc84;
+  --lamp-off: #4a5562;
+  /* --- colour: the departure board as a platform display (#1083) — a navy board,
+     white text, amber delays, the track in a white square; the same in both
+     themes, as the board on the platform is. No operator's brand: our own navy. */
+  --board-bg: #0b1f3a;
+  --board-fg: #ffffff;
+  --board-muted: #b8c4d6;
+  --board-amber: #ffb81c;
+  --board-gleis-bg: #ffffff;
+  --board-gleis-ink: #0b1f3a;
+  --board-rule: #2c4466;
+  /* --- colour: the departure board's line badges (#1115 B) — one ground per travel
+     mode a traveller recognises (`travelModeOf`), the colour of the German sign
+     where one exists (S green, U blue); the name is white on every one. A feed's
+     own route colour is used instead only when it carries the name at 4.5:1
+     (`cards/shared/line-badge.ts`, the same two inks below). A badge keeps its
+     colours at night like a sign, except long-distance, whose ink-dark ground
+     would vanish into the dark card. */
+  --line-long: #1c232c;
+  --line-regional: #59636e;
+  --line-sbahn: #00754a;
+  --line-subway: #1455c0;
+  --line-tram: #b0151f;
+  --line-bus: #6a2c91;
+  --on-line: #ffffff;
+  --on-line-ink: #131a24;
+
+  /* --- type: the system stack, nothing downloaded (D2) ------------------- */
+  --font: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
+  --font-mono: ui-monospace, "SF Mono", Menlo, Consolas, "Liberation Mono", monospace;
+  --fs-0: 0.8125rem;                                 /* 13px  captions, credit lines */
+  --fs-1: 0.9375rem;                                 /* 15px  labels, chips */
+  --fs-2: 1.0625rem;                                 /* 17px  body */
+  --fs-3: 1.25rem;                                   /* 20px  lead, tile title */
+  --fs-4: clamp(1.5rem, 1.25rem + 1vw, 1.875rem);    /* 24–30px  h2 */
+  --fs-5: clamp(2rem, 1.5rem + 2vw, 2.75rem);        /* 32–44px  tile figure */
+  --fs-6: clamp(2.125rem, 1.4rem + 3.2vw, 3.2rem);   /* 34–51px  h1 */
+  --lh: 1.5;
+  --lh-tight: 1.15;
+  --weight-strong: 650;
+
+  /* --- spacing: 4px base, fluid gutter ------------------------------------ */
+  --s-1: 0.25rem;
+  --s-2: 0.5rem;
+  --s-3: 0.75rem;
+  --s-4: 1rem;
+  --s-5: 1.5rem;
+  --s-6: 2rem;
+  --s-7: 3rem;
+  --s-8: 4.5rem;
+  --gutter: clamp(16px, 4vw, 40px);
+  --max: 1120px;
+  --gap: 14px;
+  --target: 44px;         /* minimum pointer target */
+
+  /* --- radius -------------------------------------------------------------- */
+  --r-sm: 6px;
+  --r: 14px;
+  --r-pill: 999px;
+
+  /* --- elevation (#748): a soft lift, two steps, in the one shadow colour ---- */
+  --elev-1: 0 1px 2px rgb(from var(--shadow) r g b / 0.06), 0 4px 14px rgb(from var(--shadow) r g b / 0.06);
+  --elev-2: 0 2px 6px rgb(from var(--shadow) r g b / 0.08), 0 14px 32px rgb(from var(--shadow) r g b / 0.12);
+
+  /* --- motion: one pulse, one lift, both off under reduced motion ---------- */
+  --t-fast: 150ms;
+  --t-pulse: 2.4s;
+  --ease: cubic-bezier(0.2, 0, 0, 1);
+
+  /* --- focus ----------------------------------------------------------------- */
+  --focus-w: 3px;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #0e1319;
+    --surface: #171e27;
+    --surface-2: #202a35;
+    --fg: #e7ecf2;
+    --fg-muted: #a6b0bc;
+    --line: #2b3542;
+    --shadow: #000000;
+
+    --accent: #8ab9ff;
+    --on-accent: #0e1319;
+    --accent-soft: #1c2d44;
+    --you: #d7a8ff;
+    --you-ring: #0e1319;
+    --map-land: #24303c;
+    --map-road: #4f5d6d;
+    --chip-bg: #132a47;
+    --chip-host: #b5d3ff;
+    --chip-ink: #dce6f2;
+    --chip-rim: #3a5f8f;
+
+    --sign-bg: #0f4d93;
+    --on-sign: #ffffff;
+    --sign-hi: #ffd75e;
+    --on-sign-hi: #131a24;
+
+    --works-bg: #e6bd1f;
+    --on-works: #131a24;
+    --warn-rim: #d42a2a;
+    --stop-bg: #f1dd38;
+    --stop-ink: #006442;
+
+    --ok: #83d49c;
+    --ok-bg: #173424;
+    --stale: #f2c45e;
+    --stale-bg: #3a2d0d;
+    --empty: #aeb8c4;
+    --empty-bg: #26303b;
+    --error: #ff928a;
+    --error-bg: #44231f;
+    --lamp-housing: #0a0d11;
+    --lamp-stop: #ff5a4e;
+    --lamp-wait: #ffc93d;
+    --lamp-go: #3ddc84;
+    --lamp-off: #3a4350;
+    --board-bg: #0b1f3a;
+    --board-fg: #ffffff;
+    --board-muted: #b8c4d6;
+    --board-amber: #ffb81c;
+    --board-gleis-bg: #ffffff;
+    --board-gleis-ink: #0b1f3a;
+    --board-rule: #2c4466;
+    --line-long: #3b4552;
+    --line-regional: #59636e;
+    --line-sbahn: #00754a;
+    --line-subway: #1455c0;
+    --line-tram: #b0151f;
+    --line-bus: #6a2c91;
+    --on-line: #ffffff;
+    --on-line-ink: #131a24;
+  }
+}
+
+/* --- the pairs the gate judges ------------------------------------------------
+ * `@contrast <text> on <ground> [body]` — body raises the floor to 7:1.
+ */
+/* @contrast --fg on --bg body */
+/* @contrast --fg on --surface body */
+/* @contrast --fg on --surface-2 body */
+/* @contrast --fg-muted on --bg */
+/* @contrast --fg-muted on --surface */
+/* @contrast --accent on --bg */
+/* @contrast --accent on --surface */
+/* @contrast --on-accent on --accent */
+/* @contrast --fg on --accent-soft */
+/* @contrast --fg-muted on --accent-soft */
+/* @contrast --accent on --accent-soft */
+/* @contrast --on-sign on --sign-bg */
+/* @contrast --on-sign-hi on --sign-hi */
+/* @contrast --on-works on --works-bg body */
+/* @contrast --stop-ink on --stop-bg */
+/* @contrast --on-sign-hi on --on-sign */
+/* @contrast --ok on --surface */
+/* @contrast --you on --surface-2 */
+/* @contrast --you on --accent-soft */
+/* @contrast --you-ring on --you */
+/* #984: the motorway maps' context labels (town and Land names, the scale) on the land fill */
+/* @contrast --fg-muted on --map-land */
+/* @contrast --fg on --map-land body */
+/* @contrast --ok on --ok-bg */
+/* @contrast --stale on --surface */
+/* @contrast --stale on --stale-bg */
+/* @contrast --empty on --surface */
+/* @contrast --empty on --empty-bg */
+/* @contrast --error on --surface */
+/* @contrast --error on --error-bg */
+/* #895: a lit lamp on its housing (a graphic object, held to the text floor all the same) */
+/* @contrast --lamp-stop on --lamp-housing */
+/* @contrast --lamp-wait on --lamp-housing */
+/* @contrast --lamp-go on --lamp-housing */
+/* @contrast --board-fg on --board-bg body */
+/* @contrast --board-muted on --board-bg body */
+/* @contrast --board-amber on --board-bg body */
+/* @contrast --board-gleis-ink on --board-gleis-bg body */
+/* #1003: the endpoint chip — the host, and the scheme, path and "copied" word, on the chip's ground; held to the body floor */
+/* #987/#986: the motorway panels' icons (--fg-muted, currentColor) and the freshness sign's four shapes, as graphics
+   (3:1, WCAG 1.4.11) on the card (--surface) and on the page (--bg, the folded line's lead); the sign's words are the
+   text pairs above (--ok, --stale, --error, --empty on --surface). */
+/* @contrast --fg-muted on --surface icon */
+/* @contrast --fg-muted on --bg icon */
+/* @contrast --ok on --bg icon */
+/* @contrast --stale on --bg icon */
+/* @contrast --error on --bg icon */
+/* @contrast --empty on --bg icon */
+/* @contrast --chip-host on --chip-bg body */
+/* @contrast --chip-ink on --chip-bg body */
+/* @contrast --on-line on --line-long */
+/* @contrast --on-line on --line-regional */
+/* @contrast --on-line on --line-sbahn */
+/* @contrast --on-line on --line-subway */
+/* @contrast --on-line on --line-tram */
+/* @contrast --on-line on --line-bus */
+/* @unpaired --on-line-ink: the dark ink of a line badge on a feed's own route colour, chosen per colour at 4.5:1 at render (`line-badge.ts`); no token ground carries it */
+
+/* --- colours that carry no text, excused by name ----------------------------- */
+/* @unpaired --line: a hairline border; nothing is written in it */
+/* @unpaired --map-road: the other motorways' thin lines and their shields' rim on a motorway map; their numbers are --fg-muted on --surface (#984) */
+/* @unpaired --warn-rim: the red rim of the VZ 101 triangle on the beta panel, a graphic with no text set in it */
+/* @unpaired --shadow: the shadow colour, applied at 10–18 % alpha under cards */
+/* @unpaired --chip-rim: the endpoint chip's hairline border; nothing is written in it (#1003) */
+/* @unpaired --board-rule: the hairline between a platform board's rows and around its line badges; nothing is written in it (#1083) */
+/* @unpaired --lamp-off: the outline of a dark Ampel lamp on its housing; the state is carried by the lit lamp's fill and its word (#895) */

@@ -1,0 +1,54 @@
+---
+/**
+ * A road page (#1027): `/<lang>/road/b51` (a Bundesstraße) or `/<lang>/road/nw/l249` (a Landes- or Staatsstraße under
+ * its Land) — the closures and roadworks on one road now, announced and ended within seven days, each with where,
+ * when, a map link and its register line: the digest's fragment (`/internal/road/<id>`). The title, description and
+ * robots are the fragment's (`lib/road-page.ts` `roadHeadOf`); the robots follow the digest's rule (index while
+ * something is in force or ended within seven days). Unmeasured, like a station page. `no-store`: the page carries a
+ * per-request CSP nonce. The language switcher points at the SAME road in every language (the id is the same in all).
+ */
+import Base from "./Base.astro";
+import PageHead from "../components/PageHead.astro";
+import Crumbs from "../components/Crumbs.astro";
+import NextStep from "../components/NextStep.astro";
+import { LIVE_LANGS, type Lang } from "../site/pages.js";
+import { roadLabelOfId, roadPath } from "../site/roads.js";
+import { fitDescription, fitTitle } from "../site/meta.js";
+import { roadCrumbs, roadJsonLd } from "../site/structured-data.js";
+import { nextRoads } from "../lib/next-step.js";
+import type { RoadHead } from "../lib/road-page.js";
+import { liftPlaceFirst } from "../lib/place-head.js";
+import roadPageCss from "../styles/road-page.css?raw";
+import { hasLiveMap, liveMapScript } from "../lib/live-map.js";
+
+interface Props {
+  lang: Lang;
+  id: string;
+  head: RoadHead;
+}
+const { lang, id, head } = Astro.props;
+const road = head.road ?? roadLabelOfId(id);
+const path = roadPath(lang, id);
+const title = head.title ?? `${road} – ViaFrei`;
+const meta = { title: fitTitle(title), description: fitDescription(head.description ?? title) };
+const h1 = title.replace(/\s[—–]\sViaFrei$/u, "");
+// #1182: a fragment's first block (when the digest renders one) stands under the H1, as on a motorway page
+const lifted = liftPlaceFirst(head.html);
+const alternates = Object.fromEntries(LIVE_LANGS.map((l) => [l, roadPath(l, id)])) as Record<Lang, `/${string}`>;
+Astro.response.headers.set("Cache-Control", "no-store");
+const pageCss = roadPageCss.replace(/\/\*[\s\S]*?\*\//g, "").replace(/\s+/g, " ").trim();
+// a page whose rule says noindex (nothing in force, nothing ended this week) is still a page a reader may open
+const robots = head.robots === "noindex, follow" ? "noindex, follow" : undefined;
+// #1183 part 5: the live map cropped to the road's items, declared like every inline script (the middleware writes the nonce)
+const liveMap = hasLiveMap(lifted.html);
+if (liveMap) Astro.locals.hasScript = true;
+---
+
+<Base lang={lang} page="motorways" robots={robots} dynamic={{ ...meta, path, alternates, jsonLd: roadJsonLd(lang, road, meta.title, path) }}>
+  <style is:inline slot="head" set:html={pageCss}></style>
+  <Crumbs lang={lang} crumbs={roadCrumbs(lang, road, path)} namesFrom={1} />
+  <PageHead h1={h1} first={lifted.first} />
+  <div class="wrap" set:html={lifted.html} />
+  {liveMap && <script is:inline set:html={liveMapScript(lang)} />}
+  <NextStep lang={lang} roads={nextRoads(lang, head.html)} about={head.place === null ? { kind: "place", place: road } : { kind: "place", place: head.place.name }} />
+</Base>

@@ -1,0 +1,18 @@
+---
+/** `/<lang>/fuel/<slug>` — one fuel station's page (#1076): 301 for another wording of its key, 404 for no such page, 503 when the digest does not answer. */
+import EnergyPage from "../../../layouts/EnergyPage.astro";
+import { isLang } from "../../../i18n/index.js";
+import { readEnv } from "../../../lib/env.js";
+import { unavailableAnswer } from "../../../lib/degraded.js";
+import { resolveEnergyPage } from "../../../lib/energy-page.js";
+
+const lang = Astro.params["lang"] ?? "";
+if (!isLang(lang)) return Astro.rewrite("/404");
+const env = readEnv();
+const a = await resolveEnergyPage("fuel", lang, Astro.params["slug"] ?? "", { baseUrl: env.digestUrl, timeoutMs: env.placeTimeoutMs, mapPlatform: Astro.locals.mapPlatform });
+if (a.kind === "missing") return Astro.rewrite("/404");
+if (a.kind === "unavailable") return unavailableAnswer(lang, Astro.request);
+if (a.kind === "redirect") return Astro.redirect(a.to, 301);
+---
+
+<EnergyPage kind="fuel" lang={lang} slug={a.slug} head={a.head} area={a.area} />

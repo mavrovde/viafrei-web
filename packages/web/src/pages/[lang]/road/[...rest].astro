@@ -1,0 +1,18 @@
+---
+/** `/<lang>/road/<id>` — one Bundes- or Landesstraße's page (#1027): 301 for another spelling of its id, 404 for no road page, 503 when the digest does not answer. */
+import RoadPage from "../../../layouts/RoadPage.astro";
+import { isLang } from "../../../i18n/index.js";
+import { readEnv } from "../../../lib/env.js";
+import { unavailableAnswer } from "../../../lib/degraded.js";
+import { resolveRoadPage } from "../../../lib/road-page.js";
+
+const lang = Astro.params["lang"] ?? "";
+if (!isLang(lang)) return Astro.rewrite("/404");
+const env = readEnv();
+const a = await resolveRoadPage(lang, Astro.params["rest"] ?? "", { baseUrl: env.digestUrl, timeoutMs: env.tileTimeoutMs, mapPlatform: Astro.locals.mapPlatform });
+if (a.kind === "missing") return Astro.rewrite("/404");
+if (a.kind === "unavailable") return unavailableAnswer(lang, Astro.request);
+if (a.kind === "redirect") return Astro.redirect(a.to, 301);
+---
+
+<RoadPage lang={lang} id={a.id} head={a.head} />

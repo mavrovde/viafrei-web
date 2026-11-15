@@ -1,0 +1,43 @@
+# The planted-leak corpus of #741 (data-steward ruling T14): ONE list, read by
+# the TS unit tests of mcp, digest, web and ingest AND by
+# scripts/log-collect.test.sh, so the layers cannot drift.
+#
+# One needle per line, three tab-separated columns:
+#   name      a stable label (the test names it when it fails)
+#   plant     the value a test puts into msg, err.message, err.stack or key
+#   forbidden what must NOT appear in any output, '|'-separated; empty = the plant itself
+#
+# A needle is a SUBSTRING test: an output passes only if none of its forbidden
+# substrings occurs anywhere in it. Write the forbidden part short enough that
+# a mask which removed only part of the value still fails (a partial IPv6, a
+# truncated token).
+ipv4	client 203.0.113.7 refused	203.0.113.7|203.0.113
+ipv4_mapped	peer ::ffff:198.51.100.23 closed	198.51.100.23|ffff:198
+ipv6_full	from 2001:0db8:85a3:0000:0000:8a2e:0370:7334 now	2001:0db8:85a3|8a2e:0370:7334
+ipv6_compressed	bound 2001:db8::1f here	2001:db8::1f|db8::1f
+ipv6_zone	link fe80::1ff:fe23:4567:890a%eth0 up	fe80::1ff|890a%eth0|%eth0
+ipv6_bracket	connect [2001:db8:4::17]:443 failed	2001:db8:4::17|db8:4::17
+uuid_session	session 3f2c9b1e-8d4a-4c71-9b0e-5a6f7d8e9c01 gone	3f2c9b1e-8d4a|5a6f7d8e9c01
+uuid_station	station 51D4B55E-A095-1AA0-E100-80009459E03A has no price	51D4B55E|80009459E03A|51d4b55e
+token40	key a1B2c3D4e5F6g7H8i9J0k1L2m3N4o5P6q7R8s9T0 rejected	a1B2c3D4e5F6|q7R8s9T0
+hex24	etag deadbeefcafebabe0123456789abcdef seen	deadbeefcafebabe|0123456789abcdef
+bearer	authorization: Bearer eyJhbGciOiJIUzI1NiJ9.e30.sig failed	eyJhbGciOiJIUzI1NiJ9
+cookie	header Cookie: vf_session=s3ss10nCook13; theme=dark	s3ss10nCook13|vf_session=
+apikey_query	GET /json/list.php?apikey=k3yS3cr3tValue&rad=5 404	k3yS3cr3tValue|apikey=
+q_query	GET /internal/place/suggest?q=Dachsweg&lang=de 502	Dachsweg|q=Dachs
+subscriptionid	GET https://mobilithek.example/pull?subscriptionid=987654321098765432 500	987654321098765432|subscriptionid=
+fragment_hash	opened /internal/x#Zollstockgürtel	Zollstock
+userinfo	fetch https://svcuser:Pa55word@feeds.example/x failed	svcuser|Pa55word
+place_key	cards for pt:50.94,6.96 failed	pt:50.94|50.94,6.96
+coordinate	near 50.9413, 6.9583 nothing	50.9413|6.9583
+price	diesel 1.799 changed	1.799
+postcode	postcode 52477 unknown	52477
+eva	board 8000207 failed	8000207
+dhid	stop de:05315:11201 missing	05315|11201
+pg_quoted	invalid input syntax for type integer: "Dachsweg 12"	Dachsweg 12|Dachsweg
+pg_single_quoted	value 'Kalkweg 9' refused	Kalkweg
+low_quote	Ort „Bergheim-Süd“ unbekannt	Bergheim
+guillemets	Ort «Quadrath» unbekannt	Quadrath
+backtick	column `zollstockweg` missing	zollstockweg
+email	mail jane.doe@example.org bounced	jane.doe@example.org|jane.doe
+place_key_cut	bad receipt:3 in prompt:7 at pt:-5	pt:3|pt:7|pt:-5

@@ -5,3 +5,10 @@ dist/
 *.log
 coverage/
 reports/
+.pinned/
+build/
+*.tsbuildinfo
+.astro/
+test-results/
+playwright-report/
+zap-report/

@@ -1,0 +1,47 @@
+---
+/**
+ * ViaFrei's terms of use (#707, `site/terms.ts`): the clause in the page's language only. German at `/terms` is
+ * binding; every other page opens with one sentence saying so, linked. Section 2 is `#sid` — the SID button, the
+ * MCP elicitation and the condition note link there. The operator's name is the imprint's (`readIdentity()`).
+ */
+import { t } from "../i18n/index.js";
+import { pathFor, type Lang } from "../site/pages.js";
+import { SID_SOURCE_LINE, TERMS, TERMS_VERSION, TOLL_COLLECT_SID_TERMS, termsDate } from "../site/terms.js";
+
+interface Props {
+  lang: Lang;
+  name: string;
+}
+const { lang, name } = Astro.props;
+const x = TERMS[lang];
+/** A template with one `{slot}` split around it, so the slot can be an element and the rest stays text. */
+const around = (s: string, slot: string): [string, string] => {
+  const i = s.indexOf(`{${slot}}`);
+  return i < 0 ? [s, ""] : [s.slice(0, i), s.slice(i + slot.length + 2)];
+};
+const [s1a, s1rest] = around(x.s1.replace("{name}", name), "imprint");
+const [s2la, s2lb] = around(x.s2link, "link");
+const [ba, bb] = x.binding === null ? ["", ""] : around(x.binding, "link");
+const letters = ["a", "b", "c", "d", "e", "f"];
+---
+
+<article class="legal terms" lang={lang}>
+  {x.binding !== null && <p class="legal__note">{ba}<a href={pathFor("terms", "de")} hreflang="de">{x.bindingLink}</a>{bb}</p>}
+  <h1>{x.title}</h1>
+  <p>{x.asOf.replace("{date}", termsDate(lang)).replace("{v}", String(TERMS_VERSION))}</p>
+  <h2 id="scope">{x.s1h}</h2>
+  <p>{s1a}<a href={pathFor("impressum", lang)}>{t(lang, "footer.imprint")}</a>{s1rest}</p>
+  <h2 id="sid">{x.s2h}</h2>
+  <p>{x.s2a} {s2la}<a href={TOLL_COLLECT_SID_TERMS} rel="noopener noreferrer">{x.tc}</a>{s2lb} {x.s2b}</p>
+  <ol class="terms__items" type="a">
+    {
+      x.items.map(([label, text], i) => (
+        <li id={`sid-${letters[i] ?? String(i)}`}>
+          <strong>{label}</strong> {text.includes("{source}") ? <>{around(text, "source")[0]}<span lang="de" translate="no">{SID_SOURCE_LINE}</span>{around(text, "source")[1]}</> : text}
+        </li>
+      ))
+    }
+  </ol>
+  <h2 id="law">{x.s3h}</h2>
+  <p>{x.s3}</p>
+</article>

@@ -1,0 +1,100 @@
+---
+/**
+ * The location-aware top of the home and of every place page (#564 § 1–3, § 6):
+ * the location pill, the one-line reason, the place's cards (server-rendered at
+ * the IP rung or on a place page), "Ganz Deutschland" with one line why when the
+ * position is far outside Germany (#1070), and the place sheet. One inline script, under the nonce
+ * (`location/island.ts`); with JavaScript off the cards and the city links
+ * still work.
+ *
+ * #1153: the pill, the search, "use my location", the chips and "Ort vergessen" are the header's (`PlaceBar.astro`,
+ * `lib/header-place.ts` `blockHeaderPlace`); this block keeps the cards, the topic filter and the island that swaps them.
+ */
+import { t } from "../i18n/index.js";
+import GermanyNote from "./GermanyNote.astro";
+import { blockHeaderPlace } from "../lib/header-place.js";
+import { islandScript } from "../location/island.js";
+import { islandLabels } from "../location/labels.js";
+import { farPlaceHtml, type PlaceFragment } from "../lib/place.js";
+import type { Lang } from "../site/pages.js";
+import { applyTopics, barAfterFirst, topicBarHtml, topicCardsOf, topicSumHtml, topicsScript, type PlaceCardId } from "../lib/topic-filter.js";
+import { chargingSubmitScript, keepChoicesInChargingForm, needsChargingSubmit } from "../lib/charging-filter.js";
+import { cardPagerScript, carriesDeparturesFold, carriesPager } from "../lib/card-more.js";
+import { cardRefreshScript, carriesRefresh } from "../lib/card-refresh.js";
+import { sidScript } from "../lib/sid.js";
+import { PLACE_FUEL_FRAGMENT_ON, placeFuelScript } from "../lib/place-fuel.js";
+
+interface Props {
+  lang: Lang;
+  /**
+   * What the server could tell before any script runs. #1088: `chosen` — an addressable key in the home's address
+   * (`?at=`), `germany` — `?scope=de` (no lookup, no place).
+   */
+  source: "ip" | "page" | "none" | "outside" | "chosen" | "germany";
+  place: PlaceFragment | null;
+  /** The IP rung's place when its cards missed the first render's deadline (#564): its key and the placeholder to fill. */
+  deferred?: { readonly at: string; readonly html: string } | null;
+  /** True when the IP lookup ran for this page: DB-IP's line is then printed here (CC BY 4.0). */
+  usedGeoIp?: boolean;
+  /** #1050: the address's topic choice (`topicsOf`); null = every topic. */
+  topics?: readonly PlaceCardId[] | null;
+  /** #1050: the page's own path — the topic form's action, "Alle" and "Keine". */
+  path: string;
+}
+const { lang, source, place, deferred = null, usedGeoIp = false, topics = null, path } = Astro.props;
+const cards = place === null ? [] : topicCardsOf(place.html);
+const scope = blockHeaderPlace(lang, { source, place, deferred, path });
+Astro.locals.hasScript = true;
+// #1050: the topic filter is a GET form to this page — the CSP then says `form-action 'self'` (as on the motorway pages).
+Astro.locals.hasForm = true;
+const script = islandScript({
+  lang,
+  server: { source, at: source === "germany" ? null : (place?.at ?? deferred?.at ?? null), label: place?.label ?? null },
+  labels: islandLabels(lang),
+  cell: { lat: 0, lon: 0 },
+});
+// #1065: the fuel card's prices, asked when the card comes into view (a person's view, never a crawler's) — on a page
+// with server-rendered cards only; the island's own cards carry their prices, so a page without them carries no script.
+// Written on the island script's line, before it: anywhere else its empty expression adds a whitespace byte to every
+// page without cards.
+const fuelScript = PLACE_FUEL_FRAGMENT_ON && place !== null;
+// #939: the in-place refresh when the first render's cards carry their fragment address (a Gemeinde's cards).
+const refreshes = carriesRefresh(place?.html ?? "");
+// 2.4.4 review B2: without it, the charging filter's change-to-send rule rides alone — on every place block, because the
+// island swaps cards in after the first render (and a card with no fragment refreshes nothing).
+// #1194: the topic filter, after the fragment's first block when it carries one (the home), else before the slot
+const bar = topicBarHtml(lang, cards, topics, path);
+const cardsHtml = place === null ? "" : keepChoicesInChargingForm(applyTopics(place.html, topics), Astro.url.searchParams);
+const firstBar = place === null ? null : barAfterFirst(cardsHtml, bar);
+const evSubmit = needsChargingSubmit({ refresh: refreshes, html: place?.html ?? "", swaps: true });
+---
+
+<section class="placebar vf-noclarity" id="place" aria-labelledby="place-head-lead">
+  <div class="wrap">
+    <GermanyNote lang={lang} place={scope} />
+    {/*
+      The topic filter (#1050): one box per card, "Alle" / "Keine", a GET form whose choice is the address
+      (`?topics=`), working without JavaScript; with it, ticking applies at once (`lib/topic-filter.ts`).
+      #1194: on the home it stands after the fragment's first block (`barAfterFirst`), before the slot elsewhere.
+    */}
+    {firstBar === null && <Fragment set:html={bar} />}
+    <div class="place-slot" id="place-slot" data-loading={t(lang, "place.loadingCards")}>{place !== null ? <Fragment set:html={firstBar ?? cardsHtml} /> : deferred !== null ? <Fragment set:html={deferred.html} /> : source === "outside" && <Fragment set:html={farPlaceHtml(lang)} />}</div>
+    <Fragment set:html={topicSumHtml(lang, cards, topics)} />
+    {
+      usedGeoIp && (
+        <p class="placebar__credit">
+          {t(lang, "place.geoipCredit")} <a href="https://db-ip.com" lang="en" rel="noopener noreferrer">IP Geolocation by DB-IP</a> · <a href="https://creativecommons.org/licenses/by/4.0/" rel="license noopener noreferrer">CC BY 4.0</a>, {t(lang, "place.geoipModified")}
+        </p>
+      )
+    }
+  </div>
+  {fuelScript && <script is:inline set:html={placeFuelScript()} />}<script is:inline set:html={script} /><script is:inline set:html={topicsScript(lang)} />
+  {/* #1061: the card pager when the first render's cards carry a fold; a place the island swaps in later keeps each fold's no-script link */}
+  {/* #938 E1: and on a place page when they carry a stop's departures fold (the home keeps its seven scripts; there the fold links the place page) */}
+  {(carriesPager(place?.html ?? "") || (source === "page" && carriesDeparturesFold(place?.html ?? ""))) && <script is:inline set:html={cardPagerScript()} />}
+  {/* #939: the in-place refresh when the first render's cards carry their fragment address (a Gemeinde's cards) */}
+  {refreshes && <script is:inline set:html={cardRefreshScript()} />}
+  {evSubmit && <script is:inline set:html={chargingSubmitScript()} />}
+  {/* #707: the SID click — on every place block, because the island swaps the cards in after the first render */}
+  <script is:inline set:html={sidScript()} />
+</section>

@@ -1,0 +1,264 @@
+state	de	Bayern: Autobahnen jetzt, Städte und Fakten – ViaFrei	Bayern jetzt auf den Autobahnen: Vollsperrungen: 1. Größte Städte, Nachbarländer und Fläche. Stand heute, hh:mm Uhr.
+state	en	Bavaria: motorways now, towns and facts – ViaFrei	Bavaria on the motorways now: Closures: 1. Largest towns, neighbouring Länder and area. As of today at hh:mm.
+state	ru	Бавария: автобаны сейчас, города и факты – ViaFrei	Бавария на автобанах сейчас: Перекрытия: 1. Крупнейшие города, соседние федеральные земли и площадь. По состоянию на сегодня в hh:mm.
+state	bg	Бавария: магистрали сега, градове и факти – ViaFrei	Бавария по магистралите сега: Затваряния: 1. Най-големите градове, съседните федерални провинции и площ. Към днес в hh:mm.
+state	uk	Баварія: автобани зараз, міста й факти – ViaFrei	Баварія на автобанах зараз: Перекриття: 1. Найбільші міста, сусідні федеральні землі та площа. Станом на сьогодні о hh:mm.
+state	ro	Bavaria: autostrăzi acum, orașe și date – ViaFrei	Bavaria pe autostrăzi acum: Închideri: 1. Cele mai mari orașe, landurile vecine și suprafața. Situația la azi la hh:mm.
+state	tr	Bavyera: otoyollar şimdi, şehirler ve bilgiler – ViaFrei	Bavyera otoyollarında şimdi: Kapanmalar: 1. En büyük şehirler, komşu eyaletler ve yüzölçümü. Durum bugün hh:mm.
+state	fr	Bavière : autoroutes en ce moment, villes et faits – ViaFrei	Bavière sur les autoroutes en ce moment : Fermetures : 1. Plus grandes villes, Länder voisins et superficie. État au aujourd’hui à hh:mm.
+state	es	Baviera: autopistas ahora, ciudades y datos – ViaFrei	Baviera en las autopistas ahora: Cortes: 1. Ciudades más grandes, Länder vecinos y superficie. Situación a hoy a las hh:mm.
+state	nl	Beieren: snelwegen nu, steden en feiten – ViaFrei	Beieren nu op de snelwegen: Afsluitingen: 1. Grootste steden, buurdeelstaten en oppervlakte. Bijgewerkt vandaag om hh:mm.
+state	pl	Bawaria: autostrady teraz, miasta i fakty – ViaFrei	Bawaria na autostradach teraz: Zamknięcia: 1. Największe miasta, sąsiednie kraje związkowe i powierzchnia. Stan na dziś o hh:mm.
+state	it	Baviera: autostrade ora, città e dati – ViaFrei	Baviera sulle autostrade ora: Chiusure: 1. Città più grandi, Länder confinanti e superficie. Aggiornato al oggi alle hh:mm.
+state	lt	Bavarija: greitkeliai dabar, miestai ir faktai – ViaFrei	Bavarija greitkeliuose dabar: Uždarymai: 1. Didžiausi miestai, kaimyninės žemės ir plotas. Būklė šiandien hh:mm.
+state	cs	Bavorsko: dálnice teď, města a fakta – ViaFrei	Bavorsko na dálnicích teď: Uzavírky: 1. Největší města, sousední spolkové země a rozloha. Stav k dnes v hh:mm.
+state	hu	Bajorország: autópályák most, városok és tények – ViaFrei	Bajorország az autópályákon most: Lezárások: 1. Legnagyobb városok, szomszédos tartományok és terület. Állapot: ma hh:mm-kor.
+state	sk	Bavorsko: diaľnice teraz, mestá a fakty – ViaFrei	Bavorsko na diaľniciach teraz: Uzávery: 1. Najväčšie mestá, susedné spolkové krajiny a rozloha. Stav k dnes o hh:mm.
+state	da	Bayern: motorveje nu, byer og fakta – ViaFrei	Bayern på motorvejene nu: Spærringer: 1. Største byer, nabodelstater og areal. Status i dag kl. hh:mm.
+state	pt	Baviera: autoestradas agora, cidades e factos – ViaFrei	Baviera nas autoestradas agora: Cortes: 1. Maiores cidades, Länder vizinhos e área. Situação em hoje às hh:mm.
+state	hr	Bavarska: autoceste sada, gradovi i činjenice – ViaFrei	Bavarska na autocestama sada: Zatvaranja: 1. Najveći gradovi, susjedne savezne zemlje i površina. Stanje danas u hh:mm.
+state	sr	Баварска: аутопутеви сада, градови и чињенице – ViaFrei	Баварска на аутопутевима сада: Затварања: 1. Највећи градови, суседне савезне покрајине и површина. Стање данас у hh:mm.
+state	el	Βαυαρία: αυτοκινητόδρομοι τώρα, πόλεις και στοιχεία	Βαυαρία στους αυτοκινητόδρομους τώρα: Κλεισίματα: 1. Μεγαλύτερες πόλεις, γειτονικά ομόσπονδα κρατίδια και έκταση. Κατάσταση σήμερα στις hh:mm.
+state	lv	Bavārija: automaģistrāles tagad, pilsētas un fakti – ViaFrei	Bavārija uz automaģistrālēm tagad: Slēgumi: 1. Lielākās pilsētas, kaimiņu federālās zemes un platība. Stāvoklis šodien hh:mm.
+states	de	Bundesländer: Autobahnen jetzt, Städte und Fakten – ViaFrei	Alle 16 Bundesländer auf einen Blick: Vollsperrungen, Staus und Baustellen auf den Autobahnen jetzt, Fläche, Hauptstadt, Nachbarländer und größte Städte.
+states	en	German states: motorways now, towns and facts – ViaFrei	All 16 German states at a glance: closures, jams and roadworks on the motorways now, area, capital, neighbouring states and the largest towns.
+states	ru	Федеральные земли: автобаны сейчас, города, факты – ViaFrei	Все 16 федеральных земель Германии: перекрытия, пробки и дорожные работы на автобанах сейчас, площадь, столица, соседние земли и крупнейшие города.
+states	bg	Федерални провинции: магистрали сега, градове – ViaFrei	Всички 16 федерални провинции на Германия: затваряния, задръствания и ремонти по магистралите сега, площ, столица, съседни провинции и най-големи градове.
+states	uk	Федеральні землі: автобани зараз, міста, факти – ViaFrei	Усі 16 федеральних земель Німеччини: перекриття, затори й дорожні роботи на автобанах зараз, площа, столиця, сусідні землі та найбільші міста.
+states	ro	Landurile germane: autostrăzi acum, orașe, date – ViaFrei	Toate cele 16 landuri ale Germaniei: închideri, ambuteiaje și lucrări pe autostrăzi acum, suprafață, capitală, landuri vecine și cele mai mari orașe.
+states	tr	Almanya eyaletleri: otobanlar şimdi, şehirler – ViaFrei	Almanya'nın 16 eyaleti bir bakışta: otobanlarda şu anki kapanışlar, trafik sıkışıklıkları ve yol çalışmaları, yüzölçümü, başkent, komşu eyaletler ve en büyük…
+states	fr	Länder allemands : autoroutes, villes et faits – ViaFrei	Les 16 Länder allemands d'un coup d'œil : fermetures, bouchons et travaux sur les autoroutes en ce moment, superficie, capitale, Länder voisins et plus…
+states	es	Estados federados: autopistas ahora, ciudades – ViaFrei	Los 16 estados federados de Alemania de un vistazo: cierres, atascos y obras en las autopistas ahora, superficie, capital, estados vecinos y ciudades más…
+states	nl	Duitse deelstaten: snelwegen nu, steden, feiten – ViaFrei	Alle 16 Duitse deelstaten in één oogopslag: afsluitingen, files en wegwerkzaamheden op de snelwegen nu, oppervlakte, hoofdstad, buurdeelstaten en grootste…
+states	pl	Kraje związkowe: autostrady teraz, miasta, fakty – ViaFrei	Wszystkie 16 krajów związkowych Niemiec: zamknięcia, korki i roboty drogowe na autostradach teraz, powierzchnia, stolica, kraje sąsiednie i największe miasta.
+states	it	Länder tedeschi: autostrade ora, città e dati – ViaFrei	Tutti i 16 Länder tedeschi in un colpo d'occhio: chiusure, code e cantieri sulle autostrade ora, superficie, capoluogo, Länder confinanti e città più grandi.
+states	lt	Vokietijos žemės: greitkeliai dabar, miestai – ViaFrei	Visos 16 Vokietijos federalinių žemių: uždarymai, spūstys ir kelio darbai greitkeliuose dabar, plotas, sostinė, kaimyninės žemės ir didžiausi miestai.
+states	cs	Spolkové země: dálnice teď, města a fakta – ViaFrei	Všech 16 spolkových zemí Německa na jednom místě: uzavírky, kolony a práce na dálnicích právě teď, rozloha, hlavní město, sousední země a největší města.
+states	hu	Német tartományok: autópályák most, városok – ViaFrei	Mind a 16 német szövetségi tartomány egy pillantásra: lezárások, dugók és útépítések az autópályákon most, terület, főváros, szomszédos tartományok és a…
+states	sk	Spolkové krajiny: diaľnice teraz, mestá, fakty – ViaFrei	Všetkých 16 spolkových krajín Nemecka na jednom mieste: uzávierky, kolóny a práce na diaľniciach práve teraz, rozloha, hlavné mesto, susedné krajiny a…
+states	da	Tyske delstater: motorveje nu, byer og fakta – ViaFrei	Alle 16 tyske delstater på ét sted: spærringer, køer og vejarbejde på motorvejene lige nu, areal, hovedstad, nabodelstater og de største byer.
+states	pt	Estados alemães: autoestradas agora, cidades – ViaFrei	Os 16 estados federados da Alemanha num relance: cortes, filas e obras nas autoestradas agora, área, capital, estados vizinhos e as maiores cidades.
+states	hr	Njemačke savezne zemlje: autoceste sada, gradovi – ViaFrei	Svih 16 njemačkih saveznih zemalja na jednom mjestu: zatvaranja, gužve i radovi na autocestama sada, površina, glavni grad, susjedne zemlje i najveći gradovi.
+states	sr	Немачке покрајине: аутопутеви сада, градови – ViaFrei	Свих 16 немачких савезних покрајина на једном месту: затварања, гужве и радови на аутопутевима сада, површина, главни град, суседне покрајине и највећи градови.
+states	el	Ομόσπονδα κρατίδια: αυτοκινητόδρομοι, πόλεις – ViaFrei	Και τα 16 ομόσπονδα κρατίδια της Γερμανίας: κλεισίματα, μποτιλιαρίσματα και έργα στους αυτοκινητόδρομους τώρα, έκταση, πρωτεύουσα, γειτονικά κρατίδια και…
+states	lv	Vācijas federālās zemes: autoceļi tagad, pilsētas – ViaFrei	Visas 16 Vācijas federālās zemes vienuviet: slēgšanas, sastrēgumi un ceļa darbi uz autobāņiem tagad, platība, galvaspilsēta, kaimiņzemes un lielākās pilsētas.
+road	de	B 51 Dortmund: Sperrung, Baustelle aktuell – ViaFrei	B 51 jetzt: Baustellen: 2. Orte, Zeiten und Umleitungen, Stand heute, hh:mm Uhr.
+road	en	B 51 Dortmund: closures and roadworks now – ViaFrei	B 51 now: Roadworks: 2. Places, times and detours, as of today at hh:mm.
+road	ru	B 51 Dortmund: перекрытия и дорожные работы сейчас – ViaFrei	B 51 сейчас: Дорожные работы: 2. Места, сроки и объезды, по состоянию на сегодня в hh:mm.
+road	bg	B 51 Dortmund: затваряния и ремонти в момента – ViaFrei	B 51 сега: Ремонти: 2. Места, срокове и обходи, към днес в hh:mm.
+road	uk	B 51 Dortmund: перекриття та дорожні роботи зараз – ViaFrei	B 51 зараз: Дорожні роботи: 2. Місця, терміни й об'їзди, станом на сьогодні о hh:mm.
+road	ro	B 51 Dortmund: închideri și lucrări acum – ViaFrei	B 51 acum: Lucrări: 2. Locuri, intervale și ocoliri, la azi la hh:mm.
+road	tr	B 51 Dortmund: güncel kapanmalar ve yol çalışmaları	B 51 şu anda: Yol çalışmaları: 2. Yerler, süreler ve sapaklar, bugün hh:mm itibarıyla.
+road	fr	B 51 Dortmund : fermetures et travaux en cours – ViaFrei	B 51 maintenant : Chantiers : 2. Lieux, horaires et déviations, état aujourd’hui à hh:mm.
+road	es	B 51 Dortmund: cortes y obras ahora – ViaFrei	B 51 ahora: Obras: 2. Lugares, horarios y desvíos, a hoy a las hh:mm.
+road	nl	B 51 Dortmund: afsluitingen en wegwerkzaamheden nu – ViaFrei	B 51 nu: Werkzaamheden: 2. Plaatsen, tijden en omleidingen, stand vandaag om hh:mm.
+road	pl	B 51 Dortmund: aktualne zamknięcia i roboty drogowe	B 51 teraz: Roboty drogowe: 2. Miejsca, terminy i objazdy, stan na dziś o hh:mm.
+road	it	B 51 Dortmund: chiusure e cantieri attuali – ViaFrei	B 51 ora: Cantieri: 2. Luoghi, orari e deviazioni, aggiornato a oggi alle hh:mm.
+road	lt	B 51 Dortmund: dabartiniai uždarymai ir kelio darbai	B 51 dabar: Kelio darbai: 2. Vietos, laikas ir apvažiavimai, duomenys šiandien hh:mm.
+road	cs	B 51 Dortmund: aktuální uzavírky a stavby – ViaFrei	B 51 nyní: Stavby: 2. Místa, termíny a objížďky, stav k dnes v hh:mm.
+road	hu	B 51 Dortmund: aktuális lezárások és útépítések – ViaFrei	B 51 most: Útépítések: 2. Helyek, időpontok és terelések, állapot: ma hh:mm-kor.
+road	sk	B 51 Dortmund: aktuálne uzávierky a stavby – ViaFrei	B 51 teraz: Stavby: 2. Miesta, termíny a obchádzky, stav k dnes o hh:mm.
+road	da	B 51 Dortmund: aktuelle spærringer og vejarbejde – ViaFrei	B 51 nu: Vejarbejde: 2. Steder, tider og omkørsler, status i dag kl. hh:mm.
+road	pt	B 51 Dortmund: cortes e obras agora – ViaFrei	B 51 agora: Obras: 2. Locais, horários e desvios, às hoje às hh:mm.
+road	hr	B 51 Dortmund: trenutačne zatvorbe i radovi – ViaFrei	B 51 sada: Radovi: 2. Mjesta, termini i obilaznice, stanje danas u hh:mm.
+road	sr	B 51 Dortmund: тренутна затварања и радови – ViaFrei	B 51 сада: Радови: 2. Места, термини и обилазнице, стање данас у hh:mm.
+road	el	B 51 Dortmund: τρέχοντα κλεισίματα και έργα – ViaFrei	B 51 τώρα: Έργα: 2. Τοποθεσίες, ώρες και παρακάμψεις, κατάσταση σήμερα στις hh:mm.
+road	lv	B 51 Dortmund: aktuālās slēgšanas un ceļa darbi – ViaFrei	B 51 tagad: Ceļa darbi: 2. Vietas, laiki un apbraucamie ceļi, dati uz šodien hh:mm.
+exit	de	A7 Musterstadt-Mitte 30: Stau aktuell – ViaFrei	A7 Musterstadt-Mitte 30 jetzt: 1 Stau. Hier: Rast- und Parkplätze. Nachbarn: Musterstadt-Ost 28 und Musterstadt-Süd 32.
+exit	en	A7 Musterstadt-Mitte 30: traffic jam now – ViaFrei	A7 Musterstadt-Mitte 30 now: 1 jam. Here: rest areas and parking. Next junctions: Musterstadt-Ost 28 and Musterstadt-Süd 32.
+exit	ru	A7 Musterstadt-Mitte 30: пробка сейчас – ViaFrei	A7 Musterstadt-Mitte 30 сейчас: 1 пробка. Здесь: парковка. Соседние съезды: Musterstadt-Ost 28 и Musterstadt-Süd 32.
+exit	bg	A7 Musterstadt-Mitte 30: задръстване сега – ViaFrei	A7 Musterstadt-Mitte 30 сега: 1 задръстване. Тук: паркиране. Съседни изходи: Musterstadt-Ost 28 и Musterstadt-Süd 32.
+exit	uk	A7 Musterstadt-Mitte 30: затор зараз – ViaFrei	A7 Musterstadt-Mitte 30 зараз: 1 затор. Тут: паркування. Сусідні з’їзди: Musterstadt-Ost 28 і Musterstadt-Süd 32.
+exit	ro	A7 Musterstadt-Mitte 30: ambuteiaj acum – ViaFrei	A7 Musterstadt-Mitte 30 acum: 1 ambuteiaj. Aici: parcare. Ieșiri vecine: Musterstadt-Ost 28 și Musterstadt-Süd 32.
+exit	tr	A7 Musterstadt-Mitte 30: şu an sıkışık – ViaFrei	A7 Musterstadt-Mitte 30 şu an: 1 sıkışıklık. Burada: otopark. Komşu çıkışlar: Musterstadt-Ost 28 ve Musterstadt-Süd 32.
+exit	fr	A7 Musterstadt-Mitte 30: bouchon en cours – ViaFrei	A7 Musterstadt-Mitte 30 maintenant : 1 bouchon. Ici : stationnement. Sorties voisines : Musterstadt-Ost 28 et Musterstadt-Süd 32.
+exit	es	A7 Musterstadt-Mitte 30: atasco ahora – ViaFrei	A7 Musterstadt-Mitte 30 ahora: 1 atasco. Aquí: aparcamiento. Salidas vecinas: Musterstadt-Ost 28 y Musterstadt-Süd 32.
+exit	nl	A7 Musterstadt-Mitte 30: file nu – ViaFrei	A7 Musterstadt-Mitte 30 nu: 1 file. Ter plaatse: parkeren. Naburige afritten: Musterstadt-Ost 28 en Musterstadt-Süd 32.
+exit	pl	A7 Musterstadt-Mitte 30: korek teraz – ViaFrei	A7 Musterstadt-Mitte 30 teraz: 1 korek. Tutaj: parking. Sąsiednie zjazdy: Musterstadt-Ost 28 i Musterstadt-Süd 32.
+exit	it	A7 Musterstadt-Mitte 30: coda adesso – ViaFrei	A7 Musterstadt-Mitte 30 ora: 1 coda. Qui: parcheggio. Uscite vicine: Musterstadt-Ost 28 e Musterstadt-Süd 32.
+exit	lt	A7 Musterstadt-Mitte 30: spūstis dabar – ViaFrei	A7 Musterstadt-Mitte 30 dabar: 1 spūstis. Čia: parkavimas. Kaimyninės nuovažos: Musterstadt-Ost 28 ir Musterstadt-Süd 32.
+exit	cs	A7 Musterstadt-Mitte 30: kolona teď – ViaFrei	A7 Musterstadt-Mitte 30 teď: 1 kolona. Zde: parkování. Sousední sjezdy: Musterstadt-Ost 28 a Musterstadt-Süd 32.
+exit	hu	A7 Musterstadt-Mitte 30: torlódás most – ViaFrei	A7 Musterstadt-Mitte 30 most: 1 dugó. Itt: parkolás. Szomszédos lehajtók: Musterstadt-Ost 28 és Musterstadt-Süd 32.
+exit	sk	A7 Musterstadt-Mitte 30: kolóna teraz – ViaFrei	A7 Musterstadt-Mitte 30 teraz: 1 kolóna. Tu: parkovanie. Susedné zjazdy: Musterstadt-Ost 28 a Musterstadt-Süd 32.
+exit	da	A7 Musterstadt-Mitte 30: kø lige nu – ViaFrei	A7 Musterstadt-Mitte 30 nu: 1 kø. Her: parkering. Nabofrakørsler: Musterstadt-Ost 28 og Musterstadt-Süd 32.
+exit	pt	A7 Musterstadt-Mitte 30: fila agora – ViaFrei	A7 Musterstadt-Mitte 30 agora: 1 fila. Aqui: estacionamento. Saídas vizinhas: Musterstadt-Ost 28 e Musterstadt-Süd 32.
+exit	hr	A7 Musterstadt-Mitte 30: gužva sada – ViaFrei	A7 Musterstadt-Mitte 30 sada: 1 zastoj. Ovdje: parkiranje. Susjedni izlazi: Musterstadt-Ost 28 i Musterstadt-Süd 32.
+exit	sr	A7 Musterstadt-Mitte 30: гужва сада – ViaFrei	A7 Musterstadt-Mitte 30 сада: 1 застој. Овде: паркирање. Суседни излази: Musterstadt-Ost 28 и Musterstadt-Süd 32.
+exit	el	A7 Musterstadt-Mitte 30: μποτιλιάρισμα τώρα – ViaFrei	A7 Musterstadt-Mitte 30 τώρα: 1 μποτιλιάρισμα. Εδώ: στάθμευση. Γειτονικές έξοδοι: Musterstadt-Ost 28 και Musterstadt-Süd 32.
+exit	lv	A7 Musterstadt-Mitte 30: sastrēgums tagad – ViaFrei	A7 Musterstadt-Mitte 30 tagad: 1 sastrēgums. Šeit: stāvvieta. Kaimiņu nobrauktuves: Musterstadt-Ost 28 un Musterstadt-Süd 32.
+motorways	de	Autobahn Stau, Baustellen & Sperrungen aktuell – Deutschland	Autobahn-Baustellen und Sperrungen in Deutschland jetzt: 18 Sperrungen, 20 Staus und 121 Baustellen gemeldet.
+motorways	en	Autobahn traffic jams & roadworks now – Germany – ViaFrei	German motorway roadworks and closures now: 18 closures, 20 jams and 121 roadworks reported – every Autobahn with its map, live from the motorway operator.
+motorways	ru	Пробки и ремонт на автобанах сейчас – Германия – ViaFrei	Ремонт и перекрытия на автобанах Германии сейчас: 18 перекрытий, 20 пробок и 121 участок работ – каждый автобан с картой, онлайн по данным оператора.
+motorways	bg	Задръствания и ремонти по магистралите сега – Германия	Ремонти и затваряния по магистралите в Германия сега: 18 затваряния, 20 задръствания и 121 ремонта – всяка магистрала с карта, на живо по данни на оператора.
+motorways	uk	Затори й ремонт на автобанах зараз – Німеччина – ViaFrei	Ремонт і перекриття на автобанах Німеччини зараз: 18 перекриттів, 20 заторів і 121 ділянка робіт – кожен автобан із картою, наживо за даними оператора.
+motorways	ro	Ambuteiaje și lucrări pe autostrăzi acum – Germania	Lucrări și închideri pe autostrăzile din Germania acum: 18 închideri, 20 ambuteiaje și 121 șantiere.
+motorways	tr	Otoyol trafik ve yol çalışmaları şimdi – Almanya – ViaFrei	Almanya otoyollarında yol çalışmaları ve kapanmalar şimdi: 18 kapatma, 20 sıkışıklık ve 121 yol çalışması – her otoyol haritasıyla, işletmeciden canlı.
+motorways	fr	Bouchons et travaux d’autoroute en direct – Allemagne	Travaux et fermetures sur les autoroutes allemandes en ce moment : 18 fermetures, 20 bouchons et 121 chantiers.
+motorways	es	Atascos y obras en autopistas ahora – Alemania – ViaFrei	Obras y cortes en las autopistas de Alemania ahora: 18 cierres, 20 atascos y 121 obras – cada autopista con su mapa, en directo del operador.
+motorways	nl	Files en wegwerkzaamheden Autobahn nu – Duitsland – ViaFrei	Wegwerkzaamheden en afsluitingen op de Duitse snelwegen nu: 18 afsluitingen, 20 files en 121 werkvakken – elke Autobahn met kaart, live van de beheerder.
+motorways	pl	Korki i roboty na autostradach teraz – Niemcy – ViaFrei	Roboty drogowe i zamknięcia na niemieckich autostradach teraz: 18 zamknięć, 20 korków i 121 miejsc robót drogowych.
+motorways	it	Code e cantieri in autostrada ora – Germania – ViaFrei	Cantieri e chiusure sulle autostrade tedesche ora: 18 chiusure, 20 code e 121 cantieri – ogni autostrada con mappa, in diretta dal gestore.
+motorways	lt	Spūstys ir kelio darbai greitkeliuose dabar – Vokietija	Kelio darbai ir uždarymai Vokietijos greitkeliuose dabar: 18 uždarymų, 20 spūsčių ir 121 kelio darbų ruožas.
+motorways	cs	Kolony a stavby na dálnicích teď – Německo – ViaFrei	Stavby a uzavírky na německých dálnicích teď: 18 uzavírek, 20 kolon a 121 pracovišť – každá dálnice s mapou, živě od provozovatele.
+motorways	hu	Dugó és útfelújítás az autópályán most – Németország	Útfelújítások és lezárások a német autópályákon most: 18 lezárás, 20 dugó és 121 útépítés – minden autópálya térképpel, élőben az üzemeltetőtől.
+motorways	sk	Kolóny a práce na diaľniciach teraz – Nemecko – ViaFrei	Práce na ceste a uzávierky na nemeckých diaľniciach teraz: 18 uzávierok, 20 kolón a 121 úsekov s prácami na ceste.
+motorways	da	Kø og vejarbejde på motorvejen nu – Tyskland – ViaFrei	Vejarbejde og spærringer på de tyske motorveje nu: 18 spærringer, 20 køer og 121 vejarbejder – hver motorvej med kort, live fra operatøren.
+motorways	pt	Filas e obras nas autoestradas agora – Alemanha – ViaFrei	Obras e cortes nas autoestradas alemãs agora: 18 cortes, 20 filas e 121 zonas de obras – cada autoestrada com mapa, em direto do operador.
+motorways	hr	Gužve i radovi na autocestama sada – Njemačka – ViaFrei	Radovi i zatvaranja na njemačkim autocestama sada: 18 zatvaranja, 20 zastoja i 121 radilište – svaka autocesta s kartom, uživo od upravitelja.
+motorways	sr	Гужве и радови на аутопутевима сада – Немачка – ViaFrei	Радови и затварања на немачким аутопутевима сада: 18 затварања, 20 застоја и 121 градилиште – сваки аутопут са мапом, уживо од оператера.
+motorways	el	Κίνηση και έργα σε αυτοκινητόδρομους τώρα – Γερμανία	Έργα και κλεισίματα στους γερμανικούς αυτοκινητοδρόμους τώρα: 18 κλεισίματα, 20 μποτιλιαρίσματα και 121 σημεία έργων.
+motorways	lv	Sastrēgumi un ceļa darbi autobāņos tagad – Vācija – ViaFrei	Ceļa darbi un slēgšana Vācijas autobāņos tagad: 18 slēgti posmi, 20 sastrēgumi un 121 ceļa darbu posms – katrs autobānis ar karti, tiešsaistē no operatora.
+stations	de	Bahnhöfe in Deutschland: Bahnsteige, Ausstattung – ViaFrei	Jeder Bahnhof der Deutschen Bahn: Bahnsteige mit Höhe und Stufenfreiheit, Ausstattung, Mobilitätsservice und was im Umkreis von 300 m liegt – aus offenen Daten.
+stations	en	Train stations in Germany: platforms, facilities – ViaFrei	Every Deutsche Bahn station: platforms with height and step-free access, facilities, mobility service and what is within 300 m – from open data.
+stations	ru	Вокзалы Германии: платформы, оснащение – ViaFrei	Каждый вокзал Deutsche Bahn: платформы с высотой и доступом без ступеней, оснащение, служба помощи и что находится в радиусе 300 м – из открытых данных.
+stations	bg	Гари в Германия: перони, оборудване – ViaFrei	Всяка гара на Deutsche Bahn: перони с височина и достъп без стъпала, оборудване, услуга за мобилност и какво има в радиус от 300 м – от отворени данни.
+stations	uk	Вокзали Німеччини: платформи, обладнання – ViaFrei	Кожен вокзал Deutsche Bahn: платформи з висотою та доступом без сходинок, обладнання, служба мобільності й що є в радіусі 300 м – з відкритих даних.
+stations	ro	Gări din Germania: peroane, dotări – ViaFrei	Fiecare gară Deutsche Bahn: peroane cu înălțime și acces fără trepte, dotări, serviciu de mobilitate și ce se află pe o rază de 300 m – din date deschise.
+stations	tr	Almanya'daki tren istasyonları: peronlar, olanaklar	Her Deutsche Bahn istasyonu: yüksekliği ve basamaksız erişimiyle peronlar, olanaklar, hareket kısıtlılarına hizmet ve 300 m içinde neler olduğu – açık…
+stations	fr	Gares en Allemagne : quais, équipements – ViaFrei	Chaque gare de la Deutsche Bahn : quais avec hauteur et accès de plain-pied, équipements, service d'assistance et ce qui se trouve à moins de 300 m – données…
+stations	es	Estaciones de tren en Alemania: andenes, servicios – ViaFrei	Cada estación de Deutsche Bahn: andenes con altura y acceso sin escalones, servicios, asistencia a la movilidad y lo que hay a menos de 300 m – de datos…
+stations	nl	Treinstations in Duitsland: perrons, voorzieningen – ViaFrei	Elk station van Deutsche Bahn: perrons met hoogte en drempelvrije toegang, voorzieningen, reisassistentie en wat er binnen 300 m ligt – uit open data.
+stations	pl	Dworce w Niemczech: perony, wyposażenie – ViaFrei	Każdy dworzec Deutsche Bahn: perony z wysokością i dostępem bez stopni, wyposażenie, pomoc w podróży i to, co jest w promieniu 300 m – z otwartych danych.
+stations	it	Stazioni in Germania: binari, servizi – ViaFrei	Ogni stazione della Deutsche Bahn: marciapiedi con altezza e accesso senza gradini, servizi, assistenza alla mobilità e cosa c'è entro 300 m – da dati aperti.
+stations	lt	Geležinkelio stotys Vokietijoje: peronai, įranga – ViaFrei	Kiekviena Deutsche Bahn stotis: peronai su aukščiu ir prieiga be laiptelių, įranga, judumo paslauga ir kas yra 300 m spinduliu – iš atvirųjų duomenų.
+stations	cs	Nádraží v Německu: nástupiště, vybavení – ViaFrei	Každé nádraží Deutsche Bahn: nástupiště s výškou a bezbariérovým přístupem, vybavení, služba pro cestující s omezenou pohyblivostí a co je do 300 m – z…
+stations	hu	Vasútállomások Németországban: peronok, felszereltség	A Deutsche Bahn minden állomása: peronok magassággal és lépcsőmentes hozzáféréssel, felszereltség, utassegítő szolgálat és ami 300 m-en belül van – nyílt…
+stations	sk	Stanice v Nemecku: nástupištia, vybavenie – ViaFrei	Každá stanica Deutsche Bahn: nástupištia s výškou a bezbariérovým prístupom, vybavenie, služba pre cestujúcich s obmedzenou pohyblivosťou a čo je do 300 m – z…
+stations	da	Togstationer i Tyskland: perroner, faciliteter – ViaFrei	Hver Deutsche Bahn-station: perroner med højde og trinfri adgang, faciliteter, mobilitetsservice og hvad der ligger inden for 300 m – fra åbne data.
+stations	pt	Estações de comboio na Alemanha: plataformas, serviços	Cada estação da Deutsche Bahn: plataformas com altura e acesso sem degraus, serviços, assistência à mobilidade e o que existe num raio de 300 m – de dados…
+stations	hr	Željezničke stanice u Njemačkoj: peroni, oprema – ViaFrei	Svaka stanica Deutsche Bahna: peroni s visinom i pristupom bez stuba, oprema, usluga pomoći pri kretanju i što se nalazi unutar 300 m – iz otvorenih podataka.
+stations	sr	Железничке станице у Немачкој: перони, опрема – ViaFrei	Свака станица Deutsche Bahn-а: перони са висином и приступом без степеника, опрема, услуга помоћи при кретању и шта се налази у кругу од 300 m – из отворених…
+stations	el	Σιδηροδρομικοί σταθμοί στη Γερμανία: αποβάθρες, παροχές	Κάθε σταθμός της Deutsche Bahn: αποβάθρες με ύψος και πρόσβαση χωρίς σκαλιά, παροχές, υπηρεσία κινητικότητας και τι υπάρχει σε ακτίνα 300 m – από ανοικτά…
+stations	lv	Dzelzceļa stacijas Vācijā: peroni, aprīkojums – ViaFrei	Katra Deutsche Bahn stacija: peroni ar augstumu un piekļuvi bez pakāpieniem, aprīkojums, mobilitātes pakalpojums un kas atrodas 300 m rādiusā – no atvērtajiem…
+stop	de	Dom/Hbf · Köln Hbf	Dom/Hbf: A 200 m · 3 Min. zu Fuß vom Bahnhof Köln Hbf
+stop	en	Dom/Hbf · Köln Hbf	Dom/Hbf: A 200 m · 3 min walk from Köln Hbf station
+stop	ru	Dom/Hbf · Köln Hbf	Dom/Hbf: A 200 m · 3 мин пешком от вокзала Köln Hbf
+stop	bg	Dom/Hbf · Köln Hbf	Dom/Hbf: A 200 m · 3 мин пеша от гара Köln Hbf
+stop	uk	Dom/Hbf · Köln Hbf	Dom/Hbf: A 200 m · 3 хв пішки від вокзалу Köln Hbf
+stop	ro	Dom/Hbf · Köln Hbf	Dom/Hbf: A La 200 m · 3 min pe jos de gara Köln Hbf
+stop	tr	Dom/Hbf · Köln Hbf	Dom/Hbf: A Köln Hbf istasyonuna 200 m · yürüyerek 3 dk
+stop	fr	Dom/Hbf · Köln Hbf	Dom/Hbf: A À 200 m · 3 min à pied de la gare Köln Hbf
+stop	es	Dom/Hbf · Köln Hbf	Dom/Hbf: A A 200 m · 3 min a pie de la estación Köln Hbf
+stop	nl	Dom/Hbf · Köln Hbf	Dom/Hbf: A 200 m · 3 min lopen van station Köln Hbf
+stop	pl	Dom/Hbf · Köln Hbf	Dom/Hbf: A 200 m · 3 min pieszo od dworca Köln Hbf
+stop	it	Dom/Hbf · Köln Hbf	Dom/Hbf: A A 200 m · 3 min a piedi dalla stazione Köln Hbf
+stop	lt	Dom/Hbf · Köln Hbf	Dom/Hbf: A 200 m · 3 min. pėsčiomis nuo Köln Hbf stoties
+stop	cs	Dom/Hbf · Köln Hbf	Dom/Hbf: A 200 m · 3 min pěšky od nádraží Köln Hbf
+stop	hu	Dom/Hbf · Köln Hbf	Dom/Hbf: A 200 m · 3 perc gyalog a(z) Köln Hbf állomástól
+stop	sk	Dom/Hbf · Köln Hbf	Dom/Hbf: A 200 m · 3 min pešo od stanice Köln Hbf
+stop	da	Dom/Hbf · Köln Hbf	Dom/Hbf: A 200 m · 3 min. til fods fra Köln Hbf station
+stop	pt	Dom/Hbf · Köln Hbf	Dom/Hbf: A A 200 m · 3 min a pé da estação Köln Hbf
+stop	hr	Dom/Hbf · Köln Hbf	Dom/Hbf: A 200 m · 3 min pješice od kolodvora Köln Hbf
+stop	sr	Dom/Hbf · Köln Hbf	Dom/Hbf: A 200 m · 3 min пешке од станице Köln Hbf
+stop	el	Dom/Hbf · Köln Hbf	Dom/Hbf: A 200 m · με τα πόδια 3 min από τον σταθμό Köln Hbf
+stop	lv	Dom/Hbf · Köln Hbf	Dom/Hbf: A 200 m · 3 min kājām no stacijas Köln Hbf
+fuel	de	Tankstellen je Bundesland – eine Auswahl mit Preisen	Je Bundesland bis zu drei Tankstellen, das günstigste Super E10 zuerst.
+fuel	en	Filling stations by state – a selection with prices	Up to three filling stations per state, cheapest Super E10 first. Chosen from the stations we observe – so not necessarily the cheapest in the state.
+fuel	ru	АЗС по федеральным землям — выборка с ценами — ViaFrei	До трёх АЗС в каждой федеральной земле, сначала самый дешёвый бензин E10.
+fuel	bg	Бензиностанции по провинции – подбор с цени — ViaFrei	До три бензиностанции във всяка провинция, първо най-евтиният бензин E10.
+fuel	uk	АЗС за федеральними землями — добірка з цінами — ViaFrei	До трьох АЗС у кожній федеральній землі, спершу найдешевший бензин E10. Їх обрано з АЗС, за якими ми спостерігаємо, — тож це не обов’язково найдешевші в землі.
+fuel	ro	Benzinării pe landuri – o selecție cu prețuri — ViaFrei	Până la trei benzinării în fiecare land, întâi cea mai ieftină benzină E10.
+fuel	tr	Eyaletlere göre akaryakıt istasyonları – fiyatlı bir seçki	Her eyalette en fazla üç istasyon, en ucuz Süper E10 önce. Gözlediğimiz istasyonlar arasından seçilmiştir – yani eyaletin en ucuzları olmayabilir.
+fuel	fr	Stations-service par Land – une sélection avec les prix	Jusqu’à trois stations-service par Land, la moins chère en Super E10 en premier.
+fuel	es	Gasolineras por estado federado: una selección con precios	Hasta tres gasolineras por estado federado, primero la más barata en Super E10.
+fuel	nl	Tankstations per deelstaat – een selectie met prijzen	Per deelstaat tot drie tankstations, de goedkoopste Euro 95 E10 eerst.
+fuel	pl	Stacje paliw według krajów związkowych – wybór z cenami	Do trzech stacji paliw w każdym kraju związkowym, najpierw najtańsza benzyna Super E10.
+fuel	it	Distributori per Land – una selezione con i prezzi — ViaFrei	Fino a tre distributori per Land, prima la Super E10 più economica. Scelti tra i distributori che osserviamo – quindi non necessariamente i più economici del…
+fuel	lt	Degalinės pagal žemes – atranka su kainomis — ViaFrei	Iki trijų degalinių kiekvienoje žemėje, pirmiausia pigiausias Super E10. Atrinkta iš mūsų stebimų degalinių – todėl nebūtinai pigiausios žemėje.
+fuel	cs	Čerpací stanice podle spolkových zemí – výběr s cenami	Až tři čerpací stanice v každé spolkové zemi, nejlevnější Super E10 nahoře. Vybrány ze stanic, které sledujeme – tedy ne nutně nejlevnější v dané zemi.
+fuel	hu	Benzinkutak tartományonként – válogatás árakkal — ViaFrei	Tartományonként legfeljebb három benzinkút, elöl a legolcsóbb Super E10.
+fuel	sk	Čerpacie stanice podľa spolkových krajín – výber s cenami	Až tri čerpacie stanice v každej spolkovej krajine, najlacnejší Super E10 prvý. Vybrané zo staníc, ktoré sledujeme – teda nie nutne najlacnejšie v krajine.
+fuel	da	Tankstationer pr. delstat – et udvalg med priser — ViaFrei	Op til tre tankstationer pr. delstat, den billigste blyfri 95 E10 først.
+fuel	pt	Postos de combustível por estado federado	Até três postos de combustível por estado federado, primeiro a gasolina Super E10 mais barata.
+fuel	hr	Benzinske postaje po saveznim zemljama – izbor s cijenama	Do tri benzinske postaje po saveznoj zemlji, najjeftiniji Super E10 prvi. Odabrane među postajama koje pratimo – dakle ne nužno najjeftinije u saveznoj zemlji.
+fuel	sr	Бензинске пумпе по савезним државама – избор са ценама	До три бензинске пумпе по савезној држави, најјефтинији Супер E10 први. Изабране међу пумпама које пратимо – дакле не обавезно најјефтиније у савезној држави.
+fuel	el	Πρατήρια καυσίμων ανά κρατίδιο – μια επιλογή με τιμές	Έως τρία πρατήρια ανά κρατίδιο, πρώτα η φθηνότερη αμόλυβδη E10. Επιλέγονται από τα πρατήρια που παρατηρούμε – άρα όχι απαραίτητα τα φθηνότερα στο κρατίδιο.
+fuel	lv	Degvielas uzpildes stacijas pa federālajām zemēm	Līdz trim stacijām katrā federālajā zemē, vispirms lētākais Super E10. Izvēlētas no mūsu novērotajām stacijām – tāpēc ne obligāti lētākās zemē.
+business	de	Live-Mobilitätsdaten als API für Unternehmen — ViaFrei	Verkehr, ÖPNV, Laden und Parken in ganz Deutschland als ein Live-Endpunkt mit Quellen. Starten Sie ein Pilotprojekt oder eine Datenpartnerschaft.
+business	en	Live mobility data API for businesses — ViaFrei	Traffic, transit, charging and parking across Germany as one live endpoint with its sources. Start a pilot or a data partnership.
+business	ru	API данных о мобильности в реальном времени для компаний	Движение, общественный транспорт, зарядка и парковка по всей Германии — одна точка доступа в реальном времени с источниками. Начните с пилотного проекта.
+business	bg	API за данни за мобилността на живо за фирми — ViaFrei	Движение, градски транспорт, зареждане и паркиране в цяла Германия като една точка за достъп на живо с източници. Започнете с пилотен проект.
+business	uk	API даних про мобільність наживо для компаній — ViaFrei	Рух, громадський транспорт, зарядка й паркування по всій Німеччині — одна точка доступу наживо з джерелами. Почніть із пілотного проєкту.
+business	ro	API de date de mobilitate în direct pentru firme — ViaFrei	Trafic, transport public, încărcare și parcare în toată Germania, într-un singur punct de acces în direct cu surse. Începeți cu un proiect pilot.
+business	tr	Şirketler için canlı hareketlilik verisi API'si — ViaFrei	Almanya genelinde trafik, toplu taşıma, şarj ve otopark verisi, kaynaklarıyla tek bir canlı uç noktada. Bir pilot projeyle başlayın.
+business	fr	API de données de mobilité en direct pour entreprises	Trafic, transports, recharge et stationnement dans toute l'Allemagne, en un point d'accès en direct avec ses sources. Lancez un projet pilote.
+business	es	API de datos de movilidad en directo para empresas — ViaFrei	Tráfico, transporte público, recarga y aparcamiento en toda Alemania, en un punto de acceso en directo con sus fuentes. Empiece con un piloto.
+business	nl	API met live mobiliteitsdata voor bedrijven — ViaFrei	Verkeer, openbaar vervoer, laden en parkeren in heel Duitsland als één live eindpunt met bronnen. Start een pilotproject of een datapartnerschap.
+business	pl	API danych o mobilności na żywo dla firm — ViaFrei	Ruch, transport publiczny, ładowanie i parkowanie w całych Niemczech jako jeden punkt dostępu na żywo ze źródłami. Zacznij od projektu pilotażowego.
+business	it	API di dati di mobilità dal vivo per aziende — ViaFrei	Traffico, trasporto pubblico, ricarica e parcheggi in tutta la Germania, in un punto di accesso dal vivo con le fonti. Iniziate con un progetto pilota.
+business	lt	Tiesioginių judumo duomenų API įmonėms — ViaFrei	Eismas, viešasis transportas, įkrovimas ir stovėjimas visoje Vokietijoje viename tiesioginiame prieigos taške su šaltiniais. Pradėkite nuo bandomojo projekto.
+business	cs	API živých dat o mobilitě pro firmy — ViaFrei	Doprava, veřejná doprava, nabíjení a parkování v celém Německu jako jeden živý koncový bod se zdroji. Začněte pilotním projektem.
+business	hu	Élő mobilitási adatok API-ja vállalatoknak — ViaFrei	Forgalom, közösségi közlekedés, töltés és parkolás egész Németországban, egyetlen élő végponton, forrásokkal. Kezdje kísérleti projekttel.
+business	sk	API živých údajov o mobilite pre firmy — ViaFrei	Doprava, verejná doprava, nabíjanie a parkovanie v celom Nemecku ako jeden živý koncový bod so zdrojmi. Začnite pilotným projektom.
+business	da	API med live mobilitetsdata til virksomheder — ViaFrei	Trafik, kollektiv trafik, opladning og parkering i hele Tyskland som ét live endepunkt med kilder. Start et pilotprojekt eller et datapartnerskab.
+business	pt	API de dados de mobilidade ao vivo para empresas — ViaFrei	Trânsito, transportes, carregamento e estacionamento em toda a Alemanha, num ponto de acesso ao vivo com as fontes. Comece com um projeto-piloto.
+business	hr	API podataka o mobilnosti uživo za tvrtke — ViaFrei	Promet, javni prijevoz, punjenje i parkiranje u cijeloj Njemačkoj kao jedna krajnja točka uživo s izvorima. Započnite pilot-projektom.
+business	sr	API података о мобилности уживо за фирме — ViaFrei	Саобраћај, јавни превоз, пуњење и паркирање у целој Немачкој као једна крајња тачка уживо са изворима. Започните пилот-пројектом.
+business	el	API ζωντανών δεδομένων κινητικότητας για επιχειρήσεις	Κυκλοφορία, συγκοινωνίες, φόρτιση και στάθμευση σε όλη τη Γερμανία ως ένα ζωντανό σημείο πρόσβασης με πηγές. Ξεκινήστε με πιλοτικό έργο.
+business	lv	Tiešraides mobilitātes datu API uzņēmumiem — ViaFrei	Satiksme, sabiedriskais transports, uzlāde un stāvvietas visā Vācijā vienā tiešraides piekļuves punktā ar avotiem. Sāciet ar izmēģinājuma projektu.
+developers	de	MCP-Server für deutsche Mobilitätsdaten — ViaFrei	Jeden MCP-Client in einer Minute verbinden: Schnellstart je Client, ein echter Aufruf mit Antwort und jedes Werkzeug mit seinem Schema.
+developers	en	MCP server for German mobility data — ViaFrei	Connect any MCP client in a minute: quickstart for each client, a real call with its answer, and every tool with its schema.
+developers	ru	MCP-сервер для данных о мобильности Германии — ViaFrei	Подключите любой MCP-клиент за минуту: быстрый старт для каждого клиента, настоящий вызов с ответом и каждый инструмент со своей схемой.
+developers	bg	MCP сървър за германски данни за мобилността — ViaFrei	Свържете всеки MCP клиент за минута: бърз старт за всеки клиент, истинско извикване с отговора му и всеки инструмент с неговата схема.
+developers	uk	MCP-сервер для даних про мобільність Німеччини — ViaFrei	Підключіть будь-який MCP-клієнт за хвилину: швидкий старт для кожного клієнта, справжній виклик із відповіддю й кожен інструмент зі своєю схемою.
+developers	ro	Server MCP pentru datele de mobilitate din Germania	Conectați orice client MCP într-un minut: pornire rapidă pentru fiecare client, un apel real cu răspunsul lui și fiecare instrument cu schema sa.
+developers	tr	Alman hareketlilik verisi için MCP sunucusu — ViaFrei	Herhangi bir MCP istemcisini bir dakikada bağlayın: istemci başına hızlı başlangıç, yanıtıyla gerçek bir çağrı ve şemasıyla her araç.
+developers	fr	Serveur MCP pour les données de mobilité allemandes	Connectez un client MCP en une minute : démarrage rapide par client, un vrai appel avec sa réponse et chaque outil avec son schéma.
+developers	es	Servidor MCP para datos de movilidad de Alemania — ViaFrei	Conecte cualquier cliente MCP en un minuto: inicio rápido por cliente, una llamada real con su respuesta y cada herramienta con su esquema.
+developers	nl	MCP-server voor Duitse mobiliteitsdata — ViaFrei	Verbind elke MCP-client in een minuut: snelstart per client, een echte aanroep met zijn antwoord en elk hulpmiddel met zijn schema.
+developers	pl	Serwer MCP dla niemieckich danych o mobilności — ViaFrei	Połącz dowolnego klienta MCP w minutę: szybki start dla każdego klienta, prawdziwe wywołanie z odpowiedzią i każde narzędzie z jego schematem.
+developers	it	Server MCP per i dati di mobilità tedeschi — ViaFrei	Collegate un client MCP in un minuto: avvio rapido per ogni client, una vera chiamata con la risposta e ogni strumento con il suo schema.
+developers	lt	MCP serveris Vokietijos judumo duomenims — ViaFrei	Prijunkite bet kurį MCP klientą per minutę: greita pradžia kiekvienam klientui, tikras iškvietimas su atsakymu ir kiekvienas įrankis su savo schema.
+developers	cs	MCP server pro německá data o mobilitě — ViaFrei	Připojte libovolného klienta MCP za minutu: rychlý start pro každého klienta, skutečné volání s odpovědí a každý nástroj s jeho schématem.
+developers	hu	MCP-szerver német mobilitási adatokhoz — ViaFrei	Csatlakoztasson bármely MCP-klienst egy perc alatt: gyorsindítás kliensenként, egy valódi hívás a válaszával és minden eszköz a sémájával.
+developers	sk	MCP server pre nemecké údaje o mobilite — ViaFrei	Pripojte ľubovoľného klienta MCP za minútu: rýchly štart pre každého klienta, skutočné volanie s odpoveďou a každý nástroj s jeho schémou.
+developers	da	MCP-server til tyske mobilitetsdata — ViaFrei	Forbind enhver MCP-klient på et minut: hurtig start for hver klient, et rigtigt kald med dets svar og hvert værktøj med dets skema.
+developers	pt	Servidor MCP para dados de mobilidade da Alemanha — ViaFrei	Ligue qualquer cliente MCP num minuto: arranque rápido por cliente, uma chamada real com a resposta e cada ferramenta com o seu esquema.
+developers	hr	MCP poslužitelj za njemačke podatke o mobilnosti — ViaFrei	Povežite bilo koji MCP klijent u minuti: brzi početak za svaki klijent, pravi poziv s odgovorom i svaki alat s njegovom shemom.
+developers	sr	MCP сервер за немачке податке о мобилности — ViaFrei	Повежите било који MCP клијент за минут: брзи почетак за сваки клијент, прави позив са одговором и сваки алат са његовом шемом.
+developers	el	Διακομιστής MCP για δεδομένα κινητικότητας της Γερμανίας	Συνδέστε οποιοδήποτε πρόγραμμα MCP σε ένα λεπτό: γρήγορη εκκίνηση ανά πρόγραμμα, μια πραγματική κλήση με απάντηση και κάθε εργαλείο με το σχήμα του.
+developers	lv	MCP serveris Vācijas mobilitātes datiem — ViaFrei	Pievienojiet jebkuru MCP klientu minūtes laikā: ātrs sākums katram klientam, īsts izsaukums ar atbildi un katrs rīks ar savu shēmu.
+examples	de	Alle Beispielfragen — ViaFrei	Jede Frage, die ViaFrei auf dieser Website als Beispiel zeigt – mit dem Werkzeug, das sie beantwortet, und der Antwort, nach Bereichen geordnet.
+examples	en	All example questions — ViaFrei	Every question ViaFrei shows as an example on this site – with the tool that answers it and its answer, grouped by domain.
+examples	ru	Все примеры вопросов — ViaFrei	Каждый вопрос, который ViaFrei показывает на этом сайте как пример, – с инструментом, который на него отвечает, и с ответом, по разделам.
+examples	bg	Всички примерни въпроси — ViaFrei	Всеки въпрос, който ViaFrei показва на този сайт като пример – с инструмента, който отговаря, и с отговора, подредени по области.
+examples	uk	Усі приклади запитань — ViaFrei	Кожне запитання, яке ViaFrei показує на цьому сайті як приклад, – з інструментом, що на нього відповідає, і з відповіддю, за розділами.
+examples	ro	Toate întrebările exemplu — ViaFrei	Fiecare întrebare pe care ViaFrei o arată ca exemplu pe acest site – cu instrumentul care îi răspunde și cu răspunsul, pe domenii.
+examples	tr	Tüm örnek sorular — ViaFrei	ViaFrei'nin bu sitede örnek olarak gösterdiği her soru – onu yanıtlayan araç ve yanıtıyla birlikte, alanlara göre.
+examples	fr	Toutes les questions d’exemple — ViaFrei	Chaque question que ViaFrei montre en exemple sur ce site – avec l’outil qui y répond et sa réponse, classées par domaine.
+examples	es	Todas las preguntas de ejemplo — ViaFrei	Cada pregunta que ViaFrei muestra como ejemplo en este sitio, con la herramienta que la responde y su respuesta, agrupadas por ámbito.
+examples	nl	Alle voorbeeldvragen — ViaFrei	Elke vraag die ViaFrei op deze website als voorbeeld toont – met de tool die hem beantwoordt en het antwoord, geordend per onderwerp.
+examples	pl	Wszystkie przykładowe pytania — ViaFrei	Każde pytanie, które ViaFrei pokazuje jako przykład na tej stronie – z narzędziem, które na nie odpowiada, i z odpowiedzią, według dziedzin.
+examples	it	Tutte le domande di esempio — ViaFrei	Ogni domanda che ViaFrei mostra come esempio su questo sito – con lo strumento che risponde e la sua risposta, raggruppate per tema.
+examples	lt	Visi pavyzdiniai klausimai — ViaFrei	Kiekvienas klausimas, kurį ViaFrei šioje svetainėje rodo kaip pavyzdį – su įrankiu, kuris į jį atsako, ir jo atsakymu, sugrupuota pagal sritis.
+examples	cs	Všechny ukázkové otázky — ViaFrei	Každá otázka, kterou ViaFrei na tomto webu ukazuje jako příklad – s nástrojem, který na ni odpovídá, a s odpovědí, seřazeno podle oblastí.
+examples	hu	Minden példakérdés — ViaFrei	Minden kérdés, amelyet a ViaFrei példaként mutat ezen az oldalon – azzal az eszközzel, amely megválaszolja, és a válaszával, témák szerint csoportosítva.
+examples	sk	Všetky vzorové otázky — ViaFrei	Každá otázka, ktorú ViaFrei na tomto webe ukazuje ako príklad – s nástrojom, ktorý na ňu odpovedá, a s odpoveďou, zoradené podľa oblastí.
+examples	da	Alle eksempelspørgsmål — ViaFrei	Hvert spørgsmål, ViaFrei viser som eksempel på dette websted – med det værktøj, der besvarer det, og svaret, ordnet efter emne.
+examples	pt	Todas as perguntas de exemplo — ViaFrei	Todas as perguntas que o ViaFrei mostra como exemplo neste site – com a ferramenta que responde e a sua resposta, agrupadas por tema.
+examples	hr	Svi primjeri pitanja — ViaFrei	Svako pitanje koje ViaFrei na ovoj stranici prikazuje kao primjer – s alatom koji na njega odgovara i s odgovorom, po područjima.
+examples	sr	Сви примери питања — ViaFrei	Свако питање које ViaFrei на овом сајту приказује као пример – са алатом који на њега одговара и са одговором, по областима.
+examples	el	Όλες οι ενδεικτικές ερωτήσεις — ViaFrei	Κάθε ερώτηση που δείχνει το ViaFrei ως παράδειγμα σε αυτόν τον ιστότοπο – με το εργαλείο που την απαντά και την απάντησή του, ανά θέμα.
+examples	lv	Visi parauga jautājumi — ViaFrei	Katrs jautājums, ko ViaFrei šajā vietnē rāda kā piemēru – ar rīku, kas uz to atbild, un tā atbildi, sagrupēts pa jomām.
+impressum	de	Impressum — ViaFrei	Impressum von viafrei.de: wer ViaFrei betreibt, die Echtzeit-Mobilitätsplattform für KI-Assistenten, und wie Sie den Betreiber erreichen.
+impressum	en	Imprint — ViaFrei	Legal notice of viafrei.de: who runs ViaFrei, the real-time mobility platform for AI assistants, and how to reach the operator.
+impressum	ru	Выходные данные — ViaFrei	Выходные данные viafrei.de: кто управляет ViaFrei, платформой мобильности в реальном времени для ИИ-ассистентов, и как связаться с оператором.
+impressum	bg	Импресум — ViaFrei	Импресум на viafrei.de: кой управлява ViaFrei, платформата за мобилност в реално време за ИИ асистенти, и как да се свържете с оператора.
+impressum	uk	Вихідні дані — ViaFrei	Вихідні дані viafrei.de: хто керує ViaFrei, платформою мобільності в реальному часі для ШІ-асистентів, і як зв’язатися з оператором.
+impressum	ro	Date legale — ViaFrei	Informații legale viafrei.de: cine operează ViaFrei, platforma de mobilitate în timp real pentru asistenți AI, și cum îl contactați pe operator.
+impressum	tr	Künye — ViaFrei	viafrei.de künyesi: yapay zekâ asistanları için gerçek zamanlı mobilite platformu ViaFrei'yi kimin işlettiği ve işletmeciye nasıl ulaşılacağı.
+impressum	fr	Mentions légales — ViaFrei	Mentions légales de viafrei.de : qui exploite ViaFrei, la plateforme de mobilité en temps réel pour assistants IA, et comment joindre l’exploitant.
+impressum	es	Aviso legal — ViaFrei	Aviso legal de viafrei.de: quién opera ViaFrei, la plataforma de movilidad en tiempo real para asistentes de IA, y cómo contactar con el operador.
+impressum	nl	Colofon — ViaFrei	Colofon van viafrei.de: wie ViaFrei exploiteert, het realtime mobiliteitsplatform voor AI-assistenten, en hoe u de exploitant bereikt.
+impressum	pl	Nota prawna — ViaFrei	Nota prawna viafrei.de: kto prowadzi ViaFrei, platformę mobilności w czasie rzeczywistym dla asystentów AI, i jak skontaktować się z operatorem.
+impressum	it	Note legali — ViaFrei	Note legali di viafrei.de: chi gestisce ViaFrei, la piattaforma di mobilità in tempo reale per assistenti IA, e come contattare il gestore.
+impressum	lt	Rekvizitai — ViaFrei	viafrei.de rekvizitai: kas valdo ViaFrei – realaus laiko judumo platformą DI asistentams – ir kaip susisiekti su operatoriumi.
+impressum	cs	Tiráž — ViaFrei	Tiráž viafrei.de: kdo provozuje ViaFrei, platformu mobility v reálném čase pro AI asistenty, a jak kontaktovat provozovatele.
+impressum	hu	Impresszum — ViaFrei	A viafrei.de impresszuma: ki üzemelteti a ViaFreit, a valós idejű mobilitási platformot MI-asszisztensek számára, és hogyan érhető el.
+impressum	sk	Tiráž — ViaFrei	Tiráž viafrei.de: kto prevádzkuje ViaFrei, platformu mobility v reálnom čase pre AI asistentov, a ako kontaktovať prevádzkovateľa.
+impressum	da	Kolofon — ViaFrei	Kolofon for viafrei.de: hvem der driver ViaFrei, realtids-mobilitetsplatformen for AI-assistenter, og hvordan du når operatøren.
+impressum	pt	Informação legal — ViaFrei	Ficha técnica de viafrei.de: quem opera o ViaFrei, a plataforma de mobilidade em tempo real para assistentes de IA, e como contactar o operador.
+impressum	hr	Impresum — ViaFrei	Impresum viafrei.de: tko upravlja ViaFrei, platformom za mobilnost u stvarnom vremenu za AI asistente, i kako kontaktirati operatera.
+impressum	sr	Импресум — ViaFrei	Импресум viafrei.de: ко управља платформом ViaFrei за мобилност у реалном времену за AI асистенте и како контактирати оператора.
+impressum	el	Στοιχεία εκδότη — ViaFrei	Στοιχεία έκδοσης του viafrei.de: ποιος λειτουργεί το ViaFrei, την πλατφόρμα κινητικότητας σε πραγματικό χρόνο για βοηθούς ΤΝ, και πώς επικοινωνείτε.
+impressum	lv	Rekvizīti — ViaFrei	viafrei.de rekvizīti: kas uztur ViaFrei – reāllaika mobilitātes platformu MI asistentiem – un kā sazināties ar operatoru.

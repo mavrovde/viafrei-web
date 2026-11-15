@@ -1,0 +1,10 @@
+---
+/** `/de` and `/en` — the home in one named language; anything else is the 404 (A4). */
+import Home from "../../layouts/Home.astro";
+import { isLang } from "../../i18n/index.js";
+
+const lang = Astro.params["lang"] ?? "";
+if (!isLang(lang)) return Astro.rewrite("/404");
+---
+
+<Home lang={lang} />

@@ -1,0 +1,280 @@
+---
+import shot1 from "../assets/connect/claude-1-add.webp";
+import shot2 from "../assets/connect/claude-2-name-url.webp";
+import shot3 from "../assets/connect/claude-3-allow.webp";
+import shot4 from "../assets/connect/claude-4-answer.webp";
+import phone1 from "../assets/connect/phone-claude-1.webp";
+import phone2 from "../assets/connect/phone-claude-2.webp";
+import phone3 from "../assets/connect/phone-claude-3.webp";
+import phone4 from "../assets/connect/phone-claude-4.webp";
+import phone4b from "../assets/connect/phone-claude-4b.webp";
+import termClaudeCode from "../assets/connect/term-claude-code.webp";
+import termGeminiCli from "../assets/connect/term-gemini-cli.webp";
+import termGeneric from "../assets/connect/term-generic.webp";
+import termStdio from "../assets/connect/term-stdio.webp";
+import { clientExtrasHtml, type ShotFile } from "../lib/connect-blocks.js";
+import type { ShotId } from "../site/connect-clients.js";
+/**
+ * "Für Reisende" and `/connect` (#142, #379 PR-08): the five questions, the
+ * real answers of the v1.7.6 and v1.8.1 integrations (#472, `site/live-examples.ts`),
+ * the address said once, one guide per client, the fuller beta paragraph
+ * (#471, `#beta`, linked from every page's notice), what the server does NOT answer
+ * (`viafrei://coverage`, read at build and said in the page language through
+ * `site/not-covered.ts`), and
+ * privacy in three sentences. No external image: since #1090 the client blocks carry our own committed images
+ * (claude.ai screenshots and the terminal transcripts of our container runs), hashed under /_a/.
+ */
+import { PAGE_HEAD_COPY } from "@viafrei/design";
+import { EXAMPLES_OPEN, foldSourcesFor, splitFold } from "../lib/fold-credits.js";
+import Base from "./Base.astro";
+import PageHead from "../components/PageHead.astro";
+import EndpointCopy from "../components/EndpointCopy.astro";
+import Answer from "../components/Answer.astro";
+import LiveCard from "../components/LiveCard.astro";
+import CreditItem from "../components/CreditItem.astro";
+import Ask from "../components/Ask.astro";
+import RoadSign from "../components/RoadSign.astro";
+import catalogue from "../generated/catalogue.json" with { type: "json" };
+import register from "../generated/register.json" with { type: "json" };
+import { t } from "../i18n/index.js";
+import { CONNECT_PROMPTS, NPM_PACKAGE, answerFor } from "../site/connect-prompts.js";
+import { NOT_COVERED } from "../site/not-covered.js";
+import { connectExamples } from "../site/live-examples.js";
+import { connectClients } from "../site/connect-clients.js";
+import { phoneAnchor, phoneBlockHtml, phoneClients } from "../site/connect-phone.js";
+import { MCP_SSE_ENDPOINT } from "../site/endpoints.js";
+import { endpointChipHtml } from "../lib/connect-note.js";
+import { pathFor, type Lang } from "../site/pages.js";
+import { askAboutOf, askQuestion, asksAbout } from "../lib/next-step.js";
+import { connectDesk, deskScript } from "../lib/desk.js";
+
+interface Props {
+  lang: Lang;
+  /** #1110 item 3: the request's query — `?about=`/`?road=` from an entry page's "Weiter" row. */
+  params?: URLSearchParams;
+}
+const { lang, params = new URLSearchParams() } = Astro.props;
+// #1110 item 3: a subject from an entry page becomes a prefilled question; any such address is noindex (the canonical
+// stays the bare page), and a subject that fails the check is shown as nothing.
+const about = askAboutOf(params);
+const question = about === null ? null : askQuestion(lang, about);
+// THE client list (`site/connect-clients.ts`): the note under every example answer reads its short steps from it (#1001)
+// #1090: the real claude.ai screenshots and the terminal transcripts (hashed under /_a/ by the build), with their own sizes
+const SHOTS: Record<ShotId, ShotFile> = {
+  claude1: { src: shot1.src, width: shot1.width, height: shot1.height },
+  claude2: { src: shot2.src, width: shot2.width, height: shot2.height },
+  claude3: { src: shot3.src, width: shot3.width, height: shot3.height },
+  claude4: { src: shot4.src, width: shot4.width, height: shot4.height },
+  // #1106: the phone steps' captures — claude.ai in a phone's browser, 2026-11-01
+  phone1: { src: phone1.src, width: phone1.width, height: phone1.height },
+  phone2: { src: phone2.src, width: phone2.width, height: phone2.height },
+  phone3: { src: phone3.src, width: phone3.width, height: phone3.height },
+  phone4: { src: phone4.src, width: phone4.width, height: phone4.height },
+  phone4b: { src: phone4b.src, width: phone4b.width, height: phone4b.height },
+  claudeCode1: { src: termClaudeCode.src, width: termClaudeCode.width, height: termClaudeCode.height },
+  geminiCli1: { src: termGeminiCli.src, width: termGeminiCli.width, height: termGeminiCli.height },
+  generic1: { src: termGeneric.src, width: termGeneric.width, height: termGeneric.height },
+  stdio1: { src: termStdio.src, width: termStdio.width, height: termStdio.height },
+};
+const clients = connectClients(lang);
+const liveCards = connectExamples(new Date());
+// #1179 under FS-2026-11-06: the first three examples stand open, and so does every one crediting Tankerkönig (FS5) or a
+// class the ruling did not read (FS8, none since FS12); the rest fold, their summary naming every publisher inside (FS3)
+const prompts = splitFold(CONNECT_PROMPTS, EXAMPLES_OPEN, (p) => answerFor(p, lang).credits);
+const promptSources = foldSourcesFor(lang, prompts.folded.flatMap((p) => answerFor(p, lang).credits));
+const cards = splitFold(liveCards, EXAMPLES_OPEN, (e) => e.credits);
+const cardSources = foldSourcesFor(lang, cards.folded.flatMap((e) => e.credits));
+// #1180: the desktop dashboard's one script
+Astro.locals.hasScript = true;
+---
+
+<Base lang={lang} page="connect" robots={asksAbout(params) ? "noindex, follow" : undefined}>
+  {/* #1180: from 1024 px a dashboard — the address sticky on the right, the guides and the examples on the left */}
+  <div class="desk desk--connect">
+  <section class="block page-head">
+    <div class="wrap">
+      <PageHead as="div" wrap={false} h1={t(lang, "connectPage.title")}>
+        <p class="lead">{t(lang, "connectPage.lead")}</p>
+        {/* #1106: a visitor on a phone reaches the phone steps from the page head (header CTA → here → this link) */}
+        <p class="connect-jump"><a href="#phone">{t(lang, "connectPage.phone.jump")}</a></p>
+      </PageHead>
+      {
+        question !== null && (
+          <div class="ask connect-about" id="about">
+            <p>{t(lang, "connectPage.about.lead")}</p>
+            <Ask lang={lang} text={question} />
+          </div>
+        )
+      }
+    </div>
+  </section>
+
+  {/* #1179: the address first, then one guide open at a time, the examples below */}
+  <section class="block desk__side" id="endpoint" aria-labelledby="ep-h">
+    <div class="wrap">
+      <h2 id="ep-h">{t(lang, "connectPage.endpointHeading")}</h2>
+      {/* #1003: the endpoint chip, with its copy button */}
+      <p class="connect-endpoint" set:html={endpointChipHtml(lang, "connect")} />
+      <p>{t(lang, "connectPage.endpointNote")}</p>
+      <p class="muted">{t(lang, "connectPage.legacyNote")} <code>{MCP_SSE_ENDPOINT}</code></p>
+    </div>
+  </section>
+
+  {/* #1106: ViaFrei on a phone — per assistant app only what its vendor documents, never marked as tried on a device until it was */}
+  <section class="block" id="phone" aria-labelledby="ph-h">
+    <div class="wrap">
+      <h2 id="ph-h">{t(lang, "connectPage.phone.heading")}</h2>
+      <p>{t(lang, "connectPage.phone.lead")}</p>
+      {
+        // #1179: the phone guide is one of the one-at-a-time group too, closed until asked: its captures were four screens
+        phoneClients().map((c) => (
+          <details class="client" id={phoneAnchor(c.id)} name="vf-client">
+            <summary translate="no">{c.name}</summary>
+            <Fragment set:html={phoneBlockHtml(lang, c, SHOTS)} />
+          </details>
+        ))
+      }
+    </div>
+  </section>
+
+  <section class="block" id="clients" aria-labelledby="cl-h">
+    <div class="wrap">
+      <h2 id="cl-h">{t(lang, "connectPage.clientsHeading")}</h2>
+      {
+        // #1090: each block carries its own check line — verified in the client (date, version), or a draft line with the reason
+        clients.map((c) => (
+          <details class="client" id={c.anchor} name="vf-client">
+            <summary translate={c.id === "generic" || c.id === "stdio" ? undefined : "no"}>{c.name}</summary>
+            {c.flow === undefined && <p>{c.steps}</p>}
+            {c.code !== undefined && <pre><code>{c.code}</code></pre>}
+            {c.after !== undefined && <p class="muted">{c.after}</p>}
+            <Fragment set:html={clientExtrasHtml(lang, c, SHOTS)} />
+          </details>
+        ))
+      }
+      <p class="muted"><a href={NPM_PACKAGE} rel="noopener noreferrer">npmjs.com/package/viafrei</a></p>
+    </div>
+  </section>
+
+  <section class="block" id="asks" aria-labelledby="ask-h">
+    <div class="wrap">
+      <h2 id="ask-h">{t(lang, "connectPage.askHeading")}</h2>
+      <p>{t(lang, "connectPage.askLead")}</p>
+      <div class="asks">
+        {
+          prompts.open.map((p) => (
+            <div class="qa">
+              <div class="ask">
+                <Ask lang={lang} text={t(lang, p.key)} />
+                <p class="ask__tool">
+                  <code>{p.tool}</code>
+                </p>
+              </div>
+              {/* what production answered to THIS question, in this page's language's question (owner 2026-10-05) */}
+              <Answer lang={lang} msg={p.answerKey} answer={answerFor(p, lang)} source="connect" />
+            </div>
+          ))
+        }
+      </div>
+      {
+        prompts.folded.length > 0 && (
+          <details class="fold connect-more">
+            <summary class="fold__summary"><span class="fold__label">{t(lang, "connectPage.moreExamples")}</span><Fragment set:html={promptSources} /></summary>
+            <div class="asks">
+              {prompts.folded.map((p) => (
+                <div class="qa">
+                  <div class="ask">
+                    <Ask lang={lang} text={t(lang, p.key)} />
+                    <p class="ask__tool">
+                      <code>{p.tool}</code>
+                    </p>
+                  </div>
+                  <Answer lang={lang} msg={p.answerKey} answer={answerFor(p, lang)} source="connect" />
+                </div>
+              ))}
+            </div>
+          </details>
+        )
+      }
+    </div>
+  </section>
+
+  <section class="block" id="answers" aria-labelledby="ans-h">
+    <div class="wrap">
+      <h2 id="ans-h">{t(lang, "connectPage.live.heading")}</h2>
+      <p>{t(lang, "connectPage.live.lead")}</p>
+      <div class="cards">
+        {
+          // every card (#746: the cap and the rotation are gone, the page budget is 500 KB) but one whose stated end has passed (#473); #1179: three stand
+          cards.open.map((e) => <LiveCard lang={lang} e={e} source="connect" />)
+        }
+      </div>
+      {
+        cards.folded.length > 0 && (
+          <details class="fold connect-more">
+            <summary class="fold__summary"><span class="fold__label">{t(lang, "connectPage.moreExamples")}</span><Fragment set:html={cardSources} /></summary>
+            <div class="cards">{cards.folded.map((e) => <LiveCard lang={lang} e={e} source="connect" />)}</div>
+          </details>
+        )
+      }
+      {/* #747: every example of the site, the home's moments and fuel requests too, by domain */}
+      <p class="examples-link"><a href={pathFor("examples", lang)}>{t(lang, "connectPage.allExamples")}</a></p>
+    </div>
+  </section>
+
+
+
+
+  <section class="block" id="beta" aria-labelledby="beta-h">
+    <div class="wrap">
+      <div class="band band--temporary beta-note">
+        <div class="sign__row">
+          <RoadSign kind="warning" label={t(lang, "beta.sign")} class="beta__sign" />
+          <h2 id="beta-h">{t(lang, "connectPage.betaHeading")}</h2>
+        </div>
+        <p>{t(lang, "connectPage.beta1")}</p>
+        <p>{t(lang, "connectPage.beta2")}</p>
+        <p>{t(lang, "connectPage.beta3")}</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="block" id="limits" aria-labelledby="nc-h">
+    <div class="wrap">
+      <h2 id="nc-h">{t(lang, "connectPage.notCoveredHeading")}</h2>
+      <p>{t(lang, "connectPage.notCoveredLead")}</p>
+      <ul>{NOT_COVERED.map((x) => <li>{t(lang, x.key)}</li>)}</ul>
+    </div>
+  </section>
+
+  <section class="block" id="sources" aria-labelledby="src-h">
+    <div class="wrap">
+      <h2 id="src-h">{t(lang, "connectPage.sourcesHeading")}</h2>
+      <p>{t(lang, "connectPage.sourcesLead")}</p>
+      {/* #1179: on a phone the whole register is one "show all N" line (about forty screens open); open from 601 px up */}
+      <details class="fold connect-sources">
+        <summary class="fold__summary">{PAGE_HEAD_COPY[lang].showAll.replace("{n}", String(catalogue.credits.length))}</summary>
+        <ul class="catalogue credits">
+          {catalogue.credits.map((c) => <CreditItem c={c} lang={lang} />)}
+        </ul>
+      </details>
+      {catalogue.credits.some((c) => c.id === "tankerkoenig") && <p class="muted" lang="de">{register.mtskNote}</p>}
+    </div>
+  </section>
+
+  <section class="block" id="privacy" aria-labelledby="pr-h">
+    <div class="wrap">
+      <h2 id="pr-h">{t(lang, "connectPage.privacyHeading")}</h2>
+      <p>
+        {t(lang, "connectPage.privacy1")}
+        {t(lang, "connectPage.privacy2")}
+        {t(lang, "connectPage.privacy3")} <a href={pathFor("datenschutz", "de")}>{t(lang, "connectPage.privacyLink")}</a>.
+      </p>
+    </div>
+  </section>
+  </div>
+  {/* #1180: the desktop's collapse (nothing below 1024 px) */}
+  <script is:inline set:html={deskScript(connectDesk(lang))} />
+  {/* #1003: the endpoint chip's copy script, once for every chip on the page */}
+  <EndpointCopy />
+</Base>

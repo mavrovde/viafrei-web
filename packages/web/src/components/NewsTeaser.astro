@@ -1,0 +1,42 @@
+---
+/**
+ * The home's News strip (#588): usually seven "new" entries this language has
+ * text for, the most valuable first (`homeNewsFor`, owner 2026-10-15; a plan is
+ * not news of something shipped, and the strip's heading is "New on ViaFrei")
+ * — badge, date, one line linking to the entry on the News page —
+ * and the link to the page. Static text from `src/news/entries.ts`, so it adds
+ * no fetch to the home and stays a few hundred bytes. With no entry in this
+ * language (#449) the strip is left out rather than filled with another one.
+ */
+import { t } from "../i18n/index.js";
+import { calendarDay } from "../lib/dates.js";
+import { homeNewsFor } from "../news/entries.js";
+import { pathFor, type Lang } from "../site/pages.js";
+
+interface Props {
+  lang: Lang;
+}
+const { lang } = Astro.props;
+const newest = homeNewsFor(lang).filter((e) => e.kind === "new");
+const page = pathFor("news", lang);
+---
+
+{
+  newest.length > 0 && (
+    <section class="block news-teaser" id="news" aria-labelledby="news-h">
+      <div class="wrap">
+        <h2 id="news-h">{t(lang, "newsPage.teaserHeading")}</h2>
+        <ul class="news-teaser__list">
+          {newest.map((e) => (
+            <li>
+              <span class={`news-badge news-badge--${e.kind}`}>{t(lang, e.kind === "new" ? "newsPage.badgeNew" : "newsPage.badgePlan")}</span>{" "}
+              <time datetime={e.date}>{calendarDay(e.date, lang)}</time>{" "}
+              <a href={`${page}#${e.id}`}>{e.t.title}</a>
+            </li>
+          ))}
+        </ul>
+        <p class="news-teaser__all"><a href={page}>{t(lang, "newsPage.teaserAll")}</a></p>
+      </div>
+    </section>
+  )
+}

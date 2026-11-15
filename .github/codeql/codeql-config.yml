@@ -1,0 +1,15 @@
+# CodeQL configuration of the Security workflow's "CodeQL (TypeScript)" job (security-extended queries).
+#
+# Test code is left out of the analysis: the unit suites (packages/*/test) and the browser suite
+# (packages/web/e2e). None of it reaches the image: .dockerignore and the Dockerfile ship the built
+# packages/web/dist alone, and the build reads no test file. What the security queries find there is
+# assertion code (an unanchored expression in an expect, a tag stripped to compare text, a fixture
+# file read and sent to a local stub), not a path an attacker can reach, and a test fixture read as
+# a "source" produced false flows into runtime code. Everything else is analysed: packages/*/src
+# (including the design package's test helpers, packages/design/src/testing, which are source),
+# packages/web/scripts, scripts/ and the root test/ (the release tooling, which runs in CI).
+# SECURITY.md ("Automated checks") states the same scope.
+name: viafrei-web CodeQL
+paths-ignore:
+  - packages/*/test/**
+  - packages/web/e2e/**

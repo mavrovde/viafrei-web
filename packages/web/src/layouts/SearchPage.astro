@@ -1,0 +1,29 @@
+---
+/**
+ * The site search's results page (#1111): `/<lang>/search?q=…` — what was typed stands in the header's one search field
+ * (#1153: no page carries a second one), and every group
+ * expanded (20 a group, a kind's own pages behind "all results of this kind"). Not a row of the page map: `noindex,
+ * follow` (its links are followed, the page itself never enters an index), in no sitemap, `Disallow`ed in robots.txt
+ * (`site/search.ts`), unmeasured (a dynamic page, `measurementOf`), and kept by nobody (`no-store`).
+ */
+import Base from "./Base.astro";
+import PageHead from "../components/PageHead.astro";
+import { t } from "../i18n/index.js";
+import type { Lang } from "../site/pages.js";
+import { SEARCH_ALTERNATES, searchPath } from "../site/search.js";
+
+interface Props {
+  lang: Lang;
+  q: string;
+  html: string;
+}
+const { lang, q, html } = Astro.props;
+Astro.response.headers.set("Cache-Control", "no-store");
+const title = `${t(lang, "search.title")} — ViaFrei`;
+---
+
+<Base lang={lang} page="start" searchQuery={q} robots="noindex, follow" dynamic={{ title, description: t(lang, "search.description"), path: searchPath(lang), alternates: SEARCH_ALTERNATES }}>
+  <PageHead h1={t(lang, "search.title")} class="search-page">
+    <div class="search-page__results" set:html={html} />
+  </PageHead>
+</Base>

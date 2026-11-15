@@ -1,0 +1,1274 @@
+{
+  "meta": {
+    "tagline": "Het Duitse realtime mobiliteitsplatform voor AI",
+    "pitch": "ViaFrei geeft AI-assistenten realtime inzicht in Duitsland. Treinen en bussen, verkeer en wegwerkzaamheden, brandstof, laden, parkeren en weer. Eén MCP. Geen API-sleutel. Geen aanmelding.",
+    "description": "File, afsluitingen, wegwerkzaamheden, trein, parkeren, laden en tanken in Duitsland – live uit open data, via je AI-assistent, elk cijfer met bron.",
+    "siteName": "ViaFrei"
+  },
+  "a11y": {
+    "skip": "Naar de inhoud",
+    "mainNav": "Hoofdnavigatie",
+    "langNav": "Taal kiezen",
+    "currentLang": "huidige taal",
+    "sample": "Voorbeeldwaarden, geen live gegevens",
+    "crumbs": "U bent hier"
+  },
+  "nav": {
+    "brand": "ViaFrei",
+    "claim": "Verkeersdata, in gewone taal",
+    "tools": "Voor ontwikkelaars",
+    "cta": "Verbinden met je AI",
+    "day": "Je dag",
+    "start": "Aan de slag",
+    "ctaShort": "AI verbinden",
+    "ctaLabel": "ViaFrei verbinden met je AI-assistent ({clients})"
+  },
+  "beta": {
+    "label": "Bèta",
+    "short": "ViaFrei is in bèta: antwoorden en dekking kunnen veranderen, en de AI kan fouten maken. Controleer belangrijke gegevens bij de genoemde bron.",
+    "more": "Wat dit betekent",
+    "sign": "Verkeersbord: gevaar",
+    "line": "Controleer bij de bron"
+  },
+  "hero": {
+    "lead": "Als een goed geïnformeerde vriend: rijdt mijn trein? Is de snelweg vrij? Is er een laadpaal vrij? ViaFrei geeft je assistent de cijfers van vandaag, elk met bron.",
+    "primary": "Verbind je AI in één minuut",
+    "secondary": "Je dag met ViaFrei",
+    "clients": "Voor:",
+    "phase": "Opbouwfase: antwoorden zijn informatie, geen juridisch advies.",
+    "trust": {
+      "free": "Gratis",
+      "account": "Geen account bij ons",
+      "app": "Geen extra app",
+      "sources": "Elk cijfer met bron"
+    },
+    "connected": "Je AI-assistent gebruikt deze live gegevens alleen als ViaFrei ermee is verbonden – zonder verbinding antwoordt hij uit zijn trainingsdata."
+  },
+  "sign": {
+    "label": "Voorbeeldantwoord, ingekort",
+    "question": "Is de A8 richting München vrij?",
+    "answerBefore": "Tussen Stuttgart en Ulm twee wegwerkzaamheden, geen afsluiting — de weg is",
+    "answerHighlight": "vrij",
+    "answerAfter": ".",
+    "meta": "Voorbeeld: zo antwoordt je assistent met ViaFrei — ingekort, met voorbeeldwaarden.",
+    "badge": "{road} – pagina van de snelweg"
+  },
+  "proof": {
+    "tiles": {
+      "reports": {
+        "title": "Meldingen op snelwegen"
+      },
+      "charging": {
+        "title": "Laadpunten"
+      },
+      "lorry": {
+        "title": "Parkeerplaatsen voor vrachtwagens"
+      },
+      "lifts": {
+        "title": "Liften en roltrappen"
+      }
+    }
+  },
+  "tile": {
+    "error": "nu niet leesbaar",
+    "errorNote": "Deze bron antwoordt nu niet. We tonen liever niets dan een oud cijfer als nieuw.",
+    "loading": "wordt geladen …",
+    "loadingNote": "Dit cijfer komt eraan. Het verschijnt zodra de bron antwoordt."
+  },
+  "tools": {
+    "heading": "Tools per onderwerp",
+    "lead": "Je assistent kiest zelf de juiste tool. De lijst komt van de server, niet uit een folder.",
+    "showAll": "{n, plural, one {De # tool tonen} other {Alle # tools tonen}}",
+    "groups": {
+      "roads": "Snelweg en weg",
+      "rail": "Trein",
+      "transit": "Openbaar vervoer",
+      "energy": "Laden en tanken",
+      "places": "Plaatsen en adressen",
+      "rules": "Regels en weer"
+    },
+    "count": "{n, plural, one {# tool} other {# tools}}"
+  },
+  "connect": {
+    "heading": "In 60 seconden verbonden",
+    "lead": "Eén eindpunt, geen account, geen sleutel. Kies je client en volg de stappen.",
+    "endpointLabel": "MCP-eindpunt (Streamable HTTP)",
+    "legacyLabel": "Voor oudere clients (HTTP + SSE)",
+    "clients": {
+      "claude": "Claude (desktop en claude.ai)",
+      "chatgpt": "ChatGPT",
+      "other": "Andere MCP-clients"
+    },
+    "draft": "Concept — deze stappen zijn nog niet op de client gecontroleerd.",
+    "steps": {
+      "claude": {
+        "s1": "Instellingen → Connectors → “Add custom connector”.",
+        "s2": "Plak het eindpunt hierboven en sla op.",
+        "s3": "Vraag: “Is de A8 richting München vrij?”"
+      },
+      "chatgpt": {
+        "s1": "Instellingen → Connectors → “Create” (ontwikkelaarsmodus).",
+        "s2": "Vul het eindpunt hierboven in als MCP-server.",
+        "s3": "Kies de connector in de chat en stel je vraag."
+      },
+      "other": {
+        "s1": "Streamable HTTP op het eindpunt hierboven; oudere clients gebruiken het SSE-pad.",
+        "s2": "Geen authenticatie tijdens de opbouwfase.",
+        "s3": "tools/list geeft de catalogus; elk antwoord draagt zijn bron."
+      }
+    },
+    "cta": "Naar de handleiding voor ontwikkelaars",
+    "showClients": "Stappen voor je client tonen"
+  },
+  "sources": {
+    "heading": "Bronnen en vertrouwen",
+    "lead": "Elk cijfer draagt de bron die het toestaat — letterlijk en onvertaald, op de tegel die het toont.",
+    "creditsLabel": "De bronnen van de cijfers op deze pagina",
+    "creditsShow": "{n, plural, one {De # bronregel tonen} other {Alle # bronregels tonen}}",
+    "licenceText": "licentietekst",
+    "notAnswered": {
+      "heading": "Wat we niet beantwoorden",
+      "routing": "Geen routeplanning — we zeggen wat er op de weg aan de hand is, niet welke je moet nemen.",
+      "legal": "Geen juridisch advies — de antwoorden over regels noemen bron en controledatum en zijn informatie.",
+      "fuelFeed": "Geen prijsdata om op voort te bouwen — brandstofprijzen zijn consumenteninformatie, geen API."
+    },
+    "privacy": {
+      "heading": "Privacy in drie zinnen",
+      "s1": "Voordat je toestemming geeft, laadt deze pagina geen lettertype, script of afbeelding van derden.",
+      "s2": "We tellen bezoeken zonder cookies, alleen als dagtotalen op onze eigen server; Google Analytics draait alleen als je toestemming geeft.",
+      "s2Clarity": "We tellen bezoeken zonder cookies, alleen als dagtotalen op onze eigen server; Google Analytics en Microsoft Clarity draaien alleen als je toestemming geeft.",
+      "s3": "Je assistent praat met onze server — we bewaren geen accounts en geen profielen."
+    }
+  },
+  "audience": {
+    "heading": "Voor wie",
+    "travellers": {
+      "title": "Voor reizigers",
+      "text": "Vraag het je assistent voor vertrek, op het perron of bij de laadpaal — en krijg een antwoord met bron.",
+      "cta": "Zo maak je verbinding"
+    },
+    "developers": {
+      "title": "Voor ontwikkelaars",
+      "text": "Eén MCP-server via Streamable HTTP, een openbare catalogus, een stdio-brug op npm. Geen sleutel tijdens de opbouwfase.",
+      "cta": "Naar de documentatie"
+    },
+    "business": {
+      "title": "Voor bedrijven",
+      "text": "Geschiedenis van elke realtime melding, vragen over wagenparken en locaties, een heldere licentiepositie. Praat met ons voordat je bouwt.",
+      "cta": "Contact opnemen"
+    },
+    "show": "Voor wie ViaFrei is"
+  },
+  "footer": {
+    "imprint": "Colofon",
+    "privacy": "Privacy",
+    "privacySettings": "Privacy-instellingen",
+    "terms": "Gebruiksvoorwaarden",
+    "languages": "Talen",
+    "refresh": "Deze pagina laadt elke 20 minuten opnieuw; elke tegel toont hoe oud zijn cijfer is.",
+    "openData": "Gebouwd op open data. Elk cijfer noemt zijn bron."
+  },
+  "consent": {
+    "title": "Mogen we Google Analytics gebruiken?",
+    "titleClarity": "Mogen we Google Analytics en Microsoft Clarity gebruiken?",
+    "body": "Google Analytics wordt pas geladen nadat je toestemming geeft. Weigeren is net zo goed één klik, en wordt onthouden. Onze eigen bezoekerstelling zonder cookies loopt hoe dan ook (zie Privacy).",
+    "bodyClarity": "Google Analytics en Microsoft Clarity worden pas geladen nadat u toestemming geeft. Clarity legt klikken, scrollen en muisbewegingen op deze pagina vast, waarbij alle teksten en invoer afgeschermd blijven. Microsoft gebruikt deze gegevens ook voor eigen doeleinden, ook voor reclame. Weigeren is net zo goed één klik en wordt onthouden. Onze eigen bezoekerstelling zonder cookies loopt hoe dan ook (zie Privacy).",
+    "accept": "Akkoord",
+    "decline": "Weigeren",
+    "more": "Privacy",
+    "state": {
+      "none": "U hebt nog geen keuze gemaakt.",
+      "denied": "Uw huidige keuze: geweigerd op {date}.",
+      "granted": "Uw huidige keuze: akkoord op {date}."
+    }
+  },
+  "notFound": {
+    "title": "Deze pagina bestaat niet",
+    "text": "Dit adres leidt nergens heen. De startpagina is één klik verwijderd.",
+    "choiceTitle": "Meerdere plaatsen hebben deze naam",
+    "choiceText": "Welke bedoel je?",
+    "back": "Naar de startpagina",
+    "connect": "Verbind je assistent",
+    "developers": "Voor ontwikkelaars",
+    "business": "Voor bedrijven"
+  },
+  "now": {
+    "heading": "Heel Duitsland",
+    "lead": "Alle landelijke cijfers op één plek, per onderwerp – elk met tijdstip en bron.",
+    "stationTop": {
+      "head": "Stations nu: uitval, vertragingen, storingsmeldingen, liften",
+      "all": "Alle stations",
+      "search": "Station zoeken",
+      "go": "Zoeken"
+    }
+  },
+  "tiles": {
+    "punctuality": "Stiptheid, bus en trein",
+    "lifts": "Liften en roltrappen",
+    "reports": "De belangrijkste meldingen",
+    "jams": "Files in de steden, nu",
+    "station": "Live op grote stations",
+    "lorry": "Vrachtwagenparkeren en verzorgingsplaatsen",
+    "carparks": "Parkeergarages en P+R in steden",
+    "charging": "Laadpunten",
+    "fuel": "Brandstofprijzen, waargenomen"
+  },
+  "day": {
+    "heading": "Je dag met ViaFrei",
+    "lead": "Negen momenten waarop één korte vraag tijd bespaart — met het cijfer van vandaag dat laat zien dat het antwoord klopt.",
+    "howTo": "Zo vraag je het je assistent",
+    "howToText": "Houd een vraag ingedrukt (of selecteer hem), kopieer en plak hem in de chat. Je assistent kiest zelf de juiste tool.",
+    "more": "Nog twee vragen en een grens",
+    "answer": {
+      "label": "ViaFrei antwoordde",
+      "asOf": "Bijgewerkt: {asOf}"
+    },
+    "limitLabel": "Eerlijk gezegd",
+    "cta": "Aan de slag",
+    "moments": {
+      "commute": {
+        "title": "’s Ochtends naar het werk",
+        "scene": "7.10 uur, koffie in de hand: rijdt het openbaar vervoer normaal — en rijdt mijn trein?",
+        "q1": "Rijden bussen en treinen in Hamburg nu op tijd?",
+        "a1": "{share}% van de waargenomen ritten van het afgelopen uur had meer dan 5 minuten vertraging – ongeveer evenveel als het uur ervoor ({before}%).",
+        "limit": "Stiptheid tonen we per regio, niet per lijn.",
+        "q2": "Wanneer vertrekt de volgende trein van Hannover Centraal, en heeft hij vertraging?",
+        "q3": "Vallen er op het vertrekbord van Keulen Centraal het komende uur treinen uit?",
+        "a2": "Eerst {l1} naar {d1} (gepland {t1}, spoor {p1}) met +{delay} min, rond {exp}; daarna {l2} naar {d2} om {t2}, op tijd.",
+        "a3": "Er valt er geen uit: {n} vertrekken tot {last}; de grootste vertraging heeft {l1} naar {d1}, +{delay} min."
+      },
+      "bus": {
+        "title": "Met bus en tram",
+        "scene": "Onderweg in de stad: waar is het dichtstbijzijnde station, en rijdt het vervoer?",
+        "q1": "Welk station ligt het dichtst bij de Dom van Keulen?",
+        "q2": "Wanneer vertrekt de volgende S-Bahn vanaf Frankfurt Hauptwache?",
+        "a1": "{s1}, op {km},{kmd} km; daarna {s2} en {s3}.",
+        "limit": "De dienstregeling van elke bus- en tramhalte tonen we zodra die geladen is — tot dan stations en de situatie in je regio.",
+        "board": "Dienstregeling bij je halte",
+        "a2": "Eerst de {l1} naar {d1} om {t1} van spoor {p1}, op tijd; de {l2} naar {d2} van {t2} heeft +{delay2} min, rond {exp2}.",
+        "q3": "Vertrekken er op het hoofdstation van Leipzig nu treinen met vertraging?",
+        "a3": "Ja, twee: de {l1} naar {d1} met +{dl1} min van spoor {p1} en de {l2} naar {d2} met +{dl2} min; de andere {n} komende vertrekken zijn op tijd."
+      },
+      "station": {
+        "title": "Op het station",
+        "scene": "Met kinderwagen, rolstoel of koffer: werkt de lift naar het perron?",
+        "q1": "Werkt de lift op Keulen Centraal?",
+        "a1": "Op {station} zijn {working} van de {total} gemelde liften in bedrijf; één is buiten bedrijf, voor één meldt de spoorwegmaatschappij geen status.",
+        "limit": "Liften en roltrappen op stations van Deutsche Bahn; andere exploitanten nog niet.",
+        "q2": "Zijn alle liften op station Erlangen in bedrijf?",
+        "a2": "Ja: de enige gemelde lift op {station}, naar spoor {platforms}, is in bedrijf.",
+        "q3": "Van welk spoor vertrekt de volgende ICE vanaf Neurenberg Centraal?",
+        "a3": "De {train} naar {dest} om {t} van spoor {p}, op tijd."
+      },
+      "driving": {
+        "title": "Met de auto",
+        "scene": "Voor vertrek: files, afsluitingen, wegwerkzaamheden — en waar tanken nu goedkoop is.",
+        "q1": "Is de A8 richting München nu vrij?",
+        "a1": "Niet helemaal: tussen {a} en {b} richting München meldt de politie een ongeval; de vluchtstrook is geblokkeerd.",
+        "a1more": "Op de hele A8 staan daarnaast {closures} afsluitingen en {works} meldingen van wegwerkzaamheden.",
+        "limit": "Geen routeplanning: we zeggen wat er op de snelweg aan de hand is, niet welke route je moet rijden.",
+        "q2": "Welke wegwerkzaamheden zijn er nu op de A7?",
+        "a2": "{count} werkvakken tot {to}, bijvoorbeeld tussen {a} en {b}: bouw van een nieuwe brug, een van drie rijstroken dicht, {speed} km/h, tot {until}.",
+        "q3": "Ik rijd in het weekend over de A2 – met welke wegwerkzaamheden moet ik rekening houden?",
+        "a3": "{count} werkvakken van {from} tot {to}, bijvoorbeeld bij aansluiting {a}: vernieuwing van de verharding, de toerit is volledig afgesloten, tot {until}."
+      },
+      "jam": {
+        "title": "In de file",
+        "scene": "File op de snelweg en rond de steden: waar het stilstaat, hoeveel tijd het kost — en of er vannacht wordt afgesloten.",
+        "q1": "Hoeveel tijd kost de file op de A3 tussen Frankfurt en Würzburg nu?",
+        "a1": "Tussen {a} en {b} richting Frankfurt ongeveer +{delay} min, na een ongeval; op de hele A3 zijn {jams} files gemeld.",
+        "a1more": "Op de A3 staan {closures} afsluitingen en {works} meldingen van wegwerkzaamheden.",
+        "limit": "In de stad zien we de stadssnelwegen, en in Berlijn, Keulen en Hannover ook de verkeersmeldingen van de stad zelf – nog niet de situatie in elke straat. De meldingen voor Hamburg en de verkeerssituatie voor Keulen zijn bij de aanbieders aangevraagd.",
+        "q2": "Staat er nu file op de snelwegring rond Keulen — A1, A3 of A4?",
+        "q3": "Is de A7 bij Hamburg vandaag afgesloten?",
+        "a3": "Gemeld is een afsluiting tussen de aansluitingen {a} en {b} (verbreding naar acht rijstroken, nieuwbouw {tunnel}); op de hele A7 zijn het er {n}.",
+        "a2": "Ja, op de A4: tussen {a} en {b} richting Keulen staat het verkeer stil en rijdt het langzaam, ongeveer +{delay} min; op de gevraagde snelwegen zijn {n} files gemeld."
+      },
+      "parking": {
+        "title": "Parkeren",
+        "scene": "De auto bij het station neerzetten — of als vrachtwagenchauffeur je pauze plannen.",
+        "q1": "Waar is een parkeergarage bij Keulen Centraal?",
+        "a1": "{p1}: laatst gemeld {f1} van {t1} plaatsen vrij; {p2}: {f2} van {t2} – beide binnen 300 m.",
+        "limit": "Vrije plaatsen alleen waar de exploitant ze publiceert — anders het aantal plaatsen, niet hoe vol ze zijn.",
+        "q2": "Waar kun je aan de A9 parkeren met een vrachtwagen?",
+        "a2": "Bijvoorbeeld {p1} met {n1} vrachtwagenplaatsen, {p2} met {n2} en {p3} met {n3}; vrije plaatsen publiceert daar niemand.",
+        "q3": "Waar is een P+R bij het hoofdstation van Essen?",
+        "a3": "{p1}, op {k1},{k1d} km, en {p2}, op {k2},{k2d} km; de bezetting neemt ViaFrei uit deze bron niet over."
+      },
+      "charging": {
+        "title": "Laden",
+        "scene": "Elektrisch onderweg: waar is de dichtstbijzijnde laadpaal, en is er een punt vrij?",
+        "q1": "Waar kan ik in de buurt van Leipzig snelladen?",
+        "q2": "Welke snelladers zijn er bij Ingolstadt?",
+        "a1": "Met minstens 150 kW bijvoorbeeld: {site}, {address} – tot {kw} kW.",
+        "a1more": "De exploitant publiceert geen live status, dus zegt ViaFrei “onbekend”, niet “vrij”.",
+        "limit": "Beschikbaarheid voor de netwerken die die publiceren; voor alle andere tonen we de locatie, niet de status.",
+        "a2": "Dichtstbij {op1}, {a1}, tot {kw1} kW: {free1} van {total1} laadpunten vrij; verder {s2}, {a2}, tot {kw2} kW, zonder actuele status.",
+        "q3": "Is er bij de Supercharger in Hilden nu iets vrij?",
+        "a3": "{brand} meldde de laatste status op {t} – te oud om “vrij” te zeggen; op locatie {address}, tot {kw} kW."
+      },
+      "places": {
+        "title": "Plaatsen vinden",
+        "scene": "Een naam is genoeg: de concertzaal, de apotheek, het bedrijf — met adres en een coördinaat voor de volgende vraag.",
+        "q1": "Mijn navigatie toont 50.1109, 8.6821 — welk adres is dat, en waar is de dichtstbijzijnde oprit van de snelweg?",
+        "a1": "{address}, op {m} m. Dichtstbijzijnde aansluiting: {junction}, op {km},{kmd} km.",
+        "limit": "Plaatsen en adressen komen uit OpenStreetMap; de datum van de gegevens staat in elk antwoord. Wat daar niet in kaart is gebracht, vinden we niet — openingstijden en beoordelingen horen er niet bij.",
+        "q2": "Welke apotheken zijn er in Fulda — met adres?",
+        "a2": "Bijvoorbeeld {p1}, {a1}; {p2}, {a2}; {p3}, {a3} (OpenStreetMap-gegevens van {osm}).",
+        "q3": "Wat is het adres van de Elbphilharmonie in Hamburg?",
+        "a3": "{poi}: {address} (OpenStreetMap-gegevens van {osm})."
+      },
+      "watch": {
+        "title": "Laat het me weten",
+        "scene": "Niet steeds opnieuw kijken: ViaFrei houdt het voor je in de gaten en bewaart elke wijziging in het gesprek — je assistent toont die zodra je ernaar vraagt, of uit zichzelf als hij meldingen ondersteunt.",
+        "q1": "Laat het me weten zodra een afsluiting op de A7 wordt opgeheven.",
+        "limit": "Alleen dit gesprek, zolang het open is — geen e-mail, geen sms. Tot 10 bewakingen per gesprek, elk tot 24 uur; een weg wordt als geheel bewaakt, niet per traject.",
+        "a1": "Bewaking ingesteld: de {road}, tot {until}. ViaFrei meldt zich in deze chat zodra daar een afsluiting wordt opgeheven; {used} van 10 in gebruik.",
+        "q2": "Laat het me weten als in Keulen een kwart of meer van de bus- en treinritten te laat is.",
+        "a2": "Bewaking ingesteld: regio {ags} ({city}), melding vanaf {pct}% vertraagde ritten, tot {until} – alleen in deze chat.",
+        "q3": "Waarschuw me als er voor Keulen een noodweerwaarschuwing van de Duitse weerdienst ingaat.",
+        "a3": "Bewaking ingesteld: DWD-waarschuwingsgebied {cell} ({city}), tot {until} – ViaFrei meldt zich hier zodra de situatie verandert."
+      }
+    },
+    "fuelAsks": {
+      "heading": "Een vraag die je bij het tanken geld kan besparen",
+      "whyLabel": "Waarom vragen",
+      "goerlitz": {
+        "q": "Waar tank ik in Görlitz nu het goedkoopst diesel?",
+        "why": "Prijzen veranderen meerdere keren per dag en verschillen zelfs tussen een paar tankstations in één stad: ViaFrei noemt de goedkoopste met de prijs en het tijdstip waarop het station die meldde.",
+        "a": "Nog geen nieuwe prijs – laatst bekend als goedkoopst: € {euro},{cent} per liter bij {station}, {address}, gemeld op {reported}; ViaFrei vraagt een nieuwe op."
+      },
+      "muenchen": {
+        "q": "Waar is Euro 95 E10 in München nu het goedkoopst?",
+        "why": "Een prijs kan van de ochtend zijn: voor München had ViaFrei die middag alleen prijzen van de ochtend, noemde elke met het tijdstip en vroeg nieuwe op.",
+        "a": "Nog geen nieuwe prijs – laatst bekend als goedkoopst: € {euro},{cent} per liter bij {station}, {address}, gemeld op {reported}; ViaFrei vraagt een nieuwe op."
+      },
+      "leipzig": {
+        "q": "Waar is Euro 95 E5 in Leipzig nu het goedkoopst?",
+        "why": "Een prijs kan uren oud zijn: ViaFrei zegt bij elke prijs wanneer het station die meldde – die middag kwamen de goedkoopste in Leipzig nog van de ochtend.",
+        "a": "Nog geen nieuwe prijs – laatst bekend als goedkoopst: € {euro},{cent} per liter bij {station}, {address}, gemeld op {reported}."
+      },
+      "nuernberg": {
+        "q": "Waar is diesel in Neurenberg nu het goedkoopst?",
+        "why": "Het dichtstbijzijnde tankstation is niet altijd het goedkoopste: ViaFrei geeft bij elke prijs de afstand.",
+        "a": "€ {euro},{cent} per liter bij {station}, {address} – gemeld om {reported}."
+      }
+    },
+    "fuelAll": "Per deelstaat tot drie tankstations met adres en prijs",
+    "allExamples": "Alle voorbeeldvragen met hun antwoorden"
+  },
+  "start": {
+    "heading": "In één minuut klaar",
+    "lead": "ViaFrei zit in de assistent die je al hebt. Drie stappen, één keer:",
+    "s1": "In Claude of ChatGPT: instellingen → “Connectors”.",
+    "s2": "Voeg ViaFrei toe met het adres hieronder.",
+    "s3": "Vraag: “Is de A8 richting München nu vrij?”",
+    "draft": "Concept — deze stappen zijn nog niet in elke assistent gecontroleerd."
+  },
+  "legal": {
+    "bindingNote": "Deze pagina is een wettelijke vermelding naar Duits recht. Alleen de Duitse tekst hieronder is bindend."
+  },
+  "connectPage": {
+    "moreExamples": "Meer voorbeelden",
+    "title": "Verbind ViaFrei met je assistent",
+    "lead": "Eén adres, geen account, geen sleutel. Voeg ViaFrei één keer toe als connector – daarna vraag je gewoon.",
+    "askHeading": "Zo vraag je het",
+    "askLead": "Vijf vragen, zoals je assistent ze vandaag beantwoordt:",
+    "asks": {
+      "train": "Wanneer vertrekt de volgende trein vanaf Keulen Centraal?",
+      "parking": "Waar is een parkeergarage in het centrum van Keulen?",
+      "charging": "Waar kan ik in Leipzig mijn elektrische auto opladen?",
+      "road": "Is de A3 richting Frankfurt nu vrij?",
+      "weather": "Is er nu een noodweerwaarschuwing voor Dresden?"
+    },
+    "live": {
+      "heading": "Antwoorden, zoals ze kwamen",
+      "lead": "Ingekort, met het tijdstip van de gegevens en hun bronnen. De cijfers zijn een momentopname, geen live weergave.",
+      "asOf": "Bijgewerkt: {asOf}",
+      "fuelExample": "Voorbeeldantwoord van {asOf} — de prijzen zijn vandaag anders",
+      "stadtbahn": {
+        "title": "Liften en roltrappen van de sneltram",
+        "q": "Wat is er bij sneltramhalte {stop} in Keulen nu buiten gebruik?",
+        "a": "{out} van {total} gemelde installaties: roltrappen {e1} en {e2} sinds {since}, {e3} sinds {since3} en {e4} sinds {since4}; beide liften werken. {publisher} levert de gegevens zonder enige garantie.",
+        "note": "Voor de haltes van de Keulse sneltram, uit de gepubliceerde storingslijst – met het tijdstip waarop elke installatie als gestoord is gemeld."
+      },
+      "bikes": {
+        "title": "Deelfietsen bij het station, live",
+        "q": "Waar vind ik een vrije deelfiets in de buurt van {station}?",
+        "a": "Station {dock} van {operator}: {free} fietsen vrij – en {docks} stations binnen {radius} km, elk met zijn eigen aantal.",
+        "note": "De vrije fietsen komen live uit de open data van de deelfietssystemen; ViaFrei noemt alleen wat een station nu meldt."
+      },
+      "lift": {
+        "title": "Liften op het station",
+        "q": "Welke liften op station {station} zijn nu buiten gebruik?",
+        "a": "Eén is buiten gebruik gemeld, een lift naar spoor {platforms}: {working} van {total} liften in bedrijf. De andere lift naar spoor {platforms} wordt niet bewaakt – de status is onbekend.",
+        "note": "Voor stations van Deutsche Bahn, elke 20 minuten opnieuw gelezen. Wat de laatste melding niet noemt, heet “onbekend” – nooit “in bedrijf”."
+      },
+      "alert": {
+        "title": "Storingsmeldingen voor bus en trein",
+        "q": "Zijn er nu storingsmeldingen voor bus en trein in Nedersaksen?",
+        "a": "Er gelden nu {count} meldingen, waaronder: lijnen {lines} rijden een omleidingsdienstregeling, want de {road} is tussen {a} en {b} afgesloten – van {from} tot {to}.",
+        "note": "Meldingen van de vervoerregio’s via DELFI, alleen zolang ze gelden. Een melding zonder halte koppelt ViaFrei via het vervoersnet aan een deelstaat en zegt erbij dat ze ook een buurdeelstaat kan betreffen."
+      },
+      "enbw": {
+        "title": "Snellader met live bezetting",
+        "q": "Is er bij het {brand}-laadstation {address} nu een laadpunt vrij?",
+        "a": "Tot {kw} kW, € {euro},{cent}/kWh – maar voor geen van de {n} laadpunten is een status bekend, dus zegt ViaFrei niet “vrij”.",
+        "note": "Locaties en bezetting meldt de exploitant zelf; het tijdstip is dat van zijn laatste melding."
+      },
+      "ecomove": {
+        "title": "Live bezetting via een verzamelaar",
+        "q": "Is er bij de snellader {address} nu een laadpunt vrij?",
+        "a": "{site}: tot {kw} kW, € {euro},{cent}/kWh; de laatste status is van {t} – te oud om “vrij” te zeggen.",
+        "note": "De bezetting komt hier van een dienst die de meldingen van veel exploitanten bundelt. Een punt zonder melding telt nooit als vrij."
+      },
+      "ocpdb": {
+        "title": "Live vrij of bezet – midden in Keulen",
+        "q": "Is er bij de laadpaal {address} nu een laadpunt vrij?",
+        "a": "Ja, één: type 2 tot {kw2} kW is vrij, het CCS-laadpunt tot {kw} kW is defect – € {euro},{cent}/kWh exclusief btw.",
+        "note": "De bezetting komt live via het dataportaal van Baden-Württemberg, dat ook laadpalen ver buiten die deelstaat vermeldt."
+      },
+      "lsr": {
+        "title": "Ook waar niemand live meldt",
+        "q": "Waar kan ik laden in de buurt van {address}?",
+        "a": "Op {m} m: type 2, tot {kw} kW, volgens het register van de Bundesnetzagentur (stand {register}), zonder live status en zonder garantie voor juistheid of volledigheid.",
+        "note": "Waar geen exploitant live gegevens publiceert, noemt ViaFrei de laadpalen uit het officiële register – zonder bezetting, want onbekend is nooit “vrij”."
+      },
+      "hamburg": {
+        "title": "Parkeergarage in het centrum van Hamburg",
+        "q": "Waar kan ik parkeren bij {stop} in Hamburg?",
+        "a": "{park}: {free} van {total} plaatsen vrij. De stad Hamburg zegt zelf: “Deze realtimegegevens zijn ongecontroleerd.”",
+        "note": "De bezetting van de parkeergarages in Hamburg komt live van de stad; ViaFrei geeft haar opmerking over ongecontroleerde gegevens altijd mee."
+      },
+      "hhworks": {
+        "title": "Stedelijke wegwerkzaamheden in Hamburg",
+        "q": "Welke wegwerkzaamheden zijn er gepland aan de {street} in Hamburg?",
+        "a": "{street}, {b}: ombouw van de weg van {from} tot {to}; een volledige afsluiting wordt verwacht in het voorjaar van 2027.",
+        "note": "De stedelijke wegwerkzaamheden van Hamburg komen uit de Bauweiser van de stad: alleen vrijgegeven werken, per kalenderdag; “gepland” betekent dat het werk na vandaag begint. Politiemeldingen blijven aparte vermeldingen."
+      },
+      "muenster": {
+        "title": "Parkeerverwijssysteem van Münster, live",
+        "q": "Hoeveel plaatsen zijn er vrij in {name} in Münster?",
+        "a": "{free} van {total} plaatsen vrij – en nog {more} parkeergarages in de buurt, elk met zijn eigen bezetting.",
+        "note": "De bezetting komt live uit het parkeerverwijssysteem van de stad Münster. Een garage die niets meldt, noemt ViaFrei nooit “vol”."
+      },
+      "motorway": {
+        "title": "Afgesloten oprit aan de snelweg",
+        "q": "Is er op de A6 bij {place} nu iets afgesloten?",
+        "a": "Ja: de oprit {place} naar de A6 is afgesloten, een kunstwerk wordt herbouwd – deze bouwfase loopt van {from} tot {to}. Voor de hele A6 noemt het antwoord {count} afsluitingen.",
+        "note": "Afsluitingen en wegwerkzaamheden op de snelwegen komen van Autobahn GmbH, met de periode van elke bouwfase. Gevraagd naar een snelweg noemt ViaFrei eerst de afsluitingen."
+      },
+      "citywork": {
+        "title": "Wegwerkzaamheden in de stad",
+        "q": "Is er aan de {street} in Berlijn iets afgesloten?",
+        "a": "Ja: in beide richtingen tussen {a} en {b} leidingwerk, volgens de Senaatsdienst volledig afgesloten voor motorvoertuigen, van {from} tot {to}.",
+        "note": "Berlijnse meldingen noemen straat en traject, geen wegnummer, dus vindt ViaFrei ze via de plaats – binnen 25 km, de dichtstbijzijnde eerst."
+      },
+      "landroad": {
+        "title": "Wegwerkzaamheden op een provinciale weg",
+        "q": "Zijn er deze week wegwerkzaamheden op de L1025 in Thüringen?",
+        "a": "{count} werkvakken, waaronder: {site}, een versmalling met verkeerslichten, van {from} tot {to}.",
+        "note": "Deelstaatwegen kennen we in Baden-Württemberg, Nedersaksen, Thüringen en Saksen, uit de gegevens van de wegbeheerders: traject en periode, geen coördinaten en geen live vertraging."
+      },
+      "saxony": {
+        "title": "Wegwerkzaamheden op een rijksweg in Saksen",
+        "q": "Zijn er deze week wegwerkzaamheden op de B6 in Saksen?",
+        "a": "Deze week {count} werkvakken, waaronder: bij {place} in Dresden wordt de weg verbreed, van {from} tot {to}.",
+        "note": "De wegbeheerder van Saksen publiceert zijn langdurige werkvakken elke drie uur opnieuw. ViaFrei beantwoordt daarmee vragen over rijks- en deelstaatwegen, per traject en periode – zonder coördinaten en zonder live vertraging."
+      },
+      "bwroad": {
+        "title": "Wegwerkzaamheden op een rijksweg in Baden-Württemberg",
+        "q": "Zijn er volgende week wegwerkzaamheden gepland op de B27 in Baden-Württemberg?",
+        "a": "{count} van {all} werkvakken in Baden-Württemberg, bijv. {a} – {b}: nieuw wegdek van {from} tot {to}.",
+        "note": "Het ministerie van Verkeer van Baden-Württemberg publiceert zijn wegwerkzaamheden (BEMaS) via MobiData BW. ViaFrei beantwoordt daarmee vragen over rijks- en deelstaatwegen, per traject en periode – gepland als gepland, zonder live vertraging."
+      },
+      "kiel": {
+        "title": "Werkzaamheden in Kiel",
+        "q": "Is de {street} in Kiel op dit moment berijdbaar?",
+        "a": "Nee: de {street} is tussen huisnummer {no} en de {b} afgesloten wegens rioleringswerkzaamheden, van {from} tot {to}. (Voorbeeld, samengevat; de tool toont het volledig)",
+        "note": "De stad Kiel publiceert haar werkzaamheden met plaats, reden en periode. Deze kaart vat één melding samen; de tool toont de meldingen volledig en vindt een melding via de plaats – binnen 25 km, de dichtstbijzijnde eerst."
+      },
+      "truckstop": {
+        "title": "Beveiligde vrachtwagenparking aan de A7",
+        "q": "Is er vannacht bij {name} aan de A7 een plek vrij voor een vrachtwagen?",
+        "a": "{free} van {total} plaatsen vrij, zoals de exploitant ze meldt.",
+        "note": "De exploitant van deze beveiligde vrachtwagenparkings publiceert de vrije plaatsen; ViaFrei toont ze naast de verzorgingsplaatsen, die geen bezetting melden, en telt de twee nooit bij elkaar op."
+      },
+      "parkride": {
+        "title": "P+R voor de trein",
+        "q": "Waar kan ik in Dortmund de auto neerzetten en overstappen op de trein?",
+        "a": "{p1} met {t1} plaatsen en {p2} met {t2} plaatsen – voor deze terreinen zonder bezetting.",
+        "note": "P+R-terreinen in Noordrijn-Westfalen komen uit de gebundelde gegevens van de deelstaat en staan in een eigen blok, nooit vergeleken met andere bronnen. Hun bezetting nemen we niet over."
+      },
+      "platform": {
+        "title": "Een vertraging, live",
+        "q": "Vertrekt de {train} naar {dest} in {station} op tijd?",
+        "a": "+{delay} min, verwacht om {expected} in plaats van {planned} – van spoor {platform}, zoals gepland.",
+        "note": "Vertragingen en spoorwijzigingen komen uit de dienstregelingsinterface van Deutsche Bahn, voor alle delen van het station – ook de ondergrondse en S-Bahn-sporen van het hoofdstation van Berlijn."
+      },
+      "region": {
+        "title": "Stiptheid in een stedelijke regio",
+        "q": "Rijden bussen en treinen in het Rijn-Ruhrgebied nu op tijd?",
+        "a": "{share}% van de waargenomen ritten van het afgelopen uur had meer dan 5 minuten vertraging – meer dan het uur ervoor ({before}%).",
+        "note": "Het Rijn-Ruhrgebied antwoordt als één regio: 30 districten en steden samen. ViaFrei geeft totalen per regio, niet per lijn."
+      },
+      "tomorrow": {
+        "title": "Wegwerkzaamheden op de route van morgen",
+        "q": "Welke wegwerkzaamheden zijn er morgen gepland op de A7?",
+        "a": "{count} werkvakken, waarvan {started} al bezig. Een ervan: tussen {a} en {b} wordt een brug vernieuwd, over {km} km, {speed} km/h, tot {until}.",
+        "note": "Geplande werkvakken van het federale onderzoeksinstituut voor wegen (BASt): traject en periode, geen coördinaten en geen live vertraging – wat er nu gebeurt, beantwoordt ViaFrei uit de snelwegmeldingen."
+      },
+      "closure": {
+        "title": "Een afsluiting verderop",
+        "q": "Is er op de A7 bij Hamburg nu iets afgesloten?",
+        "a": "Ja: Autobahn GmbH meldt een afgesloten op- of afrit bij aansluiting {at} – op het werkvak tussen {a} en {b}. Deze bouwfase eindigt op {until} om {end} uur.",
+        "note": "Afsluitingen en wegwerkzaamheden op de snelwegen komen van Autobahn GmbH, met de periode van elke bouwfase."
+      },
+      "weather": {
+        "title": "Weercheck voor de bergen",
+        "q": "Is er vandaag een weerwaarschuwing voor {name}?",
+        "a": "Ja, voor de komende nacht: de Duitse weerdienst waarschuwt voor lichte vorst tot {temp} °C, geldig op {day} van {from} tot {to} uur – waarschuwingsniveau {level}, het laagste.",
+        "note": "Waarschuwingen worden elke 5 minuten gelezen en gelden per gebied; een nieuwe kan op korte termijn worden uitgegeven."
+      },
+      "fuelcity": {
+        "title": "De goedkoopste E10 in de stad",
+        "q": "Waar is Euro 95 E10 in Keulen nu het goedkoopst?",
+        "a": "€ {euro},{cent} per liter bij {station}, {address} – gemeld om {reported}.",
+        "note": "Brandstofprijzen veranderen om de paar minuten: dit cijfer is een voorbeeld van die middag, niet de prijs van vandaag. ViaFrei zegt bij elke prijs wanneer het station die meldde."
+      },
+      "charger": {
+        "a": "Bij {site}: {points} laadpunten, type 2, tot {kw},{kwd} kW, € {euro},{cent}/kWh excl. btw. Geen enkel meldt zich bezet; voor {stale} is de laatste status van {t}, voor {unknown} is er geen – dus niet “vrij”.",
+        "title": "Live status bij een laadpaal",
+        "q": "Is er bij {address} nu een laadpunt vrij?",
+        "note": "Live bezetting noemen we alleen waar de exploitant die publiceert – hier via e-clearing.net. Zonder melding luidt het antwoord “geen statusgegevens”, nooit “vrij”."
+      },
+      "roadworks": {
+        "a": "In Nedersaksen {count}, alle al begonnen; de eerste: {section}, van {start} tot {end}.",
+        "note": "Rijkswegen kennen we in Nedersaksen, Saksen, Thüringen en Baden-Württemberg, uit de gegevens van de wegbeheerders: traject en periode, geen live vertraging. Voor een rijksweg elders antwoordt ViaFrei “niet gedekt” – niet “vrij”.",
+        "title": "Wegwerkzaamheden op een rijksweg",
+        "q": "Welke wegwerkzaamheden zijn er deze week gepland op de B3 in Nedersaksen?"
+      },
+      "train": {
+        "title": "Stiptheid in het regionale vervoer",
+        "q": "Vertrekt de volgende regionale trein van {station} naar {dest} op tijd?",
+        "a": "Ja: {line} om {planned} van spoor {platform}, op tijd – net als {n} van de {all} regionale treinen tot {last}.",
+        "note": "Geeft de dienstregelingsinterface van Deutsche Bahn geen realtime tijden, dan noemt ViaFrei regionale en S-Bahn-treinen uit DELFI SIRI ET – in een eigen blok, nooit gemengd met de regels van de spoorwegen."
+      },
+      "fuelroad": {
+        "a": "Nog geen nieuwe prijs – laatst het goedkoopst: € {euro},{cent}/l bij {station}, {address}, gemeld op {reported}; ViaFrei vraagt een nieuwe op.",
+        "title": "Diesel onderweg, langs de snelweg",
+        "q": "Ik rijd vanavond over de A3 langs Würzburg: waar is diesel in de buurt het goedkoopst?",
+        "note": "Brandstofprijzen veranderen om de paar minuten: dit cijfer is een voorbeeld van die middag, niet de prijs van vandaag. ViaFrei zegt bij elke prijs wanneer het station die meldde."
+      },
+      "fuelland": {
+        "a": "Nog geen nieuwe prijs – laatst het goedkoopst: € {euro},{cent}/l bij {station}, {address}, gemeld op {reported}; ViaFrei vraagt een nieuwe op.",
+        "title": "De laagste prijs in een deelstaathoofdstad",
+        "q": "Waar tank ik E10 in Stuttgart, Baden-Württemberg, nu het goedkoopst?",
+        "note": "Brandstofprijzen veranderen om de paar minuten: dit cijfer is een voorbeeld van die middag, niet de prijs van vandaag. ViaFrei zegt bij elke prijs wanneer het station die meldde."
+      },
+      "carpark": {
+        "title": "Parkeergarage met vrije plaatsen",
+        "q": "Hoeveel plaatsen zijn er vrij in parkeergarage {name} in Keulen?",
+        "a": "Laatst gemeld {free} van {total} plaatsen vrij – een oudere melding, niet de actuele stand.",
+        "note": "Naam, ligging en aantal plaatsen uit de parkeergaragetabel van de stad Keulen, de bezetting uit haar live gegevensstroom. Is de laatste melding te oud, dan zegt ViaFrei “laatst gemeld” in plaats van “vrij”."
+      },
+      "lorry": {
+        "title": "Vrachtwagenparkeren met vrije plaatsen",
+        "q": "Hoeveel vrachtwagenplaatsen zijn er nu vrij bij {name}?",
+        "a": "{free} vrachtwagenplaatsen vrij, zoals de exploitant ze meldt.",
+        "note": "Vrije plaatsen noemen we alleen waar de exploitant ze publiceert – hier elke 15 minuten. Blijft een waarde zes uur gelijk, dan zegt ViaFrei “laatst gemeld” in plaats van “vrij”."
+      }
+    },
+    "betaHeading": "Bèta: wat dat voor jou betekent",
+    "beta1": "ViaFrei is in de stabilisatiefase: er komen gegevensbronnen bij, en antwoorden en dekking kunnen veranderen.",
+    "beta2": "De antwoorden worden geformuleerd door een AI-assistent op basis van onze gegevens – AI kan fouten maken.",
+    "beta3": "Controleer belangrijke gegevens (afsluitingen, vertrektijden, prijzen) bij de bron die het antwoord noemt.",
+    "endpointHeading": "Het adres",
+    "endpointNote": "Streamable HTTP. Gratis tijdens de opbouwfase, zonder account; het aantal verzoeken is beperkt, zodat er genoeg is voor iedereen.",
+    "legacyNote": "Oudere clients zonder Streamable HTTP gebruiken het SSE-adres:",
+    "clientsHeading": "Stap voor stap",
+    "claudeAi": "claude.ai (web)",
+    "claudeAiSteps": "Aanpassen (Customize) → Connectors → ‘+ Add’ → ‘Add custom connector’. Noem hem ViaFrei, plak het adres hierboven als MCP-server-URL en kies dan ‘Continue’. Vraag bijvoorbeeld: ‘Is de A8 richting München vrij?’ Sta bij het eerste gebruik het ViaFrei-hulpmiddel toe.",
+    "claudeDesktop": "Claude Desktop",
+    "claudeDesktopSteps": "Dezelfde connector als op claude.ai, bewaard in je Claude-account: voeg hem daar toe zoals hierboven en hij staat ook in de desktop-app.",
+    "claudeCode": "Claude Code",
+    "claudeCodeSteps": "Eén keer uitvoeren in een terminal:",
+    "chatgpt": "ChatGPT",
+    "chatgptSteps": "Plugins → ‘+’ → ‘Add custom MCP server’. Noem hem ViaFrei, plak het adres hierboven onder ‘Connection’, authenticatie: geen; vink ‘I understand and want to continue’ aan en kies ‘Create as a plugin’. Typ in een nieuwe chat @, kies ViaFrei en stel je vraag.",
+    "editorsSteps": "Toevoegen aan de MCP-configuratie (mcp.json):",
+    "copilotSteps": "Opdrachtenpalet → “MCP: Add Server” → “HTTP” → plak het adres hierboven → server-ID viafrei → “Global” → “Copilot Global”. Dat schrijft naar ~/.copilot/mcp-config.json; met de hand toevoegen:",
+    "copilotSandbox": "Antwoordt Copilot met 403 en de header “x-ms-block-by: sandbox-broker”, dan heeft zijn sandbox het adres geblokkeerd: sta mcp.viafrei.de toe (voor de cloudagent: repository-instellingen → Copilot → Internet access → Custom allowlist).",
+    "geminiTrust": "Gemini CLI start MCP-servers alleen in een map die u vertrouwt; dat vraagt het de eerste keer dat u het daar start.",
+    "windsurfSteps": "Cascade-paneel → “…” → MCPs → open het MCP-configuratiebestand (mcp_config.json) en voeg toe:",
+    "leChatSteps": "Connectors → “+ Add Connector” → “Custom MCP Connector” → naam viafrei, server-URL: het adres hierboven → Connect, zonder authenticatie. Een beheerder voegt het toe – in de abonnementen Free en Pro bent u dat.",
+    "generic": "Elke andere MCP-client",
+    "genericSteps": "Elke client die Streamable HTTP spreekt, maakt verbinding met het adres hierboven – zonder extra kopregels, zonder sleutel.",
+    "stdio": "Clients met alleen stdio",
+    "stdioSteps": "De brug uit het openbare npm-pakket start een lokale stdio-server die doorstuurt naar het adres hierboven:",
+    "notCoveredHeading": "Wat ViaFrei niet beantwoordt",
+    "notCoveredLead": "Zodat je niet zoekt naar wat er niet is:",
+    "notCovered": {
+      "routing": "Geen routeplanning van deur tot deur – ViaFrei antwoordt over plaatsen, wegen en gegevensbronnen, nooit op “hoe kom ik daar?”.",
+      "cityStreets": "Geen verkeer op stadsstraten buiten de stads- en deelstaatbronnen die we hebben: werkzaamheden, afsluitingen en verkeersmeldingen voor Berlijn, Keulen (afsluitingen bij evenementen), Hannover (zodra de bron meldingen publiceert), Sleeswijk-Holstein met Kiel en Baden-Württemberg met Stuttgart. Andere steden zijn niet gedekt; elders hebben we live verkeer voor het net van de federale snelwegen (Autobahn GmbH) en, waar een bron ze bevat, rijkswegen, plus wegwerkzaamheden op deelstaatwegen in Baden-Württemberg, Nedersaksen, Saksen en Thüringen.",
+      "fares": "Geen tarieven, geen kaartjes en geen boekingen van welke aard ook.",
+      "lineRealtime": "Geen stiptheidscijfer voor één bepaalde lijn – “rijdt de S1 op tijd?” beantwoordt ViaFrei trein voor trein op een station (de live vertraging van elke vertrekkende trein, ook de S-Bahn) en per regio met de storingsmeldingen van de lijn; bij een bus-, tram- of metrohalte is er alleen de dienstregeling.",
+      "forecast": "Geen weersverwachting – alleen officiële DWD-waarschuwingen, en alleen zolang ze gelden.",
+      "parkingTariffs": "Geen parkeertarieven, en geen belofte dat een plaats vrij is, tenzij de exploitant de bezetting publiceert."
+    },
+    "privacyHeading": "Privacy in drie zinnen",
+    "privacy1": "Je hebt bij ons geen account nodig, en we bewaren geen vragen onder je naam.",
+    "privacy2": "Meetdiensten van derden draaien alleen als je toestemming geeft; daarvoor wordt niets van derden geladen. We tellen bezoeken zonder cookies, als dagtotalen op onze eigen server.",
+    "privacy3": "Serverlogboeken worden na uiterlijk zeven dagen verwijderd – al het andere staat in de",
+    "privacyLink": "privacyverklaring (in het Duits)",
+    "sourcesHeading": "Waar de gegevens vandaan komen",
+    "sourcesLead": "Elk antwoord noemt zijn bron. Dit zijn alle bronnen waaruit ViaFrei vandaag antwoordt, met de bronvermelding die hun licentie vereist (in het Duits, zoals geschreven):",
+    "askAnswers": {
+      "train": "Om {t1} de {l1} naar {d1} van spoor {p1}, om {t2} de {l2} naar {d2} van spoor {p2} – beide op tijd.",
+      "parking": "{p1}: {f1} van {t1} plaatsen vrij; {p2}: {f2} van {t2} vrij.",
+      "charging": "Dichtstbij: {a1}, op {m} m, type 2 tot {kw1} kW; dan {a2}, op {m2} m, tot {kw2} kW – zonder live status.",
+      "road": "Ja: op de hele A3 is nu geen file gemeld; er staan {closures} afsluitingen en {works} meldingen van wegwerkzaamheden.",
+      "weather": "Voor {place} geldt geen officiële weerwaarschuwing van de DWD – gecontroleerd voor nu en de komende {hours} uur."
+    },
+    "allExamples": "Alle voorbeeldvragen met hun antwoorden, per onderwerp",
+    "claudeFlow": {
+      "s1": "Aanpassen (Customize) → Connectors → ‘+ Add’ → ‘Add custom connector’.",
+      "s2": "Noem hem ViaFrei, plak het adres hierboven als MCP-server-URL en kies dan ‘Continue’.",
+      "s3": "Vraag bijvoorbeeld: ‘Is de A8 richting München vrij?’ Sta bij het eerste gebruik het ViaFrei-hulpmiddel toe."
+    },
+    "chatgptFlow": {
+      "s1": "Plugins → ‘+’ → ‘Add custom MCP server’.",
+      "s2": "Noem hem ViaFrei, plak het adres hierboven onder ‘Connection’, authenticatie: geen; vink ‘I understand and want to continue’ aan en kies ‘Create as a plugin’.",
+      "s3": "Typ in een nieuwe chat @, kies ViaFrei en stel je vraag.",
+      "avail": "Eigen MCP-servers werken in ChatGPT op het web: in Business- en Enterprise/Edu-werkruimtes, waar beheerders en eigenaren ze aanmaken, en voor Pro-gebruikers met lees- en ophaalrechten – ViaFrei leest alleen, dus Pro werkt. Niet in de mobiele apps; niet beschikbaar bij Free en Plus.",
+      "d1": "Plugins → + → Add custom MCP server",
+      "d2": "Naam ViaFrei · Connection: het adres · authenticatie: geen · Create as a plugin",
+      "d3": "Nieuwe chat: @ViaFrei, dan vragen",
+      "dtitle": "De drie stappen in ChatGPT"
+    },
+    "shot": {
+      "claude1": "claude.ai, Customize → Connectors: het menu ‘+ Add’ open op ‘Add custom connector’.",
+      "claude2": "Het venster ‘Add custom connector’: de naam ViaFrei, de MCP-server-URL https://mcp.viafrei.de/mcp en de knop ‘Continue’.",
+      "claude3": "Claude vraagt het ViaFrei-hulpmiddel voor de A8 te mogen gebruiken: weigeren, altijd toestaan of één keer toestaan.",
+      "claude4": "Het antwoord van Claude op de vraag over de A8 richting München, gemarkeerd als gebruik van ViaFrei, met de bronregel aan het eind.",
+      "phone1": "claude.ai in de browser van een telefoon, Customize → Connectors: het menu ‘+ Add’ open op ‘Add custom connector’.",
+      "phone2": "Het venster ‘Add custom connector’: de naam ViaFrei, de MCP-server-URL https://mcp.viafrei.de/mcp en de knop ‘Continue’.",
+      "phone3": "Een chat in claude.ai: ‘+’ → Connectors, met ViaFrei ingeschakeld; de andere connectors zijn vervaagd.",
+      "phone4": "Claudes antwoord op de vraag of er nu een file op de A7 staat, gemarkeerd als gebruik van ViaFrei.",
+      "phone4b": "Hetzelfde antwoord aan het eind: de bronregel die Autobahn GmbH des Bundes noemt.",
+      "phoneCaption": "Schermafbeelding: claude.ai in de browser van een telefoon, {date}",
+      "caption": "Schermafbeelding: claude.ai, {date}",
+      "diagram": "Schema, geen schermafbeelding",
+      "claudeCode1": "Terminal: claude mcp add met het adres van ViaFrei, daarna meldt claude mcp list “viafrei … ✔ Connected”.",
+      "geminiCli1": "Terminal: gemini mcp add --scope user met het adres van ViaFrei, daarna meldt gemini mcp list “viafrei … Connected”.",
+      "generic1": "Terminal: de MCP Inspector vraagt het adres van ViaFrei om zijn tools (tools/list) en krijgt de namen ervan.",
+      "stdio1": "Terminal: Claude Code voegt de brug npx -y viafrei toe, daarna meldt claude mcp list “viafrei: npx -y viafrei – ✔ Connected”.",
+      "terminal": "Terminaluitvoer van onze testrun: {what}, {date}",
+      "open": "Afbeelding op volle grootte openen",
+      "close": "Vergrote afbeelding sluiten"
+    },
+    "guide": "Officiële handleiding",
+    "otherGuides": "Hun eigen handleidingen:",
+    "check": {
+      "verified": "Gecontroleerd in de client op {date} met {version}.",
+      "docs": "Stappen gecontroleerd aan de officiële handleiding op {date}, in de client nog niet. {reason}",
+      "pending": {
+        "account": "Daarvoor is een ingelogd account nodig; die controle staat nog open.",
+        "app": "Het is een desktop-app met een eigen login; die controle staat nog open.",
+        "signIn": "Een sessie vraagt een login of een API-sleutel; die controle staat nog open."
+      }
+    },
+    "about": {
+      "lead": "Kopieer deze vraag en stel hem aan uw assistent zodra ViaFrei verbonden is:",
+      "place": "Hoe is het verkeer in {place} op dit moment – wegen, openbaar vervoer, weer?",
+      "road": "Is de {road} op dit moment vrij?",
+      "exit": "Is de {road} bij {exit} op dit moment vrij?"
+    },
+    "phone": {
+      "heading": "Op je telefoon (Android, iPhone)",
+      "jump": "Op je telefoon? Zo werkt het op Android en iPhone",
+      "lead": "In de meeste assistent-apps kun je ViaFrei niet in de app zelf toevoegen. Je stelt de verbinding één keer in de browser in – ook op de telefoon – en de app gebruikt haar zodra je met hetzelfde account bent aangemeld.",
+      "where": "Volgens Anthropic werkt het met elk Claude-abonnement (Free: één eigen connector). Een connector in de app toevoegen is nog bèta, daarom lopen de stappen via claude.ai in de browser.",
+      "claude": {
+        "s1": "Open in de browser van de telefoon (of op een computer) claude.ai en meld je aan. Dan Customize → Connectors → ‘+ Add’ → ‘Add custom connector’.",
+        "s2": "Naam: ViaFrei. URL: {url}. Tik op ‘Continue’.",
+        "s3": "Open de Claude-app en meld je aan met hetzelfde account. Tik in een chat op ‘+’ → Connectors en zet ViaFrei aan.",
+        "s4": "Vraag: ‘Is de A7 bij Kassel vrij?’ en sta de eerste keer de ViaFrei-tool toe. Een goed antwoord beschrijft de A7 bij Kassel nu en eindigt met de bronregel die de uitgever van de gegevens noemt."
+      },
+      "unclear": "{name}: de officiële handleiding voegt een eigen MCP-server alleen op het web toe en zegt niet of de app op de telefoon hem daarna gebruikt – daarom hier geen stappen. Peildatum: {date}.",
+      "gemini": "Gemini: eigen apps (MCP-servers) kunnen alleen in de webapp worden toegevoegd, en alleen met een persoonlijk account in de VS, vanaf 18 jaar, in het Engels – dus niet vanuit Duitsland. Peildatum: {date}.",
+      "copilot": "Microsoft Copilot: de officiële documentatie beschrijft eigen MCP-servers alleen voor Microsoft 365 Copilot (ingesteld door het beheer van een organisatie) en Copilot Studio, niet voor de Copilot-app. Peildatum: {date}.",
+      "checked": "Op {date} gecontroleerd aan de hand van de officiële handleiding; nog niet op een telefoon geprobeerd.",
+      "device": "Op {date} op een telefoon verbonden, met {app}."
+    }
+  },
+  "devPage": {
+    "title": "ViaFrei voor ontwikkelaars",
+    "lead": "Een MCP-server via Streamable HTTP, open data uit Duitsland, elk antwoord met zijn bron. Hier staat wat hij vandaag kan – gelezen van de server zelf, niet overgeschreven.",
+    "releaseHeading": "Huidige versie",
+    "releaseLine": "Versie {version}",
+    "releaseDate": "uitgebracht op {date}",
+    "toolsHeading": "Tools",
+    "toolsLead": "{n, plural, one {# tool, zoals de server die meldt:} other {# tools, zoals de server ze meldt:}}",
+    "promptsHeading": "Prompts",
+    "resourcesHeading": "Bronnen",
+    "codeHeading": "Code en meedoen",
+    "closed": "De server is een gehoste dienst en de broncode is niet openbaar. De brug is openbaar – en daar is elke hulp welkom.",
+    "bridge": "De openbare brug op GitHub",
+    "discussions": "Discussies",
+    "goodFirst": "Geschikte eerste taken",
+    "contributing": "Zo draag je bij",
+    "security": "Een kwetsbaarheid melden",
+    "licence": "Licentie: Apache-2.0",
+    "contractHeading": "Het contract dat elke tool nakomt",
+    "contract1": "Een tool doet één ding en is daarnaar genoemd (werkwoord_zelfstandignaamwoord).",
+    "contract2": "Elk antwoord draagt zijn bronregel letterlijk; waar een licentie een doelvermelding eist, staat die er ook bij.",
+    "contract3": "Tijden zijn Europe/Berlin; opgeslagen wordt in UTC.",
+    "contract4": "Tests roepen nooit een echte aanbieder aan; elke bijdrage wordt onafhankelijk beoordeeld.",
+    "npmHeading": "npm",
+    "npmLead": "Voor clients die alleen stdio spreken:",
+    "npmReserved": "De naamruimte @viafrei is gereserveerd voor latere SDK-pakketten.",
+    "listingsHeading": "Vermeldingen",
+    "listingsLead": "ViaFrei staat hier vermeld:",
+    "listingNpm": "npm – het pakket viafrei, de stdio-brug voor clients zonder HTTP",
+    "listingSmithery": "Smithery – een gehoste verbinding, zonder lokale installatie",
+    "listingGlama": "Glama – de vermelding in de MCP-servergids",
+    "statusHeading": "Status",
+    "statusText": "Een statusoverzicht van de gegevensbronnen is op aanvraag beschikbaar.",
+    "tools": {
+      "check_autobahn_traffic": "Verkeer op de snelweg",
+      "find_cheapest_fuel": "Goedkoopste brandstof in de buurt",
+      "find_fuel_station": "Een tankstation vinden",
+      "find_parking": "Parkeren in de buurt",
+      "check_road_status": "Wegtoestand en afsluitingen",
+      "find_roadworks_ahead": "Geplande wegwerkzaamheden",
+      "find_sharing": "Deelfietsen in de buurt",
+      "find_charging_station": "Laden in de buurt",
+      "find_hydrogen_station": "Waterstofstations in de buurt",
+      "find_speed_cameras": "Flitspalen voor de routeplanning",
+      "find_place": "Een plaats opzoeken",
+      "find_poi": "Een plek op naam vinden",
+      "find_address": "Een adres opzoeken",
+      "describe_location": "Een coördinaat beschrijven",
+      "find_nearby": "Wat is er in de buurt",
+      "get_driving_rules": "Verkeersregels in Duitsland",
+      "check_transit_disruption": "Verstoringen in het openbaar vervoer van een regio",
+      "check_weather_warnings": "Officiële weerwaarschuwingen",
+      "get_train_departures": "Vertrekkende treinen",
+      "get_departures": "Vertrektijden volgens dienstregeling (bus, tram, trein)",
+      "check_station_facilities": "Liften en roltrappen op het station",
+      "describe_station": "Overzicht van een treinstation",
+      "watch_situation": "Een wijziging in de gaten houden",
+      "stop_watch": "Een bewaking stoppen"
+    },
+    "prompts": {
+      "plan_departure": "Bereidt een rit vlak voor vertrek voor: weerwaarschuwingen aan beide kanten, open snelwegen en actuele files, met aan het eind één zin: rijden of wachten.",
+      "compare_travel_options": "Weegt een rit met de auto af tegen dezelfde reis met de trein: afsluitingen en files aan de ene kant, vertrektijden en stiptheid aan de andere.",
+      "prepare_car_trip": "Verzamelt wat je in Duitsland en voor een bepaalde stad bij je moet hebben en moet weten: milieusticker, snelheidslimieten, winterbanden, alcohollimiet, tol, verplichte uitrusting.",
+      "plan_fuel_stop": "Vindt waar je onderweg tankt of laadt: de goedkoopste tankstations voor één brandstofsoort, of laadpunten met de juiste stekker en het juiste vermogen, en de verzorgingsplaats ernaast.",
+      "plan_commute": "Plant één rit met bus of trein op dezelfde dag: de volgende vertrekken met vertragingen, sporen en uitval, en of de regio normaal rijdt.",
+      "plan_arrival_parking": "Vindt waar de auto aan het eind van de rit blijft: een parkeergarage in de stad, een P+R aan de rand met aansluitende vertrekken, of een verzorgingsplaats als je te vroeg bent.",
+      "find_a_place": "Zet een losse naam om in een plaats, een benoemde plek of een adres, en probeert ze een voor een.",
+      "plan_local_errand": "Beantwoordt “wat is er hier in de buurt?” voor één plaats: het dichtstbijzijnde tankstation, de laadpaal, parkeerplek, het station en de snelwegaansluiting in één oogopslag.",
+      "explain_this_coordinate": "Maakt van losse coördinaten een zin die reizigers begrijpen: dichtstbijzijnd adres, plaats, district en snelwegaansluiting, elk met afstand."
+    },
+    "quickHeading": "In een minuut verbonden",
+    "quickLead": "Kies uw client, plak dit en stel uw eerste vraag.",
+    "quickTabs": "Clientprogramma's",
+    "quickWhere": "Waar het hoort:",
+    "quickFirst": "Uw eerste aanroep",
+    "quickFirstLead": "Eenmaal verbonden vraagt u in gewone woorden; de assistent kiest zelf het hulpmiddel:",
+    "copy": "Kopiëren",
+    "copyCurl": "Kopiëren als curl",
+    "tryHeading": "Probeer het",
+    "tryLead": "Een echte aanroep van het openbare eindpunt: eerst de sessie, dan het hulpmiddel. Daaronder het antwoord dat onze server een paar minuten geleden op precies deze aanroep gaf.",
+    "tryRequest": "Verzoek",
+    "tryResponse": "Antwoord",
+    "tryAsOf": "Beantwoord om {time}",
+    "tryError": "Er is nu geen recent antwoord. Voer het verzoek hierboven uit om er live een te zien.",
+    "argsLabel": "Parameters",
+    "askLabel": "Vraag het zo:",
+    "schemaLabel": "Invoerschema",
+    "otherGroup": "Meer hulpmiddelen",
+    "newHeading": "Nieuw in het contract",
+    "newLine": "Versie {version}, {date}",
+    "newTools": "gewijzigd:",
+    "contract5": "Te veel verzoeken worden geweigerd met JSON-RPC-fout {code}; wacht even en verstuur opnieuw.",
+    "contract6": "Een verlopen sessie wordt geweigerd met fout {code}; begin een nieuwe met initialize.",
+    "ask": {
+      "check_autobahn_traffic": "Staat er nu een file op de A9 tussen München en Neurenberg?",
+      "find_cheapest_fuel": "Waar is diesel bij Kassel nu het goedkoopst?",
+      "find_fuel_station": "Welk tankstation is open bij het centraal station van Würzburg?",
+      "find_parking": "Is er een vrije plek in een parkeergarage bij het centraal station van Keulen?",
+      "check_road_status": "Zijn er afsluitingen op de wegen rond Dresden?",
+      "find_roadworks_ahead": "Welke werkzaamheden zijn volgende week gepland op de A3?",
+      "find_charging_station": "Waar kan ik in Leipzig snelladen met 150 kW?",
+      "find_hydrogen_station": "Waar is het dichtstbijzijnde waterstofstation bij Stuttgart?",
+      "find_speed_cameras": "Waar staan vaste flitspalen op mijn route door Bielefeld?",
+      "find_place": "Waar ligt Garmisch-Partenkirchen precies?",
+      "find_poi": "Is er een apotheek bij het centraal station van Erfurt?",
+      "find_address": "Waar is Unter den Linden 77 in Berlijn?",
+      "describe_location": "Wat is er op 50,94, 6,96?",
+      "find_nearby": "Wat is er bij het centraal station van Münster: laden, parkeren, haltes?",
+      "find_sharing": "Is er een deelfiets bij Hamburg Dammtor?",
+      "get_driving_rules": "Wanneer geldt het zondagsrijverbod voor vrachtwagens?",
+      "check_transit_disruption": "Hoe stipt rijden bussen en treinen nu in Beieren?",
+      "check_weather_warnings": "Is er vandaag een weerwaarschuwing voor Hamburg?",
+      "get_train_departures": "Wanneer vertrekken de volgende treinen van het centraal station van Hannover?",
+      "get_departures": "Wanneer vertrekt de volgende tram van Leipzig Augustusplatz?",
+      "check_station_facilities": "Werken de liften op het centraal station van Frankfurt?",
+      "describe_station": "Hoe ziet het centraal station van Neurenberg eruit: sporen, liften, vertrektijden?",
+      "watch_situation": "Laat me weten wanneer de A7 bij Hamburg weer vrij is.",
+      "stop_watch": "Houd de A7 niet langer in de gaten."
+    }
+  },
+  "bizPage": {
+    "title": "ViaFrei voor bedrijven",
+    "lead": "Open mobiliteitsgegevens uit heel Duitsland, netjes samengevoegd en met bron – als één eindpunt dat je systemen en je assistenten kunnen bevragen.",
+    "casesHeading": "Waarvoor bedrijven ViaFrei gebruiken",
+    "u1t": "Logistiek en wagenparken",
+    "u1": "Wegwerkzaamheden en afsluitingen op de snelwegen van de geplande route, vrachtwagenparkeerplaatsen langs de route en het zondagsrijverbod uit de verkeersregels.",
+    "u1q": "Welke afsluitingen zijn er op de A7 tussen Würzburg en Ulm?",
+    "u1a": "{n} afsluitingen op de A7 tot {to}; tussen Würzburg en Ulm onder meer {a} – {b} en {b} – {c}, in beide richtingen.",
+    "u2t": "Laadinfrastructuur",
+    "u2": "Waar het net van laadpunten dun is en welke nu vrij zijn – uit de gegevensstromen van exploitanten waarvan we de herkomst hebben gecontroleerd. De opgeslagen geschiedenis van de beschikbaarheid is gepland als onderdeel van een samenwerking.",
+    "u2q": "Waar zijn er snelladers met minstens 150 kW in de buurt van Kassel?",
+    "u2a": "Ja: {s1}, {a1}, op {m} m, tot {kw1} kW, {free} van {total} punten met status vrij; verder {s2}, {a2}, tot {kw2} kW, zonder live status.",
+    "u3t": "Toerisme, hotels en evenementlocaties",
+    "u3": "Aankomstinformatie voor gasten in hun taal: situatie op de snelweg, vertrekkende treinen, parkeren en laden op de bestemming.",
+    "u3q": "Mijn hotel ligt in Garmisch-Partenkirchen – moeten gasten vandaag rekening houden met een weerwaarschuwing?",
+    "u3a": "Nee: voor {place} geldt geen officiële waarschuwing van de DWD, gecontroleerd voor nu en de komende {hours} uur – dat is geen sein veilig voor de rest van de reis.",
+    "u4t": "Navigatie-, kaart- en mobiliteitsapps",
+    "u4": "Eén MCP-eindpunt in plaats van veel losse koppelingen met aanbieders – en, gepland als onderdeel van een samenwerking, de opgeslagen geschiedenis van de bronnen waarvan de licentie analyse toestaat.",
+    "u4q": "Welke wegwerkzaamheden zijn er de komende dagen gepland op de A3?",
+    "u4a": "Van {from} tot {to} zijn er {n} werkvakken gepland op de A3, waaronder {a} – {b}: 1 van 4 rijstroken dicht, {speed} km/h, tot {until}.",
+    "u5t": "Verzekeraars en mobiliteitsonderzoek",
+    "u5": "Het archief van meetwaarden van de bronnen waarvan de licentie het toestaat: hoe was de situatie op een traject op een bepaald moment? Het bevragen van de geschiedenis is gepland als onderdeel van een samenwerking; wat er op dit moment geldt, zoals de officiële waarschuwingen van een deelstaat, beantwoordt de openbare dienst vandaag al.",
+    "u5q": "Welke afsluitingen gelden er nu op de A8?",
+    "u5a": "{n} afsluitingen op de A8 tot {to}, waaronder {a} – {b} richting München en bij aansluiting {c} naar de A81.",
+    "u6t": "Gemeenten en deelstaten",
+    "u6": "Een landelijk zicht op hun eigen gepubliceerde gegevens – en een manier om bronnen voor te stellen die we zouden moeten opnemen.",
+    "u6q": "Geldt er nu een officiële weerwaarschuwing voor Keulen?",
+    "u6a": "Nee: voor {place} geldt geen officiële waarschuwing van de DWD, nu niet en de komende {hours} uur niet.",
+    "futureLabel": "gepland",
+    "coopHeading": "Wat samenwerken betekent",
+    "price": "Prijzen op aanvraag.",
+    "contactHeading": "Laten we praten",
+    "contactLead": "Schrijf ons – we antwoorden binnen twee werkdagen.",
+    "postal": "Postadres: zie het colofon.",
+    "noForm": "Geen formulier, geen database: alleen een e-mail.",
+    "licenceScope": "Wat we bedrijven aanbieden, volgt de licentie van elke bron: gegevens die alleen voor consumenteninformatie zijn vrijgegeven, horen er niet bij, en gegevens onder een licentie voor gelijk delen geven we alleen onder dezelfde licentie door.",
+    "licenceScopeCredits": "Alle bronvermeldingen staan onder",
+    "heroPilot": "Een pilotproject starten",
+    "heroLive": "Live zien antwoorden",
+    "heroSteps": "Hoe een assistent met ViaFrei antwoordt",
+    "proofHeading": "Live uit de database",
+    "proofLead": "Elk getal hieronder is voor deze pagina uit onze database gelezen, met het moment waarop het betrekking heeft. Een getal dat niet te lezen is, staat er als ontbrekend, nooit als een ouder getal.",
+    "proofError": "Dit getal kon zojuist niet worden gelezen.",
+    "proofCatalogue": "Telling van release {version}.",
+    "proofSources": "vermelde gegevensbronnen",
+    "proofTools": "hulpmiddelen voor assistenten",
+    "proofMotorways": "snelwegen met een eigen pagina",
+    "proofLanguages": "talen",
+    "caseShow": "Bekijken wat het nu toont",
+    "howHeading": "Zo werkt het",
+    "how1": "Overheden en exploitanten publiceren open data: verkeer, dienstregelingen, laden, parkeren, weerwaarschuwingen.",
+    "how2": "Wij verzamelen ze dag en nacht, voegen ze samen tot één beeld van Duitsland en bewaren elke meting met tijd en bron.",
+    "how3": "Uw systemen en assistenten vragen één eindpunt en krijgen een antwoord dat zijn bron noemt.",
+    "howData": "Open gegevens",
+    "howYou": "Uw assistent of systeem",
+    "licenceHeading": "Welke data een bedrijf mag gebruiken, en hoe",
+    "licenceColClass": "Licentieklasse",
+    "licenceColCount": "Bronnen",
+    "licenceColUse": "Wat een bedrijf mag",
+    "lic": {
+      "open": {
+        "name": "Vrij",
+        "use": "Vrij gebruiken en doorgeven."
+      },
+      "attribution": {
+        "name": "Naamsvermelding",
+        "use": "Gebruiken en doorgeven, met de bronvermelding erbij."
+      },
+      "shareAlike": {
+        "name": "Gelijk delen",
+        "use": "Gebruiken; afgeleide data alleen onder dezelfde licentie doorgeven."
+      },
+      "terms": {
+        "name": "Nog niet opgehelderd voor bedrijven",
+        "use": "Nog geen onderdeel van een aanbod voor bedrijven: de uitgever publiceert geen gebruiksvoorwaarden, of zijn voorwaarden vereisen een contract dat wij nog niet aanbieden."
+      },
+      "consumerOnly": {
+        "name": "Alleen consumenteninformatie",
+        "use": "Geen onderdeel van een aanbod aan bedrijven."
+      },
+      "own": {
+        "name": "Inhoud van ViaFrei",
+        "use": "Inbegrepen in een samenwerking."
+      }
+    },
+    "coopPilotTitle": "Pilotproject",
+    "coopPilot": "Een paar weken aan uw eigen vraag: uw eigen API-sleutel, hogere limieten en een directe lijn met ons.",
+    "coopDataTitle": "Datapartnerschap",
+    "coopData": "Exports uit de bewaarde geschiedenis, voor de bronnen waarvan de licentie het toestaat, en uw eigen bewakingen en kanalen.",
+    "coopPublisherTitle": "Uitgever",
+    "coopPublisher": "U publiceert mobiliteitsdata: wij brengen die naar elke AI-assistent, met u als bron, en bouwen er samen nieuwe hulpmiddelen op."
+  },
+  "fuelPage": {
+    "title": "Tankstations per deelstaat – een selectie met prijzen",
+    "lead": "Per deelstaat tot drie tankstations, de goedkoopste Euro 95 E10 eerst. Gekozen uit de stations die we waarnemen – dus niet noodzakelijk de goedkoopste in de deelstaat. Elke prijs staat erbij met het tijdstip waarop we hem waarnamen. Informatie voor consumenten, geen lijst van elk tankstation.",
+    "back": "Naar de startpagina",
+    "unavailable": "De lijst met tankstations per deelstaat is op dit moment niet beschikbaar.",
+    "boardHead": "Per deelstaat tot drie tankstations",
+    "hereHead": "De goedkoopste open tankstations in {place}",
+    "hereHeadNone": "De goedkoopste open tankstations bij u in de buurt",
+    "hereNone": "We kennen uw plaats op dit moment niet. Kies hieronder een stad of op de startpagina uw plaats; daar staan de prijzen.",
+    "hereNoScript": "De prijzen worden met JavaScript geladen zodra dit onderdeel zichtbaar is. Zonder JavaScript staan ze op de pagina van de plaats.",
+    "hereLoading": "Prijzen worden geladen …",
+    "hereFailed": "De prijzen zijn nu niet op te halen.",
+    "cities": "Steden",
+    "citiesLead": "De prijzen van elke stad staan op haar pagina."
+  },
+  "quote": {
+    "open": "“",
+    "close": "”"
+  },
+  "place": {
+    "change": "Plaats wijzigen",
+    "how": {
+      "exact": "afgerond, ca. 500 m",
+      "approx": "bij benadering (via je internetverbinding)",
+      "chosen": "gekozen",
+      "saved": "opgeslagen",
+      "rough": "bij benadering (browser)"
+    },
+    "germany": "Heel Duitsland",
+    "outsideFar": "Uw positie ligt buiten Duitsland. We tonen heel Duitsland – kies een plaats om de kaarten ervan te zien.",
+    "choose": "Plaats kiezen",
+    "loaded": "Kaarten voor {place} geladen",
+    "failed": "Deze plaats kon nu niet worden geladen.",
+    "noGeo": "Geen locatie van de browser – kies een plaats.",
+    "locating": "Locatie wordt bepaald …",
+    "geoNo": "Geen locatie van de browser: {why}. Nog steeds getoond: {place}.",
+    "geoDenied": "toegang geblokkeerd – sta die toe via het pictogram naast het adres",
+    "geoUnavailable": "je apparaat kon die niet bepalen",
+    "geoTimeout": "geen binnen 15 s",
+    "geoApprox": "Je browser kent je locatie maar ongeveer (meer dan 1 km).",
+    "why": "Voor laadpalen, tankstations en waarschuwingen precies bij jou – je exacte locatie blijft op je apparaat.",
+    "kept": "Je browser onthoudt deze plaats",
+    "sheet": {
+      "useLocation": "Mijn locatie gebruiken",
+      "forget": "Plaats vergeten"
+    },
+    "privacy": {
+      "title": "Je plaats blijft bij jou.",
+      "body": "ViaFrei maakt geen account en geen profiel aan en slaat je plaats niet op. Je browser onthoudt een plaats op dit apparaat alleen als je die in de plaatsbalk kiest – een plaats of een adres, “Mijn locatie gebruiken” of “Heel Duitsland” – samen met je laatst gekozen plaatsen; zolang deze pagina een onthouden plaats gebruikt, staat dat onder de plaatsbalk, en “Plaats vergeten” wist die meteen. De pagina vraagt alleen om je locatie als je “Mijn locatie gebruiken” kiest; heb je die in je browser al blijvend toegestaan, dan leest deze pagina hem zonder te vragen en slaat niets op. Je locatie wordt op je apparaat afgerond tot een gebied van ongeveer 500 m, en onze server leidt daaruit de straat- of plaatsnaam af; hij houdt die naam per gebied hoogstens een uur in het werkgeheugen, zonder verband met jou, en slaat hem niet op. Alleen direct na die klik, en alleen als je browser je locatie tot op hoogstens 150 m nauwkeurig opgeeft, stuurt de pagina de exacte positie één keer naar onze server om te controleren of je bij een station, een tankstation, een laadstation of een verzorgingsplaats aan de snelweg staat; daar wordt hij niet opgeslagen en niet gelogd. Net zo houdt hij de naam van een hier gekozen station, plaats of adres hoogstens een uur in het werkgeheugen. Je IP-adres wordt alleen in het werkgeheugen gebruikt voor de benaderde locatie en daarvoor niet opgeslagen. Dit geldt op elke pagina met de plaatsbalk, ook op het stationsoverzicht. Op het stationsoverzicht dient de zo bepaalde plaats alleen om de dichtstbijzijnde stations en haltes te tonen.",
+      "more": "Meer in de privacyverklaring"
+    },
+    "geoipCredit": "Benaderde plaats uit het IP-adres:",
+    "pageTitle": "{place}: afsluitingen, werkzaamheden, verkeer – ViaFrei",
+    "pageDescription": "File, wegwerkzaamheden en afsluitingen in {place}, plus parkeren, laadpalen, brandstofprijzen en noodweer – live uit open data, elk cijfer met bron.",
+    "pageLead": "Alles wat ViaFrei nu over {place} weet – uit open data, met de bron bij elk cijfer.",
+    "pageMissing": "Deze plaats kennen we niet.",
+    "geoipModified": "uittreksel bewerkt",
+    "loadingCards": "De kaarten voor deze plaats worden geladen …",
+    "reloadCards": "Laad de pagina opnieuw om de kaarten te zien",
+    "fuelUnavailable": "De prijzen konden nu niet opnieuw worden opgevraagd. Hier staat de laatst bekende stand met tijdstip.",
+    "motorway": {
+      "why": "Voor wat er rond jou op deze snelweg ligt – je exacte positie blijft op je apparaat.",
+      "radius": "Straal",
+      "radiusOther": "Kies zelf een straal (1–100 km)",
+      "updating": "wordt bijgewerkt …",
+      "failed": "Kon niet worden bijgewerkt – de vorige weergave blijft staan.",
+      "zoomGroup": "Kaart zoomen – elke stap is een straal",
+      "zoomIn": "Inzoomen – straal {r} km",
+      "zoomOut": "Uitzoomen – straal {r} km",
+      "zoomInEnd": "Inzoomen – kleinste straal bereikt",
+      "zoomOutEnd": "Uitzoomen – grootste straal bereikt",
+      "filter": {
+        "legend": "Tonen",
+        "all": "Alles tonen",
+        "none": "Niets tonen",
+        "allLabel": "Alles tonen – alle soorten selecteren",
+        "noneLabel": "Niets tonen – alle soorten deselecteren",
+        "save": "Deze keuze onthouden",
+        "saved": "Keuze onthouden op dit apparaat.",
+        "forget": "Niet meer onthouden",
+        "everything": "Alle gegevens",
+        "nothing": "Niets geselecteerd – kies ten minste één soort.",
+        "sum": "{kinds}: {n}",
+        "sumR": "{kinds} binnen {r} km: {n}",
+        "entriesOne": "{n} vermelding",
+        "entriesFew": "{n} vermeldingen",
+        "entriesMany": "{n} vermeldingen",
+        "entriesOther": "{n} vermeldingen",
+        "entriesZero": "{n} vermeldingen",
+        "ampel": "Het verkeerslicht beoordeelt nog steeds alles – sommige redenen ervan zijn nu verborgen."
+      }
+    },
+    "pageDescriptionRoads": "{place}: afsluitingen en werkzaamheden nu op {roads} – plus files, parkeren, laden en waarschuwingen, live met de bron.",
+    "topics": {
+      "legend": "Onderwerpen",
+      "apply": "Toepassen",
+      "none": "Geen onderwerpen gekozen.",
+      "shown": "Getoonde onderwerpen: {n} van {total}",
+      "attention": "Verborgen, maar nu belangrijk: {topic} – tonen"
+    },
+    "head": {
+      "live": "Live voor",
+      "scope": "Gebied",
+      "search": "Plaats zoeken",
+      "searchHint": "Adres, postcode, wijk of station",
+      "locate": "Mijn locatie gebruiken",
+      "confirmQ": "Klopt deze plaats?",
+      "yes": "Ja",
+      "other": "Andere plaats",
+      "confirmed": "bevestigd",
+      "updated": "bijgewerkt voor {place}",
+      "outside": "locatie buiten Duitsland",
+      "germanyHow": "heel Duitsland gekozen",
+      "germanyNote": "Heel Duitsland gekozen: alle landelijke cijfers staan direct hieronder – elk met tijd en bron."
+    },
+    "bar": {
+      "label": "Plaats kiezen of zoeken",
+      "close": "Sluiten",
+      "hint": "Plaats, adres, snelweg, station zoeken …",
+      "recent": "Recent gekozen",
+      "popular": "Populair",
+      "drop": "{place} verwijderen",
+      "found": "Suggesties: {n}",
+      "how": "Een plaats, adres of station uit de lijst toont de kaarten daar; Enter doorzoekt de hele site."
+    }
+  },
+  "newsPage": {
+    "readMore": "Verder lezen",
+    "title": "Nieuws",
+    "lead": "Wat er nieuw is bij ViaFrei, wat er hierna komt, en de lange afsluitingen die we nu bijhouden — elk met zijn bron.",
+    "filterLabel": "Tonen",
+    "chipNew": "Nieuw",
+    "chipPlans": "Plannen",
+    "chipTraffic": "Verkeer",
+    "newHeading": "Nieuw bij ViaFrei",
+    "plansHeading": "Plannen",
+    "plansLead": "Wat we hierna willen toevoegen. Gepland betekent gepland: niets daarvan zit al in ViaFrei, en we noemen geen data.",
+    "trafficHeading": "Lange afsluitingen",
+    "trafficLead": "Uit onze eigen gegevens: afsluitingen met een opgegeven einde, minstens een dag lang. Elke verdwijnt zodra het einde bereikt is.",
+    "badgeNew": "Nieuw",
+    "badgePlan": "Gepland",
+    "askLabel": "Vraag het je assistent",
+    "askLabelPlan": "Zodra het er is, vraag het je assistent",
+    "plannedNote": "nog geen datum",
+    "connect": "ViaFrei verbinden",
+    "sources": "Bron",
+    "feed": "Nieuws als Atom-feed",
+    "released": "Versie {v} · {d}",
+    "teaserHeading": "Nieuw bij ViaFrei",
+    "teaserAll": "Al het nieuws",
+    "trafficError": "De verkeersmeldingen konden nu niet worden geladen.",
+    "noEntries": "Nog geen berichten in deze taal."
+  },
+  "examplesPage": {
+    "title": "Alle voorbeeldvragen",
+    "lead": "Elke vraag die ViaFrei op deze website als voorbeeld toont – met de tool die hem beantwoordt en het antwoord, geordend per onderwerp.",
+    "live": "Waar ViaFrei de vraag zelf regelmatig stelt, zie je hier het nieuwste antwoord; elders het vastgelegde antwoord met zijn datum.",
+    "toc": "Onderwerpen",
+    "domain": {
+      "transit": "Bus, trein en station",
+      "roads": "Wegen en snelwegen",
+      "parking": "Parkeren",
+      "charging": "Laden",
+      "fuel": "Tanken",
+      "more": "Plaatsen en bewakingen"
+    },
+    "question": "Vraag {n}",
+    "fuelNote": "Voorbeeldantwoorden over brandstofprijzen tonen we alleen met datum en alleen op twee plekken: {home} en {connect}.",
+    "fuelHome": "op de startpagina",
+    "fuelConnect": "op de pagina Verbinden"
+  },
+  "seo": {
+    "connectTitle": "Verkeersdata in ChatGPT en Claude via MCP – ViaFrei",
+    "connectDescription": "Eén adres, geen sleutel: koppel ViaFrei in Claude, ChatGPT, Copilot, Cursor, Gemini CLI of Le Chat en vraag live naar files, treinen en parkeren.",
+    "motorwayTitle": "File {road}: wegwerkzaamheden, afsluitingen – ViaFrei",
+    "motorwayDescription": "File {road} in Duitsland: afsluitingen en wegwerkzaamheden per richting, live uit open data, met geplande afsluitingen en de regels op de snelweg.",
+    "motorwaysTitle": "Files en wegwerkzaamheden Autobahn nu – Duitsland – ViaFrei",
+    "motorwaysDescription": "Alle Duitse snelwegen live: files, afsluitingen, werkzaamheden, omleidingen, parkeren en laden, met een kaart en een pagina per snelweg.",
+    "motorwayH1": "{road} nu",
+    "motorwayLead": "File, afsluitingen en wegwerkzaamheden op de {road}, live uit open data, met bron en tijdstip.",
+    "motorwaysH1": "Snelwegen in Duitsland",
+    "motorwaysLead": "Elke snelweg met zijn actuele meldingen. Kies er een voor file, afsluitingen, wegwerkzaamheden en het verloop.",
+    "stationsTitle": "Treinstations in Duitsland: perrons, voorzieningen – ViaFrei",
+    "stationsDescription": "Elk station van Deutsche Bahn: perrons met hoogte en drempelvrije toegang, voorzieningen, reisassistentie en wat er binnen 300 m ligt – uit open data.",
+    "stationsH1": "Treinstations in Duitsland",
+    "crumbStations": "Treinstations",
+    "stationTitle": "{name}: vertrek, sporen, liften, storingen – ViaFrei",
+    "stationDescription": "{name}: de volgende vertrektijden live met spoor, welke liften en roltrappen nu werken, drempelvrije perrons, voorzieningen en omgeving – uit open data, met bron en datum.",
+    "crumbHome": "Start",
+    "crumbMotorways": "Snelwegen",
+    "linksMotorways": "Snelwegen live",
+    "linksPlaces": "Steden live",
+    "allMotorways": "Alle snelwegen",
+    "allPlaces": "Meer steden",
+    "imprintDescription": "Colofon van viafrei.de: wie ViaFrei exploiteert, het realtime mobiliteitsplatform voor AI-assistenten, en hoe u de exploitant bereikt.",
+    "privacyDescription": "Privacyverklaring van viafrei.de: wat ViaFrei opslaat en wat niet, hoe toestemming werkt en welke rechten u hebt – geen account, geen profiel.",
+    "termsDescription": "Gebruiksvoorwaarden van ViaFrei: onder welke voorwaarden u gegevens zoals de bezetting van vrachtwagenparkeerplaatsen van Toll Collect GmbH mag gebruiken.",
+    "businessTitle": "API met live mobiliteitsdata voor bedrijven",
+    "businessDescription": "Verkeer, openbaar vervoer, laden en parkeren in heel Duitsland als één live eindpunt met bronnen. Start een pilotproject of een datapartnerschap.",
+    "developersTitle": "MCP-server voor Duitse mobiliteitsdata",
+    "developersDescription": "Verbind elke MCP-client in een minuut: snelstart per client, een echte aanroep met zijn antwoord en elk hulpmiddel met zijn schema."
+  },
+  "ask": {
+    "live": "Live antwoord van ViaFrei",
+    "asOf": "Gegevens van {time} uur",
+    "tool": "Tool",
+    "question": "Vraag",
+    "answer": "Antwoord",
+    "cta": "Vraag het in je assistent",
+    "roads": {
+      "question": "Staat er nu file op de A8?",
+      "clear": "Op de {road} is nu geen file gemeld. Van kracht – afsluitingen: {closures}, wegwerkzaamheden: {works}.",
+      "jams": "Gemelde files op de {road}: {jams}; de langste kost {delay} min. Afsluitingen: {closures}, wegwerkzaamheden: {works}.",
+      "jamsNoDelay": "Gemelde files op de {road}: {jams}. Afsluitingen: {closures}, wegwerkzaamheden: {works}."
+    },
+    "lorryPark": {
+      "question": "Hoeveel vrachtwagenparkings heeft de A3, en hoeveel publiceren hun bezetting?",
+      "listed": "Vrachtwagenparkings langs de {road}: {total}; met gepubliceerde bezetting: {live}."
+    },
+    "hydrogen": {
+      "question": "Waar kan een waterstofvrachtwagen tanken bij Frankfurt am Main?",
+      "near": "{name}, {address}: 350 bar voor vrachtwagens en bussen, op {km} km.",
+      "none": "Binnen {km} km staat geen waterstofstation voor vrachtwagens vermeld."
+    },
+    "weatherLand": {
+      "question": "Geldt er op dit moment een officiële weerswaarschuwing in Beieren (Bayern)?",
+      "none": "{place}: Geen officiële DWD-waarschuwing van kracht, gecontroleerd voor nu en de komende {hours} uur.",
+      "warn": "{place}: Officiële waarschuwingen van kracht: {count}, hoogste niveau {level} van 4, waaronder “{event}”."
+    },
+    "transit": {
+      "question": "Hoe stipt rijden bussen en treinen in Noordrijn-Westfalen nu?",
+      "share": "{region}: {pct}% van de ritten in de laatste {minutes} minuten is te laat ({late} van {trips}).",
+      "thin": "{region}: waargenomen ritten in de laatste {minutes} minuten: {trips} – te weinig voor een aandeel."
+    },
+    "charging": {
+      "question": "Waar kan ik in Leipzig laden met minstens 150 kW?",
+      "live": "{operator}, {address}: tot {kw} kW, op {km} km – {free} van {total} laadpunten vrij.",
+      "liveNoOp": "{address}: tot {kw} kW, op {km} km – {free} van {total} laadpunten vrij.",
+      "noStatus": "{operator}, {address}: tot {kw} kW, op {km} km. De exploitant meldt nu geen actuele bezetting.",
+      "noStatusNoOp": "{address}: tot {kw} kW, op {km} km. De exploitant meldt nu geen actuele bezetting.",
+      "none": "In de buurt staat geen laadstation met minstens 150 kW vermeld."
+    },
+    "parking": {
+      "question": "Waar is er nu een parkeergarage met vrije plaatsen bij Münster Centraal?",
+      "free": "{name}: {free} van {total} plaatsen vrij, op {km} km.",
+      "none": "Geen parkeergarage in de buurt meldt nu vrije plaatsen.",
+      "unpublished": "De exploitanten van de parkeergarages in de buurt publiceren geen live bezetting, dus of er plaatsen vrij zijn, is niet bekend."
+    },
+    "roadsNear": {
+      "question": "Wat is er nu aan de hand op de wegen hier?",
+      "clear": "Binnen {km} km is nu niets gemeld: geen file, geen afsluiting.",
+      "noJams": "Binnen {km} km geen file. Van kracht – afsluitingen: {closed}, hinder: {restricted}.",
+      "jams": "Binnen {km} km – files: {jams}, afsluitingen: {closed}, hinder: {restricted}."
+    },
+    "weather": {
+      "question": "Is er hier een officiële weerwaarschuwing?",
+      "none": "Geen officiële DWD-waarschuwing van kracht, gecontroleerd voor nu en de komende {hours} uur.",
+      "warn": "Officiële waarschuwingen van kracht: {count}, hoogste niveau {level} van 4, waaronder “{event}”."
+    },
+    "nearby": {
+      "question": "Wat is er hier in de buurt?",
+      "near": "Binnen {km} km: station {station}; laadstations: {charging}, parkeerplaatsen: {parking} (van elk hoogstens drie getoond).",
+      "noStation": "Geen station binnen {km} km; laadstations: {charging}, parkeerplaatsen: {parking} (van elk hoogstens drie getoond).",
+      "none": "Binnen {km} km staat geen station, laadstation of parkeerplaats vermeld."
+    },
+    "poi": {
+      "question": "Waar is de dichtstbijzijnde apotheek?",
+      "found": "{name}, {street} – op {km} km.",
+      "foundNoStreet": "{name} – op {km} km.",
+      "none": "Binnen 5 km staat geen apotheek vermeld."
+    },
+    "chargingNear": {
+      "question": "Waar is de dichtstbijzijnde laadpaal?",
+      "live": "{operator}, {address}: tot {kw} kW, op {km} km – {free} van {total} laadpunten vrij.",
+      "liveNoOp": "{address}: tot {kw} kW, op {km} km – {free} van {total} laadpunten vrij.",
+      "noStatus": "{operator}, {address}: tot {kw} kW, op {km} km. De exploitant meldt nu geen actuele bezetting.",
+      "noStatusNoOp": "{address}: tot {kw} kW, op {km} km. De exploitant meldt nu geen actuele bezetting.",
+      "none": "In de buurt staat geen laadstation vermeld."
+    },
+    "offerOsm": "Deze gegevens komen uit onze database die is afgeleid van OpenStreetMap. Een volledige, machineleesbare kopie (CSV) onder de ODbL 1.0 sturen we op verzoek gratis – contactgegevens in het {link}.",
+    "offerDb": "Deze gegevens komen uit onze database die is afgeleid van “{db}”. De database die we openbaar gebruiken – zonder de gegevens die de uitgever als vertrouwelijk markeert – sturen we als machineleesbare kopie (CSV) onder de ODbL 1.0 op verzoek gratis – contactgegevens in het {link}.",
+    "offerLink": "colofon"
+  },
+  "connectNote": {
+    "text": "Uw AI-assistent geeft dit antwoord alleen als ViaFrei is verbonden.",
+    "link": "Zo verbindt u ViaFrei",
+    "guide": "Volledige handleiding voor alle clients",
+    "clients": "Stap voor stap voor",
+    "copy": "Adres kopiëren",
+    "copied": "Gekopieerd"
+  },
+  "next": {
+    "label": "Verder",
+    "ask": "Vraag uw AI naar {place}",
+    "motorways": "Alle snelwegen"
+  },
+  "search": {
+    "label": "Zoeken op ViaFrei",
+    "placeholder": "Plaats, snelweg, station, pagina …",
+    "submit": "Zoeken",
+    "title": "Zoeken",
+    "description": "Vind plaatsen, snelwegen, knooppunten, stations en pagina's op ViaFrei.",
+    "hint": "Typ minstens twee tekens.",
+    "alt": "Kaarten hier tonen",
+    "partial": "Sommige resultaten worden niet getoond: een bron antwoordde niet op tijd.",
+    "allResults": "Alle resultaten",
+    "showAll": "Alle resultaten van deze soort",
+    "prev": "Vorige",
+    "next": "Volgende",
+    "pageOf": "Pagina {page} van {pages}",
+    "pager": "Resultaatpagina's",
+    "none": "We vonden niets voor ‘{q}’.",
+    "nearest": "Vergelijkbaar gespeld:",
+    "motorwayIndex": "Alle snelwegen",
+    "kind": {
+      "motorway": "Snelwegen",
+      "road": "Bondswegen en deelstaatwegen",
+      "place": "Plaatsen",
+      "station": "Treinstations",
+      "exit": "Afritten en knooppunten",
+      "area": "Gebieden en adressen",
+      "poi": "Bezienswaardigheden",
+      "page": "Pagina's",
+      "news": "Nieuws"
+    }
+  },
+  "header": {
+    "how": "Een plaats, een adres of een punt uit de lijst wordt uw plaats op elke pagina; een snelweg, een station of een pagina wordt geopend. Enter doorzoekt de hele site.",
+    "makeMine": "Maak dit mijn plaats"
+  },
+  "statePages": {
+    "title": "Duitse deelstaten: snelwegen nu, steden, feiten – ViaFrei",
+    "description": "Alle 16 Duitse deelstaten in één oogopslag: afsluitingen, files en wegwerkzaamheden op de snelwegen nu, oppervlakte, hoofdstad, buurdeelstaten en grootste steden.",
+    "h1": "De 16 Duitse deelstaten",
+    "crumb": "Deelstaten"
+  },
+  "ai": {
+    "placeWarn": "Zijn er nu weerswaarschuwingen voor {place}?",
+    "placePark": "Waar kan ik nu parkeren of laden in {place}?",
+    "landRoads": "Welke snelwegen in {place} hebben nu de meeste hinder?",
+    "roadUsual": "Hoe lang duren files op de {road} meestal?",
+    "roadPlans": "Welke wegwerkzaamheden en afsluitingen zijn er op de {road} gepland?",
+    "open": "Vragen in {app}",
+    "copy": "Vraag kopiëren",
+    "copied": "Gekopieerd"
+  },
+  "star": {
+    "add": "Pagina bewaren",
+    "remove": "Bewaard",
+    "neu": "nieuw",
+    "gone": "Opgeheven sinds uw laatste bezoek: {list}",
+    "longer": "langer",
+    "install": "Toevoegen aan beginscherm",
+    "commute": "Uw route"
+  },
+  "pwa": {
+    "offline": "Stand van {t}, offline"
+  }
+}

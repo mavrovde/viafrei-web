@@ -1,0 +1,282 @@
+{
+  "blitzer-autobahnseiten": {
+    "title": "Controlos de velocidade nas páginas das autoestradas",
+    "body": "A página de uma autoestrada e as páginas dos seus nós mostram agora também os locais publicados de controlo de velocidade ao longo do percurso, cada um com o nó a que está atribuído — das listas oficiais das cidades e, onde nenhuma cidade publica uma, do OpenStreetMap. Os dados destinam-se apenas ao planeamento antes da viagem ou durante uma paragem; o cartão inclui o aviso do § 23 Abs. 1c StVO.",
+    "ask": "Estou a planear uma viagem pela A 5 em Karlsruhe: onde estão os radares fixos?"
+  },
+  "flixbus-flixtrain-abfahrten": {
+    "title": "FlixBus e FlixTrain nas partidas",
+    "body": "Ao lado das partidas dos transportes locais, o ViaFrei mostra agora também os autocarros da FlixBus e os comboios da FlixTrain que partem perto de uma paragem, na paragem e no cartão da estação. Quando a FlixBus fornece uma previsão atual, é indicada a hora prevista; caso contrário, a hora do horário. Reservas e preços apenas na própria FlixBus.",
+    "ask": "Quando parte o próximo FlixBus de Berlin ZOB?"
+  },
+  "blitzer-bottrop-essen-konstanz": {
+    "title": "Locais de controlo de velocidade em Bottrop, Essen e Constança",
+    "body": "O ViaFrei conhece agora também os locais de controlo de velocidade publicados por Bottrop, Essen e Constança: em Bottrop os locais de medição atuais, em Essen as ruas dos controlos móveis anunciados para a semana, em Constança os locais fixos de medição da cidade. Os dados destinam-se apenas ao planeamento antes da viagem ou durante uma paragem; cada resposta inclui o aviso nos termos do § 23 Abs. 1c StVO.",
+    "ask": "Estou a planear uma viagem a Essen: onde há controlos esta semana?"
+  },
+  "aufzuege-u-bahnhoefe-berlin-brandenburg": {
+    "title": "Berlim e Brandemburgo: elevadores e acessos nas estações de metro e elétrico",
+    "body": "O ViaFrei lê agora a lista de acessos às estações do VBB. Para cada estação de Berlim e Brandemburgo em que a lista indica elevadores, diz quantos elevadores há e quantos acessos a partir da rua, e quantos deles têm elevador, também em estações só de metro como Hermannplatz, que não são estações da DB. A lista diz o que está construído, não se um elevador está a funcionar agora; o ViaFrei indica a data do ficheiro.",
+    "ask": "A estação de metro Hermannplatz tem elevador?"
+  },
+  "stadtbahn-stationen-unter-der-erde": {
+    "title": "As estações subterrâneas de metro ligeiro têm página própria",
+    "body": "O ViaFrei dá agora também às estações subterrâneas de metro ligeiro (Stadtbahn) uma página de estação própria. O horário não diz se uma paragem de elétrico fica no subsolo; o ViaFrei reconhece-o com dados do OpenStreetMap quando aí está mapeada uma estação subterrânea num raio de 300 metros. A página indica as linhas que lá param e as suas próximas partidas, e cita o OpenStreetMap como fonte.",
+    "ask": "O que parte a seguir de Neumarkt, em Colónia?"
+  },
+  "blitzer-standorte-planung": {
+    "title": "Locais de radares para planear a viagem",
+    "body": "O ViaFrei já conhece os locais de controlo de velocidade publicados por Aachen, Düsseldorf, Karlsruhe e Colónia. Servem apenas para planear antes da viagem ou durante uma paragem: segundo o § 23 Abs. 1c StVO, quem conduz não pode usar uma aplicação que mostre a fiscalização de trânsito. Cada resposta traz este aviso.",
+    "ask": "Estou a planear uma viagem a Düsseldorf: onde estão lá os radares fixos?"
+  },
+  "parken-trier": {
+    "title": "Parques de estacionamento em Tréveris com lugares livres",
+    "body": "O ViaFrei lê agora em direto os parques de estacionamento da empresa municipal de Tréveris (SWT) com os seus lugares livres. Até agora o ViaFrei não conhecia nenhum parque em Tréveris; agora indica 28 parques e quantos lugares estão livres neste momento.",
+    "ask": "Onde há agora um parque de estacionamento com lugares livres em Tréveris?"
+  },
+  "parken-konstanz": {
+    "title": "Parques de estacionamento de Konstanz com lugares livres",
+    "body": "O ViaFrei lê agora em tempo real os parques de estacionamento da cidade de Konstanz com os seus lugares livres. Até agora o ViaFrei só sabia onde ficam os parques de Konstanz; agora diz quantos lugares estão livres neste momento. Um parque publicado por duas fontes aparece uma só vez na resposta, e ambos os editores são indicados.",
+    "ask": "Onde há agora um parque de estacionamento com lugares livres em Konstanz?"
+  },
+  "parken-wiesbaden": {
+    "title": "Parques de estacionamento de Wiesbaden com a sua ocupação",
+    "body": "O ViaFrei lê agora os parques de estacionamento e garagens subterrâneas da cidade de Wiesbaden e a sua ocupação em tempo real: para cada um, a percentagem de ocupação neste momento, segundo a cidade. Quando um registo é mais antigo, o ViaFrei diz quando chegou em vez de o apresentar como atual.",
+    "ask": "Onde há agora um parque de estacionamento com lugares em Wiesbaden?"
+  },
+  "kurzzeitbaustellen-hessen": {
+    "title": "Obras noturnas nas autoestradas e obras rodoviárias em Hesse",
+    "body": "O ViaFrei conhece agora as obras de curta duração planeadas pela Autobahn GmbH: encerramentos noturnos e faixas cortadas durante um dia, cada uma com as suas próprias janelas horárias. Fora da sua janela, uma obra destas é indicada como planeada, com as suas datas. A elas juntam-se as obras da Hessen Mobil nas estradas federais e estaduais e em parte das estradas distritais de Hesse.",
+    "ask": "A A3 está fechada esta noite?"
+  },
+  "nrw-baustellen-landesstrassen": {
+    "title": "Renânia do Norte-Vestfália: obras em estradas federais, estaduais e distritais",
+    "body": "O ViaFrei lê agora as obras da Straßen.NRW nas estradas federais, estaduais e distritais da Renânia do Norte-Vestfália. Pergunte por uma estrada ou um lugar e o ViaFrei indica as obras aí. As obras que ainda não começaram são indicadas como previstas, com a data de início.",
+    "ask": "Há obras na L968?"
+  },
+  "ausfallsicherheit-verkehrsmeldungen": {
+    "title": "Mais fiabilidade para as mensagens de trânsito e a situação do trânsito",
+    "body": "O ViaFrei lê agora também as mensagens de trânsito do VIZ.NRW e da central de informação de trânsito de Hamburgo. Lê ainda as obras previstas em Meclemburgo-Pomerânia Ocidental e o trânsito por faixa nas autoestradas da Renânia do Norte-Vestfália. Cada mensagem é mostrada uma vez e todas as fontes que a transmitem são indicadas. Se uma fonte falhar, o ViaFrei responde a partir da outra.",
+    "ask": "Há mensagens de trânsito em Hamburgo neste momento?"
+  },
+  "lkw-beschraenkungen-koeln": {
+    "title": "Limites de peso e de altura da cidade de Colónia",
+    "body": "O ViaFrei lê agora as restrições rodoviárias publicadas pela cidade de Colónia: limites de peso em pontes, alturas livres em passagens inferiores e outras proibições para camiões. Para um local em Colónia, o ViaFrei indica as mais próximas com o tipo, o valor e a rua; quando falta um valor, o ViaFrei di-lo. Aplica-se a sinalização no local.",
+    "ask": "Que alturas livres se aplicam aos camiões perto da Catedral de Colónia?"
+  },
+  "parken-kiel": {
+    "title": "Parques de estacionamento, silos e P+R em Kiel",
+    "body": "O ViaFrei lê agora os parques de estacionamento, silos, parques subterrâneos e parques Park & Ride publicados pela cidade de Kiel: 194 locais com a sua localização e tipo. A cidade não publica nem o número de lugares nem a ocupação, e o ViaFrei di-lo em vez de inventar um número.",
+    "ask": "Onde há um silo de estacionamento em Kiel?"
+  },
+  "behindertenparkplaetze-frankfurt": {
+    "title": "Lugares para pessoas com deficiência em Frankfurt am Main",
+    "body": "O ViaFrei conhece agora os 458 locais com lugares para pessoas com deficiência publicados pela cidade de Frankfurt am Main, no total 615 lugares reservados, cada um com a morada, o número de lugares e os horários em que estão reservados. Nenhum sensor indica se um lugar está livre, e o ViaFrei di-lo em vez de adivinhar.",
+    "ask": "Onde há um lugar para pessoas com deficiência perto do Römer, em Frankfurt?"
+  },
+  "lkw-netz-koeln": {
+    "title": "A rede para camiões da cidade de Colónia",
+    "body": "O ViaFrei lê agora as ligações para camiões publicadas pela cidade de Colónia: as ruas por onde a cidade encaminha o trânsito de pesados, em quatro classes, da autoestrada à ligação para entregas. Para um local em Colónia, o ViaFrei indica o troço mais próximo de cada classe com as suas ruas e a data dos dados, ao lado das restrições para camiões do SEVAS. A rede não é uma autorização: aplica-se a sinalização no local.",
+    "ask": "Por que ruas encaminha Colónia os camiões perto da catedral?"
+  },
+  "verkehrslage-hamburg-bonn": {
+    "title": "Hamburgo e Bona: o trânsito medido na cidade",
+    "body": "O ViaFrei lê agora, a cada cinco minutos, o estado do trânsito que Hamburgo e Bona publicam para as suas ruas, e indica para um local quantos troços num raio de 10 km têm trânsito intenso, lento ou parado e a que distância está a fila mais próxima. Só o trânsito lento ou parado conta como fila, o trânsito intenso não. Hamburgo só publica os troços onde o trânsito não flui livremente, por isso aí o ViaFrei não indica um número de troços livres. Quando o dado da cidade tem mais de 30 minutos, o ViaFrei não diz nada sobre ele.",
+    "ask": "Como está o trânsito em Hamburgo neste momento?"
+  },
+  "muenchen-baustellen-umweltzone": {
+    "title": "Munique: as obras da cidade e o seu próprio limite da zona de emissões reduzidas",
+    "body": "O ViaFrei lê agora as obras que a cidade de Munique publica para as próximas quatro semanas, e o limite da sua zona de emissões reduzidas com as áreas de transferência isentas. A cidade regista as obras sobretudo no centro e nas vias principais; cada resposta o diz. Uma proibição temporária de paragem não conta como restrição da faixa de rodagem. Para a zona decide o limite da cidade, com o registo do Umweltbundesamt ao lado.",
+    "ask": "Que obras há em Munique esta semana?"
+  },
+  "lang-lkw-positivnetz": {
+    "title": "Um camião longo pode circular aqui? A rede autorizada da BASt",
+    "body": "O ViaFrei lê agora o extrato da rede autorizada para camiões longos do Instituto Federal de Investigação Rodoviária (BASt) e indica para uma estrada se nele consta, e para um local que estradas próximas lhe pertencem. Segundo a BASt, o extrato não é completo nem juridicamente vinculativo e não se destina à navegação; vinculativo é o regulamento, e o ViaFrei di-lo em cada resposta. A rede de Hamburgo do ensaio é indicada com a sua data de 2015.",
+    "ask": "Posso circular na A7 com um camião longo?"
+  },
+  "durchfahrtshoehen-bremen": {
+    "title": "Limites de altura e de peso em Bremen",
+    "body": "O ViaFrei lê agora os limites de altura e de peso para camiões publicados pela Verkehrsmanagementzentrale Bremen. Para um local em Bremen, o ViaFrei indica os dados mais próximos exatamente como a VMZ Bremen os publica, com o dia em que foram lidos. Só a sinalização no local é vinculativa; os dados não servem para guiar um percurso, e onde não há um dado isso não significa que não exista uma restrição.",
+    "ask": "Que limites de altura há para o meu camião em Bremen-Gröpelingen?"
+  },
+  "lkw-beschraenkungen-nrw-rheinmain": {
+    "title": "Limites de altura e de peso e proibições para camiões na Renânia do Norte-Vestefália e no Reno-Meno",
+    "body": "O ViaFrei lê agora os dados sobre camiões dos municípios da Renânia do Norte-Vestefália através do NRW.Mobidrom (SEVAS), e a rede prioritária e a sinalização para camiões da ivm para a região Frankfurt RheinMain. Para um local, o ViaFrei indica que limites de altura, peso e largura e que proibições para camiões há nas proximidades, quem está isento e por onde passa a rede prioritária para camiões mais próxima. Onde nenhum editor publica esses dados, o ViaFrei di-lo em vez de indicar que a via está livre.",
+    "ask": "Há limites de altura baixos para o meu camião em Haan?"
+  },
+  "barrierefreie-haltestellen-dresden-muenster": {
+    "title": "Dresden e Münster: que paragem é acessível?",
+    "body": "O ViaFrei lê agora o cadastro de paragens da cidade de Dresden, com 750 paragens de autocarro e de elétrico, e a lista de paragens de autocarro acessíveis da Stadtwerke Münster. Para uma paragem em Dresden indica em quantos pontos de embarque a entrada é de nível, precisa da rampa do veículo, é limitada ou não é acessível, com a altura do lancil. Para Münster indica se a paragem é acessível ou parcialmente acessível, com a nota da Stadtwerke. Uma paragem que não consta da lista não é dada como inacessível.",
+    "ask": "A paragem Theaterplatz, em Dresden, é acessível?"
+  },
+  "barrierefreiheit-aus-openstreetmap": {
+    "title": "Acessibilidade a partir do OpenStreetMap: lancis, pisos táteis e elevadores nas paragens de toda a Alemanha",
+    "body": "O ViaFrei lê agora a exportação da TU Chemnitz, que reúne do OpenStreetMap o que voluntários mapearam nas paragens de toda a Alemanha: alturas do lancil, lancis elevados, pisos táteis, elevadores, rampas, escadas e escadas rolantes, para cerca de 4000 paragens. O ViaFrei mostra estes dados onde nenhum levantamento oficial descreve a paragem, e diz que são mapeados, não levantados: o que ninguém registou falta.",
+    "ask": "A paragem Lichtenauer Straße, em Chemnitz, tem lancil elevado?"
+  },
+  "auslastung-mvv-regionalbus": {
+    "title": "Autocarros regionais MVV: quão cheio costuma ir o autocarro",
+    "body": "As partidas de um autocarro regional da rede de transportes de Munique MVV indicam agora quão cheio costuma ir a essa hora, de pouco ocupado a muito cheio, só com lugares de pé. Os valores vêm das contagens automáticas de passageiros da MVV e são valores típicos, não em tempo real. Nos dias úteis, o ViaFrei indica separadamente dias de escola e férias quando diferem.",
+    "ask": "Quão cheio vai amanhã de manhã o autocarro 210 de Ottobrunn, Jahnstraße?"
+  },
+  "ladestatus-hamburg": {
+    "title": "Hamburgo: se um carregador público está livre agora, também pela cidade",
+    "body": "O ViaFrei lê agora o estado de carregamento dos cerca de 2500 pontos de carregamento públicos de Hamburgo, que a Cidade Livre e Hanseática de Hamburgo publica a cada alteração. Junta-se aos carregadores que o ViaFrei já conhece: um carregador de Hamburgo indica agora se está livre, ocupado ou fora de serviço e desde quando, e a cidade é indicada como fonte.",
+    "ask": "Onde há um carregador livre em Hamburgo-Altona neste momento?"
+  },
+  "barrierefreiheit-baden-wuerttemberg": {
+    "title": "Baden-Württemberg: elevadores, rampas e faixas de orientação em estações e paragens",
+    "body": "O ViaFrei lê agora o levantamento de acessibilidade da NVBW para 1104 estações ferroviárias e 14 065 paragens de autocarro e de elétrico em Baden-Württemberg. Ao lado do estado dos elevadores de uma estação, mostra agora o que foi levantado no local: quantos elevadores, com que largura de porta e tamanho de cabina, quão inclinadas são as rampas e quantas plataformas têm uma faixa de orientação tátil. Os dados são dados brutos não verificados do levantamento, e o ViaFrei di-lo.",
+    "ask": "Quão acessível é a estação central de Mannheim?"
+  },
+  "vrn-echtzeit-rhein-neckar": {
+    "title": "Autocarros e elétricos na região Reno-Neckar: tempo real também da VRN",
+    "body": "O ViaFrei lê agora os dados em tempo real do Verkehrsverbund Rhein-Neckar para autocarros e elétricos, de Mannheim e Heidelberga até Mainz e Kaiserslautern. Quando os dados nacionais não indicam nada para um destes distritos, ou estão desatualizados, o ViaFrei mostra a pontualidade a partir dos dados da VRN e diz que não incluem comboios.",
+    "ask": "Quão pontuais são os autocarros e comboios em Mannheim neste momento?"
+  },
+  "vbn-echtzeit-niedersachsen-bremen": {
+    "title": "Bremen e Baixa Saxónia: tempo real também da VBN",
+    "body": "O ViaFrei lê agora as previsões em tempo real do Verkehrsverbund Bremen/Niedersachsen para autocarros, elétricos e comboios, de Bremen e Oldenburg, passando por Hanôver e Braunschweig, até Göttingen e Osnabrück. Quando os dados nacionais não indicam nada para Bremen ou para um destes distritos, ou estão desatualizados, o ViaFrei mostra a pontualidade a partir dos dados da VBN e indica a fonte.",
+    "ask": "Quão pontuais são os autocarros e comboios em Bremen neste momento?"
+  },
+  "baustellen-staedte-laender": {
+    "title": "Obras das cidades e dos estados federados",
+    "body": "O ViaFrei conhece agora também as obras que as cidades e os estados federados publicam por si: de Kiel e Schleswig-Holstein, passando por Brandemburgo, Berlim, Colónia, Dortmund, Münster, Duisburg e Aachen, até Frankfurt, Karlsruhe, Estugarda, Friburgo e Ingolstadt. Cada obra aparece uma vez, com cada fonte que a comunica.",
+    "ask": "Que obras há em Dortmund neste momento?"
+  },
+  "umweltzone-am-punkt": {
+    "title": "Este local está numa zona de emissões reduzidas?",
+    "body": "O ViaFrei compara uma morada ou um ponto com os limites publicados das zonas de emissões reduzidas: dentro, numa área isenta, fora com a distância, ou desconhecido. Baseia-se nos limites das cidades e no registo do Umweltbundesamt com todas as zonas alemãs, cada um com a data dos dados.",
+    "ask": "A Alexanderplatz fica dentro da zona de emissões reduzidas de Berlim?"
+  },
+  "dortmund-sensoren-behindertenparkplaetze-ladeplaetze": {
+    "title": "Dortmund: lugares livres para pessoas com deficiência e o lugar junto ao carregador",
+    "body": "Em Dortmund, sensores na via indicam se um lugar para pessoas com deficiência ou o lugar de um ponto de carregamento está livre neste momento. Quando procura estacionamento, o ViaFrei indica os lugares para pessoas com deficiência mais próximos, e num ponto de carregamento diz se o seu lugar está ocupado, sempre com a hora da última mensagem do sensor.",
+    "ask": "Há um lugar livre para pessoas com deficiência perto da estação central de Dortmund?"
+  },
+  "zweite-quelle-berlin-sachsen-autobahn": {
+    "title": "Obras e cortes de duas fontes: Berlim, Saxónia e as autoestradas",
+    "body": "O ViaFrei lê agora a central de informação de trânsito de Berlim, a Landesmeldestelle Berlin, o sistema de informação sobre cortes da Saxónia e as obras da Autobahn GmbH para os próximos 14 dias. Uma comunicação que duas fontes trazem aparece uma vez na resposta, e ambas são indicadas; quando uma fonte não está atualizada, a outra responde sozinha, e na Saxónia o ViaFrei indica os desvios como referência à sinalização, nunca como percurso.",
+    "ask": "Que ruas estão cortadas perto de mim em Berlim-Mitte neste momento?"
+  },
+  "baustellen-bayern-mv-umleitungen-nrw": {
+    "title": "Obras na Baviera e em Meclemburgo-Pomerânia Ocidental, desvios na Renânia do Norte-Vestefália",
+    "body": "O ViaFrei lê agora as obras e as informações de trânsito da central de gestão de trânsito da Baviera, as obras da entidade rodoviária de Meclemburgo-Pomerânia Ocidental nas estradas federais e regionais, e os desvios sinalizados da Straßen.NRW. O ViaFrei indica um desvio como referência à sinalização, nunca como percurso recomendado.",
+    "ask": "Há obras na B14 na próxima semana?"
+  },
+  "verkehrslage-autobahn-nrw": {
+    "title": "O trânsito nos pontos de medição das autoestradas da Renânia do Norte-Vestefália",
+    "body": "O ViaFrei lê agora o estado do trânsito que a Autobahn GmbH mede em cerca de 2000 pontos na Renânia do Norte-Vestefália e indica para uma autoestrada onde o trânsito flui livremente, está intenso, lento ou parado.",
+    "ask": "Como está o trânsito na A1 na Renânia do Norte-Vestefália neste momento?"
+  },
+  "parken-wuppertal-leipzig-pr": {
+    "title": "Mais parques de estacionamento em Wuppertal e os P+R de Leipzig com lugares livres",
+    "body": "O ViaFrei lê agora a tabela de parques de estacionamento da cidade de Wuppertal, que conhece mais 33 parques do que antes, e os P+R do serviço de trânsito e obras de Leipzig com os lugares livres em tempo real, pela primeira vez com os do Völkerschlachtdenkmal. Um local publicado por duas fontes aparece uma vez na resposta, e ambos os editores são indicados.",
+    "ask": "Onde há lugares P+R livres em Leipzig neste momento?"
+  },
+  "parken-freiburg-herrenberg-jena-vrr-karlsruhe": {
+    "title": "Estacionamento em Friburgo, Herrenberg, Jena, na área VRR e para camiões à volta de Karlsruhe",
+    "body": "O ViaFrei lê agora diretamente mais cinco editores: o sistema de orientação de estacionamento e os P+R da cidade de Friburgo com os lugares livres em tempo real, os parques da cidade de Herrenberg, os parques e silos do Kommunalservice Jena, os Park&Ride da rede de transportes Reno-Ruhr e os parques para camiões da TechnologieRegion Karlsruhe. Onde um editor não publica a ocupação, o ViaFrei di-lo em vez de inventar um número.",
+    "ask": "Que parque de estacionamento em Friburgo tem lugares livres neste momento?"
+  },
+  "live-antworten-auf-der-seite": {
+    "title": "As respostas em direto do seu assistente de IA na página inicial e para cada local",
+    "body": "Ao lado de cada número da página inicial está agora a pergunta que pode fazer ao seu assistente de IA, e o que as ferramentas do ViaFrei lhe respondem neste momento: com a ferramenta, a hora dos dados e cada fonte. Também os cartões de um local mostram as respostas para esse local, sobre avisos, estradas, locais próximos, carregamento e estacionamento. É a mesma resposta que o seu assistente recebe quando está ligado ao ViaFrei.",
+    "ask": "Há alguma coisa cortada nas estradas à volta de Pulheim neste momento?"
+  },
+  "autobahn-seiten": {
+    "title": "Uma página em direto para cada autoestrada alemã",
+    "body": "As 122 autoestradas têm agora uma página própria, com um mapa do traçado, os cortes, filas e obras atuais, e os cortes totais programados para os próximos sete dias com os respetivos desvios. Há também parques para camiões com lugares livres, carregadores por potência, meteorologia rodoviária e avisos, câmaras, a proibição de circulação de pesados e os nós de ligação entre autoestradas. A página inicial mostra as dez autoestradas onde se passa mais neste momento.",
+    "ask": "Qual é a situação na A7 neste momento?"
+  },
+  "wasserstoff-bruecken-bahnhoefe": {
+    "title": "Postos de hidrogénio, as pontes de Schleswig-Holstein e mais em cada estação",
+    "body": "O ViaFrei conhece agora os postos de hidrogénio da H2 Mobility com as suas bombas para ligeiros e camiões, o estado das grandes pontes de Schleswig-Holstein e os parques de estacionamento da cidade de Kassel com a sua ocupação. Nas páginas dos locais, cada estação indica agora que elevadores e escadas rolantes funcionam, que plataformas não têm degraus e que parques ficam mesmo ao lado. O cartão de meteorologia mostra as próximas horas na estação de meteorologia rodoviária mais próxima, e a pontualidade aplica-se agora ao distrito.",
+    "ask": "Onde fica o posto de hidrogénio para camiões mais próximo de Hamburgo?"
+  },
+  "baustellen-bremen-kassel-leipzig": {
+    "title": "Obras e cortes em Bremen, Kassel, Leipzig e Rüsselsheim",
+    "body": "O ViaFrei lê agora as informações de trânsito das cidades de Bremen, Kassel, Leipzig e Rüsselsheim am Main, e as obras e cortes da entidade rodoviária da Baixa Saxónia fora das autoestradas. As informações das cidades estão também nas páginas dos locais, tal como as de Colónia e Hanôver.",
+    "ask": "Há cortes no centro de Bremen neste momento?"
+  },
+  "ladepunkte-23-betreiber": {
+    "title": "Pontos de carregamento de mais 23 operadores",
+    "body": "O ViaFrei lê agora as publicações próprias na Mobilithek de mais 23 operadores de pontos de carregamento, entre eles EWE Go, LichtBlick, Qwello, Wirelane, chargecloud e vaylens. Quando um operador indica se um ponto de carregamento está livre, mostramo-lo, mas nunca se o dado tiver mais de 30 minutos.",
+    "ask": "Onde há um carregador livre em Münster neste momento?"
+  },
+  "autobahn-verkehrsmeldungen": {
+    "title": "As informações de trânsito da Autobahn GmbH, localizadas",
+    "body": "O ViaFrei lê agora, a cada cinco minutos, as informações de trânsito da Autobahn GmbH sobre cortes e atrasos. As informações são colocadas na sua autoestrada e nos seus pontos de referência, como os nós, através da lista de localizações TMC da BASt.",
+    "ask": "A A620 perto de Saarbrücken está cortada neste momento?"
+  },
+  "muenchen-pr-prognosen": {
+    "title": "Parques de estacionamento e P+R em Munique, com previsões",
+    "body": "O ViaFrei conhece agora os parques de estacionamento e os P+R de Munique. Quando um P+R não comunica a ocupação em tempo real, damos a previsão da cidade para a hora atual, com a sua data, e nunca como lugares livres.",
+    "ask": "Onde posso estacionar num P+R em Munique e seguir de metro?"
+  },
+  "parkapi-baden-wuerttemberg": {
+    "title": "Lugares livres nos parques de estacionamento de Baden-Württemberg",
+    "body": "A ocupação em tempo real dos parques de estacionamento em todo o Baden-Württemberg vem agora da ParkAPI da MobiData BW, a cada cinco minutos, só de fontes com licença adequada. Um dado com mais de 30 minutos segundo o relógio do editor não é mostrado como ocupação.",
+    "ask": "Onde encontro um lugar livre num parque de estacionamento em Karlsruhe neste momento?"
+  },
+  "bw-bedarfsumleitungen": {
+    "title": "Desvios sinalizados em Baden-Württemberg",
+    "body": "Quando um corte de autoestrada em Baden-Württemberg corresponde a um desvio permanente publicado, o ViaFrei indica o percurso U, como referência à sinalização e não como percurso recomendado.",
+    "ask": "Há um desvio sinalizado para o corte na A8 perto de Estugarda?"
+  },
+  "hamburg-baustellen-kameras": {
+    "title": "Obras e câmaras de trânsito em Hamburgo",
+    "body": "Para as ruas da cidade de Hamburgo, o ViaFrei indica agora as obras autorizadas do Bauweiser, em curso ou programadas, lidas a cada hora, e até duas localizações de câmaras de trânsito próximas: só as localizações, nunca uma imagem.",
+    "ask": "Que obras há em Hamburgo-Eimsbüttel neste momento?"
+  },
+  "bemas-baden-wuerttemberg": {
+    "title": "Obras em estradas federais e regionais de Baden-Württemberg",
+    "body": "O ViaFrei conhece agora as obras em curso e programadas nas estradas federais e regionais de Baden-Württemberg, lidas a cada 15 minutos da MobiData BW. O que o editor não liberta para publicação não o mostramos.",
+    "ask": "Que obras estão previstas na B27 entre Estugarda e Tubinga?"
+  },
+  "dwd-strassenzustand": {
+    "title": "Previsão do estado do piso do DWD",
+    "body": "Com os avisos meteorológicos, o ViaFrei indica agora o estado previsto do piso e a temperatura do pavimento nas estações de meteorologia rodoviária mais próximas, identificados como previsão de modelo, não como medição nem como aviso oficial.",
+    "ask": "Como vai estar o piso amanhã de manhã perto de Kassel?"
+  },
+  "rastanlagen-lkw-stellplaetze": {
+    "title": "Áreas de serviço das autoestradas com lugares para camiões",
+    "body": "Planeamos acrescentar os dados do Serviço Federal de Logística e Mobilidade sobre as áreas de serviço exploradas nas autoestradas alemãs: localização, nome e número estimado de lugares para camiões, para toda a Alemanha. Esse número é uma estimativa do serviço, não a ocupação em tempo real.",
+    "ask": "Que área de serviço na A2 entre Hanôver e Dortmund tem mais lugares para camiões?"
+  },
+  "autobahn-umleitungsempfehlungen": {
+    "title": "Desvios recomendados pela Autobahn GmbH",
+    "body": "Planeamos acrescentar as recomendações de desvio da Autobahn GmbH: o percurso que os painéis dinâmicos recomendam em caso de filas e cortes. O ViaFrei poderia então indicar, para um corte, o desvio recomendado pelo próprio operador.",
+    "ask": "Como contorno o corte na A3?"
+  },
+  "viafrei-2-3": {
+    "title": "ViaFrei 2.3: páginas de autoestradas, mais fontes e assistentes",
+    "body": "Cada autoestrada tem agora a sua página, com painéis de trânsito, obras, estacionamento e carregamento, cada um com a idade dos seus dados. São novas as obras e mensagens de trânsito de mais estados federados, mais operadores de carregamento e as recomendações estratégicas de desvio da Autobahn GmbH sempre que publica uma. As partidas estão certas também na mudança de hora. Ligue o ViaFrei no Claude, no ChatGPT e nos outros assistentes da página de ligação – só então as respostas são em direto.",
+    "ask": "Qual é a situação na A3 neste momento?"
+  },
+  "lkw-stellplatzbelegung": {
+    "title": "Ocupação de estacionamentos para camiões nas autoestradas",
+    "body": "A ViaFrei mostra agora a ocupação dos estacionamentos para camiões nas autoestradas, a partir do Stellplatz-Informationsdienst (SID) da Toll Collect GmbH. Os números só aparecem depois de aceitar as condições de utilização, secção 2: em viafrei.de com «Mostrar ocupação», no seu assistente de IA através da pergunta que lhe faz. Os dados podem ser imprecisos ou desatualizados.",
+    "ask": "Onde há agora lugares livres para camiões na A9 perto de Nuremberga?"
+  },
+  "lkw-parken-thiersheim": {
+    "title": "Autohof Thiersheim na A93",
+    "body": "O ViaFrei conhece agora os lugares para camiões do Autohof Thiersheim na A93 a partir da tabela própria da área: 55 lugares para camiões, a morada e a localização. A área aparece uma única vez na resposta, mesmo que a tabela nacional de parques para camiões também a inclua, e ambas as fontes são indicadas. O ViaFrei não mostra aqui a ocupação, porque o editor não a publica desde abril.",
+    "ask": "Onde posso estacionar um camião na A93 perto de Thiersheim?"
+  },
+  "echtzeit-vbn-connect": {
+    "title": "Tempo real para autocarros e comboios na área da VBN",
+    "body": "O ViaFrei lê agora os dados em tempo real da associação de transportes Bremen/Baixa Saxónia (VBN, conjunto de dados Connect). Nas paragens de Bremen e de toda a área da VBN, as partidas mostram um atraso a partir destes dados quando nenhuma outra fonte em tempo real comunica a viagem. Cada partida aparece uma vez, e cada fonte que a transmite é indicada.",
+    "ask": "Quando parte o próximo autocarro da estação central de Bremen?"
+  },
+  "strassen-auf-den-karten": {
+    "title": "Ruas nos mapas",
+    "body": "Os mapas das páginas de autoestradas e das páginas de localidades desenham agora as ruas do seu enquadramento a partir do OpenStreetMap: estradas federais, estaduais e distritais e ruas residenciais, desenhadas por nós, sem serviço de mapas de terceiros; as próprias autoestradas são desenhadas a partir da lista de códigos de localização do BASt. Assim um aviso no mapa pode ser associado à sua rua.",
+    "ask": "Qual é a situação na A7 perto de Kassel?"
+  },
+  "einzelmeldungen-viz-nrw": {
+    "title": "As mensagens individuais da VIZ.NRW como mais uma reserva",
+    "body": "O ViaFrei passa também a ler as mensagens individuais da informação de trânsito da Renânia do Norte-Vestfália publicada pela VIZ.NRW. Elas garantem mais uma vez as mensagens de trânsito na Renânia do Norte-Vestfália: se uma fonte falhar, o ViaFrei responde a partir de outra. Cada mensagem aparece uma só vez e é indicada cada fonte que a transmite.",
+    "ask": "Há agora mensagens de trânsito na A1 perto de Colónia?"
+  }
+}

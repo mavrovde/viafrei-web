@@ -1,0 +1,89 @@
+---
+/**
+ * A place page (#564 § 5): `/<lang>/place/<slug>` in every language (#892) — the
+ * same cards as the home renders for the place, server-side, shareable and
+ * indexable. The slug is the Gemeinde's stored one (`place_slugs`, never
+ * moved); the digest names the Gemeinde it stands for, a slug that is not a
+ * Gemeinde's own is a 301 to it, an unknown one is the name lookup or the 404.
+ *
+ * Reads no database (A2): the cards come from the digest like every tile.
+ * Not a measured page (no consent bar), and the IP is not read here at all —
+ * the URL decides the place.
+ */
+import Base from "./Base.astro";
+import EndpointCopy from "../components/EndpointCopy.astro";
+import PlaceBlock from "../components/PlaceBlock.astro";
+import RoadLinks from "../components/RoadLinks.astro";
+import NextStep from "../components/NextStep.astro";
+import AskBox from "../components/AskBox.astro";
+import Star from "../components/Star.astro";
+import { nextRoads } from "../lib/next-step.js";
+import Start from "../components/Start.astro";
+import { fillScript } from "../lib/fill.js";
+import { t } from "../i18n/index.js";
+import type { PlaceFragment } from "../lib/place.js";
+import type { PlaceCardId } from "../lib/topic-filter.js";
+import { LIVE_LANGS, type Lang } from "../site/pages.js";
+import { placePath } from "../site/places.js";
+import { placeMeta } from "../site/meta.js";
+import { liftPlaceFirst, placeNowOf, placeRoadsOf } from "../lib/place-head.js";
+import PageHead from "../components/PageHead.astro";
+import { placeCrumbs, placeJsonLd } from "../site/structured-data.js";
+import Crumbs from "../components/Crumbs.astro";
+import { blockHeaderPlace } from "../lib/header-place.js";
+import { deskScript, placeDesk } from "../lib/desk.js";
+
+interface Props {
+  lang: Lang;
+  place: PlaceFragment;
+  slug: string;
+  /** #1061: a no-script `?<card>=N` render — kept out of every index; the canonical stays the page's. */
+  opened?: boolean;
+  /** #1050: the address's topic choice; a filtered view is noindex like an opened one, its canonical the page's own. */
+  topics?: readonly PlaceCardId[] | null;
+  filtered?: boolean;
+}
+const { lang, place: whole, slug, opened = false, topics = null, filtered = false } = Astro.props;
+// #1176: the status block stands under the H1; a filtered or opened render keeps the same block
+const lifted = liftPlaceFirst(whole.html);
+const place = { ...whole, html: lifted.html };
+// The lead around the town's name: the name is the gazetteer's German proper name, printed as such and marked
+// translate="no" (#449: a translated page may name a place, it may not say other words in German).
+const MARK = "\u0000";
+const [leadBefore = "", leadAfter = ""] = t(lang, "place.pageLead", { place: MARK }).split(MARK);
+const alternates = Object.fromEntries(LIVE_LANGS.map((l) => [l, placePath(l, slug)])) as Record<Lang, `/${string}`>;
+Astro.response.headers.set("Cache-Control", "no-store");
+Astro.locals.hasScript = true;
+// #1153: the header's place row names this page's own place ("make this my place" while another one is remembered).
+const headerPlace = blockHeaderPlace(lang, { source: "page", place, path: placePath(lang, slug) });
+---
+
+<Base
+  lang={lang}
+  page="start"
+  place={headerPlace}
+  robots={opened || filtered ? "noindex, noarchive" : "noarchive"}
+  dynamic={{ ...placeMeta(place.label, lang, placeRoadsOf(place.html), placeNowOf(lifted.first)), path: placePath(lang, slug), alternates, jsonLd: placeJsonLd(lang, place.label, placePath(lang, slug)) }}
+>
+  <Crumbs lang={lang} crumbs={placeCrumbs(lang, place.label, placePath(lang, slug))} namesFrom={1} />
+  {/* #1180: the desktop dashboard — from 1024 px one grid, the page's blocks in the left column in their DOM order and the
+      place's Ampel card with its map sticky in the right (`site.css`, "desktop"); below 1024 px nothing moves. */}
+  <div class="desk desk--place">
+  <PageHead class="place-page__head" h1={place.label} h1Translate={false} first={lifted.first}>
+    <p class="lead">{leadBefore}<span translate="no">{place.label}</span>{leadAfter}</p>
+  </PageHead>
+  <Star lang={lang} path={placePath(lang, slug)} label={place.label} />
+  <PlaceBlock lang={lang} source="page" place={place} topics={topics} path={placePath(lang, slug)} />
+  {/* #1110 item 3: the roads the place's cards name, and the AI link asking about the place */}
+  <NextStep lang={lang} roads={nextRoads(lang, place.html)} about={{ kind: "place", place: place.label }} />
+  <RoadLinks lang={lang} here={placePath(lang, slug)} />
+  <AskBox lang={lang} about={{ kind: "place", place: place.label }} />
+  </div>
+  {/* #1180: the desktop's collapse and the row ↔ marker pairing (nothing below 1024 px) */}
+  <script is:inline set:html={deskScript(placeDesk(lang))} />
+  <Start lang={lang} source="place" />
+  {/* #564 render-then-fill: a panel that missed the first render's deadline is fetched in the background */}
+  <script is:inline set:html={fillScript()} />
+  {/* #1003: the endpoint chip's copy script, once for every chip on the page */}
+  <EndpointCopy />
+</Base>

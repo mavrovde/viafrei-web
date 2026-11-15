@@ -1,0 +1,46 @@
+---
+/**
+ * One card's assistant half (#744, owner 2026-10-14: "on the card the user see
+ * the static result by the card theme and immediately see the dynamic mcp
+ * question/answer"): the question as a person would type it, then what
+ * ViaFrei's own tool answered to it a few minutes ago — the moments' `.ask`
+ * bubble, then the `.qa-answer` card (`lib/answer-html.ts`, the same markup the
+ * place cards carry), so `e2e/answers.e2e.ts` holds it to the rule that a
+ * question is followed directly by its answer.
+ *
+ * The answer is LIVE, never a sample passed off as live, and a question is
+ * never shown without one: the caller renders this only for an answer it
+ * holds, and an answer that cannot be said in this language renders nothing.
+ */
+import Ask from "./Ask.astro";
+import { t, type MessageKey } from "../i18n/index.js";
+import { answerHtml } from "../lib/answer-html.js";
+import type { AskEntry, AskKey } from "../lib/ask.js";
+import type { ConnectSource } from "@viafrei/design";
+import type { Lang } from "../site/pages.js";
+
+interface Props {
+  lang: Lang;
+  key: AskKey;
+  entry: AskEntry;
+  /** Where "ask your assistant" leads: the home's start block, or the connect page. */
+  ctaHref: string;
+  now?: Date;
+  /** The surface, for the "works only with ViaFrei connected" note under the answer (#1001). */
+  source: ConnectSource;
+}
+const { lang, key, entry, ctaHref, now = new Date(), source } = Astro.props;
+const answer = answerHtml(lang, entry, now, source);
+---
+
+{
+  answer !== null && (
+    <div class="live-ask" data-ask={key}>
+      <blockquote class="ask">
+        <Ask lang={lang} text={t(lang, `ask.${key}.question` as MessageKey)} />
+      </blockquote>
+      <Fragment set:html={answer} />
+      <p class="live-ask__cta"><a href={ctaHref}>{t(lang, "ask.cta")}</a></p>
+    </div>
+  )
+}

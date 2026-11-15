@@ -1,0 +1,16 @@
+/*
+ * #986: the freshness sign — a shape and a word, never colour alone — and the icon sprite it draws from, on the two
+ * motorway pages (the road's and the overview), inline under the request's nonce like every <style>; never site.css,
+ * whose bytes every page pays for. Its colours are tokens.css's tile states, paired as text on --surface and as icons
+ * (3:1) on --surface and --bg.
+ */
+.mwi-sprite { position: absolute; width: 0; height: 0; overflow: hidden; }
+.fresh { display: inline-flex; flex-wrap: wrap; align-items: center; gap: 0 0.3em; font-size: var(--fs-0); color: var(--fg-muted); font-weight: normal; }
+.fresh__i { width: 0.95em; height: 0.95em; flex: none; }
+.fresh__w { font-weight: var(--weight-strong); }
+.fresh--live .fresh__i, .fresh--live .fresh__w { color: var(--ok); }
+.fresh--delayed .fresh__i, .fresh--delayed .fresh__w { color: var(--stale); }
+.fresh--stale .fresh__i, .fresh--stale .fresh__w { color: var(--error); }
+.fresh--reference .fresh__i, .fresh--reference .fresh__w { color: var(--empty); }
+/* #1051 (D1): a panel's delayed or stale source, on its own line under the sign, with its own word and age */
+.fresh__lag { flex-basis: 100%; display: inline-flex; flex-wrap: wrap; align-items: center; gap: 0 0.3em; }

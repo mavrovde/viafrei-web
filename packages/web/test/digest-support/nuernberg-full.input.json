@@ -1,0 +1,2707 @@
+{
+ "place": {
+  "at": "ags:09564000",
+  "name": "Nürnberg",
+  "ags": "09564000",
+  "lat": 49.4521,
+  "lon": 11.0767,
+  "point": false
+ },
+ "round": {
+  "takenAt": {
+   "$d": "2026-10-03T10:00:00.000Z"
+  },
+  "fuelFreshSeconds": 3600,
+  "warnings": {
+   "ok": true,
+   "value": []
+  },
+  "warningsChecked": {
+   "ok": true,
+   "value": [
+    {
+     "checked_at": {
+      "$d": "2026-10-03T09:55:00.000Z"
+     },
+     "cadence_s": 600
+    }
+   ]
+  },
+  "roads": {
+   "ok": true,
+   "value": {
+    "at": {
+     "$d": "2026-10-03T10:00:00.000Z"
+    },
+    "events": [
+     {
+      "key": "k22",
+      "origin": "autobahn",
+      "source": "autobahn",
+      "licenceId": "autobahn",
+      "kind": "closure",
+      "eventType": null,
+      "what": "Vollsperrung 22",
+      "where": {
+       "road": "A9",
+       "referentFrom": null,
+       "referentTo": null,
+       "distanceFromM": null,
+       "distanceToM": null,
+       "lon": 11.5,
+       "lat": 48.5,
+       "extent": "Kreuz Nürnberg",
+       "subtitle": " Nürnberg -> München"
+      },
+      "since": {
+       "$d": "2026-10-03T08:30:00.000Z"
+      },
+      "until": null,
+      "delaySeconds": 1200,
+      "lastSeenAt": {
+       "$d": "2026-10-03T09:56:00.000Z"
+      },
+      "band": 0,
+      "rank": 0
+     },
+     {
+      "key": "k24",
+      "origin": "autobahn",
+      "source": "autobahn",
+      "licenceId": "autobahn",
+      "kind": "accident",
+      "eventType": null,
+      "what": "Vollsperrung 24",
+      "where": {
+       "road": "A3",
+       "referentFrom": null,
+       "referentTo": null,
+       "distanceFromM": null,
+       "distanceToM": null,
+       "lon": 11.5,
+       "lat": 48.5,
+       "extent": "Kreuz Nürnberg",
+       "subtitle": " Nürnberg -> München"
+      },
+      "since": {
+       "$d": "2026-10-03T08:30:00.000Z"
+      },
+      "until": null,
+      "delaySeconds": 1200,
+      "lastSeenAt": {
+       "$d": "2026-10-03T09:56:00.000Z"
+      },
+      "band": 1,
+      "rank": 0
+     },
+     {
+      "key": "k25",
+      "origin": "autobahn",
+      "source": "autobahn",
+      "licenceId": "autobahn",
+      "kind": "roadworks",
+      "eventType": null,
+      "what": "Vollsperrung 25",
+      "where": {
+       "road": "A9",
+       "referentFrom": null,
+       "referentTo": null,
+       "distanceFromM": null,
+       "distanceToM": null,
+       "lon": 11.5,
+       "lat": 48.5,
+       "extent": "Kreuz Nürnberg",
+       "subtitle": " Nürnberg -> München"
+      },
+      "since": {
+       "$d": "2026-10-03T08:30:00.000Z"
+      },
+      "until": null,
+      "delaySeconds": 1200,
+      "lastSeenAt": {
+       "$d": "2026-10-03T09:56:00.000Z"
+      },
+      "band": 3,
+      "rank": 0
+     },
+     {
+      "key": "k26",
+      "origin": "autobahn",
+      "source": "autobahn",
+      "licenceId": "autobahn",
+      "kind": "jam",
+      "eventType": null,
+      "what": "Vollsperrung 26",
+      "where": {
+       "road": "A9",
+       "referentFrom": null,
+       "referentTo": null,
+       "distanceFromM": null,
+       "distanceToM": null,
+       "lon": 11.5,
+       "lat": 48.5,
+       "extent": "Kreuz Nürnberg",
+       "subtitle": " Nürnberg -> München"
+      },
+      "since": {
+       "$d": "2026-10-03T08:30:00.000Z"
+      },
+      "until": null,
+      "delaySeconds": 1200,
+      "lastSeenAt": {
+       "$d": "2026-10-03T09:56:00.000Z"
+      },
+      "band": 4,
+      "rank": 0
+     },
+     {
+      "key": "k28",
+      "origin": "autobahn",
+      "source": "autobahn",
+      "licenceId": "autobahn",
+      "kind": "jam",
+      "eventType": null,
+      "what": "Vollsperrung 28",
+      "where": {
+       "road": "A7",
+       "referentFrom": null,
+       "referentTo": null,
+       "distanceFromM": null,
+       "distanceToM": null,
+       "lon": 11.5,
+       "lat": 48.5,
+       "extent": "Kreuz Nürnberg",
+       "subtitle": " Nürnberg -> München"
+      },
+      "since": {
+       "$d": "2026-10-03T08:30:00.000Z"
+      },
+      "until": null,
+      "delaySeconds": 1200,
+      "lastSeenAt": {
+       "$d": "2026-10-03T09:56:00.000Z"
+      },
+      "band": 4,
+      "rank": 0
+     }
+    ],
+    "gates": [],
+    "truncated": false,
+    "inForce": 5
+   }
+  },
+  "charging": {
+   "ok": true,
+   "value": [
+    {
+     "source_feed": "bnetza_lsr",
+     "site_id": "s800",
+     "name": "Ladepark 800",
+     "operator": "EnBW",
+     "street": "Hauptstr.",
+     "house_number": "1",
+     "city": "Nürnberg",
+     "metres": 800,
+     "points": 4,
+     "max_kw": 150
+    },
+    {
+     "source_feed": "bnetza_lsr",
+     "site_id": "s2400",
+     "name": "Ladepark 2400",
+     "operator": "EnBW",
+     "street": "Hauptstr.",
+     "house_number": "1",
+     "city": "Nürnberg",
+     "metres": 2400,
+     "points": 4,
+     "max_kw": 150
+    }
+   ]
+  },
+  "parking": {
+   "ok": true,
+   "value": [
+    {
+     "source_feed": "park_koeln_static",
+     "attribution_id": "mobilithek_park_koeln_static",
+     "kind": "garage",
+     "name": "Parkhaus 600",
+     "road": null,
+     "capacity_total": 400,
+     "capacity_truck": null,
+     "metres": 600,
+     "last_seen_at": {
+      "$d": "2026-10-03T09:50:00.000Z"
+     }
+    }
+   ]
+  },
+  "fuel": {
+   "ok": true,
+   "value": [
+    {
+     "station_id": "st-1200",
+     "is_open": true,
+     "product": "e5",
+     "label": "Super E5",
+     "unit": "EUR/l",
+     "price": "1.759",
+     "observed_at": {
+      "$d": "2026-10-03T09:55:00.000Z"
+     },
+     "brand": "ARAL",
+     "name": "Aral Fürther Str.",
+     "street": "Fürther Str.",
+     "house_no": "12",
+     "postcode": "90429",
+     "city": "Nürnberg",
+     "metres": 1200
+    },
+    {
+     "station_id": "st-2600",
+     "is_open": true,
+     "product": "diesel",
+     "label": "Diesel",
+     "unit": "EUR/l",
+     "price": "1.639",
+     "observed_at": {
+      "$d": "2026-10-03T09:55:00.000Z"
+     },
+     "brand": "ARAL",
+     "name": "Aral Fürther Str.",
+     "street": "Fürther Str.",
+     "house_no": "12",
+     "postcode": "90429",
+     "city": "Nürnberg",
+     "metres": 2600
+    }
+   ]
+  },
+  "lifts": {
+   "ok": true,
+   "value": [
+    {
+     "station_no": "4593",
+     "equipment_no": "4593-3",
+     "station_name": "Bahnhof 4593",
+     "metres": 900,
+     "kind": "elevator",
+     "state": "active",
+     "description": "zu Gleis 1",
+     "last_seen_at": {
+      "$d": "2026-10-03T09:57:00.000Z"
+     },
+     "state_since": {
+      "$d": "2026-10-03T08:30:00.000Z"
+     },
+     "source_feed": "db_fasta"
+    },
+    {
+     "station_no": "4593",
+     "equipment_no": "4593-4",
+     "station_name": "Bahnhof 4593",
+     "metres": 900,
+     "kind": "escalator",
+     "state": "inactive",
+     "description": "zu Gleis 1",
+     "last_seen_at": {
+      "$d": "2026-10-03T09:57:00.000Z"
+     },
+     "state_since": {
+      "$d": "2026-10-03T08:30:00.000Z"
+     },
+     "source_feed": "db_fasta"
+    }
+   ]
+  },
+  "stops": {
+   "ok": false,
+   "error": "boom"
+  },
+  "transitChecked": {
+   "ok": true,
+   "value": []
+  },
+  "calls": {
+   "ok": true,
+   "value": []
+  },
+  "planned": {
+   "ok": true,
+   "value": []
+  },
+  "equipment": {
+   "ok": true,
+   "value": []
+  },
+  "tripUpdates": {
+   "ok": true,
+   "value": []
+  },
+  "alerts": {
+   "ok": true,
+   "value": []
+  },
+  "needs": {
+   "ok": true,
+   "value": [
+    {
+     "need": "groceries",
+     "loaded": true,
+     "name": null,
+     "kind": null,
+     "street": null,
+     "house_number": null,
+     "metres": null,
+     "extract_date": null
+    },
+    {
+     "need": "health",
+     "loaded": true,
+     "name": null,
+     "kind": null,
+     "street": null,
+     "house_number": null,
+     "metres": null,
+     "extract_date": null
+    },
+    {
+     "need": "money",
+     "loaded": true,
+     "name": null,
+     "kind": null,
+     "street": null,
+     "house_number": null,
+     "metres": null,
+     "extract_date": null
+    },
+    {
+     "need": "food",
+     "loaded": true,
+     "name": null,
+     "kind": null,
+     "street": null,
+     "house_number": null,
+     "metres": null,
+     "extract_date": null
+    },
+    {
+     "need": "lodging",
+     "loaded": true,
+     "name": null,
+     "kind": null,
+     "street": null,
+     "house_number": null,
+     "metres": null,
+     "extract_date": null
+    },
+    {
+     "need": "garage",
+     "loaded": true,
+     "name": null,
+     "kind": null,
+     "street": null,
+     "house_number": null,
+     "metres": null,
+     "extract_date": null
+    },
+    {
+     "need": "police",
+     "loaded": true,
+     "name": null,
+     "kind": null,
+     "street": null,
+     "house_number": null,
+     "metres": null,
+     "extract_date": null
+    },
+    {
+     "need": "toilets",
+     "loaded": true,
+     "name": null,
+     "kind": null,
+     "street": null,
+     "house_number": null,
+     "metres": null,
+     "extract_date": null
+    }
+   ]
+  }
+ },
+ "national": {
+  "takenAt": {
+   "$d": "2026-10-03T10:00:00.000Z"
+  },
+  "roads": {
+   "ok": true,
+   "value": {
+    "at": {
+     "$d": "2026-10-03T10:00:00.000Z"
+    },
+    "events": [
+     {
+      "key": "k29",
+      "origin": "autobahn",
+      "source": "autobahn",
+      "licenceId": "autobahn",
+      "kind": "closure",
+      "eventType": null,
+      "what": "Vollsperrung 29",
+      "where": {
+       "road": "A9",
+       "referentFrom": null,
+       "referentTo": null,
+       "distanceFromM": null,
+       "distanceToM": null,
+       "lon": 11.5,
+       "lat": 48.5,
+       "extent": "Kreuz Nürnberg",
+       "subtitle": " Nürnberg -> München"
+      },
+      "since": {
+       "$d": "2026-10-03T08:30:00.000Z"
+      },
+      "until": null,
+      "delaySeconds": 1200,
+      "lastSeenAt": {
+       "$d": "2026-10-03T09:56:00.000Z"
+      },
+      "band": 0,
+      "rank": 0
+     },
+     {
+      "key": "k31",
+      "origin": "autobahn",
+      "source": "autobahn",
+      "licenceId": "autobahn",
+      "kind": "accident",
+      "eventType": null,
+      "what": "Vollsperrung 31",
+      "where": {
+       "road": "A3",
+       "referentFrom": null,
+       "referentTo": null,
+       "distanceFromM": null,
+       "distanceToM": null,
+       "lon": 11.5,
+       "lat": 48.5,
+       "extent": "Kreuz Nürnberg",
+       "subtitle": " Nürnberg -> München"
+      },
+      "since": {
+       "$d": "2026-10-03T08:30:00.000Z"
+      },
+      "until": null,
+      "delaySeconds": 1200,
+      "lastSeenAt": {
+       "$d": "2026-10-03T09:56:00.000Z"
+      },
+      "band": 1,
+      "rank": 0
+     },
+     {
+      "key": "k32",
+      "origin": "autobahn",
+      "source": "autobahn",
+      "licenceId": "autobahn",
+      "kind": "roadworks",
+      "eventType": null,
+      "what": "Vollsperrung 32",
+      "where": {
+       "road": "A9",
+       "referentFrom": null,
+       "referentTo": null,
+       "distanceFromM": null,
+       "distanceToM": null,
+       "lon": 11.5,
+       "lat": 48.5,
+       "extent": "Kreuz Nürnberg",
+       "subtitle": " Nürnberg -> München"
+      },
+      "since": {
+       "$d": "2026-10-03T08:30:00.000Z"
+      },
+      "until": null,
+      "delaySeconds": 1200,
+      "lastSeenAt": {
+       "$d": "2026-10-03T09:56:00.000Z"
+      },
+      "band": 3,
+      "rank": 0
+     },
+     {
+      "key": "k33",
+      "origin": "autobahn",
+      "source": "autobahn",
+      "licenceId": "autobahn",
+      "kind": "jam",
+      "eventType": null,
+      "what": "Vollsperrung 33",
+      "where": {
+       "road": "A9",
+       "referentFrom": null,
+       "referentTo": null,
+       "distanceFromM": null,
+       "distanceToM": null,
+       "lon": 11.5,
+       "lat": 48.5,
+       "extent": "Kreuz Nürnberg",
+       "subtitle": " Nürnberg -> München"
+      },
+      "since": {
+       "$d": "2026-10-03T08:30:00.000Z"
+      },
+      "until": null,
+      "delaySeconds": 1200,
+      "lastSeenAt": {
+       "$d": "2026-10-03T09:56:00.000Z"
+      },
+      "band": 4,
+      "rank": 0
+     },
+     {
+      "key": "k35",
+      "origin": "autobahn",
+      "source": "autobahn",
+      "licenceId": "autobahn",
+      "kind": "jam",
+      "eventType": null,
+      "what": "Vollsperrung 35",
+      "where": {
+       "road": "A7",
+       "referentFrom": null,
+       "referentTo": null,
+       "distanceFromM": null,
+       "distanceToM": null,
+       "lon": 11.5,
+       "lat": 48.5,
+       "extent": "Kreuz Nürnberg",
+       "subtitle": " Nürnberg -> München"
+      },
+      "since": {
+       "$d": "2026-10-03T08:30:00.000Z"
+      },
+      "until": null,
+      "delaySeconds": 1200,
+      "lastSeenAt": {
+       "$d": "2026-10-03T09:56:00.000Z"
+      },
+      "band": 4,
+      "rank": 0
+     }
+    ],
+    "gates": [],
+    "truncated": false,
+    "inForce": 5
+   }
+  },
+  "fuel": {
+   "ok": true,
+   "value": [
+    {
+     "product": "e5",
+     "label": "Super E5",
+     "unit": "EUR/l",
+     "cheapest_price": "1.699",
+     "cheapest_station": "Musterhof",
+     "cheapest_brand": "ARAL",
+     "cheapest_street": "Fürther Str.",
+     "cheapest_house_no": "12",
+     "cheapest_postcode": "90429",
+     "cheapest_city": "Nürnberg",
+     "cheapest_observed_at": {
+      "$d": "2026-10-03T09:56:00.000Z"
+     },
+     "median_price": "1.789",
+     "station_count": 312,
+     "window_from": {
+      "$d": "2026-10-03T09:02:00.000Z"
+     },
+     "window_to": {
+      "$d": "2026-10-03T09:56:00.000Z"
+     },
+     "last_seen_any": {
+      "$d": "2026-10-03T09:56:00.000Z"
+     }
+    }
+   ]
+  },
+  "places": {
+   "ok": true,
+   "value": [
+    {
+     "block": "charging",
+     "source_feed": "afir_ecomovement",
+     "attribution_id": null,
+     "sites": 120,
+     "units": 340,
+     "last_seen_at": {
+      "$d": "2026-10-03T00:00:00.000Z"
+     },
+     "checked_at": null,
+     "cadence_s": null
+    },
+    {
+     "block": "charging",
+     "source_feed": "afir_tesla_dyn",
+     "attribution_id": "mobilithek_afir_tesla_dyn",
+     "sites": 50,
+     "units": 200,
+     "last_seen_at": {
+      "$d": "2026-10-03T00:00:00.000Z"
+     },
+     "checked_at": null,
+     "cadence_s": null
+    },
+    {
+     "block": "parking",
+     "source_feed": "truckpark_static",
+     "attribution_id": "mobilithek_truckpark_static_geonutzv",
+     "sites": 40,
+     "units": 890,
+     "last_seen_at": {
+      "$d": "2026-10-03T00:00:00.000Z"
+     },
+     "checked_at": null,
+     "cadence_s": null
+    },
+    {
+     "block": "carparks",
+     "source_feed": "hh_parkhaeuser",
+     "attribution_id": "hamburg_parkhaeuser",
+     "sites": 126,
+     "units": 54437,
+     "last_seen_at": {
+      "$d": "2026-10-03T09:58:00.000Z"
+     },
+     "checked_at": null,
+     "cadence_s": null
+    }
+   ]
+  },
+  "facilities": {
+   "ok": true,
+   "value": [
+    {
+     "kind": "elevator",
+     "state": "inactive",
+     "n": 167,
+     "stations": 120,
+     "oldest_since": {
+      "$d": "2026-09-30T15:20:00.000Z"
+     },
+     "last_seen_at": {
+      "$d": "2026-10-03T09:58:00.000Z"
+     },
+     "source_feed": "db_fasta"
+    },
+    {
+     "kind": "escalator",
+     "state": "inactive",
+     "n": 131,
+     "stations": 96,
+     "oldest_since": {
+      "$d": "2026-09-30T15:20:00.000Z"
+     },
+     "last_seen_at": {
+      "$d": "2026-10-03T09:58:00.000Z"
+     },
+     "source_feed": "db_fasta"
+    },
+    {
+     "kind": "elevator",
+     "state": "active",
+     "n": 3375,
+     "stations": 1300,
+     "oldest_since": null,
+     "last_seen_at": {
+      "$d": "2026-10-03T09:58:00.000Z"
+     },
+     "source_feed": "db_fasta"
+    }
+   ]
+  },
+  "punctuality": {
+   "ok": true,
+   "value": [
+    {
+     "level": "all",
+     "area": "de",
+     "name": null,
+     "trips_observed": 4870,
+     "trips_late": 520,
+     "trips_skipped_stop": 12,
+     "trips_untimed": 0,
+     "median_worst_delay_s": 150,
+     "stops_seen": 6300,
+     "newest": {
+      "$d": "2026-10-03T09:58:00.000Z"
+     }
+    },
+    {
+     "level": "land",
+     "area": "09",
+     "name": null,
+     "trips_observed": 1900,
+     "trips_late": 133,
+     "trips_skipped_stop": 12,
+     "trips_untimed": 0,
+     "median_worst_delay_s": 150,
+     "stops_seen": 2100,
+     "newest": {
+      "$d": "2026-10-03T09:58:00.000Z"
+     }
+    },
+    {
+     "level": "land",
+     "area": "02",
+     "name": null,
+     "trips_observed": 780,
+     "trips_late": 23,
+     "trips_skipped_stop": 12,
+     "trips_untimed": 0,
+     "median_worst_delay_s": 150,
+     "stops_seen": 2100,
+     "newest": {
+      "$d": "2026-10-03T09:58:00.000Z"
+     }
+    },
+    {
+     "level": "land",
+     "area": "05",
+     "name": null,
+     "trips_observed": 2400,
+     "trips_late": 410,
+     "trips_skipped_stop": 12,
+     "trips_untimed": 0,
+     "median_worst_delay_s": 150,
+     "stops_seen": 2100,
+     "newest": {
+      "$d": "2026-10-03T09:58:00.000Z"
+     }
+    },
+    {
+     "level": "city",
+     "area": "11000",
+     "name": "Berlin",
+     "trips_observed": 450,
+     "trips_late": 30,
+     "trips_skipped_stop": 4,
+     "trips_untimed": 0,
+     "median_worst_delay_s": 90,
+     "stops_seen": 800,
+     "newest": {
+      "$d": "2026-10-03T09:58:00.000Z"
+     }
+    },
+    {
+     "level": "city",
+     "area": "02000",
+     "name": "Hamburg",
+     "trips_observed": 780,
+     "trips_late": 23,
+     "trips_skipped_stop": 4,
+     "trips_untimed": 0,
+     "median_worst_delay_s": 90,
+     "stops_seen": 800,
+     "newest": {
+      "$d": "2026-10-03T09:58:00.000Z"
+     }
+    },
+    {
+     "level": "city",
+     "area": "09162",
+     "name": "München",
+     "trips_observed": 900,
+     "trips_late": 30,
+     "trips_skipped_stop": 4,
+     "trips_untimed": 0,
+     "median_worst_delay_s": 90,
+     "stops_seen": 800,
+     "newest": {
+      "$d": "2026-10-03T09:58:00.000Z"
+     }
+    },
+    {
+     "level": "city",
+     "area": "05315",
+     "name": "Köln",
+     "trips_observed": 300,
+     "trips_late": 30,
+     "trips_skipped_stop": 4,
+     "trips_untimed": 0,
+     "median_worst_delay_s": 90,
+     "stops_seen": 800,
+     "newest": {
+      "$d": "2026-10-03T09:58:00.000Z"
+     }
+    }
+   ]
+  },
+  "fuelBoard": {
+   "ok": true,
+   "value": [
+    {
+     "current": true,
+     "land": "09",
+     "brand": "ARAL",
+     "name": "Aral Tankstelle Fürther Str.",
+     "street": "Fürther Str.",
+     "house_no": "12",
+     "postcode": "90429",
+     "city": "Nürnberg",
+     "e5": "1.699",
+     "e10": "1.639",
+     "diesel": "1.589",
+     "observed_at": {
+      "$d": "2026-10-03T09:50:00.000Z"
+     },
+     "land_count": 28
+    },
+    {
+     "current": true,
+     "land": "09",
+     "brand": "Shell",
+     "name": "Shell Nürnberg Süd",
+     "street": "Allersberger Str.",
+     "house_no": "40",
+     "postcode": "90461",
+     "city": "Nürnberg",
+     "e5": "1.699",
+     "e10": "1.659",
+     "diesel": "1.589",
+     "observed_at": {
+      "$d": "2026-10-03T09:50:00.000Z"
+     },
+     "land_count": 28
+    },
+    {
+     "current": true,
+     "land": "11",
+     "brand": "TotalEnergies",
+     "name": "TotalEnergies Berlin",
+     "street": "Holzmarktstr.",
+     "house_no": "36",
+     "postcode": "10243",
+     "city": "Berlin",
+     "e5": "1.699",
+     "e10": "1.639",
+     "diesel": "1.589",
+     "observed_at": {
+      "$d": "2026-10-03T09:50:00.000Z"
+     },
+     "land_count": 5
+    }
+   ]
+  },
+  "cityJams": {
+   "ok": true,
+   "value": {
+    "police": [
+     {
+      "city": 1,
+      "current_feeds": [
+       "nms_events",
+       "traffic_bw",
+       "traffic_sh"
+      ],
+      "checked_at": {
+       "$d": "2026-10-03T09:56:00.000Z"
+      },
+      "feed_key": "nms_events",
+      "publication_id": "LMS-BR/1",
+      "overall_start": {
+       "$d": "2026-10-03T09:25:00.000Z"
+      },
+      "version_at": {
+       "$d": "2026-10-03T09:50:00.000Z"
+      },
+      "last_seen_at": {
+       "$d": "2026-10-03T09:56:00.000Z"
+      },
+      "lat": 52.52,
+      "lon": 13.38,
+      "distance_m": 2200,
+      "total_rows": 1,
+      "feed_keys": [
+       "nms_events"
+      ],
+      "jam_type": "stationaryTraffic",
+      "length_affected": "1000",
+      "detail_text": "Berlin, Invalidenstraße Richtung Mitte\nzwischen Hauptbahnhof und Chausseestraße\n1 km Stau"
+     },
+     {
+      "city": 2,
+      "current_feeds": [
+       "nms_events",
+       "traffic_bw",
+       "traffic_sh"
+      ],
+      "checked_at": {
+       "$d": "2026-10-03T09:56:00.000Z"
+      },
+      "feed_key": null
+     },
+     {
+      "city": 3,
+      "current_feeds": [
+       "nms_events",
+       "traffic_bw",
+       "traffic_sh"
+      ],
+      "checked_at": {
+       "$d": "2026-10-03T09:56:00.000Z"
+      },
+      "feed_key": null
+     },
+     {
+      "city": 4,
+      "current_feeds": [
+       "nms_events",
+       "traffic_bw",
+       "traffic_sh"
+      ],
+      "checked_at": {
+       "$d": "2026-10-03T09:56:00.000Z"
+      },
+      "feed_key": "nms_events",
+      "publication_id": "NMS/K1",
+      "overall_start": {
+       "$d": "2026-10-03T09:25:00.000Z"
+      },
+      "version_at": {
+       "$d": "2026-10-03T09:50:00.000Z"
+      },
+      "last_seen_at": {
+       "$d": "2026-10-03T09:56:00.000Z"
+      },
+      "lat": 50.95,
+      "lon": 7,
+      "distance_m": 3100,
+      "total_rows": 2,
+      "feed_keys": [
+       "nms_events"
+      ],
+      "jam_type": "stationaryTraffic",
+      "length_affected": "3000",
+      "detail_text": "A3 Köln Richtung Frankfurt\nzwischen Köln-Mülheim und Kreuz Köln-Ost\n3 km Stau"
+     },
+     {
+      "city": 4,
+      "current_feeds": [
+       "nms_events",
+       "traffic_bw",
+       "traffic_sh"
+      ],
+      "checked_at": {
+       "$d": "2026-10-03T09:56:00.000Z"
+      },
+      "feed_key": "nms_events",
+      "publication_id": "NMS/K2",
+      "overall_start": {
+       "$d": "2026-10-03T09:25:00.000Z"
+      },
+      "version_at": {
+       "$d": "2026-10-03T09:50:00.000Z"
+      },
+      "last_seen_at": {
+       "$d": "2026-10-03T09:56:00.000Z"
+      },
+      "lat": 50.98,
+      "lon": 6.85,
+      "distance_m": 7800,
+      "total_rows": 2,
+      "feed_keys": [
+       "nms_events"
+      ],
+      "jam_type": "queuingTraffic",
+      "length_affected": null,
+      "detail_text": "A57 Köln Richtung Krefeld\nzwischen Köln-Longerich und Kreuz Köln-Nord\n0,7 km stockender Verkehr"
+     },
+     {
+      "city": 5,
+      "current_feeds": [
+       "nms_events",
+       "traffic_bw",
+       "traffic_sh"
+      ],
+      "checked_at": {
+       "$d": "2026-10-03T09:56:00.000Z"
+      },
+      "feed_key": null
+     },
+     {
+      "city": 6,
+      "current_feeds": [
+       "nms_events",
+       "traffic_bw",
+       "traffic_sh"
+      ],
+      "checked_at": {
+       "$d": "2026-10-03T09:56:00.000Z"
+      },
+      "feed_key": "nms_events",
+      "publication_id": "NMS/R1",
+      "overall_start": {
+       "$d": "2026-10-03T09:25:00.000Z"
+      },
+      "version_at": {
+       "$d": "2026-10-03T09:50:00.000Z"
+      },
+      "last_seen_at": {
+       "$d": "2026-10-03T09:56:00.000Z"
+      },
+      "lat": 51.33,
+      "lon": 6.9,
+      "distance_m": 19000,
+      "total_rows": 1,
+      "feed_keys": [
+       "nms_events"
+      ],
+      "jam_type": "stationaryTraffic",
+      "length_affected": "5000",
+      "detail_text": "A52 Essen Richtung Düsseldorf\nzwischen Essen-Haarzopf und Kreuz Breitscheid\n5 km Stau"
+     },
+     {
+      "city": 7,
+      "current_feeds": [
+       "nms_events",
+       "traffic_bw",
+       "traffic_sh"
+      ],
+      "checked_at": {
+       "$d": "2026-10-03T09:56:00.000Z"
+      },
+      "feed_key": null
+     },
+     {
+      "city": 8,
+      "current_feeds": [
+       "nms_events",
+       "traffic_bw",
+       "traffic_sh"
+      ],
+      "checked_at": {
+       "$d": "2026-10-03T09:56:00.000Z"
+      },
+      "feed_key": null
+     },
+     {
+      "city": 9,
+      "current_feeds": [
+       "nms_events",
+       "traffic_bw",
+       "traffic_sh"
+      ],
+      "checked_at": {
+       "$d": "2026-10-03T09:56:00.000Z"
+      },
+      "feed_key": null
+     },
+     {
+      "city": 10,
+      "current_feeds": [
+       "nms_events",
+       "traffic_bw",
+       "traffic_sh"
+      ],
+      "checked_at": {
+       "$d": "2026-10-03T09:56:00.000Z"
+      },
+      "feed_key": "nms_events",
+      "publication_id": "NMS/R1",
+      "overall_start": {
+       "$d": "2026-10-03T09:25:00.000Z"
+      },
+      "version_at": {
+       "$d": "2026-10-03T09:50:00.000Z"
+      },
+      "last_seen_at": {
+       "$d": "2026-10-03T09:56:00.000Z"
+      },
+      "lat": 51.33,
+      "lon": 6.9,
+      "distance_m": 12000,
+      "total_rows": 1,
+      "feed_keys": [
+       "nms_events"
+      ],
+      "jam_type": "stationaryTraffic",
+      "length_affected": "5000",
+      "detail_text": "A52 Essen Richtung Düsseldorf\nzwischen Essen-Haarzopf und Kreuz Breitscheid\n5 km Stau"
+     }
+    ],
+    "autobahn": [
+     {
+      "city": 1,
+      "feed_key": null
+     },
+     {
+      "city": 2,
+      "feed_key": "autobahn",
+      "road": "A1",
+      "ext_id": "AB-2-1",
+      "title": "A1 | Hamburg-Stillhorn - Norderelbbrücke",
+      "subtitle": "Bremen -> Lübeck",
+      "abnormal_traffic_type": "QUEUING_TRAFFIC",
+      "delay_s": 1080,
+      "lat": 53.5,
+      "lon": 10,
+      "distance_m": 5949,
+      "start_ts": "2026-10-03T09:14:00.000Z",
+      "total_rows": 1
+     },
+     {
+      "city": 3,
+      "feed_key": null
+     },
+     {
+      "city": 4,
+      "feed_key": "autobahn",
+      "road": "A3",
+      "ext_id": "AB-4-1",
+      "title": "A3 | Köln-Mülheim - Kreuz Köln-Ost",
+      "subtitle": "Oberhausen -> Frankfurt",
+      "abnormal_traffic_type": "QUEUING_TRAFFIC",
+      "delay_s": 600,
+      "lat": 50.951,
+      "lon": 7.001,
+      "distance_m": 3200,
+      "start_ts": "2026-10-03T09:14:00.000Z",
+      "total_rows": 1
+     },
+     {
+      "city": 5,
+      "feed_key": null
+     },
+     {
+      "city": 6,
+      "feed_key": null
+     },
+     {
+      "city": 7,
+      "feed_key": null
+     },
+     {
+      "city": 8,
+      "feed_key": null
+     },
+     {
+      "city": 9,
+      "feed_key": null
+     },
+     {
+      "city": 10,
+      "feed_key": null
+     }
+    ],
+    "autobahnAsked": true
+   }
+  },
+  "stations": {
+   "ok": true,
+   "value": [
+    {
+     "ord": 1,
+     "dhid": "de:11000:900003201",
+     "name": "Berlin Hbf",
+     "stops_known": 10,
+     "trips_observed": 25,
+     "trips_late": 0,
+     "trips_skipped_stop": 2,
+     "trips_untimed": 0,
+     "median_worst_delay_s": -12,
+     "newest": {
+      "$d": "2026-10-03T09:58:00.000Z"
+     }
+    },
+    {
+     "ord": 2,
+     "dhid": "de:02000:10950",
+     "name": "Hamburg Hbf",
+     "stops_known": 10,
+     "trips_observed": 13,
+     "trips_late": 4,
+     "trips_skipped_stop": 0,
+     "trips_untimed": 0,
+     "median_worst_delay_s": 60,
+     "newest": {
+      "$d": "2026-10-03T09:58:00.000Z"
+     }
+    },
+    {
+     "ord": 3,
+     "dhid": "de:09162:100",
+     "name": "München Hbf",
+     "stops_known": 10,
+     "trips_observed": 25,
+     "trips_late": 6,
+     "trips_skipped_stop": 0,
+     "trips_untimed": 0,
+     "median_worst_delay_s": 60,
+     "newest": {
+      "$d": "2026-10-03T09:58:00.000Z"
+     }
+    },
+    {
+     "ord": 4,
+     "dhid": "de:05315:11201",
+     "name": "Köln Hbf",
+     "stops_known": 10,
+     "trips_observed": 41,
+     "trips_late": 11,
+     "trips_skipped_stop": 0,
+     "trips_untimed": 0,
+     "median_worst_delay_s": 120,
+     "newest": {
+      "$d": "2026-10-03T09:58:00.000Z"
+     }
+    },
+    {
+     "ord": 5,
+     "dhid": "de:06412:10",
+     "name": "Frankfurt (Main) Hbf",
+     "stops_known": 10,
+     "trips_observed": 52,
+     "trips_late": 3,
+     "trips_skipped_stop": 0,
+     "trips_untimed": 0,
+     "median_worst_delay_s": 38,
+     "newest": {
+      "$d": "2026-10-03T09:58:00.000Z"
+     }
+    },
+    {
+     "ord": 6,
+     "dhid": "de:08111:6115",
+     "name": "Stuttgart Hbf",
+     "stops_known": 10,
+     "trips_observed": 20,
+     "trips_late": 6,
+     "trips_skipped_stop": 0,
+     "trips_untimed": 0,
+     "median_worst_delay_s": 900,
+     "newest": {
+      "$d": "2026-10-03T09:58:00.000Z"
+     }
+    },
+    {
+     "ord": 7,
+     "dhid": "de:05111:18235",
+     "name": "Düsseldorf Hbf",
+     "stops_known": 10,
+     "trips_observed": 124,
+     "trips_late": 18,
+     "trips_skipped_stop": 0,
+     "trips_untimed": 0,
+     "median_worst_delay_s": 90,
+     "newest": {
+      "$d": "2026-10-03T09:58:00.000Z"
+     }
+    },
+    {
+     "ord": 8,
+     "dhid": "de:14713:8010205",
+     "name": "Leipzig Hbf",
+     "stops_known": 10,
+     "trips_observed": 0,
+     "trips_late": 0,
+     "trips_skipped_stop": 0,
+     "trips_untimed": 0,
+     "median_worst_delay_s": null,
+     "newest": null
+    }
+   ]
+  },
+  "placesNear": {
+   "ok": true,
+   "value": {
+    "gazetteerLoaded": true,
+    "found": {
+     "$m": []
+    },
+    "asked": {
+     "$s": []
+    }
+   }
+  }
+ },
+ "report": {
+  "at": {
+   "$d": "2026-10-03T10:00:00.000Z"
+  },
+  "digest": {
+   "items": [
+    {
+     "rank": 1,
+     "kind": "closure",
+     "what": "Vollsperrung 29",
+     "whatVerbatim": "Vollsperrung 29",
+     "road": "A9",
+     "where": {
+      "place": {
+       "kind": "none",
+       "why": "lookupUnavailable"
+      },
+      "direction": {
+       "from": "Nürnberg",
+       "to": "München"
+      }
+     },
+     "whereRaw": "Kreuz Nürnberg",
+     "since": {
+      "$d": "2026-10-03T08:30:00.000Z"
+     },
+     "until": null,
+     "delaySeconds": 1200,
+     "seen": {
+      "at": {
+       "$d": "2026-10-03T09:56:00.000Z"
+      },
+      "ageSeconds": 240,
+      "stale": false
+     },
+     "attribution": {
+      "licenceId": "autobahn",
+      "text": "Verkehrsdaten: Autobahn GmbH des Bundes",
+      "url": "https://verkehr.autobahn.de",
+      "purposeLimited": false
+     },
+     "alsoAttributions": [],
+     "lon": 11.5,
+     "lat": 48.5
+    },
+    {
+     "rank": 2,
+     "kind": "accident",
+     "what": "Vollsperrung 31",
+     "whatVerbatim": "Vollsperrung 31",
+     "road": "A3",
+     "where": {
+      "place": {
+       "kind": "none",
+       "why": "lookupUnavailable"
+      },
+      "direction": {
+       "from": "Nürnberg",
+       "to": "München"
+      }
+     },
+     "whereRaw": "Kreuz Nürnberg",
+     "since": {
+      "$d": "2026-10-03T08:30:00.000Z"
+     },
+     "until": null,
+     "delaySeconds": 1200,
+     "seen": {
+      "at": {
+       "$d": "2026-10-03T09:56:00.000Z"
+      },
+      "ageSeconds": 240,
+      "stale": false
+     },
+     "attribution": {
+      "licenceId": "autobahn",
+      "text": "Verkehrsdaten: Autobahn GmbH des Bundes",
+      "url": "https://verkehr.autobahn.de",
+      "purposeLimited": false
+     },
+     "alsoAttributions": [],
+     "lon": 11.5,
+     "lat": 48.5
+    },
+    {
+     "rank": 3,
+     "kind": "roadworks",
+     "what": "Vollsperrung 32",
+     "whatVerbatim": "Vollsperrung 32",
+     "road": "A9",
+     "where": {
+      "place": {
+       "kind": "none",
+       "why": "lookupUnavailable"
+      },
+      "direction": {
+       "from": "Nürnberg",
+       "to": "München"
+      }
+     },
+     "whereRaw": "Kreuz Nürnberg",
+     "since": {
+      "$d": "2026-10-03T08:30:00.000Z"
+     },
+     "until": null,
+     "delaySeconds": 1200,
+     "seen": {
+      "at": {
+       "$d": "2026-10-03T09:56:00.000Z"
+      },
+      "ageSeconds": 240,
+      "stale": false
+     },
+     "attribution": {
+      "licenceId": "autobahn",
+      "text": "Verkehrsdaten: Autobahn GmbH des Bundes",
+      "url": "https://verkehr.autobahn.de",
+      "purposeLimited": false
+     },
+     "alsoAttributions": [],
+     "lon": 11.5,
+     "lat": 48.5
+    },
+    {
+     "rank": 4,
+     "kind": "jam",
+     "what": "Vollsperrung 35",
+     "whatVerbatim": "Vollsperrung 35",
+     "road": "A7",
+     "where": {
+      "place": {
+       "kind": "none",
+       "why": "lookupUnavailable"
+      },
+      "direction": {
+       "from": "Nürnberg",
+       "to": "München"
+      }
+     },
+     "whereRaw": "Kreuz Nürnberg",
+     "since": {
+      "$d": "2026-10-03T08:30:00.000Z"
+     },
+     "until": null,
+     "delaySeconds": 1200,
+     "seen": {
+      "at": {
+       "$d": "2026-10-03T09:56:00.000Z"
+      },
+      "ageSeconds": 240,
+      "stale": false
+     },
+     "attribution": {
+      "licenceId": "autobahn",
+      "text": "Verkehrsdaten: Autobahn GmbH des Bundes",
+      "url": "https://verkehr.autobahn.de",
+      "purposeLimited": false
+     },
+     "alsoAttributions": [],
+     "lon": 11.5,
+     "lat": 48.5
+    }
+   ],
+   "unavailable": false,
+   "seen": {
+    "at": {
+     "$d": "2026-10-03T09:56:00.000Z"
+    },
+    "ageSeconds": 240,
+    "stale": false
+   }
+  },
+  "roads": {
+   "unavailable": false,
+   "counts": [
+    {
+     "kind": "jam",
+     "n": 2
+    },
+    {
+     "kind": "accident",
+     "n": 1
+    },
+    {
+     "kind": "closure",
+     "n": 1
+    },
+    {
+     "kind": "roadworks",
+     "n": 1
+    }
+   ],
+   "busiestRoads": [
+    {
+     "road": "A9",
+     "n": 3
+    },
+    {
+     "road": "A3",
+     "n": 1
+    },
+    {
+     "road": "A7",
+     "n": 1
+    }
+   ],
+   "total": 5,
+   "seen": {
+    "at": {
+     "$d": "2026-10-03T09:56:00.000Z"
+    },
+    "ageSeconds": 240,
+    "stale": false
+   },
+   "attributions": [
+    {
+     "licenceId": "autobahn",
+     "text": "Verkehrsdaten: Autobahn GmbH des Bundes",
+     "url": "https://verkehr.autobahn.de",
+     "purposeLimited": false
+    }
+   ]
+  },
+  "fuel": {
+   "unavailable": false,
+   "products": [
+    {
+     "code": "e5",
+     "label": "Super E5",
+     "unit": "EUR/l",
+     "cheapest": {
+      "price": "1.699",
+      "station": "Musterhof",
+      "brand": "ARAL",
+      "street": "Fürther Str.",
+      "houseNo": "12",
+      "postcode": "90429",
+      "city": "Nürnberg",
+      "seen": {
+       "at": {
+        "$d": "2026-10-03T09:56:00.000Z"
+       },
+       "ageSeconds": 240,
+       "stale": false
+      }
+     },
+     "median": {
+      "price": "1.789",
+      "stationCount": 312,
+      "windowFrom": {
+       "$d": "2026-10-03T09:02:00.000Z"
+      },
+      "windowTo": {
+       "$d": "2026-10-03T09:56:00.000Z"
+      }
+     },
+     "lastSeen": {
+      "at": {
+       "$d": "2026-10-03T09:56:00.000Z"
+      },
+      "ageSeconds": 240,
+      "stale": false
+     }
+    }
+   ],
+   "attribution": {
+    "licenceId": "tankerkoenig",
+    "text": "Tankstellenpreise: Tankerkönig.de — MTS-K, CC BY 4.0, bearbeitet",
+    "url": "https://creativecommons.tankerkoenig.de",
+    "purposeLimited": true
+   },
+   "windowSeconds": 1800
+  },
+  "fuelBoard": {
+   "unavailable": false,
+   "lands": [
+    {
+     "ags": "01",
+     "name": "Schleswig-Holstein",
+     "nameEn": "Schleswig-Holstein",
+     "held": 0,
+     "stations": []
+    },
+    {
+     "ags": "02",
+     "name": "Hamburg",
+     "nameEn": "Hamburg",
+     "held": 0,
+     "stations": []
+    },
+    {
+     "ags": "03",
+     "name": "Niedersachsen",
+     "nameEn": "Lower Saxony",
+     "held": 0,
+     "stations": []
+    },
+    {
+     "ags": "04",
+     "name": "Bremen",
+     "nameEn": "Bremen",
+     "held": 0,
+     "stations": []
+    },
+    {
+     "ags": "05",
+     "name": "Nordrhein-Westfalen",
+     "nameEn": "North Rhine-Westphalia",
+     "held": 0,
+     "stations": []
+    },
+    {
+     "ags": "06",
+     "name": "Hessen",
+     "nameEn": "Hesse",
+     "held": 0,
+     "stations": []
+    },
+    {
+     "ags": "07",
+     "name": "Rheinland-Pfalz",
+     "nameEn": "Rhineland-Palatinate",
+     "held": 0,
+     "stations": []
+    },
+    {
+     "ags": "08",
+     "name": "Baden-Württemberg",
+     "nameEn": "Baden-Württemberg",
+     "held": 0,
+     "stations": []
+    },
+    {
+     "ags": "09",
+     "name": "Bayern",
+     "nameEn": "Bavaria",
+     "held": 28,
+     "stations": [
+      {
+       "brand": "ARAL",
+       "name": "Aral Tankstelle Fürther Str.",
+       "street": "Fürther Str.",
+       "houseNo": "12",
+       "postcode": "90429",
+       "city": "Nürnberg",
+       "prices": {
+        "e5": "1.699",
+        "e10": "1.639",
+        "diesel": "1.589"
+       },
+       "seen": {
+        "at": {
+         "$d": "2026-10-03T09:50:00.000Z"
+        },
+        "ageSeconds": 600,
+        "stale": false
+       },
+       "current": true
+      },
+      {
+       "brand": "Shell",
+       "name": "Shell Nürnberg Süd",
+       "street": "Allersberger Str.",
+       "houseNo": "40",
+       "postcode": "90461",
+       "city": "Nürnberg",
+       "prices": {
+        "e5": "1.699",
+        "e10": "1.659",
+        "diesel": "1.589"
+       },
+       "seen": {
+        "at": {
+         "$d": "2026-10-03T09:50:00.000Z"
+        },
+        "ageSeconds": 600,
+        "stale": false
+       },
+       "current": true
+      }
+     ]
+    },
+    {
+     "ags": "10",
+     "name": "Saarland",
+     "nameEn": "Saarland",
+     "held": 0,
+     "stations": []
+    },
+    {
+     "ags": "11",
+     "name": "Berlin",
+     "nameEn": "Berlin",
+     "held": 5,
+     "stations": [
+      {
+       "brand": "TotalEnergies",
+       "name": "TotalEnergies Berlin",
+       "street": "Holzmarktstr.",
+       "houseNo": "36",
+       "postcode": "10243",
+       "city": "Berlin",
+       "prices": {
+        "e5": "1.699",
+        "e10": "1.639",
+        "diesel": "1.589"
+       },
+       "seen": {
+        "at": {
+         "$d": "2026-10-03T09:50:00.000Z"
+        },
+        "ageSeconds": 600,
+        "stale": false
+       },
+       "current": true
+      }
+     ]
+    },
+    {
+     "ags": "12",
+     "name": "Brandenburg",
+     "nameEn": "Brandenburg",
+     "held": 0,
+     "stations": []
+    },
+    {
+     "ags": "13",
+     "name": "Mecklenburg-Vorpommern",
+     "nameEn": "Mecklenburg-Western Pomerania",
+     "held": 0,
+     "stations": []
+    },
+    {
+     "ags": "14",
+     "name": "Sachsen",
+     "nameEn": "Saxony",
+     "held": 0,
+     "stations": []
+    },
+    {
+     "ags": "15",
+     "name": "Sachsen-Anhalt",
+     "nameEn": "Saxony-Anhalt",
+     "held": 0,
+     "stations": []
+    },
+    {
+     "ags": "16",
+     "name": "Thüringen",
+     "nameEn": "Thuringia",
+     "held": 0,
+     "stations": []
+    }
+   ],
+   "held": 33,
+   "unplaced": 0,
+   "perLand": 3,
+   "windowSeconds": 1800,
+   "heldSeconds": 259200,
+   "gazetteerAttribution": {
+    "licenceId": "bkg_gvisys",
+    "text": "Verwaltungseinheiten: © BKG (2026) dl-de/by-2-0, Datenquellen: https://sgx.geodatenzentrum.de/web_public/gdz/datenquellen/datenquellen_gn250.pdf (Daten verändert)",
+    "url": "https://gdz.bkg.bund.de/index.php/default/open-data/geographische-namen-1-250-000-gn250.html",
+    "purposeLimited": false
+   }
+  },
+  "facilities": {
+   "unavailable": false,
+   "empty": false,
+   "counts": [
+    {
+     "kind": "elevator",
+     "state": "inactive",
+     "n": 167,
+     "stations": 120,
+     "oldestSince": {
+      "$d": "2026-09-30T15:20:00.000Z"
+     }
+    },
+    {
+     "kind": "escalator",
+     "state": "inactive",
+     "n": 131,
+     "stations": 96,
+     "oldestSince": {
+      "$d": "2026-09-30T15:20:00.000Z"
+     }
+    },
+    {
+     "kind": "elevator",
+     "state": "active",
+     "n": 3375,
+     "stations": 1300,
+     "oldestSince": null
+    }
+   ],
+   "total": 3673,
+   "outOfService": 298,
+   "unknown": 0,
+   "stationsAffected": 120,
+   "seen": {
+    "at": {
+     "$d": "2026-10-03T09:58:00.000Z"
+    },
+    "ageSeconds": 120,
+    "stale": false
+   },
+   "attributions": [
+    {
+     "licenceId": "db_fasta",
+     "text": "Aufzüge und Fahrtreppen: Deutsche Bahn AG, DB API Marketplace, CC BY 4.0, bearbeitet",
+     "url": "https://developers.deutschebahn.com",
+     "purposeLimited": false
+    }
+   ]
+  },
+  "places": {
+   "unavailable": false,
+   "charging": [
+    {
+     "sites": 120,
+     "units": 340,
+     "seen": {
+      "at": {
+       "$d": "2026-10-03T00:00:00.000Z"
+      },
+      "ageSeconds": 36000,
+      "stale": false
+     },
+     "attribution": {
+      "licenceId": "mobilithek_afir_ecomovement",
+      "text": "Ladepunkte: Eco-Movement via Mobilithek, CC BY 4.0, bearbeitet",
+      "url": "https://mobilithek.info/offers/954064102947180544",
+      "purposeLimited": false
+     }
+    },
+    {
+     "sites": 50,
+     "units": 200,
+     "seen": {
+      "at": {
+       "$d": "2026-10-03T00:00:00.000Z"
+      },
+      "ageSeconds": 36000,
+      "stale": false
+     },
+     "attribution": {
+      "licenceId": "mobilithek_afir_tesla_dyn",
+      "text": "Ladepunkt-Verfügbarkeit: Tesla Germany GmbH via Mobilithek, CC0 1.0",
+      "url": "https://mobilithek.info/offers/953843379766972416",
+      "purposeLimited": false
+     }
+    }
+   ],
+   "parking": [
+    {
+     "sites": 40,
+     "units": 890,
+     "seen": {
+      "at": {
+       "$d": "2026-10-03T00:00:00.000Z"
+      },
+      "ageSeconds": 36000,
+      "stale": false
+     },
+     "attribution": {
+      "licenceId": "mobilithek_truckpark_static_geonutzv",
+      "text": "LKW-Parken: © Lkw-Parken BAB Deutschland / Bundesministerium für Verkehr (BMV) 2026 — GeoNutzV, Daten verändert",
+      "url": "https://mobilithek.info/offers/110000000002465001",
+      "purposeLimited": false
+     }
+    }
+   ],
+   "carparks": [
+    {
+     "sites": 126,
+     "units": 54437,
+     "seen": {
+      "at": {
+       "$d": "2026-10-03T09:58:00.000Z"
+      },
+      "ageSeconds": 120,
+      "stale": false
+     },
+     "attribution": {
+      "licenceId": "hamburg_parkhaeuser",
+      "text": "Parkhäuser: Freie und Hansestadt Hamburg, Behörde für Verkehr und Mobilitätswende, Datenlizenz Deutschland – Namensnennung – Version 2.0 (www.govdata.de/dl-de/by-2-0), Daten geändert (bearbeitet)",
+      "url": "https://suche.transparenz.hamburg.de/dataset/parkhaeuser-hamburg17",
+      "purposeLimited": false
+     }
+    }
+   ]
+  },
+  "transit": {
+   "state": "arriving"
+  },
+  "punctuality": {
+   "unavailable": false,
+   "lands": [
+    {
+     "ags": "05",
+     "name": "Nordrhein-Westfalen",
+     "nameEn": "North Rhine-Westphalia",
+     "observed": 2400,
+     "late": 410,
+     "sharePct": 17,
+     "skipped": 12,
+     "typicalDelayMin": 3,
+     "stops": 2100,
+     "untimed": 0,
+     "withheld": null,
+     "seen": {
+      "at": {
+       "$d": "2026-10-03T09:58:00.000Z"
+      },
+      "ageSeconds": 120,
+      "stale": false
+     }
+    },
+    {
+     "ags": "09",
+     "name": "Bayern",
+     "nameEn": "Bavaria",
+     "observed": 1900,
+     "late": 133,
+     "sharePct": 7,
+     "skipped": 12,
+     "typicalDelayMin": 3,
+     "stops": 2100,
+     "untimed": 0,
+     "withheld": null,
+     "seen": {
+      "at": {
+       "$d": "2026-10-03T09:58:00.000Z"
+      },
+      "ageSeconds": 120,
+      "stale": false
+     }
+    },
+    {
+     "ags": "02",
+     "name": "Hamburg",
+     "nameEn": "Hamburg",
+     "observed": 780,
+     "late": 23,
+     "sharePct": 3,
+     "skipped": 12,
+     "typicalDelayMin": 3,
+     "stops": 2100,
+     "untimed": 0,
+     "withheld": null,
+     "seen": {
+      "at": {
+       "$d": "2026-10-03T09:58:00.000Z"
+      },
+      "ageSeconds": 120,
+      "stale": false
+     }
+    }
+   ],
+   "allLands": [
+    {
+     "ags": "01",
+     "name": "Schleswig-Holstein",
+     "nameEn": "Schleswig-Holstein",
+     "observed": 0,
+     "late": 0,
+     "sharePct": 0,
+     "skipped": 0,
+     "typicalDelayMin": null,
+     "stops": 0,
+     "untimed": 0,
+     "withheld": null,
+     "seen": {
+      "at": null,
+      "ageSeconds": null,
+      "stale": true
+     }
+    },
+    {
+     "ags": "02",
+     "name": "Hamburg",
+     "nameEn": "Hamburg",
+     "observed": 780,
+     "late": 23,
+     "sharePct": 3,
+     "skipped": 12,
+     "typicalDelayMin": 3,
+     "stops": 2100,
+     "untimed": 0,
+     "withheld": null,
+     "seen": {
+      "at": {
+       "$d": "2026-10-03T09:58:00.000Z"
+      },
+      "ageSeconds": 120,
+      "stale": false
+     }
+    },
+    {
+     "ags": "03",
+     "name": "Niedersachsen",
+     "nameEn": "Lower Saxony",
+     "observed": 0,
+     "late": 0,
+     "sharePct": 0,
+     "skipped": 0,
+     "typicalDelayMin": null,
+     "stops": 0,
+     "untimed": 0,
+     "withheld": null,
+     "seen": {
+      "at": null,
+      "ageSeconds": null,
+      "stale": true
+     }
+    },
+    {
+     "ags": "04",
+     "name": "Bremen",
+     "nameEn": "Bremen",
+     "observed": 0,
+     "late": 0,
+     "sharePct": 0,
+     "skipped": 0,
+     "typicalDelayMin": null,
+     "stops": 0,
+     "untimed": 0,
+     "withheld": null,
+     "seen": {
+      "at": null,
+      "ageSeconds": null,
+      "stale": true
+     }
+    },
+    {
+     "ags": "05",
+     "name": "Nordrhein-Westfalen",
+     "nameEn": "North Rhine-Westphalia",
+     "observed": 2400,
+     "late": 410,
+     "sharePct": 17,
+     "skipped": 12,
+     "typicalDelayMin": 3,
+     "stops": 2100,
+     "untimed": 0,
+     "withheld": null,
+     "seen": {
+      "at": {
+       "$d": "2026-10-03T09:58:00.000Z"
+      },
+      "ageSeconds": 120,
+      "stale": false
+     }
+    },
+    {
+     "ags": "06",
+     "name": "Hessen",
+     "nameEn": "Hesse",
+     "observed": 0,
+     "late": 0,
+     "sharePct": 0,
+     "skipped": 0,
+     "typicalDelayMin": null,
+     "stops": 0,
+     "untimed": 0,
+     "withheld": null,
+     "seen": {
+      "at": null,
+      "ageSeconds": null,
+      "stale": true
+     }
+    },
+    {
+     "ags": "07",
+     "name": "Rheinland-Pfalz",
+     "nameEn": "Rhineland-Palatinate",
+     "observed": 0,
+     "late": 0,
+     "sharePct": 0,
+     "skipped": 0,
+     "typicalDelayMin": null,
+     "stops": 0,
+     "untimed": 0,
+     "withheld": null,
+     "seen": {
+      "at": null,
+      "ageSeconds": null,
+      "stale": true
+     }
+    },
+    {
+     "ags": "08",
+     "name": "Baden-Württemberg",
+     "nameEn": "Baden-Württemberg",
+     "observed": 0,
+     "late": 0,
+     "sharePct": 0,
+     "skipped": 0,
+     "typicalDelayMin": null,
+     "stops": 0,
+     "untimed": 0,
+     "withheld": null,
+     "seen": {
+      "at": null,
+      "ageSeconds": null,
+      "stale": true
+     }
+    },
+    {
+     "ags": "09",
+     "name": "Bayern",
+     "nameEn": "Bavaria",
+     "observed": 1900,
+     "late": 133,
+     "sharePct": 7,
+     "skipped": 12,
+     "typicalDelayMin": 3,
+     "stops": 2100,
+     "untimed": 0,
+     "withheld": null,
+     "seen": {
+      "at": {
+       "$d": "2026-10-03T09:58:00.000Z"
+      },
+      "ageSeconds": 120,
+      "stale": false
+     }
+    },
+    {
+     "ags": "10",
+     "name": "Saarland",
+     "nameEn": "Saarland",
+     "observed": 0,
+     "late": 0,
+     "sharePct": 0,
+     "skipped": 0,
+     "typicalDelayMin": null,
+     "stops": 0,
+     "untimed": 0,
+     "withheld": null,
+     "seen": {
+      "at": null,
+      "ageSeconds": null,
+      "stale": true
+     }
+    },
+    {
+     "ags": "11",
+     "name": "Berlin",
+     "nameEn": "Berlin",
+     "observed": 0,
+     "late": 0,
+     "sharePct": 0,
+     "skipped": 0,
+     "typicalDelayMin": null,
+     "stops": 0,
+     "untimed": 0,
+     "withheld": null,
+     "seen": {
+      "at": null,
+      "ageSeconds": null,
+      "stale": true
+     }
+    },
+    {
+     "ags": "12",
+     "name": "Brandenburg",
+     "nameEn": "Brandenburg",
+     "observed": 0,
+     "late": 0,
+     "sharePct": 0,
+     "skipped": 0,
+     "typicalDelayMin": null,
+     "stops": 0,
+     "untimed": 0,
+     "withheld": null,
+     "seen": {
+      "at": null,
+      "ageSeconds": null,
+      "stale": true
+     }
+    },
+    {
+     "ags": "13",
+     "name": "Mecklenburg-Vorpommern",
+     "nameEn": "Mecklenburg-Western Pomerania",
+     "observed": 0,
+     "late": 0,
+     "sharePct": 0,
+     "skipped": 0,
+     "typicalDelayMin": null,
+     "stops": 0,
+     "untimed": 0,
+     "withheld": null,
+     "seen": {
+      "at": null,
+      "ageSeconds": null,
+      "stale": true
+     }
+    },
+    {
+     "ags": "14",
+     "name": "Sachsen",
+     "nameEn": "Saxony",
+     "observed": 0,
+     "late": 0,
+     "sharePct": 0,
+     "skipped": 0,
+     "typicalDelayMin": null,
+     "stops": 0,
+     "untimed": 0,
+     "withheld": null,
+     "seen": {
+      "at": null,
+      "ageSeconds": null,
+      "stale": true
+     }
+    },
+    {
+     "ags": "15",
+     "name": "Sachsen-Anhalt",
+     "nameEn": "Saxony-Anhalt",
+     "observed": 0,
+     "late": 0,
+     "sharePct": 0,
+     "skipped": 0,
+     "typicalDelayMin": null,
+     "stops": 0,
+     "untimed": 0,
+     "withheld": null,
+     "seen": {
+      "at": null,
+      "ageSeconds": null,
+      "stale": true
+     }
+    },
+    {
+     "ags": "16",
+     "name": "Thüringen",
+     "nameEn": "Thuringia",
+     "observed": 0,
+     "late": 0,
+     "sharePct": 0,
+     "skipped": 0,
+     "typicalDelayMin": null,
+     "stops": 0,
+     "untimed": 0,
+     "withheld": null,
+     "seen": {
+      "at": null,
+      "ageSeconds": null,
+      "stale": true
+     }
+    }
+   ],
+   "cities": [
+    {
+     "kreis": "09162",
+     "name": "München",
+     "observed": 900,
+     "late": 30,
+     "sharePct": 3,
+     "skipped": 4,
+     "typicalDelayMin": 2,
+     "stops": 800
+    },
+    {
+     "kreis": "02000",
+     "name": "Hamburg",
+     "observed": 780,
+     "late": 23,
+     "sharePct": 3,
+     "skipped": 4,
+     "typicalDelayMin": 2,
+     "stops": 800
+    },
+    {
+     "kreis": "11000",
+     "name": "Berlin",
+     "observed": 450,
+     "late": 30,
+     "sharePct": 7,
+     "skipped": 4,
+     "typicalDelayMin": 2,
+     "stops": 800
+    }
+   ],
+   "reporting": 3,
+   "trips": 4870,
+   "stops": 6300,
+   "windowMinutes": 30,
+   "seen": {
+    "at": {
+     "$d": "2026-10-03T09:58:00.000Z"
+    },
+    "ageSeconds": 120,
+    "stale": false
+   },
+   "attribution": {
+    "licenceId": "delfi_rt_tu",
+    "text": "Echtzeitdaten: DELFI e.V. via Mobilithek, CC BY-SA, bearbeitet",
+    "url": "https://mobilithek.info/offers/858688352316981248",
+    "purposeLimited": false
+   },
+   "gazetteerAttribution": {
+    "licenceId": "bkg_gvisys",
+    "text": "Verwaltungseinheiten: © BKG (2026) dl-de/by-2-0, Datenquellen: https://sgx.geodatenzentrum.de/web_public/gdz/datenquellen/datenquellen_gn250.pdf (Daten verändert)",
+    "url": "https://gdz.bkg.bund.de/index.php/default/open-data/geographische-namen-1-250-000-gn250.html",
+    "purposeLimited": false
+   },
+   "timetableAttribution": {
+    "licenceId": "delfi_static",
+    "text": "Fahrplandaten: DELFI e.V., CC BY 4.0, bearbeitet",
+    "url": "https://www.opendata-oepnv.de",
+    "purposeLimited": false
+   }
+  },
+  "cityJams": {
+   "unavailable": false,
+   "current": true,
+   "cities": [
+    {
+     "key": "berlin",
+     "count": 1
+    },
+    {
+     "key": "hamburg",
+     "count": 1
+    },
+    {
+     "key": "muenchen",
+     "count": 0
+    },
+    {
+     "key": "koeln",
+     "count": 2
+    },
+    {
+     "key": "frankfurt",
+     "count": 0
+    },
+    {
+     "key": "duesseldorf",
+     "count": 1
+    },
+    {
+     "key": "stuttgart",
+     "count": 0
+    },
+    {
+     "key": "leipzig",
+     "count": 0
+    },
+    {
+     "key": "dortmund",
+     "count": 0
+    },
+    {
+     "key": "essen",
+     "count": 1
+    }
+   ],
+   "longest": [
+    {
+     "city": "essen",
+     "line": {
+      "origin": "police",
+      "feedKey": "nms_events",
+      "id": "nms_events:NMS/R1",
+      "roads": [
+       "A52"
+      ],
+      "where": "A52 Essen Richtung Düsseldorf, zwischen Essen-Haarzopf und Kreuz Breitscheid, 5 km Stau",
+      "text": "A52 Essen Richtung Düsseldorf\nzwischen Essen-Haarzopf und Kreuz Breitscheid\n5 km Stau",
+      "since": {
+       "$d": "2026-10-03T09:25:00.000Z"
+      },
+      "lat": 51.33,
+      "lon": 6.9,
+      "distanceM": 12000,
+      "direction": "Düsseldorf",
+      "queueKm": 5,
+      "delayS": null,
+      "jamType": "stationaryTraffic"
+     },
+     "attribution": {
+      "licenceId": "mobilithek_nms_events",
+      "text": "Verkehrsmeldungen der Polizei: Landesbetrieb Straßenbau NRW (VIZ.NRW) via Mobilithek, Datenlizenz Deutschland – Zero – Version 2.0",
+      "url": "https://mobilithek.info/offers/648516815296524288",
+      "purposeLimited": false
+     }
+    },
+    {
+     "city": "koeln",
+     "line": {
+      "origin": "police",
+      "feedKey": "nms_events",
+      "id": "nms_events:NMS/K1",
+      "roads": [
+       "A3"
+      ],
+      "where": "A3 Köln Richtung Frankfurt, zwischen Köln-Mülheim und Kreuz Köln-Ost, 3 km Stau",
+      "text": "A3 Köln Richtung Frankfurt\nzwischen Köln-Mülheim und Kreuz Köln-Ost\n3 km Stau",
+      "since": {
+       "$d": "2026-10-03T09:25:00.000Z"
+      },
+      "lat": 50.95,
+      "lon": 7,
+      "distanceM": 3100,
+      "direction": "Frankfurt",
+      "queueKm": 3,
+      "delayS": 600,
+      "jamType": "stationaryTraffic"
+     },
+     "attribution": {
+      "licenceId": "mobilithek_nms_events",
+      "text": "Verkehrsmeldungen der Polizei: Landesbetrieb Straßenbau NRW (VIZ.NRW) via Mobilithek, Datenlizenz Deutschland – Zero – Version 2.0",
+      "url": "https://mobilithek.info/offers/648516815296524288",
+      "purposeLimited": false
+     }
+    },
+    {
+     "city": "berlin",
+     "line": {
+      "origin": "police",
+      "feedKey": "nms_events",
+      "id": "nms_events:LMS-BR/1",
+      "roads": [],
+      "where": "Berlin, Invalidenstraße Richtung Mitte, zwischen Hauptbahnhof und Chausseestraße, 1 km Stau",
+      "text": "Berlin, Invalidenstraße Richtung Mitte\nzwischen Hauptbahnhof und Chausseestraße\n1 km Stau",
+      "since": {
+       "$d": "2026-10-03T09:25:00.000Z"
+      },
+      "lat": 52.52,
+      "lon": 13.38,
+      "distanceM": 2200,
+      "direction": "Mitte",
+      "queueKm": 1,
+      "delayS": null,
+      "jamType": "stationaryTraffic"
+     },
+     "attribution": {
+      "licenceId": "mobilithek_nms_events",
+      "text": "Verkehrsmeldungen der Polizei: Landesbetrieb Straßenbau NRW (VIZ.NRW) via Mobilithek, Datenlizenz Deutschland – Zero – Version 2.0",
+      "url": "https://mobilithek.info/offers/648516815296524288",
+      "purposeLimited": false
+     }
+    },
+    {
+     "city": "koeln",
+     "line": {
+      "origin": "police",
+      "feedKey": "nms_events",
+      "id": "nms_events:NMS/K2",
+      "roads": [
+       "A57"
+      ],
+      "where": "A57 Köln Richtung Krefeld, zwischen Köln-Longerich und Kreuz Köln-Nord, 0,7 km stockender Verkehr",
+      "text": "A57 Köln Richtung Krefeld\nzwischen Köln-Longerich und Kreuz Köln-Nord\n0,7 km stockender Verkehr",
+      "since": {
+       "$d": "2026-10-03T09:25:00.000Z"
+      },
+      "lat": 50.98,
+      "lon": 6.85,
+      "distanceM": 7800,
+      "direction": "Krefeld",
+      "queueKm": 0.7,
+      "delayS": null,
+      "jamType": "queuingTraffic"
+     },
+     "attribution": {
+      "licenceId": "mobilithek_nms_events",
+      "text": "Verkehrsmeldungen der Polizei: Landesbetrieb Straßenbau NRW (VIZ.NRW) via Mobilithek, Datenlizenz Deutschland – Zero – Version 2.0",
+      "url": "https://mobilithek.info/offers/648516815296524288",
+      "purposeLimited": false
+     }
+    },
+    {
+     "city": "hamburg",
+     "line": {
+      "origin": "autobahn",
+      "feedKey": "autobahn",
+      "id": "autobahn:AB-2-1",
+      "roads": [
+       "A1"
+      ],
+      "where": "A1 | Hamburg-Stillhorn - Norderelbbrücke · Bremen -> Lübeck",
+      "text": null,
+      "since": {
+       "$d": "2026-10-03T09:14:00.000Z"
+      },
+      "lat": 53.5,
+      "lon": 10,
+      "distanceM": 5949,
+      "direction": null,
+      "queueKm": null,
+      "delayS": 1080,
+      "jamType": "QUEUING_TRAFFIC"
+     },
+     "attribution": {
+      "licenceId": "autobahn",
+      "text": "Verkehrsdaten: Autobahn GmbH des Bundes",
+      "url": "https://verkehr.autobahn.de",
+      "purposeLimited": false
+     }
+    }
+   ],
+   "seen": {
+    "at": {
+     "$d": "2026-10-03T09:56:00.000Z"
+    },
+    "ageSeconds": 240,
+    "stale": false
+   },
+   "attributions": [
+    {
+     "licenceId": "autobahn",
+     "text": "Verkehrsdaten: Autobahn GmbH des Bundes",
+     "url": "https://verkehr.autobahn.de",
+     "purposeLimited": false
+    },
+    {
+     "licenceId": "bkg_gvisys",
+     "text": "Verwaltungseinheiten: © BKG (2026) dl-de/by-2-0, Datenquellen: https://sgx.geodatenzentrum.de/web_public/gdz/datenquellen/datenquellen_gn250.pdf (Daten verändert)",
+     "url": "https://gdz.bkg.bund.de/index.php/default/open-data/geographische-namen-1-250-000-gn250.html",
+     "purposeLimited": false
+    },
+    {
+     "licenceId": "mobilithek_nms_events",
+     "text": "Verkehrsmeldungen der Polizei: Landesbetrieb Straßenbau NRW (VIZ.NRW) via Mobilithek, Datenlizenz Deutschland – Zero – Version 2.0",
+     "url": "https://mobilithek.info/offers/648516815296524288",
+     "purposeLimited": false
+    },
+    {
+     "licenceId": "mobilithek_traffic_bw",
+     "text": "Verkehrsmeldungen Baden-Württemberg: Landesmeldestelle für den Verkehrswarndienst Baden-Württemberg (Innenministerium Baden-Württemberg) via Mobilithek, Datenlizenz Deutschland – Namensnennung – Version 2.0 (www.govdata.de/dl-de/by-2-0), Daten verändert",
+     "url": "https://mobilithek.info/offers/857127500689977344",
+     "purposeLimited": false
+    },
+    {
+     "licenceId": "mobilithek_traffic_sh",
+     "text": "Verkehrsmeldungen Schleswig-Holstein: Landesmeldestelle Polizei Schleswig-Holstein via Mobilithek, Open Data (freie Nutzung)",
+     "url": "https://mobilithek.info/offers/993124774653632512",
+     "purposeLimited": false
+    }
+   ],
+   "rvwd": true,
+   "radiusKm": 25
+  },
+  "stations": {
+   "unavailable": false,
+   "stations": [
+    {
+     "dhid": "de:11000:900003201",
+     "name": "Berlin Hbf",
+     "observed": 25,
+     "late": 0,
+     "sharePct": 0,
+     "skipped": 2,
+     "typicalDelayMin": 0,
+     "untimed": 0,
+     "stopsKnown": 10,
+     "withheld": null
+    },
+    {
+     "dhid": "de:02000:10950",
+     "name": "Hamburg Hbf",
+     "observed": 13,
+     "late": 4,
+     "sharePct": 31,
+     "skipped": 0,
+     "typicalDelayMin": 1,
+     "untimed": 0,
+     "stopsKnown": 10,
+     "withheld": null
+    },
+    {
+     "dhid": "de:09162:100",
+     "name": "München Hbf",
+     "observed": 25,
+     "late": 6,
+     "sharePct": 24,
+     "skipped": 0,
+     "typicalDelayMin": 1,
+     "untimed": 0,
+     "stopsKnown": 10,
+     "withheld": null
+    },
+    {
+     "dhid": "de:05315:11201",
+     "name": "Köln Hbf",
+     "observed": 41,
+     "late": 11,
+     "sharePct": 27,
+     "skipped": 0,
+     "typicalDelayMin": 2,
+     "untimed": 0,
+     "stopsKnown": 10,
+     "withheld": null
+    },
+    {
+     "dhid": "de:06412:10",
+     "name": "Frankfurt (Main) Hbf",
+     "observed": 52,
+     "late": 3,
+     "sharePct": 6,
+     "skipped": 0,
+     "typicalDelayMin": 1,
+     "untimed": 0,
+     "stopsKnown": 10,
+     "withheld": null
+    },
+    {
+     "dhid": "de:08111:6115",
+     "name": "Stuttgart Hbf",
+     "observed": 20,
+     "late": 6,
+     "sharePct": 30,
+     "skipped": 0,
+     "typicalDelayMin": 15,
+     "untimed": 0,
+     "stopsKnown": 10,
+     "withheld": "implausible"
+    },
+    {
+     "dhid": "de:05111:18235",
+     "name": "Düsseldorf Hbf",
+     "observed": 124,
+     "late": 18,
+     "sharePct": 15,
+     "skipped": 0,
+     "typicalDelayMin": 2,
+     "untimed": 0,
+     "stopsKnown": 10,
+     "withheld": null
+    },
+    {
+     "dhid": "de:14713:8010205",
+     "name": "Leipzig Hbf",
+     "observed": 0,
+     "late": 0,
+     "sharePct": 0,
+     "skipped": 0,
+     "typicalDelayMin": null,
+     "untimed": 0,
+     "stopsKnown": 10,
+     "withheld": null
+    }
+   ],
+   "reporting": 6,
+   "windowMinutes": 30,
+   "seen": {
+    "at": {
+     "$d": "2026-10-03T09:58:00.000Z"
+    },
+    "ageSeconds": 120,
+    "stale": false
+   },
+   "attribution": {
+    "licenceId": "delfi_rt_tu",
+    "text": "Echtzeitdaten: DELFI e.V. via Mobilithek, CC BY-SA, bearbeitet",
+    "url": "https://mobilithek.info/offers/858688352316981248",
+    "purposeLimited": false
+   },
+   "timetableAttribution": {
+    "licenceId": "delfi_static",
+    "text": "Fahrplandaten: DELFI e.V., CC BY 4.0, bearbeitet",
+    "url": "https://www.opendata-oepnv.de",
+    "purposeLimited": false
+   }
+  },
+  "announcements": {
+   "unavailable": false,
+   "items": []
+  }
+ }
+}

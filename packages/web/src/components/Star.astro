@@ -1,0 +1,28 @@
+---
+/**
+ * #1181 features 3 and 7: the star of a road, place or station page (`lib/star.ts`) and the home-screen offer. Both
+ * buttons stay `hidden` until the script reveals them; nothing is stored before the star is pressed.
+ */
+import { t } from "../i18n/index.js";
+import { starScript } from "../lib/star.js";
+import type { Lang } from "../site/pages.js";
+
+interface Props {
+  lang: Lang;
+  /** The page's own path, the key it is kept under. */
+  path: string;
+  /** The page's name, as the home shows it. */
+  label: string;
+  /** A motorway page's road: the home's commute card reads it. */
+  road?: string | undefined;
+}
+const { lang, path, label, road } = Astro.props;
+const words = JSON.stringify({ add: t(lang, "star.add"), remove: t(lang, "star.remove"), neu: t(lang, "star.neu"), gone: t(lang, "star.gone", { list: "{list}" }), longer: t(lang, "star.longer") });
+Astro.locals.hasScript = true;
+---
+
+<p class="star wrap">
+  <button class="star__btn" id="vf-star" type="button" aria-pressed="false" data-key={path} data-label={label} data-road={road} data-words={words} hidden>{t(lang, "star.add")}</button>
+  <button class="star__btn" id="vf-install" type="button" hidden>{t(lang, "star.install")}</button>
+</p>
+<script is:inline set:html={starScript()} />

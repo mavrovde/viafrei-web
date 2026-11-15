@@ -1,0 +1,60 @@
+---
+/**
+ * #1084, #1188: THE around block of every object page ("In der Nähe") — a station's, a fuel station's, a charging
+ * site's: the place cards of the object's position, under the object's own section, framed exactly as on a city page:
+ * the topic bar (#1050: chips that apply on change, "Alle"/"Keine", "Auswahl merken"), the cards slot and the count a
+ * screen reader hears. The cards are the digest's fragment (`lib/object-area.ts`), its region headed "In der Nähe von
+ * <object>"; nothing of a card is written here, and no object page writes a block of its own (`test/around-block-1188`
+ * asserts every object layout renders through this one). The scripts are the place pages' own: the topics, the deferred
+ * fuel prices (asked by the object's Gemeinde, whose page the fragment links; on a fuel page without its own station),
+ * the SID click; the in-place refresh is the page's one script. Without JavaScript the cards and the GET form still work.
+ */
+import type { Lang } from "../site/pages.js";
+import type { ObjectArea } from "../lib/object-area.js";
+import { applyTopics, PLACE_SLOT, topicBarHtml, topicCardsOf, topicSumHtml, topicsScript, type PlaceCardId } from "../lib/topic-filter.js";
+import { PLACE_FUEL_FRAGMENT_ON, placeFuelScript } from "../lib/place-fuel.js";
+import { sidScript } from "../lib/sid.js";
+
+interface Props {
+  lang: Lang;
+  area: ObjectArea;
+  /** The object page's own path: the topic form's action, "Alle" and "Keine". */
+  path: string;
+  /** The address's topic choice (`topicsOf`); null = every topic. */
+  topics?: readonly PlaceCardId[] | null;
+  /**
+   * The cards slot's id. A motorway exit's page also holds the visitor's own around block (`MotorwayPlace`, #890),
+   * whose slot is the page's `place-slot` (the island, the Ampel swap); this block then takes another.
+   */
+  slot?: string;
+  /** False where the page ships the SID click itself (every motorway page), so a click is answered once. */
+  sid?: boolean;
+}
+const { lang, area, path, topics = null, slot = PLACE_SLOT, sid = true } = Astro.props;
+const html = area.kind === "none" ? "" : area.html;
+const cards = topicCardsOf(html);
+if (area.kind !== "none") {
+  Astro.locals.hasScript = true;
+  // the topic filter is a GET form to this page (CSP `form-action 'self'`)
+  Astro.locals.hasForm = true;
+}
+// 2.4.6: a block in its loading state gets the cards' scripts too — the page's script puts the cards in place later
+const fuelScript = PLACE_FUEL_FRAGMENT_ON && ((area.kind === "ok" && html.includes('id="pcard-fuel"')) || area.kind === "loading");
+---
+
+{
+  area.kind !== "none" && (
+    <div class="placebar vf-noclarity" id="vf-around" data-vf-around>
+      <div class="wrap">
+        <Fragment set:html={topicBarHtml(lang, cards, topics, path)} />
+        <div class="place-slot" id={slot}>
+          <Fragment set:html={applyTopics(html, topics)} />
+        </div>
+        <Fragment set:html={topicSumHtml(lang, cards, topics)} />
+      </div>
+      {fuelScript && <script is:inline set:html={placeFuelScript()} />}
+      <script is:inline set:html={topicsScript(lang, slot)} />
+      {sid && (area.kind === "ok" || area.kind === "loading") && <script is:inline set:html={sidScript()} />}
+    </div>
+  )
+}

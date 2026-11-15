@@ -1,0 +1,178 @@
+{
+ "_ms": "Each answer's ms: roads is as recorded on 2026-10-14; lorryPark, hydrogen, weatherLand, transit, charging and parking are the round trip of one tools/call to mcp.viafrei.de measured by a client on 2026-11-05, so they include the network. No page prints it.",
+ "examples": [
+  {
+   "key": "roads",
+   "tool": "check_autobahn_traffic",
+   "askedAt": "2026-10-14T22:45:55.240Z",
+   "ms": 378,
+   "projection": {
+    "variant": "clear",
+    "values": {
+     "jams": 0,
+     "closures": 5,
+     "works": 74
+    },
+    "names": {
+     "road": "A8"
+    },
+    "asOf": "2026-10-14T22:43:07.859Z",
+    "attribution": "Verkehrsdaten: Autobahn GmbH des Bundes (https://verkehr.autobahn.de)",
+    "sources": [
+     "autobahn"
+    ]
+   }
+  },
+  {
+   "key": "lorryPark",
+   "tool": "find_parking",
+   "askedAt": "2026-11-05T15:10:24.072Z",
+   "ms": 258,
+   "projection": {
+    "variant": "listed",
+    "values": {
+     "total": 345,
+     "live": 1
+    },
+    "names": {
+     "road": "A3"
+    },
+    "asOf": "2026-11-05T15:10:24.072Z",
+    "attribution": "LKW-Parken: © Lkw-Parken BAB Deutschland / Bundesministerium für Verkehr (BMV) 2026 — GeoNutzV, Daten verändert (https://mobilithek.info/offers/110000000002465001) · OSM-Standortdaten: © OpenStreetMap-Mitwirkende, ODbL 1.0 (https://www.openstreetmap.org/copyright; Lizenz: ODbL 1.0, https://opendatacommons.org/licenses/odbl/1-0/) · Ladepunkte: Eco-Movement via Mobilithek, CC BY 4.0, bearbeitet (https://mobilithek.info/offers/954064102947180544; Lizenz: CC BY 4.0, https://creativecommons.org/licenses/by/4.0/) · TMC Location Code List (LCL 22.0): Bundesanstalt für Straßenwesen (BASt), CC BY 4.0 (https://creativecommons.org/licenses/by/4.0/), bearbeitet (https://www.bast.de/DE/Themen/Digitales/HF_1/Massnahmen/LCL/location-code-list.html)",
+    "sources": [
+     "mobilithek_truckpark_static_geonutzv",
+     "osm",
+     "mobilithek_afir_ecomovement",
+     "bast_lcl"
+    ]
+   }
+  },
+  {
+   "key": "hydrogen",
+   "tool": "find_hydrogen_station",
+   "askedAt": "2026-11-05T13:22:43.070Z",
+   "ms": 995,
+   "projection": {
+    "variant": "near",
+    "values": {
+     "km": 4.5
+    },
+    "names": {
+     "name": "Frankfurt - Hanauer Landstr.",
+     "address": "Hanauer Landstr. 334, 60314 Frankfurt am Main"
+    },
+    "asOf": "2026-11-05T13:22:43.070Z",
+    "attribution": "Wasserstofftankstellen: H2 Mobility Deutschland GmbH & Co. KG via Mobilithek, CC BY 4.0, bearbeitet (https://mobilithek.info/offers/608445319190814720; Lizenz: CC BY 4.0, https://creativecommons.org/licenses/by/4.0/) · Verwaltungseinheiten: © BKG (2026) dl-de/by-2-0, Datenquellen: https://sgx.geodatenzentrum.de/web_public/gdz/datenquellen/datenquellen_gn250.pdf (Daten verändert) (https://gdz.bkg.bund.de/index.php/default/open-data/geographische-namen-1-250-000-gn250.html; Lizenz: dl-de/by-2-0, https://www.govdata.de/dl-de/by-2-0)",
+    "sources": [
+     "mobilithek_h2_stations",
+     "bkg_gvisys"
+    ]
+   }
+  },
+  {
+   "key": "weatherLand",
+   "tool": "check_weather_warnings",
+   "askedAt": "2026-11-05T15:06:01.220Z",
+   "ms": 1349,
+   "projection": {
+    "variant": "warn",
+    "values": {
+     "count": 3,
+     "level": 1,
+     "hours": 24
+    },
+    "names": {
+     "event": "FROST",
+     "place": "Bayern"
+    },
+    "asOf": "2026-11-05T15:06:01.220Z",
+    "attribution": "Datenbasis: Deutscher Wetterdienst, zusammengefasst (https://www.dwd.de/copyright; Lizenz: CC BY 4.0, https://creativecommons.org/licenses/by/4.0/) · Verwaltungseinheiten: © BKG (2026) dl-de/by-2-0, Datenquellen: https://sgx.geodatenzentrum.de/web_public/gdz/datenquellen/datenquellen_gn250.pdf (Daten verändert) (https://gdz.bkg.bund.de/index.php/default/open-data/geographische-namen-1-250-000-gn250.html; Lizenz: dl-de/by-2-0, https://www.govdata.de/dl-de/by-2-0)",
+    "sources": [
+     "dwd",
+     "bkg_gvisys"
+    ],
+    "summarised": true
+   }
+  },
+  {
+   "key": "transit",
+   "tool": "check_transit_disruption",
+   "askedAt": "2026-11-05T18:47:31.428Z",
+   "ms": 567,
+   "projection": {
+    "variant": "share",
+    "values": {
+     "pct": 17,
+     "late": 1186,
+     "trips": 7036,
+     "minutes": 60
+    },
+    "names": {
+     "region": "Nordrhein-Westfalen"
+    },
+    "asOf": "2026-11-05T18:33:12.505Z",
+    "attribution": "Echtzeitdaten: DELFI e.V. via Mobilithek, CC BY-SA, bearbeitet (https://mobilithek.info/offers/858688352316981248; Lizenz: CC BY-SA, https://www.dcat-ap.de/def/licenses/cc-by-sa) · Fahrplandaten: DELFI e.V., CC BY 4.0, bearbeitet (https://www.opendata-oepnv.de; Lizenz: CC BY 4.0, https://creativecommons.org/licenses/by/4.0/)",
+    "sources": [
+     "delfi_rt_tu",
+     "delfi_static"
+    ],
+    "notes": [
+     "Diese Angaben stehen unter CC BY-SA (Share-alike), so lizenziert sie die Quelle; unsere Bearbeitung geben wir unter CC BY-SA 4.0 (https://creativecommons.org/licenses/by-sa/4.0/) weiter: wer sie weitergibt oder daraus etwas Neues ableitet, muss das Ergebnis unter derselben Lizenz und mit dieser Quellenangabe weitergeben."
+    ]
+   }
+  },
+  {
+   "key": "charging",
+   "tool": "find_charging_station",
+   "askedAt": "2026-11-05T18:47:31.838Z",
+   "ms": 410,
+   "projection": {
+    "variant": "noStatus",
+    "values": {
+     "kw": 300,
+     "km": 0.4
+    },
+    "names": {
+     "place": "Leipzig",
+     "address": "Leplaystraße 9, Leipzig",
+     "operator": "JOLT Energy"
+    },
+    "asOf": "2026-11-05T18:47:31.442Z",
+    "attribution": "Ladepunkte: Eco-Movement via Mobilithek, CC BY 4.0, bearbeitet (https://mobilithek.info/offers/954064102947180544; Lizenz: CC BY 4.0, https://creativecommons.org/licenses/by/4.0/) · Ladepunkt-Verfügbarkeit: Eco-Movement via Mobilithek, CC BY 4.0, bearbeitet (https://mobilithek.info/offers/955166494396665856; Lizenz: CC BY 4.0, https://creativecommons.org/licenses/by/4.0/) · Ladesäulenregister: Bundesnetzagentur.de, CC BY 4.0, bearbeitet (https://www.bundesnetzagentur.de/DE/Fachthemen/ElektrizitaetundGas/E-Mobilitaet/Ladesaeulenkarte/start.htm; Lizenz: CC BY 4.0, https://creativecommons.org/licenses/by/4.0/) · Verwaltungseinheiten: © BKG (2026) dl-de/by-2-0, Datenquellen: https://sgx.geodatenzentrum.de/web_public/gdz/datenquellen/datenquellen_gn250.pdf (Daten verändert) (https://gdz.bkg.bund.de/index.php/default/open-data/geographische-namen-1-250-000-gn250.html; Lizenz: dl-de/by-2-0, https://www.govdata.de/dl-de/by-2-0)",
+    "sources": [
+     "mobilithek_afir_ecomovement",
+     "mobilithek_afir_ecomovement_dyn",
+     "bnetza_lsr",
+     "bkg_gvisys"
+    ]
+   }
+  },
+  {
+   "key": "parking",
+   "tool": "find_parking",
+   "askedAt": "2026-11-05T18:47:34.423Z",
+   "ms": 2585,
+   "projection": {
+    "variant": "free",
+    "values": {
+     "free": 190,
+     "total": 320,
+     "km": 0.2,
+     "more": 4
+    },
+    "names": {
+     "place": "Münster Hauptbahnhof",
+     "name": "Parkhaus Bahnhofstraße"
+    },
+    "asOf": "2026-11-05T18:43:00.000Z",
+    "attribution": "Parkhausbelegung Münster — Datenquelle: Stadt Münster, Datenlizenz Deutschland – Namensnennung – Version 2.0 (www.govdata.de/dl-de/by-2-0), Daten verändert (https://opendata.stadt-muenster.de/dataset/parkleitsystem-parkhausbelegung-aktuell) · OSM-Standortdaten: © OpenStreetMap-Mitwirkende, ODbL 1.0 (https://www.openstreetmap.org/copyright; Lizenz: ODbL 1.0, https://opendatacommons.org/licenses/odbl/1-0/) · Ladepunkte: chargecloud GmbH via Mobilithek, CC0 1.0 (https://mobilithek.info/offers/978597062404620288) · Haltestellendaten: DELFI e.V. (zentrales Haltestellenverzeichnis), CC BY 4.0, bearbeitet (https://www.opendata-oepnv.de/ht/de/organisation/delfi/startseite; Lizenz: CC BY 4.0, https://creativecommons.org/licenses/by/4.0/)",
+    "sources": [
+     "muenster_pls",
+     "osm",
+     "mobilithek_afir_chargecloud_stat",
+     "delfi_zhv"
+    ]
+   }
+  }
+ ]
+}

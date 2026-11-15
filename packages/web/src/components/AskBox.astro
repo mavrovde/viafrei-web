@@ -1,0 +1,50 @@
+---
+/**
+ * #1180: the "Frag deine KI" box of a page — the page's subject as the questions to ask and the one link that
+ * connects, carrying that subject (`askLink`). It stands after the page's blocks in the HTML; from 1024 px the desk
+ * script puts it under the sticky map (`lib/desk.ts`, `move`), and below 1024 px it stands at the end of the page.
+ *
+ * #1181 feature 5: two or three prefilled questions (`aiQuestions`, the connect page's own first), each with a link
+ * that opens it in ChatGPT and in Claude and a copy button the copy script reveals (`lib/ask-ai.ts`; without it, or
+ * without a clipboard, the button stays hidden and the question is plain text to select). No analytics event.
+ */
+import { t } from "../i18n/index.js";
+import { AI_APPS, ASK_AI, ASK_AI_COPY, aiHref, aiQuestions, askCopyScript } from "../lib/ask-ai.js";
+import { askLink, subjectOf, type AskAbout } from "../lib/next-step.js";
+import type { Lang } from "../site/pages.js";
+
+interface Props {
+  lang: Lang;
+  about: AskAbout;
+}
+const { lang, about } = Astro.props;
+const ask = askLink(lang, about);
+// the subject is a name, not a word of the page's language: marked as such (one language per page, the judge of #938)
+const esc = (v: string): string => v.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
+const subject = esc(about.kind === "exit" ? about.road : subjectOf(about));
+const marked = (q: string): string => esc(q).replace(subject, () => `<span translate="no">${subject}</span>`);
+const questions = aiQuestions(lang, about).map((q) => ({ html: marked(q), apps: AI_APPS.map((app) => ({ name: app.name, label: t(lang, "ai.open", { app: app.name }), href: aiHref(app, q) })) }));
+Astro.locals.hasScript = true;
+---
+
+<aside class="askbox" id="desk-ask" aria-labelledby="desk-ask-h">
+  <h3 class="askbox__h" id="desk-ask-h" set:html={ask.html} />
+  <ul class={ASK_AI}>
+    {
+      questions.map((q) => (
+        <li>
+          <p class="askbox__q"><q set:html={q.html} /></p>
+          <p class="askai__apps">
+            {q.apps.map((a) => (
+              <a class="askai__app" href={a.href} rel="noopener noreferrer" target="_blank" translate="no" aria-label={a.label}>{a.name}</a>
+            ))}
+            <button class={ASK_AI_COPY} type="button" value={t(lang, "ai.copied")} hidden>{t(lang, "ai.copy")}</button>
+            <span class="askai__status" role="status" />
+          </p>
+        </li>
+      ))
+    }
+  </ul>
+  <a class="btn btn--primary askbox__go" href={ask.href}>{t(lang, "nav.cta")}</a>
+</aside>
+<script is:inline set:html={askCopyScript()} />

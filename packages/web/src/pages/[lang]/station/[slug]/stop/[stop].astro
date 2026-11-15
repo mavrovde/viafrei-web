@@ -1,0 +1,48 @@
+---
+/**
+ * `/<lang>/station/<slug>/stop/<key>` — one stop around a station (#1043 (c)): its every departure in the window (plan
+ * vs live), its own alerts and the way back to the station's "Haltestellen in der Nähe" card. The digest's fragment
+ * (`/internal/station/<slug>/stop/<key>`), a minute old at most; never indexed (`noindex, follow`), the station page
+ * is the one to find. 404 for a key naming no stop around the station, 301 for another spelling of the station.
+ */
+import Base from "../../../../../layouts/Base.astro";
+import PageHead from "../../../../../components/PageHead.astro";
+import { liftPlaceFirst } from "../../../../../lib/place-head.js";
+import { isLang } from "../../../../../i18n/index.js";
+import { readEnv } from "../../../../../lib/env.js";
+import { unavailableAnswer } from "../../../../../lib/degraded.js";
+import { resolveStationStop, stationStopPath } from "../../../../../lib/station-page.js";
+import { LIVE_LANGS, type Lang } from "../../../../../site/pages.js";
+import { fitDescription, fitTitle } from "../../../../../site/meta.js";
+import stationPageCss from "../../../../../styles/station-page.css?raw";
+
+const lang = Astro.params["lang"] ?? "";
+if (!isLang(lang)) return Astro.rewrite("/404");
+const env = readEnv();
+const a = await resolveStationStop(lang, Astro.params["slug"] ?? "", Astro.params["stop"] ?? "", { baseUrl: env.digestUrl, timeoutMs: env.tileTimeoutMs, mapPlatform: Astro.locals.mapPlatform });
+if (a.kind === "missing") return Astro.rewrite("/404");
+if (a.kind === "unavailable") return unavailableAnswer(lang, Astro.request);
+if (a.kind === "redirect") return Astro.redirect(a.to, 301);
+Astro.response.headers.set("Cache-Control", "no-store");
+const key = Astro.params["stop"] ?? "";
+const alternates = Object.fromEntries(LIVE_LANGS.map((l) => [l, stationStopPath(l, a.slug, key)])) as Record<Lang, `/${string}`>;
+const lead = /<p class="stpage__lead">([\s\S]*?)<\/p>/.exec(a.html)?.[1] ?? "";
+const leadText = lead
+  .replace(/<[^>]*>/g, "")
+  .replace(/&quot;/g, '"')
+  .replace(/&#39;/g, "'")
+  .replace(/&lt;/g, "<")
+  .replace(/&gt;/g, ">")
+  .replace(/&amp;/g, "&")
+  .trim();
+// #1182: the stop page opens like every page type (#1173): H1, then the fragment's first block when it carries one
+const lifted = liftPlaceFirst(a.html);
+const title = fitTitle(`${a.stop} · ${a.station}`);
+const pageCss = stationPageCss.replace(/\/\*[\s\S]*?\*\//g, "").replace(/\s+/g, " ").trim();
+---
+
+<Base lang={lang} page="stations" robots="noindex, follow" dynamic={{ title, description: fitDescription(`${a.stop}: ${leadText}`), path: a.path, alternates }}>
+  <style is:inline slot="head" set:html={pageCss}></style>
+  <PageHead h1={a.stop} h1Translate={false} first={lifted.first} />
+  <div class="wrap" set:html={lifted.html} />
+</Base>

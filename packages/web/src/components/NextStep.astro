@@ -1,0 +1,22 @@
+---
+/**
+ * #1110 item 3: the "Weiter" row after an entry page's first answer — the roads the page's own cards name (or the
+ * motorway index) and one link to the connect page carrying the page's subject as a prefilled question
+ * (`lib/next-step.ts`). The road strip's classes, no rule of its own: inside the page budget.
+ */
+import { t } from "../i18n/index.js";
+import { askLink, type AskAbout, type NextRoad } from "../lib/next-step.js";
+import type { Lang } from "../site/pages.js";
+
+interface Props {
+  lang: Lang;
+  roads: readonly NextRoad[];
+  about: AskAbout;
+}
+const { lang, roads, about } = Astro.props;
+const ask = askLink(lang, about);
+---
+
+<nav class="wrap roadlinks next-step" aria-label={t(lang, "next.label")}>
+  <p class="roadlinks__row"><span class="roadlinks__h">{t(lang, "next.label")}:</span> {roads.map((r) => <a href={r.href} translate="no">{r.label}</a>)} <a class="next-step__ask" href={ask.href} set:html={`${ask.html} →`} /></p>
+</nav>

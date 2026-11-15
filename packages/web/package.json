@@ -1,0 +1,31 @@
+{
+  "name": "@viafrei/web",
+  "version": "0.0.0",
+  "description": "ViaFrei, the German Real-Time Mobility Context Platform for AI: the viafrei.de site shell (Astro SSR with Svelte islands). Reads no database — tiles come from packages/digest as HTML fragments.",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "ASTRO_TELEMETRY_DISABLED=1 astro build",
+    "dev": "astro dev",
+    "preview": "node dist/server/entry.mjs",
+    "generate:register": "tsx scripts/generate-register.ts",
+    "generate:catalogue": "tsx scripts/generate-catalogue.ts"
+  },
+  "devDependencies": {
+    "@astrojs/node": "11.1.12",
+    "@astrojs/svelte": "9.1.2",
+    "@axe-core/playwright": "4.13.0",
+    "@types/pngjs": "6.0.5",
+    "@viafrei/design": "*",
+    "astro": "7.4.7",
+    "chrome-launcher": "1.2.2",
+    "lighthouse": "13.5.0",
+    "pixelmatch": "7.2.0",
+    "playwright": "1.63.0",
+    "pngjs": "7.0.0",
+    "svelte": "5.57.1"
+  },
+  "dependencies": {
+    "@microsoft/clarity": "1.0.2"
+  }
+}

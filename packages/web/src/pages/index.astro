@@ -1,0 +1,15 @@
+---
+/**
+ * `/` — the one front door (D1). The language is negotiated from
+ * `Accept-Language` (#380) and answered here with 200 and
+ * `Vary: Accept-Language`: no redirect, so the address stays `/` and no link
+ * to it breaks. The canonical of the page it shows is that language's path.
+ */
+import Home from "../layouts/Home.astro";
+import { negotiate } from "../i18n/negotiate.js";
+
+const lang = negotiate(Astro.request.headers.get("accept-language"));
+Astro.response.headers.set("Vary", "Accept-Language");
+---
+
+<Home lang={lang} />

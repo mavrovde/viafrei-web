@@ -1,0 +1,43 @@
+/*
+ * #1074: the Land pages' and the Land index's own rules. Carried INLINE on those pages only (`layouts/StatePage.astro`,
+ * `layouts/StatesPage.astro`, under the request's nonce like every <style>), because site.css is the one stylesheet of
+ * every page and the home's gzip budget pays for each byte of it. Every rule is scoped under `.statepage` or `.stateindex`.
+ */
+.statepage, .stateindex { display: grid; gap: var(--s-3); }
+.statepage p, .stateindex p { margin: 0; }
+.statepage__card { display: grid; gap: var(--s-2); padding: var(--s-3) 0; border-bottom: 1px solid var(--line); }
+.statepage__card h2 { font-size: var(--fs-2); margin: 0; }
+.statepage__card h3 { font-size: var(--fs-1); margin: var(--s-2) 0 0; }
+.statepage__counts, .statepage__none, .statepage__nolisting { font-weight: var(--weight-strong); }
+.statepage__stand, .statepage__method, .statepage__unplaced, .statepage__truncated, .statepage__src { color: var(--fg-muted); font-size: var(--fs-0); font-weight: normal; }
+.statepage__facts, .statepage__jams, .statepage__cities, .stateindex__list { margin: 0; padding-left: var(--s-4); display: grid; gap: var(--s-1); }
+.statepage__cities, .stateindex__list { list-style: none; padding: 0; display: flex; flex-wrap: wrap; gap: var(--s-1) var(--s-3); }
+.stateindex__list { display: grid; }
+.statepage__roads { display: flex; flex-wrap: wrap; gap: var(--s-1) var(--s-3); }
+.statepage a, .stateindex a { display: inline-block; min-height: var(--target); line-height: var(--target); }
+.statepage__jams li { overflow-wrap: anywhere; }
+.stateindex__counts { color: var(--fg-muted); }
+/* #1182: the town and index lamps (the status line's own dot, coloured by the row's lamp), the map and its dots */
+/* a town or index row is one line of text that wraps as text (a flex row made each text run a column on a phone, 2.5.21 visual C2) */
+.statepage__city .statusline__lamp, .stateindex__row .statusline__lamp { margin-right: var(--s-1); vertical-align: -.05em; }
+.statepage .statusline__lamp, .stateindex .statusline__lamp { display: inline-block; flex: none; width: .8em; height: .8em; border-radius: var(--r-pill); background: var(--lamp-go); }
+.statepage__city--red .statusline__lamp, .stateindex__row--red .statusline__lamp { background: var(--lamp-stop); }
+.statepage__city--amber .statusline__lamp, .stateindex__row--amber .statusline__lamp { background: var(--lamp-wait); }
+.statepage__city--unknown .statusline__lamp, .stateindex__row--unknown .statusline__lamp { background: transparent; box-shadow: inset 0 0 0 2px var(--stale); }
+.stmap { margin: 0; display: grid; gap: var(--s-1); }
+.stmap__svg { width: 100%; max-height: 70vh; display: block; }
+.stmap-dot { stroke: var(--bg); stroke-width: 1px; vector-effect: non-scaling-stroke; }
+.stmap-dot--closure { fill: var(--lamp-stop); }
+.stmap-dot--jam { fill: var(--lamp-wait); }
+.stmap-dot--roadworks, .stmap-dot--warning { fill: var(--fg-muted); }
+.stmap-lamp { fill: var(--lamp-go); stroke: var(--fg); stroke-width: 1px; }
+.stmap-lamp--red { fill: var(--lamp-stop); }
+.stmap-lamp--amber { fill: var(--lamp-wait); }
+.stmap-lamp--unknown { fill: var(--bg); stroke: var(--stale); stroke-width: 2px; }
+.stmap-label { font-size: 14px; fill: var(--fg); }
+.stmap--index a:focus-visible circle { stroke: var(--fg); stroke-width: 4px; }
+.statepage__honestlist { margin: 0; padding-left: var(--s-4); display: grid; gap: var(--s-1); color: var(--fg-muted); }
+.statepage__railcities, .statepage__warnings, .statepage__long, .statepage__alerts { margin: 0; padding-left: var(--s-4); display: grid; gap: var(--s-1); }
+/* #1182: the plans of the week (entries, as on a place card) and the delayed stations (the home block's chips) */
+.statepage__week, .statepage__stations { margin: 0; padding: 0; list-style: none; display: grid; gap: var(--s-2); }
+.statepage__long li, .statepage__alerts li { overflow-wrap: anywhere; }

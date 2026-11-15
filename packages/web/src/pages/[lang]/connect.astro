@@ -1,0 +1,10 @@
+---
+/** `/de/connect` and `/en/connect` (#379); any other first segment is the 404 (A4). */
+import ConnectPage from "../../layouts/ConnectPage.astro";
+import { isLang } from "../../i18n/index.js";
+
+const lang = Astro.params["lang"] ?? "";
+if (!isLang(lang)) return Astro.rewrite("/404");
+---
+
+<ConnectPage lang={lang} params={Astro.url.searchParams} />
