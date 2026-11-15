@@ -2,7 +2,7 @@
 # scripts/check_static_pages.test.sh — the gate can say NO (viafrei-web#2): each rule's violation is
 # planted in a copy of the two pages and must exit 1; the unplanted copy must pass first; a missing
 # page is exit 2. The plants are viafrei-infra's tests/landing-conf.test.sh fallback mutants, plus a
-# second sentence and an oversized page. Hermetic: no network (the drift mode is not run here).
+# second sentence and an oversized page. Hermetic: no network.
 set -uo pipefail
 HERE="$(cd "$(dirname "$0")" && pwd -P)"
 ROOT="$(cd "$HERE/.." && pwd -P)"
