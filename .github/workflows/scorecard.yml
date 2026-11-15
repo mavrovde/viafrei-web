@@ -4,11 +4,8 @@
 name: Scorecard
 
 on:
-  push:
-    branches: [main]
-  schedule:
-    - cron: "17 5 * * 1"
-  branch_protection_rule:
+  # By hand only (owner 2026-11-15: GitHub by minimum): run it on main after a change to the
+  # repository's settings or before a release.
   workflow_dispatch:
 
 # Nothing at workflow level; the job names exactly what it needs.

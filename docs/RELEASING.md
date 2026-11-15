@@ -87,6 +87,25 @@ A version tag is never reused, moved or deleted:
 Rollback is infra's: it deploys the previous digest (viafrei-infra). This repository never
 re-tags an older image as `latest`.
 
+## What runs, and when (owner 2026-11-15: GitHub by minimum)
+
+Everything is verified locally before the single push, and nothing is pushed to re-run CI.
+
+| workflow | triggers | what runs |
+|---|---|---|
+| CI | `pull_request` and `push` to `main`, both ignoring prose; `workflow_dispatch` | on a pull request every job. On `main` only `Lint`, unless the commit is a release's merge (`chore: release X.Y.Z`), which runs every job. Visual, Lighthouse and the i18n mutations only on a dispatch or a minor's release pull request (`X.Y.0`) |
+| Security | the same | on `main` only `Dependency licences`, unless it is a release's merge |
+| Release Please | `workflow_run` of CI and Security on `main`, `workflow_dispatch` | the release pull request, the draft, the tag |
+| Release | `push` of a `v*` tag, `workflow_dispatch` on a tag | the gate, then the publish |
+| Scorecard | `workflow_dispatch` only | |
+
+No workflow has a `schedule`. CI and Security cancel a pull request's older run
+(`cancel-in-progress`). Dependabot opens its pull requests monthly.
+
+The push to `main` stays because the release gate (`scripts/ci-gate.ts`) requires CI and Security
+to have concluded success on the release's own merge commit, and Release Please starts from their
+completion; on any other merge they run `Lint` and `Dependency licences` alone.
+
 ## Branch protection and required checks
 
 `main` is protected: a pull request, squash merge, linear history, no force push, no deletion,
@@ -107,7 +126,11 @@ required by name:
 - `DAST (OWASP ZAP against the container)`
 <!-- required-checks:end -->
 
-`test/workflows.test.ts` holds this list to the jobs that exist. `SonarCloud analysis`, `Snyk
+`test/workflows.test.ts` holds this list to the jobs that exist.
+
+A pull request that changes prose only (`*.md`, `docs/`, the issue templates) runs no workflow, so
+its required checks never report: it is merged with the administrator's bypass, which is the
+cost of not spending runs on prose. `SonarCloud analysis`, `Snyk
 (dependencies)` and `Scorecard analysis` run and report but are not required: each depends on an
 outside service whose outage must not block a merge.
 
@@ -178,5 +201,5 @@ npm run web:build
 npm run web:visual -- --update   # writes packages/web/e2e/__screenshots__/linux/
 ```
 
-and commit the changed PNGs in the same pull request as the change, saying why each moved. A
+and commit the changed PNGs in the same pull request as the change, saying why each moved. The comparison runs on a dispatch of CI and on a minor's release pull request; a
 `workflow_dispatch` of CI uploads the screenshots it took when the comparison fails.

@@ -35,24 +35,31 @@ are viafrei's; the edge and nginx are viafrei-infra's. Report those there.
 
 ## Automated checks
 
+GitHub is used by the minimum (owner 2026-11-15): nothing runs on a schedule, a pull request
+that changes prose only (`*.md`, `docs/`) runs nothing, and on `main` only the merge commit of a
+release pull request runs the full set (the release gate reads it). Everything is run locally
+before the one push.
+
 | Check | Workflow | Runs on |
 |---|---|---|
-| type checking, linting, shell syntax, actionlint | CI | every pull request and every push to `main` |
-| unit tests, with coverage | CI | every pull request and every push to `main` |
-| contrast, boundary, static pages, the i18n mutation proof, the pins | CI (Site gates) | every pull request and every push to `main` |
-| the browser suite, page weight, latency, visual | CI (Web) | every pull request and every push to `main` |
-| Trivy over the image, the image smoke | CI (Image) | every pull request and every push to `main` |
-| the shell against the pinned releases | CI (Stack) | every pull request and every push to `main` |
-| SonarCloud | CI | every pull request and every push to `main` |
-| CodeQL (SAST) | Security | every pull request, every push to `main`, and weekly |
+| type checking, linting, shell syntax, actionlint | CI (Lint) | every pull request, every push to `main` |
+| unit tests, with coverage | CI | every pull request, a release's merge commit |
+| contrast, boundary, static pages, the pins | CI (Site gates) | every pull request, a release's merge commit |
+| the i18n mutation proof | CI (Site gates) | a minor's release pull request, a dispatch |
+| the browser suite, page weight, latency | CI (Web) | every pull request, a release's merge commit |
+| visual, Lighthouse | CI (Web) | a minor's release pull request, a dispatch |
+| Trivy over the image, the image smoke | CI (Image) | every pull request, a release's merge commit |
+| the shell against the pinned releases | CI (Stack) | every pull request, a release's merge commit |
+| SonarCloud | CI | every pull request, a release's merge commit |
+| CodeQL (SAST), Snyk, gitleaks, OWASP ZAP (DAST) | Security | every pull request, a release's merge commit |
+| dependency licences | Security | every pull request, every push to `main` |
 | dependency review | Security | pull requests only |
-| dependency licences | Security | every pull request, every push to `main`, and weekly |
-| Snyk | Security | every pull request, every push to `main`, and weekly |
-| gitleaks over the full history | Security | every pull request, every push to `main`, and weekly |
-| an OWASP ZAP baseline scan against the built container (DAST) | Security | every pull request, every push to `main`, and weekly |
-| OpenSSF Scorecard | Scorecard | every push to `main`, weekly, and on a branch-protection change |
+| OpenSSF Scorecard | Scorecard | by hand only |
 
-Dependabot proposes updates after a seven-day cooldown for npm, the actions
+A new advisory against an unchanged tree is found by Dependabot (monthly) and by a dispatch of
+Security, not by a schedule.
+
+Dependabot proposes updates monthly, after a seven-day cooldown, for npm, the actions
 (each pinned by commit SHA), the Dockerfile's base image and the compose
 file. A TypeScript release at or above typescript-eslint's supported upper
 bound (today 6.1.0) is not proposed; `test/workflows.test.ts` keeps the bound

@@ -95,6 +95,29 @@ describe("the workflows", () => {
     expect(r).not.toMatch(/npm publish/u);
   });
 
+  it("use GitHub by minimum (owner 2026-11-15): no schedule, prose runs nothing, heavy steps at a minor only", () => {
+    for (const f of files) {
+      expect(text(f), `${f} has a schedule`).not.toMatch(/^\s+schedule:/mu);
+      expect(text(f), `${f} runs on a push to any branch`).not.toMatch(/^ {2}push:\n(?! {4}(branches: \[main\]|tags:))/mu);
+    }
+    const minor = "github.event_name == 'workflow_dispatch' || (startsWith(github.head_ref, 'release-please--') && endsWith(github.event.pull_request.title, '.0'))";
+    const releasePush = "github.event_name != 'push' || startsWith(github.event.head_commit.message, 'chore: release ')";
+    for (const f of ["ci.yml", "security.yml"]) {
+      const on = /\non:\n([\s\S]*?)\n\S/u.exec(text(f))?.[1] ?? "";
+      expect(on.match(/paths-ignore:/gu)?.length, `${f}: pull_request and push both ignore prose`).toBe(2);
+      expect(on).toContain('      - "**/*.md"\n      - "docs/**"\n');
+      expect(text(f)).toContain("cancel-in-progress: ${{ github.event_name == 'pull_request' }}");
+      expect(text(f)).toContain(releasePush);
+    }
+    const ci = text("ci.yml");
+    for (const step of ["npm run web:lighthouse", "npm run web:visual\n", "bash scripts/web-i18n-mutation.sh"]) {
+      expect(ci, step).toContain(`        if: ${minor}\n        run: ${step}`);
+    }
+    const prc = JSON.parse(read("release-please-config.json")) as { "pull-request-title-pattern": string };
+    expect(prc["pull-request-title-pattern"], "RELEASE_PUSH reads the release commit by this title").toBe("chore: release ${version}");
+    expect(text("scorecard.yml")).toMatch(/\non:\n(?:\s*#[^\n]*\n)*\s+workflow_dispatch:\n\n/u);
+  });
+
   it("name every required check of docs/RELEASING.md as a job", () => {
     const doc = read("docs/RELEASING.md");
     const block = /<!-- required-checks:begin -->([\s\S]*?)<!-- required-checks:end -->/u.exec(doc)?.[1] ?? "";

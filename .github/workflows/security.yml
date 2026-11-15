@@ -1,16 +1,32 @@
-# Security checks on every pull request, on main and weekly (a new advisory against an unchanged
-# tree is still found). viafrei-database's security.yml with viafrei-api's two more jobs (Snyk and
+# Security checks on every pull request that touches more than prose and on a release's merge
+# commit; a new advisory against an unchanged tree is found by Dependabot and by a dispatch, not by
+# a schedule (owner 2026-11-15: GitHub by minimum). viafrei-database's security.yml with viafrei-api's two more jobs (Snyk and
 # the licence allow-list): SAST (CodeQL), dependencies (dependency review, Snyk, licences), secrets
 # over the whole history (gitleaks), DAST (OWASP ZAP against the built shell). The image itself is
 # scanned by Trivy in ci.yml. Nothing here reaches a database or a public host.
 name: Security
 
 on:
+  # GitHub by minimum (owner 2026-11-15): pull requests, and on main only so the release gate has a
+  # run on the merge commit (scripts/ci-gate.ts reads it). On main every job but one is skipped
+  # unless the commit is the merge of a release pull request (RELEASE_PUSH below). No schedule.
   pull_request:
+    paths-ignore: # a change to prose alone runs nothing (owner 2026-11-15: GitHub by minimum)
+      - "**/*.md"
+      - "docs/**"
+      - LICENSE
+      - .github/CODEOWNERS
+      - .github/ISSUE_TEMPLATE/**
+      - .github/PULL_REQUEST_TEMPLATE.md
   push:
     branches: [main]
-  schedule:
-    - cron: "41 4 * * 1"
+    paths-ignore: # a change to prose alone runs nothing (owner 2026-11-15: GitHub by minimum)
+      - "**/*.md"
+      - "docs/**"
+      - LICENSE
+      - .github/CODEOWNERS
+      - .github/ISSUE_TEMPLATE/**
+      - .github/PULL_REQUEST_TEMPLATE.md
   workflow_dispatch:
 
 permissions:
@@ -26,6 +42,7 @@ env:
 jobs:
   codeql:
     name: CodeQL (TypeScript)
+    if: "github.event_name != 'push' || startsWith(github.event.head_commit.message, 'chore: release ')"
     runs-on: ubuntu-24.04
     timeout-minutes: 20
     permissions:
@@ -85,6 +102,7 @@ jobs:
 
   snyk:
     name: Snyk (dependencies)
+    if: "github.event_name != 'push' || startsWith(github.event.head_commit.message, 'chore: release ')"
     runs-on: ubuntu-24.04
     timeout-minutes: 10
     permissions:
@@ -131,6 +149,7 @@ jobs:
 
   gitleaks:
     name: Secrets in history (gitleaks)
+    if: "github.event_name != 'push' || startsWith(github.event.head_commit.message, 'chore: release ')"
     runs-on: ubuntu-24.04
     timeout-minutes: 10
     steps:
@@ -146,6 +165,7 @@ jobs:
 
   zap:
     name: DAST (OWASP ZAP against the container)
+    if: "github.event_name != 'push' || startsWith(github.event.head_commit.message, 'chore: release ')"
     runs-on: ubuntu-24.04
     timeout-minutes: 30
     permissions:

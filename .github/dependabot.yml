@@ -8,7 +8,7 @@ updates:
   - package-ecosystem: npm
     directory: /
     schedule:
-      interval: weekly
+      interval: monthly # GitHub by minimum (owner 2026-11-15): each update is a CI run
       day: monday
     cooldown:
       default-days: 7
@@ -33,7 +33,7 @@ updates:
   - package-ecosystem: github-actions
     directory: /
     schedule:
-      interval: weekly
+      interval: monthly # GitHub by minimum (owner 2026-11-15): each update is a CI run
       day: monday
     cooldown:
       default-days: 7
@@ -44,7 +44,7 @@ updates:
   - package-ecosystem: docker
     directory: /
     schedule:
-      interval: weekly
+      interval: monthly # GitHub by minimum (owner 2026-11-15): each update is a CI run
       day: monday
     cooldown:
       default-days: 7
@@ -57,7 +57,7 @@ updates:
   - package-ecosystem: docker-compose
     directory: /
     schedule:
-      interval: weekly
+      interval: monthly # GitHub by minimum (owner 2026-11-15): each update is a CI run
       day: monday
     cooldown:
       default-days: 7

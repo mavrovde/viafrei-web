@@ -1,4 +1,4 @@
-# Build and test on every pull request and on main. Check names are stable: branch protection
+# Build and test on every pull request that touches more than prose, and on a release's merge commit. Check names are stable: branch protection
 # requires them by name (docs/RELEASING.md). viafrei-database's ci.yml, with the site's own jobs:
 # the gates that judged packages/web in viafrei's Verify workflow (its static and web jobs) move
 # here unchanged, and the database jobs (migration lint, PostGIS integration) have no counterpart:
@@ -9,9 +9,26 @@
 name: CI
 
 on:
+  # GitHub by minimum (owner 2026-11-15): pull requests, and on main only so the release gate has a
+  # run on the merge commit (scripts/ci-gate.ts reads it). On main every job but one is skipped
+  # unless the commit is the merge of a release pull request (RELEASE_PUSH below). No schedule.
   pull_request:
+    paths-ignore: # a change to prose alone runs nothing (owner 2026-11-15: GitHub by minimum)
+      - "**/*.md"
+      - "docs/**"
+      - LICENSE
+      - .github/CODEOWNERS
+      - .github/ISSUE_TEMPLATE/**
+      - .github/PULL_REQUEST_TEMPLATE.md
   push:
     branches: [main]
+    paths-ignore: # a change to prose alone runs nothing (owner 2026-11-15: GitHub by minimum)
+      - "**/*.md"
+      - "docs/**"
+      - LICENSE
+      - .github/CODEOWNERS
+      - .github/ISSUE_TEMPLATE/**
+      - .github/PULL_REQUEST_TEMPLATE.md
   workflow_dispatch:
 
 permissions:
@@ -60,6 +77,7 @@ jobs:
 
   unit:
     name: Unit tests
+    if: "github.event_name != 'push' || startsWith(github.event.head_commit.message, 'chore: release ')"
     runs-on: ubuntu-24.04
     timeout-minutes: 20
     permissions:
@@ -94,6 +112,7 @@ jobs:
 
   gates:
     name: Site gates
+    if: "github.event_name != 'push' || startsWith(github.event.head_commit.message, 'chore: release ')"
     runs-on: ubuntu-24.04
     timeout-minutes: 15
     permissions:
@@ -124,11 +143,13 @@ jobs:
         run: bash scripts/check_web_boundary.sh && bash scripts/check_web_boundary.test.sh
       - name: The fallback and preview pages (one sentence, no figure, legal links, nothing external) and the self-test
         run: bash scripts/check_static_pages.sh && bash scripts/check_static_pages.test.sh
-      - name: The catalogue parity sweep fails four ways
+      - name: The catalogue parity sweep fails four ways (mutations, so at a dispatch or a minor's release pull request only)
+        if: github.event_name == 'workflow_dispatch' || (startsWith(github.head_ref, 'release-please--') && endsWith(github.event.pull_request.title, '.0'))
         run: bash scripts/web-i18n-mutation.sh
 
   web:
     name: Web (the site shell, built and judged)
+    if: "github.event_name != 'push' || startsWith(github.event.head_commit.message, 'chore: release ')"
     runs-on: ubuntu-24.04
     timeout-minutes: 45
     permissions:
@@ -164,7 +185,7 @@ jobs:
       # Lighthouse at a release only (viafrei #476: Actions minutes are billed, and a commit is not
       # where the site's performance moves): on the release pull request and on a manual dispatch.
       - name: Lighthouse (perf ≥ 95, a11y 100, SEO ≥ 95, best ≥ 95, median of 3)
-        if: github.event_name == 'workflow_dispatch' || startsWith(github.head_ref, 'release-please--')
+        if: github.event_name == 'workflow_dispatch' || (startsWith(github.head_ref, 'release-please--') && endsWith(github.event.pull_request.title, '.0'))
         run: npm run web:lighthouse
       - name: Latency (p95 ≤ 300 ms; slow and hanging tiles inside 2.5 s)
         run: npm run web:latency
@@ -173,6 +194,7 @@ jobs:
       # passes on screenshots it compared with nothing.
       - name: Visual — every page, DE and EN, 375/768/1280, light and dark, ≤ 0.2 % from its Linux baseline
         id: visual
+        if: github.event_name == 'workflow_dispatch' || (startsWith(github.head_ref, 'release-please--') && endsWith(github.event.pull_request.title, '.0'))
         run: npm run web:visual
       - name: Visual bootstrap — write the baselines this runner renders
         if: failure() && steps.visual.outcome == 'failure' && (hashFiles('packages/web/e2e/__screenshots__/linux/**') == '' || github.event_name == 'workflow_dispatch')
@@ -187,6 +209,7 @@ jobs:
 
   image:
     name: Image (build, scan, smoke)
+    if: "github.event_name != 'push' || startsWith(github.event.head_commit.message, 'chore: release ')"
     runs-on: ubuntu-24.04
     timeout-minutes: 30
     permissions:
@@ -227,6 +250,7 @@ jobs:
 
   stack:
     name: Stack (the shell against the pinned releases)
+    if: "github.event_name != 'push' || startsWith(github.event.head_commit.message, 'chore: release ')"
     runs-on: ubuntu-24.04
     timeout-minutes: 20
     permissions:
@@ -256,6 +280,7 @@ jobs:
 
   sonar:
     name: SonarCloud analysis
+    if: "github.event_name != 'push' || startsWith(github.event.head_commit.message, 'chore: release ')"
     needs: [unit]
     runs-on: ubuntu-24.04
     timeout-minutes: 10
