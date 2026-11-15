@@ -242,6 +242,18 @@ describe("the workflows", () => {
     ].join("\n"));
     expect(text("release.yml")).toContain("    secrets:\n      SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}\n\n");
     for (const f of files) expect(text(f), `${f} inherits every secret`).not.toMatch(/secrets:\s*inherit/u);
+    // a failed scan is a failed run, at step or job level
+    expect(sn, "snyk.yml carries continue-on-error").not.toContain("continue-on-error");
+    // release.yml is the one caller
+    for (const f of files) if (f !== "release.yml") expect(text(f), `${f} references workflows/snyk.yml`).not.toContain("workflows/snyk.yml");
+    // a called run's SARIF is uploaded only when it is about the commit code scanning files it under
+    expect(sn).toContain([
+      "      - name: Upload SARIF to code scanning",
+      "        # A called run scans another commit than the caller's github.sha; its findings are",
+      "        # uploaded only when they belong to the commit code scanning files them under.",
+      "        if: always() && hashFiles('sarif/snyk.sarif') != '' && (inputs.ref == '' || inputs.ref == github.sha)",
+      "",
+    ].join("\n"));
   });
 
   it("run the browser suite once per release: release.yml's web job, which publish needs, and no CI job", () => {
