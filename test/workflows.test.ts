@@ -2,7 +2,9 @@
  * The workflows hold to what this repository promises about them (viafrei-web#2; the claims
  * viafrei-database's test/workflows.test.ts holds, for the ones that apply here).
  */
-import { existsSync, readdirSync, readFileSync } from "node:fs";
+import { execFileSync } from "node:child_process";
+import { chmodSync, existsSync, mkdtempSync, readdirSync, readFileSync, rmSync, writeFileSync } from "node:fs";
+import { tmpdir } from "node:os";
 import { join } from "node:path";
 import { describe, expect, it } from "vitest";
 import { REQUIRED_JOBS } from "../scripts/ci-gate.js";
@@ -210,5 +212,49 @@ describe("release-please", () => {
     const m = JSON.parse(read(".release-please-manifest.json")) as Record<string, string>;
     const pkg = JSON.parse(read("package.json")) as { version: string };
     expect(m["."]).toBe(pkg.version);
+  });
+
+  // The step's own shell text, run behind a stub gh: the manifest answer and the tag answer are planted.
+  const tagStep = (): string => {
+    const lines = read(".github/workflows/release-please.yml").split("\n");
+    const at = lines.findIndex((l) => l.includes("- name: The released version has its tag"));
+    const run = lines.findIndex((l, i) => i > at && l.trim() === "run: |");
+    const indent = (lines[run + 1] ?? "").search(/\S/u);
+    const body: string[] = [];
+    for (const l of lines.slice(run + 1)) {
+      if (l.trim() !== "" && l.search(/\S/u) < indent) break;
+      body.push(l.slice(indent));
+    }
+    return body.join("\n");
+  };
+  const runTagStep = (manifest: string, tag: "found" | "missing"): { out: string; calls: string } => {
+    const dir = mkdtempSync(join(tmpdir(), "rp-tag-"));
+    const gh = join(dir, "gh");
+    writeFileSync(gh, [
+      "#!/usr/bin/env bash",
+      `echo "$*" >> "${dir}/calls"`,
+      `case "$*" in *release-please-manifest*) echo '{".":"${manifest}"}';;`,
+      tag === "found" ? "  *git/ref/tags*) echo abc;;" : "  *git/ref/tags*) echo 'gh: Not Found (HTTP 404)' >&2; exit 1;;",
+      "esac",
+    ].join("\n"));
+    chmodSync(gh, 0o755);
+    writeFileSync(join(dir, "step.sh"), tagStep());
+    const outFile = join(dir, "out");
+    writeFileSync(outFile, "");
+    execFileSync("bash", ["-e", join(dir, "step.sh")], { env: { ...process.env, PATH: `${dir}:${process.env.PATH ?? ""}`, GITHUB_OUTPUT: outFile, GH_REPO: "o/r" }, stdio: "pipe" });
+    const res = { out: readFileSync(outFile, "utf8"), calls: existsSync(join(dir, "calls")) ? readFileSync(join(dir, "calls"), "utf8") : "" };
+    rmSync(dir, { recursive: true, force: true });
+    return res;
+  };
+
+  it("builds the first release pull request from manifest 0.0.0 without waiting for a v0.0.0 tag", () => {
+    const r = runTagStep("0.0.0", "missing");
+    expect(r.out).toBe("tagged=true\n");
+    expect(r.calls).not.toContain("git/ref/tags");
+  });
+
+  it("after a release, waits for that version's tag and builds once it exists", () => {
+    expect(runTagStep("0.1.0", "missing").out).toBe("tagged=false\n");
+    expect(runTagStep("0.1.0", "found").out).toBe("tagged=true\n");
   });
 });
