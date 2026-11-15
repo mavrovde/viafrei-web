@@ -29,12 +29,8 @@ services:
     image: ${VF_DATABASE_IMAGE:?run through scripts/stack.sh, which reads images.pin}
     command: ["migrate"]
     environment:
-      # the parts, as viafrei's own stack hands them; the image assembles the URL
-      DB_HOST: db
-      DB_PORT: "5432"
-      DB_USER: viafrei
-      DB_NAME: viafrei
-      PGPASSWORD: ${VF_STACK_DB_PASSWORD:-viafrei-web-local}
+      # the image's one interface (viafrei-database README; viafrei-ingestor's test-db.sh hands it the same)
+      DATABASE_URL: postgres://viafrei:${VF_STACK_DB_PASSWORD:-viafrei-web-local}@db:5432/viafrei
     depends_on:
       db: { condition: service_healthy }
     restart: "no"
@@ -44,11 +40,8 @@ services:
     platform: linux/amd64
     command: ["node", "--conditions=viafrei-dist", "packages/digest/dist/src/server/http.js"]
     environment:
-      POSTGRES_HOST: db
-      POSTGRES_PORT: "5432"
-      POSTGRES_USER: viafrei
-      POSTGRES_PASSWORD: ${VF_STACK_DB_PASSWORD:-viafrei-web-local}
-      POSTGRES_DB: viafrei
+      # the name the digest's env.ts reads (viafrei-app 2.6.17); the stack's superuser, a throwaway
+      DIGEST_DATABASE_URL: postgres://viafrei:${VF_STACK_DB_PASSWORD:-viafrei-web-local}@db:5432/viafrei
       DIGEST_BIND: 0.0.0.0
       DIGEST_ALLOW_PUBLIC_BIND: "1"
       DIGEST_PORT: "8791"
@@ -57,7 +50,7 @@ services:
     ports:
       - "127.0.0.1:${VF_STACK_DIGEST_PORT:-18791}:8791"
     healthcheck:
-      test: ["CMD", "curl", "-fsS", "http://127.0.0.1:8791/healthz"]
+      test: ["CMD", "node", "-e", "fetch('http://127.0.0.1:8791/healthz').then(r=>process.exit(r.ok?0:1),()=>process.exit(1))"]
       interval: 5s
       timeout: 5s
       retries: 30

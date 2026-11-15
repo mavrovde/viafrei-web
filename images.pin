@@ -9,7 +9,7 @@
 #             run starts its digest service (scripts/stack.sh). It is the image
 #             prod's digest Deployment runs (read 2026-11-15).
 #   database  the viafrei-database release that migrates the digest's database in
-#             the integration run (scripts/test-db.sh). Schema head 293; the digest
+#             the integration run (scripts/stack.sh, the compose `migrate` service). Schema head 293; the digest
 #             of viafrei-app 2.6.17 reads relations up to migration 0292.
 digest ghcr.io/mavrovde/viafrei-app:2.6.17@sha256:296b406ade0fa4139e07494ecbb23397fc6a26335eb42559605da10c9aa9f6d7
 database ghcr.io/mavrovde/viafrei-database:0.1.1@sha256:30552ff96cbcd2e2a1facb0314717e46ca2cbd20f21f08662ec9c081eb40ce50

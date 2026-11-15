@@ -8,9 +8,11 @@
 #   /srv/site-static/fallback/index.html        the nginx error_page fallback (#405)
 #   /srv/site-static/preview/index.html         the owner preview's page
 #   /srv/site-static/site-pages.txt             the public route map (packages/web/scripts/site-map.ts)
-#   /app/scripts/geoip-build.mjs                the VFGEO1 builder; viafrei-infra's monthly job runs it:
-#                                               docker run --rm -i --network none IMAGE \
-#                                                 node /app/scripts/geoip-build.mjs OUT < dbip-city-lite.csv
+#   /app/scripts/geoip-build.mjs                the VFGEO1 builder; viafrei-infra's monthly job runs it,
+#                                               writing to a mounted directory (the root is read-only):
+#                                               gunzip -c dbip-city-lite-YYYY-MM.csv.gz | docker run --rm -i \
+#                                                 --network none -v DIR:/out IMAGE node /app/scripts/geoip-build.mjs \
+#                                                 --release YYYY-MM --out /out/geoip.vfgeo
 #
 # The shell's path and command are the ones viafrei-app's image used (/app, the same entry), so a
 # Deployment moves from that image to this one by its image line. The base is the Node viafrei-app
@@ -53,7 +55,7 @@ LABEL org.opencontainers.image.title="viafrei-web" \
       org.opencontainers.image.revision="${GIT_SHA}"
 # APP_VERSION is NOT set here: the developers page and the structured data show the version the HOST
 # reports (the MCP server's release), and the deployment sets it, as it did for viafrei-app.
-ENV NODE_ENV=production HOME=/tmp HOST=0.0.0.0 PORT=8792 ASTRO_TELEMETRY_DISABLED=1 VIAFREI_WEB_VERSION=${VERSION} APP_GIT_SHA=${GIT_SHA}
+ENV NODE_ENV=production HOME=/tmp HOST=0.0.0.0 PORT=8792 ASTRO_TELEMETRY_DISABLED=1
 USER 10001:10001
 EXPOSE 8792
 HEALTHCHECK --interval=15s --timeout=5s --retries=5 CMD ["wget", "-q", "-O", "/dev/null", "http://127.0.0.1:8792/healthz"]
