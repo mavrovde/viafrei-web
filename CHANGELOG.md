@@ -9,6 +9,8 @@
 
 ## 0.1.0 (2026-11-16)
 
+0.1.0 was tagged, but its image was never published: the publish job was cancelled at its time limit while it built linux/arm64 under emulation (fixed in 0.1.1). 0.1.1 is the first published release.
+
 
 ### Added
 
