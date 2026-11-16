@@ -67,7 +67,7 @@ describe("the workflows", () => {
   });
 
   it("run on the Node of the image", () => {
-    const docker = /^FROM node:(\d+\.\d+\.\d+)-/mu.exec(read("Dockerfile"))?.[1];
+    const docker = /^FROM (?:--platform=\S+ )?node:(\d+\.\d+\.\d+)-/mu.exec(read("Dockerfile"))?.[1];
     expect(docker).toMatch(/^\d+\.\d+\.\d+$/u);
     const seen = files.flatMap((f) => [...text(f).matchAll(/(?:node-version|NODE_VERSION):\s*(?!\$\{)(\S+)/gu)].map((m) => `${f} ${m[1] ?? ""}`));
     expect(seen.length).toBeGreaterThan(3);
@@ -82,9 +82,11 @@ describe("the workflows", () => {
       expect(refs.length, `${image} is used nowhere`).toBeGreaterThan(0);
       for (const r of refs) expect(r[2], `${r[1] ?? ""} is not pinned by digest`).toBeDefined();
     }
-    const from = [...read("Dockerfile").matchAll(/^FROM (\S+)/gmu)].map((m) => m[1] ?? "");
+    const from = [...read("Dockerfile").matchAll(/^FROM (?:--platform=\S+ )?(\S+)/gmu)].map((m) => m[1] ?? "");
     expect(from.length).toBe(2);
     for (const f of from) expect(f).toMatch(/^node:[\w.-]+@sha256:[0-9a-f]{64}$/u);
+    // The build stage runs natively; under QEMU the arm64 build overran the publish limit (v0.1.0).
+    expect(read("Dockerfile")).toMatch(/^FROM --platform=\$BUILDPLATFORM node:\S+ AS build$/mu);
   });
 
   it("allow exactly the licences scripts/licences.mjs allows", () => {

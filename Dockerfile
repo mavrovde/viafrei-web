@@ -19,7 +19,11 @@
 # 2.6.17/2.6.18 runs, named literally and pinned by digest in both stages so Dependabot proposes
 # the update. Runs as uid 10001 on a read-only root file system: it writes nothing.
 
-FROM node:26.13.0-alpine3.24@sha256:8996bb5821d62a8fd9bb27c1cb07462f3fdce6e47d640c6a881ead0b064ce216 AS build
+# The build stage runs on the BUILD platform, never under emulation: it ships only dist/ (JavaScript
+# and assets, the same bytes on every architecture; npm ci runs with --ignore-scripts, so no native
+# module is built). Under QEMU the linux/arm64 build ran past release.yml's 40-minute publish limit
+# (v0.1.0's first run, cancelled 2026-11-16).
+FROM --platform=$BUILDPLATFORM node:26.13.0-alpine3.24@sha256:8996bb5821d62a8fd9bb27c1cb07462f3fdce6e47d640c6a881ead0b064ce216 AS build
 WORKDIR /src
 ENV PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD=1 ASTRO_TELEMETRY_DISABLED=1
 COPY package.json package-lock.json tsconfig.base.json ./
