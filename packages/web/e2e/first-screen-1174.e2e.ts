@@ -327,11 +327,13 @@ describe("the fixed action bar in Firefox with scroll timelines (its default sin
     ctx.setDefaultTimeout(2_000);
     const page = await ctx.newPage();
     await page.goto(`${base(PORT)}/de`);
-    if (!(await page.evaluate(() => CSS.supports("animation-timeline", "scroll()")))) {
-      // a Firefox older than 159 (the local e2e image's) cannot be the case under test; Playwright 1.65's 159 must run it
+    // a Firefox older than 159 (the local e2e image's) has no scroll timelines and cannot be the case under test; from 159
+    // on the feature is asserted, so a Firefox that lost it fails here rather than skipping
+    if (Number.parseInt(fx.version(), 10) < 159) {
       await ctx.close();
-      skip(`Firefox ${fx.version()} has no scroll timelines`);
+      skip(`Firefox ${fx.version()} is older than 159, which brought scroll timelines`);
     }
+    expect(await page.evaluate(() => CSS.supports("animation-timeline", "scroll()")), "this browser has scroll timelines").toBe(true);
     const shown = (): Promise<string> => page.evaluate(() => getComputedStyle(document.querySelector(".actionbar") as Element).visibility);
     expect(await page.locator(".actionbar").isVisible(), "at the top").toBe(false);
     await page.evaluate(() => window.scrollTo(0, 900));
