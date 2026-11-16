@@ -156,7 +156,7 @@ const pageCss = (motorwayPageCss + freshnessCss).replace(/\/\*[\s\S]*?\*\//g, ""
     {head.intro !== null ? <p class="lead motorway__intro" set:html={head.intro} /> : <p class="lead">{exitRef !== null ? meta.description : t(lang, "seo.motorwayLead", { road })}</p>}
     {head.note !== null && <p class="motorway__note" set:html={head.note} />}
   </PageHead>
-  <Star lang={lang} path={bare} label={road} road={road} />
+  <Star lang={lang} path={bare} label={road} road={road} moves={html.includes('<figure class="motorway__map"')} />
   <NextStep lang={lang} roads={next} about={nextAbout} />
   {topAmpel !== null && <div class="wrap ampel-slot" id="ampel-slot" set:html={topAmpel} />}
   {around !== null && lifted.ampel !== null && <template id="ampel-whole" set:html={lifted.ampel} />}

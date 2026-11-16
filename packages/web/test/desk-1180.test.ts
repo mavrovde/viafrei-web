@@ -76,3 +76,38 @@ describe("#1180: the script", () => {
     }
   });
 });
+
+describe("a star the desk moves under a map is hidden from the first paint (data-desk-move)", () => {
+  const layout = (name: string): string => readFileSync(fileURLToPath(new URL(`../src/layouts/${name}.astro`, import.meta.url)), "utf8");
+  // the markup the server's HTML carries for a desk selector: `.x` is `class="x`, `#x` is `id="x"`
+  const marker = (sel: string): string => (sel.startsWith("#") ? `id="${sel.slice(1)}"` : `class="${sel.slice(1)}`);
+  const cases = [
+    ["MotorwayPage", roadDesk("de")],
+    ["PlacePage", placeDesk("de")],
+    ["StationPage", stationDesk("de")],
+  ] as const;
+
+  it.each(cases)("%s marks its star by the same selector its desk moves the star into", (name, desk) => {
+    const into = desk.move?.find(([what]) => what === "p.star")?.[1];
+    expect(into, `${name}: the desk moves p.star`).toBeDefined();
+    const star = /<Star [^>]*moves=\{[^}]*?\.includes\('([^']*)'\)\}/u.exec(layout(name));
+    expect(star, `${name}: <Star moves={….includes('…')}>`).not.toBeNull();
+    expect(star![1], name).toContain(marker(into!));
+  });
+
+  it("site.css hides a marked star not yet moved, inside the 1024 px media block", () => {
+    const rule = ".desk .star[data-desk-move]:not(:is(.motorway__map, #place-ampel, #pcard-station-nearby) > *)";
+    const at = CSS.indexOf(rule);
+    expect(at, "the rule").toBeGreaterThan(-1);
+    const open = CSS.lastIndexOf("@media (min-width: 1024px) {", at);
+    expect(open, "a 1024 px media block before it").toBeGreaterThan(-1);
+    let depth = 0;
+    for (let i = CSS.indexOf("{", open); i < at; i++) {
+      if (CSS[i] === "{") depth++;
+      else if (CSS[i] === "}") depth--;
+      expect(depth, "the block is still open at the rule").toBeGreaterThan(0);
+    }
+    expect(depth, "the rule stands at the block's top level").toBe(1);
+    expect(CSS.slice(at, CSS.indexOf("}", at)), "it hides the star").toMatch(/\{\s*display:\s*none;\s*$/u);
+  });
+});

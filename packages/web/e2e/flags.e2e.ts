@@ -57,9 +57,15 @@ afterAll(async () => {
 
 const squash = (s: string): string => s.replace(/\s+/g, " ").replace(/> </g, "><").trim();
 const menus = (html: string): string[] => [...html.matchAll(/<details class="langmenu"[\s\S]*?<\/details>/g)].map((m) => m[0]);
-// 2.4.4: every menu link also carries the language-choice marker (`?setlang=1`, `i18n/lang-redirect.ts`) and rel="nofollow" — the two
-// other changes since #989, taken out here like the flags so the rest is still judged against the frozen golden.
-const withoutFlags = (menu: string): string => menu.replace(/<span class="langs__flags" aria-hidden="true">[\s\S]*?<\/span>/g, "").replace(/\?setlang=1"/g, '"').replace(/ rel="nofollow"/g, "");
+// 2.4.4: every menu link also carries the language-choice marker (`?setlang=1`, `i18n/lang-redirect.ts`) and rel="nofollow"; and the
+// summary's name begins with its visible badge, "DE – " (WCAG 2.5.3, axe-core 4.14's label-content-name-mismatch) — the three other
+// changes since #989, taken out here like the flags so the rest is still judged against the frozen golden.
+const withoutFlags = (menu: string): string =>
+  menu
+    .replace(/<span class="langs__flags" aria-hidden="true">[\s\S]*?<\/span>/g, "")
+    .replace(/\?setlang=1"/g, '"')
+    .replace(/ rel="nofollow"/g, "")
+    .replace(/(<summary class="langmenu__summary" aria-label=")([^"]*?) – ([^"]*">\s*<span aria-hidden="true">)\2</, "$1$3$2<");
 
 describe("the flags are the only change to the menus (#989)", () => {
   it("has a golden for three pages, two menus each", () => {

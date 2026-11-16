@@ -282,7 +282,9 @@ describe("the consent sheet (#1174 AC 4)", () => {
 describe("the fixed action bar in a browser without scroll timelines (#1174)", () => {
   let fx: Browser;
   beforeAll(async () => {
-    fx = await firefox.launch();
+    // Firefox has scroll timelines on by default since 159 (Playwright 1.65's build), so the case under test — a browser
+    // without them, where the header's script shows the bar — is Firefox with them switched off by its own preference.
+    fx = await firefox.launch({ firefoxUserPrefs: { "layout.css.scroll-driven-animations.enabled": false } });
   });
   afterAll(async () => {
     await fx?.close();
@@ -307,6 +309,40 @@ describe("the fixed action bar in a browser without scroll timelines (#1174)", (
   it("Chromium: hidden on the first screen", async () => {
     const { ctx, page } = await open(`${base(PORT)}/de`);
     expect(await page.locator(".actionbar").isVisible()).toBe(false);
+    await ctx.close();
+  });
+});
+
+describe("the fixed action bar in Firefox with scroll timelines (its default since 159)", () => {
+  let fx: Browser;
+  beforeAll(async () => {
+    fx = await firefox.launch();
+  });
+  afterAll(async () => {
+    await fx?.close();
+  });
+
+  it("the stylesheet's path: hidden on the first screen, shown from 520 px of scroll, hidden again at the top", async ({ skip }) => {
+    const ctx = await fx.newContext({ viewport: PHONE, reducedMotion: "no-preference" });
+    ctx.setDefaultTimeout(2_000);
+    const page = await ctx.newPage();
+    await page.goto(`${base(PORT)}/de`);
+    // a Firefox older than 159 (the local e2e image's) has no scroll timelines and cannot be the case under test; from 159
+    // on the feature is asserted, so a Firefox that lost it fails here rather than skipping
+    if (Number.parseInt(fx.version(), 10) < 159) {
+      await ctx.close();
+      skip(`Firefox ${fx.version()} is older than 159, which brought scroll timelines`);
+    }
+    expect(await page.evaluate(() => CSS.supports("animation-timeline", "scroll()")), "this browser has scroll timelines").toBe(true);
+    const shown = (): Promise<string> => page.evaluate(() => getComputedStyle(document.querySelector(".actionbar") as Element).visibility);
+    expect(await page.locator(".actionbar").isVisible(), "at the top").toBe(false);
+    await page.evaluate(() => window.scrollTo(0, 900));
+    await page.waitForFunction(() => getComputedStyle(document.querySelector(".actionbar") as Element).visibility === "visible");
+    expect(await shown(), "scrolled").toBe("visible");
+    await page.evaluate(() => window.scrollTo(0, 0));
+    await page.waitForFunction(() => getComputedStyle(document.querySelector(".actionbar") as Element).visibility === "hidden");
+    expect(await page.locator(".actionbar").isVisible(), "back at the top").toBe(false);
+    expect(await page.evaluate(() => document.documentElement.hasAttribute("data-actionbar")), "the script stays out of it").toBe(false);
     await ctx.close();
   });
 });

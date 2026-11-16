@@ -8,7 +8,12 @@
  * and the footer) is a `<details>` disclosure whose summary is the current
  * language's badge (its code, or "UA" for Ukrainian, `badgeOf`); a
  * `<details>` needs no script and is keyboard- and screen-reader-native
- * (Tab to the badge, Enter or Space opens it, Tab walks the names).
+ * (Tab to the badge, Enter or Space opens it, Tab walks the names). The
+ * summary's accessible name begins with that badge — "DE – Sprache wählen:
+ * Deutsch" — because the badge is its visible label and WCAG 2.5.3 wants the
+ * visible label in the name, best at its start (axe's label-content-name-mismatch,
+ * no longer experimental since axe-core 4.14; axe drops a parenthetical, so
+ * "Deutsch (DE)" would not count).
  *
  * Twenty-two languages since 2.3.12 (#753) do not fit a 390 px phone as one
  * column, so the open menu is a grid of two columns (three from 40 rem),
@@ -73,7 +78,7 @@ Astro.locals.flagsDrawn = true;
     </nav>
   ) : (
     <details class="langmenu">
-      <summary class="langmenu__summary" aria-label={`${t(lang, "a11y.langNav")}: ${labelOf(lang)}`}>
+      <summary class="langmenu__summary" aria-label={`${badgeOf(lang)} – ${t(lang, "a11y.langNav")}: ${labelOf(lang)}`}>
         <span aria-hidden="true">{badgeOf(lang) /* the ISO code upper-cased, or the locale's own badge (uk → UA) */}</span>
       </summary>
       <nav class="langmenu__panel" aria-label={t(lang, "a11y.langNav")}>

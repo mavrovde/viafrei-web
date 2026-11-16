@@ -41,7 +41,7 @@ describe("#1089: the header button says what it connects", () => {
     expect(t("en", "nav.ctaShort")).toBe("Connect AI");
   });
 
-  it("the accessible name names the assistants from the hero's own list, in every language", () => {
+  it("the description names the assistants from the hero's own list, in every language; the name is the visible text (WCAG 2.5.3)", () => {
     const clients = `${NOTE_CLIENTS.slice(0, 2).map((c) => c.name).join(", ")}, …`;
     expect(t("de", "nav.ctaLabel", { clients })).toBe("ViaFrei mit Ihrem KI-Assistenten verbinden (Claude, ChatGPT, …)");
     for (const lang of LIVE_LANGS) {
@@ -50,7 +50,11 @@ describe("#1089: the header button says what it connects", () => {
       expect(label, lang).toContain("Claude, ChatGPT, …");
     }
     const header = read("components", "Header.astro");
-    expect(header).toContain('aria-label={ctaLabel}');
+    expect(header).toContain('aria-describedby="site-head-cta-desc"');
+    // the description stands after the link, so it is no part of the link's own text
+    expect(header).toContain('</a><span id="site-head-cta-desc" hidden>{ctaLabel}</span>');
+    // no aria-label: it would replace the visible text as the name (axe-core 4.14's label-content-name-mismatch)
+    expect(header).not.toMatch(/site-head__cta"[^>]*aria-label/);
     expect(header).toContain('NOTE_CLIENTS.slice(0, 2)');
   });
 
@@ -63,7 +67,7 @@ describe("#1089: the header button says what it connects", () => {
 
   it("the header carries the long and the short form; the stylesheet shows one of them per width and never wraps the button", () => {
     const header = read("components", "Header.astro");
-    expect(header).toMatch(/<span class="site-head__cta-long">\{t\(lang, "nav\.cta"\)\}<\/span><span class="site-head__cta-short" aria-hidden="true">\{t\(lang, "nav\.ctaShort"\)\}<\/span>/);
+    expect(header).toMatch(/<span class="site-head__cta-long">\{t\(lang, "nav\.cta"\)\}<\/span><span class="site-head__cta-short">\{t\(lang, "nav\.ctaShort"\)\}<\/span>/);
     const css = read("styles", "site.css");
     expect(css).toContain(".site-head__cta { white-space: nowrap; }");
     expect(css).toContain(".site-head__cta-short { display: none; }");

@@ -30,7 +30,7 @@ afterAll(async () => {
   await stub?.close();
 });
 
-/** The header row as a visitor sees it: the items' vertical spread, the button's height, the page's overflow, the button's shown label. */
+/** The header row as a visitor sees it: the items' vertical spread, the button's height, the page's overflow, the button's shown label and its description. */
 async function measure(page: Page): Promise<{ spread: number; btnHeight: number; lineHeight: number; overflow: number; label: string; shown: string[]; echo: number | null }> {
   return page.evaluate(() => {
     const row = document.querySelector(".site-head__row") as HTMLElement;
@@ -44,7 +44,8 @@ async function measure(page: Page): Promise<{ spread: number; btnHeight: number;
       btnHeight: btn.getBoundingClientRect().height,
       lineHeight: Number.parseFloat(getComputedStyle(btn).lineHeight) || 20,
       overflow: document.documentElement.scrollWidth - document.documentElement.clientWidth,
-      label: btn.getAttribute("aria-label") ?? "",
+      // the assistants are the button's description (WCAG 2.5.3: its name is the visible text)
+      label: document.getElementById(btn.getAttribute("aria-describedby") ?? "")?.textContent ?? "",
       shown,
       echo: echo === null || getComputedStyle(echo).display === "none" ? null : echo.getBoundingClientRect().width,
     };

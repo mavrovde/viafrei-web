@@ -324,7 +324,12 @@ export const COLLECT_JS = String.raw`(() => {
   for (const el of Array.from(document.body.querySelectorAll("[aria-label],[title],[alt]"))) {
     if (el.closest(skip) !== null || named(el) || foreign(el)) continue;
     for (const a of ["aria-label", "title", "alt"]) {
-      const v = el.getAttribute(a);
+      // the language menu's summary names itself by its visible badge first ("RU – Выбор языка: Русский", WCAG 2.5.3):
+      // the badge is the code skipped above as the summary's text (its aria-hidden span), so exactly that text is taken off
+      // the front here and the rest judged
+      const badge = el.matches(".langmenu__summary") && a === "aria-label" ? (el.querySelector(':scope > [aria-hidden="true"]')?.textContent ?? "").trim() : "";
+      const own = el.getAttribute(a);
+      const v = badge !== "" && own !== null && own.startsWith(badge + " – ") ? own.slice(badge.length + 3) : own;
       if (v) texts.push({ where: label(el) + "@" + a, text: v });
     }
   }
