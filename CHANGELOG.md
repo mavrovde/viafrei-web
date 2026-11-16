@@ -1,6 +1,15 @@
 # Changelog
 
+## [0.1.1](https://github.com/mavrovde/viafrei-web/compare/v0.1.0...v0.1.1) (2026-11-16)
+
+
+### Fixed
+
+* **release:** the image's build stage runs natively, never under emulation ([#30](https://github.com/mavrovde/viafrei-web/issues/30)) ([565b6fc](https://github.com/mavrovde/viafrei-web/commit/565b6fcd26fbbc764f80f60fd3a5f399cf02320a))
+
 ## 0.1.0 (2026-11-16)
+
+0.1.0 was tagged, but its image was never published: the publish job was cancelled at its time limit while it built linux/arm64 under emulation (fixed in 0.1.1). 0.1.1 is the first published release.
 
 
 ### Added
