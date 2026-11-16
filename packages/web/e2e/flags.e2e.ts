@@ -65,7 +65,7 @@ const withoutFlags = (menu: string): string =>
     .replace(/<span class="langs__flags" aria-hidden="true">[\s\S]*?<\/span>/g, "")
     .replace(/\?setlang=1"/g, '"')
     .replace(/ rel="nofollow"/g, "")
-    .replace(/(<summary class="langmenu__summary" aria-label=")[A-Z]{2} – /, "$1");
+    .replace(/(<summary class="langmenu__summary" aria-label=")([^"]*?) – ([^"]*">\s*<span aria-hidden="true">)\2</, "$1$3$2<");
 
 describe("the flags are the only change to the menus (#989)", () => {
   it("has a golden for three pages, two menus each", () => {

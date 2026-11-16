@@ -51,7 +51,8 @@ describe("#1089: the header button says what it connects", () => {
     }
     const header = read("components", "Header.astro");
     expect(header).toContain('aria-describedby="site-head-cta-desc"');
-    expect(header).toContain('<span id="site-head-cta-desc" hidden>{ctaLabel}</span>');
+    // the description stands after the link, so it is no part of the link's own text
+    expect(header).toContain('</a><span id="site-head-cta-desc" hidden>{ctaLabel}</span>');
     // no aria-label: it would replace the visible text as the name (axe-core 4.14's label-content-name-mismatch)
     expect(header).not.toMatch(/site-head__cta"[^>]*aria-label/);
     expect(header).toContain('NOTE_CLIENTS.slice(0, 2)');

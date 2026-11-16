@@ -86,7 +86,7 @@ const ownIsland = scripts && !place.island ? islandScript({ lang, server: { sour
     <nav class="site-nav" aria-label={t(lang, "a11y.mainNav")}>
       {HOME_ANCHORS.map((a) => <a href={onHome || (a === "start" && page === "start") ? `#${a}` : `${home}#${a}`}>{anchorLabel[a]}</a>)}
     </nav>
-    <a class="btn btn--primary btn--sm site-head__cta" href={connect} aria-describedby="site-head-cta-desc"><span class="site-head__cta-long">{t(lang, "nav.cta")}</span><span class="site-head__cta-short">{t(lang, "nav.ctaShort")}</span><span id="site-head-cta-desc" hidden>{ctaLabel}</span></a>
+    <a class="btn btn--primary btn--sm site-head__cta" href={connect} aria-describedby="site-head-cta-desc"><span class="site-head__cta-long">{t(lang, "nav.cta")}</span><span class="site-head__cta-short">{t(lang, "nav.ctaShort")}</span></a><span id="site-head-cta-desc" hidden>{ctaLabel}</span>
     <LanguageList lang={lang} page={page} variant="menu" hrefs={hrefs} />
   </div>
   {/*
