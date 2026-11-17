@@ -22,7 +22,7 @@ export const API_PRESSURE_PATH = "/v1/pressure";
 /** The word out of an API answer: `saturated` only when the envelope says exactly that. */
 export function apiPressureWord(body: unknown): boolean {
   if (body === null || typeof body !== "object" || !("data" in body)) return false;
-  const data = (body as { data: unknown }).data;
+  const data = body.data;
   return data !== null && typeof data === "object" && (data as { state?: unknown }).state === "saturated";
 }
 

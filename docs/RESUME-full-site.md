@@ -8,10 +8,10 @@ Done:
   Affected unit tests green: 216 files passed, 1 skipped.
 - WIP (this commit): packages/web/src/api/client.ts, a server-side viafrei-api client. VIAFREI_API_URL is in
   lib/env.ts; VIAFREI_API_KEY is read only inside the client, as a Bearer header. The overload pressure reads
-  /v1/pressure when VIAFREI_API_URL is set. Neither has tests or a typecheck yet.
+  /v1/pressure when VIAFREI_API_URL is set. Tests: test/api-client.test.ts (7), tsc -b and eslint are clean.
 
 Next:
-1. Add tests for api/client.ts and the API pressure path, and a test that no island imports api/.
+1. (done)
 2. Gap inventory. Map every digest service method (packages/digest/src/server: Place, Motorway, ExitWalker,
    Station, Road, State, EnergyPage, Spot, SiteSearch, FilteredCharging) to an API 0.3.0 endpoint and field.
    Read first: map layers, tiles, search and suggest, news traffic, SID occupancy, exits, segments and speed
