@@ -1,6 +1,7 @@
 {
   "meta": {
     "tagline": "Yapay zekâ için Almanya'nın gerçek zamanlı mobilite platformu",
+    "titleTagline": "Almanya'nın gerçek zamanlı mobilite platformu",
     "pitch": "ViaFrei, yapay zekâ asistanlarına Almanya hakkında gerçek zamanlı bilgi verir. Tren ve otobüs, trafik ve yol çalışmaları, yakıt, şarj, otopark ve hava durumu. Tek bir MCP. API anahtarı yok. Kayıt yok.",
     "description": "Almanya genelinde sıkışıklık, kapanmalar, çalışmalar, tren, otopark, şarj ve yakıt – açık verilerden, yapay zekâ asistanınızın yanıtı, her rakam kaynağıyla.",
     "siteName": "ViaFrei"
@@ -221,7 +222,8 @@
     "more": "2 soru daha ve bir sınır",
     "answer": {
       "label": "ViaFrei'nin yanıtı",
-      "asOf": "{asOf} itibarıyla"
+      "asOf": "{asOf} itibarıyla",
+      "again": "Yukarıdaki kaynaklardan da:"
     },
     "limitLabel": "Açıkçası",
     "cta": "Başlayın",

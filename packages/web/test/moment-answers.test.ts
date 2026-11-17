@@ -104,7 +104,9 @@ describe("the home's moments answer EVERY question (owner 2026-10-05: \"Not only
     expect(day).toContain("msg={answerKey(m, i)} answer={m.answers[i - 1]}");
     expect(ans).toContain('translate="no"');
     // every credit line through the one CreditItem component (data-steward ruling 2026-10-07: the BKG line's prescribed links)
-    expect(ans).toContain("<CreditItem c={c} lang={lang} />");
+    // 2.6.19 (#746): through CreditList, whose every line is a CreditItem
+    expect(ans).toContain("<CreditList lang={lang} credits={full}");
+    expect(readFileSync(join(SRC, "components", "CreditList.astro"), "utf8")).toContain("<CreditItem c={c} lang={lang} />");
     expect(all(readFileSync(join(SRC, "components", "CreditItem.astro"), "utf8"), "li[lang=\"de\"]").length).toBeGreaterThan(0);
     expect(ans).toContain('t(lang, "day.answer.asOf", answer.values)');
     // the first is shown open, outside the fold

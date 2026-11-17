@@ -1,0 +1,40 @@
+---
+/**
+ * An example answer's credit lines (2.6.19, #746). Open, every line is a `CreditItem`. Folded (`fold`, the examples
+ * page, where each card's answer now credits its full Quelle line), it follows #1120's sources rule
+ * (`splitCredits`): the lines a person must see stay whole in view, the rest sit in one native `<details class="sources">`
+ * inside the list, whose summary names every publisher of the lines inside it (FS3, `foldSourcesFor`); the lines left in
+ * view name theirs whole. Everything stays in the HTML; the stylesheet opens the disclosure in print, and its state is
+ * stored nowhere.
+ */
+import CreditItem from "./CreditItem.astro";
+import catalogue from "../generated/catalogue.json" with { type: "json" };
+import { foldSourcesFor, splitCredits } from "../lib/fold-credits.js";
+import type { Lang } from "../site/pages.js";
+
+type Credit = (typeof catalogue.credits)[number];
+interface Props {
+  lang: Lang;
+  credits: readonly Credit[];
+  /** The list's classes. */
+  class: string;
+  fold?: boolean;
+}
+const { lang, credits, class: cls, fold = false } = Astro.props;
+const { shown, folded } = fold ? splitCredits(credits) : { shown: credits, folded: [] };
+---
+
+<ul class={cls}>
+  {shown.map((c) => <CreditItem c={c} lang={lang} />)}
+  {
+    folded.length > 0 && (
+      <li class="credits__more">
+        <details class="sources">
+          <summary set:html={foldSourcesFor(lang, folded.map((c) => c.id))} />
+          <ul class="credits">{folded.map((c) => <CreditItem c={c} lang={lang} />)}</ul>
+        </details>
+      </li>
+    )
+  }
+  <slot />
+</ul>

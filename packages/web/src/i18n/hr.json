@@ -1,6 +1,7 @@
 {
   "meta": {
     "tagline": "Njemačka platforma za mobilnost u stvarnom vremenu za AI",
+    "titleTagline": "Njemačka platforma za mobilnost u stvarnom vremenu",
     "pitch": "ViaFrei daje AI asistentima znanje o Njemačkoj u stvarnom vremenu. Vlakovi i autobusi, promet i radovi na cesti, gorivo, punjenje, parkiranje i vrijeme. Jedan MCP. Bez API ključa. Bez registracije.",
     "description": "Gužve, zatvaranja, radovi na cesti, vlakovi, parking, punjenje i gorivo u Njemačkoj – uživo iz otvorenih podataka, kao odgovor AI asistenta, uz izvor.",
     "siteName": "ViaFrei"
@@ -221,7 +222,8 @@
     "more": "Još dva pitanja i jedno ograničenje",
     "answer": {
       "label": "ViaFrei je odgovorio",
-      "asOf": "Stanje: {asOf}"
+      "asOf": "Stanje: {asOf}",
+      "again": "Također prema izvorima iznad:"
     },
     "limitLabel": "Iskreno rečeno",
     "cta": "Krenite",

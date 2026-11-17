@@ -1,6 +1,7 @@
 {
   "meta": {
     "tagline": "La plataforma alemana de movilidad en tiempo real para la IA",
+    "titleTagline": "La plataforma alemana de movilidad en tiempo real",
     "pitch": "ViaFrei da a los asistentes de IA conocimiento en tiempo real de Alemania. Trenes y autobuses, tráfico y obras, combustible, carga, aparcamiento y tiempo. Un solo MCP. Sin clave API. Sin registro.",
     "description": "Atascos, cierres y obras en las autopistas de Alemania, trenes, aparcamientos, recarga y combustible en directo con su asistente de IA, cada cifra con fuente.",
     "siteName": "ViaFrei"
@@ -221,7 +222,8 @@
     "more": "2 preguntas más y un límite",
     "answer": {
       "label": "ViaFrei respondió",
-      "asOf": "Actualizado: {asOf}"
+      "asOf": "Actualizado: {asOf}",
+      "again": "También de las fuentes de arriba:"
     },
     "limitLabel": "Con toda sinceridad",
     "cta": "Empezar",

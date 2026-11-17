@@ -39,7 +39,8 @@ import { motorwayJsonLd, placeJsonLd, structuredData } from "../src/site/structu
 import { sitemapXml } from "../src/pages/sitemap.xml.js";
 import { LEGACY_FIXED } from "../src/lib/legacy-redirects.js";
 import { NEWS_ENTRIES, homeNewsFor } from "../src/news/entries.js";
-import { motorwayDescriptionOf, motorwayTitleOf, nowDescriptionOf, nowFacts } from "@viafrei/digest";
+import { motorwayDescriptionOf, motorwayTitleOf } from "@viafrei/digest";
+import { pageDescription } from "@viafrei/design";
 import { placeRoadsOf } from "../src/lib/place-head.js";
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), "..", "..", "..");
@@ -65,7 +66,7 @@ describe("1. every title and description, every page, every language (#1020)", (
       const descriptions = new Map<string, string>();
       for (const [id, m] of metas) {
         expect(m.title.trim(), id).not.toBe("");
-        if (id !== "start") expect(m.title.length, `${id}: ${m.title}`).toBeLessThanOrEqual(TITLE_FIT);
+        expect(m.title.length, `${id}: ${m.title}`).toBeLessThanOrEqual(TITLE_FIT); // #1310 B1: the home too
         expect(m.description.length, `${id}: ${m.description}`).toBeGreaterThanOrEqual(DESCRIPTION_FIT_MIN);
         expect(m.description.length, `${id}: ${m.description}`).toBeLessThanOrEqual(DESCRIPTION_MAX);
         expect(`${m.title} ${m.description}`, id).not.toMatch(/\{\w+\}/);
@@ -78,7 +79,7 @@ describe("1. every title and description, every page, every language (#1020)", (
         }
       }
       // the home's title is exactly the brand line (owner, #935)
-      expect(pageMeta("start", lang).title).toBe(`ViaFrei – ${t(lang, "meta.tagline")}`);
+      expect(pageMeta("start", lang).title).toBe(`ViaFrei – ${t(lang, "meta.titleTagline")}`); // #1310 B1
     });
   }
   it("the fit shortens by structure, never mid-word: brand suffix, then list items, then the clause; whole sentences", () => {
@@ -330,24 +331,7 @@ describe("6. the 2.3 News entry (#1020)", () => {
   });
 });
 
-/** A live read as the motorway page holds it: only the fields the description reads are meaningful. */
-type Live = Parameters<typeof nowFacts>[0];
-const liveOf = (rows: { closures?: (string | null)[]; jams?: (string | null)[]; roadworks?: (string | null)[] }): Live => {
-  const item = (section: string | null): Record<string, unknown> => ({ kind: "closure", blocked: false, section, what: null, direction: null, delaySeconds: null, at: null, segments: 1, directions: [], copies: 1 });
-  const c = rows.closures ?? [];
-  const j = rows.jams ?? [];
-  const r = rows.roadworks ?? [];
-  const counts = { closures: c.length, jams: j.length, warnings: 0, roadworks: r.length };
-  return { state: "live", asOf: new Date(0), counts, toolCounts: counts, closures: c.map(item), jams: j.map(item), warnings: [], roadworks: r.map(item), moreClosures: 0, moreRoadworks: 0, moreJams: 0, header: null } as unknown as Live;
-};
-const A24 = liveOf({ closures: ["AS Hamburg-Jenfeld - AS Hamburg-Horn"], roadworks: ["Horner Kreisel - AS Hamburg-Jenfeld", "AS Reinbek - AS Witzhave"], jams: ["AS Witzhave - AS Schwarzenbek/Grande"] });
-const QUIET = { state: "quiet", asOf: new Date(0) } as unknown as Live;
-const STALE = { state: "stale", asOf: new Date(0) } as unknown as Live;
-const DIGEST_LANGS = LIVE_LANGS as unknown as readonly Parameters<typeof nowDescriptionOf>[0][];
-/** The page's clock beside the read's `asOf` (both the epoch: the Stand reads 01:00 in Berlin). */
-const AT = new Date(0);
-/** #1110: a first clause that is an item of a list of works — "Baustelle X – Y", in any language's item word or a bare stretch. */
-const LIST_ITEM_FIRST = /^(Sperrung|Stau|Baustelle|closure|jam|roadworks)\s|^[^:\d]+ – [^:\d]+$/iu;
+const DIGEST_LANGS = LIVE_LANGS as unknown as readonly Parameters<typeof motorwayDescriptionOf>[0][];
 
 describe("7. place and motorway snippets match what searchers type (#1020 round 2, the Search Console baseline)", () => {
   it("the motorway title keeps the live pattern: the road first, then the state words of its language, ≤ 60 once fitted", () => {
@@ -360,81 +344,32 @@ describe("7. place and motorway snippets match what searchers type (#1020 round 
     }
     expect(motorwayTitleOf("de", { road: "A24", course: true })).toBe("A24 Stau aktuell: Baustellen, Sperrung, Karte – ViaFrei");
   });
-  it("#1110: the description LEADS with today's counts and the Berlin Stand — the page's own first line; German then names the stretches, closures first, as many as fit", () => {
-    const d = nowDescriptionOf("de", { road: "A24", now: nowFacts(A24, AT) })!;
-    expect(d.startsWith("Jetzt auf der A24 gemeldet: 1 Sperrung, 1 Stau, 2 Baustellen (Stand 01:00). Sperrung Hamburg-Jenfeld – Hamburg-Horn; ")).toBe(true);
-    expect(d).toContain("Stau Witzhave – Schwarzenbek/Grande");
-    // the third stretch does not fit beside the lead: left out whole, never cut
-    expect(d).toBe("Jetzt auf der A24 gemeldet: 1 Sperrung, 1 Stau, 2 Baustellen (Stand 01:00). Sperrung Hamburg-Jenfeld – Hamburg-Horn; Stau Witzhave – Schwarzenbek/Grande.");
-    expect(d.length).toBeLessThanOrEqual(158);
-    // the description the fragment carries is this one whenever the page holds a live read
-    expect(motorwayDescriptionOf("de", { road: "A24", course: true, ends: null, km: null, lands: [], junctions: null, interchanges: null, gaps: [], now: nowFacts(A24, AT) })).toBe(d);
-  });
-  it("#1110: no description's first clause is a list item — every language, active, many, quiet: it holds the road, a figure and the Stand", () => {
-    const many = liveOf({ closures: Array.from({ length: 20 }, (_, i) => `AS Langer-Anschlussstellenname-${String(i)} - AS Noch-ein-langer-Name-${String(i)}`) });
-    for (const lang of DIGEST_LANGS) {
-      for (const live of [A24, many, QUIET, liveOf({}), liveOf({ jams: [null] })]) {
-        const d = nowDescriptionOf(lang, { road: "A100", now: nowFacts(live, AT) })!;
-        const first = d.split(/\)\.\s|;\s/u)[0]!;
-        expect(first, `${lang}: ${d}`).not.toMatch(LIST_ITEM_FIRST);
-        expect(first, `${lang}: ${d}`).toContain("A100");
-        expect(first, `${lang}: ${d}`).toMatch(/0?1[:.]00/u);
-        if (live !== QUIET && live.state === "live" && (live.counts.closures + live.counts.jams + live.counts.roadworks) > 0) expect(first.replace("A100", "").replace(/0?1[:.]00/u, ""), `${lang}: ${d}`).toMatch(/\d/u);
-        expect(d.length, `${lang}: ${d}`).toBeLessThanOrEqual(158);
-        expect(d.length, `${lang}: ${d}`).toBeGreaterThanOrEqual(50);
+  it("#1310 B2: the motorway description is evergreen — the road and what the page offers, 120–160, no count, no Stand, no clock", () => {
+    for (const lang of DIGEST_LANGS)
+      for (const road of MOTORWAY_REGISTER) {
+        const d = motorwayDescriptionOf(lang, { road, lands: [] });
+        expect(d.length, `${lang} ${road}: ${d}`).toBeLessThanOrEqual(160);
+        expect(d.length, `${lang} ${road}: ${d}`).toBeGreaterThanOrEqual(120);
+        expect(d.startsWith(road), `${lang} ${road}: ${d}`).toBe(true);
+        expect(d.slice(road.length), `${lang} ${road}: ${d}`).not.toMatch(/\d/u);
       }
-    }
-    // the refusal itself refuses the shape #1110 found on prod
-    expect("Baustelle Hagenow – Wöbbelin; Baustelle Meyenburg – Pritzwalk").toMatch(LIST_ITEM_FIRST);
+    expect(motorwayDescriptionOf("de", { road: "A24", lands: [] })).toBe(pageDescription("de", { kind: "motorway", name: "A24" }));
   });
-  it("as many as fit: twenty active stretches still give one German description within the bound, never a cut name", () => {
-    const many = liveOf({ closures: Array.from({ length: 20 }, (_, i) => `AS Langer-Anschlussstellenname-${String(i)} - AS Noch-ein-langer-Name-${String(i)}`) });
-    expect(nowDescriptionOf("de", { road: "A100", now: nowFacts(many, AT) })).toMatch(/^Jetzt auf der A100 gemeldet: 20 Sperrungen, 0 Staus, 0 Baustellen \(Stand 01:00\)\. Sperrung Langer-Anschlussstellenname-0 – Noch-ein-langer-Name-0[;.]/);
-  });
-  it("every other language names the counts and no German place (#449), the tail added when it fits", () => {
-    for (const lang of DIGEST_LANGS.filter((l) => l !== "de")) {
-      const d = nowDescriptionOf(lang, { road: "A100", now: nowFacts(A24, AT) })!;
-      expect(d, lang).not.toMatch(/Jenfeld|Horn|Witzhave|Kreisel/);
-    }
-    expect(nowDescriptionOf("en", { road: "A24", now: nowFacts(A24, AT) })).toBe("Reported on the A24 now: 1 closure, 1 jam, 2 roadworks (as of 01:00).");
-    // the tail where it fits: a shorter road leaves room in a language whose lead is short
-    expect(DIGEST_LANGS.some((l) => nowDescriptionOf(l, { road: "A1", now: nowFacts(QUIET, AT) })!.length > 90)).toBe(true);
-  });
-  it("nothing active is said truthfully with its Stand; a stale read says nothing about now and keeps the static description", () => {
-    for (const lang of DIGEST_LANGS) {
-      const q = nowDescriptionOf(lang, { road: "A100", now: nowFacts(QUIET, AT) })!;
-      expect(nowDescriptionOf(lang, { road: "A100", now: nowFacts(liveOf({}), AT) }), lang).toBe(q);
-      // the snippet is about now: no map or facilities promise (the A34 has no map)
-      expect(q, lang).not.toMatch(/Karte|\bmap\b|карт|hart|harita|Rastpl|Ladesäul|rest area|charger/iu);
-    }
-    expect(nowDescriptionOf("de", { road: "A24", now: nowFacts(QUIET, AT) })).toBe("Auf der A24 ist derzeit nichts gemeldet (Stand 01:00). Jede Meldung mit Anschlussstellen, Richtung und Stand, live aus den Daten der Autobahn GmbH.");
-    expect(nowFacts(STALE, AT)).toBeNull();
-    expect(nowDescriptionOf("de", { road: "A24", now: null })).toBeNull();
-  });
-  it("the place title holds the place and the state words; the description names the roads the cards list", () => {
+  it("#1310 B2: the place description is evergreen — the place and its Land, 120–160, the same whatever is reported now", () => {
     for (const lang of LIVE_LANGS) {
-      const m = placeMeta("Nideggen", lang, ["L249", "A4", "B265"]);
+      const m = placeMeta("Nideggen", lang, null, "Nordrhein-Westfalen");
       expect(m.title.startsWith("Nideggen"), `${lang}: ${m.title}`).toBe(true);
       expect(m.title.length, lang).toBeLessThanOrEqual(60);
       expect(m.description.startsWith("Nideggen"), `${lang}: ${m.description}`).toBe(true);
-      for (const r of ["L249", "A4", "B265"]) expect(m.description, `${lang} ${r}`).toContain(r);
       expect(m.description.length, lang).toBeLessThanOrEqual(160);
-      expect(m.description.length, lang).toBeGreaterThanOrEqual(70);
-      // no road listed: the place's general description, never an empty list
-      expect(placeMeta("Nideggen", lang).description).toBe(placeMeta("Nideggen", lang, []).description);
+      expect(m.description.length, lang).toBeGreaterThanOrEqual(120);
+      expect(m.description, lang).not.toMatch(/\d/u);
+      for (const kind of ["closure", "jam", "roadworks", "nothing"] as const) expect(placeMeta("Nideggen", lang, { kind }, "Nordrhein-Westfalen").description, `${lang} ${kind}`).toBe(m.description);
     }
     expect(placeMeta("Köln", "de").title).toBe("Köln: Sperrungen, Baustellen, Verkehr aktuell – ViaFrei");
     // a longer name: the brand is dropped first, the state words stay (fitTitle)
     expect(placeMeta("Friesoythe", "de").title).toBe("Friesoythe: Sperrungen, Baustellen, Verkehr aktuell");
-    expect(placeMeta("Nideggen", "de", ["L249", "A4"]).description).toBe("Nideggen: Sperrungen und Baustellen aktuell auf L249 und A4 – dazu Stau, Parken, Ladesäulen und Warnungen, live aus offenen Daten mit Quelle.");
-  });
-  it("as many roads as fit, in the cards' order", () => {
-    const roads = Array.from({ length: 30 }, (_, i) => `B${String(100 + i)}`);
-    for (const lang of LIVE_LANGS) {
-      const d = placeMeta("Villingen-Schwenningen", lang, roads).description;
-      expect(d.length, lang).toBeLessThanOrEqual(160);
-      expect(d, lang).toContain("B100");
-    }
+    expect(placeMeta("Villingen-Schwenningen", "de", null, "Baden-Württemberg").description.startsWith("Villingen-Schwenningen (Baden-Württemberg): ")).toBe(true);
   });
   it("the roads are read off the cards' shields, in order, each once, and only road numbers", () => {
     const html = '<a class="shield" href="/de/autobahn/a9" translate="no">A9</a> x <span class="shield shield--b">B96</span> <a class="shield" href="/de/autobahn/a9">A9</a> <span class="shield">L249</span> <span class="shield">Ampel</span> <span class="notshield">A1</span>';

@@ -66,8 +66,22 @@ export function sourceCredit(name: string, credit: DatasetCredit): Record<string
  */
 export const GLAMA_CANONICAL = "https://glama.ai/mcp/servers/mavrovde/viafrei-mcp";
 
-/** Where else ViaFrei is, the same identity — every one a page that names this service. */
-export const SAME_AS: readonly string[] = [BRIDGE_REPO, NPM_PACKAGE, SMITHERY_LISTING, GLAMA_CANONICAL];
+/**
+ * #1310 E1: the PUBLIC repositories of the project group (`gh repo list mavrovde --visibility public`, 2026-11-15:
+ * the bridge, the API, the database and the site, viafrei-web, public since 2026-11-15; the main, infra and ingestor
+ * repositories are private and never named). A private repository named here would be a 404 to
+ * every crawler and a leak of its name, so `test/structured-data.test.ts` refuses any GitHub address not in this list.
+ */
+export const PUBLIC_REPOS: readonly string[] = [BRIDGE_REPO, "https://github.com/mavrovde/viafrei-api", "https://github.com/mavrovde/viafrei-database", "https://github.com/mavrovde/viafrei-web"];
+
+/**
+ * The official MCP Registry's entry for the server (`de.viafrei/mcp`, verified against the registry with
+ * `.well-known/mcp-registry-auth`): the registry has no page per server, so its address is the entry's own.
+ */
+export const MCP_REGISTRY_ENTRY = "https://registry.modelcontextprotocol.io/v0.1/servers/de.viafrei%2Fmcp/versions/latest";
+
+/** Where else ViaFrei is, the same identity — every one a page that names this service (#1310 E1). */
+export const SAME_AS: readonly string[] = [...PUBLIC_REPOS, NPM_PACKAGE, MCP_REGISTRY_ENTRY, SMITHERY_LISTING, GLAMA_CANONICAL];
 
 /** The pages that carry no JSON-LD at all: the fuel board's page, which may hold nothing machine-readable. */
 export const NO_JSON_LD: readonly PageId[] = ["fuel"];
@@ -220,13 +234,13 @@ const siteNodes = (lang: Lang): Record<string, unknown>[] => structuredData("con
  * and that it is in Germany. NO FUEL DATA and no figure of any card: the graph
  * is built from the name and the deck alone, never from the cards' HTML.
  */
-export function placeJsonLd(lang: Lang, name: string, path: `/${string}`): string {
+export function placeJsonLd(lang: Lang, name: string, path: `/${string}`, land: string | null = null): string {
   const placeId = `${SITE_ORIGIN}${path}#place`;
   return jsonLdText({
     "@context": "https://schema.org",
     "@graph": [
       ...siteNodes(lang),
-      ...pageNodes(lang, placeMeta(name, lang), path, placeCrumbs(lang, name, path), placeId),
+      ...pageNodes(lang, placeMeta(name, lang, null, land), path, placeCrumbs(lang, name, path), placeId),
       { "@type": "Place", "@id": placeId, name, address: { "@type": "PostalAddress", addressCountry: "DE" } },
     ],
   });
@@ -365,7 +379,7 @@ export function stationJsonLd(lang: Lang, name: string, path: `/${string}`, fact
     "@context": "https://schema.org",
     "@graph": [
       ...siteNodes(lang),
-      ...pageNodes(lang, stationMeta(name, lang, facts?.city ?? null), path, stationCrumbs(lang, name, path, facts), stationId).map((n) =>
+      ...pageNodes(lang, stationMeta(name, lang, facts?.city ?? null, null, facts?.land ?? null), path, stationCrumbs(lang, name, path, facts), stationId).map((n) =>
         n["@type"] === "WebPage" && facts?.stand != null ? { ...n, dateModified: facts.stand.toISOString() } : n,
       ),
       { "@type": "TrainStation", "@id": stationId, name, address, ...geo, ...town, ...(amenities.length === 0 ? {} : { amenityFeature: amenities }), isAccessibleForFree: true, publicAccess: true, ...stada },

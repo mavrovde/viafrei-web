@@ -53,11 +53,12 @@ describe("#1095 a station page's head is written for search", () => {
       it(`${stationPath(lang, c.slug)}: title, description, h1, lead, trail, Land, town and Stand`, async () => {
         const r = await get(stationPath(lang, c.slug));
         expect(r.status).toBe(200);
-        // #1175 AC6: the live part answered, so its status line leads the description, and a station with something
+        // #1175 AC6: the live part answered, so a station with something
         // reported is titled by it (Köln's fixture: a disruption; Bonn's: nothing, which keeps the search phrase)
         const now = stationNowOf(/<p [^>]*class="statusline[\s\S]*?<\/p>/u.exec(r.body)?.[0] ?? null);
         expect(now?.kind, "the page carries its live status line").toBe(c.now);
-        const meta = stationMeta(c.name, lang, c.city, now);
+        // #1310 B2: the description names the station's Land in the page's language
+        const meta = stationMeta(c.name, lang, c.city, now, c.land[lang]);
         if (c.now === "nothing") expect(meta.title).toBe(stationMeta(c.name, lang, c.city).title);
         // the document's title (an SVG's <title> below it is a picture's name, not the page's)
         expect(/<head>[\s\S]*?<title>([^<]*)<\/title>/u.exec(r.body)?.[1]?.replace(/&amp;/g, "&")).toBe(meta.title);

@@ -365,7 +365,12 @@ export const COLLECT_JS = String.raw`(() => {
  * page may print in German; `used`, when given, collects the allow-list
  * entries (`LATIN_COMMON`, `LATIN_PHRASES`) this page actually needed.
  */
-export function judge(lang: string, page: PageText, verbatim: readonly string[], used?: Set<string>): Finding[] {
+/**
+ * `publishers`: the register's short publisher names (`shortSource` of each register line, as `Answer.astro` prints them in
+ * its "the sources above: ..." line, #746). A German-marked element whose WHOLE text is one of them is a proper name; any
+ * other German-marked text is still judged against the licence text.
+ */
+export function judge(lang: string, page: PageText, verbatim: readonly string[], used?: Set<string>, publishers: ReadonlySet<string> = new Set()): Finding[] {
   if (lang === "de") return [];
   const findings: Finding[] = [];
   const own = OWN_UMLAUTS[lang] ?? "";
@@ -418,6 +423,7 @@ export function judge(lang: string, page: PageText, verbatim: readonly string[],
       findings.push({ where: `[lang="${other}"]`, text, why: `an element in "${other}" on a "${lang}" page` });
       continue;
     }
+    if (publishers.has(norm(text))) continue;
     let rest = norm(text);
     for (const l of licence) rest = rest.split(l).join(" ");
     if (rest.replace(/[\s.,;:·—–-]+/gu, "") !== "") findings.push({ where: '[lang="de"]', text, why: "German-marked text that is not licence text" });

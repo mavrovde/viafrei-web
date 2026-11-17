@@ -123,6 +123,13 @@ export const RUNGS = [
 export const LIMITS = { rawHtml: 700 * 1024, gzipTotal: 200 * 1024, requests: 2 } as const;
 
 /**
+ * The home's raw-HTML bound on the e2e fragments: the one constant `tiles.e2e.ts` (its history) and
+ * `live-map-places-1183.e2e.ts` both read. Owner 2026-11-16 ("Increase the budget to 300"): 300 000 B; the home measured
+ * 286 612 B (de; measured in e2e-arm at the 2.6.19 release head). Inside `LIMITS.rawHtml`.
+ */
+export const HOME_RAW_MAX = 300_000;
+
+/**
  * #1064: production's per-card entry counts on the motorway pages (the maximum over A1, A3 and A7 on 2026-10-25). A
  * measured motorway page below any of them is lighter than production and cannot be judged.
  */

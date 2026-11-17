@@ -53,8 +53,6 @@ async function head(lang: Lang, road: string): Promise<Head> {
   };
 }
 
-/** #1110: the floor the unit sweep holds a now-led description to (packages/web/test/seo-sweep.test.ts). */
-const NOW_LED_DESCRIPTION_MIN = 50;
 const HOLLOW = /\{\w+\}|\bundefined\b|\bnull\b|\bNaN\b|[^\S\u00a0\u202f][,;.:)]|\(\)|\s{2}/u;
 
 describe("the head and the intro of four motorway pages (#716, 2.1.17)", () => {
@@ -64,11 +62,9 @@ describe("the head and the intro of four motorway pages (#716, 2.1.17)", () => {
         const h = await head(lang, road);
         expect(h.title.length, h.title).toBeLessThanOrEqual(TITLE_MAX);
         expect(h.description.length, h.description).toBeLessThanOrEqual(DESCRIPTION_MAX);
-        // #1110: a description led by what is reported now (the intro's own first sentence, with its Stand) may be short —
-        // the unit sweep (seo-sweep.test.ts) holds it to 50; every other description keeps the site's floor
-        // #1173: the status line is what leads now
-        const nowLed = h.description.startsWith(`${road}: `);
-        expect(h.description.length, h.description).toBeGreaterThanOrEqual(nowLed ? NOW_LED_DESCRIPTION_MIN : DESCRIPTION_MIN);
+        // #1310 B2: the description is evergreen — the site's floor, and no clock time or count of the live read in it
+        expect(h.description.length, h.description).toBeGreaterThanOrEqual(DESCRIPTION_MIN);
+        expect(h.description.replaceAll(road, ""), h.description).not.toMatch(/\d/u);
         expect(h.title).toContain(road);
         expect(h.description).toContain(road);
         expect(h.og).toBe(h.description);
@@ -89,12 +85,16 @@ describe("the head and the intro of four motorway pages (#716, 2.1.17)", () => {
       });
     }
 
-  it("the A7 in German: the route ends, the length, the Land, the junctions with the interchanges, the break, and the live counts with Stand", async () => {
+  it("the A7 in German: the road and its Land in the description, the route ends, the length, the junctions with the interchanges and the break in the intro", async () => {
     const h = await head("de", "A7");
     expect(h.title).toBe("A7: Sperrung heute – ViaFrei");
-    // #1110: the description leads with today's counts and the Stand, then the active stretches by name, closures first
-    expect(h.description).toMatch(/^A7: 6 Sperrungen, 8 Staus, 2 [^,]+, 40 Baustellen · Stand \d\d:\d\d\. Sperrung /);
-    expect(h.description).not.toMatch(/Rastpl|Ladesäul|Autoh/);
+    // #1310 B2: the road and its Land, then what the page offers — never today's counts or the Stand (they are the title's
+    // and the status block's)
+    expect(h.description).toMatch(/^A7 \(Schleswig-Holstein\): /);
+    expect(h.description).not.toMatch(/Stand|Sperrung /);
+    // #1310 B2 supersedes #1020's "no facilities in the snippet" (which kept counted rest areas and chargers out of a
+    // live-led line): the evergreen description says what the page offers, rest areas, charging and parking among it
+    expect(h.description).toMatch(/^A7 \(Schleswig-Holstein\): Stau, Sperrungen und Baustellen je Richtung, dazu Rastplätze, Laden und Parken entlang der Strecke/u);
     // #1173: the read stands in the status block; the paragraph is the course in one sentence
     expect(h.intro!).toMatch(/^Die A7 führt von A[SDK] Musterstadt-Nord 1 bis A[SDK] Musterstadt-\S+ \d+, schematisch etwa [\d.]+ km lang, durch Schleswig-Holstein, mit \d+ Anschlussstellen, Kreuzen und Dreiecken \(davon \d+ Kreuze und Dreiecke\); ihr Verlauf ist zwischen A[SDK] \S+ \d+ und A[SDK] \S+ \d+ unterbrochen\.$/);
     expect(h.intro!).not.toMatch(/gemeldet|Stand /);
@@ -102,20 +102,21 @@ describe("the head and the intro of four motorway pages (#716, 2.1.17)", () => {
   it("the A7 in English and Russian: no German place in the description, the Land in the page's language", async () => {
     const en = await head("en", "A7");
     expect(en.title).toBe("A7: closure today – ViaFrei");
-    expect(en.description).toMatch(/^A7: 6 closures, 8 jams, /);
+    expect(en.description).toMatch(/^A7 \(Schleswig-Holstein\): /);
     expect(en.description).not.toMatch(/Musterstadt/);
     expect(en.intro!).toMatch(/^The A7 runs from Musterstadt-Nord 1 (junction|interchange) to /);
     const ru = await head("ru", "A7");
-    expect(ru.description).toMatch(/^A7: /);
+    expect(ru.description).toMatch(/^A7 \(/);
     expect(ru.description).not.toMatch(/[A-Za-z]{4,}(?<!ViaFrei)/);
     expect(ru.intro!).toMatch(/^Маршрут автобана A7: /);
   });
-  it("the A61 names its break and says nothing is reported, with Stand; the A34 promises no map and has no route sentence", async () => {
+  it("the A61 names its break; its description is the evergreen one; the A34 promises no map and has no route sentence", async () => {
     const a61 = await head("de", "A61");
     expect(a61.intro!).toContain("ihr Verlauf ist zwischen AS Beispielort-");
     expect(a61.intro!).toMatch(/^Die A61 führt /);
-    // nothing active: said so with its Stand in the snippet, never a list of facilities (#1020 round 2, #1110)
-    expect(a61.description).toMatch(/^A61: Derzeit nichts gemeldet · Stand \d\d:\d\d\./);
+    // #1310 B2: nothing active changes nothing in the snippet — no "nothing reported", no Stand
+    expect(a61.description).toMatch(/^A61\b/);
+    expect(a61.description).not.toMatch(/gemeldet|Stand/);
     for (const lang of LIVE_LANGS) {
       const a34 = await head(lang, "A34");
       expect(a34.title, lang).not.toMatch(/Karte|\bmap\b|карт|hart|harita/iu);

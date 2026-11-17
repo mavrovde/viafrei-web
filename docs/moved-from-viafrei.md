@@ -95,6 +95,7 @@ line above:
 <!-- skips:begin -->
 | file | marker | skipped | why |
 |---|---|---|---|
+| `packages/design/test/http-idle.test.ts` | cross-repo | 1 | Traefik's idle timeout the shared keep-alive outlasts — viafrei-infra's configuration |
 | `packages/web/test/automation-edge.test.ts` | cross-repo | 2 | the edge's crawler map and card-fragment limits — viafrei-infra's configuration |
 | `packages/web/test/brand.test.ts` | cross-repo | 2 | viafrei's README and its project briefs (CLAUDE.md, PLAYBOOK.md) |
 | `packages/web/test/budget.test.ts` | cross-repo | 1 | production's compose switches — viafrei-infra's configuration |

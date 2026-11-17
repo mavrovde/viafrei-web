@@ -1,6 +1,7 @@
 {
   "meta": {
     "tagline": "Platforma germană de mobilitate în timp real pentru AI",
+    "titleTagline": "Platforma germană de mobilitate în timp real",
     "pitch": "ViaFrei le oferă asistenților AI informații în timp real despre Germania. Trenuri și autobuze, trafic și lucrări rutiere, carburant, încărcare, parcare și vreme. Un singur MCP. Fără cheie API. Fără înregistrare.",
     "description": "Blocaje, închideri, lucrări, trenuri, parcări, încărcare și carburant în toată Germania – din date deschise, răspunsul asistentului tău AI, cu sursă.",
     "siteName": "ViaFrei"
@@ -221,7 +222,8 @@
     "more": "Încă 2 întrebări și o limită",
     "answer": {
       "label": "Răspunsul ViaFrei",
-      "asOf": "Situația la {asOf}"
+      "asOf": "Situația la {asOf}",
+      "again": "De asemenea, din sursele de mai sus:"
     },
     "limitLabel": "Sincer vorbind",
     "cta": "Începe",

@@ -41,3 +41,16 @@ guillemets	Ort «Quadrath» unbekannt	Quadrath
 backtick	column `zollstockweg` missing	zollstockweg
 email	mail jane.doe@example.org bounced	jane.doe@example.org|jane.doe
 place_key_cut	bad receipt:3 in prompt:7 at pt:-5	pt:3|pt:7|pt:-5
+token_in_path	GET /internal/station/a1B2c3D4e5F6g7H8i9J0k1L2m3N4o5P6q7R8s9T0/area 504	a1B2c3D4e5F6|q7R8s9T0
+token_split_path	GET /internal/x/a1B2c3D4e5F6g7H8/i9J0k1L2m3N4o5P6q7R8 504	a1B2c3D4e5F6|i9J0k1L2m3N4
+token_base64_path	GET /k/ab+cd/efghijklmnopqrstuvwxyz0123=	efghijklmnop
+token_lower_path	GET /internal/x/k3j9q2m8v7n4p1z6r5t0w8y2/area 504	k3j9q2m8v7n4|p1z6r5t0w8y2
+token_dash_path	GET /internal/x/aB3-xY9kL2mN4pQ7rS8/area 504	aB3-xY9kL2mN|pQ7rS8
+# 2.6.19 review (B1): long all-letter or dashed values that a slug rule must never keep outside our own fragment key
+slug_like_letters	GET /x/abcdefghijklmnop-qrstuvwxyzabcdefghij 200	qrstuvwxyzab
+slug_like_ghp	GET /x/ghp-abcdefghijklmnopqrstuvwxyzabcdefgh 200	ghp-abcdefgh|mnopqrstuvwx
+slug_like_whsec	GET /x/whsec-abcdefghijklmnopqrstuvwxyz 200	whsec-abcdef|nopqrstuvwxy
+slug_like_xoxb	GET /x/xoxb-1234-5678-abcdefghijklmnopqrstuvwx 200	xoxb-1234|ijklmnopqrst
+slug_like_diceware	GET /reset/correct-horse-battery-staple-orange-violin 200	correct-horse|battery-staple
+slug_like_base32	GET /x/jbsw-abcd-ehpk-qpxp-mnop-qrst-uvwx-yzab 200	jbsw-abcd|qrst-uvwx
+slug_like_hexwords	GET /x/deadbeef-cafebabe-facefeed-deadbeef 200	cafebabe-facefeed

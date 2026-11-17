@@ -9,6 +9,7 @@
 import StationsPage from "../../layouts/StationsPage.astro";
 import { isLang } from "../../i18n/index.js";
 import { readEnv } from "../../lib/env.js";
+import { withinBudget } from "../../lib/page-budget.js";
 import { unavailableAnswer } from "../../lib/degraded.js";
 import { resolveStationIndex } from "../../lib/station-page.js";
 import { fetchStationTop, withStationTop } from "../../lib/station-top.js";
@@ -19,7 +20,7 @@ const lang = Astro.params["lang"] ?? "";
 if (!isLang(lang)) return Astro.rewrite("/404");
 const env = readEnv();
 const params = new URL(Astro.request.url).searchParams;
-const o = { baseUrl: env.digestUrl, timeoutMs: env.tileTimeoutMs };
+const o = withinBudget({ baseUrl: env.digestUrl, timeoutMs: env.tileTimeoutMs }, Astro.locals.budgetEndsAt);
 const panel = { ...o, timeoutMs: Math.min(o.timeoutMs, PANEL_DEADLINE_MS) };
 // the blocks are asked only for the bare catalogue: a search or a Land's list is the person's own question
 const bare = !params.has("q") && !params.has("land");

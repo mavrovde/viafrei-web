@@ -28,7 +28,9 @@ describe("the BKG line on the site's credit lists", () => {
   it("is rendered by the one component every credit list uses, with no second licence link", () => {
     const item = readFileSync(join(SRC, "components", "CreditItem.astro"), "utf8");
     expect(item).toMatch(/c\.parts !== null \? c\.parts\.map/u);
-    for (const f of [join(SRC, "components", "Answer.astro"), join(SRC, "layouts", "ConnectPage.astro")]) {
+    // 2.6.19 (#746): an example answer's lines go through CreditList, which renders each one with CreditItem.
+    expect(readFileSync(join(SRC, "components", "Answer.astro"), "utf8")).toContain("<CreditList lang={lang} credits={full}");
+    for (const f of [join(SRC, "components", "CreditList.astro"), join(SRC, "layouts", "ConnectPage.astro")]) {
       const src = readFileSync(f, "utf8");
       expect(src, f).toContain("<CreditItem c={c} lang={lang} />");
       expect(src, f).not.toContain('<li lang="de"><a href={c.url}');

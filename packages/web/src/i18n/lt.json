@@ -1,6 +1,7 @@
 {
   "meta": {
     "tagline": "Vokietijos realaus laiko judumo platforma, skirta DI",
+    "titleTagline": "Vokietijos realaus laiko judumo platforma",
     "pitch": "ViaFrei suteikia DI asistentams realaus laiko žinių apie Vokietiją. Traukiniai ir autobusai, eismas ir kelio darbai, degalai, įkrovimas, stovėjimas ir orai. Vienas MCP. Jokio API rakto. Jokios registracijos.",
     "description": "Spūstys, uždarymai, kelio darbai, traukiniai, parkavimas, įkrovimas ir degalai Vokietijoje – gyvai iš atvirųjų duomenų, su šaltiniu, per jūsų DI asistentą.",
     "siteName": "ViaFrei"
@@ -221,7 +222,8 @@
     "more": "Dar 2 klausimai ir vienas apribojimas",
     "answer": {
       "label": "ViaFrei atsakė",
-      "asOf": "Duomenys: {asOf}"
+      "asOf": "Duomenys: {asOf}",
+      "again": "Taip pat pagal aukščiau nurodytus šaltinius:"
     },
     "limitLabel": "Atvirai kalbant",
     "cta": "Pradėti",

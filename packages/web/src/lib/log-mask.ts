@@ -23,7 +23,11 @@
  *      it carries `::` or seven colons;
  *   2. a UUID, any case → `<uuid>` (MCP session ids, Tankerkönig station ids);
  *   3. `Bearer …`, a `Cookie:`/`Set-Cookie:` value, URL userinfo, a run of 32
- *      or more token characters and a hex run of 24 or more → `<token>`;
+ *      or more token characters and a hex run of 24 or more → `<token>` — a
+ *      run that is a PATH (`/internal/motorway/a1/exit-84-dortmund-unna`) is
+ *      judged segment by segment instead (#1310 H, `maskTokenRun`), so the
+ *      fragment behind a `fragment_timeout` is named while a token inside a
+ *      segment is still masked;
  *   4. a query string → `?<q>`, a fragment → `#<f>`;
  *   5. a place key `pt:<n>,<n>` → `<place>`, a pair of decimals → `<coord>`, a
  *      decimal with two or more fractional digits → `<num>` (so no fuel price
@@ -51,6 +55,8 @@ const BEARER = /\b(Bearer)\s+\S+/gi;
 const COOKIE = /\b(Set-Cookie|Cookie):[^\n]*/gi;
 const USERINFO = /([A-Za-z][A-Za-z0-9+.-]*:\/\/)[^/\s@]+@/g;
 const TOKEN_RUN = /[A-Za-z0-9_+/=.-]{32,}/g;
+/** #1310 H: one segment of a path, as the token rule reads it. */
+const PATH_SEGMENT = /[^/]+/g;
 const HEX_RUN = /[0-9A-Fa-f]{24,}/g;
 const QUERY = /([^\s?])\?[^\s"'`]+/g;
 const FRAGMENT = /([^\s#])#[^\s"'`]+/g;
@@ -73,6 +79,22 @@ const QUOTES: ReadonlyMap<string, readonly string[]> = new Map([
   ["«", ["»"]],
   ["»", ["«"]],
 ]);
+
+/**
+ * Step 3's run rule (#1310 H): a run of 32 or more token characters is a `<token>` — unless it is a PATH. Before, a
+ * whole fragment path (`/internal/station/<slug>/area`) was one run and went as one `<token>`, so 2 594 of ~2 850
+ * `fragment_timeout` rows of 2026-11-14 named no fragment. A path is a run that STARTS with `/` (a pathname, never the
+ * middle of a base64 value, which the maximal run would have joined) and carries no `+` or `=` (base64's marks). Each of
+ * its segments is then judged alone: a segment of 32 or more characters, of 16 or more that mixes upper case, lower
+ * case and digits, or of 16 or more that mixes letters and digits and carries no `-` (a random value split by a `/`,
+ * lower case or not — `k3j9q2m8v7n4p1z6r5t0w8y2`; our slugs join their words with `-`, as `exit-84-dortmund-unna`, and
+ * our routes and road numbers are letters only or short), is a `<token>`; every other segment is kept. Anything else is
+ * masked whole, as before.
+ */
+function maskTokenRun(run: string): string {
+  if (!run.startsWith("/") || /[+=]/.test(run)) return "<token>";
+  return run.replace(PATH_SEGMENT, (seg) => (seg.length >= 32 || (seg.length >= 16 && /[A-Z]/.test(seg) && /[a-z]/.test(seg) && /[0-9]/.test(seg)) || (seg.length >= 16 && /[A-Za-z]/.test(seg) && /[0-9]/.test(seg) && !seg.includes("-")) ? "<token>" : seg));
+}
 
 /** Step 0: our own deploy paths, shortened; nothing else is touched. */
 function shortenPaths(s: string): string {
@@ -114,7 +136,7 @@ export function maskLogText(input: string): string {
   // 2.
   s = s.replace(UUID, "<uuid>");
   // 3.
-  s = s.replace(BEARER, "$1 <token>").replace(COOKIE, "$1: <token>").replace(USERINFO, "$1<token>@").replace(TOKEN_RUN, "<token>").replace(HEX_RUN, "<token>");
+  s = s.replace(BEARER, "$1 <token>").replace(COOKIE, "$1: <token>").replace(USERINFO, "$1<token>@").replace(TOKEN_RUN, maskTokenRun).replace(HEX_RUN, "<token>");
   // 4.
   s = s.replace(QUERY, "$1?<q>").replace(FRAGMENT, "$1#<f>");
   // 5.

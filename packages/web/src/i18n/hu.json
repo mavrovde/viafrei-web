@@ -1,6 +1,7 @@
 {
   "meta": {
     "tagline": "A valós idejű német mobilitási platform az MI számára",
+    "titleTagline": "A valós idejű német mobilitási platform",
     "pitch": "A ViaFrei valós idejű tudást ad az MI-asszisztenseknek Németországról. Vonatok és buszok, forgalom és útépítések, üzemanyag, töltés, parkolás és időjárás. Egy MCP. Nincs API-kulcs. Nincs regisztráció.",
     "description": "Dugók, lezárások, útfelújítások, vasút, parkolás, töltés és üzemanyag Németországban – élőben, nyílt adatokból, az MI-asszisztens válaszaként, forrással.",
     "siteName": "ViaFrei"
@@ -221,7 +222,8 @@
     "more": "Még két kérdés és egy korlát",
     "answer": {
       "label": "A ViaFrei válasza",
-      "asOf": "Állapot: {asOf}"
+      "asOf": "Állapot: {asOf}",
+      "again": "A fenti forrásokból is:"
     },
     "limitLabel": "Őszintén szólva",
     "cta": "Indulás",

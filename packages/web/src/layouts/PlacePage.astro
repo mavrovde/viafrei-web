@@ -26,7 +26,8 @@ import type { PlaceCardId } from "../lib/topic-filter.js";
 import { LIVE_LANGS, type Lang } from "../site/pages.js";
 import { placePath } from "../site/places.js";
 import { placeMeta } from "../site/meta.js";
-import { liftPlaceFirst, placeNowOf, placeRoadsOf } from "../lib/place-head.js";
+import { liftPlaceFirst, placeNowOf } from "../lib/place-head.js";
+import { landNameOf } from "@viafrei/design";
 import PageHead from "../components/PageHead.astro";
 import { placeCrumbs, placeJsonLd } from "../site/structured-data.js";
 import Crumbs from "../components/Crumbs.astro";
@@ -47,6 +48,8 @@ const { lang, place: whole, slug, opened = false, topics = null, filtered = fals
 // #1176: the status block stands under the H1; a filtered or opened render keeps the same block
 const lifted = liftPlaceFirst(whole.html);
 const place = { ...whole, html: lifted.html };
+// #1310 B2: the Land of a Gemeinde page (its key's first two digits), in the page's language, for the description
+const land = landNameOf(lang, place.at.replace(/^ags:/u, ""));
 // The lead around the town's name: the name is the gazetteer's German proper name, printed as such and marked
 // translate="no" (#449: a translated page may name a place, it may not say other words in German).
 const MARK = "\u0000";
@@ -63,7 +66,7 @@ const headerPlace = blockHeaderPlace(lang, { source: "page", place, path: placeP
   page="start"
   place={headerPlace}
   robots={opened || filtered ? "noindex, noarchive" : "noarchive"}
-  dynamic={{ ...placeMeta(place.label, lang, placeRoadsOf(place.html), placeNowOf(lifted.first)), path: placePath(lang, slug), alternates, jsonLd: placeJsonLd(lang, place.label, placePath(lang, slug)) }}
+  dynamic={{ ...placeMeta(place.label, lang, placeNowOf(lifted.first), land), path: placePath(lang, slug), alternates, jsonLd: placeJsonLd(lang, place.label, placePath(lang, slug), land) }}
 >
   <Crumbs lang={lang} crumbs={placeCrumbs(lang, place.label, placePath(lang, slug))} namesFrom={1} />
   {/* #1180: the desktop dashboard — from 1024 px one grid, the page's blocks in the left column in their DOM order and the

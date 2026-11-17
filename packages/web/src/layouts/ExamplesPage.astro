@@ -86,7 +86,7 @@ const fuelNote = t(lang, "examplesPage.fuelNote", { home: FUEL_HOME, connect: FU
       // fold stands in the open cards' grid, so from 601 px up its cards are the same grid's (`.examples-more`).
       const split = splitFold(of(d), EXAMPLES_OPEN, idsOf);
       const one = (e: ArchiveEntry) => {
-        if (e.kind === "card") return <div class="example" id={e.id}><LiveCard lang={lang} e={e.card} source="examples" /></div>;
+        if (e.kind === "card") return <div class="example" id={e.id}><LiveCard lang={lang} e={e.card} source="examples" foldCredits /></div>;
         // archiveEntries() holds no Tankerkönig example (the data steward's Verdict 2): the fuel section points to the home and /connect
         if (e.kind === "fuel") return null;
         if (e.kind === "business") {
@@ -100,7 +100,7 @@ const fuelNote = t(lang, "examplesPage.fuelNote", { home: FUEL_HOME, connect: FU
                   <code>{e.ask.tool}</code>
                 </p>
               </blockquote>
-              <Answer lang={lang} msg={e.ask.answerKey} answer={e.ask.answer} class="moment__answer" source="examples" />
+              <Answer lang={lang} msg={e.ask.answerKey} answer={e.ask.answer} class="moment__answer" source="examples" foldCredits />
             </article>
           );
         }
@@ -122,7 +122,7 @@ const fuelNote = t(lang, "examplesPage.fuelNote", { home: FUEL_HOME, connect: FU
                     <code>{m.tools[e.n - 1]}</code>
                   </p>
                 </blockquote>
-                <Answer lang={lang} msg={answerKey(m, e.n)} answer={m.answers[e.n - 1]!} class="moment__answer" source="examples" />
+                <Answer lang={lang} msg={answerKey(m, e.n)} answer={m.answers[e.n - 1]!} class="moment__answer" source="examples" foldCredits />
               </>
             )}
           </article>

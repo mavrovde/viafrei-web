@@ -1,6 +1,7 @@
 {
   "meta": {
     "tagline": "Den tyske realtidsplatform for mobilitet til AI",
+    "titleTagline": "Den tyske realtidsplatform for mobilitet til AI",
     "pitch": "ViaFrei giver AI-assistenter viden om Tyskland i realtid. Tog og busser, trafik og vejarbejde, brændstof, opladning, parkering og vejr. Én MCP. Ingen API-nøgle. Ingen tilmelding.",
     "description": "Kø, spærringer, vejarbejde, tog, parkering, opladning og brændstof i Tyskland – live fra åbne data, besvaret af din AI-assistent, hvert tal med kilde.",
     "siteName": "ViaFrei"
@@ -221,7 +222,8 @@
     "more": "2 spørgsmål mere og en grænse",
     "answer": {
       "label": "ViaFrei svarede",
-      "asOf": "Opdateret: {asOf}"
+      "asOf": "Opdateret: {asOf}",
+      "again": "Også fra kilderne ovenfor:"
     },
     "limitLabel": "Helt ærligt",
     "cta": "Kom i gang",

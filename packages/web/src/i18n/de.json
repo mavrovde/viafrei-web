@@ -1,6 +1,7 @@
 {
   "meta": {
     "tagline": "Die Echtzeit-Mobilitätsplattform für KI in Deutschland",
+    "titleTagline": "Die Echtzeit-Mobilitätsplattform für KI",
     "pitch": "ViaFrei gibt KI-Assistenten Echtzeit-Wissen über Deutschland. Bahn und Bus, Verkehr und Baustellen, Sprit, Laden, Parken und Wetter. Ein MCP. Kein API-Schlüssel. Keine Anmeldung.",
     "description": "Stau, Sperrungen, Baustellen, Bahn, Parken, Laden und Tanken in Deutschland – live aus offenen Daten, als Antwort Ihres KI-Assistenten, jede Zahl mit Quelle.",
     "siteName": "ViaFrei"
@@ -221,7 +222,8 @@
     "more": "2 weitere Fragen und eine Grenze",
     "answer": {
       "label": "ViaFrei antwortete",
-      "asOf": "Stand: {asOf}"
+      "asOf": "Stand: {asOf}",
+      "again": "Ebenso aus den Quellen oben:"
     },
     "limitLabel": "Ehrlich gesagt",
     "cta": "Startklar machen",

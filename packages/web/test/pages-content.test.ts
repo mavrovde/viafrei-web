@@ -15,6 +15,7 @@ import { buildCatalogue } from "../scripts/generate-catalogue.js";
 import catalogue from "../src/generated/catalogue.json" with { type: "json" };
 import { catalogue as catalogueOf, t } from "../src/i18n/index.js";
 import { CONNECT_PROMPTS, GRADED_PROMPT_LANGS } from "../src/site/connect-prompts.js";
+import { PUBLIC_REPOS } from "../src/site/structured-data.js";
 import { NOT_COVERED } from "../src/site/not-covered.js";
 import { MissingIdentity, REQUIRED_IDENTITY, identityOrError, readIdentity } from "../src/lib/identity.js";
 import { sitemapXml } from "../src/pages/sitemap.xml.js";
@@ -121,8 +122,24 @@ describe("developer page catalogue (#143)", () => {
   });
 
   it("no template links the private platform repository", () => {
+    // The repositories a template may name are the PUBLIC ones, read from the list the JSON-LD's `sameAs` is
+    // built from (PUBLIC_REPOS), never typed a second time here; plus `viafrei-bridge`, the bridge's name before
+    // it became viafrei-mcp, which Glama's listing still carries (GLAMA_LISTING). viafrei, viafrei-infra and
+    // viafrei-ingestor are private and in neither.
+    const GITHUB = "https://github.com/mavrovde/";
+    for (const u of PUBLIC_REPOS) expect(u.startsWith(GITHUB), u).toBe(true);
+    const allowed = new Set([...PUBLIC_REPOS.map((u) => u.slice(GITHUB.length)), "viafrei-bridge"]);
+    expect(allowed.has("viafrei")).toBe(false);
     const files = execFileSync("git", ["ls-files", "--others", "--cached", "--exclude-standard", "src"], { cwd: WEB, encoding: "utf8" }).split("\n").filter(Boolean);
-    for (const f of files) expect(readFileSync(join(WEB, f), "utf8"), f).not.toMatch(/mavrovde\/viafrei(?!-mcp|-bridge)/);
+    let named = 0;
+    for (const f of files) {
+      for (const m of readFileSync(join(WEB, f), "utf8").matchAll(/mavrovde\/(viafrei[A-Za-z0-9_.-]*)/g)) {
+        named += 1;
+        expect(allowed.has(m[1]!), `${f}: mavrovde/${m[1]}`).toBe(true);
+      }
+    }
+    // PRECONDITION: the sweep read the templates that do name a repository (structured-data.ts, connect-prompts.ts).
+    expect(named).toBeGreaterThanOrEqual(PUBLIC_REPOS.length);
   });
 });
 

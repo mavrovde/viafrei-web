@@ -18,7 +18,7 @@ describe("per-page titles (F-20)", () => {
       const titles = PAGE_IDS.map((p) => pageMeta(p, lang).title);
       expect(new Set(titles).size, titles.join(" | ")).toBe(PAGE_IDS.length);
       // #935: the home's is the brand line, "ViaFrei – <tagline>" (test/brand.test.ts)
-      const home = `${t(lang, "meta.siteName")} – ${t(lang, "meta.tagline")}`;
+      const home = `${t(lang, "meta.siteName")} – ${t(lang, "meta.titleTagline")}`; // #1310 B1: the tagline within 60
       expect(pageMeta("start", lang).title).toBe(home);
       for (const p of PAGE_IDS.filter((x) => x !== "start")) {
         expect(pageMeta(p, lang).title, p).not.toBe(home);

@@ -27,7 +27,7 @@ const STADA = JSON.parse(readFileSync(join(findRepoRoot(), "fixtures/stada/stati
 let admin: pg.Pool;
 let reachable = true;
 beforeAll(async () => {
-  ({ pool: admin, reachable } = await testDb(`do $$ begin if to_regclass('station_index_live') is null or not has_table_privilege('viafrei_mcp', 'station_index_live', 'select') then raise exception 'apply db/migrations/0247_mcp_station_grants.sql'; end if; end $$`));
+  ({ pool: admin, reachable } = await testDb(`do $$ begin if to_regclass('station_index_live') is null or not has_table_privilege('viafrei_mcp', 'station_index_live', 'select') then raise exception 'migrate with the pinned viafrei-database image (database.pin)'; end if; end $$`));
 });
 afterAll(async () => {
   await admin?.end();

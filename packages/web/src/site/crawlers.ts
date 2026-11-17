@@ -68,8 +68,8 @@ export const AI_CRAWLERS = [
  * exactly the search engines' treatment, read by every place that decides it:
  *  - nginx (the edge configuration, the cluster manifests): `$vf_search_claimed` leaves them out of the
  *    per-network budget as it leaves out the search engines (held equal to this list by test/discovery.test.ts and
- *    scripts/landing-conf.test.sh), and `$vf_ai_assistant` (held equal, lower-cased and in this order, by
- *    scripts/landing-conf.test.sh) exempts a VERIFIED one — the edge's marker — from the crawlers' 20-a-minute budget
+ *    the edge configuration tests), and `$vf_ai_assistant` (held equal, lower-cased and in this order, by
+ *    the edge configuration tests) exempts a VERIFIED one — the edge's marker — from the crawlers' 20-a-minute budget
  *    on the database pages, as Google and Bing are exempt; an unverified claim of one is a spoof and shares the
  *    unverified claims' bucket, as a forged Googlebot does;
  *  - the shell (`overload/crawler-verify.ts` `AI_ASSISTANT_UA`, built from this list): a verified one reads on the
@@ -113,6 +113,10 @@ export const AI_ASSISTANTS = [
   "Google-Agent",
   "YouBot",
   "cohere-ai",
+  // #1323 (prod 2026-11-17): an AI search indexer Cloudflare verifies (category "AI Search"); its sweeps of the charging
+  // pages queued on the crawler lane and were answered 503 at the 2 s deadline. No operator page was found for it; the
+  // edge's verification is the only source, and an unverified claim of it reads on the crawler lane
+  "ShapBot",
 ] as const;
 /**
  * #1077: the day the operators' own crawler pages were last read against these lists, each page named:

@@ -12,6 +12,7 @@ import { webPinned } from "./lang-pins.js";
 const COURSE = webPinned((p) => p.course);
 import { describe, expect, it } from "vitest";
 import { all, text as nodeText } from "@viafrei/design/testing";
+import { pageDescription } from "@viafrei/design";
 import { t } from "../src/i18n/index.js";
 import { HEAD_TITLE_LIMIT, motorwayHeadOf, unescapeAttr } from "../src/lib/motorway-head.js";
 import { liftAmpel } from "../src/lib/motorway-ampel.js";
@@ -96,10 +97,10 @@ describe("the whole register through the shell's reader (#716, 2.1.17)", () => {
         }
     expect(n).toBe(MOTORWAY_REGISTER.length * LIVE_LANGS.length * 3);
   });
-  it("the shell's own title and description (the fallback) are the digest's no-course wording, in every language", () => {
+  it("the shell's own title (the fallback) is the digest's no-course wording, its description the evergreen builder's (#1310 B2), in every language", () => {
     for (const lang of LIVE_LANGS) {
       const c = MOTORWAY_SEO_COPY[lang];
-      expect(motorwayMeta("A7", lang), lang).toEqual({ title: c.titleNoCourse.replace("{road}", "A7"), description: c.description.noCourse.replace("{road}", "A7") });
+      expect(motorwayMeta("A7", lang), lang).toEqual({ title: c.titleNoCourse.replace("{road}", "A7"), description: pageDescription(lang, { kind: "motorway", name: "A7" }) });
       // the fallback lead promises no course either: it is the lead of a page that may hold none
       const own = (COURSE as Readonly<Record<string, string>>)[lang];
       expect(t(lang, "seo.motorwayLead", { road: "A7" }).toLowerCase(), lang).not.toMatch(own === undefined ? /Verlauf|route|маршрут|traseu|güzergâh/iu : new RegExp(own.toLowerCase(), "u"));
