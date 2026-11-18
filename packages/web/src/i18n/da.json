@@ -232,7 +232,7 @@
         "q1": "Kører busser og tog i Hamborg til tiden lige nu?",
         "a1": "{share} % af de observerede afgange i den seneste time var mere end 5 minutter forsinket – flere end timen før ({before} %).",
         "limit": "Vi viser rettidighed pr. region, ikke pr. linje.",
-        "q2": "Hvornår kører det næste tog fra Hannover Hovedbanegård, og er det forsinket?",
+        "q2": "Hvornår kører det næste tog fra Leipzig Hovedbanegård, og er det forsinket?",
         "q3": "Bliver nogen tog på afgangstavlen på Köln Hovedbanegård aflyst i den næste time?",
         "a2": "Først {l1} til {d1} (planlagt {t1}, spor {p1}) med +{delay} min., ca. {exp}; derefter {l2} til {d2} kl. {t2}, til tiden.",
         "a3": "Ingen aflyses: {n} afgange frem til {last}; den største forsinkelse har {l1} til {d1} med +{delay} min."
@@ -246,7 +246,7 @@
         "limit": "Køreplanen for hvert bus- og sporvognsstoppested viser vi, så snart den er indlæst — indtil da stationer og situationen i din region.",
         "board": "Køreplan ved dit stoppested",
         "a2": "Først {l1} til {d1} kl. {t1} fra spor {p1}, til tiden; {l2} til {d2} kl. {t2} har +{delay2} min., ca. {exp2}.",
-        "q3": "Kører der tog fra Leipzig Hovedbanegård med forsinkelse lige nu?",
+        "q3": "Kører der tog fra Dresden Hovedbanegård med forsinkelse lige nu?",
         "a3": "Ja, to: {l1} til {d1} med +{dl1} min. fra spor {p1} og {l2} til {d2} med +{dl2} min.; de øvrige {n} kommende afgange er til tiden."
       },
       "station": {
@@ -345,8 +345,8 @@
       },
       "leipzig": {
         "q": "Hvor er blyfri 95 E5 billigst i Leipzig lige nu?",
-        "why": "En pris kan være timer gammel: ViaFrei siger ved hver pris, hvornår stationen meldte den – den eftermiddag stammede de billigste i Leipzig stadig fra formiddagen.",
-        "a": "Ingen ny pris endnu – senest billigst: {euro},{cent} €/l hos {station}, {address}, meldt den {reported}."
+        "why": "Priserne ændrer sig flere gange om dagen og varierer selv mellem få tankstationer i samme by: ViaFrei nævner den billigste med prisen og klokkeslættet, hvor stationen meldte den.",
+        "a": "{euro},{cent} €/l hos {station}, {address} – meldt kl. {reported}."
       },
       "nuernberg": {
         "q": "Hvor er diesel billigst i Nürnberg lige nu?",

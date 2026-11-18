@@ -232,7 +232,7 @@
         "q1": "Rijden bussen en treinen in Hamburg nu op tijd?",
         "a1": "{share}% van de waargenomen ritten van het afgelopen uur had meer dan 5 minuten vertraging – meer dan het uur ervoor ({before}%).",
         "limit": "Stiptheid tonen we per regio, niet per lijn.",
-        "q2": "Wanneer vertrekt de volgende trein van Hannover Centraal, en heeft hij vertraging?",
+        "q2": "Wanneer vertrekt de volgende trein van Leipzig Centraal, en heeft hij vertraging?",
         "q3": "Vallen er op het vertrekbord van Keulen Centraal het komende uur treinen uit?",
         "a2": "Eerst {l1} naar {d1} (gepland {t1}, spoor {p1}) met +{delay} min, rond {exp}; daarna {l2} naar {d2} om {t2}, op tijd.",
         "a3": "Er valt er geen uit: {n} vertrekken tot {last}; de grootste vertraging heeft {l1} naar {d1}, +{delay} min."
@@ -246,7 +246,7 @@
         "limit": "De dienstregeling van elke bus- en tramhalte tonen we zodra die geladen is — tot dan stations en de situatie in je regio.",
         "board": "Dienstregeling bij je halte",
         "a2": "Eerst de {l1} naar {d1} om {t1} van spoor {p1}, op tijd; de {l2} naar {d2} van {t2} heeft +{delay2} min, rond {exp2}.",
-        "q3": "Vertrekken er op het hoofdstation van Leipzig nu treinen met vertraging?",
+        "q3": "Vertrekken er op het hoofdstation van Dresden nu treinen met vertraging?",
         "a3": "Ja, twee: de {l1} naar {d1} met +{dl1} min van spoor {p1} en de {l2} naar {d2} met +{dl2} min; de andere {n} komende vertrekken zijn op tijd."
       },
       "station": {
@@ -345,8 +345,8 @@
       },
       "leipzig": {
         "q": "Waar is Euro 95 E5 in Leipzig nu het goedkoopst?",
-        "why": "Een prijs kan uren oud zijn: ViaFrei zegt bij elke prijs wanneer het station die meldde – die middag kwamen de goedkoopste in Leipzig nog van de ochtend.",
-        "a": "Nog geen nieuwe prijs – laatst bekend als goedkoopst: € {euro},{cent} per liter bij {station}, {address}, gemeld op {reported}."
+        "why": "Prijzen veranderen meerdere keren per dag en verschillen zelfs tussen een paar tankstations in één stad: ViaFrei noemt de goedkoopste met de prijs en het tijdstip waarop het station die meldde.",
+        "a": "€ {euro},{cent} per liter bij {station}, {address} – gemeld om {reported}."
       },
       "nuernberg": {
         "q": "Waar is diesel in Neurenberg nu het goedkoopst?",

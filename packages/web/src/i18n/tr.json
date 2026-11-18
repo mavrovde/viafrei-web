@@ -232,7 +232,7 @@
         "q1": "Hamburg'da otobüs ve trenler şu anda zamanında mı?",
         "a1": "Gecikme oranı % {share}: son bir saatte izlenen seferlerin bu kadarı 5 dakikadan fazla geç kaldı — bir önceki saatten daha fazla (% {before}).",
         "limit": "Dakikliği hat bazında değil, bölge bazında gösteriyoruz.",
-        "q2": "Hannover Ana Garı'ndan bir sonraki tren ne zaman ve gecikmeli mi?",
+        "q2": "Leipzig Ana Garı'ndan bir sonraki tren ne zaman ve gecikmeli mi?",
         "q3": "Köln Ana Garı kalkış tablosunda önümüzdeki bir saatte iptal edilen tren var mı?",
         "a2": "{d1} yönüne {l1} (tarifeye göre {t1}, peron {p1}) +{delay} dk gecikmeli, {exp} civarında kalkıyor; ardından {d2} yönüne {l2} saat {t2}'de, zamanında.",
         "a3": "İptal yok: saat {last}'e kadar {n} kalkış; en büyük gecikme {d1} yönüne {l1} treninde, +{delay} dk."
@@ -246,7 +246,7 @@
         "limit": "Her otobüs ve tramvay durağının saatlerini yüklendiği anda göstereceğiz — o zamana kadar istasyonlar ve bölgenizdeki durum.",
         "board": "Durağınızdaki sefer saatleri",
         "a2": "Sıradaki, {d1} yönüne {l1}: saat {t1}, peron {p1}, zamanında; {d2} yönüne saat {t2}'deki {l2} +{delay2} dk gecikmeli, {exp2} civarında.",
-        "q3": "Leipzig Ana Garı'ndan şu anda gecikmeli kalkan tren var mı?",
+        "q3": "Dresden Ana Garı'ndan şu anda gecikmeli kalkan tren var mı?",
         "a3": "Evet, iki tane: {d1} yönüne {l1} +{dl1} dk gecikmeli, {p1} numaralı perondan; {d2} yönüne {l2} +{dl2} dk gecikmeli; sıradaki diğer {n} kalkış zamanında."
       },
       "station": {
@@ -345,8 +345,8 @@
       },
       "leipzig": {
         "q": "Leipzig'de şu anda en ucuz E5 benzin nerede?",
-        "why": "Bir fiyat saatlerce eski olabilir: ViaFrei her fiyatın istasyon tarafından ne zaman bildirildiğini söyler — o öğleden sonra Leipzig'deki en ucuzlar hâlâ sabahtan kalmaydı.",
-        "a": "Henüz yeni fiyat yok — bilinen son fiyatların en düşüğü: {station}, {address} — litresi {euro},{cent} €, {reported} tarihinde bildirildi."
+        "why": "Fiyatlar günde birkaç kez değişir ve aynı şehirdeki birkaç istasyon arasında bile farklıdır: ViaFrei en ucuzunu fiyatı ve istasyonun onu bildirdiği saatle birlikte söyler.",
+        "a": "{station}, {address} — litresi {euro},{cent} €, {reported} saatinde bildirildi."
       },
       "nuernberg": {
         "q": "Nürnberg'de şu anda en ucuz dizel nerede?",

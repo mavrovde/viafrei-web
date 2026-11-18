@@ -232,7 +232,7 @@
         "q1": "Jazdia autobusy a vlaky v Hamburgu práve načas?",
         "a1": "{share} % jázd sledovaných za poslednú hodinu meškalo viac ako 5 minút – viac ako hodinu predtým ({before} %).",
         "limit": "Presnosť ukazujeme po regiónoch, nie po linkách.",
-        "q2": "Kedy ide najbližší vlak z hlavnej stanice v Hannoveri a mešká?",
+        "q2": "Kedy ide najbližší vlak z hlavnej stanice v Lipsku a mešká?",
         "q3": "Rušia sa na odchodovej tabuli hlavnej stanice v Kolíne nad Rýnom v najbližšej hodine nejaké vlaky?",
         "a2": "Najbližšie {l1} smer {d1} (podľa plánu {t1}, koľaj {p1}) s meškaním +{delay} min, odchod okolo {exp}; potom včas {l2} smer {d2} o {t2}.",
         "a3": "Žiadny sa neruší: {n, plural, one {# odchod} few {# odchody} many {# odchodu} other {# odchodov}} do {last}; najväčšie meškanie má {l1} smer {d1}: +{delay} min."
@@ -246,7 +246,7 @@
         "limit": "Cestovný poriadok každej zastávky autobusu a električky ukážeme, len čo bude načítaný – dovtedy stanice a situáciu vo vašom regióne.",
         "board": "Cestovný poriadok na vašej zastávke",
         "a2": "Najbližšie {l1} smer {d1} o {t1} z koľaje {p1}, včas; {l2} smer {d2} s plánom {t2} má +{delay2} min, odchod okolo {exp2}.",
-        "q3": "Odchádzajú z hlavnej stanice v Lipsku práve vlaky s meškaním?",
+        "q3": "Odchádzajú z hlavnej stanice v Drážďanoch práve vlaky s meškaním?",
         "a3": "Áno, dva: {l1} smer {d1}, +{dl1} min, z koľaje {p1}, a {l2} smer {d2}, +{dl2} min; ostatné najbližšie odchody ({n}) sú včas."
       },
       "station": {
@@ -345,8 +345,8 @@
       },
       "leipzig": {
         "q": "Kde je v Lipsku práve najlacnejší benzín E5?",
-        "why": "Cena môže byť hodiny stará: ViaFrei pri každej cene uvedie, kedy ju stanica nahlásila – v to popoludnie pochádzali najlacnejšie ceny v Lipsku ešte z dopoludnia.",
-        "a": "Zatiaľ žiadna nová cena – naposledy najlacnejšie: {euro},{cent} €/l: {station}, {address}, nahlásené {reported}."
+        "why": "Ceny sa menia niekoľkokrát denne a líšia sa aj medzi pár čerpacími stanicami v jednom meste: ViaFrei uvedie najlacnejšiu s cenou a časom, keď ju stanica nahlásila.",
+        "a": "{euro},{cent} €/l: {station}, {address} – nahlásené o {reported}."
       },
       "nuernberg": {
         "q": "Kde je v Norimbergu práve najlacnejšia nafta?",

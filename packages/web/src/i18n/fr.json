@@ -232,7 +232,7 @@
         "q1": "Les bus et les trains sont-ils à l’heure à Hambourg en ce moment ?",
         "a1": "{share} % des trajets observés au cours de la dernière heure avaient plus de 5 minutes de retard — plus que l’heure précédente ({before} %).",
         "limit": "Nous indiquons la ponctualité par région, pas par ligne.",
-        "q2": "Quand part le prochain train de la gare centrale de Hanovre, et a-t-il du retard ?",
+        "q2": "Quand part le prochain train de la gare centrale de Leipzig, et a-t-il du retard ?",
         "q3": "Des trains sont-ils supprimés au tableau des départs de la gare centrale de Cologne dans l’heure qui vient ?",
         "a2": "Prochain départ : {l1} pour {d1} (prévu à {t1}, voie {p1}), +{delay} min, départ vers {exp} ; ensuite {l2} pour {d2} à {t2}, à l’heure.",
         "a3": "Aucun n’est supprimé : {n} départs jusqu’à {last} ; le plus gros retard est celui du {l1} pour {d1}, +{delay} min."
@@ -246,7 +246,7 @@
         "limit": "Nous afficherons les horaires de chaque arrêt de bus et de tram dès qu’ils seront chargés — d’ici là, les gares et la situation dans votre région.",
         "board": "Horaires à votre arrêt",
         "a2": "Prochain départ : {l1} pour {d1} à {t1}, voie {p1}, à l’heure ; le {l2} pour {d2} prévu à {t2} a +{delay2} min, départ vers {exp2}.",
-        "q3": "Les trains au départ de la gare centrale de Leipzig ont-ils du retard en ce moment ?",
+        "q3": "Les trains au départ de la gare centrale de Dresde ont-ils du retard en ce moment ?",
         "a3": "Oui, deux : le {l1} pour {d1}, +{dl1} min, voie {p1}, et le {l2} pour {d2}, +{dl2} min ; les {n} autres départs à venir sont à l’heure."
       },
       "station": {
@@ -345,8 +345,8 @@
       },
       "leipzig": {
         "q": "Où le sans-plomb E5 est-il le moins cher à Leipzig en ce moment ?",
-        "why": "Un prix peut dater de plusieurs heures : ViaFrei indique quand la station a signalé chaque prix — cet après-midi-là, le moins cher de Leipzig datait encore du matin.",
-        "a": "Pas encore de nouveau prix — le plus bas connu : {euro},{cent} € le litre chez {station}, {address}, signalé le {reported}."
+        "why": "Les prix changent plusieurs fois par jour et varient même entre quelques stations d’une même ville : ViaFrei indique la moins chère avec son prix et l’heure à laquelle la station l’a signalé.",
+        "a": "{euro},{cent} € le litre chez {station}, {address} — signalé à {reported}."
       },
       "nuernberg": {
         "q": "Où le gazole est-il le moins cher à Nuremberg en ce moment ?",

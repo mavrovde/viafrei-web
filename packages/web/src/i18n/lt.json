@@ -232,7 +232,7 @@
         "q1": "Ar autobusai ir traukiniai Hamburge šiuo metu važiuoja laiku?",
         "a1": "{share} % per pastarąją valandą stebėtų reisų vėlavo daugiau nei 5 minutes — daugiau nei valandą prieš tai ({before} %).",
         "limit": "Punktualumą rodome pagal regioną, ne pagal liniją.",
-        "q2": "Kada išvyksta kitas traukinys iš Hanoverio centrinės stoties ir ar jis vėluoja?",
+        "q2": "Kada išvyksta kitas traukinys iš Leipcigo centrinės stoties ir ar jis vėluoja?",
         "q3": "Ar per artimiausią valandą atšauktas koks nors traukinys iš Kelno centrinės stoties išvykimų lentos?",
         "a2": "Kitas — {l1} į {d1} (pagal tvarkaraštį {t1}, kelias {p1}), vėluoja +{delay} min, išvyks apie {exp}; po jo {l2} į {d2} {t2}, laiku.",
         "a3": "Neatšauktas nė vienas: {n, plural, one {# išvykimas} few {# išvykimai} many {# išvykimo} other {# išvykimų}} iki {last}; labiausiai vėluoja {l1} į {d1}, +{delay} min."
@@ -246,7 +246,7 @@
         "limit": "Kiekvienos autobusų ir tramvajų stotelės tvarkaraštį rodysime, kai tik jis bus įkeltas — iki tol stotis ir padėtį jūsų regione.",
         "board": "Tvarkaraštis jūsų stotelėje",
         "a2": "Kitas — {l1} į {d1} {t1} iš kelio {p1}, laiku; {l2} į {d2}, numatytas {t2}, +{delay2} min, išvyks apie {exp2}.",
-        "q3": "Ar traukiniai iš Leipcigo centrinės stoties šiuo metu vėluoja?",
+        "q3": "Ar traukiniai iš Drezdeno centrinės stoties šiuo metu vėluoja?",
         "a3": "Taip, du: {l1} į {d1}, +{dl1} min, iš kelio {p1}, ir {l2} į {d2}, +{dl2} min; {n, plural, one {kitas # artimiausias išvykimas laiku} few {kiti # artimiausi išvykimai laiku} many {kiti # artimiausio išvykimo laiku} other {kiti # artimiausių išvykimų laiku}}."
       },
       "station": {
@@ -345,8 +345,8 @@
       },
       "leipzig": {
         "q": "Kur Leipcige šiuo metu pigiausias benzinas E5?",
-        "why": "Kaina gali būti kelių valandų senumo: ViaFrei nurodo, kada degalinė pranešė kiekvieną kainą — tą popietę pigiausia Leipcige vis dar buvo iš ryto.",
-        "a": "Naujos kainos dar nėra — mažiausia paskutinė žinoma: {euro},{cent} €/l degalinėje {station}, {address}, pranešta {reported}."
+        "why": "Kainos keičiasi kelis kartus per dieną ir skiriasi net tarp kelių degalinių viename mieste: ViaFrei nurodo pigiausią su kaina ir laiku, kada degalinė ją pranešė.",
+        "a": "{euro},{cent} €/l degalinėje {station}, {address} — pranešta {reported}."
       },
       "nuernberg": {
         "q": "Kur Niurnberge šiuo metu pigiausias dyzelinas?",

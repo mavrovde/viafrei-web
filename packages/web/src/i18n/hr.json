@@ -232,7 +232,7 @@
         "q1": "Voze li autobusi i vlakovi u Hamburgu trenutačno na vrijeme?",
         "a1": "{share} % vožnji praćenih u posljednjih sat vremena kasnilo je više od 5 minuta — više nego sat prije ({before} %).",
         "limit": "Točnost prikazujemo po regiji, a ne po liniji.",
-        "q2": "Kada polazi sljedeći vlak s glavnog kolodvora u Hannoveru i kasni li?",
+        "q2": "Kada polazi sljedeći vlak s glavnog kolodvora u Leipzigu i kasni li?",
         "q3": "Je li neki vlak na ploči polazaka glavnog kolodvora u Kölnu otkazan u sljedećih sat vremena?",
         "a2": "Sljedeći je {l1} za {d1} (po voznom redu {t1}, kolosijek {p1}), kasni +{delay} min, polazi oko {exp}; zatim {l2} za {d2} u {t2}, na vrijeme.",
         "a3": "Nijedan nije otkazan: {n, plural, one {# polazak} few {# polaska} other {# polazaka}} do {last}; najviše kasni {l1} za {d1}, +{delay} min."
@@ -246,7 +246,7 @@
         "limit": "Vozni red svake autobusne i tramvajske stanice prikazat ćemo čim bude učitan — do tada kolodvore i stanje u vašoj regiji.",
         "board": "Vozni red na vašoj stanici",
         "a2": "Sljedeća je {l1} za {d1} u {t1} s kolosijeka {p1}, na vrijeme; {l2} za {d2} u {t2} kasni +{delay2} min, polazi oko {exp2}.",
-        "q3": "Polaze li vlakovi s glavnog kolodvora u Leipzigu trenutačno s kašnjenjem?",
+        "q3": "Polaze li vlakovi s glavnog kolodvora u Dresdenu trenutačno s kašnjenjem?",
         "a3": "Da, dva: {l1} za {d1}, +{dl1} min, s kolosijeka {p1}, i {l2} za {d2}, +{dl2} min; ostali sljedeći polasci ({n}) su na vrijeme."
       },
       "station": {
@@ -345,8 +345,8 @@
       },
       "leipzig": {
         "q": "Gdje je benzin E5 u Leipzigu trenutačno najjeftiniji?",
-        "why": "Cijena može biti stara satima: ViaFrei za svaku cijenu kaže kad ju je postaja javila — tog su poslijepodneva najjeftinije u Leipzigu još bile od prijepodneva.",
-        "a": "Nove cijene još nema — zadnja najniža: {euro},{cent} €/l kod {station}, {address}, javljeno {reported}."
+        "why": "Cijene se mijenjaju nekoliko puta dnevno i razlikuju se čak i među nekoliko postaja u istom gradu: ViaFrei navodi najjeftiniju s cijenom i vremenom kad ju je postaja javila.",
+        "a": "{euro},{cent} €/l na postaji {station}, {address} — javljeno u {reported}."
       },
       "nuernberg": {
         "q": "Gdje je dizel u Nürnbergu trenutačno najjeftiniji?",

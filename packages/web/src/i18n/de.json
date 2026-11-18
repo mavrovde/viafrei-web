@@ -232,7 +232,7 @@
         "q1": "Fahren Busse und Bahnen in Hamburg gerade pünktlich?",
         "a1": "{share} % der beobachteten Fahrten der letzten Stunde mehr als 5 Minuten zu spät – mehr als in der Stunde davor ({before} %).",
         "limit": "Pünktlichkeit zeigen wir je Region, nicht je Linie.",
-        "q2": "Wann fährt der nächste Zug ab Hannover Hbf, und hat er Verspätung?",
+        "q2": "Wann fährt der nächste Zug ab Leipzig Hbf, und hat er Verspätung?",
         "q3": "Fallen an der Abfahrtstafel vom Kölner Hauptbahnhof in der nächsten Stunde Züge aus?",
         "a2": "Als Nächstes {l1} nach {d1} (planmäßig {t1}, Gleis {p1}) mit +{delay} Min., gegen {exp}; danach pünktlich {l2} nach {d2} um {t2}.",
         "a3": "Keine fällt aus: {n} Abfahrten bis {last}; die größte Verspätung hat {l1} nach {d1} mit +{delay} Min."
@@ -246,7 +246,7 @@
         "limit": "Den Fahrplan jeder Bus- und Tramhaltestelle zeigen wir, sobald er geladen ist — bis dahin Bahnhöfe und die Lage in Ihrer Region.",
         "board": "Fahrplan an Ihrer Haltestelle",
         "a2": "Als Nächstes die {l1} nach {d1} um {t1} von Gleis {p1}, pünktlich; die {l2} nach {d2} von {t2} kommt mit +{delay2} Min. gegen {exp2}.",
-        "q3": "Fahren am Leipziger Hauptbahnhof gerade Züge mit Verspätung ab?",
+        "q3": "Fahren am Dresdner Hauptbahnhof gerade Züge mit Verspätung ab?",
         "a3": "Ja, zwei: der {l1} nach {d1} mit +{dl1} Min. von Gleis {p1} und die {l2} nach {d2} mit +{dl2} Min.; die übrigen {n} der nächsten Abfahrten sind pünktlich."
       },
       "station": {
@@ -345,8 +345,8 @@
       },
       "leipzig": {
         "q": "Wo gibt es in Leipzig gerade das günstigste Super E5?",
-        "why": "Ein Preis kann Stunden alt sein: ViaFrei nennt zu jedem Preis, wann die Tankstelle ihn gemeldet hat – die günstigsten in Leipzig stammten an diesem Nachmittag noch vom Vormittag.",
-        "a": "Noch kein neuer Preis – zuletzt am günstigsten: {euro},{cent} €/l bei {station}, {address}, gemeldet am {reported}."
+        "why": "Preise ändern sich mehrmals am Tag und unterscheiden sich schon zwischen wenigen Tankstellen einer Stadt: ViaFrei nennt die günstigste mit ihrem Preis und der Uhrzeit, zu der sie ihn gemeldet hat.",
+        "a": "{euro},{cent} €/l bei {station}, {address} – gemeldet um {reported}."
       },
       "nuernberg": {
         "q": "Wo ist Diesel in Nürnberg gerade am günstigsten?",

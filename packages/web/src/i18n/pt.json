@@ -232,7 +232,7 @@
         "q1": "Os autocarros e comboios em Hamburgo estão a horas neste momento?",
         "a1": "{share}% das viagens observadas na última hora tiveram mais de 5 minutos de atraso – mais do que na hora anterior ({before}%).",
         "limit": "Mostramos a pontualidade por região, não por linha.",
-        "q2": "Quando parte o próximo comboio da estação central de Hanôver, e vem atrasado?",
+        "q2": "Quando parte o próximo comboio da estação central de Leipzig, e vem atrasado?",
         "q3": "Há comboios suprimidos na próxima hora no painel de partidas da estação central de Colónia?",
         "a2": "O próximo é o {l1} para {d1} (previsto às {t1}, linha {p1}), com +{delay} min, partida por volta das {exp}; depois o {l2} para {d2} às {t2}, a horas.",
         "a3": "Nenhum foi suprimido: partidas até às {last}: {n}; o maior atraso é o do {l1} para {d1}, +{delay} min."
@@ -246,7 +246,7 @@
         "limit": "Mostraremos o horário de cada paragem de autocarro e de elétrico assim que estiver carregado — até lá, as estações e a situação na sua região.",
         "board": "Horário na sua paragem",
         "a2": "O próximo é o {l1} para {d1} às {t1} da linha {p1}, a horas; o {l2} para {d2} previsto às {t2} tem +{delay2} min, partida por volta das {exp2}.",
-        "q3": "Há comboios a partir com atraso da estação central de Leipzig neste momento?",
+        "q3": "Há comboios a partir com atraso da estação central de Dresden neste momento?",
         "a3": "Sim, dois: o {l1} para {d1}, +{dl1} min, da linha {p1}, e o {l2} para {d2}, +{dl2} min; as restantes próximas partidas ({n}) estão a horas."
       },
       "station": {
@@ -345,8 +345,8 @@
       },
       "leipzig": {
         "q": "Onde está a gasolina E5 mais barata em Leipzig neste momento?",
-        "why": "Um preço pode ter horas: o ViaFrei diz quando o posto comunicou cada preço — nessa tarde, os mais baratos de Leipzig ainda datavam da manhã.",
-        "a": "Ainda não há preço novo — o mais baixo conhecido: {euro},{cent} €/l em {station}, {address}, comunicado em {reported}."
+        "why": "Os preços mudam várias vezes por dia e variam até entre poucos postos da mesma cidade: o ViaFrei indica o mais barato com o seu preço e a hora a que o posto o comunicou.",
+        "a": "{euro},{cent} €/l em {station}, {address} — comunicado às {reported}."
       },
       "nuernberg": {
         "q": "Onde está o gasóleo mais barato em Nuremberga neste momento?",

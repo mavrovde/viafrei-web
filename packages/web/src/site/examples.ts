@@ -88,9 +88,10 @@ export type Moment = {
  * Re-asked on 2026-11-18 between 14:28 and 14:31 Europe/Berlin, on production, once per question, `language`
  * "de", the same tools and arguments (the A2 weekend is 21./22.11.). Every answer whose sentence still holds took
  * that day's figures and Stand (the per-entry comments above still quote the 02.11 answers). Answers the sentence no
- * longer fits keep their 02.11 values until reworded: commute a2, bus a2/a3, station a1/a3, driving a1, jam a1/a2
- * and the Leipzig fuel request. Asked again 14:39-14:46 with up to five candidates each (the same board or road
- * later, or another station, stop or road): none fitted its sentence. commute a1 now says "mehr als in der Stunde davor" (the region card's sentence).
+ * longer fits keep their 02.11 values until reworded: bus a2, station a1/a3, driving a1 and jam a1/a2. Asked again
+ * 14:39-14:53 with up to five candidates each (the same board or road later, or another station or road): commute a2
+ * moved to Leipzig Hbf and bus a3 to Dresden Hbf (the question's place name swapped in every language); the others
+ * found none that fits its sentence. commute a1 now says "mehr als in der Stunde davor" (the region card's sentence).
  */
 export type MomentAnswer = {
   readonly values: Readonly<Record<string, string>> & { readonly asOf: string };
@@ -127,7 +128,10 @@ export const MOMENTS: readonly Moment[] = [
       { values: { share: "12", before: "8", asOf: "18.11.2026, 14:25" }, names: {}, credits: ["delfi_rt_tu"] },
       // get_train_departures {station: "Hannover Hbf"}, 2026-11-02: "14:03 S S2 → Haste, Gleis 1, +5 min (ca. 14:08) · 14:04 S S7 → Celle,
       // Gleis 14, pünktlich · 14:05 S S5 → Hannover Flughafen, +2 min …". Stand 14:03.
-      { values: { t1: "14:03", p1: "1", delay: "5", exp: "14:08", l2: "S7", t2: "14:04", asOf: "02.11.2026, 14:03" }, names: { l1: "S2", d1: "Haste", d2: "Celle" }, credits: DB },
+      // REPLACED 2026-11-18 (Hannover's first two were both late at 14:40 and 14:45): get_train_departures {station: "Leipzig Hbf"},
+      // asked 14:40: "14:38 ICE 1559 → Dresden Hbf, ab Leipzig Hbf, Gleis 14, +11 min (ca. 14:49) · 14:42 S3 → Halle-Nietleben, ab Leipzig
+      // Hbf (tief), Gleis 2, pünktlich". Stand 14:40. The question names Leipzig Hbf in every language.
+      { values: { t1: "14:38", p1: "14", delay: "11", exp: "14:49", l2: "S3", t2: "14:42", asOf: "18.11.2026, 14:40" }, names: { l1: "ICE 1559", d1: "Dresden Hbf", d2: "Halle-Nietleben" }, credits: DB },
       // get_train_departures {station: "Köln Hbf", duration_min: 60}, 2026-11-02: ten departures shown (52 more), none cancelled, the
       // latest "14:14 S S11"; the largest delay "13:53 ICE 2857 → Nürnberg Hbf, Gleis 7 D-G, +20 min (ca. 14:13)". Stand 14:03. Reworded:
       // no platform change today, so the sentence names the largest delay.
@@ -147,7 +151,10 @@ export const MOMENTS: readonly Moment[] = [
       { values: { l1: "S3", t1: "14:05", p1: "3", l2: "S3", t2: "14:11", delay2: "1", exp2: "14:12", asOf: "02.11.2026, 14:03" }, names: { d1: "Bad Soden (Taunus)", d2: "Frankfurt (Main) Süd" }, credits: DB },
       // get_train_departures {station: "Leipzig Hbf"}, 2026-11-02: of ten departures, "14:06 S S6 → Naumburg (Saale) Hbf, Gleis 7, +13 min"
       // and "14:12 ICE 508 → Hamburg-Altona, Gleis 11, +2 min"; the other eight "pünktlich", no platform change. Stand 14:03.
-      { values: { l1: "ICE 508", dl1: "2", p1: "11", l2: "S6", dl2: "13", n: "8", asOf: "02.11.2026, 14:03" }, names: { d1: "Hamburg-Altona", d2: "Naumburg (Saale) Hbf" }, credits: DB },
+      // REPLACED 2026-11-18 (Leipzig had three and six late at 14:40 and 14:45): get_train_departures {station: "Dresden Hbf"}, asked
+      // 14:51: "14:53 RJ 176 → Hamburg-Altona, Gleis 3, +3 min (ca. 14:56) · 14:59 S1 → Bad Schandau, Gleis 13, +1 min (ca. 15:00)"; the
+      // other eight of the ten "pünktlich". Stand 14:51. The question names Dresden's main station in every language.
+      { values: { l1: "RJ 176", dl1: "3", p1: "3", l2: "S1", dl2: "1", n: "8", asOf: "18.11.2026, 14:51" }, names: { d1: "Hamburg-Altona", d2: "Bad Schandau" }, credits: DB },
     ],
   },
   {
@@ -296,9 +303,9 @@ export const MOMENTS: readonly Moment[] = [
  *
  * Re-asked on 2026-11-18 at 14:29 Europe/Berlin, ONCE each: Görlitz had a current price again and Nürnberg none,
  * so the two swap sentences back. Leipzig's lowest last-known price was at a station named "Access", a word the
- * JSON-LD guard of #531 finds in every page's JSON-LD, so Leipzig keeps its 02.11 answer until that is resolved.
+ * JSON-LD guard of #531 finds in every page's JSON-LD, so the first re-ask left Leipzig at its 02.11 answer.
  * Asked again at 14:41-14:46: Leipzig (twice) and Dresden had current prices, so the "no new price" sentence does
- * not hold; Erfurt had only prices from 16.11. evening, which the request's "vom Vormittag" does not fit.
+ * not hold; Leipzig takes Görlitz's current-price sentence and why, and Greenline's answer.
  */
 export type FuelAskKey = "goerlitz" | "muenchen" | "leipzig" | "nuernberg";
 export type FuelAsk = { readonly key: FuelAskKey; readonly tool: "find_cheapest_fuel"; readonly answer: MomentAnswer };
@@ -325,7 +332,10 @@ export const FUEL_ASKS: readonly FuelAsk[] = [
     tool: "find_cheapest_fuel",
     // find_cheapest_fuel {place: "Leipzig", fuel: "e5"}, asked ONCE 2026-11-02 14:10: "kein Preis aus den letzten 30 Minuten … OIL!,
     // Wittenberger Straße 7, 04129 Leipzig — 1,999 €/l … (Preis von 02.11. 09:28)" — the lowest of the five.
-    answer: { values: { euro: "1", cent: "999", reported: "02.11., 09:28", asOf: "02.11.2026, 14:10" }, names: { station: "OIL!", address: "Wittenberger Straße 7, 04129 Leipzig" }, credits: FUEL },
+    // Asked again 2026-11-18 14:45: current prices, ranked — "1. Greenline, Mockauer Str. 117, 04357 Leipzig — 2,058 €/l, 4,6 km,
+    // zuletzt offen (Stand 14:31)". The "no new price" sentence no longer holds, so the request takes Görlitz's current-price
+    // sentence and its why (in every language).
+    answer: { values: { euro: "2", cent: "058", reported: "14:31", asOf: "18.11.2026, 14:45" }, names: { station: "Greenline", address: "Mockauer Str. 117, 04357 Leipzig" }, credits: FUEL },
   },
   {
     key: "nuernberg",

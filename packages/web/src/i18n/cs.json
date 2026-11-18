@@ -232,7 +232,7 @@
         "q1": "Jezdí autobusy a vlaky v Hamburku právě teď včas?",
         "a1": "{share} % spojů za poslední hodinu mělo zpoždění přes 5 minut – víc než hodinu předtím ({before} %).",
         "limit": "Dochvilnost ukazujeme po regionech, ne po linkách.",
-        "q2": "Kdy jede další vlak z hlavního nádraží v Hannoveru a má zpoždění?",
+        "q2": "Kdy jede další vlak z hlavního nádraží v Lipsku a má zpoždění?",
         "q3": "Odpadnou na odjezdové tabuli hlavního nádraží v Kolíně nad Rýnem v příští hodině nějaké vlaky?",
         "a2": "Nejdřív {l1}, směr {d1} (podle plánu {t1}, kolej {p1}), +{delay} min, odjezd kolem {exp}; pak {l2}, směr {d2}, v {t2}, včas.",
         "a3": "Žádný neodpadá: {n, plural, one {# odjezd} few {# odjezdy} other {# odjezdů}} do {last}; největší zpoždění má {l1}, směr {d1}: +{delay} min."
@@ -246,7 +246,7 @@
         "limit": "Jízdní řád každé autobusové a tramvajové zastávky ukážeme, jakmile bude načten — do té doby nádraží a situaci ve vašem regionu.",
         "board": "Jízdní řád na vaší zastávce",
         "a2": "Nejdřív {l1}, směr {d1}, v {t1} z koleje {p1}, včas; {l2}, směr {d2}, podle plánu {t2}, má +{delay2} min, odjezd kolem {exp2}.",
-        "q3": "Odjíždějí teď z hlavního nádraží v Lipsku vlaky se zpožděním?",
+        "q3": "Odjíždějí teď z hlavního nádraží v Drážďanech vlaky se zpožděním?",
         "a3": "Ano, dva: {l1}, směr {d1}, +{dl1} min, z koleje {p1}, a {l2}, směr {d2}, +{dl2} min; ostatní nejbližší odjezdy ({n}) jsou včas."
       },
       "station": {
@@ -345,8 +345,8 @@
       },
       "leipzig": {
         "q": "Kde je teď v Lipsku nejlevnější benzin E5?",
-        "why": "Cena může být hodiny stará: ViaFrei u každé ceny uvádí, kdy ji stanice nahlásila — to odpoledne pocházely nejlevnější ceny v Lipsku ještě z dopoledne.",
-        "a": "Zatím žádná nová cena — naposledy nejlevněji: {euro},{cent} €/l u stanice {station}, {address}, nahlášeno {reported}."
+        "why": "Ceny se mění několikrát denně a liší se i mezi pár čerpacími stanicemi v jednom městě: ViaFrei uvede nejlevnější s cenou a časem, kdy ji stanice nahlásila.",
+        "a": "{euro},{cent} €/l u stanice {station}, {address} — nahlášeno v {reported}."
       },
       "nuernberg": {
         "q": "Kde je teď v Norimberku nejlevnější nafta?",

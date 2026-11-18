@@ -232,7 +232,7 @@
         "q1": "Are buses and trains in Hamburg running on time right now?",
         "a1": "{share} % of the trips observed in the last hour were more than 5 minutes late — more than the hour before ({before} %).",
         "limit": "We show punctuality per region, not per line.",
-        "q2": "When is the next train from Hanover Central Station, and is it late?",
+        "q2": "When is the next train from Leipzig Central Station, and is it late?",
         "q3": "Are any trains on the Cologne Central Station departure board cancelled in the next hour?",
         "a2": "Next is {l1} to {d1} (due {t1}, platform {p1}), running +{delay} min, leaving around {exp}; then {l2} to {d2} at {t2}, on time.",
         "a3": "None is cancelled: {n} departures up to {last}; the biggest delay is {l1} to {d1}, +{delay} min."
@@ -246,7 +246,7 @@
         "limit": "We will show the timetable of every bus and tram stop once it is loaded — until then, stations and the situation in your region.",
         "board": "Timetable at your stop",
         "a2": "Next is the {l1} to {d1} at {t1} from platform {p1}, on time; the {l2} to {d2} due at {t2} is +{delay2} min, leaving around {exp2}.",
-        "q3": "Are trains leaving Leipzig main station late right now?",
+        "q3": "Are trains leaving Dresden main station late right now?",
         "a3": "Yes, two: the {l1} to {d1}, +{dl1} min, from platform {p1}, and the {l2} to {d2}, +{dl2} min; the other {n} upcoming departures are on time."
       },
       "station": {
@@ -345,8 +345,8 @@
       },
       "leipzig": {
         "q": "Where is E5 petrol cheapest in Leipzig right now?",
-        "why": "A price can be hours old: ViaFrei says when the station reported each price — that afternoon the cheapest in Leipzig still dated from the morning.",
-        "a": "No new price yet — the lowest last known: €{euro}.{cent} per litre at {station}, {address}, reported on {reported}."
+        "why": "Prices change several times a day and differ even between a few stations in one town: ViaFrei names the cheapest with its price and the time the station reported it.",
+        "a": "€{euro}.{cent} per litre at {station}, {address} — reported at {reported}."
       },
       "nuernberg": {
         "q": "Where is diesel cheapest in Nuremberg right now?",

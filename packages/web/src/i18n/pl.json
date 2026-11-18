@@ -232,7 +232,7 @@
         "q1": "Czy autobusy i pociągi w Hamburgu kursują teraz punktualnie?",
         "a1": "{share}% kursów z ostatniej godziny miało ponad 5 minut opóźnienia – więcej niż godzinę wcześniej ({before}%).",
         "limit": "Punktualność pokazujemy dla regionu, nie dla linii.",
-        "q2": "Kiedy odjeżdża najbliższy pociąg z dworca głównego w Hanowerze i czy jest opóźniony?",
+        "q2": "Kiedy odjeżdża najbliższy pociąg z dworca głównego w Lipsku i czy jest opóźniony?",
         "q3": "Czy na tablicy odjazdów dworca głównego w Kolonii w najbliższej godzinie są odwołane pociągi?",
         "a2": "Najbliższy: {l1}, kierunek {d1} (planowo {t1}, tor {p1}), +{delay} min, odjazd ok. {exp}; potem {l2}, kierunek {d2}, o {t2}, punktualnie.",
         "a3": "Żaden nie jest odwołany: {n, plural, one {# odjazd} few {# odjazdy} many {# odjazdów} other {# odjazdu}} do {last}; największe opóźnienie ma {l1}, kierunek {d1}: +{delay} min."
@@ -246,7 +246,7 @@
         "limit": "Rozkład każdego przystanku autobusowego i tramwajowego pokażemy, gdy tylko zostanie wczytany — do tego czasu stacje i sytuację w Twoim regionie.",
         "board": "Rozkład na Twoim przystanku",
         "a2": "Najbliższa: {l1}, kierunek {d1}, o {t1} z toru {p1}, punktualnie; {l2}, kierunek {d2}, planowo {t2}, ma +{delay2} min, odjazd ok. {exp2}.",
-        "q3": "Czy z dworca głównego w Lipsku odjeżdżają teraz pociągi z opóźnieniem?",
+        "q3": "Czy z dworca głównego w Dreźnie odjeżdżają teraz pociągi z opóźnieniem?",
         "a3": "Tak, dwa: {l1}, kierunek {d1}, +{dl1} min, z toru {p1}, oraz {l2}, kierunek {d2}, +{dl2} min; pozostałe najbliższe odjazdy ({n}) są punktualne."
       },
       "station": {
@@ -345,8 +345,8 @@
       },
       "leipzig": {
         "q": "Gdzie w Lipsku jest teraz najtańsza benzyna E5?",
-        "why": "Cena może mieć kilka godzin: ViaFrei podaje przy każdej cenie, kiedy stacja ją zgłosiła — tego popołudnia najtańsze w Lipsku pochodziły jeszcze z przedpołudnia.",
-        "a": "Brak nowej ceny — ostatnio najtaniej: {euro},{cent} €/l na stacji {station}, {address}, zgłoszono {reported}."
+        "why": "Ceny zmieniają się kilka razy dziennie i różnią się nawet między kilkoma stacjami w jednym mieście: ViaFrei podaje najtańszą z ceną i godziną, o której stacja ją zgłosiła.",
+        "a": "{euro},{cent} €/l na stacji {station}, {address} — zgłoszono o {reported}."
       },
       "nuernberg": {
         "q": "Gdzie w Norymberdze jest teraz najtańszy diesel?",

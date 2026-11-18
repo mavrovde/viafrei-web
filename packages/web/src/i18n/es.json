@@ -232,7 +232,7 @@
         "q1": "¿Van puntuales ahora mismo los autobuses y trenes en Hamburgo?",
         "a1": "El {share} % de los trayectos observados en la última hora llevaban más de 5 minutos de retraso, más que en la hora anterior ({before} %).",
         "limit": "Indicamos la puntualidad por región, no por línea.",
-        "q2": "¿Cuándo sale el próximo tren de la estación central de Hannover y lleva retraso?",
+        "q2": "¿Cuándo sale el próximo tren de la estación central de Leipzig y lleva retraso?",
         "q3": "¿Hay trenes cancelados en el panel de salidas de la estación central de Colonia en la próxima hora?",
         "a2": "El próximo es el {l1} a {d1} (previsto a las {t1}, vía {p1}), con +{delay} min, sale hacia las {exp}; después, el {l2} a {d2} a las {t2}, puntual.",
         "a3": "Ninguno está cancelado: salidas hasta las {last}: {n}; el mayor retraso lo lleva el {l1} a {d1}, +{delay} min."
@@ -246,7 +246,7 @@
         "limit": "Mostraremos el horario de cada parada de autobús y tranvía en cuanto esté cargado; hasta entonces, las estaciones y la situación en su región.",
         "board": "Horario en su parada",
         "a2": "El próximo es el {l1} a {d1} a las {t1} desde la vía {p1}, puntual; el {l2} a {d2} previsto a las {t2} lleva +{delay2} min, sale hacia las {exp2}.",
-        "q3": "¿Salen con retraso ahora mismo los trenes de la estación central de Leipzig?",
+        "q3": "¿Salen con retraso ahora mismo los trenes de la estación central de Dresde?",
         "a3": "Sí, dos: el {l1} a {d1}, +{dl1} min, desde la vía {p1}, y el {l2} a {d2}, +{dl2} min; las otras salidas próximas ({n}) son puntuales."
       },
       "station": {
@@ -345,8 +345,8 @@
       },
       "leipzig": {
         "q": "¿Dónde está más barata la gasolina E5 en Leipzig ahora mismo?",
-        "why": "Un precio puede tener horas: ViaFrei dice cuándo notificó la estación cada precio; aquella tarde, el más barato de Leipzig aún era de la mañana.",
-        "a": "Todavía no hay precio nuevo; el más bajo conocido: {euro},{cent} € por litro en {station}, {address}, notificado el {reported}."
+        "why": "Los precios cambian varias veces al día y difieren incluso entre unas pocas estaciones de una misma ciudad: ViaFrei indica la más barata con su precio y la hora en que la estación lo notificó.",
+        "a": "{euro},{cent} € por litro en {station}, {address}, notificado a las {reported}."
       },
       "nuernberg": {
         "q": "¿Dónde está más barato el diésel en Núremberg ahora mismo?",

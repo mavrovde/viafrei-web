@@ -232,7 +232,7 @@
         "q1": "Vai autobusi un vilcieni Hamburgā pašlaik kursē laikā?",
         "a1": "{share} % pēdējā stundā novēroto braucienu kavējās vairāk nekā 5 minūtes — vairāk nekā stundu iepriekš ({before} %).",
         "limit": "Punktualitāti rādām pa reģioniem, nevis pa līnijām.",
-        "q2": "Kad atiet nākamais vilciens no Hannoveres centrālās stacijas, un vai tas kavējas?",
+        "q2": "Kad atiet nākamais vilciens no Leipcigas centrālās stacijas, un vai tas kavējas?",
         "q3": "Vai tuvākās stundas laikā kāds vilciens Ķelnes centrālās stacijas atiešanas tablo ir atcelts?",
         "a2": "Nākamais ir {l1} uz {d1} (pēc saraksta {t1}, ceļš {p1}), kavējas +{delay} min, atiet ap {exp}; pēc tam {l2} uz {d2} {t2}, laikā.",
         "a3": "Neviens nav atcelts: {n, plural, zero {# atiešanas} one {# atiešana} other {# atiešanas}} līdz {last}; visvairāk kavējas {l1} uz {d1}, +{delay} min."
@@ -246,7 +246,7 @@
         "limit": "Katras autobusu un tramvaju pieturas sarakstu rādīsim, tiklīdz tas būs ielādēts — līdz tam stacijas un situāciju jūsu reģionā.",
         "board": "Saraksts jūsu pieturā",
         "a2": "Nākamais ir {l1} uz {d1} {t1} no ceļa {p1}, laikā; {l2} uz {d2}, paredzēts {t2}, +{delay2} min, atiet ap {exp2}.",
-        "q3": "Vai vilcieni no Leipcigas centrālās stacijas pašlaik kavējas?",
+        "q3": "Vai vilcieni no Drēzdenes centrālās stacijas pašlaik kavējas?",
         "a3": "Jā, divi: {l1} uz {d1}, +{dl1} min, no ceļa {p1}, un {l2} uz {d2}, +{dl2} min; {n, plural, zero {pārējās # tuvākās atiešanas ir laikā} one {pārējā # tuvākā atiešana ir laikā} other {pārējās # tuvākās atiešanas ir laikā}}."
       },
       "station": {
@@ -345,8 +345,8 @@
       },
       "leipzig": {
         "q": "Kur Leipcigā pašlaik ir vislētākais benzīns E5?",
-        "why": "Cena var būt vairākas stundas veca: ViaFrei saka, kad stacija ziņoja katru cenu — tajā pēcpusdienā lētākā Leipcigā joprojām bija no rīta.",
-        "a": "Jaunas cenas vēl nav — zemākā pēdējā zināmā: {euro},{cent} €/l stacijā {station}, {address}, ziņots {reported}."
+        "why": "Cenas mainās vairākas reizes dienā un atšķiras pat starp dažām stacijām vienā pilsētā: ViaFrei nosauc lētāko ar cenu un laiku, kad stacija to ziņoja.",
+        "a": "{euro},{cent} €/l stacijā {station}, {address} — ziņots {reported}."
       },
       "nuernberg": {
         "q": "Kur Nirnbergā pašlaik ir vislētākā dīzeļdegviela?",

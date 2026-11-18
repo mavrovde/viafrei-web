@@ -232,7 +232,7 @@
         "q1": "Circulă acum la timp autobuzele și trenurile în Hamburg?",
         "a1": "{share} % dintre cursele observate în ultima oră au întârziat peste 5 minute – mai multe decât în ora dinainte ({before} %).",
         "limit": "Arătăm punctualitatea pe regiuni, nu pe linii.",
-        "q2": "Când pleacă următorul tren din Gara Centrală din Hanovra și are întârziere?",
+        "q2": "Când pleacă următorul tren din Gara Centrală din Leipzig și are întârziere?",
         "q3": "Sunt trenuri anulate pe tabela Gării Centrale din Köln în următoarea oră?",
         "a2": "{l1} spre {d1} (programat la {t1}, linia {p1}) are +{delay} min și pleacă pe la {exp}; apoi, la timp, {l2} spre {d2} la {t2}.",
         "a3": "Niciuna anulată: {n} plecări până la {last}; cea mai mare întârziere o are {l1} spre {d1}, +{delay} min."
@@ -246,7 +246,7 @@
         "limit": "Mersul fiecărei stații de autobuz și tramvai îl vom arăta după ce va fi încărcat — până atunci, gările și situația din regiunea ta.",
         "board": "Mersul la stația ta",
         "a2": "Următorul este {l1} spre {d1} la {t1} de la linia {p1}, la timp; {l2} spre {d2} de la {t2} are +{delay2} min – pe la {exp2}.",
-        "q3": "Pleacă acum trenuri cu întârziere din Gara Centrală din Leipzig?",
+        "q3": "Pleacă acum trenuri cu întârziere din Gara Centrală din Dresda?",
         "a3": "Da, două: {l1} spre {d1}, +{dl1} min, de la linia {p1}, și {l2} spre {d2}, +{dl2} min; celelalte {n} plecări următoare sunt la timp."
       },
       "station": {
@@ -345,8 +345,8 @@
       },
       "leipzig": {
         "q": "Unde este acum cea mai ieftină benzină E5 în Leipzig?",
-        "why": "Un preț poate fi vechi de câteva ore: ViaFrei spune când a raportat benzinăria fiecare preț – în acea după-amiază, cele mai ieftine din Leipzig erau încă de dimineață.",
-        "a": "Încă niciun preț nou – cel mai mic dintre ultimele cunoscute: {euro},{cent} €/l la {station}, {address}, raportat pe {reported}."
+        "why": "Prețurile se schimbă de mai multe ori pe zi și diferă chiar între câteva benzinării din același oraș: ViaFrei o numește pe cea mai ieftină, cu prețul ei și ora la care benzinăria l-a raportat.",
+        "a": "{euro},{cent} €/l la {station}, {address} – raportat la {reported}."
       },
       "nuernberg": {
         "q": "Unde e cea mai ieftină motorină în Nürnberg acum?",

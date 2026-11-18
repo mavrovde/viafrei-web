@@ -232,7 +232,7 @@
         "q1": "Pontosan járnak most a buszok és vonatok Hamburgban?",
         "a1": "Az elmúlt órában megfigyelt járatok {share} %-a késett 5 percnél többet — több, mint az előző órában ({before} %).",
         "limit": "A pontosságot régiónként mutatjuk, nem vonalanként.",
-        "q2": "Mikor indul a következő vonat a hannoveri főpályaudvarról, és késik-e?",
+        "q2": "Mikor indul a következő vonat a lipcsei főpályaudvarról, és késik-e?",
         "q3": "Kimarad valamelyik vonat a kölni főpályaudvar indulási tábláján a következő órában?",
         "a2": "Következik: {l1}, cél: {d1} (menetrend szerint {t1}, vágány: {p1}), +{delay} perc, indulás kb. {exp}; utána {l2}, cél: {d2}, {t2}, pontosan.",
         "a3": "Egyik sem marad ki: {n} indulás eddig: {last}; a legnagyobb késés: {l1}, cél: {d1}, +{delay} perc."
@@ -246,7 +246,7 @@
         "limit": "Minden busz- és villamosmegálló menetrendjét megmutatjuk, amint betöltöttük — addig az állomásokat és a régió helyzetét.",
         "board": "Menetrend a megállójában",
         "a2": "Következik: {l1}, cél: {d1}, {t1}-kor a(z) {p1}. vágányról, pontosan; a(z) {l2}, cél: {d2}, menetrend szerint {t2}, +{delay2} perc, indulás kb. {exp2}.",
-        "q3": "Késnek most a vonatok a lipcsei főpályaudvarról?",
+        "q3": "Késnek most a vonatok a drezdai főpályaudvarról?",
         "a3": "Igen, kettő: {l1}, cél: {d1}, +{dl1} perc, vágány: {p1}, és {l2}, cél: {d2}, +{dl2} perc; a többi következő indulás ({n}) pontos."
       },
       "station": {
@@ -345,8 +345,8 @@
       },
       "leipzig": {
         "q": "Hol a legolcsóbb most az E5 benzin Lipcsében?",
-        "why": "Egy ár lehet órákkal korábbi is: a ViaFrei megmondja, mikor jelentette a kút az egyes árakat — azon a délutánon a legolcsóbb lipcsei ár még délelőttről származott.",
-        "a": "Még nincs új ár — a legalacsonyabb utolsó ismert: {euro},{cent} € literenként: {station}, {address}, jelentve: {reported}."
+        "why": "Az árak naponta többször változnak, és egy városon belül néhány kút között is eltérnek: a ViaFrei megnevezi a legolcsóbbat az árával és azzal az időponttal, amikor a kút jelentette.",
+        "a": "{euro},{cent} € literenként: {station}, {address} — jelentve: {reported}."
       },
       "nuernberg": {
         "q": "Hol a legolcsóbb most a dízel Nürnbergben?",
