@@ -241,7 +241,7 @@ jobs:
         run: npm run web:e2e
       - name: Page weight (raw ≤ 700 KB, gzip < 200 KB, 2 requests, no third party)
         run: npm run web:budget
-      - name: Lighthouse (perf ≥ 95, a11y 100, SEO ≥ 95, best ≥ 95, median of 3)
+      - name: Lighthouse (perf ≥ 95, a11y 100, SEO ≥ 95, best ≥ 95, median of 5)
         run: npm run web:lighthouse
       - name: Latency (p95 ≤ 300 ms; slow and hanging tiles inside 2.5 s)
         run: npm run web:latency

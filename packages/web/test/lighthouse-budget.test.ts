@@ -10,7 +10,7 @@ import { AUDITS, breakdownOf, BUDGET, BUDGET_PAGES, collectRuns, EXIT, firstLine
 import { RUNS } from "../scripts/lighthouse.js";
 
 const ok: Metrics = { lcpMs: 1_800, cls: 0.02, tbtMs: 90 };
-const three = (m: Metrics): Metrics[] => Array.from({ length: RUNS }, () => m);
+const runsOf = (m: Metrics): Metrics[] => Array.from({ length: RUNS }, () => m);
 const page = (runs: Metrics[], status = 200) => ({ status, runs });
 
 describe("the budget (#1310 D1)", () => {
@@ -20,13 +20,13 @@ describe("the budget (#1310 D1)", () => {
     expect(SUBSTITUTE.from).toBe("/de/autobahn/a24");
   });
   it("passes when every median is within, at the edge included", () => {
-    const v = judgeBudget(new Map([["/de", page(three(ok))], ["/de/autobahn", page(three({ lcpMs: 2_500, cls: 0.1, tbtMs: 200 }))]]));
+    const v = judgeBudget(new Map([["/de", page(runsOf(ok))], ["/de/autobahn", page(runsOf({ lcpMs: 2_500, cls: 0.1, tbtMs: 200 }))]]));
     expect(v.code).toBe(0);
     expect(v.lines.at(-1)).toMatch(/^✓ page budget: 2 page\(s\)/u);
   });
   for (const [m, over] of [["lcpMs", 2_501], ["cls", 0.101], ["tbtMs", 201]] as const) {
     it(`is red on a ${m} median one step over, naming the page and the audit`, () => {
-      const v = judgeBudget(new Map([["/de", page(three(ok))], ["/de/autobahn/a7", page(three({ ...ok, [m]: over }))]]));
+      const v = judgeBudget(new Map([["/de", page(runsOf(ok))], ["/de/autobahn/a7", page(runsOf({ ...ok, [m]: over }))]]));
       expect(v.code).toBe(1);
       expect(v.lines.find((l) => l.includes("/de/autobahn/a7"))).toContain(`✗ ${AUDITS[m]}`);
       expect(v.lines.find((l) => l.trim().startsWith("/de "))).not.toContain("✗");
@@ -115,7 +115,7 @@ describe("the run's pieces", () => {
     let n = 0;
     const flaky: RunOnce = () => Promise.resolve({ metrics: n++ % 2 === 0 ? null : ok, audits: undefined });
     const r = await collectRuns("http://x/de", "/de", flaky);
-    expect([r.runs.length, r.attempts]).toEqual([2, RUNS + 2]);
+    expect([r.runs.length, r.attempts]).toEqual([Math.floor((RUNS + 2) / 2), RUNS + 2]); // every other attempt completes
     const steady = await collectRuns("http://x/de", "/de", () => Promise.resolve({ metrics: { ...ok, tbtMs: 900 }, audits: undefined }));
     expect([steady.runs.length, steady.attempts]).toEqual([RUNS, RUNS]);
   });

@@ -1,5 +1,5 @@
 /**
- * The Lighthouse gate (#381 item 7): mobile profile, the MEDIAN of three runs,
+ * The Lighthouse gate (#381 item 7): mobile profile, the MEDIAN of five runs,
  * on /de, /en, /de/connect, /de/developers, /de/business, /de/fuel and /de/examples of the BUILT shell
  * fed by the real digest renderer over the fixture snapshot. Floors:
  * performance ≥ 95, accessibility = 100, SEO ≥ 95, best practices ≥ 95.
@@ -32,7 +32,7 @@ import { HOME_REFRESH_CONTENT, LIVE_LANGS, pathFor } from "../src/site/pages.js"
 
 // #747 (2.1.24): the examples page joins the gate, the longest page of answer cards beside the connect page
 export const PAGES = ["/de", "/en", "/de/connect", "/de/developers", "/de/business", "/de/fuel", "/de/examples"] as const;
-export const RUNS = 3;
+export const RUNS = 5;
 export const FLOORS = { performance: 95, accessibility: 100, seo: 95, "best-practices": 95 } as const;
 export type Category = keyof typeof FLOORS;
 export type Scores = Readonly<Record<Category, number>>;
