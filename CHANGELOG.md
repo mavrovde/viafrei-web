@@ -10,6 +10,9 @@
 ## [0.2.0](https://github.com/mavrovde/viafrei-web/compare/v0.1.1...v0.2.0) (2026-11-18)
 
 
+0.2.0 was tagged, but its image was never published: the release's browser suite failed the eight-desktop-screens rule on the road page and the home with a place at 1280×800 (fixed in 0.2.1). 0.2.1 is the first published 0.2 release.
+
+
 ### Added
 
 * the full site and every HTML fragment, rendered here from viafrei-api (no digest, no database) ([#37](https://github.com/mavrovde/viafrei-web/issues/37)) ([1371f1a](https://github.com/mavrovde/viafrei-web/commit/1371f1a36f7773cd4931ec0bf38e9f5e86dc6046))
