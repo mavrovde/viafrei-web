@@ -1,7 +1,7 @@
 # gitleaks configuration (the Security workflow's "Secrets in history (gitleaks)" job, gitleaks v8.30.1).
 #
-# The default rules, every one of them, plus ONE narrow exception. Nothing here turns a rule off: the exception
-# is scoped to one rule, three test files and one literal shape, and all three conditions must hold (AND).
+# The default rules, every one of them, plus TWO narrow exceptions. Nothing here turns a rule off: each exception
+# is scoped to one rule, named files and named literals, and all three conditions must hold (AND).
 #
 # Where it is read: on a pull request the job uses the BASE revision's copy of this file, so a pull request
 # cannot widen the exception that judges it; the pull request's own copy is used only when the base has none

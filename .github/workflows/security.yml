@@ -148,7 +148,7 @@ jobs:
         with:
           persist-credentials: false
           fetch-depth: 0 # every commit, not only the tip
-      # The configuration is .gitleaks.toml (the default rules plus one narrow test-literal exception), passed
+      # The configuration is .gitleaks.toml (the default rules plus two narrow literal exceptions), passed
       # explicitly: left to itself gitleaks reads the copy in the scanned tree, which a pull request can edit. On a
       # pull request the BASE revision's copy judges, as with scripts/changes.sh; the pull request's own copy only
       # when the base has none (the bootstrap). A .gitleaksignore anywhere in the tree is refused: gitleaks reads
