@@ -37,6 +37,18 @@ export const FLOORS = { performance: 95, accessibility: 100, seo: 95, "best-prac
 export type Category = keyof typeof FLOORS;
 export type Scores = Readonly<Record<Category, number>>;
 
+/**
+ * The `Accept-Language` each page is loaded with: its own language. Lighthouse's Chrome sends `en-US`, and a German
+ * page entered with it is sent once to its English twin (`src/i18n/lang-redirect.ts`, a 302) — so without this header
+ * every /de/… entry measured the English page behind a redirect, the German page was never judged, and the redirect
+ * pushed first paint past the work it should have counted (v0.2.1: "/de" 100 over the same HTML that scored 91 as /en).
+ */
+export function acceptLanguageOf(page: string): string {
+  const lang = page.split("/")[1] ?? "";
+  if (!(LIVE_LANGS as readonly string[]).includes(lang)) throw new Error(`${page}: no live language in its path`);
+  return lang;
+}
+
 export function median(xs: readonly number[]): number {
   const s = [...xs].sort((a, b) => a - b);
   return s[Math.floor(s.length / 2)]!;
@@ -87,8 +99,13 @@ if (process.argv[1] && fileURLToPath(import.meta.url) === process.argv[1]) {
         const r = await lighthouse(
           `http://127.0.0.1:${port}${page}`,
           { port: chrome.port, output: "json", logLevel: "error" },
-          home ? { extends: "lighthouse:default", settings: { skipAudits: ["meta-refresh"] } } : undefined,
+          {
+            extends: "lighthouse:default",
+            settings: { extraHeaders: { "Accept-Language": acceptLanguageOf(page) }, ...(home ? { skipAudits: ["meta-refresh"] } : {}) },
+          },
         );
+        // a page that ended anywhere but where it was asked was not the page judged
+        if (r && new URL(r.lhr.finalDisplayedUrl).pathname !== page) throw new Error(`${page}: Lighthouse ended on ${r.lhr.finalDisplayedUrl}`);
         const cats = r?.lhr.categories;
         if (!cats) continue;
         const s = Object.fromEntries((Object.keys(FLOORS) as Category[]).map((c) => [c, Math.round((cats[c]?.score ?? Number.NaN) * 100)])) as Record<Category, number>;
