@@ -230,9 +230,9 @@
         "title": "Jutarnji put na posao",
         "scene": "7:10, kava u ruci: vozi li javni prijevoz normalno — i vozi li moj vlak na vrijeme?",
         "q1": "Voze li autobusi i vlakovi u Hamburgu trenutačno na vrijeme?",
-        "a1": "{share} % vožnji praćenih u posljednjih sat vremena kasnilo je više od 5 minuta — otprilike kao i sat prije ({before} %).",
+        "a1": "{share} % vožnji praćenih u posljednjih sat vremena kasnilo je više od 5 minuta — više nego sat prije ({before} %).",
         "limit": "Točnost prikazujemo po regiji, a ne po liniji.",
-        "q2": "Kada polazi sljedeći vlak s glavnog kolodvora u Hannoveru i kasni li?",
+        "q2": "Kada polazi sljedeći vlak s glavnog kolodvora u Leipzigu i kasni li?",
         "q3": "Je li neki vlak na ploči polazaka glavnog kolodvora u Kölnu otkazan u sljedećih sat vremena?",
         "a2": "Sljedeći je {l1} za {d1} (po voznom redu {t1}, kolosijek {p1}), kasni +{delay} min, polazi oko {exp}; zatim {l2} za {d2} u {t2}, na vrijeme.",
         "a3": "Nijedan nije otkazan: {n, plural, one {# polazak} few {# polaska} other {# polazaka}} do {last}; najviše kasni {l1} za {d1}, +{delay} min."
@@ -245,15 +245,15 @@
         "a1": "{s1}, udaljen {km},{kmd} km; zatim {s2} i {s3}.",
         "limit": "Vozni red svake autobusne i tramvajske stanice prikazat ćemo čim bude učitan — do tada kolodvore i stanje u vašoj regiji.",
         "board": "Vozni red na vašoj stanici",
-        "a2": "Sljedeća je {l1} za {d1} u {t1} s kolosijeka {p1}, na vrijeme; {l2} za {d2} u {t2} kasni +{delay2} min, polazi oko {exp2}.",
-        "q3": "Polaze li vlakovi s glavnog kolodvora u Leipzigu trenutačno s kašnjenjem?",
+        "a2": "Sljedeća je {l1} za {d1} u {t1} s kolosijeka {p1}, kasni +{delay1} min, polazi oko {exp1}; {l2} za {d2} kasni +{delay2} min, polazi oko {exp2}.",
+        "q3": "Polaze li vlakovi s glavnog kolodvora u Dresdenu trenutačno s kašnjenjem?",
         "a3": "Da, dva: {l1} za {d1}, +{dl1} min, s kolosijeka {p1}, i {l2} za {d2}, +{dl2} min; ostali sljedeći polasci ({n}) su na vrijeme."
       },
       "station": {
         "title": "Na kolodvoru",
         "scene": "S dječjim kolicima, invalidskim kolicima ili prtljagom: radi li dizalo do perona?",
         "q1": "Radi li dizalo na glavnom kolodvoru u Kölnu?",
-        "a1": "Kolodvor {station}: u pogonu je {working} od {total} prijavljenih dizala; jedno je izvan pogona, za jedno željeznica ne javlja stanje.",
+        "a1": "Kolodvor {station}: u pogonu je {working} od {total} prijavljenih dizala; za jedno željeznica ne javlja stanje.",
         "limit": "Dizala i pokretne stepenice na kolodvorima Deutsche Bahna; drugi operateri još ne.",
         "q2": "Jesu li sva dizala na kolodvoru Erlangen u pogonu?",
         "a2": "Da: jedino prijavljeno dizalo na kolodvoru {station}, do kolosijeka {platforms}, u pogonu je.",
@@ -264,7 +264,7 @@
         "title": "Na cesti",
         "scene": "Prije polaska: zastoji, zatvaranja, radovi na cesti — i gdje je gorivo trenutačno jeftino.",
         "q1": "Je li A8 prema Münchenu trenutačno prohodna?",
-        "a1": "Ne posve: između {a} i {b} prema Münchenu policija javlja prometnu nesreću; zaustavna traka je blokirana.",
+        "a1": "Da: prema Münchenu trenutačno nije prijavljen zastoj; prijavljeni zastoji na A8 ({jams}) su u drugim smjerovima.",
         "a1more": "Na cijeloj A8 navedeno je i ovo — zatvaranja: {closures}, unosi o radovima na cesti: {works}.",
         "limit": "Bez planiranja rute: kažemo što se događa na autocesti, a ne kojim putem biste trebali voziti.",
         "q2": "Koji su radovi na cesti trenutačno na A7?",
@@ -276,13 +276,13 @@
         "title": "U zastoju",
         "scene": "Zastoji na autocesti i oko gradova: gdje promet stoji, koliko vremena to košta — i hoće li noćas biti zatvaranja.",
         "q1": "Koliko vremena trenutačno oduzima zastoj na A3 između Frankfurta i Würzburga?",
-        "a1": "Između {a} i {b} prema Frankfurtu oko +{delay} min, nakon prometne nesreće; na cijeloj A3 prijavljeni zastoji: {jams}.",
+        "a1": "Između {a} i {b} prema Würzburgu oko +{delay} min; na cijeloj A3 prijavljeni zastoji: {jams}.",
         "a1more": "Na A3 navedeno je — zatvaranja: {closures}, unosi o radovima na cesti: {works}.",
         "limit": "U gradovima vidimo gradske autoceste, a u Berlinu, Kölnu i Hannoveru i gradske prometne obavijesti — još ne stanje na svakoj ulici. Obavijesti za Hamburg i stanje prometa za Köln zatražene su od pružatelja.",
         "q2": "Ima li trenutačno zastoja na kölnskom autocestovnom prstenu — A1, A3 ili A4?",
         "q3": "Je li A7 danas zatvorena u Hamburgu?",
         "a3": "Prijavljeno je zatvaranje između čvorova {a} i {b} (proširenje na osam traka, novi {tunnel}); na cijeloj A7 {n, plural, one {je # zatvaranje} few {su # zatvaranja} other {je # zatvaranja}}.",
-        "a2": "Da, na A4: između {a} i {b} prema Kölnu promet je usporen, oko +{delay} min; na upitanim autocestama prijavljeni zastoji: {n}."
+        "a2": "Da, na A4: između {a} i {b} prema Kölnu policija javlja zastoj od {km} km; na upitanim autocestama prijavljeni zastoji: {n}."
       },
       "parking": {
         "title": "Parkiranje",
@@ -336,22 +336,22 @@
       "goerlitz": {
         "q": "Gdje je dizel u Görlitzu trenutačno najjeftiniji?",
         "why": "Cijene se mijenjaju nekoliko puta dnevno i razlikuju se čak i među nekoliko postaja u istom gradu: ViaFrei navodi najjeftiniju s cijenom i vremenom kad ju je postaja javila.",
-        "a": "Nove cijene još nema — zadnja najniža: {euro},{cent} €/l kod {station}, {address}, javljeno {reported}; ViaFrei upravo traži novu."
+        "a": "{euro},{cent} €/l na postaji {station}, {address} — javljeno u {reported}."
       },
       "muenchen": {
         "q": "Gdje je benzin E10 u Münchenu trenutačno najjeftiniji?",
-        "why": "Cijena može biti jutarnja: za München je ViaFrei tog poslijepodneva imao samo jutarnje cijene, naveo svaku s vremenom i zatražio nove.",
+        "why": "Cijena može biti od prethodne večeri: za München ViaFrei tog poslijepodneva nije imao novu cijenu, naveo je najjeftiniju s vremenom od prethodne večeri i zatražio nove.",
         "a": "Nove cijene još nema — zadnja najniža: {euro},{cent} €/l kod {station}, {address}, javljeno {reported}; ViaFrei upravo traži novu."
       },
       "leipzig": {
         "q": "Gdje je benzin E5 u Leipzigu trenutačno najjeftiniji?",
-        "why": "Cijena može biti stara satima: ViaFrei za svaku cijenu kaže kad ju je postaja javila — tog su poslijepodneva najjeftinije u Leipzigu još bile od prijepodneva.",
-        "a": "Nove cijene još nema — zadnja najniža: {euro},{cent} €/l kod {station}, {address}, javljeno {reported}."
+        "why": "Najbliža postaja nije uvijek najjeftinija: ViaFrei uz svaku cijenu navodi udaljenost.",
+        "a": "{euro},{cent} €/l na postaji {station}, {address} — javljeno u {reported}."
       },
       "nuernberg": {
         "q": "Gdje je dizel u Nürnbergu trenutačno najjeftiniji?",
-        "why": "Najbliža postaja nije uvijek najjeftinija: ViaFrei uz svaku cijenu navodi udaljenost.",
-        "a": "{euro},{cent} €/l na postaji {station}, {address} — javljeno u {reported}."
+        "why": "Cijena može biti stara satima: ViaFrei za svaku cijenu kaže kad ju je postaja javila.",
+        "a": "Nove cijene još nema — zadnja najniža: {euro},{cent} €/l kod {station}, {address}, javljeno {reported}; ViaFrei upravo traži novu."
       }
     },
     "fuelAll": "Do tri benzinske postaje po saveznoj zemlji, s adresom i cijenom",
@@ -389,7 +389,7 @@
       "stadtbahn": {
         "title": "Dizala i pokretne stepenice gradske željeznice",
         "q": "Što je trenutačno izvan pogona na stanici gradske željeznice {stop} u Kölnu?",
-        "a": "{out} od {total} prijavljenih uređaja: pokretne stepenice {e1} i {e2} od {since}, {e3} od {since3} te {e4} od {since4}; oba dizala rade. {publisher} daje podatke bez ikakvog jamstva.",
+        "a": "{out} od {total} prijavljenih uređaja: pokretne stepenice {e1} i {e2} od {since} te {e3} od {since3}; oba dizala rade. {publisher} daje podatke bez ikakvog jamstva.",
         "note": "Za stanice kölnske gradske željeznice, iz objavljenog popisa kvarova – s vremenom od kada je uređaj prijavljen."
       },
       "bikes": {
@@ -401,7 +401,7 @@
       "lift": {
         "title": "Dizala na kolodvoru",
         "q": "Koja su dizala na kolodvoru {station} trenutačno izvan pogona?",
-        "a": "Jedno je prijavljeno kao izvan pogona, dizalo do kolosijeka {platforms}: u pogonu je {working} od {total} dizala. Drugo dizalo do kolosijeka {platforms} nije nadzirano – stanje mu je nepoznato.",
+        "a": "Nijedno nije prijavljeno kao izvan pogona: u pogonu je {working} od {total} dizala. Jedno dizalo do kolosijeka {platforms} nije nadzirano – stanje mu je nepoznato.",
         "note": "Za kolodvore Deutsche Bahna, čita se svakih 20 minuta. Što posljednja obavijest ne spominje, to je „nepoznato“ – nikad „u pogonu“."
       },
       "alert": {
@@ -419,13 +419,13 @@
       "ecomove": {
         "title": "Popunjenost uživo preko skupljača podataka",
         "q": "Je li na brzoj punionici {address} trenutačno slobodan priključak?",
-        "a": "{site}: do {kw} kW, {euro},{cent} €/kWh; posljednje stanje je od {t} – prestaro da bi se reklo „slobodno“.",
+        "a": "{site}: do {kw} kW, {euro},{cent} €/kWh; posljednje stanje od {t}: slobodnih {free}, zauzetih {busy} – možda zastarjelo.",
         "note": "Ovdje popunjenost dolazi od usluge koja skuplja obavijesti mnogih operatera. Priključak bez obavijesti nikad se ne računa kao slobodan."
       },
       "ocpdb": {
         "title": "Uživo slobodno ili zauzeto – usred Kölna",
         "q": "Je li na punionici {address} trenutačno slobodan priključak?",
-        "a": "Da, jedan: Tip 2 do {kw2} kW je slobodan, priključak CCS do {kw} kW je izvan pogona – {euro},{cent} €/kWh bez PDV-a.",
+        "a": "Da, oba priključka su slobodna: CCS i Tip 2 do {kw} kW – {euro},{cent} €/kWh bez PDV-a.",
         "note": "Popunjenost dolazi uživo preko podatkovnog portala Baden-Württemberga, koji navodi i punionice daleko izvan te savezne zemlje."
       },
       "lsr": {
@@ -467,7 +467,7 @@
       "landroad": {
         "title": "Radovi na cesti na zemaljskoj cesti",
         "q": "Ima li ovaj tjedan radova na cesti L1025 u Tiringiji?",
-        "a": "{count, plural, one {# radilište} few {# radilišta} other {# radilišta}}, među njima: {site}, suženje regulirano semaforom, od {from} do {to}.",
+        "a": "Jedno radilište: {site}, suženje regulirano semaforom, od {from} do {to}.",
         "note": "Zemaljske ceste pokrivamo u Baden-Württembergu, Donjoj Saskoj, Tiringiji i Saskoj, iz podataka cestovnih uprava: dionica i razdoblje, bez koordinata i bez kašnjenja uživo."
       },
       "saxony": {
@@ -527,17 +527,17 @@
       "weather": {
         "title": "Provjera vremena prije planina",
         "q": "Postoji li danas upozorenje na vremenske uvjete za {name}?",
-        "a": "Da, za nadolazeću noć: Njemačka meteorološka služba upozorava na slab mraz do {temp} °C, vrijedi {day} od {from} do {to} – stupanj {level}, najniži.",
+        "a": "Da: Njemačka meteorološka služba upozorava na jake olujne udare vjetra iznad {alt} m, vrijedi do {day} u {to} – stupanj {level} od 4.",
         "note": "Upozorenja se čitaju svakih 5 minuta i vrijede po području; novo se može izdati u kratkom roku."
       },
       "fuelcity": {
         "title": "Najjeftiniji E10 u gradu",
         "q": "Gdje je Super E10 u Kölnu trenutačno najjeftiniji?",
-        "a": "{euro},{cent} €/l na postaji {station}, {address} — javljeno u {reported}.",
+        "a": "Nove cijene još nema — zadnja najniža: {euro},{cent} €/l kod {station}, {address}, javljeno {reported}; ViaFrei upravo traži novu.",
         "note": "Cijene goriva mijenjaju se svakih nekoliko minuta: ova je brojka primjer od tog poslijepodneva, a ne današnja cijena. ViaFrei za svaku cijenu kaže kad ju je postaja javila."
       },
       "charger": {
-        "a": "{site}: priključaka {points}, Tip 2, do {kw},{kwd} kW, {euro},{cent} €/kWh bez PDV-a. Nijedan se ne javlja kao zauzet; za {stale} posljednje stanje je od {t}, za {unknown} ga nema, pa ne „slobodno“.",
+        "a": "{site}: priključaka {points}, Tip 2, do {kw},{kwd} kW, {euro},{cent} €/kWh bez PDV-a. Posljednje stanje od {t}: slobodnih {free}, zauzetih {busy}, izvan pogona {out}, za {unknown} ga nema – možda zastarjelo.",
         "title": "Stanje uživo na punionici",
         "q": "Je li na adresi {address} trenutačno slobodan priključak?",
         "note": "Popunjenost uživo navodimo samo ondje gdje je operater objavljuje – ovdje preko e-clearing.net. Bez obavijesti odgovor je „nema podataka o stanju“, nikad „slobodno“."

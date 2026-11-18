@@ -230,9 +230,9 @@
         "title": "Rano do pracy",
         "scene": "7:10, kawa w ręku: czy komunikacja kursuje normalnie — i czy mój pociąg jedzie?",
         "q1": "Czy autobusy i pociągi w Hamburgu kursują teraz punktualnie?",
-        "a1": "{share}% kursów z ostatniej godziny miało ponad 5 minut opóźnienia — mniej więcej tyle samo co godzinę wcześniej ({before}%).",
+        "a1": "{share}% kursów z ostatniej godziny miało ponad 5 minut opóźnienia – więcej niż godzinę wcześniej ({before}%).",
         "limit": "Punktualność pokazujemy dla regionu, nie dla linii.",
-        "q2": "Kiedy odjeżdża najbliższy pociąg z dworca głównego w Hanowerze i czy jest opóźniony?",
+        "q2": "Kiedy odjeżdża najbliższy pociąg z dworca głównego w Lipsku i czy jest opóźniony?",
         "q3": "Czy na tablicy odjazdów dworca głównego w Kolonii w najbliższej godzinie są odwołane pociągi?",
         "a2": "Najbliższy: {l1}, kierunek {d1} (planowo {t1}, tor {p1}), +{delay} min, odjazd ok. {exp}; potem {l2}, kierunek {d2}, o {t2}, punktualnie.",
         "a3": "Żaden nie jest odwołany: {n, plural, one {# odjazd} few {# odjazdy} many {# odjazdów} other {# odjazdu}} do {last}; największe opóźnienie ma {l1}, kierunek {d1}: +{delay} min."
@@ -245,15 +245,15 @@
         "a1": "{s1}, {km},{kmd} km stąd; dalej {s2} i {s3}.",
         "limit": "Rozkład każdego przystanku autobusowego i tramwajowego pokażemy, gdy tylko zostanie wczytany — do tego czasu stacje i sytuację w Twoim regionie.",
         "board": "Rozkład na Twoim przystanku",
-        "a2": "Najbliższa: {l1}, kierunek {d1}, o {t1} z toru {p1}, punktualnie; {l2}, kierunek {d2}, planowo {t2}, ma +{delay2} min, odjazd ok. {exp2}.",
-        "q3": "Czy z dworca głównego w Lipsku odjeżdżają teraz pociągi z opóźnieniem?",
+        "a2": "Najbliższa: {l1}, kierunek {d1}, planowo {t1} z toru {p1}, ma +{delay1} min, odjazd ok. {exp1}; {l2}, kierunek {d2}, ma +{delay2} min, odjazd ok. {exp2}.",
+        "q3": "Czy z dworca głównego w Dreźnie odjeżdżają teraz pociągi z opóźnieniem?",
         "a3": "Tak, dwa: {l1}, kierunek {d1}, +{dl1} min, z toru {p1}, oraz {l2}, kierunek {d2}, +{dl2} min; pozostałe najbliższe odjazdy ({n}) są punktualne."
       },
       "station": {
         "title": "Na dworcu",
         "scene": "Z wózkiem dziecięcym, na wózku inwalidzkim albo z walizką: czy winda na peron działa?",
         "q1": "Czy winda na dworcu głównym w Kolonii działa?",
-        "a1": "Na stacji {station} działa {working} z {total} zgłoszonych wind; jedna jest nieczynna, dla jednej kolej nie podaje stanu.",
+        "a1": "Na stacji {station} działa {working} z {total} zgłoszonych wind; dla jednej kolej nie podaje stanu.",
         "limit": "Windy i schody ruchome na dworcach Deutsche Bahn; innych przewoźników jeszcze nie.",
         "q2": "Czy na dworcu w Erlangen działają wszystkie windy?",
         "a2": "Tak: jedyna zgłoszona winda na stacji {station}, na tor {platforms}, działa.",
@@ -264,7 +264,7 @@
         "title": "Samochodem",
         "scene": "Przed wyjazdem: korki, zamknięcia, roboty drogowe — i gdzie paliwo jest teraz tanie.",
         "q1": "Czy A8 w kierunku Monachium jest teraz przejezdna?",
-        "a1": "Nie całkiem: na odcinku {a} – {b} w kierunku Monachium policja zgłasza wypadek; pas awaryjny jest zablokowany.",
+        "a1": "Tak: w kierunku Monachium nie zgłoszono teraz korka; korki na A8 ({jams}) są w innych kierunkach.",
         "a1more": "Na całej A8 wymieniono też zamknięcia ({closures}) i wpisy o robotach drogowych ({works}).",
         "limit": "Bez planowania trasy: mówimy, co dzieje się na autostradzie, a nie którędy masz jechać.",
         "q2": "Jakie roboty drogowe są teraz na A7?",
@@ -276,13 +276,13 @@
         "title": "W korku",
         "scene": "Korki na autostradzie i wokół miast: gdzie stoi ruch, ile to kosztuje czasu — i czy dziś w nocy będzie zamknięcie.",
         "q1": "Ile czasu kosztuje teraz korek na A3 między Frankfurtem a Würzburgiem?",
-        "a1": "Na odcinku {a} – {b} w kierunku Frankfurtu ok. +{delay} min, po wypadku; na całej A3 zgłoszone korki: {jams}.",
+        "a1": "Na odcinku {a} – {b} w kierunku Würzburga ok. +{delay} min; na całej A3 zgłoszone korki: {jams}.",
         "a1more": "Na A3 wymieniono: zamknięcia ({closures}) i wpisy o robotach drogowych ({works}).",
         "limit": "W miastach widzimy autostrady miejskie, a w Berlinie, Kolonii i Hanowerze także miejskie komunikaty drogowe — jeszcze nie sytuację na każdej ulicy. O komunikaty dla Hamburga i stan ruchu w Kolonii wystąpiliśmy do dostawców.",
         "q2": "Czy na obwodnicy autostradowej Kolonii — A1, A3 lub A4 — jest teraz korek?",
         "q3": "Czy A7 w Hamburgu jest dziś zamknięta?",
         "a3": "Zgłoszono zamknięcie między węzłami {a} i {b} (rozbudowa do ośmiu pasów, nowy {tunnel}); na całej A7 jest {n, plural, one {# zamknięcie} few {# zamknięcia} many {# zamknięć} other {# zamknięcia}}.",
-        "a2": "Tak, na A4: na odcinku {a} – {b} w kierunku Kolonii ruch jest spowolniony, ok. +{delay} min; na pytanych autostradach zgłoszone korki: {n}."
+        "a2": "Tak, na A4: na odcinku {a} – {b} w kierunku Kolonii policja zgłasza korek na {km} km; na pytanych autostradach zgłoszone korki: {n}."
       },
       "parking": {
         "title": "Parkowanie",
@@ -336,22 +336,22 @@
       "goerlitz": {
         "q": "Gdzie w Görlitz jest teraz najtańszy diesel?",
         "why": "Ceny zmieniają się kilka razy dziennie i różnią się nawet między kilkoma stacjami w jednym mieście: ViaFrei podaje najtańszą z ceną i godziną, o której stacja ją zgłosiła.",
-        "a": "Brak nowej ceny — ostatnio najtaniej: {euro},{cent} €/l na stacji {station}, {address}, zgłoszono {reported}; ViaFrei właśnie pyta o nową."
+        "a": "{euro},{cent} €/l na stacji {station}, {address} — zgłoszono o {reported}."
       },
       "muenchen": {
         "q": "Gdzie w Monachium jest teraz najtańsza benzyna E10?",
-        "why": "Cena może być poranna: dla Monachium ViaFrei miał tego popołudnia tylko ceny z rana, podał każdą z godziną i poprosił o nowe.",
+        "why": "Cena może być z poprzedniego wieczoru: dla Monachium ViaFrei nie miał tego popołudnia nowej ceny, podał najtańszą z godziną z poprzedniego wieczoru i poprosił o nowe.",
         "a": "Brak nowej ceny — ostatnio najtaniej: {euro},{cent} €/l na stacji {station}, {address}, zgłoszono {reported}; ViaFrei właśnie pyta o nową."
       },
       "leipzig": {
         "q": "Gdzie w Lipsku jest teraz najtańsza benzyna E5?",
-        "why": "Cena może mieć kilka godzin: ViaFrei podaje przy każdej cenie, kiedy stacja ją zgłosiła — tego popołudnia najtańsze w Lipsku pochodziły jeszcze z przedpołudnia.",
-        "a": "Brak nowej ceny — ostatnio najtaniej: {euro},{cent} €/l na stacji {station}, {address}, zgłoszono {reported}."
+        "why": "Najbliższa stacja nie zawsze jest najtańsza: ViaFrei podaje przy każdej cenie odległość.",
+        "a": "{euro},{cent} €/l na stacji {station}, {address} — zgłoszono o {reported}."
       },
       "nuernberg": {
         "q": "Gdzie w Norymberdze jest teraz najtańszy diesel?",
-        "why": "Najbliższa stacja nie zawsze jest najtańsza: ViaFrei podaje przy każdej cenie odległość.",
-        "a": "{euro},{cent} €/l na stacji {station}, {address} — zgłoszono o {reported}."
+        "why": "Cena może mieć kilka godzin: ViaFrei podaje przy każdej cenie, kiedy stacja ją zgłosiła.",
+        "a": "Brak nowej ceny — ostatnio najtaniej: {euro},{cent} €/l na stacji {station}, {address}, zgłoszono {reported}; ViaFrei właśnie pyta o nową."
       }
     },
     "fuelAll": "Do trzech stacji paliw w każdym kraju związkowym, z adresem i ceną",
@@ -389,7 +389,7 @@
       "stadtbahn": {
         "title": "Windy i schody ruchome szybkiego tramwaju",
         "q": "Co jest teraz nieczynne na przystanku szybkiego tramwaju {stop} w Kolonii?",
-        "a": "Nieczynne {out} z {total} urządzeń: ruchome schody {e1} i {e2} od {since}, {e3} od {since3} i {e4} od {since4}; obie windy działają. {publisher} udostępnia dane bez żadnej gwarancji.",
+        "a": "Nieczynne {out} z {total} urządzeń: ruchome schody {e1} i {e2} od {since} i {e3} od {since3}; obie windy działają. {publisher} udostępnia dane bez żadnej gwarancji.",
         "note": "Dla przystanków szybkiego tramwaju w Kolonii, z opublikowanej listy usterek – z godziną zgłoszenia każdej usterki."
       },
       "bikes": {
@@ -401,7 +401,7 @@
       "lift": {
         "title": "Windy na dworcu",
         "q": "Które windy na dworcu {station} są teraz nieczynne?",
-        "a": "Jedna jest zgłoszona jako nieczynna, winda na tory {platforms}: działa {working} z {total} wind. Druga winda na tory {platforms} nie jest monitorowana – jej stan jest nieznany.",
+        "a": "Żadna nie jest zgłoszona jako nieczynna: działa {working} z {total} wind. Jedna winda na tory {platforms} nie jest monitorowana – jej stan jest nieznany.",
         "note": "Dla dworców Deutsche Bahn, odczyt co 20 minut. Czego ostatni komunikat nie wymienia, to „nieznany” – nigdy „działa”."
       },
       "alert": {
@@ -419,13 +419,13 @@
       "ecomove": {
         "title": "Zajętość na żywo przez agregatora",
         "q": "Czy przy szybkiej ładowarce pod adresem {address} jest teraz wolny punkt?",
-        "a": "{site}: do {kw} kW, {euro},{cent} €/kWh; ostatni stan pochodzi z {t} — za stary, by powiedzieć „wolny”.",
+        "a": "{site}: do {kw} kW, {euro},{cent} €/kWh; ostatni stan z {t}: wolne {free}, zajęte {busy} – może być nieaktualny.",
         "note": "Zajętość pochodzi tu z serwisu, który zbiera komunikaty wielu operatorów. Punkt bez komunikatu nigdy nie liczy się jako wolny."
       },
       "ocpdb": {
         "title": "Wolny lub zajęty na żywo – w centrum Kolonii",
         "q": "Czy przy ładowarce pod adresem {address} jest teraz wolny punkt?",
-        "a": "Tak, jeden: typ 2 do {kw2} kW jest wolny, punkt CCS do {kw} kW nie działa — {euro},{cent} €/kWh netto.",
+        "a": "Tak, oba punkty są wolne: CCS i typ 2 do {kw} kW — {euro},{cent} €/kWh netto.",
         "note": "Zajętość przychodzi na żywo przez portal danych Badenii-Wirtembergii, który obejmuje też ładowarki daleko poza tym krajem związkowym."
       },
       "lsr": {
@@ -467,7 +467,7 @@
       "landroad": {
         "title": "Roboty drogowe na drodze kraju związkowego",
         "q": "Czy w tym tygodniu są roboty drogowe na L1025 w Turyngii?",
-        "a": "{count, plural, one {# miejsce robót} few {# miejsca robót} many {# miejsc robót} other {# miejsca robót}}, w tym: {site}, zwężenie z sygnalizacją świetlną, od {from} do {to}.",
+        "a": "Jedno miejsce robót: {site}, zwężenie z sygnalizacją świetlną, od {from} do {to}.",
         "note": "Drogi krajów związkowych znamy w Badenii-Wirtembergii, Dolnej Saksonii i Turyngii, a drogi państwowe w Saksonii – z danych zarządów dróg: odcinek i okres, bez współrzędnych i bez opóźnień na żywo."
       },
       "saxony": {
@@ -527,17 +527,17 @@
       "weather": {
         "title": "Sprawdzenie pogody przed górami",
         "q": "Czy dziś jest ostrzeżenie pogodowe dla {name}?",
-        "a": "Tak, na nadchodzącą noc: Deutscher Wetterdienst ostrzega przed słabym przymrozkiem do {temp} °C, ważne {day} od {from} do {to} – stopień {level}, najniższy.",
+        "a": "Tak: Deutscher Wetterdienst ostrzega przed silnymi porywami wiatru powyżej {alt} m, ważne do {day} {to} – stopień {level} z 4.",
         "note": "Ostrzeżenia są odczytywane co 5 minut i obowiązują dla obszaru; nowe może zostać wydane w krótkim czasie."
       },
       "fuelcity": {
         "title": "Najtańsza E10 w mieście",
         "q": "Gdzie w Kolonii jest teraz najtańsza benzyna E10?",
-        "a": "{euro},{cent} €/l na stacji {station}, {address} — zgłoszono o {reported}.",
+        "a": "Brak nowej ceny – ostatnio najtaniej: {euro},{cent} €/l na stacji {station}, {address}, zgłoszono {reported}; ViaFrei właśnie pyta o nową.",
         "note": "Ceny paliw zmieniają się co kilka minut: ta liczba to przykład z tamtego popołudnia, a nie dzisiejsza cena. ViaFrei podaje przy każdej cenie, kiedy stacja ją zgłosiła."
       },
       "charger": {
-        "a": "{site}: punkty ładowania: {points}, typ 2, do {kw},{kwd} kW, {euro},{cent} €/kWh netto. Żaden nie zgłasza zajętości; dla {stale} ostatni stan z {t}, dla {unknown} brak stanu – więc nie „wolny”.",
+        "a": "{site}: punkty ładowania: {points}, typ 2, do {kw},{kwd} kW, {euro},{cent} €/kWh netto. Ostatni stan z {t}: wolne {free}, zajęte {busy}, nieczynne {out}, dla {unknown} brak stanu – może być nieaktualny.",
         "title": "Stan na żywo przy ładowarce",
         "q": "Czy pod adresem {address} jest teraz wolny punkt ładowania?",
         "note": "Zajętość na żywo podajemy tylko tam, gdzie publikuje ją operator – tu przez e-clearing.net. Bez komunikatu odpowiedź brzmi „brak danych o stanie”, nigdy „wolny”."

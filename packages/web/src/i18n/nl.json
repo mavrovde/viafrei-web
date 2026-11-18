@@ -230,9 +230,9 @@
         "title": "’s Ochtends naar het werk",
         "scene": "7.10 uur, koffie in de hand: rijdt het openbaar vervoer normaal — en rijdt mijn trein?",
         "q1": "Rijden bussen en treinen in Hamburg nu op tijd?",
-        "a1": "{share}% van de waargenomen ritten van het afgelopen uur had meer dan 5 minuten vertraging – ongeveer evenveel als het uur ervoor ({before}%).",
+        "a1": "{share}% van de waargenomen ritten van het afgelopen uur had meer dan 5 minuten vertraging – meer dan het uur ervoor ({before}%).",
         "limit": "Stiptheid tonen we per regio, niet per lijn.",
-        "q2": "Wanneer vertrekt de volgende trein van Hannover Centraal, en heeft hij vertraging?",
+        "q2": "Wanneer vertrekt de volgende trein van Leipzig Centraal, en heeft hij vertraging?",
         "q3": "Vallen er op het vertrekbord van Keulen Centraal het komende uur treinen uit?",
         "a2": "Eerst {l1} naar {d1} (gepland {t1}, spoor {p1}) met +{delay} min, rond {exp}; daarna {l2} naar {d2} om {t2}, op tijd.",
         "a3": "Er valt er geen uit: {n} vertrekken tot {last}; de grootste vertraging heeft {l1} naar {d1}, +{delay} min."
@@ -245,15 +245,15 @@
         "a1": "{s1}, op {km},{kmd} km; daarna {s2} en {s3}.",
         "limit": "De dienstregeling van elke bus- en tramhalte tonen we zodra die geladen is — tot dan stations en de situatie in je regio.",
         "board": "Dienstregeling bij je halte",
-        "a2": "Eerst de {l1} naar {d1} om {t1} van spoor {p1}, op tijd; de {l2} naar {d2} van {t2} heeft +{delay2} min, rond {exp2}.",
-        "q3": "Vertrekken er op het hoofdstation van Leipzig nu treinen met vertraging?",
+        "a2": "Eerst de {l1} naar {d1} van {t1} van spoor {p1}, heeft +{delay1} min, rond {exp1}; de {l2} naar {d2} heeft +{delay2} min, rond {exp2}.",
+        "q3": "Vertrekken er op het hoofdstation van Dresden nu treinen met vertraging?",
         "a3": "Ja, twee: de {l1} naar {d1} met +{dl1} min van spoor {p1} en de {l2} naar {d2} met +{dl2} min; de andere {n} komende vertrekken zijn op tijd."
       },
       "station": {
         "title": "Op het station",
         "scene": "Met kinderwagen, rolstoel of koffer: werkt de lift naar het perron?",
         "q1": "Werkt de lift op Keulen Centraal?",
-        "a1": "Op {station} zijn {working} van de {total} gemelde liften in bedrijf; één is buiten bedrijf, voor één meldt de spoorwegmaatschappij geen status.",
+        "a1": "Op {station} zijn {working} van de {total} gemelde liften in bedrijf; voor één meldt de spoorwegmaatschappij geen status.",
         "limit": "Liften en roltrappen op stations van Deutsche Bahn; andere exploitanten nog niet.",
         "q2": "Zijn alle liften op station Erlangen in bedrijf?",
         "a2": "Ja: de enige gemelde lift op {station}, naar spoor {platforms}, is in bedrijf.",
@@ -264,7 +264,7 @@
         "title": "Met de auto",
         "scene": "Voor vertrek: files, afsluitingen, wegwerkzaamheden — en waar tanken nu goedkoop is.",
         "q1": "Is de A8 richting München nu vrij?",
-        "a1": "Niet helemaal: tussen {a} en {b} richting München meldt de politie een ongeval; de vluchtstrook is geblokkeerd.",
+        "a1": "Ja: richting München is nu geen file gemeld; de {jams} files op de A8 staan in andere richtingen.",
         "a1more": "Op de hele A8 staan daarnaast {closures} afsluitingen en {works} meldingen van wegwerkzaamheden.",
         "limit": "Geen routeplanning: we zeggen wat er op de snelweg aan de hand is, niet welke route je moet rijden.",
         "q2": "Welke wegwerkzaamheden zijn er nu op de A7?",
@@ -276,13 +276,13 @@
         "title": "In de file",
         "scene": "File op de snelweg en rond de steden: waar het stilstaat, hoeveel tijd het kost — en of er vannacht wordt afgesloten.",
         "q1": "Hoeveel tijd kost de file op de A3 tussen Frankfurt en Würzburg nu?",
-        "a1": "Tussen {a} en {b} richting Frankfurt ongeveer +{delay} min, na een ongeval; op de hele A3 zijn {jams} files gemeld.",
+        "a1": "Tussen {a} en {b} richting Würzburg ongeveer +{delay} min; op de hele A3 zijn {jams} files gemeld.",
         "a1more": "Op de A3 staan {closures} afsluitingen en {works} meldingen van wegwerkzaamheden.",
         "limit": "In de stad zien we de stadssnelwegen, en in Berlijn, Keulen en Hannover ook de verkeersmeldingen van de stad zelf – nog niet de situatie in elke straat. De meldingen voor Hamburg en de verkeerssituatie voor Keulen zijn bij de aanbieders aangevraagd.",
         "q2": "Staat er nu file op de snelwegring rond Keulen — A1, A3 of A4?",
         "q3": "Is de A7 bij Hamburg vandaag afgesloten?",
         "a3": "Gemeld is een afsluiting tussen de aansluitingen {a} en {b} (verbreding naar acht rijstroken, nieuwbouw {tunnel}); op de hele A7 zijn het er {n}.",
-        "a2": "Ja, op de A4: tussen {a} en {b} richting Keulen staat het verkeer stil en rijdt het langzaam, ongeveer +{delay} min; op de gevraagde snelwegen zijn {n} files gemeld."
+        "a2": "Ja, op de A4: tussen {a} en {b} richting Keulen meldt de politie {km} km file; op de gevraagde snelwegen zijn {n} files gemeld."
       },
       "parking": {
         "title": "Parkeren",
@@ -336,22 +336,22 @@
       "goerlitz": {
         "q": "Waar tank ik in Görlitz nu het goedkoopst diesel?",
         "why": "Prijzen veranderen meerdere keren per dag en verschillen zelfs tussen een paar tankstations in één stad: ViaFrei noemt de goedkoopste met de prijs en het tijdstip waarop het station die meldde.",
-        "a": "Nog geen nieuwe prijs – laatst bekend als goedkoopst: € {euro},{cent} per liter bij {station}, {address}, gemeld op {reported}; ViaFrei vraagt een nieuwe op."
+        "a": "€ {euro},{cent} per liter bij {station}, {address} – gemeld om {reported}."
       },
       "muenchen": {
         "q": "Waar is Euro 95 E10 in München nu het goedkoopst?",
-        "why": "Een prijs kan van de ochtend zijn: voor München had ViaFrei die middag alleen prijzen van de ochtend, noemde elke met het tijdstip en vroeg nieuwe op.",
+        "why": "Een prijs kan van de avond ervoor zijn: voor München had ViaFrei die middag geen nieuwe prijs, noemde de goedkoopste met het tijdstip van de avond ervoor en vroeg nieuwe op.",
         "a": "Nog geen nieuwe prijs – laatst bekend als goedkoopst: € {euro},{cent} per liter bij {station}, {address}, gemeld op {reported}; ViaFrei vraagt een nieuwe op."
       },
       "leipzig": {
         "q": "Waar is Euro 95 E5 in Leipzig nu het goedkoopst?",
-        "why": "Een prijs kan uren oud zijn: ViaFrei zegt bij elke prijs wanneer het station die meldde – die middag kwamen de goedkoopste in Leipzig nog van de ochtend.",
-        "a": "Nog geen nieuwe prijs – laatst bekend als goedkoopst: € {euro},{cent} per liter bij {station}, {address}, gemeld op {reported}."
+        "why": "Het dichtstbijzijnde tankstation is niet altijd het goedkoopste: ViaFrei geeft bij elke prijs de afstand.",
+        "a": "€ {euro},{cent} per liter bij {station}, {address} – gemeld om {reported}."
       },
       "nuernberg": {
         "q": "Waar is diesel in Neurenberg nu het goedkoopst?",
-        "why": "Het dichtstbijzijnde tankstation is niet altijd het goedkoopste: ViaFrei geeft bij elke prijs de afstand.",
-        "a": "€ {euro},{cent} per liter bij {station}, {address} – gemeld om {reported}."
+        "why": "Een prijs kan uren oud zijn: ViaFrei zegt bij elke prijs wanneer het station die meldde.",
+        "a": "Nog geen nieuwe prijs – laatst bekend als goedkoopst: € {euro},{cent} per liter bij {station}, {address}, gemeld op {reported}; ViaFrei vraagt een nieuwe op."
       }
     },
     "fuelAll": "Per deelstaat tot drie tankstations met adres en prijs",
@@ -389,7 +389,7 @@
       "stadtbahn": {
         "title": "Liften en roltrappen van de sneltram",
         "q": "Wat is er bij sneltramhalte {stop} in Keulen nu buiten gebruik?",
-        "a": "{out} van {total} gemelde installaties: roltrappen {e1} en {e2} sinds {since}, {e3} sinds {since3} en {e4} sinds {since4}; beide liften werken. {publisher} levert de gegevens zonder enige garantie.",
+        "a": "{out} van {total} gemelde installaties: roltrappen {e1} en {e2} sinds {since} en {e3} sinds {since3}; beide liften werken. {publisher} levert de gegevens zonder enige garantie.",
         "note": "Voor de haltes van de Keulse sneltram, uit de gepubliceerde storingslijst – met het tijdstip waarop elke installatie als gestoord is gemeld."
       },
       "bikes": {
@@ -401,7 +401,7 @@
       "lift": {
         "title": "Liften op het station",
         "q": "Welke liften op station {station} zijn nu buiten gebruik?",
-        "a": "Eén is buiten gebruik gemeld, een lift naar spoor {platforms}: {working} van {total} liften in bedrijf. De andere lift naar spoor {platforms} wordt niet bewaakt – de status is onbekend.",
+        "a": "Geen enkele is buiten gebruik gemeld: {working} van {total} liften in bedrijf. Eén lift naar spoor {platforms} wordt niet bewaakt – de status is onbekend.",
         "note": "Voor stations van Deutsche Bahn, elke 20 minuten opnieuw gelezen. Wat de laatste melding niet noemt, heet “onbekend” – nooit “in bedrijf”."
       },
       "alert": {
@@ -419,13 +419,13 @@
       "ecomove": {
         "title": "Live bezetting via een verzamelaar",
         "q": "Is er bij de snellader {address} nu een laadpunt vrij?",
-        "a": "{site}: tot {kw} kW, € {euro},{cent}/kWh; de laatste status is van {t} – te oud om “vrij” te zeggen.",
+        "a": "{site}: tot {kw} kW, € {euro},{cent}/kWh; laatste status van {t}: {free} vrij, {busy} bezet – mogelijk verouderd.",
         "note": "De bezetting komt hier van een dienst die de meldingen van veel exploitanten bundelt. Een punt zonder melding telt nooit als vrij."
       },
       "ocpdb": {
         "title": "Live vrij of bezet – midden in Keulen",
         "q": "Is er bij de laadpaal {address} nu een laadpunt vrij?",
-        "a": "Ja, één: type 2 tot {kw2} kW is vrij, het CCS-laadpunt tot {kw} kW is defect – € {euro},{cent}/kWh exclusief btw.",
+        "a": "Ja, beide laadpunten zijn vrij: CCS en type 2 tot {kw} kW – € {euro},{cent}/kWh exclusief btw.",
         "note": "De bezetting komt live via het dataportaal van Baden-Württemberg, dat ook laadpalen ver buiten die deelstaat vermeldt."
       },
       "lsr": {
@@ -467,7 +467,7 @@
       "landroad": {
         "title": "Wegwerkzaamheden op een provinciale weg",
         "q": "Zijn er deze week wegwerkzaamheden op de L1025 in Thüringen?",
-        "a": "{count} werkvakken, waaronder: {site}, een versmalling met verkeerslichten, van {from} tot {to}.",
+        "a": "Eén werkvak: {site}, een versmalling met verkeerslichten, van {from} tot {to}.",
         "note": "Deelstaatwegen kennen we in Baden-Württemberg, Nedersaksen, Thüringen en Saksen, uit de gegevens van de wegbeheerders: traject en periode, geen coördinaten en geen live vertraging."
       },
       "saxony": {
@@ -527,17 +527,17 @@
       "weather": {
         "title": "Weercheck voor de bergen",
         "q": "Is er vandaag een weerwaarschuwing voor {name}?",
-        "a": "Ja, voor de komende nacht: de Duitse weerdienst waarschuwt voor lichte vorst tot {temp} °C, geldig op {day} van {from} tot {to} uur – waarschuwingsniveau {level}, het laagste.",
+        "a": "Ja: de Duitse weerdienst waarschuwt voor zware stormstoten boven {alt} m, geldig tot {day} {to} uur – waarschuwingsniveau {level} van 4.",
         "note": "Waarschuwingen worden elke 5 minuten gelezen en gelden per gebied; een nieuwe kan op korte termijn worden uitgegeven."
       },
       "fuelcity": {
         "title": "De goedkoopste E10 in de stad",
         "q": "Waar is Euro 95 E10 in Keulen nu het goedkoopst?",
-        "a": "€ {euro},{cent} per liter bij {station}, {address} – gemeld om {reported}.",
+        "a": "Nog geen nieuwe prijs – laatst het goedkoopst: € {euro},{cent}/l bij {station}, {address}, gemeld op {reported}; ViaFrei vraagt een nieuwe op.",
         "note": "Brandstofprijzen veranderen om de paar minuten: dit cijfer is een voorbeeld van die middag, niet de prijs van vandaag. ViaFrei zegt bij elke prijs wanneer het station die meldde."
       },
       "charger": {
-        "a": "Bij {site}: {points} laadpunten, type 2, tot {kw},{kwd} kW, € {euro},{cent}/kWh excl. btw. Geen enkel meldt zich bezet; voor {stale} is de laatste status van {t}, voor {unknown} is er geen – dus niet “vrij”.",
+        "a": "Bij {site}: {points} laadpunten, type 2, tot {kw},{kwd} kW, € {euro},{cent}/kWh excl. Laatste status van {t}: {free} vrij, {busy} bezet, {out} defect, voor {unknown} geen – mogelijk verouderd.",
         "title": "Live status bij een laadpaal",
         "q": "Is er bij {address} nu een laadpunt vrij?",
         "note": "Live bezetting noemen we alleen waar de exploitant die publiceert – hier via e-clearing.net. Zonder melding luidt het antwoord “geen statusgegevens”, nooit “vrij”."

@@ -230,9 +230,9 @@
         "title": "Rīta ceļš uz darbu",
         "scene": "7:10, kafija rokā: vai sabiedriskais transports kursē kā parasti — un vai mans vilciens ir laikā?",
         "q1": "Vai autobusi un vilcieni Hamburgā pašlaik kursē laikā?",
-        "a1": "{share} % pēdējā stundā novēroto braucienu kavējās vairāk nekā 5 minūtes — aptuveni tikpat, cik stundu iepriekš ({before} %).",
+        "a1": "{share} % pēdējā stundā novēroto braucienu kavējās vairāk nekā 5 minūtes — vairāk nekā stundu iepriekš ({before} %).",
         "limit": "Punktualitāti rādām pa reģioniem, nevis pa līnijām.",
-        "q2": "Kad atiet nākamais vilciens no Hannoveres centrālās stacijas, un vai tas kavējas?",
+        "q2": "Kad atiet nākamais vilciens no Leipcigas centrālās stacijas, un vai tas kavējas?",
         "q3": "Vai tuvākās stundas laikā kāds vilciens Ķelnes centrālās stacijas atiešanas tablo ir atcelts?",
         "a2": "Nākamais ir {l1} uz {d1} (pēc saraksta {t1}, ceļš {p1}), kavējas +{delay} min, atiet ap {exp}; pēc tam {l2} uz {d2} {t2}, laikā.",
         "a3": "Neviens nav atcelts: {n, plural, zero {# atiešanas} one {# atiešana} other {# atiešanas}} līdz {last}; visvairāk kavējas {l1} uz {d1}, +{delay} min."
@@ -245,15 +245,15 @@
         "a1": "{s1}, {km},{kmd} km attālumā; tālāk {s2} un {s3}.",
         "limit": "Katras autobusu un tramvaju pieturas sarakstu rādīsim, tiklīdz tas būs ielādēts — līdz tam stacijas un situāciju jūsu reģionā.",
         "board": "Saraksts jūsu pieturā",
-        "a2": "Nākamais ir {l1} uz {d1} {t1} no ceļa {p1}, laikā; {l2} uz {d2}, paredzēts {t2}, +{delay2} min, atiet ap {exp2}.",
-        "q3": "Vai vilcieni no Leipcigas centrālās stacijas pašlaik kavējas?",
+        "a2": "Nākamais ir {l1} uz {d1}, paredzēts {t1} no ceļa {p1}, +{delay1} min, atiet ap {exp1}; {l2} uz {d2}, +{delay2} min, atiet ap {exp2}.",
+        "q3": "Vai vilcieni no Drēzdenes centrālās stacijas pašlaik kavējas?",
         "a3": "Jā, divi: {l1} uz {d1}, +{dl1} min, no ceļa {p1}, un {l2} uz {d2}, +{dl2} min; {n, plural, zero {pārējās # tuvākās atiešanas ir laikā} one {pārējā # tuvākā atiešana ir laikā} other {pārējās # tuvākās atiešanas ir laikā}}."
       },
       "station": {
         "title": "Stacijā",
         "scene": "Ar bērnu ratiņiem, ratiņkrēslu vai bagāžu: vai lifts uz peronu darbojas?",
         "q1": "Vai lifts Ķelnes centrālajā stacijā darbojas?",
-        "a1": "{station}: darbojas {working} no {total} norādītajiem liftiem; viens nedarbojas, par vienu dzelzceļš statusu neziņo.",
+        "a1": "{station}: darbojas {working} no {total} norādītajiem liftiem; par vienu dzelzceļš statusu neziņo.",
         "limit": "Lifti un eskalatori Deutsche Bahn stacijās; citu operatoru pagaidām nav.",
         "q2": "Vai visi lifti Erlangenes stacijā darbojas?",
         "a2": "Jā: vienīgais norādītais lifts stacijā {station}, uz peronu {platforms}, darbojas.",
@@ -264,7 +264,7 @@
         "title": "Ceļā",
         "scene": "Pirms izbraukšanas: sastrēgumi, slēgti posmi, ceļa darbi — un kur degviela pašlaik ir lēta.",
         "q1": "Vai A8 Minhenes virzienā pašlaik ir brīvs?",
-        "a1": "Ne gluži: starp {a} un {b} Minhenes virzienā policija ziņo par negadījumu; nomale ir bloķēta.",
+        "a1": "Jā: Minhenes virzienā pašlaik nav ziņots par sastrēgumu; A8 sastrēgumi ({jams}) ir citos virzienos.",
         "a1more": "Visā A8 vēl norādīts: slēgšanas {closures}, ceļa darbu ieraksti {works}.",
         "limit": "Nekādas maršruta plānošanas: mēs sakām, kas notiek uz autobāna, nevis pa kuru ceļu jums braukt.",
         "q2": "Kādi ceļa darbi pašlaik notiek uz A7?",
@@ -276,13 +276,13 @@
         "title": "Sastrēgumā",
         "scene": "Sastrēgumi uz autobāna un ap pilsētām: kur satiksme stāv, cik laika tas maksā — un vai šonakt būs slēgts posms.",
         "q1": "Cik laika pašlaik maksā sastrēgums uz A3 starp Frankfurti un Vircburgu?",
-        "a1": "Starp {a} un {b} Frankfurtes virzienā ap +{delay} min pēc negadījuma; visā A3 ziņoto sastrēgumu skaits: {jams}.",
+        "a1": "Starp {a} un {b} Vircburgas virzienā ap +{delay} min; visā A3 ziņoto sastrēgumu skaits: {jams}.",
         "a1more": "Uz A3 norādīts: slēgšanas {closures}, ceļa darbu ieraksti {works}.",
         "limit": "Pilsētās mēs redzam pilsētas autobānus, bet Berlīnē, Ķelnē un Hannoverē arī pašu pilsētu satiksmes ziņojumus — pagaidām ne situāciju katrā ielā. Hamburgas ziņojumus un Ķelnes satiksmes stāvokli esam pieprasījuši no piegādātājiem.",
         "q2": "Vai Ķelnes autobānu lokā pašlaik ir sastrēgumi — A1, A3 vai A4?",
         "q3": "Vai A7 Hamburgā šodien ir slēgts?",
         "a3": "Ziņots par slēgtu posmu starp {a} un {b} mezgliem (paplašināšana līdz astoņām joslām, jauns {tunnel}); visā A7 {n, plural, zero {# slēgti posmi} one {# slēgts posms} other {# slēgti posmi}}.",
-        "a2": "Jā, uz A4: starp {a} un {b} Ķelnes virzienā satiksme ir lēna, ap +{delay} min; uz jautātajiem autoceļiem ziņoto sastrēgumu skaits: {n}."
+        "a2": "Jā, uz A4: starp {a} un {b} Ķelnes virzienā policija ziņo par {km} km garu sastrēgumu; uz jautātajiem autoceļiem ziņoto sastrēgumu skaits: {n}."
       },
       "parking": {
         "title": "Stāvvieta",
@@ -336,22 +336,22 @@
       "goerlitz": {
         "q": "Kur Gerlicā pašlaik ir vislētākā dīzeļdegviela?",
         "why": "Cenas mainās vairākas reizes dienā un atšķiras pat starp dažām stacijām vienā pilsētā: ViaFrei nosauc lētāko ar cenu un laiku, kad stacija to ziņoja.",
-        "a": "Jaunas cenas vēl nav — zemākā pēdējā zināmā: {euro},{cent} €/l stacijā {station}, {address}, ziņots {reported}; ViaFrei pieprasa jaunu."
+        "a": "{euro},{cent} €/l stacijā {station}, {address} — ziņots {reported}."
       },
       "muenchen": {
         "q": "Kur Minhenē pašlaik ir vislētākais benzīns E10?",
-        "why": "Cena var būt rīta: tajā pēcpusdienā ViaFrei Minhenē bija tikai rīta cenas, katru sniedza ar laiku un pieprasīja jaunas.",
+        "why": "Cena var būt no iepriekšējā vakara: tajā pēcpusdienā ViaFrei Minhenē nebija jaunas cenas, lētāko sniedza ar iepriekšējā vakara laiku un pieprasīja jaunas.",
         "a": "Jaunas cenas vēl nav — zemākā pēdējā zināmā: {euro},{cent} €/l stacijā {station}, {address}, ziņots {reported}; ViaFrei pieprasa jaunu."
       },
       "leipzig": {
         "q": "Kur Leipcigā pašlaik ir vislētākais benzīns E5?",
-        "why": "Cena var būt vairākas stundas veca: ViaFrei saka, kad stacija ziņoja katru cenu — tajā pēcpusdienā lētākā Leipcigā joprojām bija no rīta.",
-        "a": "Jaunas cenas vēl nav — zemākā pēdējā zināmā: {euro},{cent} €/l stacijā {station}, {address}, ziņots {reported}."
+        "why": "Tuvākā stacija ne vienmēr ir lētākā: ViaFrei pie katras cenas norāda attālumu.",
+        "a": "{euro},{cent} €/l stacijā {station}, {address} — ziņots {reported}."
       },
       "nuernberg": {
         "q": "Kur Nirnbergā pašlaik ir vislētākā dīzeļdegviela?",
-        "why": "Tuvākā stacija ne vienmēr ir lētākā: ViaFrei pie katras cenas norāda attālumu.",
-        "a": "{euro},{cent} €/l stacijā {station}, {address} — ziņots {reported}."
+        "why": "Cena var būt vairākas stundas veca: ViaFrei saka, kad stacija ziņoja katru cenu.",
+        "a": "Jaunas cenas vēl nav — zemākā pēdējā zināmā: {euro},{cent} €/l stacijā {station}, {address}, ziņots {reported}; ViaFrei pieprasa jaunu."
       }
     },
     "fuelAll": "Līdz trim degvielas uzpildes stacijām katrā federālajā zemē, ar adresi un cenu",
@@ -389,7 +389,7 @@
       "stadtbahn": {
         "title": "Vieglā metro (Stadtbahn) lifti un eskalatori",
         "q": "Kas pašlaik nedarbojas Ķelnes vieglā metro pieturā {stop}?",
-        "a": "Nedarbojas {out} no {total} iekārtām: eskalatori {e1} un {e2} kopš {since}, {e3} kopš {since3} un {e4} kopš {since4}; abi lifti darbojas. {publisher} sniedz datus bez jebkādas garantijas.",
+        "a": "Nedarbojas {out} no {total} iekārtām: eskalatori {e1} un {e2} kopš {since} un {e3} kopš {since3}; abi lifti darbojas. {publisher} sniedz datus bez jebkādas garantijas.",
         "note": "Ķelnes vieglā metro pieturām, no publicētā bojājumu saraksta – ar laiku, kad ziņots par katru bojājumu."
       },
       "bikes": {
@@ -401,7 +401,7 @@
       "lift": {
         "title": "Lifti stacijā",
         "q": "Kuri lifti stacijā {station} pašlaik nedarbojas?",
-        "a": "Par vienu ziņots, ka tas nedarbojas — lifts uz peroniem {platforms}: darbojas {working} no {total} liftiem. Otrs lifts uz peroniem {platforms} netiek uzraudzīts – tā statuss nav zināms.",
+        "a": "Neviens nav ziņots kā nedarbojošs: darbojas {working} no {total} liftiem. Viens lifts uz peroniem {platforms} netiek uzraudzīts – tā statuss nav zināms.",
         "note": "Deutsche Bahn stacijām, nolasa ik pēc 20 minūtēm. Tas, ko jaunākais ziņojums nemin, ir „nezināms“ – nekad „darbojas“."
       },
       "alert": {
@@ -419,13 +419,13 @@
       "ecomove": {
         "title": "Tiešsaistes noslogojums caur agregatoru",
         "q": "Vai ātrās uzlādes stacijā adresē {address} pašlaik ir brīvs uzlādes punkts?",
-        "a": "{site}: līdz {kw} kW, {euro},{cent} €/kWh; pēdējais statuss ir no {t} — pārāk vecs, lai teiktu „brīvs“.",
+        "a": "{site}: līdz {kw} kW, {euro},{cent} €/kWh; pēdējais statuss no {t}: brīvi {free}, aizņemti {busy} — iespējams, novecojis.",
         "note": "Šeit noslogojums nāk no pakalpojuma, kas apkopo daudzu operatoru ziņojumus. Punkts bez ziņojuma nekad netiek uzskatīts par brīvu."
       },
       "ocpdb": {
         "title": "Tiešsaistē brīvs vai aizņemts, pašā Ķelnē",
         "q": "Vai uzlādes stacijā adresē {address} pašlaik ir brīvs uzlādes punkts?",
-        "a": "Jā, viens: 2. tipa līdz {kw2} kW ir brīvs, CCS punkts līdz {kw} kW nedarbojas — {euro},{cent} €/kWh bez PVN.",
+        "a": "Jā, abi punkti ir brīvi: CCS un 2. tipa līdz {kw} kW — {euro},{cent} €/kWh bez PVN.",
         "note": "Noslogojums nāk tiešsaistē caur Bādenes-Virtembergas datu portālu, kurā norādītas arī stacijas tālu ārpus šīs zemes."
       },
       "lsr": {
@@ -467,7 +467,7 @@
       "landroad": {
         "title": "Ceļa darbi uz reģionālā ceļa",
         "q": "Vai šonedēļ uz ceļa L1025 Tīringenē notiek ceļa darbi?",
-        "a": "{count, plural, zero {# ceļa darbu posmi} one {# ceļa darbu posms} other {# ceļa darbu posmi}}, starp tiem: {site}, sašaurinājums ar luksoforu, no {from} līdz {to}.",
+        "a": "Viens ceļa darbu posms: {site}, sašaurinājums ar luksoforu, no {from} līdz {to}.",
         "note": "Reģionālos ceļus aptveram Bādenē-Virtembergā, Lejassaksijā, Tīringenē un Saksijā, pēc ceļu iestāžu datiem: posms un periods, bez koordinātām un bez tiešsaistes kavējuma."
       },
       "saxony": {
@@ -527,17 +527,17 @@
       "weather": {
         "title": "Laikapstākļu pārbaude pirms kalniem",
         "q": "Vai šodien vietai {name} ir brīdinājums par laikapstākļiem?",
-        "a": "Jā, nākamajai naktij: Vācijas Meteoroloģiskais dienests brīdina par vāju salu līdz {temp} °C, spēkā {day} no {from} līdz {to} — brīdinājuma līmenis {level}, zemākais.",
+        "a": "Jā: Vācijas Meteoroloģiskais dienests brīdina par spēcīgām vētras brāzmām virs {alt} m, spēkā līdz {day} {to} — brīdinājuma līmenis {level} no 4.",
         "note": "Brīdinājumus nolasa ik pēc 5 minūtēm, un tie attiecas uz zonām; jaunu var izsludināt pēkšņi."
       },
       "fuelcity": {
         "title": "Lētākais E10 pilsētā",
         "q": "Kur Ķelnē pašlaik ir lētākais Super E10?",
-        "a": "{euro},{cent} €/l stacijā {station}, {address} — ziņots {reported}.",
+        "a": "Jaunas cenas vēl nav — zemākā pēdējā zināmā: {euro},{cent} €/l stacijā {station}, {address}, ziņots {reported}; ViaFrei pieprasa jaunu.",
         "note": "Degvielas cenas mainās ik pēc dažām minūtēm: šis skaitlis ir tās pēcpusdienas piemērs, nevis šodienas cena. ViaFrei saka, kad stacija ziņoja katru sniegto cenu."
       },
       "charger": {
-        "a": "{site}: uzlādes punkti {points}, 2. tipa, līdz {kw},{kwd} kW, {euro},{cent} €/kWh bez PVN. Neviens neziņo, ka aizņemts; {stale} pēdējais statuss no {t}, {unknown} tā nav — tāpēc ne „brīvs“.",
+        "a": "{site}: uzlādes punkti {points}, 2. tipa, līdz {kw},{kwd} kW, {euro},{cent} €/kWh bez PVN. Pēdējais statuss no {t}: brīvi {free}, aizņemti {busy}, nedarbojas {out}, {unknown} tā nav — iespējams, novecojis.",
         "title": "Tiešsaistes statuss uzlādes stacijā",
         "q": "Vai adresē {address} pašlaik ir brīvs uzlādes punkts?",
         "note": "Tiešsaistes noslogojumu sniedzam tikai tur, kur operators to publicē – šeit caur e-clearing.net. Bez ziņojuma atbilde ir „nav statusa datu“, nekad „brīvs“."

@@ -230,9 +230,9 @@
         "title": "Sabah işe giderken",
         "scene": "07.10, elinizde kahve: toplu taşıma normal çalışıyor mu — trenim zamanında mı?",
         "q1": "Hamburg'da otobüs ve trenler şu anda zamanında mı?",
-        "a1": "Gecikme oranı % {share}: son bir saatte izlenen seferlerin bu kadarı 5 dakikadan fazla geç kaldı — bir önceki saatle aşağı yukarı aynı (% {before}).",
+        "a1": "Gecikme oranı % {share}: son bir saatte izlenen seferlerin bu kadarı 5 dakikadan fazla geç kaldı — bir önceki saatten daha fazla (% {before}).",
         "limit": "Dakikliği hat bazında değil, bölge bazında gösteriyoruz.",
-        "q2": "Hannover Ana Garı'ndan bir sonraki tren ne zaman ve gecikmeli mi?",
+        "q2": "Leipzig Ana Garı'ndan bir sonraki tren ne zaman ve gecikmeli mi?",
         "q3": "Köln Ana Garı kalkış tablosunda önümüzdeki bir saatte iptal edilen tren var mı?",
         "a2": "{d1} yönüne {l1} (tarifeye göre {t1}, peron {p1}) +{delay} dk gecikmeli, {exp} civarında kalkıyor; ardından {d2} yönüne {l2} saat {t2}'de, zamanında.",
         "a3": "İptal yok: saat {last}'e kadar {n} kalkış; en büyük gecikme {d1} yönüne {l1} treninde, +{delay} dk."
@@ -245,15 +245,15 @@
         "a1": "{s1}, {km},{kmd} km uzaklıkta; ardından {s2} ve {s3}.",
         "limit": "Her otobüs ve tramvay durağının saatlerini yüklendiği anda göstereceğiz — o zamana kadar istasyonlar ve bölgenizdeki durum.",
         "board": "Durağınızdaki sefer saatleri",
-        "a2": "Sıradaki, {d1} yönüne {l1}: saat {t1}, peron {p1}, zamanında; {d2} yönüne saat {t2}'deki {l2} +{delay2} dk gecikmeli, {exp2} civarında.",
-        "q3": "Leipzig Ana Garı'ndan şu anda gecikmeli kalkan tren var mı?",
+        "a2": "Sıradaki, {d1} yönüne saat {t1}'deki {l1}, peron {p1}: +{delay1} dk gecikmeli, {exp1} civarında; {d2} yönüne {l2} +{delay2} dk gecikmeli, {exp2} civarında.",
+        "q3": "Dresden Ana Garı'ndan şu anda gecikmeli kalkan tren var mı?",
         "a3": "Evet, iki tane: {d1} yönüne {l1} +{dl1} dk gecikmeli, {p1} numaralı perondan; {d2} yönüne {l2} +{dl2} dk gecikmeli; sıradaki diğer {n} kalkış zamanında."
       },
       "station": {
         "title": "İstasyonda",
         "scene": "Bebek arabası, tekerlekli sandalye ya da bagajla: perona çıkan asansör çalışıyor mu?",
         "q1": "Köln Ana Garı'ndaki asansör çalışıyor mu?",
-        "a1": "{station} için bildirilen {total} asansörden {working} tanesi çalışıyor; biri hizmet dışı, biri için demiryolu durum bildirmiyor.",
+        "a1": "{station} için bildirilen {total} asansörden {working} tanesi çalışıyor; biri için demiryolu durum bildirmiyor.",
         "limit": "Deutsche Bahn istasyonlarındaki asansör ve yürüyen merdivenler; diğer işletmeciler henüz yok.",
         "q2": "Erlangen istasyonundaki tüm asansörler çalışıyor mu?",
         "a2": "Evet: {station}'da bildirilen tek asansör, {platforms} numaralı perona çıkan, çalışıyor.",
@@ -264,7 +264,7 @@
         "title": "Direksiyonda",
         "scene": "Yola çıkmadan önce: trafik sıkışıklığı, kapanmalar, yol çalışmaları — ve şu anda yakıt nerede ucuz.",
         "q1": "Münih yönünde A8 şu anda açık mı?",
-        "a1": "Tam değil: {a} ile {b} arasında Münih yönünde polis bir kaza bildiriyor; emniyet şeridi kapalı.",
+        "a1": "Evet: Münih yönünde şu anda sıkışıklık bildirilmiyor; A8'deki {jams} sıkışıklık başka yönlerde.",
         "a1more": "A8'in tamamında ayrıca {closures} kapanma ve {works} yol çalışması kaydı listeleniyor.",
         "limit": "Rota planlaması yok: otoyolda ne olduğunu söyleriz, hangi yoldan gitmeniz gerektiğini değil.",
         "q2": "A7'de şu anda hangi yol çalışmaları var?",
@@ -276,13 +276,13 @@
         "title": "Trafik sıkışıklığında",
         "scene": "Otobanda ve şehirlerin çevresinde trafik sıkışıklığı: trafik nerede duruyor, ne kadar zaman kaybettiriyor — ve bu gece kapama var mı.",
         "q1": "A3'te Frankfurt ile Würzburg arasındaki sıkışıklık şu anda ne kadar zaman kaybettiriyor?",
-        "a1": "{a} ile {b} arasında Frankfurt yönünde bir kazanın ardından yaklaşık +{delay} dk; A3'ün tamamında {jams} sıkışıklık bildiriliyor.",
+        "a1": "{a} ile {b} arasında Würzburg yönünde yaklaşık +{delay} dk; A3'ün tamamında {jams} sıkışıklık bildiriliyor.",
         "a1more": "Listede: {closures} kapanma ve {works} yol çalışması kaydı.",
         "limit": "Şehirlerde şehir içi otobanları, Berlin, Köln ve Hannover'de ise şehirlerin kendi trafik bildirimlerini de görüyoruz — henüz her sokaktaki durumu değil. Hamburg'un bildirimleri ve Köln'ün trafik durumu sağlayıcılardan talep edildi.",
         "q2": "Köln otoban çevre yolunda şu anda sıkışıklık var mı — A1, A3 veya A4?",
         "q3": "A7 bugün Hamburg'da kapalı mı?",
         "a3": "{a} ile {b} bağlantıları arasında bir kapanış bildirildi (sekiz şeride genişletme, yeni {tunnel}); A7'nin tamamında {n} kapanış var.",
-        "a2": "Evet, A4'te: {a} ile {b} arasında Köln yönünde trafik yavaş, yaklaşık +{delay} dk; sorulan otoyollarda {n} sıkışıklık bildiriliyor."
+        "a2": "Evet, A4'te: {a} ile {b} arasında Köln yönünde polis {km} km'lik sıkışıklık bildiriyor; sorulan otoyollarda {n} sıkışıklık bildiriliyor."
       },
       "parking": {
         "title": "Park etme",
@@ -336,22 +336,22 @@
       "goerlitz": {
         "q": "Görlitz'de şu anda en ucuz dizel nerede?",
         "why": "Fiyatlar günde birkaç kez değişir ve aynı şehirdeki birkaç istasyon arasında bile farklıdır: ViaFrei en ucuzunu fiyatı ve istasyonun onu bildirdiği saatle birlikte söyler.",
-        "a": "Henüz yeni fiyat yok — bilinen son fiyatların en düşüğü: {station}, {address} — litresi {euro},{cent} €, {reported} tarihinde bildirildi; ViaFrei şu anda yenisini istiyor."
+        "a": "{station}, {address} — litresi {euro},{cent} €, {reported} saatinde bildirildi."
       },
       "muenchen": {
         "q": "Münih'te şu anda en ucuz E10 benzin nerede?",
-        "why": "Bir fiyat sabahtan kalma olabilir: o öğleden sonra Münih için ViaFrei'de yalnızca sabah fiyatları vardı; her birini saatiyle verdi ve yenilerini istedi.",
+        "why": "Bir fiyat önceki akşamdan kalma olabilir: o öğleden sonra Münih için ViaFrei'de yeni fiyat yoktu; en ucuzunu önceki akşamki saatiyle verdi ve yenilerini istedi.",
         "a": "Henüz yeni fiyat yok — bilinen son fiyatların en düşüğü: {station}, {address} — litresi {euro},{cent} €, {reported} tarihinde bildirildi; ViaFrei şu anda yenisini istiyor."
       },
       "leipzig": {
         "q": "Leipzig'de şu anda en ucuz E5 benzin nerede?",
-        "why": "Bir fiyat saatlerce eski olabilir: ViaFrei her fiyatın istasyon tarafından ne zaman bildirildiğini söyler — o öğleden sonra Leipzig'deki en ucuzlar hâlâ sabahtan kalmaydı.",
-        "a": "Henüz yeni fiyat yok — bilinen son fiyatların en düşüğü: {station}, {address} — litresi {euro},{cent} €, {reported} tarihinde bildirildi."
+        "why": "En yakın istasyon her zaman en ucuzu değildir: ViaFrei her fiyatla birlikte mesafeyi de verir.",
+        "a": "{station}, {address} — litresi {euro},{cent} €, {reported} saatinde bildirildi."
       },
       "nuernberg": {
         "q": "Nürnberg'de şu anda en ucuz dizel nerede?",
-        "why": "En yakın istasyon her zaman en ucuzu değildir: ViaFrei her fiyatla birlikte mesafeyi de verir.",
-        "a": "{station}, {address} — litresi {euro},{cent} €, {reported} saatinde bildirildi."
+        "why": "Bir fiyat saatlerce eski olabilir: ViaFrei her fiyatın istasyon tarafından ne zaman bildirildiğini söyler.",
+        "a": "Henüz yeni fiyat yok — bilinen son fiyatların en düşüğü: {station}, {address} — litresi {euro},{cent} €, {reported} tarihinde bildirildi; ViaFrei şu anda yenisini istiyor."
       }
     },
     "fuelAll": "Her eyalette en fazla üç istasyon, adresi ve fiyatıyla",
@@ -389,7 +389,7 @@
       "stadtbahn": {
         "title": "Hafif raylı sistemde asansörler ve yürüyen merdivenler",
         "q": "Köln'deki {stop} hafif raylı sistem durağında şu anda ne arızalı?",
-        "a": "Bildirilen {total} tesisten {out} tanesi: {e1} ve {e2} numaralı yürüyen merdivenler {since}'den, {e3} numaralı {since3}'ten, {e4} numaralı {since4}'ten beri arızalı; iki asansör de çalışıyor. {publisher} verileri hiçbir garanti vermeden sağlar.",
+        "a": "Bildirilen {total} tesisten {out} tanesi: {e1} ve {e2} numaralı yürüyen merdivenler {since}'dan, {e3} numaralı {since3}'dan beri arızalı; iki asansör de çalışıyor. {publisher} verileri hiçbir garanti vermeden sağlar.",
         "note": "Köln hafif raylı sistem durakları için, yayımlanan arıza listesinden – bir tesisin ne zamandan beri arızalı bildirildiği saatle."
       },
       "bikes": {
@@ -401,7 +401,7 @@
       "lift": {
         "title": "İstasyonda asansörler",
         "q": "{station} istasyonunda şu anda hangi asansörler çalışmıyor?",
-        "a": "Biri arızalı bildiriliyor, {platforms} numaralı perona giden bir asansör: {total} asansörden {working} tanesi çalışıyor. {platforms} numaralı perona giden diğer asansör izlenmiyor – durumu bilinmiyor.",
+        "a": "Arızalı bildirilen yok: {total} asansörden {working} tanesi çalışıyor. {platforms} numaralı perona giden bir asansör izlenmiyor – durumu bilinmiyor.",
         "note": "Deutsche Bahn istasyonları için, 20 dakikada bir okunur. Son bildirimin söylemediği şey “bilinmiyor” demektir – asla “çalışıyor” değil."
       },
       "alert": {
@@ -419,13 +419,13 @@
       "ecomove": {
         "title": "Bir veri toplayıcı üzerinden canlı doluluk",
         "q": "{address} adresindeki hızlı şarj istasyonunda şu anda boş bir nokta var mı?",
-        "a": "{site}: en fazla {kw} kW, kWh başına {euro},{cent} €; son durum {t} tarihli — “boş” demek için fazla eski.",
+        "a": "{site}: en fazla {kw} kW, kWh başına {euro},{cent} €; son durum {t} tarihli: {free} boş, {busy} dolu — eskimiş olabilir.",
         "note": "Burada doluluk, birçok işletmecinin bildirimlerini toplayan bir hizmetten gelir. Bildirimi olmayan bir nokta asla boş sayılmaz."
       },
       "ocpdb": {
         "title": "Canlı boş ya da dolu, Köln'de",
         "q": "{address} adresindeki istasyonda şu anda boş bir şarj noktası var mı?",
-        "a": "Evet, bir tane: {kw2} kW'a kadar Tip 2 boş, {kw} kW'a kadar CCS noktası arızalı — kWh başına {euro},{cent} € (KDV hariç).",
+        "a": "Evet, iki nokta da boş: {kw} kW'a kadar CCS ve Tip 2 — kWh başına {euro},{cent} € (KDV hariç).",
         "note": "Doluluk, Baden-Württemberg eyaletinin veri portalı üzerinden canlı gelir; portal eyaletin çok dışındaki istasyonları da içerir."
       },
       "lsr": {
@@ -467,7 +467,7 @@
       "landroad": {
         "title": "Bir eyalet yolunda yol çalışması",
         "q": "Bu hafta Thüringen'de L1025 üzerinde yol çalışması var mı?",
-        "a": "{count} çalışma alanı, aralarında: {site}, trafik ışıklı bir daralma, {from} – {to}.",
+        "a": "Bir çalışma alanı: {site}, trafik ışıklı bir daralma, {from} – {to}.",
         "note": "Eyalet yollarını Baden-Württemberg, Aşağı Saksonya, Thüringen ve Saksonya'da, karayolu idarelerinin verilerinden biliyoruz: kesim ve süre; koordinat ve canlı gecikme yok."
       },
       "saxony": {
@@ -527,17 +527,17 @@
       "weather": {
         "title": "Dağlardan önce hava kontrolü",
         "q": "Bugün {name} için hava durumu uyarısı var mı?",
-        "a": "Evet, önümüzdeki gece için: Alman Meteoroloji Servisi {temp} °C'ye kadar hafif don uyarısı veriyor, {day} tarihinde {from} ile {to} arası geçerli — uyarı seviyesi {level}, en düşüğü.",
+        "a": "Evet: Alman Meteoroloji Servisi {alt} m üzerinde şiddetli fırtına rüzgârı uyarısı veriyor, {day} {to}'a kadar geçerli — uyarı seviyesi {level}, 4 üzerinden.",
         "note": "Uyarılar 5 dakikada bir okunur ve bölge bazında geçerlidir; kısa sürede yenisi yayımlanabilir."
       },
       "fuelcity": {
         "title": "Şehirdeki en ucuz E10",
         "q": "Köln'de Super E10 şu anda en ucuz nerede?",
-        "a": "{station}, {address} — litresi {euro},{cent} €, {reported} saatinde bildirildi.",
+        "a": "Henüz yeni fiyat yok — bilinen son fiyatların en düşüğü: {station}, {address} — litresi {euro},{cent} €, {reported} tarihinde bildirildi; ViaFrei şu anda yenisini istiyor.",
         "note": "Akaryakıt fiyatları birkaç dakikada bir değişir: bu rakam o öğleden sonradan bir örnektir, bugünkü fiyat değildir. ViaFrei her fiyatın istasyon tarafından ne zaman bildirildiğini söyler."
       },
       "charger": {
-        "a": "{site} içinde {points} şarj noktası, Tip 2, en fazla {kw},{kwd} kW, kWh başına {euro},{cent} € (KDV hariç). Hiçbiri dolu bildirmiyor; {stale} nokta için son durum {t} tarihli, {unknown} nokta için hiç yok — bu yüzden “boş” değil.",
+        "a": "{site} içinde {points} şarj noktası, Tip 2, en fazla {kw},{kwd} kW, kWh başına {euro},{cent} € (KDV hariç). Son durum {t} tarihli: {free} boş, {busy} dolu, {out} arızalı, {unknown} nokta için hiç yok — eskimiş olabilir.",
         "title": "Şarj istasyonunda canlı durum",
         "q": "{address} adresinde şu anda boş bir şarj noktası var mı?",
         "note": "Canlı doluluğu yalnızca işletmecinin yayımladığı yerlerde veriyoruz – burada e-clearing.net üzerinden. Bildirim yoksa yanıt “boş” değil, “durum verisi yok” olur."
