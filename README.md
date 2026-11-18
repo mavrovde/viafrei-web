@@ -91,7 +91,7 @@ It depends on released images only, pinned in `images.pin`:
 |---|---|---|
 | `digest` | `ghcr.io/mavrovde/viafrei-app:2.6.17` | the digest service the stack runs, and its compiled packages for the tests |
 | `database` | `ghcr.io/mavrovde/viafrei-database:0.1.1` | migrating the stack's throwaway database |
-| `api` | `ghcr.io/mavrovde/viafrei-api:0.3.0` | the contract the site's API client is generated from (`api/openapi.json` at the tag) |
+| `api` | `ghcr.io/mavrovde/viafrei-api:0.3.2` | the contract the site's API client is generated from (`api/openapi.json` at the tag) |
 
 ## Working on it
 

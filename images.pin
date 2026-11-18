@@ -20,5 +20,5 @@
 #             this repository's image replaces it; each later release adds the one before it.
 digest ghcr.io/mavrovde/viafrei-app:2.6.23@sha256:5eb75758c223d6e9a2bbd2b66ecba397f8594eceee91cdfab34a7965b2467968
 database ghcr.io/mavrovde/viafrei-database:0.2.0@sha256:98f0e01b8bb2f34afac8b482bd701ee61fa7bf142cc03d413e83c3b8b605ec9f
-api ghcr.io/mavrovde/viafrei-api:0.3.0@sha256:d63a1a15af2055c503a2b2d62fda138beb638b4fe53d7010065a06924d6e0c8f
+api ghcr.io/mavrovde/viafrei-api:0.3.2@sha256:2501a51df78e0f071588eb8c73732f1bb5aee1fb80ff0e66ab408f99f3e109ac
 carry ghcr.io/mavrovde/viafrei-app:2.6.23@sha256:5eb75758c223d6e9a2bbd2b66ecba397f8594eceee91cdfab34a7965b2467968
