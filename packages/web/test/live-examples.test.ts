@@ -136,7 +136,7 @@ describe("real answers on the connect page (#472, v1.8.1, v1.8.2)", () => {
     }
     // 2.5.4: EnBW gave no status at all and JOLT's was from the day before, and the cards say so rather than "free"
     expect(t("de", "connectPage.live.enbw.a", { ...LIVE_EXAMPLES.find((x) => x.key === "enbw")!.values })).toBe("Bis 300 kW, 0,70 €/kWh – doch für keinen der 5 Ladepunkte liegt ein Status vor, also sagt ViaFrei nicht „frei“.");
-    expect(t("de", "connectPage.live.ecomove.a", { ...LIVE_EXAMPLES.find((x) => x.key === "ecomove")!.values, site: "JOLT HH008701" })).toBe("JOLT HH008701: bis 350 kW, 0,79 €/kWh; der letzte Status stammt vom 15.11., 16:20 – zu alt, um „frei“ zu sagen.");
+    expect(t("de", "connectPage.live.ecomove.a", { ...LIVE_EXAMPLES.find((x) => x.key === "ecomove")!.values, site: "JOLT Energy" })).toBe("JOLT Energy: bis 350 kW, 0,79 €/kWh; der letzte Status stammt vom 15.11., 16:20 – zu alt, um „frei“ zu sagen.");
   });
 
   it("show one card per feed that went live in v1.8.12, each crediting exactly what production answered (#481, #482, #484, #485)", () => {
@@ -612,7 +612,7 @@ describe("the Berlin card: a city-street message found by place, confirmed on pr
   it("names the question production was asked, with the answer's own Stand and no recheck flag", () => {
     expect(card.tool).toBe("check_road_status");
     expect(card.recheck).toBeUndefined();
-    expect(card.values["asOf"]).toBe("02.11.2026, 14:10");
+    expect(card.values["asOf"]).toBe("18.11.2026, 13:54");
     expect(card.names).toEqual({ street: "Schiffbauerdamm", a: "Luisenstraße", b: "Albrechtstraße" });
     expect(t("de", card.question, { ...card.values, ...namesOf(card) })).toBe("Ist am Schiffbauerdamm in Berlin etwas gesperrt?");
     // the note promises what v1.8.10 does: by place, nearest first

@@ -89,7 +89,8 @@ export type Moment = {
  * "de", the same tools and arguments (the A2 weekend is 21./22.11.). Every answer whose sentence still holds took
  * that day's figures and Stand (the per-entry comments above still quote the 02.11 answers). Answers the sentence no
  * longer fits keep their 02.11 values until reworded: commute a2, bus a2/a3, station a1/a3, driving a1, jam a1/a2
- * and the Leipzig fuel request. commute a1 now says "mehr als in der Stunde davor" (the region card's sentence).
+ * and the Leipzig fuel request. Asked again 14:39-14:46 with up to five candidates each (the same board or road
+ * later, or another station, stop or road): none fitted its sentence. commute a1 now says "mehr als in der Stunde davor" (the region card's sentence).
  */
 export type MomentAnswer = {
   readonly values: Readonly<Record<string, string>> & { readonly asOf: string };
@@ -296,6 +297,8 @@ export const MOMENTS: readonly Moment[] = [
  * Re-asked on 2026-11-18 at 14:29 Europe/Berlin, ONCE each: Görlitz had a current price again and Nürnberg none,
  * so the two swap sentences back. Leipzig's lowest last-known price was at a station named "Access", a word the
  * JSON-LD guard of #531 finds in every page's JSON-LD, so Leipzig keeps its 02.11 answer until that is resolved.
+ * Asked again at 14:41-14:46: Leipzig (twice) and Dresden had current prices, so the "no new price" sentence does
+ * not hold; Erfurt had only prices from 16.11. evening, which the request's "vom Vormittag" does not fit.
  */
 export type FuelAskKey = "goerlitz" | "muenchen" | "leipzig" | "nuernberg";
 export type FuelAsk = { readonly key: FuelAskKey; readonly tool: "find_cheapest_fuel"; readonly answer: MomentAnswer };

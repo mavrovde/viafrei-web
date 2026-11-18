@@ -152,9 +152,10 @@
  * 2026-11-18: every card ASKED OF PRODUCTION again between 14:29 and 14:31 Europe/Berlin, one call per card with
  * `language: "de"`, every fuel question ONCE (B27: the week 23.-29.11.; A7 tomorrow: 19.11.). Cards whose sentence still
  * holds took that day's figures and Stand (the per-card comments still quote the 02.11 answers); `fuelcity` had no
- * current price, so it takes the "no new price" sentence. Cards the answer no longer fits keep their 02.11 values
- * until reworded or replaced: stadtbahn, lift, ocpdb, charger, carpark, citywork, landroad, kiel, lorry, parkride,
- * platform, weather.
+ * current price, so it takes the "no new price" sentence. Asked again 14:30-14:40: kiel, lorry, parkride and citywork
+ * still hold; carpark (Altstadt-Nord/Hbf) and platform (ICE 600) take a new subject; ecomove names the operator. No
+ * subject fitted after five candidates each, so these keep their 02.11 values until reworded or replaced: stadtbahn,
+ * lift, ocpdb, charger, landroad, weather.
  *
  * The WORDS are copy and live in the deck (`connectPage.live.*`), one per
  * language. The VALUES are figures read off one answer and are the same in
@@ -301,9 +302,11 @@ export const LIVE_EXAMPLES: readonly LiveExample[] = [
     question: "connectPage.live.ecomove.q",
     // find_charging_station {place: "Schiffbeker Weg 299, Hamburg", limit: 2}, asked 2026-11-02 14:11: "1. JOLT HH008701, Schiffbeker Weg
     // 299, 22043 Hamburg (JOLT Energy) — CCS2, bis 350 kW, 0,785 €/kWh, Status von 01.11. 20:15 — möglicherweise veraltet". Stand 14:11.
-    // The card rounds the price to the cent.
+    // The card rounds the price to the cent. Asked again 2026-11-18 14:29: "1. Schiffbeker Weg 299, 22043 Hamburg (JOLT Energy) — CCS2,
+    // bis 350 kW, 0,79 €/kWh, 1 frei, 1 belegt, Status von 15.11. 16:20 — möglicherweise veraltet": the site id is no longer printed,
+    // so the card names the operator the answer names.
     credits: ["mobilithek_afir_ecomovement", "mobilithek_afir_ecomovement_dyn", "osm"],
-    names: { site: "JOLT HH008701", address: "Schiffbeker Weg 299, Hamburg" },
+    names: { site: "JOLT Energy", address: "Schiffbeker Weg 299, Hamburg" },
     values: { kw: "350", euro: "0", cent: "79", t: "15.11., 16:20", asOf: "18.11.2026, 14:29" },
   },
   {
@@ -397,12 +400,15 @@ export const LIVE_EXAMPLES: readonly LiveExample[] = [
     tool: "find_parking",
     sign: "parking",
     question: "connectPage.live.carpark.q",
-    name: "Brückenstraße",
+    name: "Altstadt-Nord/Hbf",
     // find_parking {place: "Köln", kind: "car_park"}, asked 2026-11-02 14:12: "Brückenstraße — Parkhaus, 0,1 km, 531 Plätze, 340 frei",
     // published 13:48 and flagged as no longer current (every Köln car park was; the feed was last read 13:49). Reworded: "zuletzt …
     // gemeldet", an older report. Sources as answered (OSM for the separate list, the BKG for the place).
-    credits: ["mobilithek_park_koeln_static", "mobilithek_park_koeln_dyn", "osm", "bkg_gvisys"],
-    values: { free: "340", total: "531", asOf: "02.11.2026, 13:48" },
+    // REPLACED 2026-11-18 (Brückenstraße now reports current figures): find_parking {place: "Köln Hbf", kind: "car_park"}, asked
+    // 14:40: "2. Altstadt-Nord/Hbf — Parkhaus, 0,2 km, 550 Plätze, zuletzt 458 frei gemeldet … (Stand 12:38, vor 2 h 2 min)". Sources
+    // as answered (Stadt Köln, Parkhäuser NRW, OSM for the separate list).
+    credits: ["mobilithek_park_koeln_static", "mobilithek_park_koeln_dyn", "mobilithek_park_nrw_parken", "osm"],
+    values: { free: "458", total: "550", asOf: "18.11.2026, 12:38" },
   },
   {
     key: "motorway",
@@ -430,7 +436,8 @@ export const LIVE_EXAMPLES: readonly LiveExample[] = [
     // 14:10. The same message with a later end, so CITYWORK_CARD_EXPIRES moves with it.
     credits: ["autobahn", "mobilithek_roadworks_bast", "mobilithek_nms_events", "mobilithek_traffic_berlin", "osm"],
     names: { street: "Schiffbauerdamm", a: "Luisenstraße", b: "Albrechtstraße" },
-    values: { from: "09.07.2025", to: "31.08.2028", asOf: "02.11.2026, 14:10" },
+    // Asked again 2026-11-18 14:31: the same message, same dates; Senatsverwaltung Stand 13:54.
+    values: { from: "09.07.2025", to: "31.08.2028", asOf: "18.11.2026, 13:54" },
   },
   {
     key: "landroad",
@@ -504,7 +511,8 @@ export const LIVE_EXAMPLES: readonly LiveExample[] = [
     // the city's own roadworks list. Stand 14:12. Still a summary with every element, said so in each language (#473).
     credits: ["kiel_baustellen"],
     names: { street: "Lorentzendamm", b: "Dahlmannstraße" },
-    values: { no: "14", from: "02.11.2026", to: "27.11.2026", asOf: "02.11.2026, 14:12" },
+    // Asked again 2026-11-18 14:30: the same message, same dates; the city's list Stand 14:18.
+    values: { no: "14", from: "02.11.2026", to: "27.11.2026", asOf: "18.11.2026, 14:18" },
   },
   {
     key: "truckstop",
@@ -531,7 +539,8 @@ export const LIVE_EXAMPLES: readonly LiveExample[] = [
     // oben abgeglichen): 1. Trucklounge Ecopark — Lkw-Parkplatz, 3,0 km, 54 frei (Stand 14:15)" and the ODbL § 4.6 offer, which the card
     // prints in the page's language (`offerHtml`). Sources as answered.
     credits: ["mobilithek_truckpark_static_geonutzv", "mobilithek_park_trucklounge", "mobilithek_park_trucklounge_occ", "bkg_gvisys"],
-    values: { free: "54", asOf: "02.11.2026, 14:15" },
+    // Asked again 2026-11-18 14:30: "1. Trucklounge Ecopark — Lkw-Parkplatz, 3,0 km, 54 frei … (Stand 14:15)".
+    values: { free: "54", asOf: "18.11.2026, 14:15" },
   },
   {
     key: "parkride",
@@ -545,7 +554,8 @@ export const LIVE_EXAMPLES: readonly LiveExample[] = [
     // line alone, as the register has it.
     credits: ["mobilithek_park_nrw_pr"],
     names: { p1: "Dortmund Hafen", p2: "P&R Westfalenpark" },
-    values: { t1: "430", t2: "190", asOf: "02.11.2026, 14:20" },
+    // Asked again 2026-11-18 14:30: the same two rows, 430 and 190 Plätze, "Belegung übernehmen wir nicht".
+    values: { t1: "430", t2: "190", asOf: "18.11.2026, 14:30" },
   },
   {
     key: "platform",
@@ -558,8 +568,10 @@ export const LIVE_EXAMPLES: readonly LiveExample[] = [
     // "13:56 ICE 2795 → Innsbruck Hbf, Gleis 3, +29 min (ca. 14:25)". Stand 14:20. REPLACED in kind: no platform change to show, so the
     // card shows a live delay from the same board (title, question and answer reworded in every language).
     credits: ["db_timetables", "db_stada"],
-    names: { station: "Berlin Hbf", train: "ICE 2795", dest: "Innsbruck Hbf" },
-    values: { planned: "13:56", expected: "14:25", delay: "29", platform: "3", asOf: "02.11.2026, 14:20" },
+    // REPLACED 2026-11-18 (ICE 2795 is not on the board): get_train_departures {station: "Berlin Hbf"}, asked 14:40: "13:37 ICE 600 →
+    // Hamburg-Altona, ab Berlin Hbf, Gleis 6, +65 min (ca. 14:42)", no platform change. Stand 14:40.
+    names: { station: "Berlin Hbf", train: "ICE 600", dest: "Hamburg-Altona" },
+    values: { planned: "13:37", expected: "14:42", delay: "65", platform: "6", asOf: "18.11.2026, 14:40" },
   },
   {
     key: "train",
