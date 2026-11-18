@@ -340,17 +340,17 @@
       },
       "muenchen": {
         "q": "Kde je v Mníchove práve najlacnejší benzín E10?",
-        "why": "Cena môže byť ranná: pre Mníchov mal ViaFrei v to popoludnie len ceny z rána, uviedol každú s časom a vyžiadal si nové.",
+        "why": "Cena môže byť z predchádzajúceho večera: pre Mníchov nemal ViaFrei v to popoludnie novú cenu, uviedol najlacnejšiu s časom z predchádzajúceho večera a vyžiadal si nové.",
         "a": "Zatiaľ žiadna nová cena – naposledy najlacnejšie: {euro},{cent} €/l: {station}, {address}, nahlásené {reported}; ViaFrei sa práve pýta znova."
       },
       "leipzig": {
         "q": "Kde je v Lipsku práve najlacnejší benzín E5?",
-        "why": "Ceny sa menia niekoľkokrát denne a líšia sa aj medzi pár čerpacími stanicami v jednom meste: ViaFrei uvedie najlacnejšiu s cenou a časom, keď ju stanica nahlásila.",
+        "why": "Najbližšia čerpacia stanica nie je vždy najlacnejšia: ViaFrei pri každej cene uvedie vzdialenosť.",
         "a": "{euro},{cent} €/l: {station}, {address} – nahlásené o {reported}."
       },
       "nuernberg": {
         "q": "Kde je v Norimbergu práve najlacnejšia nafta?",
-        "why": "Najbližšia čerpacia stanica nie je vždy najlacnejšia: ViaFrei pri každej cene uvedie vzdialenosť.",
+        "why": "Cena môže byť hodiny stará: ViaFrei pri každej cene uvedie, kedy ju stanica nahlásila.",
         "a": "Zatiaľ žiadna nová cena – naposledy najlacnejšie: {euro},{cent} €/l: {station}, {address}, nahlásené {reported}; ViaFrei sa práve pýta znova."
       }
     },
@@ -419,7 +419,7 @@
       "ecomove": {
         "title": "Živá obsadenosť cez agregátor",
         "q": "Je na rýchlonabíjačke na adrese {address} práve voľný nabíjací bod?",
-        "a": "{site}: do {kw} kW, {euro},{cent} €/kWh; posledný stav je z {t} – príliš starý na „voľný“.",
+        "a": "{site}: do {kw} kW, {euro},{cent} €/kWh; posledný stav z {t}: voľné {free}, obsadené {busy} – možno zastaraný.",
         "note": "Obsadenosť tu pochádza zo služby, ktorá zhromažďuje hlásenia mnohých prevádzkovateľov. Bod bez hlásenia sa nikdy nepočíta ako voľný."
       },
       "ocpdb": {

@@ -340,17 +340,17 @@
       },
       "muenchen": {
         "q": "Münih'te şu anda en ucuz E10 benzin nerede?",
-        "why": "Bir fiyat sabahtan kalma olabilir: o öğleden sonra Münih için ViaFrei'de yalnızca sabah fiyatları vardı; her birini saatiyle verdi ve yenilerini istedi.",
+        "why": "Bir fiyat önceki akşamdan kalma olabilir: o öğleden sonra Münih için ViaFrei'de yeni fiyat yoktu; en ucuzunu önceki akşamki saatiyle verdi ve yenilerini istedi.",
         "a": "Henüz yeni fiyat yok — bilinen son fiyatların en düşüğü: {station}, {address} — litresi {euro},{cent} €, {reported} tarihinde bildirildi; ViaFrei şu anda yenisini istiyor."
       },
       "leipzig": {
         "q": "Leipzig'de şu anda en ucuz E5 benzin nerede?",
-        "why": "Fiyatlar günde birkaç kez değişir ve aynı şehirdeki birkaç istasyon arasında bile farklıdır: ViaFrei en ucuzunu fiyatı ve istasyonun onu bildirdiği saatle birlikte söyler.",
+        "why": "En yakın istasyon her zaman en ucuzu değildir: ViaFrei her fiyatla birlikte mesafeyi de verir.",
         "a": "{station}, {address} — litresi {euro},{cent} €, {reported} saatinde bildirildi."
       },
       "nuernberg": {
         "q": "Nürnberg'de şu anda en ucuz dizel nerede?",
-        "why": "En yakın istasyon her zaman en ucuzu değildir: ViaFrei her fiyatla birlikte mesafeyi de verir.",
+        "why": "Bir fiyat saatlerce eski olabilir: ViaFrei her fiyatın istasyon tarafından ne zaman bildirildiğini söyler.",
         "a": "Henüz yeni fiyat yok — bilinen son fiyatların en düşüğü: {station}, {address} — litresi {euro},{cent} €, {reported} tarihinde bildirildi; ViaFrei şu anda yenisini istiyor."
       }
     },
@@ -419,7 +419,7 @@
       "ecomove": {
         "title": "Bir veri toplayıcı üzerinden canlı doluluk",
         "q": "{address} adresindeki hızlı şarj istasyonunda şu anda boş bir nokta var mı?",
-        "a": "{site}: en fazla {kw} kW, kWh başına {euro},{cent} €; son durum {t} tarihli — “boş” demek için fazla eski.",
+        "a": "{site}: en fazla {kw} kW, kWh başına {euro},{cent} €; son durum {t} tarihli: {free} boş, {busy} dolu — eskimiş olabilir.",
         "note": "Burada doluluk, birçok işletmecinin bildirimlerini toplayan bir hizmetten gelir. Bildirimi olmayan bir nokta asla boş sayılmaz."
       },
       "ocpdb": {

@@ -340,17 +340,17 @@
       },
       "muenchen": {
         "q": "Waar is Euro 95 E10 in München nu het goedkoopst?",
-        "why": "Een prijs kan van de ochtend zijn: voor München had ViaFrei die middag alleen prijzen van de ochtend, noemde elke met het tijdstip en vroeg nieuwe op.",
+        "why": "Een prijs kan van de avond ervoor zijn: voor München had ViaFrei die middag geen nieuwe prijs, noemde de goedkoopste met het tijdstip van de avond ervoor en vroeg nieuwe op.",
         "a": "Nog geen nieuwe prijs – laatst bekend als goedkoopst: € {euro},{cent} per liter bij {station}, {address}, gemeld op {reported}; ViaFrei vraagt een nieuwe op."
       },
       "leipzig": {
         "q": "Waar is Euro 95 E5 in Leipzig nu het goedkoopst?",
-        "why": "Prijzen veranderen meerdere keren per dag en verschillen zelfs tussen een paar tankstations in één stad: ViaFrei noemt de goedkoopste met de prijs en het tijdstip waarop het station die meldde.",
+        "why": "Het dichtstbijzijnde tankstation is niet altijd het goedkoopste: ViaFrei geeft bij elke prijs de afstand.",
         "a": "€ {euro},{cent} per liter bij {station}, {address} – gemeld om {reported}."
       },
       "nuernberg": {
         "q": "Waar is diesel in Neurenberg nu het goedkoopst?",
-        "why": "Het dichtstbijzijnde tankstation is niet altijd het goedkoopste: ViaFrei geeft bij elke prijs de afstand.",
+        "why": "Een prijs kan uren oud zijn: ViaFrei zegt bij elke prijs wanneer het station die meldde.",
         "a": "Nog geen nieuwe prijs – laatst bekend als goedkoopst: € {euro},{cent} per liter bij {station}, {address}, gemeld op {reported}; ViaFrei vraagt een nieuwe op."
       }
     },
@@ -419,7 +419,7 @@
       "ecomove": {
         "title": "Live bezetting via een verzamelaar",
         "q": "Is er bij de snellader {address} nu een laadpunt vrij?",
-        "a": "{site}: tot {kw} kW, € {euro},{cent}/kWh; de laatste status is van {t} – te oud om “vrij” te zeggen.",
+        "a": "{site}: tot {kw} kW, € {euro},{cent}/kWh; laatste status van {t}: {free} vrij, {busy} bezet – mogelijk verouderd.",
         "note": "De bezetting komt hier van een dienst die de meldingen van veel exploitanten bundelt. Een punt zonder melding telt nooit als vrij."
       },
       "ocpdb": {

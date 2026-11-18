@@ -340,17 +340,17 @@
       },
       "muenchen": {
         "q": "Gdje je benzin E10 u Münchenu trenutačno najjeftiniji?",
-        "why": "Cijena može biti jutarnja: za München je ViaFrei tog poslijepodneva imao samo jutarnje cijene, naveo svaku s vremenom i zatražio nove.",
+        "why": "Cijena može biti od prethodne večeri: za München ViaFrei tog poslijepodneva nije imao novu cijenu, naveo je najjeftiniju s vremenom od prethodne večeri i zatražio nove.",
         "a": "Nove cijene još nema — zadnja najniža: {euro},{cent} €/l kod {station}, {address}, javljeno {reported}; ViaFrei upravo traži novu."
       },
       "leipzig": {
         "q": "Gdje je benzin E5 u Leipzigu trenutačno najjeftiniji?",
-        "why": "Cijene se mijenjaju nekoliko puta dnevno i razlikuju se čak i među nekoliko postaja u istom gradu: ViaFrei navodi najjeftiniju s cijenom i vremenom kad ju je postaja javila.",
+        "why": "Najbliža postaja nije uvijek najjeftinija: ViaFrei uz svaku cijenu navodi udaljenost.",
         "a": "{euro},{cent} €/l na postaji {station}, {address} — javljeno u {reported}."
       },
       "nuernberg": {
         "q": "Gdje je dizel u Nürnbergu trenutačno najjeftiniji?",
-        "why": "Najbliža postaja nije uvijek najjeftinija: ViaFrei uz svaku cijenu navodi udaljenost.",
+        "why": "Cijena može biti stara satima: ViaFrei za svaku cijenu kaže kad ju je postaja javila.",
         "a": "Nove cijene još nema — zadnja najniža: {euro},{cent} €/l kod {station}, {address}, javljeno {reported}; ViaFrei upravo traži novu."
       }
     },
@@ -419,7 +419,7 @@
       "ecomove": {
         "title": "Popunjenost uživo preko skupljača podataka",
         "q": "Je li na brzoj punionici {address} trenutačno slobodan priključak?",
-        "a": "{site}: do {kw} kW, {euro},{cent} €/kWh; posljednje stanje je od {t} – prestaro da bi se reklo „slobodno“.",
+        "a": "{site}: do {kw} kW, {euro},{cent} €/kWh; posljednje stanje od {t}: slobodnih {free}, zauzetih {busy} – možda zastarjelo.",
         "note": "Ovdje popunjenost dolazi od usluge koja skuplja obavijesti mnogih operatera. Priključak bez obavijesti nikad se ne računa kao slobodan."
       },
       "ocpdb": {

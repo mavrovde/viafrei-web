@@ -340,17 +340,17 @@
       },
       "muenchen": {
         "q": "Où le sans-plomb E10 est-il le moins cher à Munich en ce moment ?",
-        "why": "Un prix peut dater du matin : cet après-midi-là, pour Munich, ViaFrei n’avait que des prix du matin, a donné chacun avec son heure et en a demandé de nouveaux.",
+        "why": "Un prix peut dater de la veille au soir : cet après-midi-là, pour Munich, ViaFrei n’avait aucun prix nouveau, a donné le moins cher avec son heure de la veille au soir et en a demandé de nouveaux.",
         "a": "Pas encore de nouveau prix — le plus bas connu : {euro},{cent} € le litre chez {station}, {address}, signalé le {reported} ; ViaFrei en demande un nouveau."
       },
       "leipzig": {
         "q": "Où le sans-plomb E5 est-il le moins cher à Leipzig en ce moment ?",
-        "why": "Les prix changent plusieurs fois par jour et varient même entre quelques stations d’une même ville : ViaFrei indique la moins chère avec son prix et l’heure à laquelle la station l’a signalé.",
+        "why": "La station la plus proche n’est pas toujours la moins chère : ViaFrei donne la distance avec chaque prix.",
         "a": "{euro},{cent} € le litre chez {station}, {address} — signalé à {reported}."
       },
       "nuernberg": {
         "q": "Où le gazole est-il le moins cher à Nuremberg en ce moment ?",
-        "why": "La station la plus proche n’est pas toujours la moins chère : ViaFrei donne la distance avec chaque prix.",
+        "why": "Un prix peut dater de plusieurs heures : ViaFrei indique quand la station a signalé chaque prix.",
         "a": "Pas encore de nouveau prix — le plus bas connu : {euro},{cent} € le litre chez {station}, {address}, signalé le {reported} ; ViaFrei en demande un nouveau."
       }
     },
@@ -419,7 +419,7 @@
       "ecomove": {
         "title": "Occupation en direct via un agrégateur",
         "q": "Un point de recharge est-il libre à la borne rapide du {address} en ce moment ?",
-        "a": "{site} : jusqu’à {kw} kW, {euro},{cent} €/kWh ; le dernier état date de {t} — trop ancien pour dire « libre ».",
+        "a": "{site} : jusqu’à {kw} kW, {euro},{cent} €/kWh ; dernier état, du {t} : libres {free}, occupés {busy} — peut-être périmé.",
         "note": "Ici, l’occupation provient d’un service qui rassemble les signalements de nombreux opérateurs. Un point sans signalement n’est jamais compté comme libre."
       },
       "ocpdb": {

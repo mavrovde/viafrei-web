@@ -329,7 +329,7 @@ export const FUEL_ASKS: readonly FuelAsk[] = [
     tool: "find_cheapest_fuel",
     // find_cheapest_fuel {place: "Görlitz", fuel: "diesel"}, asked ONCE 2026-11-02 14:10: no price from the last 30 minutes — "zuletzt
     // bekannte Preise … TotalEnergies, Bahnhofstr. 68-72, 02826 Goerlitz — 2,179 €/l … (Preis von 23.10. 21:36) — neuer Preis wird gerade
-    // abgefragt". Reworded: no current price (the München shape).
+    // abgefragt". 2026-11-18 14:29: a current price, reported 14:29, so the current-price sentence holds.
     answer: { values: { euro: "2", cent: "319", reported: "14:29", asOf: "18.11.2026, 14:29" }, names: { station: "TotalEnergies", address: "Bahnhofstr. 68-72, 02826 Goerlitz" }, credits: FUEL },
   },
   {

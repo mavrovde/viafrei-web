@@ -340,17 +340,17 @@
       },
       "muenchen": {
         "q": "Gdzie w Monachium jest teraz najtańsza benzyna E10?",
-        "why": "Cena może być poranna: dla Monachium ViaFrei miał tego popołudnia tylko ceny z rana, podał każdą z godziną i poprosił o nowe.",
+        "why": "Cena może być z poprzedniego wieczoru: dla Monachium ViaFrei nie miał tego popołudnia nowej ceny, podał najtańszą z godziną z poprzedniego wieczoru i poprosił o nowe.",
         "a": "Brak nowej ceny — ostatnio najtaniej: {euro},{cent} €/l na stacji {station}, {address}, zgłoszono {reported}; ViaFrei właśnie pyta o nową."
       },
       "leipzig": {
         "q": "Gdzie w Lipsku jest teraz najtańsza benzyna E5?",
-        "why": "Ceny zmieniają się kilka razy dziennie i różnią się nawet między kilkoma stacjami w jednym mieście: ViaFrei podaje najtańszą z ceną i godziną, o której stacja ją zgłosiła.",
+        "why": "Najbliższa stacja nie zawsze jest najtańsza: ViaFrei podaje przy każdej cenie odległość.",
         "a": "{euro},{cent} €/l na stacji {station}, {address} — zgłoszono o {reported}."
       },
       "nuernberg": {
         "q": "Gdzie w Norymberdze jest teraz najtańszy diesel?",
-        "why": "Najbliższa stacja nie zawsze jest najtańsza: ViaFrei podaje przy każdej cenie odległość.",
+        "why": "Cena może mieć kilka godzin: ViaFrei podaje przy każdej cenie, kiedy stacja ją zgłosiła.",
         "a": "Brak nowej ceny — ostatnio najtaniej: {euro},{cent} €/l na stacji {station}, {address}, zgłoszono {reported}; ViaFrei właśnie pyta o nową."
       }
     },
@@ -419,7 +419,7 @@
       "ecomove": {
         "title": "Zajętość na żywo przez agregatora",
         "q": "Czy przy szybkiej ładowarce pod adresem {address} jest teraz wolny punkt?",
-        "a": "{site}: do {kw} kW, {euro},{cent} €/kWh; ostatni stan pochodzi z {t} — za stary, by powiedzieć „wolny”.",
+        "a": "{site}: do {kw} kW, {euro},{cent} €/kWh; ostatni stan z {t}: wolne {free}, zajęte {busy} – może być nieaktualny.",
         "note": "Zajętość pochodzi tu z serwisu, który zbiera komunikaty wielu operatorów. Punkt bez komunikatu nigdy nie liczy się jako wolny."
       },
       "ocpdb": {

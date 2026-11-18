@@ -340,17 +340,17 @@
       },
       "muenchen": {
         "q": "Where is E10 petrol cheapest in Munich right now?",
-        "why": "A price can be from the morning: for Munich that afternoon ViaFrei held only prices from the morning, gave each with its time and asked for new ones.",
+        "why": "A price can be from the evening before: for Munich that afternoon ViaFrei held no new price, gave the cheapest with its time from the evening before and asked for new ones.",
         "a": "No new price yet — the lowest last known: €{euro}.{cent} per litre at {station}, {address}, reported on {reported}; ViaFrei is asking for a new one."
       },
       "leipzig": {
         "q": "Where is E5 petrol cheapest in Leipzig right now?",
-        "why": "Prices change several times a day and differ even between a few stations in one town: ViaFrei names the cheapest with its price and the time the station reported it.",
+        "why": "The nearest station is not always the cheapest: ViaFrei gives the distance with each price.",
         "a": "€{euro}.{cent} per litre at {station}, {address} — reported at {reported}."
       },
       "nuernberg": {
         "q": "Where is diesel cheapest in Nuremberg right now?",
-        "why": "The nearest station is not always the cheapest: ViaFrei gives the distance with each price.",
+        "why": "A price can be hours old: ViaFrei says when the station reported each price.",
         "a": "No new price yet — the lowest last known: €{euro}.{cent} per litre at {station}, {address}, reported on {reported}; ViaFrei is asking for a new one."
       }
     },
@@ -419,7 +419,7 @@
       "ecomove": {
         "title": "Live occupancy through an aggregator",
         "q": "Is a charging point free at the fast charger at {address} right now?",
-        "a": "{site}: up to {kw} kW, €{euro}.{cent}/kWh; the last status dates from {t} — too old to say “free”.",
+        "a": "{site}: up to {kw} kW, €{euro}.{cent}/kWh; last status from {t}: {free} free, {busy} occupied — possibly out of date.",
         "note": "Here the occupancy comes from a service that gathers many operators' reports. A point without a report never counts as free."
       },
       "ocpdb": {

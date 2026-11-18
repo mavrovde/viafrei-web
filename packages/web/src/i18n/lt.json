@@ -340,17 +340,17 @@
       },
       "muenchen": {
         "q": "Kur Miunchene šiuo metu pigiausias benzinas E10?",
-        "why": "Kaina gali būti rytinė: tą popietę ViaFrei Miunchene turėjo tik ryto kainas, kiekvieną pateikė su laiku ir paprašė naujų.",
+        "why": "Kaina gali būti iš vakarykščio vakaro: tą popietę ViaFrei Miunchene neturėjo naujos kainos, pigiausią pateikė su vakarykščio vakaro laiku ir paprašė naujų.",
         "a": "Naujos kainos dar nėra — mažiausia paskutinė žinoma: {euro},{cent} €/l degalinėje {station}, {address}, pranešta {reported}; ViaFrei prašo naujos."
       },
       "leipzig": {
         "q": "Kur Leipcige šiuo metu pigiausias benzinas E5?",
-        "why": "Kainos keičiasi kelis kartus per dieną ir skiriasi net tarp kelių degalinių viename mieste: ViaFrei nurodo pigiausią su kaina ir laiku, kada degalinė ją pranešė.",
+        "why": "Artimiausia degalinė ne visada pigiausia: ViaFrei prie kiekvienos kainos nurodo atstumą.",
         "a": "{euro},{cent} €/l degalinėje {station}, {address} — pranešta {reported}."
       },
       "nuernberg": {
         "q": "Kur Niurnberge šiuo metu pigiausias dyzelinas?",
-        "why": "Artimiausia degalinė ne visada pigiausia: ViaFrei prie kiekvienos kainos nurodo atstumą.",
+        "why": "Kaina gali būti kelių valandų senumo: ViaFrei nurodo, kada degalinė pranešė kiekvieną kainą.",
         "a": "Naujos kainos dar nėra — mažiausia paskutinė žinoma: {euro},{cent} €/l degalinėje {station}, {address}, pranešta {reported}; ViaFrei prašo naujos."
       }
     },
@@ -419,7 +419,7 @@
       "ecomove": {
         "title": "Gyvas užimtumas per agregatorių",
         "q": "Ar šiuo metu laisvas įkrovimo taškas greitojo įkrovimo stotelėje adresu {address}?",
-        "a": "{site}: iki {kw} kW, {euro},{cent} €/kWh; paskutinė būsena iš {t} — per sena, kad sakytume „laisva“.",
+        "a": "{site}: iki {kw} kW, {euro},{cent} €/kWh; paskutinė būsena iš {t}: laisvi {free}, užimti {busy} — gali būti pasenusi.",
         "note": "Čia užimtumas gaunamas iš paslaugos, kuri renka daugelio operatorių pranešimus. Taškas be pranešimo niekada nelaikomas laisvu."
       },
       "ocpdb": {

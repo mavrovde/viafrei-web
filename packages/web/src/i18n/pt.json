@@ -340,17 +340,17 @@
       },
       "muenchen": {
         "q": "Onde está a gasolina E10 mais barata em Munique neste momento?",
-        "why": "Um preço pode ser da manhã: para Munique, nessa tarde, o ViaFrei só tinha preços da manhã, indicou cada um com a sua hora e pediu novos.",
+        "why": "Um preço pode ser da noite anterior: para Munique, nessa tarde, o ViaFrei não tinha nenhum preço novo, indicou o mais barato com a sua hora da noite anterior e pediu novos.",
         "a": "Ainda não há preço novo — o mais baixo conhecido: {euro},{cent} €/l em {station}, {address}, comunicado em {reported}; o ViaFrei está a pedir um novo."
       },
       "leipzig": {
         "q": "Onde está a gasolina E5 mais barata em Leipzig neste momento?",
-        "why": "Os preços mudam várias vezes por dia e variam até entre poucos postos da mesma cidade: o ViaFrei indica o mais barato com o seu preço e a hora a que o posto o comunicou.",
+        "why": "O posto mais próximo nem sempre é o mais barato: o ViaFrei indica a distância junto a cada preço.",
         "a": "{euro},{cent} €/l em {station}, {address} — comunicado às {reported}."
       },
       "nuernberg": {
         "q": "Onde está o gasóleo mais barato em Nuremberga neste momento?",
-        "why": "O posto mais próximo nem sempre é o mais barato: o ViaFrei indica a distância junto a cada preço.",
+        "why": "Um preço pode ter horas: o ViaFrei diz quando o posto comunicou cada preço.",
         "a": "Ainda não há preço novo — o mais baixo conhecido: {euro},{cent} €/l em {station}, {address}, comunicado em {reported}; o ViaFrei está a pedir um novo."
       }
     },
@@ -419,7 +419,7 @@
       "ecomove": {
         "title": "Ocupação em direto através de um agregador",
         "q": "Há neste momento um ponto de carregamento livre no carregador rápido em {address}?",
-        "a": "{site}: até {kw} kW, {euro},{cent} €/kWh; o último estado data de {t} — demasiado antigo para dizer «livre».",
+        "a": "{site}: até {kw} kW, {euro},{cent} €/kWh; último estado de {t}: livres {free}, ocupados {busy} – talvez desatualizado.",
         "note": "Aqui a ocupação vem de um serviço que reúne as comunicações de muitos operadores. Um ponto sem comunicação nunca conta como livre."
       },
       "ocpdb": {

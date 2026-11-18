@@ -340,17 +340,17 @@
       },
       "muenchen": {
         "q": "Dove costa meno la benzina E10 a Monaco di Baviera in questo momento?",
-        "why": "Un prezzo può essere del mattino: per Monaco di Baviera quel pomeriggio ViaFrei aveva solo i prezzi del mattino, li ha indicati ciascuno con il suo orario e ne ha richiesti di nuovi.",
+        "why": "Un prezzo può essere della sera prima: per Monaco di Baviera quel pomeriggio ViaFrei non aveva alcun prezzo nuovo, ha indicato il più economico con il suo orario della sera prima e ne ha richiesti di nuovi.",
         "a": "Ancora nessun prezzo nuovo — il più basso finora noto: {euro},{cent} €/l presso {station}, {address}, comunicato il {reported}; ViaFrei sta richiedendo un prezzo nuovo."
       },
       "leipzig": {
         "q": "Dove costa meno la benzina E5 a Lipsia in questo momento?",
-        "why": "I prezzi cambiano più volte al giorno e variano anche tra pochi distributori della stessa città: ViaFrei indica il più economico con il suo prezzo e l’ora in cui il distributore l’ha comunicato.",
+        "why": "Il distributore più vicino non è sempre il più economico: ViaFrei indica la distanza accanto a ogni prezzo.",
         "a": "{euro},{cent} €/l presso {station}, {address} — comunicato alle {reported}."
       },
       "nuernberg": {
         "q": "Dove costa meno il gasolio a Norimberga in questo momento?",
-        "why": "Il distributore più vicino non è sempre il più economico: ViaFrei indica la distanza accanto a ogni prezzo.",
+        "why": "Un prezzo può avere qualche ora: ViaFrei dice quando il distributore ha comunicato ogni prezzo.",
         "a": "Ancora nessun prezzo nuovo — il più basso finora noto: {euro},{cent} €/l presso {station}, {address}, comunicato il {reported}; ViaFrei sta richiedendo un prezzo nuovo."
       }
     },
@@ -419,7 +419,7 @@
       "ecomove": {
         "title": "Occupazione in tempo reale tramite un aggregatore",
         "q": "C’è un punto di ricarica libero in questo momento alla colonnina rapida in {address}?",
-        "a": "{site}: fino a {kw} kW, {euro},{cent} €/kWh; l’ultimo stato risale al {t} — troppo vecchio per dire «libero».",
+        "a": "{site}: fino a {kw} kW, {euro},{cent} €/kWh; ultimo stato del {t}: liberi {free}, occupati {busy} – forse non aggiornato.",
         "note": "Qui l’occupazione proviene da un servizio che raccoglie le segnalazioni di molti gestori. Un punto senza segnalazione non conta mai come libero."
       },
       "ocpdb": {

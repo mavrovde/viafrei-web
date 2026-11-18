@@ -340,17 +340,17 @@
       },
       "muenchen": {
         "q": "Kde je teď v Mnichově nejlevnější benzin E10?",
-        "why": "Cena může být ranní: pro Mnichov měl ViaFrei to odpoledne jen ceny z rána, uvedl každou s časem a vyžádal si nové.",
+        "why": "Cena může být z předchozího večera: pro Mnichov neměl ViaFrei to odpoledne novou cenu, uvedl nejlevnější s časem z předchozího večera a vyžádal si nové.",
         "a": "Zatím žádná nová cena — naposledy nejlevněji: {euro},{cent} €/l u stanice {station}, {address}, nahlášeno {reported}; ViaFrei se právě ptá znovu."
       },
       "leipzig": {
         "q": "Kde je teď v Lipsku nejlevnější benzin E5?",
-        "why": "Ceny se mění několikrát denně a liší se i mezi pár čerpacími stanicemi v jednom městě: ViaFrei uvede nejlevnější s cenou a časem, kdy ji stanice nahlásila.",
+        "why": "Nejbližší stanice není vždy nejlevnější: ViaFrei u každé ceny uvádí vzdálenost.",
         "a": "{euro},{cent} €/l u stanice {station}, {address} — nahlášeno v {reported}."
       },
       "nuernberg": {
         "q": "Kde je teď v Norimberku nejlevnější nafta?",
-        "why": "Nejbližší stanice není vždy nejlevnější: ViaFrei u každé ceny uvádí vzdálenost.",
+        "why": "Cena může být hodiny stará: ViaFrei u každé ceny uvádí, kdy ji stanice nahlásila.",
         "a": "Zatím žádná nová cena — naposledy nejlevněji: {euro},{cent} €/l u stanice {station}, {address}, nahlášeno {reported}; ViaFrei se právě ptá znovu."
       }
     },
@@ -419,7 +419,7 @@
       "ecomove": {
         "title": "Živá obsazenost přes agregátor",
         "q": "Je teď u rychlonabíječky na adrese {address} volný nabíjecí bod?",
-        "a": "{site}: až {kw} kW, {euro},{cent} €/kWh; poslední stav je z {t} — příliš starý na to, abychom řekli „volný“.",
+        "a": "{site}: až {kw} kW, {euro},{cent} €/kWh; poslední stav z {t}: volné {free}, obsazené {busy} – možná zastaralý.",
         "note": "Obsazenost tu pochází ze služby, která sdružuje hlášení mnoha provozovatelů. Bod bez hlášení se nikdy nepočítá jako volný."
       },
       "ocpdb": {

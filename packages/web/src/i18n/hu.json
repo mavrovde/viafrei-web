@@ -340,17 +340,17 @@
       },
       "muenchen": {
         "q": "Hol a legolcsóbb most az E10 benzin Münchenben?",
-        "why": "Egy ár lehet reggeli is: Münchenre azon a délutánon a ViaFrei csak a reggeli árakat ismerte, mindegyiket az időpontjával adta meg, és újakat kért.",
+        "why": "Egy ár lehet előző esti is: Münchenre azon a délutánon a ViaFrei nem ismert új árat, a legolcsóbbat az előző esti időpontjával adta meg, és újakat kért.",
         "a": "Még nincs új ár — a legalacsonyabb utolsó ismert: {euro},{cent} € literenként: {station}, {address}, jelentve: {reported}; a ViaFrei újat kér."
       },
       "leipzig": {
         "q": "Hol a legolcsóbb most az E5 benzin Lipcsében?",
-        "why": "Az árak naponta többször változnak, és egy városon belül néhány kút között is eltérnek: a ViaFrei megnevezi a legolcsóbbat az árával és azzal az időponttal, amikor a kút jelentette.",
+        "why": "A legközelebbi kút nem mindig a legolcsóbb: a ViaFrei minden árhoz megadja a távolságot.",
         "a": "{euro},{cent} € literenként: {station}, {address} — jelentve: {reported}."
       },
       "nuernberg": {
         "q": "Hol a legolcsóbb most a dízel Nürnbergben?",
-        "why": "A legközelebbi kút nem mindig a legolcsóbb: a ViaFrei minden árhoz megadja a távolságot.",
+        "why": "Egy ár lehet órákkal korábbi is: a ViaFrei megmondja, mikor jelentette a kút az egyes árakat.",
         "a": "Még nincs új ár — a legalacsonyabb utolsó ismert: {euro},{cent} € literenként: {station}, {address}, jelentve: {reported}; a ViaFrei újat kér."
       }
     },
@@ -419,7 +419,7 @@
       "ecomove": {
         "title": "Élő foglaltság egy adatgyűjtőn keresztül",
         "q": "Van most szabad töltőpont ennél a gyorstöltőnél: {address}?",
-        "a": "{site}: legfeljebb {kw} kW, {euro},{cent} €/kWh; az utolsó állapot ideje: {t} – túl régi ahhoz, hogy „szabad” legyen.",
+        "a": "{site}: legfeljebb {kw} kW, {euro},{cent} €/kWh; utolsó állapot: {t} – szabad: {free}, foglalt: {busy} – lehet, hogy elavult.",
         "note": "A foglaltság itt egy olyan szolgáltatástól jön, amely sok üzemeltető jelentéseit gyűjti össze. Jelentés nélküli pont soha nem számít szabadnak."
       },
       "ocpdb": {

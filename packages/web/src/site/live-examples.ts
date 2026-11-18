@@ -308,10 +308,10 @@ export const LIVE_EXAMPLES: readonly LiveExample[] = [
     // 299, 22043 Hamburg (JOLT Energy) — CCS2, bis 350 kW, 0,785 €/kWh, Status von 01.11. 20:15 — möglicherweise veraltet". Stand 14:11.
     // The card rounds the price to the cent. Asked again 2026-11-18 14:29: "1. Schiffbeker Weg 299, 22043 Hamburg (JOLT Energy) — CCS2,
     // bis 350 kW, 0,79 €/kWh, 1 frei, 1 belegt, Status von 15.11. 16:20 — möglicherweise veraltet": the site id is no longer printed,
-    // so the card names the operator the answer names.
+    // so the card names the operator the answer names. Reworded: the two last statuses, possibly out of date (as charger).
     credits: ["mobilithek_afir_ecomovement", "mobilithek_afir_ecomovement_dyn", "osm"],
     names: { site: "JOLT Energy", address: "Schiffbeker Weg 299, Hamburg" },
-    values: { kw: "350", euro: "0", cent: "79", t: "15.11., 16:20", asOf: "18.11.2026, 14:29" },
+    values: { kw: "350", euro: "0", cent: "79", free: "1", busy: "1", t: "15.11., 16:20", asOf: "18.11.2026, 14:29" },
   },
   {
     key: "ocpdb",
@@ -662,7 +662,7 @@ export const LIVE_EXAMPLES: readonly LiveExample[] = [
     sign: "fuel",
     question: "connectPage.live.fuelcity.q",
     // find_cheapest_fuel {place: "Köln", fuel: "e10"}, asked ONCE 2026-11-02 14:22: current prices, ranked — "1. Markant (Tankautomat)
-    // Automatentankstelle, Olpener Str. 27, 51103 Köln — 2,019 €/l (Stand 14:22)", tied with a JET. Reworded: a current price.
+    // Automatentankstelle, Olpener Str. 27, 51103 Köln — 2,019 €/l (Stand 14:22)", tied with a JET. 2026-11-18: no current price, so the "no new price" sentence.
     credits: ["tankerkoenig"],
     names: { station: "TotalEnergies", address: "Holzmarkt 49, 50676 Koeln" },
     values: { euro: "1", cent: "879", reported: "17.11., 20:34", asOf: "18.11.2026, 14:30" },

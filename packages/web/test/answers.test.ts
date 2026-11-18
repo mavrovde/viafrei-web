@@ -26,7 +26,7 @@ const LIVE_CREDITS = new Set(catalogue.credits.map((c) => c.id));
 const words = (lang: (typeof LIVE_LANGS)[number], msg: MessageKey, a: MomentAnswer): string => t(lang, msg, { ...a.values, ...a.names });
 
 const dated = (a: MomentAnswer, what: string): void => {
-  expect(a.values.asOf, what).toMatch(/^(?:(?:05|16)\.10|(?:02|18)\.11)\.2026, \d\d:\d\d$/);
+  expect(a.values.asOf, what).toMatch(/^(?:05\.10|18\.11)\.2026, \d\d:\d\d$/);
   expect(a.credits.length, what).toBeGreaterThan(0);
   for (const id of a.credits) expect(LIVE_CREDITS.has(id), `${what}: ${id}`).toBe(true);
 };

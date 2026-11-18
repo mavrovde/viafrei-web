@@ -340,17 +340,17 @@
       },
       "muenchen": {
         "q": "Kur Minhenē pašlaik ir vislētākais benzīns E10?",
-        "why": "Cena var būt rīta: tajā pēcpusdienā ViaFrei Minhenē bija tikai rīta cenas, katru sniedza ar laiku un pieprasīja jaunas.",
+        "why": "Cena var būt no iepriekšējā vakara: tajā pēcpusdienā ViaFrei Minhenē nebija jaunas cenas, lētāko sniedza ar iepriekšējā vakara laiku un pieprasīja jaunas.",
         "a": "Jaunas cenas vēl nav — zemākā pēdējā zināmā: {euro},{cent} €/l stacijā {station}, {address}, ziņots {reported}; ViaFrei pieprasa jaunu."
       },
       "leipzig": {
         "q": "Kur Leipcigā pašlaik ir vislētākais benzīns E5?",
-        "why": "Cenas mainās vairākas reizes dienā un atšķiras pat starp dažām stacijām vienā pilsētā: ViaFrei nosauc lētāko ar cenu un laiku, kad stacija to ziņoja.",
+        "why": "Tuvākā stacija ne vienmēr ir lētākā: ViaFrei pie katras cenas norāda attālumu.",
         "a": "{euro},{cent} €/l stacijā {station}, {address} — ziņots {reported}."
       },
       "nuernberg": {
         "q": "Kur Nirnbergā pašlaik ir vislētākā dīzeļdegviela?",
-        "why": "Tuvākā stacija ne vienmēr ir lētākā: ViaFrei pie katras cenas norāda attālumu.",
+        "why": "Cena var būt vairākas stundas veca: ViaFrei saka, kad stacija ziņoja katru cenu.",
         "a": "Jaunas cenas vēl nav — zemākā pēdējā zināmā: {euro},{cent} €/l stacijā {station}, {address}, ziņots {reported}; ViaFrei pieprasa jaunu."
       }
     },
@@ -419,7 +419,7 @@
       "ecomove": {
         "title": "Tiešsaistes noslogojums caur agregatoru",
         "q": "Vai ātrās uzlādes stacijā adresē {address} pašlaik ir brīvs uzlādes punkts?",
-        "a": "{site}: līdz {kw} kW, {euro},{cent} €/kWh; pēdējais statuss ir no {t} — pārāk vecs, lai teiktu „brīvs“.",
+        "a": "{site}: līdz {kw} kW, {euro},{cent} €/kWh; pēdējais statuss no {t}: brīvi {free}, aizņemti {busy} — iespējams, novecojis.",
         "note": "Šeit noslogojums nāk no pakalpojuma, kas apkopo daudzu operatoru ziņojumus. Punkts bez ziņojuma nekad netiek uzskatīts par brīvu."
       },
       "ocpdb": {

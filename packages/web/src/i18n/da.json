@@ -340,17 +340,17 @@
       },
       "muenchen": {
         "q": "Hvor er blyfri 95 E10 billigst i München lige nu?",
-        "why": "En pris kan være fra morgenen: for München havde ViaFrei den eftermiddag kun priser fra morgenen, oplyste hver med sit klokkeslæt og bad om nye.",
+        "why": "En pris kan være fra aftenen før: for München havde ViaFrei den eftermiddag ingen ny pris, oplyste den billigste med sit klokkeslæt fra aftenen før og bad om nye.",
         "a": "Ingen ny pris endnu – senest billigst: {euro},{cent} €/l hos {station}, {address}, meldt den {reported}; ViaFrei henter netop en ny."
       },
       "leipzig": {
         "q": "Hvor er blyfri 95 E5 billigst i Leipzig lige nu?",
-        "why": "Priserne ændrer sig flere gange om dagen og varierer selv mellem få tankstationer i samme by: ViaFrei nævner den billigste med prisen og klokkeslættet, hvor stationen meldte den.",
+        "why": "Den nærmeste tankstation er ikke altid den billigste: ViaFrei oplyser afstanden ved hver pris.",
         "a": "{euro},{cent} €/l hos {station}, {address} – meldt kl. {reported}."
       },
       "nuernberg": {
         "q": "Hvor er diesel billigst i Nürnberg lige nu?",
-        "why": "Den nærmeste tankstation er ikke altid den billigste: ViaFrei oplyser afstanden ved hver pris.",
+        "why": "En pris kan være timer gammel: ViaFrei siger ved hver pris, hvornår stationen meldte den.",
         "a": "Ingen ny pris endnu – senest billigst: {euro},{cent} €/l hos {station}, {address}, meldt den {reported}; ViaFrei henter netop en ny."
       }
     },
@@ -419,7 +419,7 @@
       "ecomove": {
         "title": "Live-belægning via en dataindsamler",
         "q": "Er der et ledigt ladepunkt ved lynladeren {address} lige nu?",
-        "a": "{site}: op til {kw} kW, {euro},{cent} €/kWh; den sidste status er fra {t} – for gammel til at sige „ledig“.",
+        "a": "{site}: op til {kw} kW, {euro},{cent} €/kWh; sidste status fra {t}: {free} ledig, {busy} optaget – måske forældet.",
         "note": "Belægningen kommer her fra en tjeneste, der samler mange operatørers meldinger. Et punkt uden melding tæller aldrig som ledigt."
       },
       "ocpdb": {

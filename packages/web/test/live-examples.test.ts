@@ -136,7 +136,7 @@ describe("real answers on the connect page (#472, v1.8.1, v1.8.2)", () => {
     }
     // 2.5.4: EnBW gave no status at all and JOLT's was from the day before, and the cards say so rather than "free"
     expect(t("de", "connectPage.live.enbw.a", { ...LIVE_EXAMPLES.find((x) => x.key === "enbw")!.values })).toBe("Bis 300 kW, 0,70 €/kWh – doch für keinen der 5 Ladepunkte liegt ein Status vor, also sagt ViaFrei nicht „frei“.");
-    expect(t("de", "connectPage.live.ecomove.a", { ...LIVE_EXAMPLES.find((x) => x.key === "ecomove")!.values, site: "JOLT Energy" })).toBe("JOLT Energy: bis 350 kW, 0,79 €/kWh; der letzte Status stammt vom 15.11., 16:20 – zu alt, um „frei“ zu sagen.");
+    expect(t("de", "connectPage.live.ecomove.a", { ...LIVE_EXAMPLES.find((x) => x.key === "ecomove")!.values, site: "JOLT Energy" })).toBe("JOLT Energy: bis 350 kW, 0,79 €/kWh; letzter Status vom 15.11., 16:20: 1 frei, 1 belegt – möglicherweise veraltet.");
   });
 
   it("show one card per feed that went live in v1.8.12, each crediting exactly what production answered (#481, #482, #484, #485)", () => {
@@ -148,7 +148,7 @@ describe("real answers on the connect page (#472, v1.8.1, v1.8.2)", () => {
     for (const k of ["ocpdb", "lsr", "hamburg", "muenster"] as const) {
       const e = LIVE_EXAMPLES.find((x) => x.key === k)!;
       expect(e.recheck, k).toBeUndefined();
-      expect(e.values["asOf"], k).toMatch(/^(?:02|18)\.11\.2026, 14:\d\d$/);
+      expect(e.values["asOf"], k).toMatch(/^18\.11\.2026, 14:\d\d$/);
       // short cards: the page-weight budget (owner)
       for (const lang of LIVE_LANGS) expect(t(lang, `connectPage.live.${k}.a`, { ...e.values, ...namesOf(e) }).length, `${lang}: ${k}`).toBeLessThanOrEqual(170);
     }
@@ -189,11 +189,11 @@ describe("real answers on the connect page (#472, v1.8.1, v1.8.2)", () => {
     expect(credits["closure"]).toEqual(["autobahn"]);
     expect(credits["weather"]).toEqual(["dwd"]);
     for (const k of ["fuelcity", "fuelroad", "fuelland"]) expect(credits[k], k).toEqual(["tankerkoenig"]);
-    // production's own answers: nothing to re-check, every one re-asked on 2026-11-02 (2.5.4)
+    // production's own answers: nothing to re-check, every one re-asked on 2026-11-02 (2.5.4) and 2026-11-18
     for (const k of ASKED_OF_PRODUCTION) {
       const e = LIVE_EXAMPLES.find((x) => x.key === k)!;
       expect(e.recheck, k).toBeUndefined();
-      expect(e.values["asOf"], k).toMatch(/^(?:02|18)\.11\.2026, \d\d:\d\d$/);
+      expect(e.values["asOf"], k).toMatch(/^18\.11\.2026, \d\d:\d\d$/);
     }
     // the share-alike P+R line keeps its licence in the credit, never in the copy
     expect(catalogue.credits.find((c) => c.id === "mobilithek_park_nrw_pr")?.text).toContain("CC BY-SA");

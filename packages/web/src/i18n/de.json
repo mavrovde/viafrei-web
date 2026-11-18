@@ -340,17 +340,17 @@
       },
       "muenchen": {
         "q": "Wo ist Super E10 in München gerade am günstigsten?",
-        "why": "Ein Preis kann vom Morgen sein: Für München hatte ViaFrei an diesem Nachmittag nur Preise vom Morgen, nannte jeden mit seiner Uhrzeit und fragte neue ab.",
+        "why": "Ein Preis kann vom Vorabend sein: Für München hatte ViaFrei an diesem Nachmittag keinen neuen Preis, nannte den günstigsten mit seiner Uhrzeit vom Vorabend und fragte neue ab.",
         "a": "Noch kein neuer Preis – zuletzt am günstigsten: {euro},{cent} €/l bei {station}, {address}, gemeldet am {reported}; ViaFrei fragt gerade neu ab."
       },
       "leipzig": {
         "q": "Wo gibt es in Leipzig gerade das günstigste Super E5?",
-        "why": "Preise ändern sich mehrmals am Tag und unterscheiden sich schon zwischen wenigen Tankstellen einer Stadt: ViaFrei nennt die günstigste mit ihrem Preis und der Uhrzeit, zu der sie ihn gemeldet hat.",
+        "why": "Die nächste Tankstelle ist nicht immer die günstigste: ViaFrei nennt zu jedem Preis die Entfernung.",
         "a": "{euro},{cent} €/l bei {station}, {address} – gemeldet um {reported}."
       },
       "nuernberg": {
         "q": "Wo ist Diesel in Nürnberg gerade am günstigsten?",
-        "why": "Die nächste Tankstelle ist nicht immer die günstigste: ViaFrei nennt zu jedem Preis die Entfernung.",
+        "why": "Ein Preis kann Stunden alt sein: ViaFrei nennt zu jedem Preis, wann die Tankstelle ihn gemeldet hat.",
         "a": "Noch kein neuer Preis – zuletzt am günstigsten: {euro},{cent} €/l bei {station}, {address}, gemeldet am {reported}; ViaFrei fragt gerade neu ab."
       }
     },
@@ -419,7 +419,7 @@
       "ecomove": {
         "title": "Live-Belegung über einen Datensammler",
         "q": "Ist am Schnelllader {address} gerade ein Ladepunkt frei?",
-        "a": "{site}: bis {kw} kW, {euro},{cent} €/kWh; der letzte Status stammt vom {t} – zu alt, um „frei“ zu sagen.",
+        "a": "{site}: bis {kw} kW, {euro},{cent} €/kWh; letzter Status vom {t}: {free} frei, {busy} belegt – möglicherweise veraltet.",
         "note": "Die Belegung kommt hier von einem Dienst, der die Meldungen vieler Betreiber bündelt. Ein Punkt ohne Meldung zählt nie als frei."
       },
       "ocpdb": {
