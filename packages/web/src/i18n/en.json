@@ -1,6 +1,7 @@
 {
   "meta": {
     "tagline": "The German Real-Time Mobility Context Platform for AI",
+    "titleTagline": "The German Real-Time Mobility Context Platform",
     "pitch": "ViaFrei gives AI assistants real-time awareness of Germany. Trains and buses, traffic and roadworks, fuel, charging, parking and weather. One MCP. No API key. No sign-up.",
     "description": "Jams, closures, roadworks, rail, parking, charging and fuel across Germany – live from open data, answered by your AI assistant, every figure with its source.",
     "siteName": "ViaFrei"
@@ -221,7 +222,8 @@
     "more": "2 more questions and a limit",
     "answer": {
       "label": "ViaFrei answered",
-      "asOf": "As of {asOf}"
+      "asOf": "As of {asOf}",
+      "again": "Also from the sources above:"
     },
     "limitLabel": "To be honest",
     "cta": "Get started",

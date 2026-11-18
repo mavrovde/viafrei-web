@@ -1,8 +1,8 @@
 {
   "release": {
-    "version": "2.6.17",
-    "date": "2026-11-14",
-    "anchor": "2617"
+    "version": "2.6.23",
+    "date": "2026-11-17",
+    "anchor": "2623"
   },
   "tools": [
     {
@@ -217,7 +217,7 @@
   "serverCard": {
     "$schema": "https://static.modelcontextprotocol.io/schemas/v1/server-card.schema.json",
     "name": "de.viafrei/mcp",
-    "version": "2.6.17",
+    "version": "2.6.23",
     "title": "ViaFrei",
     "description": "ViaFrei gives AI assistants real-time awareness of Germany. One MCP. No API key. No sign-up.",
     "websiteUrl": "https://viafrei.de",

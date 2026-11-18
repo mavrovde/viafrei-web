@@ -8,7 +8,7 @@
  * helpers are `@viafrei/design/testing`, never imported here.
  */
 export { bySeverity, jumpItem, jumpLinks, sectionHead, statusLamp, statusLine, topItems, SECTION_ROWS, SEVERITY_ORDER, STATUS_LAMPS, TOP_ITEMS_DESK, TOP_ITEMS_MAX, type JumpLink, type Severity, type StatusLamp, type StatusLineInput, type TopItem } from "./page-head.js";
-export { nowDescription, nowTitle, NOW_DESCRIPTION_MAX, NOW_TITLE_MAX, PAGE_HEAD_COPY, PAGE_HEAD_LANGS, type NowKind, type PageHeadCopy, type PageHeadLang } from "./page-head-copy.js";
+export { nowTitle, NOW_TITLE_MAX, PAGE_HEAD_COPY, PAGE_HEAD_LANGS, type NowKind, type PageHeadCopy, type PageHeadLang } from "./page-head-copy.js";
 export { RENDERED_STATES, TILE_STATES, stateClass, type RenderedState, type TileState } from "./tile.js";
 export { C, HOOK, type ClassName, type HookName } from "./classes.js";
 export { agePill, creditLine, esc, raw, tileFigure, tileHead, tileNote, tileShell, type Attrs, type Html, type NotHtml, type TileShell } from "./html.js";
@@ -38,4 +38,6 @@ export { endpointChip, splitEndpoint, type EndpointChip, type EndpointChipWords 
 export { ALL_NONE_HOOKS, allNone, type AllNoneHook, type AllNoneOption } from "./all-none.js";
 export { dayTimelineHtml, TIMELINE_LEVELS, type TimelineBar, type TimelineInput, type TimelineLevel } from "./timeline.js";
 export { foldTile, foldWhole, liftCredits, type LiftedCredits } from "./fold.js";
-export { creditNames, FOLD_RULED_LICENCES, FOLD_UNRULED_CREDITS, foldSourcesFromTexts, foldSourcesHtml, foldSummaryHtml, pageLinesHtml, pageSourcesHtml, shortSource, sourcesOfHtml, sourcesOfTexts, textOf, unruledCredit, unruledText, type PageSource } from "./sources-names.js";
+export { ALWAYS_SHOWN, alwaysShownText, creditNames, FOLD_RULED_LICENCES, FOLD_UNRULED_CREDITS, foldSourcesFromTexts, foldSourcesHtml, foldSummaryHtml, pageLinesHtml, pageSourcesHtml, shortSource, sourcesOfHtml, sourcesOfTexts, textOf, unruledCredit, unruledText, type PageSource } from "./sources-names.js";
+export { DESCRIPTION_MAX, DESCRIPTION_MIN, PAGE_DESCRIPTION_COPY, pageDescription, type DescribedKind, type DescribedSubject } from "./page-description.js";
+export { LAND_KEYS, landNameOf, type LandKey } from "./land-names.js";

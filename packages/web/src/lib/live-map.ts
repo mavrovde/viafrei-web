@@ -18,6 +18,7 @@
  *  - Bahn and Wetterwarnungen (off on a first visit) ask their geometry once, when turned on (`/fragment/map-layer`,
  *    the digest's `/internal/map/rail|kreise`): DB InfraGO's lines with the station dots, and the VG2500 Kreise, put
  *    into the SAME svg under the motorways (LM4); the overlay names the warned Kreise and the script colours those;
+ *    a copy of them past its TTL comes with its read time (`warnAt`, #1313), said in their list as "Stand <t>";
  *  - the CC BY-SA delay layer (Bahn's sub-toggle, LM12–LM17) is its OWN `<svg>` stacked over the base figure, filled
  *    from its OWN response (`/fragment/map-layer?l=sa`): it draws the base dots again by `<use>` and writes nothing
  *    into the base svg, and its lines and the LM14 sentence stand in a block of their own, exactly while it draws.
@@ -173,6 +174,7 @@ function paintLayers() {
     while (twin.firstChild) twin.removeChild(twin.firstChild);
     if (layers.warn && ks) for (var t = 0; t < ks.length; t++) twin.appendChild(li(ks[t][2]));
     if (layers.warn && !ks) twin.appendChild(li(word("lmap__warnpast")));
+    if (layers.warn && ks && typeof shown.warnAt === "string") twin.appendChild(li(word("lmap__asof").replace("{t}", shown.warnAt)));
     twin.hidden = !twin.firstChild;
   }
   var lgs = fig.querySelectorAll(".lmap__lg");
@@ -513,6 +515,8 @@ export function isOverlay(body: string): boolean {
   const credits = o.credits as Record<string, unknown>;
   if (!LAYER_KEYS.every((k) => { const c = credits[k]; return typeof c === "string" && !UNSAFE.test(c); })) return false;
   const kreise = (p as { kreise?: unknown }).kreise;
+  const warnAt = (p as { warnAt?: unknown }).warnAt;
+  if (warnAt !== undefined && warnAt !== null && !(typeof warnAt === "string" && /^\d{2}:\d{2}$/.test(warnAt))) return false;
   if (kreise !== null && !(Array.isArray(kreise) && kreise.every((k) => Array.isArray(k) && k.length === 3 && typeof k[0] === "string" && /^\d{5}$/.test(k[0]) && [1, 2, 3, 4].includes(k[1] as number) && typeof k[2] === "string"))) return false;
   return o.roads.every((r) => Array.isArray(r) && r.length === 4 && typeof r[0] === "string" && ["", "free", "roadworks", "jam", "closure"].includes(r[1] as string) && (r[2] === 0 || r[2] === 1) && typeof r[3] === "string");
 }

@@ -8,12 +8,10 @@
  * lead, or the footer's link label for the two legal pages), so no new copy is
  * written here and a page in Turkish is described in Turkish only (#449).
  */
-import { nowDescription, nowTitle, type NowKind } from "@viafrei/design";
+import { nowTitle, pageDescription, type NowKind } from "@viafrei/design";
 import { t } from "../i18n/index.js";
-import { htmlLangOf } from "../i18n/locales.js";
 import { SITE_ORIGIN } from "./endpoints.js";
 import type { Lang, PageId } from "./pages.js";
-import { listFormat } from "../lib/intl-formats.js";
 
 /** `og`: the social card's own title and description where they differ from the page's (#935: the home's card is the tagline and the whole pitch). */
 export type PageMeta = { readonly title: string; readonly description: string; readonly og?: { readonly title: string; readonly description: string } };
@@ -39,7 +37,7 @@ export function rawPageMeta(page: PageId, lang: Lang): PageMeta {
   switch (page) {
     // #935 (owner 2026-10-22, marketing rule 1): the home alone is brand-led — "ViaFrei – <tagline>", the pitch as its description.
     case "start":
-      return homeMeta(t(lang, "meta.tagline"), t(lang, "meta.pitch"));
+      return homeMeta(t(lang, "meta.tagline"), t(lang, "meta.pitch"), t(lang, "meta.titleTagline"));
     // 2.1.13 (#715): the connect page's and the motorway index's are written for search — the search terms
     // first, about 60/155 characters, the brand last (`test/meta.test.ts`).
     case "connect":
@@ -127,10 +125,17 @@ export const BRAND = "ViaFrei";
 /**
  * The home's head (#935, marketing rules 1 and 3): the `<title>` is the brand
  * first, then the tagline; the description is the pitch within 160 characters;
- * the social card is the tagline and the whole pitch. One language's two strings in.
+ * the social card is the tagline and the whole pitch. One language's strings in.
+ *
+ * #1310 B1 (owner 2026-11-14): the title is at most `TITLE_FIT` (60) characters in every language — a longer one was
+ * cut in the results (el 76, lv 72, tr 71 …). It carries `meta.titleTagline`: the tagline with words dropped from the
+ * end until the brand line fits (Turkish puts its qualifier first, so there the leading "Yapay zekâ için" goes), the
+ * whole tagline where it already fits. The social card keeps the whole tagline.
  */
-export function homeMeta(tagline: string, pitch: string): PageMeta {
-  return { title: `${BRAND} – ${tagline}`, description: pitchWithin(pitch, DESCRIPTION_MAX), og: { title: tagline, description: pitch } };
+export function homeMeta(tagline: string, pitch: string, titleTagline: string = tagline): PageMeta {
+  const title = `${BRAND} – ${titleTagline}`;
+  if (title.length > TITLE_FIT) throw new Error(`the home title is over ${String(TITLE_FIT)} characters: ${title}`);
+  return { title, description: pitchWithin(pitch, DESCRIPTION_MAX), og: { title: tagline, description: pitch } };
 }
 
 /**
@@ -147,17 +152,25 @@ export function pitchWithin(pitch: string, max: number): string {
   return fit;
 }
 
-/** A motorway page's own title and description (#715): `A7 aktuell: Stau, Sperrungen, Baustellen – live – ViaFrei`. */
+/**
+ * A motorway page's own title and description (#715): `A7 aktuell: Stau, Sperrungen, Baustellen – live – ViaFrei`. The
+ * fallback of a fragment that carries no head; the digest's carries the Länder too. #1310 B2: the description is THE
+ * evergreen builder's (`pageDescription`).
+ */
 export function motorwayMeta(road: string, lang: Lang): PageMeta {
-  return { title: fitTitle(t(lang, "seo.motorwayTitle", { road })), description: fitDescription(t(lang, "seo.motorwayDescription", { road })) };
+  return { title: fitTitle(t(lang, "seo.motorwayTitle", { road })), description: pageDescription(lang, { kind: "motorway", name: road }) };
 }
 
-/** A station page's own title and description (#1041): the station's name, written for search like a place page's. */
-export function stationMeta(name: string, lang: Lang, city: string | null = null, now: { readonly kind: NowKind; readonly status: string } | null = null): PageMeta {
+/**
+ * A station page's own title and description (#1041): the station's name, written for search like a place page's.
+ * #1175: a title changes only for something reported (a quiet station keeps its search phrase). #1310 B2: the
+ * description is evergreen — what the page offers for the station and its Land (`land`, in the page's language), never
+ * the status, which stays in the block under the H1.
+ */
+export function stationMeta(name: string, lang: Lang, city: string | null = null, now: { readonly kind: NowKind } | null = null, land: string | null = null): PageMeta {
   const label = stationLabel(name, city);
-  // #1175: the status leads the description; a title changes only for something reported (a quiet station keeps its search phrase)
-  if (now !== null) return { title: now.kind === "nothing" ? fitTitle(t(lang, "seo.stationTitle", { name: label })) : nowTitle(lang, label, now.kind), description: nowDescription(`${label}: ${now.status}.`, t(lang, "seo.stationDescription", { name: label })) };
-  return { title: fitTitle(t(lang, "seo.stationTitle", { name: label })), description: fitDescription(t(lang, "seo.stationDescription", { name: label })) };
+  const title = now !== null && now.kind !== "nothing" ? nowTitle(lang, label, now.kind) : fitTitle(t(lang, "seo.stationTitle", { name: label }));
+  return { title, description: pageDescription(lang, { kind: "station", name: label, land }) };
 }
 
 /**
@@ -176,26 +189,13 @@ export function stationLabel(name: string, city: string | null): string {
   return words.length > 0 && words.every((w) => own.includes(w)) ? name : `${name} (${city.trim()})`;
 }
 
-/** A place page's own title and description (#564; written for search in 2.1.13, #715). */
-export function placeMeta(place: string, lang: Lang, roads: readonly string[] = [], now: { readonly kind: NowKind; readonly status: string; readonly item: string | null } | null = null): PageMeta {
-  // #1176: what is happening now leads, as the block on the page says it; a translated page names no German street (#449)
-  if (now !== null) return { title: nowTitle(lang, place, now.kind), description: nowDescription(`${place}: ${now.status}.`, lang === "de" ? now.item : null) };
-  return { title: fitTitle(t(lang, "place.pageTitle", { place })), description: placeDescription(place, lang, roads) };
-}
-
 /**
- * #1020 round 2 (the Search Console baseline: local searches name the road and the place): when the
- * page's cards list roads (`placeRoadsOf`), the description leads with the place and as many of them as
- * fit, in the cards' order, in the language's own list form; with none, the place's general description.
- * A road number is the same in every language (#449: neutral).
+ * A place page's own title and description (#564; written for search in 2.1.13, #715). #1176: what is happening now
+ * leads the title, as the block on the page says it. #1310 B2: the description is evergreen — what the page offers for
+ * the place and its Land (`land`, in the page's language), never a count, a Stand or a street of the live read.
  */
-export function placeDescription(place: string, lang: Lang, roads: readonly string[]): string {
-  const list = (xs: readonly string[]): string => listFormat(htmlLangOf(lang), { style: "long", type: "conjunction" }).format(xs);
-  for (let k = roads.length; k >= 1; k--) {
-    const text = t(lang, "place.pageDescriptionRoads", { place, roads: list(roads.slice(0, k)) });
-    if (text.length <= DESCRIPTION_MAX) return text;
-  }
-  return fitDescription(t(lang, "place.pageDescription", { place }));
+export function placeMeta(place: string, lang: Lang, now: { readonly kind: NowKind } | null = null, land: string | null = null): PageMeta {
+  return { title: now !== null ? nowTitle(lang, place, now.kind) : fitTitle(t(lang, "place.pageTitle", { place })), description: pageDescription(lang, { kind: "place", name: place, land }) };
 }
 
 /**

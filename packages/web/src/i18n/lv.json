@@ -1,6 +1,7 @@
 {
   "meta": {
     "tagline": "Vācijas reāllaika mobilitātes platforma mākslīgajam intelektam",
+    "titleTagline": "Vācijas reāllaika mobilitātes platforma",
     "pitch": "ViaFrei sniedz MI asistentiem reāllaika zināšanas par Vāciju. Vilcieni un autobusi, satiksme un ceļu darbi, degviela, uzlāde, stāvvietas un laikapstākļi. Viens MCP. Bez API atslēgas. Bez reģistrācijas.",
     "description": "Sastrēgumi, slēgti posmi, ceļa darbi, vilcieni, stāvvietas, uzlāde un degviela visā Vācijā – tiešsaistē no atvērtajiem datiem, ar avotu, caur jūsu MI asistentu.",
     "siteName": "ViaFrei"
@@ -221,7 +222,8 @@
     "more": "Vēl 2 jautājumi un viens ierobežojums",
     "answer": {
       "label": "ViaFrei atbildēja",
-      "asOf": "Dati uz: {asOf}"
+      "asOf": "Dati uz: {asOf}",
+      "again": "Arī pēc iepriekš minētajiem avotiem:"
     },
     "limitLabel": "Godīgi sakot",
     "cta": "Sākt",

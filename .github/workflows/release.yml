@@ -327,6 +327,32 @@ jobs:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           VERSION: ${{ needs.gate.outputs.version }}
         run: scripts/ghcr-not-released.sh "$IMAGE" "$VERSION"
+      - name: GHCR_READ_TOKEN must be set
+        env:
+          GHCR_READ_TOKEN: ${{ secrets.GHCR_READ_TOKEN }}
+        run: |
+          if [ -z "$GHCR_READ_TOKEN" ]; then
+            echo "::error::the repository secret GHCR_READ_TOKEN is not set; the carried images cannot be pulled (docs/RELEASING.md)"
+            exit 1
+          fi
+      - uses: docker/login-action@8aa5831fb8d48d8f76594c7ddde61ae58019f550 # v4.8.0
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GHCR_READ_TOKEN }}
+      # viafrei-web#36: the earlier images' /_a/ files, from the carry pins of images.pin
+      - name: The earlier images' site files to carry
+        id: carry
+        run: |
+          refs=$(bash scripts/carry-previous.sh "$RUNNER_TEMP/web-assets-previous")
+          echo "refs=$(printf '%s' "$refs" | tr '\n' ' ')" >> "$GITHUB_OUTPUT"
+          if [ -n "$refs" ]; then echo "context=web-assets-previous=$RUNNER_TEMP/web-assets-previous" >> "$GITHUB_OUTPUT"; fi
+          echo "carrying from: ${refs:-nothing}"
+      - uses: docker/login-action@8aa5831fb8d48d8f76594c7ddde61ae58019f550 # v4.8.0
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
       - id: build
         uses: docker/build-push-action@c3c9e263c25d99ce0380d002d59b67737d91b0dc # v7.4.0
         with:
@@ -335,9 +361,11 @@ jobs:
           provenance: mode=max
           # By digest only: no tag exists until the verify job has passed (the tag job).
           outputs: type=image,name=${{ env.IMAGE }},push-by-digest=true,name-canonical=true,push=true
+          build-contexts: ${{ steps.carry.outputs.context }}
           build-args: |
             VERSION=${{ needs.gate.outputs.version }}
             GIT_SHA=${{ needs.gate.outputs.commit }}
+            WEB_ASSETS_PREVIOUS=${{ steps.carry.outputs.refs }}
           labels: |
             org.opencontainers.image.version=${{ needs.gate.outputs.version }}
             org.opencontainers.image.revision=${{ needs.gate.outputs.commit }}

@@ -7,7 +7,8 @@ import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
 import { describe, expect, it } from "vitest";
 import { raw } from "../src/html.js";
-import { nowDescription, nowTitle, NOW_DESCRIPTION_MAX, NOW_TITLE_MAX, PAGE_HEAD_COPY, PAGE_HEAD_LANGS } from "../src/page-head-copy.js";
+import { all, text } from "../src/testing/index.js";
+import { nowTitle, NOW_TITLE_MAX, PAGE_HEAD_COPY, PAGE_HEAD_LANGS } from "../src/page-head-copy.js";
 import { bySeverity, jumpLinks, sectionHead, SEVERITY_ORDER, statusLine, TOP_ITEMS_DESK, TOP_ITEMS_MAX, topItems, type TopItem } from "../src/page-head.js";
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), "..", "..");
@@ -45,6 +46,14 @@ describe("the top items", () => {
     expect(topItems([], r("l"))).toBe("");
     expect([...SEVERITY_ORDER]).toEqual(["closure", "jam", "disruption", "roadworks", "info"]);
   });
+
+  it("a since-and-until pair is two phrases, each kept whole, so a phone's line breaks between them (#1312, tr at 390 px)", () => {
+    // the CSS keeps each `topitems__when` on one line (nowrap): one span per phrase is what lets the pair wrap
+    const whens = (when: NonNullable<TopItem["when"]> | null) => all(topItems([{ ...row("closure", "A1"), when }], r("l")), "span.topitems__when").map((e) => text(e));
+    expect(whens(r("seit 10:30"))).toEqual(["· seit 10:30"]);
+    expect(whens([r("8 Ağu 2025 06:00 itibarıyla"), r("30 Kas 2027 18:00 tarihine kadar")])).toEqual(["· 8 Ağu 2025 06:00 itibarıyla", "· 30 Kas 2027 18:00 tarihine kadar"]);
+    expect(whens(null)).toEqual([]);
+  });
 });
 
 describe("the jump links", () => {
@@ -68,13 +77,10 @@ describe("the shared words, all languages", () => {
       if (lang !== "de") for (const k of ["nothing", "stale", "error"] as const) expect(c[k], `${lang} ${k}`).not.toBe(PAGE_HEAD_COPY.de[k]);
     }
   });
-  it("the title and the description hold the limits for the longest name a page has", () => {
+  it("the title holds the limit for the longest name a page has (the description is evergreen since #1310 B2)", () => {
     const longest = "Autobahnkreuz Oberhausen-Lirich-Nord";
     for (const lang of PAGE_HEAD_LANGS)
       for (const kind of ["closure", "jam", "disruption", "roadworks", "nothing"] as const) expect(nowTitle(lang, longest, kind).length, `${lang} ${kind}`).toBeLessThanOrEqual(NOW_TITLE_MAX);
-    const status = "A7: 2 Sperrungen · Stand 21:59.";
-    expect(nowDescription(status, null)).toBe(status);
-    expect(nowDescription(status, "x".repeat(200)).length).toBeLessThanOrEqual(NOW_DESCRIPTION_MAX);
   });
 });
 

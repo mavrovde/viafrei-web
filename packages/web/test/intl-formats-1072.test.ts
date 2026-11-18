@@ -13,7 +13,7 @@ import { berlinDateTime, berlinTime, calendarDay } from "../src/lib/dates.js";
 import { figure, price } from "../src/components/tile-contract.js";
 import { answerParts, parseAsks } from "../src/lib/ask.js";
 import { summaryText, type FilterCard } from "../src/lib/motorway-filter.js";
-import { placeDescription } from "../src/site/meta.js";
+import { placeMeta } from "../src/site/meta.js";
 import { berlinDay } from "../src/news/atom.js";
 import { releaseDay } from "../src/site/lastmod.js";
 import { dateTimeFormat, intlKey, numberFormat } from "../src/lib/intl-formats.js";
@@ -55,7 +55,7 @@ function renderAll(): string {
   for (const lang of LIVE_LANGS) {
     out += berlinTime(AT, lang) + berlinDateTime(AT, lang) + calendarDay("2026-10-26", lang);
     out += summaryText(lang, CARDS, new Set(["parking", "charging"]), 50) + summaryText(lang, CARDS, new Set(["jams"]));
-    out += placeDescription("Köln", lang, ["A1", "A3", "A4"]);
+    out += placeMeta("Köln", lang, null, "Nordrhein-Westfalen").description;
     for (const e of ASKS.values()) out += (answerParts(lang, e) ?? []).map((p) => p.text).join("");
   }
   for (const lang of ["de", "en"] as const) out += figure(12_345, lang) + price(1.789, lang);

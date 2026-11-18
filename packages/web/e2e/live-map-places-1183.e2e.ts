@@ -18,6 +18,7 @@ import { afterAll, beforeAll, describe, expect, it } from "vitest";
 import { startRealDigest } from "./real-digest.js";
 import { startShell } from "./server.js";
 import { hasLiveMap } from "../src/lib/live-map.js";
+import { HOME_RAW_MAX } from "../scripts/budget.js";
 
 const PORT = 8834;
 const BASE = `http://127.0.0.1:${PORT}`;
@@ -73,7 +74,8 @@ describe("#1183 part 5: the one live map on the Land, road and home pages", () =
     expect(html).toContain('id="lmap-home-slot" hidden');
     expect(html).not.toContain('id="lmap-home"');
     console.log(`#1183 part 5 measured: home raw html ${String(html.length)} B`);
-    expect(html.length).toBeLessThan(268_000);
+    // the home's one raw-HTML bound (`HOME_RAW_MAX`, also read by tiles.e2e.ts), never a second copy of it
+    expect(html.length).toBeLessThan(HOME_RAW_MAX);
     const page = await browser.newPage({ viewport: { width: 1280, height: 900 } });
     const js = page.waitForResponse((r) => r.url().includes("/fragment/live-map.js?"));
     await page.goto(`${BASE}/`);

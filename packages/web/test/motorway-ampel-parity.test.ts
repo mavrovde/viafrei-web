@@ -33,7 +33,7 @@ import { afterAll, beforeAll, describe, expect, it } from "vitest";
 let admin: pg.Pool;
 let reachable = true;
 beforeAll(async () => {
-  ({ pool: admin, reachable } = await testDb(`do $$ begin if to_regclass('motorway_summary_live') is null then raise exception 'apply db/migrations/0131_digest_motorways.sql'; end if; end $$`));
+  ({ pool: admin, reachable } = await testDb(`do $$ begin if to_regclass('motorway_summary_live') is null then raise exception 'migrate with the pinned viafrei-database image (database.pin)'; end if; end $$`));
 });
 afterAll(async () => {
   await admin?.end();

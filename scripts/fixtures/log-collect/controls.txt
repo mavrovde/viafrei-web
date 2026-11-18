@@ -7,3 +7,8 @@ ms 1234
 :123:45
 A3
 find_parking
+# 2.6.19 review (S2), an intended difference, not a control: the site shell keeps a long slug of our own at the slug
+# position of its OWN fragment key (/internal/exit/A40/exit-26-gelsenkirchen-ueckendorf-sued/area, built by
+# logFragmentFailure in packages/web/src/lib/log.ts), while every general mask (maskLogText in each service, and the
+# host collector's token_run) still masks any path segment of 32 or more characters. A key the collector re-reads may
+# therefore lose that slug; it never keeps more than the app wrote.

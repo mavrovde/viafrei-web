@@ -43,6 +43,11 @@ describe("isOverlay (#1183)", () => {
     const fifteen = Object.fromEntries(Object.entries(CREDITS).filter(([k]) => k !== "0101"));
     expect(isOverlay(JSON.stringify({ roads: [], credits: fifteen, hours: [], at: null, kreise: [] }))).toBe(false);
     expect(isOverlay(JSON.stringify({ roads: [], credits: CREDITS, hours: [], at: "08:00", kreise: null }))).toBe(true);
+    // #1313: a stale copy's read time is Berlin HH:MM, or null; anything else (markup included) refuses the payload
+    expect(isOverlay(JSON.stringify({ roads: [], credits: CREDITS, hours: [], at: null, kreise: [], warnAt: "11:47" }))).toBe(true);
+    expect(isOverlay(JSON.stringify({ roads: [], credits: CREDITS, hours: [], at: null, kreise: [], warnAt: null }))).toBe(true);
+    expect(isOverlay(JSON.stringify({ roads: [], credits: CREDITS, hours: [], at: null, kreise: [], warnAt: "<b>x</b>" }))).toBe(false);
+    expect(isOverlay(JSON.stringify({ roads: [], credits: CREDITS, hours: [], at: null, kreise: [], warnAt: 1147 }))).toBe(false);
     expect(isOverlay(JSON.stringify({ roads: [], credits: CREDITS, hours: [], at: null, kreise: [["Köln", 2, "x"]] }))).toBe(false);
     expect(isOverlay(JSON.stringify({ roads: [], credits: CREDITS, hours: [], at: null, kreise: [["05315", 0, "x"]] }))).toBe(false);
   });

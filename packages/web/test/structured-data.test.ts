@@ -10,7 +10,7 @@ import { describe, expect, it } from "vitest";
 import { t } from "../src/i18n/index.js";
 import { MCP_ENDPOINT, SITE_ORIGIN } from "../src/site/endpoints.js";
 import { LIVE_LANGS, PAGE_IDS, pathFor } from "../src/site/pages.js";
-import { APP_PAGES, FAQ_PAGES, NO_JSON_LD, SAME_AS, deployedVersion, jsonLdText, pageJsonLd, structuredData } from "../src/site/structured-data.js";
+import { APP_PAGES, FAQ_PAGES, MCP_REGISTRY_ENTRY, NO_JSON_LD, PUBLIC_REPOS, SAME_AS, deployedVersion, jsonLdText, pageJsonLd, structuredData, energyJsonLd, exitJsonLd, motorwayJsonLd, placeJsonLd, roadJsonLd, stateJsonLd, stationJsonLd } from "../src/site/structured-data.js";
 
 type Node = Record<string, unknown> & { "@type": string };
 const graphOf = (page: (typeof PAGE_IDS)[number], lang: (typeof LIVE_LANGS)[number], version?: string): Node[] => {
@@ -86,14 +86,45 @@ describe("JSON-LD on every page, every language (#531)", () => {
     expect(JSON.parse(text)).toEqual(data);
     for (const page of PAGE_IDS) for (const lang of LIVE_LANGS) expect(jsonLdText(structuredData(page, lang, "1.0.0")), `${page}/${lang}`).not.toMatch(/<\/script/i);
   });
-  it("every sameAs is an https address, and none is the private platform repository", () => {
+  it("every sameAs is an https address, and no GitHub address is a private repository (#1310 E1)", () => {
     for (const u of SAME_AS) {
       expect(u).toMatch(/^https:\/\//);
-      expect(u).not.toMatch(/github\.com\/mavrovde\/viafrei(?!-mcp)/);
+      if (u.includes("github.com")) expect(PUBLIC_REPOS, u).toContain(u);
     }
+    for (const priv of ["viafrei", "viafrei-infra", "viafrei-ingestor"]) expect(SAME_AS, priv).not.toContain(`https://github.com/mavrovde/${priv}`);
+    expect(new Set(SAME_AS).size).toBe(SAME_AS.length);
+    for (const r of PUBLIC_REPOS) expect(SAME_AS).toContain(r);
     expect(SAME_AS).toContain("https://github.com/mavrovde/viafrei-mcp");
+    expect(SAME_AS).toContain("https://github.com/mavrovde/viafrei-api");
+    expect(SAME_AS).toContain("https://github.com/mavrovde/viafrei-database");
+    expect(SAME_AS).toContain("https://github.com/mavrovde/viafrei-web");
+    expect(SAME_AS).toContain(MCP_REGISTRY_ENTRY);
+    expect(MCP_REGISTRY_ENTRY).toMatch(/^https:\/\/registry\.modelcontextprotocol\.io\/.*de\.viafrei%2Fmcp/u);
     expect(SAME_AS).toContain("https://www.npmjs.com/package/viafrei");
     expect(SAME_AS).toContain("https://smithery.ai/servers/viafrei/viafrei");
     expect(SAME_AS).toContain("https://glama.ai/mcp/servers/mavrovde/viafrei-mcp");
   });
+});
+
+describe("#1310 E1: the Organization is site-wide — every dynamic page's graph carries the one node with name, url, logo and sameAs", () => {
+  for (const lang of LIVE_LANGS) {
+    it(lang, () => {
+      const org = graphOf("start", lang).find((n) => n["@type"] === "Organization");
+      expect(org).toMatchObject({ name: "ViaFrei", url: SITE_ORIGIN, logo: { "@type": "ImageObject", url: `${SITE_ORIGIN}/favicon.svg` }, sameAs: SAME_AS });
+      const head = { title: "A7 Probe", description: "Probe" };
+      const graphs: Record<string, string> = {
+        place: placeJsonLd(lang, "Hamburg", "/de/ort/hamburg", "Hamburg"),
+        state: stateJsonLd(lang, "Bayern", "DE-BY", "Bayern", "Probe", "/de/land/bayern"),
+        charging: energyJsonLd("charging", lang, "Probe", "Probe", "Probe", "/de/laden/probe", { street: null, postcode: null, city: null }),
+        station: stationJsonLd(lang, "Aachen Hbf", "/de/bahnhof/aachen-hbf"),
+        motorway: motorwayJsonLd(lang, "A7", "/de/autobahn/a7"),
+        exit: exitJsonLd(lang, "A7", head, { name: "Hamburg-Volkspark", path: "/de/autobahn/a7/hamburg-volkspark", lat: null, lon: null }),
+        road: roadJsonLd(lang, "B96", "B96", "/de/strasse/b96"),
+      };
+      for (const [kind, text] of Object.entries(graphs)) {
+        const g = (JSON.parse(text) as { "@graph": Node[] })["@graph"];
+        expect(g.filter((n) => n["@type"] === "Organization"), kind).toEqual([org]);
+      }
+    });
+  }
 });

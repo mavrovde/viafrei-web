@@ -110,8 +110,11 @@ export const answerKey = (m: Moment, i: 1 | 2 | 3): MessageKey => `day.moments.$
 export const questionKey = (m: Moment, i: 1 | 2 | 3): MessageKey => `day.moments.${m.key}.q${String(i)}` as MessageKey;
 
 const DB = ["db_timetables", "db_stada"] as const;
+/** #746 re-ask of 2026-11-16: get_train_departures now credits the station's NeTEx, the DELFI timetable and stop register and the DELFI real-time feed beside the DB's two lines. */
+const DEPARTURES = [...DB, "mobilithek_openstation_netex", "delfi_static", "delfi_zhv", "delfi_rt_tu"] as const;
 const OPENSTATION = ["db_stada", "mobilithek_openstation_netex", "mobilithek_openstation_siri_fm"] as const;
-const BAST = ["mobilithek_roadworks_bast"] as const;
+/** #746 re-ask of 2026-11-16: find_roadworks_ahead now counts the BASt's works with the Autobahn GmbH's two MIA feeds and credits all three. */
+const ROADWORKS = ["mobilithek_roadworks_bast", "mobilithek_ald_14d", "mobilithek_roadworks_akd"] as const;
 const FUEL = ["tankerkoenig"] as const;
 const WATCH = ["viafrei_watch"] as const;
 
@@ -126,17 +129,17 @@ export const MOMENTS: readonly Moment[] = [
     answers: [
       // check_transit_disruption {region: "Hamburg"}, 2026-11-02: "Hamburg: 4 % der beobachteten Fahrten mehr als 5 Minuten zu spät (120
       // von 2.770 Fahrten in den letzten 60 Minuten …) … Trend: etwa wie in den 60 Minuten davor (4 %)." Stand 13:58.
-      { values: { share: "12", before: "8", asOf: "18.11.2026, 14:25" }, names: {}, credits: ["delfi_rt_tu"] },
+      { values: { share: "12", before: "8", asOf: "18.11.2026, 14:25" }, names: {}, credits: ["delfi_rt_tu", "delfi_static"] },
       // get_train_departures {station: "Hannover Hbf"}, 2026-11-02: "14:03 S S2 → Haste, Gleis 1, +5 min (ca. 14:08) · 14:04 S S7 → Celle,
       // Gleis 14, pünktlich · 14:05 S S5 → Hannover Flughafen, +2 min …". Stand 14:03.
       // REPLACED 2026-11-18 (Hannover's first two were both late at 14:40 and 14:45): get_train_departures {station: "Leipzig Hbf"},
       // asked 14:40: "14:38 ICE 1559 → Dresden Hbf, ab Leipzig Hbf, Gleis 14, +11 min (ca. 14:49) · 14:42 S3 → Halle-Nietleben, ab Leipzig
       // Hbf (tief), Gleis 2, pünktlich". Stand 14:40. The question names Leipzig Hbf in every language.
-      { values: { t1: "14:38", p1: "14", delay: "11", exp: "14:49", l2: "S3", t2: "14:42", asOf: "18.11.2026, 14:40" }, names: { l1: "ICE 1559", d1: "Dresden Hbf", d2: "Halle-Nietleben" }, credits: DB },
+      { values: { t1: "14:38", p1: "14", delay: "11", exp: "14:49", l2: "S3", t2: "14:42", asOf: "18.11.2026, 14:40" }, names: { l1: "ICE 1559", d1: "Dresden Hbf", d2: "Halle-Nietleben" }, credits: DEPARTURES },
       // get_train_departures {station: "Köln Hbf", duration_min: 60}, 2026-11-02: ten departures shown (52 more), none cancelled, the
       // latest "14:14 S S11"; the largest delay "13:53 ICE 2857 → Nürnberg Hbf, Gleis 7 D-G, +20 min (ca. 14:13)". Stand 14:03. Reworded:
       // no platform change today, so the sentence names the largest delay.
-      { values: { n: "10", last: "14:38", delay: "22", asOf: "18.11.2026, 14:28" }, names: { l1: "S11", d1: "Bergisch Gladbach" }, credits: DB },
+      { values: { n: "10", last: "14:38", delay: "22", asOf: "18.11.2026, 14:28" }, names: { l1: "S11", d1: "Bergisch Gladbach" }, credits: DEPARTURES },
     ],
   },
   {
@@ -145,19 +148,19 @@ export const MOMENTS: readonly Moment[] = [
       // find_nearby {place: "Kölner Dom", categories: ["station"]}, 2026-11-02: resolved to "Dom, Köln"; "Bahnhöfe: Köln Hbf; Köln
       // Hansaring; Köln Messe/Deutz" — this answer carries coordinates only, so the 0,2 km is computed from them (Köln Hbf to the Dom).
       // Stand 14:03.
-      { values: { km: "0", kmd: "2", asOf: "18.11.2026, 14:28" }, names: { s1: "Köln Hbf", s2: "Köln Hansaring", s3: "Köln Messe/Deutz" }, credits: ["db_stada"] },
+      { values: { km: "0", kmd: "2", asOf: "18.11.2026, 14:28" }, names: { s1: "Köln Hbf", s2: "Köln Hansaring", s3: "Köln Messe/Deutz" }, credits: ["db_stada", "osm"] },
       // get_train_departures {station: "Frankfurt (Main) Hauptwache"}, 2026-11-02: "14:05 S S3 → Bad Soden (Taunus), Gleis 3, pünktlich · …
       // 14:11 S S3 → Frankfurt (Main) Süd, Gleis 2, +1 min (ca. 14:12)" — every other one on time. Stand 14:03. Reworded: the next one is
       // on time, a later one is a minute late.
       // 2026-11-18, asked 14:45: "14:38 S1 → Frankfurt-Höchst, Gleis 3, +12 min (ca. 14:50) · 14:44 S2 → Dietzenbach Bahnhof, Gleis 2,
       // +13 min (ca. 14:57)" — the rest of the board late as well. Stand 14:45. Reworded: the next two are both late.
-      { values: { l1: "S1", t1: "14:38", p1: "3", delay1: "12", exp1: "14:50", l2: "S2", delay2: "13", exp2: "14:57", asOf: "18.11.2026, 14:45" }, names: { d1: "Frankfurt-Höchst", d2: "Dietzenbach Bahnhof" }, credits: DB },
+      { values: { l1: "S1", t1: "14:38", p1: "3", delay1: "12", exp1: "14:50", l2: "S2", delay2: "13", exp2: "14:57", asOf: "18.11.2026, 14:45" }, names: { d1: "Frankfurt-Höchst", d2: "Dietzenbach Bahnhof" }, credits: DEPARTURES },
       // get_train_departures {station: "Leipzig Hbf"}, 2026-11-02: of ten departures, "14:06 S S6 → Naumburg (Saale) Hbf, Gleis 7, +13 min"
       // and "14:12 ICE 508 → Hamburg-Altona, Gleis 11, +2 min"; the other eight "pünktlich", no platform change. Stand 14:03.
       // REPLACED 2026-11-18 (Leipzig had three and six late at 14:40 and 14:45): get_train_departures {station: "Dresden Hbf"}, asked
       // 14:51: "14:53 RJ 176 → Hamburg-Altona, Gleis 3, +3 min (ca. 14:56) · 14:59 S1 → Bad Schandau, Gleis 13, +1 min (ca. 15:00)"; the
       // other eight of the ten "pünktlich". Stand 14:51. The question names Dresden's main station in every language.
-      { values: { l1: "RJ 176", dl1: "3", p1: "3", l2: "S1", dl2: "1", n: "8", asOf: "18.11.2026, 14:51" }, names: { d1: "Hamburg-Altona", d2: "Bad Schandau" }, credits: DB },
+      { values: { l1: "RJ 176", dl1: "3", p1: "3", l2: "S1", dl2: "1", n: "8", asOf: "18.11.2026, 14:51" }, names: { d1: "Hamburg-Altona", d2: "Bad Schandau" }, credits: DEPARTURES },
     ],
   },
   {
@@ -168,14 +171,14 @@ export const MOMENTS: readonly Moment[] = [
       // of service now.
       // 2026-11-18, asked 14:40: 8 lifts, 7 in Betrieb, none außer Betrieb, 1 without status (zu Gleis 8/9, Anlage 10849189, "wird nicht
       // überwacht"). Stand 14:38. Reworded: none is out of service.
-      { values: { working: "7", total: "8", asOf: "18.11.2026, 14:38" }, names: { station: "Köln Hbf" }, credits: OPENSTATION },
+      { values: { working: "7", total: "8", asOf: "18.11.2026, 14:38" }, names: { station: "Köln Hbf" }, credits: [...OPENSTATION, "delfi_zhv", "kvb_lifts"] },
       // check_station_facilities {station: "Erlangen", facility: "elevator"}, 2026-11-02: "Aufzug zu Gleis 2/3: in Betrieb". Stand 13:44.
       { values: { platforms: "2/3", asOf: "18.11.2026, 14:17" }, names: { station: "Erlangen" }, credits: OPENSTATION },
       // get_train_departures {station: "Nürnberg Hbf", duration_min: 120, categories: ["ICE"]}, 2026-11-02: "14:05 ICE 506 → Kiel Hbf,
       // Gleis 6, pünktlich". Stand 14:03.
       // 2026-11-18, asked 14:46: "13:29 ICE 1007 → München Hbf, Gleis 8, +137 min (ca. 15:46) · 15:04 ICE 706 → Hamburg-Altona, Gleis 7,
       // pünktlich · 15:29 ICE 1009 fällt aus". Stand 14:46. The next ICE to leave is ICE 706; the sentence holds as written.
-      { values: { t: "15:04", p: "7", asOf: "18.11.2026, 14:46" }, names: { train: "ICE 706", dest: "Hamburg-Altona" }, credits: DB },
+      { values: { t: "15:04", p: "7", asOf: "18.11.2026, 14:46" }, names: { train: "ICE 706", dest: "Hamburg-Altona" }, credits: [...DB, "mobilithek_openstation_netex"] },
     ],
   },
   {
@@ -190,11 +193,11 @@ export const MOMENTS: readonly Moment[] = [
       // find_roadworks_ahead {road: "A7"}, 2026-11-02: "A7: 92 Arbeitsstellen laut BASt zwischen 02.11.2026 und 09.11.2026: 49 laufend …
       // • Baustelle: A7 zw. Hammelburg → Bad Kissingen/Oberthulba 1,0 km (+3 weitere Abschnitte) — Brückenneubau, 1 von 3 Fahrstreifen
       // gesperrt, Tempo 80 — bis 30.09.2027". The BASt data's Stand: 12:27.
-      { values: { count: "99", to: "25.11.2026", speed: "80", until: "30.09.2027", asOf: "18.11.2026, 14:20" }, names: { a: "Hammelburg", b: "Bad Kissingen/Oberthulba" }, credits: BAST },
+      { values: { count: "99", to: "25.11.2026", speed: "80", until: "30.09.2027", asOf: "18.11.2026, 14:20" }, names: { a: "Hammelburg", b: "Bad Kissingen/Oberthulba" }, credits: ROADWORKS },
       // find_roadworks_ahead {road: "A2", from: "2026-11-07", to: "2026-11-08", limit: 1} (asked with limit 1), 2026-11-02: "A2: 25
       // Arbeitsstellen laut BASt zwischen 07.11.2026 und 08.11.2026: 22 laufend … • A2, Dortmund-Nordost, Rampe 0,2 km — Erneuerung an der
       // Tragschicht/Oberbau, voll gesperrt (1 von 1 Fahrstreifen), bis 04.03.2027". Stand 12:27. Reworded: a ramp at one junction.
-      { values: { count: "22", from: "21.11.2026", to: "22.11.2026", until: "04.03.2027", asOf: "18.11.2026, 14:20" }, names: { a: "Dortmund-Nordost" }, credits: BAST },
+      { values: { count: "22", from: "21.11.2026", to: "22.11.2026", until: "04.03.2027", asOf: "18.11.2026, 14:20" }, names: { a: "Dortmund-Nordost" }, credits: ROADWORKS },
     ],
   },
   // #430: jams incl. the motorways inside the cities — city streets are not in the
@@ -209,15 +212,15 @@ export const MOMENTS: readonly Moment[] = [
       // accident at the Offenbacher Kreuz. Reworded: the A3 towards Frankfurt is jammed now.
       // 2026-11-18, asked 14:52: "A3: 5 Staus, 3 Warnmeldungen, 6 Sperrungen, 103 Baustellen" — "Stau: A3 | Kohlsberg-Nord - Marktheidenfeld
       // · Frankfurt -> Würzburg, ca. 3,3 km, seit 14:31, +41 min", no accident named. Stand 14:50. Reworded: towards Würzburg, no accident.
-      { values: { jams: "5", delay: "41", closures: "6", works: "103", asOf: "18.11.2026, 14:50" }, names: { a: "Kohlsberg-Nord", b: "Marktheidenfeld" }, credits: ["autobahn"], more: true },
+      { values: { jams: "5", delay: "41", closures: "6", works: "103", asOf: "18.11.2026, 14:50" }, names: { a: "Kohlsberg-Nord", b: "Marktheidenfeld" }, credits: ["autobahn", "mobilithek_los_nrw", "bast_lcl", "mobilithek_nms_events", "mobilithek_bab_messages", "mobilithek_roadworks_akd", "bkg_gvisys", "dwd", "dwd_road"], more: true },
       // check_autobahn_traffic {roads: ["A1", "A3", "A4"]}, 2026-11-02: counts.jams 9 (A1 3, A3 4, A4 2) — "• Stockender Verkehr: A4 |
       // Köln-West - Köln-Eifeltor · Heerlen/Aachen -> Köln, +4 min, 4,2 km". Stand 14:01. Reworded: there is one at Köln now.
       // 2026-11-18, asked 14:40: counts.jams 15, and the police message "A4 Heerlen/Aachen Richtung Köln zwischen Kreuz Köln-West und
       // Köln-Eifeltor 4 km Stau". Stand 14:39. Reworded: the police report the jam.
-      { values: { km: "4", n: "15", asOf: "18.11.2026, 14:39" }, names: { a: "Köln-West", b: "Köln-Eifeltor" }, credits: ["autobahn", "mobilithek_nms_events"] },
+      { values: { km: "4", n: "15", asOf: "18.11.2026, 14:39" }, names: { a: "Köln-West", b: "Köln-Eifeltor" }, credits: ["autobahn", "mobilithek_los_nrw", "bast_lcl", "mobilithek_nms_events", "polizei_hamburg_lms", "mobilithek_traffic_sh", "mobilithek_bab_messages", "mobilithek_roadworks_akd", "bkg_gvisys", "dwd", "dwd_road"] },
       // check_road_status {road: "A7", horizon_days: 1, limit: 11}, 2026-11-02: "A7: 21 Sperrungen … • Sperrung: A7, AS HH-Volkspark - AS
       // HH-Othmarschen, achtstreifige Erweiterung und Neubau Altonatunnel" (this phase to 31.10.27). Stand 14:01.
-      { values: { n: "14", asOf: "18.11.2026, 14:28" }, names: { a: "HH-Volkspark", b: "HH-Othmarschen", tunnel: "Altonatunnel" }, credits: ["autobahn"] },
+      { values: { n: "14", asOf: "18.11.2026, 14:28" }, names: { a: "HH-Volkspark", b: "HH-Othmarschen", tunnel: "Altonatunnel" }, credits: ["autobahn", "mobilithek_roadworks_bast", "mobilithek_ald_14d", "mobilithek_bab_messages", "mobilithek_traffic_sh", "mobilithek_roadworks_akd", "bast_lcl", "bkg_gvisys"] },
     ],
   },
   {
@@ -226,14 +229,14 @@ export const MOMENTS: readonly Moment[] = [
       // find_parking {place: "Köln Hbf", kind: "car_park"}, 2026-11-02 14:06: "Am Dom — Parkhaus, 0,3 km, 220 Plätze, 12 frei · Philharmonie —
       // Parkhaus, 0,3 km, 459 Plätze, 353 frei", both published 13:48 and flagged as no longer current (the Köln feed was last read 13:49),
       // the other two rows a closed car park and one from the day before. Reworded: "zuletzt … gemeldet"; `asOf` is their Stand.
-      { values: { f1: "9", t1: "220", f2: "260", t2: "459", asOf: "18.11.2026, 14:18" }, names: { p1: "Am Dom", p2: "Philharmonie" }, credits: ["mobilithek_park_koeln_static", "mobilithek_park_koeln_dyn"] },
+      { values: { f1: "9", t1: "220", f2: "260", t2: "459", asOf: "18.11.2026, 14:18" }, names: { p1: "Am Dom", p2: "Philharmonie" }, credits: ["mobilithek_park_koeln_static", "mobilithek_park_koeln_dyn", "mobilithek_park_nrw_parken", "osm", "mobilithek_afir_chargecloud_stat", "mobilithek_afir_ecomovement", "db_stada"] },
       // find_parking {road: "A9", kind: "truck"}, 2026-11-02: "1. 24-TOTAL Autohof Leipzig Flughafen — Lkw-Parkplatz, davon 151 für Lkw,
       // keine Belegungsdaten veröffentlicht 2. Aral Autohof Bad Berneck — davon 120 für Lkw 3. Aral Autohof Zorbau — davon 56 für Lkw".
       // Stand 14:05.
-      { values: { n1: "151", n2: "120", n3: "56", asOf: "18.11.2026, 14:29" }, names: { p1: "24-TOTAL Autohof Leipzig Flughafen", p2: "Aral Autohof Bad Berneck", p3: "Aral Autohof Zorbau" }, credits: ["mobilithek_truckpark_static_geonutzv"] },
+      { values: { n1: "151", n2: "120", n3: "56", asOf: "18.11.2026, 14:29" }, names: { p1: "24-TOTAL Autohof Leipzig Flughafen", p2: "Aral Autohof Bad Berneck", p3: "Aral Autohof Zorbau" }, credits: ["mobilithek_truckpark_static_geonutzv", "osm", "mobilithek_afir_tesla_stat", "mobilithek_afir_ecomovement", "bast_lcl"] },
       // find_parking {place: "Essen Hbf", kind: "park_and_ride"}, 2026-11-02: "— aus P+R NRW (CC BY-SA), separat geführt … 1. Essen West S —
       // P+R, 2,5 km, Belegung übernehmen wir nicht 2. Essen Frohnhausen S — P+R, 3,5 km …". Stand 14:05.
-      { values: { k1: "2", k1d: "5", k2: "3", k2d: "5", asOf: "18.11.2026, 14:29" }, names: { p1: "Essen West S", p2: "Essen Frohnhausen S" }, credits: ["mobilithek_park_nrw_pr"] },
+      { values: { k1: "2", k1d: "5", k2: "3", k2d: "5", asOf: "18.11.2026, 14:29" }, names: { p1: "Essen West S", p2: "Essen Frohnhausen S" }, credits: ["vrr_park_ride", "mobilithek_park_nrw_pr", "osm", "mobilithek_afir_ecomovement", "db_stada"] },
     ],
   },
   {
@@ -242,15 +245,15 @@ export const MOMENTS: readonly Moment[] = [
       // find_charging_station {place: "Leipzig", min_power_kw: 150}, 2026-11-02: "1. JOLT LEJ00440, Leplaystraße 9, 04103 Leipzig — 0,4 km,
       // bis 300 kW, Status vom 31.10. … 2. Friedrich-Ebert-Str. 51, 04109 Leipzig (Stadtwerke Leipzig GmbH) — 1,1 km, CCS2, bis 170 kW,
       // keine Statusdaten, laut Ladesäulenregister". Stand 14:09. Reworded: "zum Beispiel", since it is not the nearest any more.
-      { values: { kw: "170", asOf: "18.11.2026, 14:13" }, names: { site: "Stadtwerke Leipzig GmbH", address: "Friedrich-Ebert-Str. 51, 04109 Leipzig" }, credits: ["bnetza_lsr"], more: true },
+      { values: { kw: "170", asOf: "18.11.2026, 14:13" }, names: { site: "Stadtwerke Leipzig GmbH", address: "Friedrich-Ebert-Str. 51, 04109 Leipzig" }, credits: ["mobilithek_afir_ecomovement", "mobilithek_afir_ecomovement_dyn", "bnetza_lsr", "bkg_gvisys"], more: true },
       // find_charging_station {place: "Ingolstadt", min_power_kw: 150}, 2026-11-02: "1. Hallenbad Parkplatz - öffentlicher Ladepunkt,
       // Jahnstraße  0, 85049 Ingolstadt (Stadtwerke Ingolstadt Beteiligungen GmbH) — CCS2, bis 150 kW, 4 von 4 frei (Stand 14:08) … Eviny
       // Germany Ingolstadt Frühlingsstraße, Frühlingstraße 31, 85055 Ingolstadt (Eviny) — bis 400 kW, … möglicherweise veraltet". Stand 14:08.
-      { values: { kw1: "150", free1: "4", total1: "4", kw2: "400", asOf: "18.11.2026, 14:29" }, names: { op1: "Stadtwerke Ingolstadt Beteiligungen GmbH", a1: "Jahnstraße 0, 85049 Ingolstadt", s2: "Eviny Germany Ingolstadt Frühlingsstraße", a2: "Frühlingstraße 31, 85055 Ingolstadt" }, credits: ["mobilithek_afir_chargecloud_stat", "ocpdb_chargecloud", "mobilithek_afir_ecomovement", "mobilithek_afir_ecomovement_dyn"] },
+      { values: { kw1: "150", free1: "4", total1: "4", kw2: "400", asOf: "18.11.2026, 14:29" }, names: { op1: "Stadtwerke Ingolstadt Beteiligungen GmbH", a1: "Jahnstraße 0, 85049 Ingolstadt", s2: "Eviny Germany Ingolstadt Frühlingsstraße", a2: "Frühlingstraße 31, 85055 Ingolstadt" }, credits: ["mobilithek_afir_chargecloud_stat", "ocpdb_chargecloud", "mobilithek_afir_ecomovement", "mobilithek_afir_ecomovement_dyn", "mobilithek_afir_ewe_stat", "mobilithek_afir_ewe_dyn", "bkg_gvisys"] },
       // find_charging_station {place: "Hilden", min_power_kw: 150, limit: 10}, 2026-11-02: "10. Hilden, Germany, Nordpark 2-4, 40724 Hilden
       // (Tesla, Inc.) — CCS2, bis 250 kW, Status vom 01.11. 14:56 — möglicherweise veraltet". Stand 14:09. Reworded: the status is from the
       // day before, so the sentence carries its date.
-      { values: { kw: "250", t: "16.11., 22:15", asOf: "18.11.2026, 14:29" }, names: { brand: "Tesla", address: "Nordpark 2-4, 40724 Hilden" }, credits: ["mobilithek_afir_tesla_stat", "mobilithek_afir_tesla_dyn"] },
+      { values: { kw: "250", t: "16.11., 22:15", asOf: "18.11.2026, 14:29" }, names: { brand: "Tesla", address: "Nordpark 2-4, 40724 Hilden" }, credits: ["mobilithek_afir_road_stat", "mobilithek_afir_ecomovement", "bnetza_lsr", "mobilithek_afir_ecomovement_dyn", "mobilithek_afir_ewe_stat", "mobilithek_afir_ewe_dyn", "mobilithek_afir_tesla_stat", "mobilithek_afir_tesla_dyn", "geonames"] },
     ],
   },
   // #431: a thing by its NAME to its address, and a coordinate back to words.
@@ -259,14 +262,14 @@ export const MOMENTS: readonly Moment[] = [
     answers: [
       // describe_location {lat: 50.1109, lon: 8.6821}, 2026-11-02: "Nächste Adresse: Braubachstraße 41, 60311 Frankfurt am Main (10 m) …
       // Anschlussstelle: Frankfurt-Miquelallee (2,9 km)". Stand 14:09, address data 2026-10-06.
-      { values: { m: "10", km: "2", kmd: "9", asOf: "18.11.2026, 14:29" }, names: { address: "Braubachstraße 41, 60311 Frankfurt am Main", junction: "Frankfurt-Miquelallee" }, credits: ["osm"] },
+      { values: { m: "10", km: "2", kmd: "9", asOf: "18.11.2026, 14:29" }, names: { address: "Braubachstraße 41, 60311 Frankfurt am Main", junction: "Frankfurt-Miquelallee" }, credits: ["bkg_gvisys", "osm", "bast_lcl"] },
       // find_poi {name: "Apotheke", in: "Fulda", category: "healthcare"}, 2026-11-02: "1. Löwen Apotheke — Unterm Heilig Kreuz 9, 36037
       // Fulda 2. Apotheke am Heertor — Rabanusstraße 1a, 36037 Fulda 3. Altstadt Apotheke — Robert-Kircher-Straße 9, 36037 Fulda". OSM
       // data 2026-10-06; Stand 14:09.
-      { values: { osm: "27.10.2026", asOf: "18.11.2026, 14:29" }, names: { p1: "Löwen Apotheke", a1: "Unterm Heilig Kreuz 9, 36037 Fulda", p2: "Apotheke am Heertor", a2: "Rabanusstraße 1a, 36037 Fulda", p3: "Altstadt Apotheke", a3: "Robert-Kircher-Straße 9, 36037 Fulda" }, credits: ["osm"] },
+      { values: { osm: "27.10.2026", asOf: "18.11.2026, 14:29" }, names: { p1: "Löwen Apotheke", a1: "Unterm Heilig Kreuz 9, 36037 Fulda", p2: "Apotheke am Heertor", a2: "Rabanusstraße 1a, 36037 Fulda", p3: "Altstadt Apotheke", a3: "Robert-Kircher-Straße 9, 36037 Fulda" }, credits: ["osm", "bkg_gvisys"] },
       // find_poi {name: "Elbphilharmonie", in: "Hamburg"}, 2026-11-02: "1. Elbphilharmonie — Theater, Platz der Deutschen Einheit 1, 20457
       // Hamburg". OSM data 2026-10-06; Stand 14:09.
-      { values: { osm: "27.10.2026", asOf: "18.11.2026, 14:29" }, names: { poi: "Elbphilharmonie", address: "Platz der Deutschen Einheit 1, 20457 Hamburg" }, credits: ["osm"] },
+      { values: { osm: "27.10.2026", asOf: "18.11.2026, 14:29" }, names: { poi: "Elbphilharmonie", address: "Platz der Deutschen Einheit 1, 20457 Hamburg" }, credits: ["osm", "geonames"] },
     ],
   },
   // #432: what a watch can report — a closure lifted on a road, a region's late share crossing a
@@ -286,7 +289,7 @@ export const MOMENTS: readonly Moment[] = [
       { values: { ags: "05315", pct: "25", until: "18.11., 17:29", asOf: "18.11.2026, 14:29" }, names: { city: "Köln" }, credits: WATCH },
       // "Ich beobachte die Wetterlage für 705315101 und melde mich hier. Aus "Köln" aufgelöst: Warnzelle 705315101 (Köln-Innenstadt).
       // Bedingung: amtliche DWD-Warnungen ab Warnstufe 2. Läuft bis 02.11. 17:10." Credited to the DWD as well: the cell is the DWD's.
-      { values: { cell: "705315101", until: "18.11., 17:29", asOf: "18.11.2026, 14:29" }, names: { city: "Köln-Innenstadt" }, credits: [...WATCH, "dwd"] },
+      { values: { cell: "705315101", until: "18.11., 17:29", asOf: "18.11.2026, 14:29" }, names: { city: "Köln-Innenstadt" }, credits: ["dwd", ...WATCH, "bkg_gvisys"] },
     ],
   },
 ];

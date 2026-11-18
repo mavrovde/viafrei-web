@@ -41,6 +41,7 @@
  * then the moment shows what is true today and says what is missing.
  */
 import { PAGE_HEAD_COPY } from "@viafrei/design";
+import catalogue from "../generated/catalogue.json" with { type: "json" };
 import { foldSourcesFor, mayFold } from "../lib/fold-credits.js";
 import Answer from "./Answer.astro";
 import Ask from "./Ask.astro";
@@ -81,6 +82,20 @@ const moreIds = (m: Moment): readonly string[] => [
   ...(m.answers[0].more === true && liveFor(m) === undefined ? m.answers[0].credits : []),
   ...m.answers.slice(1, 3).flatMap((a) => a.credits),
 ];
+/**
+ * #746 with #1193 (a card prints a credit line once): the register ids whose full line stands above answer `i` (2 or 3)
+ * in its moment — the first answer's (the live answer's register lines where it shows one and the register knows every
+ * source, `answerCreditsHtml`; else the recorded answer's), and the second's above the third. Each is in view whenever
+ * answer `i` is: the further-questions fold sits under the first question, shows only once that is open on a phone (the
+ * stylesheet) and opens with it from 601 px up, and the second answer stands above the third inside the same fold. The
+ * page renders on the server and no script rewrites an answer, so the lines above are the ones printed. Answer `i` names
+ * those publishers in one short line.
+ */
+const aboveIds = (m: Moment, i: 2 | 3): readonly string[] => {
+  const first = firstIds(m);
+  const printed = liveFor(m) === undefined || first.every((id) => catalogue.credits.some((c) => c.id === id)) ? first : [];
+  return [...printed, ...(i === 3 ? (m.answers[1]?.credits ?? []) : [])];
+};
 const show = (title: string): string => PAGE_HEAD_COPY[lang].showCounted.replace("{x}", title);
 /** The live answer a moment's first question shows, or undefined: only one that renders in this language. */
 const liveFor = (m: Moment) => {
@@ -170,7 +185,7 @@ const moreParts = (m: Moment): readonly Part[] => {
                           <code>{m.tools[i - 1]}</code>
                         </p>
                       </blockquote>
-                      <Answer lang={lang} msg={answerKey(m, i)} answer={m.answers[i - 1]} class="moment__answer" source="home" />
+                      <Answer lang={lang} msg={answerKey(m, i)} answer={m.answers[i - 1]} class="moment__answer" source="home" above={aboveIds(m, i)} />
                     </>
                   ))}
                   <p class="moment__limit">

@@ -3,13 +3,14 @@
 import StatesPage from "../../layouts/StatesPage.astro";
 import { isLang } from "../../i18n/index.js";
 import { readEnv } from "../../lib/env.js";
+import { withinBudget } from "../../lib/page-budget.js";
 import { unavailableAnswer } from "../../lib/degraded.js";
 import { resolveStateIndex } from "../../lib/state-page.js";
 
 const lang = Astro.params["lang"] ?? "";
 if (!isLang(lang)) return Astro.rewrite("/404");
 const env = readEnv();
-const a = await resolveStateIndex(lang, { baseUrl: env.digestUrl, timeoutMs: env.tileTimeoutMs });
+const a = await resolveStateIndex(lang, withinBudget({ baseUrl: env.digestUrl, timeoutMs: env.tileTimeoutMs }, Astro.locals.budgetEndsAt));
 if (a.kind === "unavailable") return unavailableAnswer(lang, Astro.request);
 ---
 

@@ -8,6 +8,37 @@
 import { PAGE_HEAD_COPY, type PageHeadLang } from "./page-head-copy.js";
 import { creditBlocks, dropDelimited } from "./scan.js";
 
+/**
+ * The lines that stay in view whole whenever they are on a card (data-steward ruling 2026-11-03, #1120):
+ *  - OpenStreetMap's and EVERY Open Database License line (ODbL § 4.3 asks a notice that makes a person aware of the
+ *    database and its licence — not only OpenStreetMap's: the Trucklounge car parks are an ODbL database of their own);
+ *  - the fuel terms (Tankerkönig / MTS-K) and the SID terms (Toll Collect, "Bei jeder Verwendung der Daten ist die
+ *    Quelle anzugeben");
+ *  - every GeoNutzV line: § 3 Nr. 1 GeoNutzV asks that the Quellenvermerk be "erkennbar und in optischem Zusammenhang
+ *    eingebunden", and Nr. 2 puts the change note INSIDE it — a Verordnung, not a "reasonable manner" licence, so the
+ *    whole line ("© … 2026 — GeoNutzV, Daten verändert") is never behind a click;
+ *  - the DWD's line: § 7 DWD-Gesetz makes the distribution of its data and warnings lawful "nur unter Angabe der
+ *    Quelle", and the register prescribes the Quellenvermerk word for word ("Quelle: Deutscher Wetterdienst") — the
+ *    short line's "Daten: Deutscher Wetterdienst" is not that wording;
+ *  - every CC BY 3.0 line: § 4 b) asks a credit "zumindest ebenso hervorgehoben … wie die Hinweise auf die übrigen
+ *    Rechteinhaber", and a short name can drop co-holders that the short line names for others (Duisburg's
+ *    "WBD, DVG, Nerra, Netze-Duisburg").
+ */
+export const ALWAYS_SHOWN: readonly RegExp[] = [
+  /OpenStreetMap/u,
+  /Open Database License|ODbL/u,
+  /Tankerkönig|MTS-K/u,
+  /Toll Collect/u,
+  /GeoNutzV/u,
+  /Deutscher Wetterdienst/u,
+  /CC BY 3\.0/u,
+];
+
+/** Whether a register line's TEXT names a provider of `ALWAYS_SHOWN` (FS11b: its line stands beside its data). */
+export function alwaysShownText(text: string): boolean {
+  return ALWAYS_SHOWN.some((re) => re.test(text));
+}
+
 const ENTITIES: Readonly<Record<string, string>> = { "&amp;": "&", "&lt;": "<", "&gt;": ">", "&quot;": '"', "&#39;": "'", "&#x27;": "'" };
 /** A block's visible text: tags dropped, the five entities `safe` writes read back. */
 export function textOf(html: string): string {

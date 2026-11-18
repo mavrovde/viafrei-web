@@ -1,6 +1,7 @@
 {
   "meta": {
     "tagline": "Het Duitse realtime mobiliteitsplatform voor AI",
+    "titleTagline": "Het Duitse realtime mobiliteitsplatform voor AI",
     "pitch": "ViaFrei geeft AI-assistenten realtime inzicht in Duitsland. Treinen en bussen, verkeer en wegwerkzaamheden, brandstof, laden, parkeren en weer. Eén MCP. Geen API-sleutel. Geen aanmelding.",
     "description": "File, afsluitingen, wegwerkzaamheden, trein, parkeren, laden en tanken in Duitsland – live uit open data, via je AI-assistent, elk cijfer met bron.",
     "siteName": "ViaFrei"
@@ -221,7 +222,8 @@
     "more": "Nog twee vragen en een grens",
     "answer": {
       "label": "ViaFrei antwoordde",
-      "asOf": "Bijgewerkt: {asOf}"
+      "asOf": "Bijgewerkt: {asOf}",
+      "again": "Ook uit de bronnen hierboven:"
     },
     "limitLabel": "Eerlijk gezegd",
     "cta": "Aan de slag",

@@ -1,6 +1,7 @@
 {
   "meta": {
     "tagline": "Niemiecka platforma mobilności w czasie rzeczywistym dla AI",
+    "titleTagline": "Niemiecka platforma mobilności",
     "pitch": "ViaFrei daje asystentom AI wiedzę o Niemczech w czasie rzeczywistym. Pociągi i autobusy, ruch i roboty drogowe, paliwo, ładowanie, parkowanie i pogoda. Jeden MCP. Bez klucza API. Bez rejestracji.",
     "description": "Korki, zamknięcia i roboty drogowe na autostradach w Niemczech na żywo, do tego kolej, parkingi, ładowanie i paliwo – z otwartych danych, zawsze ze źródłem.",
     "siteName": "ViaFrei"
@@ -221,7 +222,8 @@
     "more": "Jeszcze 2 pytania i jedno ograniczenie",
     "answer": {
       "label": "Odpowiedź ViaFrei",
-      "asOf": "Stan: {asOf}"
+      "asOf": "Stan: {asOf}",
+      "again": "Również według źródeł powyżej:"
     },
     "limitLabel": "Szczerze mówiąc",
     "cta": "Zaczynamy",

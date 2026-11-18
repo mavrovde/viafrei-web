@@ -15,7 +15,7 @@ import type { Queryable } from "@viafrei/ingest";
 import { describe, expect, it } from "vitest";
 import { all, text as nodeText } from "@viafrei/design/testing";
 import { catalogue, t } from "../src/i18n/index.js";
-import { BRAND, DESCRIPTION_MAX, homeMeta, pageMeta, pitchWithin } from "../src/site/meta.js";
+import { BRAND, DESCRIPTION_MAX, TITLE_FIT, homeMeta, pageMeta, pitchWithin } from "../src/site/meta.js";
 import { LIVE_LANGS, PAGE_IDS } from "../src/site/pages.js";
 
 const ROOT = new URL("../../../", import.meta.url).pathname;
@@ -112,14 +112,19 @@ describe("every language says both lines in its own words (#935 AC 1, AC 9)", ()
 
 describe("the home's head and the other pages' titles (#935 marketing rules 1 and 3)", () => {
   for (const lang of LIVE_LANGS) {
-    it(`${lang}: the home is "ViaFrei – <tagline>", its description the pitch within 160, its card the tagline and the pitch`, () => {
+    it(`${lang}: the home is "ViaFrei – <tagline>" within 60 characters (#1310 B1), its description the pitch within 160, its card the tagline and the pitch`, () => {
       const home = pageMeta("start", lang);
-      expect(home.title).toBe(`${BRAND} – ${t(lang, "meta.tagline")}`);
+      expect(home.title).toBe(`${BRAND} – ${t(lang, "meta.titleTagline")}`);
+      expect(home.title.length, home.title).toBeLessThanOrEqual(TITLE_FIT);
+      // the title's tagline is the tagline, or its words with some dropped (never a word the tagline does not say)
+      const words = new Set(t(lang, "meta.tagline").split(/[\s,]+/u));
+      for (const w of t(lang, "meta.titleTagline").split(/[\s,]+/u)) expect(words.has(w), `${lang}: ${w}`).toBe(true);
+      if (`${BRAND} – ${t(lang, "meta.tagline")}`.length <= TITLE_FIT) expect(t(lang, "meta.titleTagline")).toBe(t(lang, "meta.tagline"));
       expect(home.description.length, home.description).toBeLessThanOrEqual(DESCRIPTION_MAX);
       expect(home.description).toBe(pitchWithin(t(lang, "meta.pitch"), DESCRIPTION_MAX));
       expect(home.description.startsWith(t(lang, "meta.pitch").split(/(?<=\.)\s+/u)[0]!)).toBe(true);
       expect(home.og).toEqual({ title: t(lang, "meta.tagline"), description: t(lang, "meta.pitch") });
-      expect(home).toEqual(homeMeta(t(lang, "meta.tagline"), t(lang, "meta.pitch")));
+      expect(home).toEqual(homeMeta(t(lang, "meta.tagline"), t(lang, "meta.pitch"), t(lang, "meta.titleTagline")));
       expect(t(lang, "meta.siteName")).toBe(BRAND);
       for (const p of PAGE_IDS.filter((x) => x !== "start")) {
         const m = pageMeta(p, lang);
@@ -128,6 +133,9 @@ describe("the home's head and the other pages' titles (#935 marketing rules 1 an
       }
     });
   }
+  it("#1310 B1: a home title over 60 characters is an error, never shipped", () => {
+    expect(() => homeMeta("x", "A pitch.", "y".repeat(60))).toThrow(/over 60/);
+  });
   it("a pitch with no form inside the field is an error, not a cut word", () => {
     expect(() => pitchWithin("A sentence far too long for the field.", 10)).toThrow(/fits no form/);
   });

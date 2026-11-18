@@ -8,7 +8,7 @@ import { isPlaceSlug, placePath, placesByName } from "../site/places.js";
 import { fetchPlaceIndex, placeKeyOfSlug, placeNameOfSlug, type PlaceFragment, type PlaceIndexEntry } from "./place.js";
 import type { TileFetchOptions } from "./tiles.js";
 import { CARDS_MIN_MS, placeCardsPlaceholder, placeFirstRender, type FirstRenderOptions } from "./place-first.js";
-import { budgetLeft } from "./page-budget.js";
+import { budgetLeft, pageBudgetMs, withinBudget } from "./page-budget.js";
 import type { AskingRequest } from "./fuel-refresh.js";
 import { esc } from "@viafrei/design";
 import { t } from "../i18n/index.js";
@@ -47,9 +47,11 @@ export async function resolvePlacePage(
   // (`o.endsAt`, `lib/page-budget.ts`: a legacy lookup before it) ends first. Every read below gets what is left of it
   // and no floor goes past it: the key's and the index's reads are aborted at it, the cards' wait and their live
   // answers' are capped by it (`placeFirstRender`'s `endsAt`), and too little left for the cards skips their read.
-  const endsAt = Math.min(Date.now() + PLACE_PAGE_BUDGET_MS, o.endsAt ?? Number.POSITIVE_INFINITY);
+  // #1310 A2: a verified crawler's resolve gets its own budget (`pageBudgetMs`, eight seconds), so a slow key read is
+  // a page for it rather than the 503 a person's two seconds would leave it with nothing held
+  const endsAt = Math.min(Date.now() + Math.max(PLACE_PAGE_BUDGET_MS, pageBudgetMs()), o.endsAt ?? Number.POSITIVE_INFINITY);
   const left = (): number => budgetLeft(endsAt);
-  const within = (): TileFetchOptions & FirstRenderOptions => ({ ...o, timeoutMs: Math.min(o.timeoutMs, left()) });
+  const within = (): TileFetchOptions & FirstRenderOptions => withinBudget(o, endsAt);
   // #892: the address is the place's stored slug (`/de/place/koeln`); anything that is not one — a typed name
   // ("Köln", "frankfurt") — is the name lookup of #739.
   if (!isPlaceSlug(slug)) return byName(lang, slug, within());
@@ -89,7 +91,7 @@ export async function resolvePlacePage(
  * instead), and a 503 to a crawler is a refusal that, repeated, drops the page from the index. So the deferred page
  * carries everything that does not depend on the cards: the title, the H1 and the lead from the index's name, its
  * canonical and alternates from the slug, and a meta description that is the place's general one in the page's
- * language (`placeMeta(name, lang, [])` → `place.pageDescription`, since a placeholder names no road), never empty.
+ * language (`placeMeta(name, lang)`: the evergreen `pageDescription` of #1310 B2, which reads no card), never empty.
  * The next crawl, with the pool free, sees the cards.
  */
 async function deferredPage(lang: Lang, slug: string, ags: string, placeholder: string, o: TileFetchOptions): Promise<PlacePageAnswer> {

@@ -18,7 +18,8 @@ import { chromium, type Browser, type Page } from "playwright";
 import { HOME_REFRESH_CONTENT, LIVE_LANGS, allPaths, type Lang } from "../src/site/pages.js";
 import { menuGroups, reviewedLocales } from "../src/i18n/locales.js";
 import { afterAll, beforeAll, describe, expect, it } from "vitest";
-import { all, classesIn, parse, text as nodeText } from "@viafrei/design/testing";
+import { all, classesIn, classesOf, elements, parse, text as nodeText } from "@viafrei/design/testing";
+import { shortSource } from "@viafrei/design";
 import { EMBEDDED_TILES, FACTS } from "../src/lib/tiles.js";
 import { LICENCE_CATALOGUE, MTSK_CONSUMER_NOTE, licenceTextFor } from "@viafrei/ingest";
 import { t } from "../src/i18n/index.js";
@@ -29,7 +30,7 @@ import { RETRY_WAITS_MS } from "../src/lib/fragment-retry.js";
 import { TILE_SHOW_BY_MS } from "../src/lib/fill.js";
 import { startRealDigest } from "./real-digest.js";
 import { startAsksStub } from "./asks-stub.js";
-import { LIMITS } from "../scripts/budget.js";
+import { HOME_RAW_MAX, LIMITS } from "../scripts/budget.js";
 
 const PORT = 8793;
 let browser: Browser;
@@ -583,7 +584,32 @@ describe("the shell", () => {
         // moves to 268 000 B, inside the 700 KB raw budget; the gzip limit below is unchanged. Owner 2026-11-06 ("Raise to 268 KB"): the desk script stays inline, before first paint.
         console.log(`home raw html ${lang}: ${String(html.length)} B`);
         // owner 2026-11-08: home 268 654 B with the live-map loader (#1183)
-        expect(html.length).toBeLessThan(270_000);
+        // Owner 2026-11-16 ("Increase the budget to 300"): 300 000 B. #746 gave the home answers their full credits;
+        // the home measures 286 612 B (de; e2e-arm, 2.6.19 release head), see HOME_RAW_MAX in scripts/budget.ts.
+        expect(html.length).toBeLessThan(HOME_RAW_MAX);
+        // data-steward on 2.6.19 (#746, #1193): a later answer may only NAME a publisher ("Ebenso aus den Quellen oben: …")
+        // whose full register line, or a #1120 disclosure naming it, stands on the same card BEFORE that answer. Read on
+        // the served page, in document order: `aboveIds` alone only proves the ids exist in the catalogue.
+        let named = 0;
+        for (const card of all(html, "article.moment")) {
+          const els = elements(card);
+          for (const again of els.filter((e) => classesOf(e).includes("qa-answer__again"))) {
+            let answer = again.parent;
+            while (answer !== null && !classesOf(answer).includes("qa-answer")) answer = answer.parent;
+            expect(answer, "the short line sits in an answer").not.toBeNull();
+            const before = els.slice(0, els.indexOf(answer!));
+            const lines = before.filter((e) => e.tag === "li" && e.attrs.lang === "de").map((e) => shortSource(nodeText(e)));
+            const folds = before.filter((e) => e.tag === "details" && classesOf(e).includes("sources")).map((e) => nodeText(e.children.find((c) => "tag" in c && c.tag === "summary") ?? { text: "" }));
+            const names = all(again, 'span[translate="no"]').map((e) => nodeText(e).trim());
+            expect(names.length, `${lang}: a short line names someone`).toBeGreaterThan(0);
+            for (const n of names) {
+              named++;
+              expect(lines.includes(n) || folds.some((f) => f.includes(n)), `${lang} ${card.attrs.class ?? ""}: "${n}" stands above`).toBe(true);
+            }
+          }
+        }
+        console.log(`home ${lang}: ${String(named)} publishers named as standing above`);
+        expect(named, "the check reads something").toBeGreaterThan(0);
         // #1064: the gate's own limit (200 KB since the owner decision of 2026-10-25; 80 KB since #891), never a second copy of it.
         expect(gzipSync(html).length + gzipSync(css).length).toBeLessThan(LIMITS.gzipTotal);
       }

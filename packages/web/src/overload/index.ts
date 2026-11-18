@@ -13,6 +13,11 @@ import { createClientTrip } from "./trip.js";
 
 let deps: OverloadDeps | undefined;
 
+/** The API's pressure word when the site reads viafrei-api (`VIAFREI_API_URL`), the digest's otherwise. */
+function pressureOf(env: { readonly digestUrl: string; readonly apiUrl?: string | undefined }) {
+  return env.apiUrl === undefined ? createPressure({ baseUrl: env.digestUrl }) : createPressure({ baseUrl: env.apiUrl, api: true });
+}
+
 /** The pass book's key: the replicas' shared one when the host set it (#1205). */
 function passBookDeps(): { key?: Buffer } {
   const key = passKeyFrom(process.env);
@@ -20,6 +25,6 @@ function passBookDeps(): { key?: Buffer } {
 }
 
 export function overloadDeps(): OverloadDeps {
-  deps ??= { pressure: createPressure({ baseUrl: readEnv().digestUrl }), passes: createPassBook(passBookDeps()), crawlers: createCrawlerVerifier(), clientIp, trip: createClientTrip() };
+  deps ??= { pressure: pressureOf(readEnv()), passes: createPassBook(passBookDeps()), crawlers: createCrawlerVerifier(), clientIp, trip: createClientTrip() };
   return deps;
 }

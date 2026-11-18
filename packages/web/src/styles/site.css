@@ -1493,6 +1493,10 @@ button.place-opt { font: inherit; color: var(--accent); background: none; border
 .sources > summary { cursor: pointer; min-height: 24px; }
 .sources > :not(summary) { margin-top: var(--s-1); }
 @media print { .sources::details-content { content-visibility: visible; display: block; height: auto; } .sources > summary { display: none; } }
+/* 2.6.19 (#746): an example answer's folded credit lines (`CreditList`): the summary is the FS3 line naming every publisher */
+.credits__more > .sources > summary > .fold__sources { display: inline; margin-top: 0; }
+/* its summary is a control of its own on the examples page: the 44 px target (a11y e2e); the card footers' .sources keep theirs */
+.credits__more > .sources > summary { min-height: var(--target); padding-block: var(--s-2); box-sizing: border-box; }
 .place__clear, .place__none { margin: 0; padding: var(--s-3) var(--s-4); border-radius: var(--r); background: var(--ok-bg); color: var(--fg); }
 .place__clear p { margin: 0; }
 /* #693: one row per quiet card, each with its own source line, so no card's words sit under another's heading. */

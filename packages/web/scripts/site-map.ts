@@ -50,7 +50,7 @@ export function siteMap(): string {
   for (const f of DISCOVERY_ROUTES) rows.push(`${f.padEnd(18)} -     en    page`);
   for (const r of REDIRECTS) rows.push(`${r.from.padEnd(18)} -     ${r.from.startsWith("/en") ? "en" : "de"}    redirect=${r.to}`);
   // #892: the TEMPORARY 301s of the pre-#892 page addresses (`src/lib/legacy-redirects.ts`, removed by #898) — answered
-  // by the shell, not by nginx, which the `legacy` flag tells `scripts/landing-conf.test.sh`; probed and compared like any.
+  // by the shell, not by nginx, which the `legacy` flag tells the edge configuration tests; probed and compared like any.
   for (const r of LEGACY_FIXED) rows.push(`${r.from.padEnd(18)} -     ${r.from.slice(1, 3)}    redirect=${r.to},legacy`);
   return `${rows.join("\n")}\n`;
 }

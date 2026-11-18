@@ -59,6 +59,13 @@ export type WebEnv = {
    * port. Undefined: every card shows its question without a live answer.
    */
   readonly mcpInternalUrl?: string | undefined;
+  /**
+   * viafrei-api's base URL (`VIAFREI_API_URL`, an origin), where the shell reads the data it renders itself
+   * (`api/client.ts`). Undefined: every such read is asked of the digest, as before. The site's API key is
+   * deliberately NOT a field here: `api/client.ts` reads `VIAFREI_API_KEY` itself and keeps it inside its own
+   * request headers, so no template, island or log line can be handed it.
+   */
+  readonly apiUrl?: string | undefined;
 };
 
 export const DEFAULT_TILE_TIMEOUT_MS = 2_000;
@@ -94,11 +101,14 @@ export function readEnv(env: Readonly<Record<string, string | undefined>> = proc
   if (refresh !== "" && !/^https?:\/\/[^/\s]+$/.test(refresh)) throw new Error(`FUEL_REFRESH_URL must be an origin like http://mcp:8788, got '${refresh}'`);
   const mcp = (env["MCP_INTERNAL_URL"] ?? "").trim();
   if (mcp !== "" && !/^https?:\/\/[^/\s]+$/.test(mcp)) throw new Error(`MCP_INTERNAL_URL must be an origin like http://mcp:8788, got '${mcp}'`);
+  const api = (env["VIAFREI_API_URL"] ?? "").trim();
+  if (api !== "" && !/^https?:\/\/[^/\s]+$/.test(api)) throw new Error(`VIAFREI_API_URL must be an origin like http://api:8080, got '${api}'`);
   return {
     digestUrl, tileTimeoutMs, placeTimeoutMs, googleTag: tag === "" ? undefined : tag, geoipFile: geo === "" ? undefined : geo,
     ...(frag === "" || frag === digestUrl ? {} : { fragmentUrl: frag }),
     ...(refresh === "" ? {} : { fuelRefreshUrl: refresh }),
     ...(mcp === "" ? {} : { mcpInternalUrl: mcp }),
+    ...(api === "" ? {} : { apiUrl: api }),
     ...(clarity === undefined ? {} : { clarityProjectId: clarity }),
   };
 }

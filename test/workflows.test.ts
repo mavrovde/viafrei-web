@@ -83,7 +83,8 @@ describe("the workflows", () => {
       for (const r of refs) expect(r[2], `${r[1] ?? ""} is not pinned by digest`).toBeDefined();
     }
     const from = [...read("Dockerfile").matchAll(/^FROM (?:--platform=\S+ )?(\S+)/gmu)].map((m) => m[1] ?? "");
-    expect(from.length).toBe(2);
+    expect(from.length).toBe(3); // the default carry stage (viafrei-web#36), the build, the runtime
+    expect(new Set(from).size, "every stage is the one pinned node").toBe(1);
     for (const f of from) expect(f).toMatch(/^node:[\w.-]+@sha256:[0-9a-f]{64}$/u);
     // The build stage runs natively; under QEMU the arm64 build overran the publish limit (v0.1.0).
     expect(read("Dockerfile")).toMatch(/^FROM --platform=\$BUILDPLATFORM node:\S+ AS build$/mu);
@@ -193,10 +194,16 @@ describe("the workflows", () => {
     expect(ci, "a job asks for packages it no longer reads").not.toMatch(/packages: read/u);
     expect(ci).not.toContain("Manage Actions access");
     // release.yml pushes and reads this repository's own image: there GITHUB_TOKEN is right; its
-    // browser job alone pulls the private viafrei-app, with GHCR_READ_TOKEN behind the same check
+    // browser job and the publish job's carry (viafrei-web#36) pull the private viafrei-app, with
+    // GHCR_READ_TOKEN behind the same check, and the publish job logs in again to push
     const r = text("release.yml");
-    expect(r.split("password: ${{ secrets.GITHUB_TOKEN }}").length - 1).toBe(3);
-    expect(r.split("password: ${{ secrets.GHCR_READ_TOKEN }}").length - 1).toBe(1);
+    expect(r.split("password: ${{ secrets.GITHUB_TOKEN }}").length - 1).toBe(4);
+    expect(r.split("password: ${{ secrets.GHCR_READ_TOKEN }}").length - 1).toBe(2);
+    expect(r.split("- name: GHCR_READ_TOKEN must be set").length - 1).toBe(2);
+    const pub = job(r, "publish");
+    expect(pub.indexOf("- name: GHCR_READ_TOKEN must be set")).toBeLessThan(pub.indexOf("password: ${{ secrets.GHCR_READ_TOKEN }}"));
+    expect(pub.indexOf("password: ${{ secrets.GHCR_READ_TOKEN }}")).toBeLessThan(pub.indexOf("scripts/carry-previous.sh"));
+    expect(pub).toContain("WEB_ASSETS_PREVIOUS=${{ steps.carry.outputs.refs }}");
     const web = job(r, "web");
     expect(web).toContain("password: ${{ secrets.GHCR_READ_TOKEN }}");
     expect(web.indexOf("- name: GHCR_READ_TOKEN must be set")).toBeGreaterThan(-1);

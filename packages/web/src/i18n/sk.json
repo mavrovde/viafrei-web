@@ -1,6 +1,7 @@
 {
   "meta": {
     "tagline": "Nemecká platforma mobility v reálnom čase pre AI",
+    "titleTagline": "Nemecká platforma mobility v reálnom čase pre AI",
     "pitch": "ViaFrei dáva AI asistentom prehľad o Nemecku v reálnom čase. Vlaky a autobusy, doprava a práce na cestách, palivo, nabíjanie, parkovanie a počasie. Jedno MCP. Žiadny kľúč API. Žiadna registrácia.",
     "description": "Kolóny, uzávierky, práce na ceste, vlaky, parkovanie, nabíjanie a palivo v Nemecku – naživo z otvorených dát, ako odpoveď vášho AI asistenta, so zdrojom.",
     "siteName": "ViaFrei"
@@ -221,7 +222,8 @@
     "more": "Ďalšie 2 otázky a jedno obmedzenie",
     "answer": {
       "label": "ViaFrei odpovedal",
-      "asOf": "Stav: {asOf}"
+      "asOf": "Stav: {asOf}",
+      "again": "Aj podľa zdrojov vyššie:"
     },
     "limitLabel": "Úprimne povedané",
     "cta": "Pripraviť sa",

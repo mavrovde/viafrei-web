@@ -3,13 +3,14 @@
 import MotorwaysPage from "../../layouts/MotorwaysPage.astro";
 import { isLang } from "../../i18n/index.js";
 import { readEnv } from "../../lib/env.js";
+import { withinBudget } from "../../lib/page-budget.js";
 import { unavailableAnswer } from "../../lib/degraded.js";
 import { resolveMotorwayIndex } from "../../lib/motorway-page.js";
 
 const lang = Astro.params["lang"] ?? "";
 if (!isLang(lang)) return Astro.rewrite("/404");
 const env = readEnv();
-const a = await resolveMotorwayIndex(lang, { baseUrl: env.digestUrl, timeoutMs: env.placeTimeoutMs, mapPlatform: Astro.locals.mapPlatform }, new URL(Astro.request.url).searchParams);
+const a = await resolveMotorwayIndex(lang, withinBudget({ baseUrl: env.digestUrl, timeoutMs: env.placeTimeoutMs, mapPlatform: Astro.locals.mapPlatform }, Astro.locals.budgetEndsAt), new URL(Astro.request.url).searchParams);
 if (a.kind === "redirect") return Astro.redirect(a.to, 301);
 if (a.kind === "unavailable") return unavailableAnswer(lang, Astro.request);
 ---

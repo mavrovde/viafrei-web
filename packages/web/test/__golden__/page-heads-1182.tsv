@@ -1,25 +1,25 @@
-state	de	Bayern: Autobahnen jetzt, Städte und Fakten – ViaFrei	Bayern jetzt auf den Autobahnen: Vollsperrungen: 1. Größte Städte, Nachbarländer und Fläche. Stand heute, hh:mm Uhr.
-state	en	Bavaria: motorways now, towns and facts – ViaFrei	Bavaria on the motorways now: Closures: 1. Largest towns, neighbouring Länder and area. As of today at hh:mm.
-state	ru	Бавария: автобаны сейчас, города и факты – ViaFrei	Бавария на автобанах сейчас: Перекрытия: 1. Крупнейшие города, соседние федеральные земли и площадь. По состоянию на сегодня в hh:mm.
-state	bg	Бавария: магистрали сега, градове и факти – ViaFrei	Бавария по магистралите сега: Затваряния: 1. Най-големите градове, съседните федерални провинции и площ. Към днес в hh:mm.
-state	uk	Баварія: автобани зараз, міста й факти – ViaFrei	Баварія на автобанах зараз: Перекриття: 1. Найбільші міста, сусідні федеральні землі та площа. Станом на сьогодні о hh:mm.
-state	ro	Bavaria: autostrăzi acum, orașe și date – ViaFrei	Bavaria pe autostrăzi acum: Închideri: 1. Cele mai mari orașe, landurile vecine și suprafața. Situația la azi la hh:mm.
-state	tr	Bavyera: otoyollar şimdi, şehirler ve bilgiler – ViaFrei	Bavyera otoyollarında şimdi: Kapanmalar: 1. En büyük şehirler, komşu eyaletler ve yüzölçümü. Durum bugün hh:mm.
-state	fr	Bavière : autoroutes en ce moment, villes et faits – ViaFrei	Bavière sur les autoroutes en ce moment : Fermetures : 1. Plus grandes villes, Länder voisins et superficie. État au aujourd’hui à hh:mm.
-state	es	Baviera: autopistas ahora, ciudades y datos – ViaFrei	Baviera en las autopistas ahora: Cortes: 1. Ciudades más grandes, Länder vecinos y superficie. Situación a hoy a las hh:mm.
-state	nl	Beieren: snelwegen nu, steden en feiten – ViaFrei	Beieren nu op de snelwegen: Afsluitingen: 1. Grootste steden, buurdeelstaten en oppervlakte. Bijgewerkt vandaag om hh:mm.
-state	pl	Bawaria: autostrady teraz, miasta i fakty – ViaFrei	Bawaria na autostradach teraz: Zamknięcia: 1. Największe miasta, sąsiednie kraje związkowe i powierzchnia. Stan na dziś o hh:mm.
-state	it	Baviera: autostrade ora, città e dati – ViaFrei	Baviera sulle autostrade ora: Chiusure: 1. Città più grandi, Länder confinanti e superficie. Aggiornato al oggi alle hh:mm.
-state	lt	Bavarija: greitkeliai dabar, miestai ir faktai – ViaFrei	Bavarija greitkeliuose dabar: Uždarymai: 1. Didžiausi miestai, kaimyninės žemės ir plotas. Būklė šiandien hh:mm.
-state	cs	Bavorsko: dálnice teď, města a fakta – ViaFrei	Bavorsko na dálnicích teď: Uzavírky: 1. Největší města, sousední spolkové země a rozloha. Stav k dnes v hh:mm.
-state	hu	Bajorország: autópályák most, városok és tények – ViaFrei	Bajorország az autópályákon most: Lezárások: 1. Legnagyobb városok, szomszédos tartományok és terület. Állapot: ma hh:mm-kor.
-state	sk	Bavorsko: diaľnice teraz, mestá a fakty – ViaFrei	Bavorsko na diaľniciach teraz: Uzávery: 1. Najväčšie mestá, susedné spolkové krajiny a rozloha. Stav k dnes o hh:mm.
-state	da	Bayern: motorveje nu, byer og fakta – ViaFrei	Bayern på motorvejene nu: Spærringer: 1. Største byer, nabodelstater og areal. Status i dag kl. hh:mm.
-state	pt	Baviera: autoestradas agora, cidades e factos – ViaFrei	Baviera nas autoestradas agora: Cortes: 1. Maiores cidades, Länder vizinhos e área. Situação em hoje às hh:mm.
-state	hr	Bavarska: autoceste sada, gradovi i činjenice – ViaFrei	Bavarska na autocestama sada: Zatvaranja: 1. Najveći gradovi, susjedne savezne zemlje i površina. Stanje danas u hh:mm.
-state	sr	Баварска: аутопутеви сада, градови и чињенице – ViaFrei	Баварска на аутопутевима сада: Затварања: 1. Највећи градови, суседне савезне покрајине и површина. Стање данас у hh:mm.
-state	el	Βαυαρία: αυτοκινητόδρομοι τώρα, πόλεις και στοιχεία	Βαυαρία στους αυτοκινητόδρομους τώρα: Κλεισίματα: 1. Μεγαλύτερες πόλεις, γειτονικά ομόσπονδα κρατίδια και έκταση. Κατάσταση σήμερα στις hh:mm.
-state	lv	Bavārija: automaģistrāles tagad, pilsētas un fakti – ViaFrei	Bavārija uz automaģistrālēm tagad: Slēgumi: 1. Lielākās pilsētas, kaimiņu federālās zemes un platība. Stāvoklis šodien hh:mm.
+state	de	Bayern: Autobahnen jetzt, Städte und Fakten – ViaFrei	Bayern: Baustellen, Sperrungen und Stau, Pünktlichkeit von Bus und Bahn, Unwetterwarnungen und die Städte, mit Karte – live aus offenen Daten, mit Quelle.
+state	en	Bavaria: motorways now, towns and facts – ViaFrei	Bavaria: roadworks, closures and jams, bus and rail punctuality, weather warnings and its cities, with a map – live from open data, with sources.
+state	ru	Бавария: автобаны сейчас, города и факты – ViaFrei	Бавария: дорожные работы, перекрытия и пробки, пунктуальность автобусов и поездов, погодные предупреждения – онлайн по открытым данным.
+state	bg	Бавария: магистрали сега, градове и факти – ViaFrei	Бавария: ремонти, затваряния и задръствания, точност на автобуси и влакове, предупреждения за времето и градове – на живо от отворени данни, с източник.
+state	uk	Баварія: автобани зараз, міста й факти – ViaFrei	Баварія: дорожні роботи, перекриття й затори, пунктуальність автобусів і поїздів, попередження про погоду та міста – наживо з відкритих даних, з джерелом.
+state	ro	Bavaria: autostrăzi acum, orașe și date – ViaFrei	Bavaria: lucrări, închideri și ambuteiaje, punctualitatea autobuzelor și trenurilor, avertizări meteo și orașe – live din date deschise, cu sursă.
+state	tr	Bavyera: otoyollar şimdi, şehirler ve bilgiler – ViaFrei	Bavyera: yol çalışmaları, kapanmalar ve trafik, otobüs ve tren dakikliği, hava uyarıları ve şehirler, haritayla – açık verilerden canlı, kaynaklı.
+state	fr	Bavière : autoroutes en ce moment, villes et faits – ViaFrei	Bavière : travaux, fermetures et bouchons, ponctualité des bus et trains, alertes météo et ses villes, avec carte – en direct, données ouvertes et sources.
+state	es	Baviera: autopistas ahora, ciudades y datos – ViaFrei	Baviera: obras, cortes y atascos, puntualidad de autobuses y trenes, avisos meteorológicos y sus ciudades, con mapa – en directo con datos abiertos y fuente.
+state	nl	Beieren: snelwegen nu, steden en feiten – ViaFrei	Beieren: werkzaamheden, afsluitingen en files, stiptheid van bus en trein, weerwaarschuwingen en de steden, met kaart – live uit open data, met bron.
+state	pl	Bawaria: autostrady teraz, miasta i fakty – ViaFrei	Bawaria: roboty drogowe, zamknięcia i korki, punktualność autobusów i pociągów, ostrzeżenia pogodowe i miasta – na żywo z otwartych danych, ze źródłem.
+state	it	Baviera: autostrade ora, città e dati – ViaFrei	Baviera: lavori, chiusure e code, puntualità di bus e treni, allerte meteo e le sue città, con una mappa – in diretta da dati aperti, con fonte.
+state	lt	Bavarija: greitkeliai dabar, miestai ir faktai – ViaFrei	Bavarija: kelio darbai, uždarymai ir spūstys, autobusų ir traukinių punktualumas, orų įspėjimai ir miestai su žemėlapiu – tiesiogiai iš atvirų duomenų.
+state	cs	Bavorsko: dálnice teď, města a fakta – ViaFrei	Bavorsko: práce na silnici, uzavírky a kolony, přesnost autobusů a vlaků, výstrahy před počasím a města, s mapou – živě z otevřených dat, se zdrojem.
+state	hu	Bajorország: autópályák most, városok és tények – ViaFrei	Bajorország: útépítések, lezárások és torlódások, buszok és vonatok pontossága, időjárási figyelmeztetések és városok – élőben, nyílt adatokból, forrással.
+state	sk	Bavorsko: diaľnice teraz, mestá a fakty – ViaFrei	Bavorsko: práce na ceste, uzávierky a kolóny, presnosť autobusov a vlakov, výstrahy pred počasím a mestá, s mapou – naživo z otvorených dát, so zdrojom.
+state	da	Bayern: motorveje nu, byer og fakta – ViaFrei	Bayern: vejarbejde, spærringer og kø, punktlighed for bus og tog, vejrvarsler og byerne i delstaten, med kort – live fra åbne data, med kilde.
+state	pt	Baviera: autoestradas agora, cidades e factos – ViaFrei	Baviera: obras, cortes e filas, pontualidade de autocarros e comboios, avisos meteorológicos e cidades, com mapa – em direto, de dados abertos, com fonte.
+state	hr	Bavarska: autoceste sada, gradovi i činjenice – ViaFrei	Bavarska: radovi, zatvaranja i gužve, točnost autobusa i vlakova, upozorenja o vremenu i gradovi, s kartom – uživo iz otvorenih podataka, s izvorom.
+state	sr	Баварска: аутопутеви сада, градови и чињенице – ViaFrei	Баварска: радови, затварања и гужве, тачност аутобуса и возова, упозорења о времену и градови, са мапом – уживо из отворених података.
+state	el	Βαυαρία: αυτοκινητόδρομοι τώρα, πόλεις και στοιχεία	Βαυαρία: έργα, κλεισίματα και μποτιλιαρίσματα, ακρίβεια λεωφορείων και τρένων, προειδοποιήσεις καιρού και πόλεις – ζωντανά από ανοιχτά δεδομένα, με πηγή.
+state	lv	Bavārija: automaģistrāles tagad, pilsētas un fakti – ViaFrei	Bavārija: ceļa darbi, slēgšanas un sastrēgumi, autobusu un vilcienu precizitāte, laikapstākļu brīdinājumi un pilsētas – tiešraidē no atvērtajiem datiem.
 states	de	Bundesländer: Autobahnen jetzt, Städte und Fakten – ViaFrei	Alle 16 Bundesländer auf einen Blick: Vollsperrungen, Staus und Baustellen auf den Autobahnen jetzt, Fläche, Hauptstadt, Nachbarländer und größte Städte.
 states	en	German states: motorways now, towns and facts – ViaFrei	All 16 German states at a glance: closures, jams and roadworks on the motorways now, area, capital, neighbouring states and the largest towns.
 states	ru	Федеральные земли: автобаны сейчас, города, факты – ViaFrei	Все 16 федеральных земель Германии: перекрытия, пробки и дорожные работы на автобанах сейчас, площадь, столица, соседние земли и крупнейшие города.
@@ -42,50 +42,50 @@ states	hr	Njemačke savezne zemlje: autoceste sada, gradovi – ViaFrei	Svih 16 
 states	sr	Немачке покрајине: аутопутеви сада, градови – ViaFrei	Свих 16 немачких савезних покрајина на једном месту: затварања, гужве и радови на аутопутевима сада, површина, главни град, суседне покрајине и највећи градови.
 states	el	Ομόσπονδα κρατίδια: αυτοκινητόδρομοι, πόλεις – ViaFrei	Και τα 16 ομόσπονδα κρατίδια της Γερμανίας: κλεισίματα, μποτιλιαρίσματα και έργα στους αυτοκινητόδρομους τώρα, έκταση, πρωτεύουσα, γειτονικά κρατίδια και…
 states	lv	Vācijas federālās zemes: autoceļi tagad, pilsētas – ViaFrei	Visas 16 Vācijas federālās zemes vienuviet: slēgšanas, sastrēgumi un ceļa darbi uz autobāņiem tagad, platība, galvaspilsēta, kaimiņzemes un lielākās pilsētas.
-road	de	B 51 Dortmund: Sperrung, Baustelle aktuell – ViaFrei	B 51 jetzt: Baustellen: 2. Orte, Zeiten und Umleitungen, Stand heute, hh:mm Uhr.
-road	en	B 51 Dortmund: closures and roadworks now – ViaFrei	B 51 now: Roadworks: 2. Places, times and detours, as of today at hh:mm.
-road	ru	B 51 Dortmund: перекрытия и дорожные работы сейчас – ViaFrei	B 51 сейчас: Дорожные работы: 2. Места, сроки и объезды, по состоянию на сегодня в hh:mm.
-road	bg	B 51 Dortmund: затваряния и ремонти в момента – ViaFrei	B 51 сега: Ремонти: 2. Места, срокове и обходи, към днес в hh:mm.
-road	uk	B 51 Dortmund: перекриття та дорожні роботи зараз – ViaFrei	B 51 зараз: Дорожні роботи: 2. Місця, терміни й об'їзди, станом на сьогодні о hh:mm.
-road	ro	B 51 Dortmund: închideri și lucrări acum – ViaFrei	B 51 acum: Lucrări: 2. Locuri, intervale și ocoliri, la azi la hh:mm.
-road	tr	B 51 Dortmund: güncel kapanmalar ve yol çalışmaları	B 51 şu anda: Yol çalışmaları: 2. Yerler, süreler ve sapaklar, bugün hh:mm itibarıyla.
-road	fr	B 51 Dortmund : fermetures et travaux en cours – ViaFrei	B 51 maintenant : Chantiers : 2. Lieux, horaires et déviations, état aujourd’hui à hh:mm.
-road	es	B 51 Dortmund: cortes y obras ahora – ViaFrei	B 51 ahora: Obras: 2. Lugares, horarios y desvíos, a hoy a las hh:mm.
-road	nl	B 51 Dortmund: afsluitingen en wegwerkzaamheden nu – ViaFrei	B 51 nu: Werkzaamheden: 2. Plaatsen, tijden en omleidingen, stand vandaag om hh:mm.
-road	pl	B 51 Dortmund: aktualne zamknięcia i roboty drogowe	B 51 teraz: Roboty drogowe: 2. Miejsca, terminy i objazdy, stan na dziś o hh:mm.
-road	it	B 51 Dortmund: chiusure e cantieri attuali – ViaFrei	B 51 ora: Cantieri: 2. Luoghi, orari e deviazioni, aggiornato a oggi alle hh:mm.
-road	lt	B 51 Dortmund: dabartiniai uždarymai ir kelio darbai	B 51 dabar: Kelio darbai: 2. Vietos, laikas ir apvažiavimai, duomenys šiandien hh:mm.
-road	cs	B 51 Dortmund: aktuální uzavírky a stavby – ViaFrei	B 51 nyní: Stavby: 2. Místa, termíny a objížďky, stav k dnes v hh:mm.
-road	hu	B 51 Dortmund: aktuális lezárások és útépítések – ViaFrei	B 51 most: Útépítések: 2. Helyek, időpontok és terelések, állapot: ma hh:mm-kor.
-road	sk	B 51 Dortmund: aktuálne uzávierky a stavby – ViaFrei	B 51 teraz: Stavby: 2. Miesta, termíny a obchádzky, stav k dnes o hh:mm.
-road	da	B 51 Dortmund: aktuelle spærringer og vejarbejde – ViaFrei	B 51 nu: Vejarbejde: 2. Steder, tider og omkørsler, status i dag kl. hh:mm.
-road	pt	B 51 Dortmund: cortes e obras agora – ViaFrei	B 51 agora: Obras: 2. Locais, horários e desvios, às hoje às hh:mm.
-road	hr	B 51 Dortmund: trenutačne zatvorbe i radovi – ViaFrei	B 51 sada: Radovi: 2. Mjesta, termini i obilaznice, stanje danas u hh:mm.
-road	sr	B 51 Dortmund: тренутна затварања и радови – ViaFrei	B 51 сада: Радови: 2. Места, термини и обилазнице, стање данас у hh:mm.
-road	el	B 51 Dortmund: τρέχοντα κλεισίματα και έργα – ViaFrei	B 51 τώρα: Έργα: 2. Τοποθεσίες, ώρες και παρακάμψεις, κατάσταση σήμερα στις hh:mm.
-road	lv	B 51 Dortmund: aktuālās slēgšanas un ceļa darbi – ViaFrei	B 51 tagad: Ceļa darbi: 2. Vietas, laiki un apbraucamie ceļi, dati uz šodien hh:mm.
-exit	de	A7 Musterstadt-Mitte 30: Stau aktuell – ViaFrei	A7 Musterstadt-Mitte 30 jetzt: 1 Stau. Hier: Rast- und Parkplätze. Nachbarn: Musterstadt-Ost 28 und Musterstadt-Süd 32.
-exit	en	A7 Musterstadt-Mitte 30: traffic jam now – ViaFrei	A7 Musterstadt-Mitte 30 now: 1 jam. Here: rest areas and parking. Next junctions: Musterstadt-Ost 28 and Musterstadt-Süd 32.
-exit	ru	A7 Musterstadt-Mitte 30: пробка сейчас – ViaFrei	A7 Musterstadt-Mitte 30 сейчас: 1 пробка. Здесь: парковка. Соседние съезды: Musterstadt-Ost 28 и Musterstadt-Süd 32.
-exit	bg	A7 Musterstadt-Mitte 30: задръстване сега – ViaFrei	A7 Musterstadt-Mitte 30 сега: 1 задръстване. Тук: паркиране. Съседни изходи: Musterstadt-Ost 28 и Musterstadt-Süd 32.
-exit	uk	A7 Musterstadt-Mitte 30: затор зараз – ViaFrei	A7 Musterstadt-Mitte 30 зараз: 1 затор. Тут: паркування. Сусідні з’їзди: Musterstadt-Ost 28 і Musterstadt-Süd 32.
-exit	ro	A7 Musterstadt-Mitte 30: ambuteiaj acum – ViaFrei	A7 Musterstadt-Mitte 30 acum: 1 ambuteiaj. Aici: parcare. Ieșiri vecine: Musterstadt-Ost 28 și Musterstadt-Süd 32.
-exit	tr	A7 Musterstadt-Mitte 30: şu an sıkışık – ViaFrei	A7 Musterstadt-Mitte 30 şu an: 1 sıkışıklık. Burada: otopark. Komşu çıkışlar: Musterstadt-Ost 28 ve Musterstadt-Süd 32.
-exit	fr	A7 Musterstadt-Mitte 30: bouchon en cours – ViaFrei	A7 Musterstadt-Mitte 30 maintenant : 1 bouchon. Ici : stationnement. Sorties voisines : Musterstadt-Ost 28 et Musterstadt-Süd 32.
-exit	es	A7 Musterstadt-Mitte 30: atasco ahora – ViaFrei	A7 Musterstadt-Mitte 30 ahora: 1 atasco. Aquí: aparcamiento. Salidas vecinas: Musterstadt-Ost 28 y Musterstadt-Süd 32.
-exit	nl	A7 Musterstadt-Mitte 30: file nu – ViaFrei	A7 Musterstadt-Mitte 30 nu: 1 file. Ter plaatse: parkeren. Naburige afritten: Musterstadt-Ost 28 en Musterstadt-Süd 32.
-exit	pl	A7 Musterstadt-Mitte 30: korek teraz – ViaFrei	A7 Musterstadt-Mitte 30 teraz: 1 korek. Tutaj: parking. Sąsiednie zjazdy: Musterstadt-Ost 28 i Musterstadt-Süd 32.
-exit	it	A7 Musterstadt-Mitte 30: coda adesso – ViaFrei	A7 Musterstadt-Mitte 30 ora: 1 coda. Qui: parcheggio. Uscite vicine: Musterstadt-Ost 28 e Musterstadt-Süd 32.
-exit	lt	A7 Musterstadt-Mitte 30: spūstis dabar – ViaFrei	A7 Musterstadt-Mitte 30 dabar: 1 spūstis. Čia: parkavimas. Kaimyninės nuovažos: Musterstadt-Ost 28 ir Musterstadt-Süd 32.
-exit	cs	A7 Musterstadt-Mitte 30: kolona teď – ViaFrei	A7 Musterstadt-Mitte 30 teď: 1 kolona. Zde: parkování. Sousední sjezdy: Musterstadt-Ost 28 a Musterstadt-Süd 32.
-exit	hu	A7 Musterstadt-Mitte 30: torlódás most – ViaFrei	A7 Musterstadt-Mitte 30 most: 1 dugó. Itt: parkolás. Szomszédos lehajtók: Musterstadt-Ost 28 és Musterstadt-Süd 32.
-exit	sk	A7 Musterstadt-Mitte 30: kolóna teraz – ViaFrei	A7 Musterstadt-Mitte 30 teraz: 1 kolóna. Tu: parkovanie. Susedné zjazdy: Musterstadt-Ost 28 a Musterstadt-Süd 32.
-exit	da	A7 Musterstadt-Mitte 30: kø lige nu – ViaFrei	A7 Musterstadt-Mitte 30 nu: 1 kø. Her: parkering. Nabofrakørsler: Musterstadt-Ost 28 og Musterstadt-Süd 32.
-exit	pt	A7 Musterstadt-Mitte 30: fila agora – ViaFrei	A7 Musterstadt-Mitte 30 agora: 1 fila. Aqui: estacionamento. Saídas vizinhas: Musterstadt-Ost 28 e Musterstadt-Süd 32.
-exit	hr	A7 Musterstadt-Mitte 30: gužva sada – ViaFrei	A7 Musterstadt-Mitte 30 sada: 1 zastoj. Ovdje: parkiranje. Susjedni izlazi: Musterstadt-Ost 28 i Musterstadt-Süd 32.
-exit	sr	A7 Musterstadt-Mitte 30: гужва сада – ViaFrei	A7 Musterstadt-Mitte 30 сада: 1 застој. Овде: паркирање. Суседни излази: Musterstadt-Ost 28 и Musterstadt-Süd 32.
-exit	el	A7 Musterstadt-Mitte 30: μποτιλιάρισμα τώρα – ViaFrei	A7 Musterstadt-Mitte 30 τώρα: 1 μποτιλιάρισμα. Εδώ: στάθμευση. Γειτονικές έξοδοι: Musterstadt-Ost 28 και Musterstadt-Süd 32.
-exit	lv	A7 Musterstadt-Mitte 30: sastrēgums tagad – ViaFrei	A7 Musterstadt-Mitte 30 tagad: 1 sastrēgums. Šeit: stāvvieta. Kaimiņu nobrauktuves: Musterstadt-Ost 28 un Musterstadt-Süd 32.
+road	de	B 51 Dortmund: Sperrung, Baustelle aktuell – ViaFrei	B 51: aktuelle und geplante Baustellen, Sperrungen und Umleitungen, mit Beginn und Ende, den betroffenen Orten und Karte – live aus offenen Daten, mit Quelle.
+road	en	B 51 Dortmund: closures and roadworks now – ViaFrei	B 51: current and planned roadworks, closures and detours, with start and end, the places they affect and a map – live from open data, with sources.
+road	ru	B 51 Dortmund: перекрытия и дорожные работы сейчас – ViaFrei	B 51: текущие и запланированные дорожные работы, перекрытия и объезды, с началом и концом, места и карта – онлайн по открытым данным.
+road	bg	B 51 Dortmund: затваряния и ремонти в момента – ViaFrei	B 51: текущи и планирани ремонти, затваряния и обходи, с начало и край, засегнатите населени места и карта – на живо от отворени данни, с източник.
+road	uk	B 51 Dortmund: перекриття та дорожні роботи зараз – ViaFrei	B 51: поточні й заплановані дорожні роботи, перекриття та об’їзди, з початком і кінцем, населені пункти і карта – наживо з відкритих даних, з джерелом.
+road	ro	B 51 Dortmund: închideri și lucrări acum – ViaFrei	B 51: lucrări, închideri și ocoliri actuale și planificate, cu început și sfârșit, localitățile afectate și o hartă – live din date deschise, cu sursă.
+road	tr	B 51 Dortmund: güncel kapanmalar ve yol çalışmaları	B 51: güncel ve planlanan yol çalışmaları, kapanmalar ve alternatif yollar, başlangıç ve bitişleri, yerler ve harita – açık verilerden canlı, kaynaklı.
+road	fr	B 51 Dortmund : fermetures et travaux en cours – ViaFrei	B 51 : travaux, fermetures et déviations en cours et prévus, avec début et fin, les communes concernées et une carte – en direct, données ouvertes et sources.
+road	es	B 51 Dortmund: cortes y obras ahora – ViaFrei	B 51: obras, cortes y desvíos actuales y previstos, con su inicio y su fin, las localidades afectadas y un mapa – en directo con datos abiertos y fuente.
+road	nl	B 51 Dortmund: afsluitingen en wegwerkzaamheden nu – ViaFrei	B 51: huidige en geplande werkzaamheden, afsluitingen en omleidingen, met begin en einde, de plaatsen en een kaart – live uit open data, met bron.
+road	pl	B 51 Dortmund: aktualne zamknięcia i roboty drogowe	B 51: bieżące i planowane roboty drogowe, zamknięcia i objazdy, z początkiem i końcem, miejscowości oraz mapa – na żywo z otwartych danych, ze źródłem.
+road	it	B 51 Dortmund: chiusure e cantieri attuali – ViaFrei	B 51: lavori, chiusure e deviazioni in corso e previsti, con inizio e fine, le località interessate e una mappa – in diretta da dati aperti, con fonte.
+road	lt	B 51 Dortmund: dabartiniai uždarymai ir kelio darbai	B 51: esami ir planuojami kelio darbai, uždarymai ir apylankos, su pradžia ir pabaiga, paveiktos vietovės ir žemėlapis – tiesiogiai iš atvirų duomenų.
+road	cs	B 51 Dortmund: aktuální uzavírky a stavby – ViaFrei	B 51: aktuální a plánované práce na silnici, uzavírky a objížďky, se začátkem a koncem, dotčená místa a mapa – živě z otevřených dat, se zdrojem.
+road	hu	B 51 Dortmund: aktuális lezárások és útépítések – ViaFrei	B 51: aktuális és tervezett útépítések, lezárások és terelések, kezdettel és véggel, az érintett helyek és térkép – élőben, nyílt adatokból, forrással.
+road	sk	B 51 Dortmund: aktuálne uzávierky a stavby – ViaFrei	B 51: aktuálne a plánované práce na ceste, uzávierky a obchádzky, so začiatkom a koncom, dotknuté miesta a mapa – naživo z otvorených dát, so zdrojom.
+road	da	B 51 Dortmund: aktuelle spærringer og vejarbejde – ViaFrei	B 51: aktuelle og planlagte vejarbejder, spærringer og omkørsler, med start og slut, de berørte steder og et kort – live fra åbne data, med kilde.
+road	pt	B 51 Dortmund: cortes e obras agora – ViaFrei	B 51: obras, cortes e desvios atuais e previstos, com início e fim, as localidades afetadas e um mapa – em direto, de dados abertos, com fonte.
+road	hr	B 51 Dortmund: trenutačne zatvorbe i radovi – ViaFrei	B 51: aktualni i planirani radovi, zatvaranja i obilasci, s početkom i krajem, pogođena mjesta i karta – uživo iz otvorenih podataka, s izvorom.
+road	sr	B 51 Dortmund: тренутна затварања и радови – ViaFrei	B 51: актуелни и планирани радови, затварања и обилазнице, са почетком и крајем, погођена места и мапа – уживо из отворених података.
+road	el	B 51 Dortmund: τρέχοντα κλεισίματα και έργα – ViaFrei	B 51: τρέχοντα και προγραμματισμένα έργα, κλεισίματα και παρακάμψεις, με αρχή και τέλος, οι περιοχές και χάρτης – ζωντανά από ανοιχτά δεδομένα, με πηγή.
+road	lv	B 51 Dortmund: aktuālās slēgšanas un ceļa darbi – ViaFrei	B 51: pašreizējie un plānotie ceļa darbi, slēgšanas un apvedceļi, ar sākumu un beigām, skartās vietas un karte – tiešraidē no atvērtajiem datiem.
+exit	de	A7 Musterstadt-Mitte 30: Stau aktuell – ViaFrei	Musterstadt-Mitte 30 (A7): Sperrungen, Stau und Baustellen hier und in beiden Richtungen, dazu Tanken, Laden und Parken in der Nähe.
+exit	en	A7 Musterstadt-Mitte 30: traffic jam now – ViaFrei	Musterstadt-Mitte 30 (A7): closures, jams and roadworks here and in both directions, plus fuel, charging and parking nearby – live from open data, with sources.
+exit	ru	A7 Musterstadt-Mitte 30: пробка сейчас – ViaFrei	Musterstadt-Mitte 30 (A7): перекрытия, пробки и дорожные работы здесь и в обоих направлениях, а также АЗС, зарядка и парковки – онлайн по открытым данным.
+exit	bg	A7 Musterstadt-Mitte 30: задръстване сега – ViaFrei	Musterstadt-Mitte 30 (A7): затваряния, задръствания и ремонти тук и в двете посоки, плюс гориво, зареждане и паркиране наблизо.
+exit	uk	A7 Musterstadt-Mitte 30: затор зараз – ViaFrei	Musterstadt-Mitte 30 (A7): перекриття, затори й дорожні роботи тут і в обох напрямках, а також пальне, зарядка й паркування поруч.
+exit	ro	A7 Musterstadt-Mitte 30: ambuteiaj acum – ViaFrei	Musterstadt-Mitte 30 (A7): închideri, ambuteiaje și lucrări aici și în ambele sensuri, plus carburant, încărcare și parcare aproape.
+exit	tr	A7 Musterstadt-Mitte 30: şu an sıkışık – ViaFrei	Musterstadt-Mitte 30 (A7): burada ve her iki yönde kapanmalar, trafik ve yol çalışmaları, yakınlarda yakıt, şarj ve otopark – açık verilerden canlı, kaynaklı.
+exit	fr	A7 Musterstadt-Mitte 30: bouchon en cours – ViaFrei	Musterstadt-Mitte 30 (A7) : fermetures, bouchons et travaux ici et dans les deux sens, plus carburant, recharge et parkings proches.
+exit	es	A7 Musterstadt-Mitte 30: atasco ahora – ViaFrei	Musterstadt-Mitte 30 (A7): cortes, atascos y obras aquí y en ambos sentidos, además de gasolineras, recarga y aparcamiento cerca.
+exit	nl	A7 Musterstadt-Mitte 30: file nu – ViaFrei	Musterstadt-Mitte 30 (A7): afsluitingen, files en werkzaamheden hier en in beide richtingen, plus tanken, laden en parkeren vlakbij.
+exit	pl	A7 Musterstadt-Mitte 30: korek teraz – ViaFrei	Musterstadt-Mitte 30 (A7): zamknięcia, korki i roboty drogowe tutaj i w obu kierunkach, a także paliwo, ładowanie i parkingi obok.
+exit	it	A7 Musterstadt-Mitte 30: coda adesso – ViaFrei	Musterstadt-Mitte 30 (A7): chiusure, code e lavori qui e in entrambe le direzioni, oltre a carburante, ricarica e parcheggi vicini.
+exit	lt	A7 Musterstadt-Mitte 30: spūstis dabar – ViaFrei	Musterstadt-Mitte 30 (A7): uždarymai, spūstys ir kelio darbai čia ir abiem kryptimis, kuras, įkrovimas ir stovėjimas netoliese – tiesiogiai iš atvirų duomenų.
+exit	cs	A7 Musterstadt-Mitte 30: kolona teď – ViaFrei	Musterstadt-Mitte 30 (A7): uzavírky, kolony a práce na silnici zde i v obou směrech, k tomu tankování, nabíjení a parkování poblíž.
+exit	hu	A7 Musterstadt-Mitte 30: torlódás most – ViaFrei	Musterstadt-Mitte 30 (A7): lezárások, torlódások és útépítések itt és mindkét irányban, tankolás, töltés és parkolás a közelben.
+exit	sk	A7 Musterstadt-Mitte 30: kolóna teraz – ViaFrei	Musterstadt-Mitte 30 (A7): uzávierky, kolóny a práce na ceste tu aj v oboch smeroch, k tomu tankovanie, nabíjanie a parkovanie.
+exit	da	A7 Musterstadt-Mitte 30: kø lige nu – ViaFrei	Musterstadt-Mitte 30 (A7): spærringer, kø og vejarbejde her og i begge retninger samt tankning, opladning og parkering i nærheden.
+exit	pt	A7 Musterstadt-Mitte 30: fila agora – ViaFrei	Musterstadt-Mitte 30 (A7): cortes, filas e obras aqui e nos dois sentidos, além de combustível, carregamento e estacionamento perto.
+exit	hr	A7 Musterstadt-Mitte 30: gužva sada – ViaFrei	Musterstadt-Mitte 30 (A7): zatvaranja, gužve i radovi ovdje i u oba smjera, uz gorivo, punjenje i parkiranje u blizini – uživo iz otvorenih podataka, s izvorom.
+exit	sr	A7 Musterstadt-Mitte 30: гужва сада – ViaFrei	Musterstadt-Mitte 30 (A7): затварања, гужве и радови овде и у оба смера, уз гориво, пуњење и паркирање у близини – уживо из отворених података.
+exit	el	A7 Musterstadt-Mitte 30: μποτιλιάρισμα τώρα – ViaFrei	Musterstadt-Mitte 30 (A7): κλεισίματα, μποτιλιαρίσματα και έργα εδώ και στις δύο κατευθύνσεις, καύσιμα, φόρτιση και στάθμευση κοντά.
+exit	lv	A7 Musterstadt-Mitte 30: sastrēgums tagad – ViaFrei	Musterstadt-Mitte 30 (A7): slēgšanas, sastrēgumi un ceļa darbi šeit un abos virzienos, degviela, uzlāde un stāvvietas tuvumā – tiešraidē no atvērtajiem datiem.
 motorways	de	Autobahn Stau, Baustellen & Sperrungen aktuell – Deutschland	Autobahn-Baustellen und Sperrungen in Deutschland jetzt: 18 Sperrungen, 20 Staus und 121 Baustellen gemeldet.
 motorways	en	Autobahn traffic jams & roadworks now – Germany – ViaFrei	German motorway roadworks and closures now: 18 closures, 20 jams and 121 roadworks reported – every Autobahn with its map, live from the motorway operator.
 motorways	ru	Пробки и ремонт на автобанах сейчас – Германия – ViaFrei	Ремонт и перекрытия на автобанах Германии сейчас: 18 перекрытий, 20 пробок и 121 участок работ – каждый автобан с картой, онлайн по данным оператора.
