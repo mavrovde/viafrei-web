@@ -26,3 +26,15 @@ paths = [
   '''^packages/web/test/staging-1235\.test\.ts$''',
 ]
 regexes = ['''^(?:0123456789abcdef){1,2}$''', '''^abcdef0123456789$''']
+
+# The sha256 of viafrei-api v0.3.0's published api/openapi.json (the SHA256SUMS line of that public release),
+# written once into the generated client contract by commit f1e85be of pull request 37 under a field named
+# openapiSha256, whose "api" the default rule reads as a key name. It is a public checksum, not a key; the field is
+# now named contractSha256, which the rule does not match, so this literal in this one file is the only exception.
+[[allowlists]]
+description = "the public sha256 of viafrei-api v0.3.0's openapi.json in the generated client contract"
+targetRules = ["generic-api-key"]
+condition = "AND"
+regexTarget = "secret"
+paths = ['''^packages/web/src/generated/api-operations\.ts$''']
+regexes = ['''^ab6fb03352058ac3f9b8ac05709219c846f1c70635d0dadf620e587224b42911$''']
