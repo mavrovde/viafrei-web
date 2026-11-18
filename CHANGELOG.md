@@ -1,6 +1,16 @@
 # Changelog
 
+## [0.2.1](https://github.com/mavrovde/viafrei-web/compare/v0.2.0...v0.2.1) (2026-11-18)
+
+
+### Fixed
+
+* **web:** the road and the home with a place fit eight desktop screens again at 1280x800 ([#43](https://github.com/mavrovde/viafrei-web/issues/43)) ([fbc2593](https://github.com/mavrovde/viafrei-web/commit/fbc25937baf5f9c5081da6de41eb4089db2e1162))
+
 ## [0.2.0](https://github.com/mavrovde/viafrei-web/compare/v0.1.1...v0.2.0) (2026-11-18)
+
+
+0.2.0 was tagged, but its image was never published: the release's browser suite failed the eight-desktop-screens rule on the road page and the home with a place at 1280×800 (fixed in 0.2.1). 0.2.1 is the first published 0.2 release.
 
 
 ### Added
