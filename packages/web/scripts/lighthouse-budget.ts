@@ -1,6 +1,6 @@
 /**
  * The mobile page-experience budget (#1310 D1, #1030): Lighthouse's mobile profile (Moto G Power, simulated slow 4G),
- * the MEDIAN of three runs per page, on the pages a driver lands on from search — /de, /de/autobahn, a motorway page, a
+ * the MEDIAN of five runs per page, on the pages a driver lands on from search — /de, /de/autobahn, a motorway page, a
  * second motorway page, a place page and one exit page — of the BUILT shell fed by the real digest renderer over the
  * fixture snapshot, through the edge's compression (`e2e/gzip-front.ts`). Budget, each median:
  * LCP ≤ 2.5 s, CLS ≤ 0.1, TBT ≤ 200 ms.
