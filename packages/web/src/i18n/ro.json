@@ -230,9 +230,9 @@
         "title": "Dimineața spre serviciu",
         "scene": "7:10, cafeaua în mână: transportul public circulă normal — și e trenul meu la timp?",
         "q1": "Circulă acum la timp autobuzele și trenurile în Hamburg?",
-        "a1": "{share} % dintre cursele observate în ultima oră au întârziat peste 5 minute – cam la fel ca în ora dinainte ({before} %).",
+        "a1": "{share} % dintre cursele observate în ultima oră au întârziat peste 5 minute – mai multe decât în ora dinainte ({before} %).",
         "limit": "Arătăm punctualitatea pe regiuni, nu pe linii.",
-        "q2": "Când pleacă următorul tren din Gara Centrală din Hanovra și are întârziere?",
+        "q2": "Când pleacă următorul tren din Gara Centrală din Leipzig și are întârziere?",
         "q3": "Sunt trenuri anulate pe tabela Gării Centrale din Köln în următoarea oră?",
         "a2": "{l1} spre {d1} (programat la {t1}, linia {p1}) are +{delay} min și pleacă pe la {exp}; apoi, la timp, {l2} spre {d2} la {t2}.",
         "a3": "Niciuna anulată: {n} plecări până la {last}; cea mai mare întârziere o are {l1} spre {d1}, +{delay} min."
@@ -245,15 +245,15 @@
         "a1": "{s1}, la {km},{kmd} km; apoi {s2} și {s3}.",
         "limit": "Mersul fiecărei stații de autobuz și tramvai îl vom arăta după ce va fi încărcat — până atunci, gările și situația din regiunea ta.",
         "board": "Mersul la stația ta",
-        "a2": "Următorul este {l1} spre {d1} la {t1} de la linia {p1}, la timp; {l2} spre {d2} de la {t2} are +{delay2} min – pe la {exp2}.",
-        "q3": "Pleacă acum trenuri cu întârziere din Gara Centrală din Leipzig?",
+        "a2": "Următorul este {l1} spre {d1} de la {t1} de la linia {p1}, are +{delay1} min – pe la {exp1}; {l2} spre {d2} are +{delay2} min – pe la {exp2}.",
+        "q3": "Pleacă acum trenuri cu întârziere din Gara Centrală din Dresda?",
         "a3": "Da, două: {l1} spre {d1}, +{dl1} min, de la linia {p1}, și {l2} spre {d2}, +{dl2} min; celelalte {n} plecări următoare sunt la timp."
       },
       "station": {
         "title": "La gară",
         "scene": "Cu căruciorul, în scaun cu rotile sau cu bagaje: funcționează liftul spre peron?",
         "q1": "Funcționează liftul în Gara Centrală din Köln?",
-        "a1": "La {station} funcționează {working} din {total} lifturi raportate; unul nu funcționează, pentru unul calea ferată nu raportează starea.",
+        "a1": "La {station} funcționează {working} din {total} lifturi raportate; pentru unul calea ferată nu raportează starea.",
         "limit": "Lifturi și scări rulante în gările Deutsche Bahn; alți operatori încă nu.",
         "q2": "Funcționează toate lifturile din gara Erlangen?",
         "a2": "Da: singurul lift raportat în {station}, spre liniile {platforms}, funcționează.",
@@ -264,7 +264,7 @@
         "title": "La volan",
         "scene": "Înainte de plecare: ambuteiaje, închideri, lucrări — și unde e carburantul ieftin acum.",
         "q1": "E liberă acum A8 spre München?",
-        "a1": "Nu chiar: între {a} și {b}, spre München, poliția raportează un accident; banda de urgență este blocată.",
+        "a1": "Da: spre München nu este raportat acum niciun ambuteiaj; cele {jams} ambuteiaje de pe A8 sunt pe alte direcții.",
         "a1more": "Pe toată A8 mai sunt listate {closures} închideri și {works} înregistrări de lucrări.",
         "limit": "Fără planificarea rutei: spunem ce se întâmplă pe autostradă, nu pe unde să conduci.",
         "q2": "Ce lucrări sunt acum pe A7?",
@@ -276,13 +276,13 @@
         "title": "În ambuteiaj",
         "scene": "Ambuteiaje pe autostradă și în jurul orașelor: unde stă traficul, cât timp costă — și dacă se închide drumul la noapte.",
         "q1": "Cât timp costă acum ambuteiajul de pe A3 între Frankfurt și Würzburg?",
-        "a1": "Între {a} și {b}, spre Frankfurt, cam +{delay} min, după un accident; pe toată A3 sunt raportate {jams} ambuteiaje.",
+        "a1": "Între {a} și {b}, spre Würzburg, cam +{delay} min; pe toată A3 sunt raportate {jams} ambuteiaje.",
         "a1more": "Pe listă: {closures} închideri și {works} înregistrări de lucrări.",
         "limit": "În orașe vedem autostrăzile urbane, iar în Berlin, Köln și Hanovra și mesajele de trafic ale orașelor – încă nu situația de pe fiecare stradă. Mesajele pentru Hamburg și starea traficului pentru Köln au fost solicitate de la furnizori.",
         "q2": "Este aglomerat acum inelul de autostrăzi din Köln — A1, A3 sau A4?",
         "q3": "Este închisă azi A7 în Hamburg?",
         "a3": "Este raportată o închidere între ieșirile {a} și {b} (lărgire la opt benzi, noul {tunnel}); pe toată A7 sunt {n} închideri.",
-        "a2": "Da, pe A4: între {a} și {b}, spre Köln, traficul e îngreunat, cam +{delay} min; pe autostrăzile întrebate sunt raportate {n} ambuteiaje."
+        "a2": "Da, pe A4: între {a} și {b}, spre Köln, poliția raportează un ambuteiaj de {km} km; pe autostrăzile întrebate sunt raportate {n} ambuteiaje."
       },
       "parking": {
         "title": "Parcare",
@@ -336,22 +336,22 @@
       "goerlitz": {
         "q": "Unde este acum cea mai ieftină motorină în Görlitz?",
         "why": "Prețurile se schimbă de mai multe ori pe zi și diferă chiar între câteva benzinării din același oraș: ViaFrei o numește pe cea mai ieftină, cu prețul ei și ora la care benzinăria l-a raportat.",
-        "a": "Încă niciun preț nou – cel mai mic dintre ultimele cunoscute: {euro},{cent} €/l la {station}, {address}, raportat pe {reported}; ViaFrei cere acum unul nou."
+        "a": "{euro},{cent} €/l la {station}, {address} – raportat la {reported}."
       },
       "muenchen": {
         "q": "Unde este acum cea mai ieftină benzină E10 în München?",
-        "why": "Un preț poate fi de dimineață: pentru München, în acea după-amiază, ViaFrei avea doar prețuri de dimineață, a dat fiecare cu ora lui și a cerut altele noi.",
+        "why": "Un preț poate fi din seara precedentă: pentru München, în acea după-amiază, ViaFrei nu avea niciun preț nou, a dat cel mai ieftin cu ora lui din seara precedentă și a cerut altele noi.",
         "a": "Încă niciun preț nou – cel mai mic dintre ultimele cunoscute: {euro},{cent} €/l la {station}, {address}, raportat pe {reported}; ViaFrei cere acum unul nou."
       },
       "leipzig": {
         "q": "Unde este acum cea mai ieftină benzină E5 în Leipzig?",
-        "why": "Un preț poate fi vechi de câteva ore: ViaFrei spune când a raportat benzinăria fiecare preț – în acea după-amiază, cele mai ieftine din Leipzig erau încă de dimineață.",
-        "a": "Încă niciun preț nou – cel mai mic dintre ultimele cunoscute: {euro},{cent} €/l la {station}, {address}, raportat pe {reported}."
+        "why": "Cea mai apropiată benzinărie nu e mereu cea mai ieftină: ViaFrei dă distanța la fiecare preț.",
+        "a": "{euro},{cent} €/l la {station}, {address} – raportat la {reported}."
       },
       "nuernberg": {
         "q": "Unde e cea mai ieftină motorină în Nürnberg acum?",
-        "why": "Cea mai apropiată benzinărie nu e mereu cea mai ieftină: ViaFrei dă distanța la fiecare preț.",
-        "a": "{euro},{cent} €/l la {station}, {address} – raportat la {reported}."
+        "why": "Un preț poate fi vechi de câteva ore: ViaFrei spune când a raportat benzinăria fiecare preț.",
+        "a": "Încă niciun preț nou – cel mai mic dintre ultimele cunoscute: {euro},{cent} €/l la {station}, {address}, raportat pe {reported}; ViaFrei cere acum unul nou."
       }
     },
     "fuelAll": "Până la trei benzinării în fiecare land, cu adresă și preț",
@@ -389,7 +389,7 @@
       "stadtbahn": {
         "title": "Lifturi și scări rulante la metroul ușor",
         "q": "Ce nu funcționează acum la stația de metrou ușor {stop} din Köln?",
-        "a": "{out} din {total} instalații raportate: scările rulante {e1} și {e2}, raportate din {since}, {e3} din {since3} și {e4} din {since4}; ambele lifturi funcționează. {publisher} furnizează datele fără nicio garanție.",
+        "a": "{out} din {total} instalații raportate: scările rulante {e1} și {e2}, raportate din {since} și {e3} din {since3}; ambele lifturi funcționează. {publisher} furnizează datele fără nicio garanție.",
         "note": "Pentru stațiile metroului ușor din Köln, din lista de defecțiuni publicată – cu ora de la care o instalație e raportată."
       },
       "bikes": {
@@ -401,7 +401,7 @@
       "lift": {
         "title": "Lifturi în gară",
         "q": "Ce lifturi din gara {station} nu funcționează acum?",
-        "a": "Unul este raportat defect, un lift spre liniile {platforms}: {working} din {total} lifturi funcționează. Celălalt lift spre liniile {platforms} nu este monitorizat – starea lui este necunoscută.",
+        "a": "Niciunul nu este raportat defect: {working} din {total} lifturi funcționează. Un lift spre liniile {platforms} nu este monitorizat – starea lui este necunoscută.",
         "note": "Pentru gările Deutsche Bahn, citite la fiecare 20 de minute. Ce nu menționează ultimul raport înseamnă „necunoscut” – niciodată „funcționează”."
       },
       "alert": {
@@ -419,13 +419,13 @@
       "ecomove": {
         "title": "Ocupare live printr-un agregator",
         "q": "Există acum un punct liber la încărcătorul rapid de la {address}?",
-        "a": "{site}: până la {kw} kW, {euro},{cent} €/kWh; ultima stare e din {t} – prea veche ca să spunem „liber”.",
+        "a": "{site}: până la {kw} kW, {euro},{cent} €/kWh; ultima stare e din {t}: {free} liber, {busy} ocupat – poate fi depășită.",
         "note": "Aici ocuparea vine de la un serviciu care adună rapoartele multor operatori. Un punct fără raport nu este niciodată socotit liber."
       },
       "ocpdb": {
         "title": "Liber sau ocupat, live – în Köln",
         "q": "Există acum un punct de încărcare liber la stația de la {address}?",
-        "a": "Da, unul: Tip 2 până la {kw2} kW e liber, punctul CCS până la {kw} kW e defect – {euro},{cent} €/kWh fără TVA.",
+        "a": "Da, ambele puncte sunt libere: CCS și Tip 2 până la {kw} kW – {euro},{cent} €/kWh fără TVA.",
         "note": "Ocuparea vine live prin portalul de date al landului Baden-Württemberg, care include și stații departe de granițele sale."
       },
       "lsr": {
@@ -467,7 +467,7 @@
       "landroad": {
         "title": "Lucrări pe un drum de land",
         "q": "Sunt lucrări săptămâna aceasta pe L1025 în Turingia?",
-        "a": "{count} șantiere, printre ele: {site}, o îngustare cu semafor, între {from} și {to}.",
+        "a": "Un șantier: {site}, o îngustare cu semafor, între {from} și {to}.",
         "note": "Cunoaștem drumurile de land din Baden-Württemberg, Saxonia Inferioară, Turingia și Saxonia, din datele administrațiilor rutiere: porțiune și perioadă, fără coordonate și fără întârziere în timp real."
       },
       "saxony": {
@@ -527,17 +527,17 @@
       "weather": {
         "title": "Verificarea vremii înainte de munte",
         "q": "Există azi o avertizare meteo pentru {name}?",
-        "a": "Da, pentru noaptea care vine: Serviciul Meteorologic German avertizează de îngheț slab până la {temp} °C, valabil pe {day} de la {from} la {to} – nivelul {level}, cel mai scăzut.",
+        "a": "Da: Serviciul Meteorologic German avertizează de rafale puternice de furtună peste {alt} m, valabil până pe {day} la {to} – nivelul {level} din 4.",
         "note": "Avertizările sunt citite la fiecare 5 minute și se aplică pe zone; una nouă poate apărea oricând."
       },
       "fuelcity": {
         "title": "Cel mai ieftin E10 din oraș",
         "q": "Unde e acum cel mai ieftin Super E10 în Köln?",
-        "a": "{euro},{cent} €/l la {station}, {address} – raportat la {reported}.",
+        "a": "Încă niciun preț nou – cel mai mic dintre ultimele cunoscute: {euro},{cent} €/l la {station}, {address}, raportat pe {reported}; ViaFrei cere acum unul nou.",
         "note": "Prețurile carburanților se schimbă la câteva minute: cifra aceasta e un exemplu din acea după-amiază, nu prețul de azi. ViaFrei spune când a raportat stația fiecare preț."
       },
       "charger": {
-        "a": "În {site}: {points} puncte de încărcare, Tip 2, până la {kw},{kwd} kW, {euro},{cent} €/kWh fără TVA. Niciunul nu se raportează ocupat; pentru {stale}, ultima stare e din {t}, pentru {unknown} nu există – deci nu „liber”.",
+        "a": "În {site}: {points} puncte de încărcare, Tip 2, până la {kw},{kwd} kW, {euro},{cent} €/kWh fără TVA. Ultima stare e din {t}: {free} libere, {busy} ocupate, {out} defect, pentru {unknown} nu există – poate fi depășită.",
         "title": "Starea live a unei stații de încărcare",
         "q": "Există acum un punct de încărcare liber la {address}?",
         "note": "Ocuparea live o indicăm doar acolo unde operatorul o publică – aici prin e-clearing.net. Fără raport, răspunsul este „fără date de stare”, niciodată „liber”."

@@ -230,9 +230,9 @@
         "title": "Rytinė kelionė į darbą",
         "scene": "7:10, kava rankoje: ar viešasis transportas važiuoja įprastai — ir ar mano traukinys laiku?",
         "q1": "Ar autobusai ir traukiniai Hamburge šiuo metu važiuoja laiku?",
-        "a1": "{share} % per pastarąją valandą stebėtų reisų vėlavo daugiau nei 5 minutes — panašiai kaip valandą prieš tai ({before} %).",
+        "a1": "{share} % per pastarąją valandą stebėtų reisų vėlavo daugiau nei 5 minutes — daugiau nei valandą prieš tai ({before} %).",
         "limit": "Punktualumą rodome pagal regioną, ne pagal liniją.",
-        "q2": "Kada išvyksta kitas traukinys iš Hanoverio centrinės stoties ir ar jis vėluoja?",
+        "q2": "Kada išvyksta kitas traukinys iš Leipcigo centrinės stoties ir ar jis vėluoja?",
         "q3": "Ar per artimiausią valandą atšauktas koks nors traukinys iš Kelno centrinės stoties išvykimų lentos?",
         "a2": "Kitas — {l1} į {d1} (pagal tvarkaraštį {t1}, kelias {p1}), vėluoja +{delay} min, išvyks apie {exp}; po jo {l2} į {d2} {t2}, laiku.",
         "a3": "Neatšauktas nė vienas: {n, plural, one {# išvykimas} few {# išvykimai} many {# išvykimo} other {# išvykimų}} iki {last}; labiausiai vėluoja {l1} į {d1}, +{delay} min."
@@ -245,15 +245,15 @@
         "a1": "{s1}, už {km},{kmd} km; toliau {s2} ir {s3}.",
         "limit": "Kiekvienos autobusų ir tramvajų stotelės tvarkaraštį rodysime, kai tik jis bus įkeltas — iki tol stotis ir padėtį jūsų regione.",
         "board": "Tvarkaraštis jūsų stotelėje",
-        "a2": "Kitas — {l1} į {d1} {t1} iš kelio {p1}, laiku; {l2} į {d2}, numatytas {t2}, +{delay2} min, išvyks apie {exp2}.",
-        "q3": "Ar traukiniai iš Leipcigo centrinės stoties šiuo metu vėluoja?",
+        "a2": "Kitas — {l1} į {d1}, numatytas {t1} iš kelio {p1}, +{delay1} min, išvyks apie {exp1}; {l2} į {d2}, +{delay2} min, išvyks apie {exp2}.",
+        "q3": "Ar traukiniai iš Drezdeno centrinės stoties šiuo metu vėluoja?",
         "a3": "Taip, du: {l1} į {d1}, +{dl1} min, iš kelio {p1}, ir {l2} į {d2}, +{dl2} min; {n, plural, one {kitas # artimiausias išvykimas laiku} few {kiti # artimiausi išvykimai laiku} many {kiti # artimiausio išvykimo laiku} other {kiti # artimiausių išvykimų laiku}}."
       },
       "station": {
         "title": "Stotyje",
         "scene": "Su vežimėliu, neįgaliojo vežimėliu ar bagažu: ar veikia liftas į peroną?",
         "q1": "Ar veikia liftas Kelno centrinėje stotyje?",
-        "a1": "{station}: veikia {working} iš {total} nurodytų liftų; vienas neveikia, vieno būsenos geležinkelis nepraneša.",
+        "a1": "{station}: veikia {working} iš {total} nurodytų liftų; vieno būsenos geležinkelis nepraneša.",
         "limit": "Liftai ir eskalatoriai Deutsche Bahn stotyse; kitų operatorių kol kas ne.",
         "q2": "Ar veikia visi liftai Erlangeno stotyje?",
         "a2": "Taip: vienintelis nurodytas liftas stotyje {station}, į peroną {platforms}, veikia.",
@@ -264,7 +264,7 @@
         "title": "Kelyje",
         "scene": "Prieš išvykstant: spūstys, uždarymai, kelio darbai — ir kur degalai šiuo metu pigūs.",
         "q1": "Ar A8 Miuncheno kryptimi šiuo metu laisvas?",
-        "a1": "Ne visai: tarp {a} ir {b} Miuncheno kryptimi policija praneša apie avariją; avarinė juosta užblokuota.",
+        "a1": "Taip: Miuncheno kryptimi dabar spūsčių nepranešta; A8 spūstys ({jams}) yra kitomis kryptimis.",
         "a1more": "Visame A8 dar nurodyta: uždarymų {closures}, kelio darbų įrašų {works}.",
         "limit": "Jokio maršruto planavimo: sakome, kas vyksta greitkelyje, o ne kuriuo keliu jums važiuoti.",
         "q2": "Kokie kelio darbai šiuo metu vyksta A7?",
@@ -276,13 +276,13 @@
         "title": "Spūstyje",
         "scene": "Spūstys greitkelyje ir aplink miestus: kur eismas stovi, kiek laiko tai kainuoja — ir ar šiąnakt bus uždarymas.",
         "q1": "Kiek laiko šiuo metu kainuoja spūstis A3 tarp Frankfurto ir Viurcburgo?",
-        "a1": "Tarp {a} ir {b} Frankfurto kryptimi apie +{delay} min po avarijos; visame A3 pranešta spūsčių: {jams}.",
+        "a1": "Tarp {a} ir {b} Viurcburgo kryptimi apie +{delay} min; visame A3 pranešta spūsčių: {jams}.",
         "a1more": "A3 nurodyta: uždarymų {closures}, kelio darbų įrašų {works}.",
         "limit": "Miestuose matome miesto greitkelius, o Berlyne, Kelne ir Hanoveryje — ir pačių miestų eismo pranešimus, bet kol kas ne padėtį kiekvienoje gatvėje. Hamburgo pranešimų ir Kelno eismo būklės paprašėme tiekėjų.",
         "q2": "Ar šiuo metu yra spūsčių Kelno greitkelių žiede — A1, A3 ar A4?",
         "q3": "Ar šiandien A7 Hamburge uždarytas?",
         "a3": "Pranešta apie uždarymą tarp {a} ir {b} sankryžų (platinama iki aštuonių eismo juostų, naujas {tunnel}); visame A7 {n, plural, one {# uždarymas} few {# uždarymai} many {# uždarymo} other {# uždarymų}}.",
-        "a2": "Taip, A4: tarp {a} ir {b} Kelno kryptimi eismas lėtas, apie +{delay} min; klaustuose greitkeliuose pranešta spūsčių: {n}."
+        "a2": "Taip, A4: tarp {a} ir {b} Kelno kryptimi policija praneša apie {km} km spūstį; klaustuose greitkeliuose pranešta spūsčių: {n}."
       },
       "parking": {
         "title": "Parkavimas",
@@ -336,22 +336,22 @@
       "goerlitz": {
         "q": "Kur Gerlice šiuo metu pigiausias dyzelinas?",
         "why": "Kainos keičiasi kelis kartus per dieną ir skiriasi net tarp kelių degalinių viename mieste: ViaFrei nurodo pigiausią su kaina ir laiku, kada degalinė ją pranešė.",
-        "a": "Naujos kainos dar nėra — mažiausia paskutinė žinoma: {euro},{cent} €/l degalinėje {station}, {address}, pranešta {reported}; ViaFrei prašo naujos."
+        "a": "{euro},{cent} €/l degalinėje {station}, {address} — pranešta {reported}."
       },
       "muenchen": {
         "q": "Kur Miunchene šiuo metu pigiausias benzinas E10?",
-        "why": "Kaina gali būti rytinė: tą popietę ViaFrei Miunchene turėjo tik ryto kainas, kiekvieną pateikė su laiku ir paprašė naujų.",
+        "why": "Kaina gali būti iš vakarykščio vakaro: tą popietę ViaFrei Miunchene neturėjo naujos kainos, pigiausią pateikė su vakarykščio vakaro laiku ir paprašė naujų.",
         "a": "Naujos kainos dar nėra — mažiausia paskutinė žinoma: {euro},{cent} €/l degalinėje {station}, {address}, pranešta {reported}; ViaFrei prašo naujos."
       },
       "leipzig": {
         "q": "Kur Leipcige šiuo metu pigiausias benzinas E5?",
-        "why": "Kaina gali būti kelių valandų senumo: ViaFrei nurodo, kada degalinė pranešė kiekvieną kainą — tą popietę pigiausia Leipcige vis dar buvo iš ryto.",
-        "a": "Naujos kainos dar nėra — mažiausia paskutinė žinoma: {euro},{cent} €/l degalinėje {station}, {address}, pranešta {reported}."
+        "why": "Artimiausia degalinė ne visada pigiausia: ViaFrei prie kiekvienos kainos nurodo atstumą.",
+        "a": "{euro},{cent} €/l degalinėje {station}, {address} — pranešta {reported}."
       },
       "nuernberg": {
         "q": "Kur Niurnberge šiuo metu pigiausias dyzelinas?",
-        "why": "Artimiausia degalinė ne visada pigiausia: ViaFrei prie kiekvienos kainos nurodo atstumą.",
-        "a": "{euro},{cent} €/l degalinėje {station}, {address} — pranešta {reported}."
+        "why": "Kaina gali būti kelių valandų senumo: ViaFrei nurodo, kada degalinė pranešė kiekvieną kainą.",
+        "a": "Naujos kainos dar nėra — mažiausia paskutinė žinoma: {euro},{cent} €/l degalinėje {station}, {address}, pranešta {reported}; ViaFrei prašo naujos."
       }
     },
     "fuelAll": "Iki trijų degalinių kiekvienoje žemėje, su adresu ir kaina",
@@ -389,7 +389,7 @@
       "stadtbahn": {
         "title": "Lengvojo metro (Stadtbahn) liftai ir eskalatoriai",
         "q": "Kas šiuo metu neveikia Kelno lengvojo metro stotelėje {stop}?",
-        "a": "Neveikia {out} iš {total} įrenginių: eskalatoriai {e1} ir {e2} nuo {since}, {e3} nuo {since3} ir {e4} nuo {since4}; abu liftai veikia. {publisher} teikia duomenis be jokios garantijos.",
+        "a": "Neveikia {out} iš {total} įrenginių: eskalatoriai {e1} ir {e2} nuo {since} ir {e3} nuo {since3}; abu liftai veikia. {publisher} teikia duomenis be jokios garantijos.",
         "note": "Kelno lengvojo metro stotelėms, iš paskelbto gedimų sąrašo – su laiku, kada pranešta apie kiekvieną gedimą."
       },
       "bikes": {
@@ -401,7 +401,7 @@
       "lift": {
         "title": "Liftai stotyje",
         "q": "Kurie liftai stotyje {station} šiuo metu neveikia?",
-        "a": "Vienas praneštas kaip neveikiantis — liftas į peronus {platforms}: veikia {working} iš {total} liftų. Kitas liftas į peronus {platforms} nestebimas – jo būsena nežinoma.",
+        "a": "Nė vienas nepraneštas kaip neveikiantis: veikia {working} iš {total} liftų. Vienas liftas į peronus {platforms} nestebimas – jo būsena nežinoma.",
         "note": "Deutsche Bahn stotims, nuskaitoma kas 20 minučių. Tai, ko naujausias pranešimas nemini, yra „nežinoma“ – niekada ne „veikia“."
       },
       "alert": {
@@ -419,13 +419,13 @@
       "ecomove": {
         "title": "Gyvas užimtumas per agregatorių",
         "q": "Ar šiuo metu laisvas įkrovimo taškas greitojo įkrovimo stotelėje adresu {address}?",
-        "a": "{site}: iki {kw} kW, {euro},{cent} €/kWh; paskutinė būsena iš {t} — per sena, kad sakytume „laisva“.",
+        "a": "{site}: iki {kw} kW, {euro},{cent} €/kWh; paskutinė būsena iš {t}: laisvi {free}, užimti {busy} — gali būti pasenusi.",
         "note": "Čia užimtumas gaunamas iš paslaugos, kuri renka daugelio operatorių pranešimus. Taškas be pranešimo niekada nelaikomas laisvu."
       },
       "ocpdb": {
         "title": "Gyvai laisva ar užimta, pačiame Kelne",
         "q": "Ar šiuo metu laisvas įkrovimo taškas stotelėje adresu {address}?",
-        "a": "Taip, vienas: 2 tipo iki {kw2} kW laisvas, CCS taškas iki {kw} kW neveikia — {euro},{cent} €/kWh be PVM.",
+        "a": "Taip, abu taškai laisvi: CCS ir 2 tipo iki {kw} kW — {euro},{cent} €/kWh be PVM.",
         "note": "Užimtumas gaunamas gyvai per Badeno-Viurtembergo duomenų portalą, kuriame nurodytos ir toli už šios žemės ribų esančios stotelės."
       },
       "lsr": {
@@ -467,7 +467,7 @@
       "landroad": {
         "title": "Kelio darbai regioniniame kelyje",
         "q": "Ar šią savaitę L1025 kelyje Tiuringijoje vyksta kelio darbai?",
-        "a": "{count, plural, one {# kelio darbų ruožas} few {# kelio darbų ruožai} many {# kelio darbų ruožo} other {# kelio darbų ruožų}}, tarp jų: {site}, susiaurėjimas su šviesoforu, nuo {from} iki {to}.",
+        "a": "Vienas kelio darbų ruožas: {site}, susiaurėjimas su šviesoforu, nuo {from} iki {to}.",
         "note": "Regioninius kelius aprėpiame Badene-Viurtemberge, Žemutinėje Saksonijoje, Tiuringijoje ir Saksonijoje, pagal kelių institucijų duomenis: ruožas ir laikotarpis, be koordinačių ir be gyvo vėlavimo."
       },
       "saxony": {
@@ -527,17 +527,17 @@
       "weather": {
         "title": "Orų patikra prieš kalnus",
         "q": "Ar šiandien yra įspėjimas dėl orų vietovei {name}?",
-        "a": "Taip, ateinančiai nakčiai: Vokietijos orų tarnyba įspėja apie silpnas šalnas iki {temp} °C, galioja {day} nuo {from} iki {to} — įspėjimo lygis {level}, žemiausias.",
+        "a": "Taip: Vokietijos orų tarnyba įspėja apie stiprius audringo vėjo gūsius aukščiau {alt} m, galioja iki {day} {to} — įspėjimo lygis {level} iš 4.",
         "note": "Įspėjimai nuskaitomi kas 5 minutes ir galioja pagal zonas; naujas gali būti paskelbtas netikėtai."
       },
       "fuelcity": {
         "title": "Pigiausias E10 mieste",
         "q": "Kur Kelne šiuo metu pigiausias Super E10?",
-        "a": "{euro},{cent} €/l degalinėje {station}, {address} — pranešta {reported}.",
+        "a": "Naujos kainos dar nėra — mažiausia paskutinė žinoma: {euro},{cent} €/l degalinėje {station}, {address}, pranešta {reported}; ViaFrei prašo naujos.",
         "note": "Degalų kainos keičiasi kas kelias minutes: šis skaičius yra tos popietės pavyzdys, o ne šiandienos kaina. ViaFrei nurodo, kada degalinė pranešė kiekvieną pateikiamą kainą."
       },
       "charger": {
-        "a": "{site}: įkrovimo taškų {points}, 2 tipo jungtis, iki {kw},{kwd} kW, {euro},{cent} €/kWh be PVM. Nė vienas nepraneša esąs užimtas; {stale} paskutinė būsena iš {t}, {unknown} jos nėra — todėl ne „laisva“.",
+        "a": "{site}: įkrovimo taškų {points}, 2 tipo jungtis, iki {kw},{kwd} kW, {euro},{cent} €/kWh be PVM. Paskutinė būsena iš {t}: laisvi {free}, užimti {busy}, neveikia {out}, {unknown} jos nėra — gali būti pasenusi.",
         "title": "Gyva būsena įkrovimo stotelėje",
         "q": "Ar šiuo metu laisvas įkrovimo taškas adresu {address}?",
         "note": "Gyvą užimtumą pateikiame tik ten, kur operatorius jį skelbia – čia per e-clearing.net. Be pranešimo atsakymas yra „nėra būsenos duomenų“, niekada ne „laisva“."

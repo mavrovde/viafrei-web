@@ -230,9 +230,9 @@
         "title": "The morning commute",
         "scene": "7:10, coffee in hand: is public transport running normally — and is my train on time?",
         "q1": "Are buses and trains in Hamburg running on time right now?",
-        "a1": "{share} % of the trips observed in the last hour were more than 5 minutes late — about the same as the hour before ({before} %).",
+        "a1": "{share} % of the trips observed in the last hour were more than 5 minutes late — more than the hour before ({before} %).",
         "limit": "We show punctuality per region, not per line.",
-        "q2": "When is the next train from Hanover Central Station, and is it late?",
+        "q2": "When is the next train from Leipzig Central Station, and is it late?",
         "q3": "Are any trains on the Cologne Central Station departure board cancelled in the next hour?",
         "a2": "Next is {l1} to {d1} (due {t1}, platform {p1}), running +{delay} min, leaving around {exp}; then {l2} to {d2} at {t2}, on time.",
         "a3": "None is cancelled: {n} departures up to {last}; the biggest delay is {l1} to {d1}, +{delay} min."
@@ -245,15 +245,15 @@
         "a1": "{s1}, {km}.{kmd} km away; next come {s2} and {s3}.",
         "limit": "We will show the timetable of every bus and tram stop once it is loaded — until then, stations and the situation in your region.",
         "board": "Timetable at your stop",
-        "a2": "Next is the {l1} to {d1} at {t1} from platform {p1}, on time; the {l2} to {d2} due at {t2} is +{delay2} min, leaving around {exp2}.",
-        "q3": "Are trains leaving Leipzig main station late right now?",
+        "a2": "Next is the {l1} to {d1} due at {t1} from platform {p1}, +{delay1} min, leaving around {exp1}; the {l2} to {d2} is +{delay2} min, leaving around {exp2}.",
+        "q3": "Are trains leaving Dresden main station late right now?",
         "a3": "Yes, two: the {l1} to {d1}, +{dl1} min, from platform {p1}, and the {l2} to {d2}, +{dl2} min; the other {n} upcoming departures are on time."
       },
       "station": {
         "title": "At the station",
         "scene": "With a pram, a wheelchair or luggage: is the lift to the platform working?",
         "q1": "Is the lift at Cologne Central Station working?",
-        "a1": "At {station}, {working} of {total} reported lifts are in service; one is out of service, and for one the railway reports no status.",
+        "a1": "At {station}, {working} of {total} reported lifts are in service; for one the railway reports no status.",
         "limit": "Lifts and escalators at Deutsche Bahn stations; other operators not yet.",
         "q2": "Are all lifts at Erlangen station in service?",
         "a2": "Yes: the one lift reported at {station}, to platform {platforms}, is in service.",
@@ -264,7 +264,7 @@
         "title": "On the road",
         "scene": "Before you set off: jams, closures, roadworks — and where fuel is cheap right now.",
         "q1": "Is the A8 towards Munich clear right now?",
-        "a1": "Not entirely: between {a} and {b} towards Munich the police report an accident; the hard shoulder is blocked.",
+        "a1": "Yes: no jam is reported towards Munich right now; the {jams} jams on the A8 are in other directions.",
         "a1more": "Across the whole A8, {closures} closures and {works} roadworks entries are listed as well.",
         "limit": "No route planning: we say what is happening on the motorway, not which way you should drive.",
         "q2": "Which roadworks are on the A7 right now?",
@@ -276,13 +276,13 @@
         "title": "Stuck in traffic",
         "scene": "Jams on the motorway and around the cities: where traffic stands, how much time it costs — and whether there is a closure tonight.",
         "q1": "How much time is the jam on the A3 between Frankfurt and Würzburg costing right now?",
-        "a1": "Between {a} and {b} towards Frankfurt about +{delay} min, after an accident; {jams} jams are reported along the whole A3.",
+        "a1": "Between {a} and {b} towards Würzburg about +{delay} min; {jams} jams are reported along the whole A3.",
         "a1more": "Listed on the A3: {closures} closures and {works} roadworks entries.",
         "limit": "In cities we see the urban motorways, and in Berlin, Cologne and Hanover also the city's own traffic messages — not yet the situation on every street. Hamburg's messages and Cologne's traffic state have been requested from the providers.",
         "q2": "Is traffic backed up on the Cologne motorway ring right now — A1, A3 or A4?",
         "q3": "Is the A7 closed in Hamburg today?",
         "a3": "A closure is reported between the {a} and {b} junctions (widening to eight lanes, new {tunnel}); along the whole A7 there are {n} closures.",
-        "a2": "Yes, on the A4: between {a} and {b} towards Cologne traffic is slow, about +{delay} min; {n} jams are reported on the motorways asked about."
+        "a2": "Yes, on the A4: between {a} and {b} towards Cologne the police report a {km} km jam; {n} jams are reported on the motorways asked about."
       },
       "parking": {
         "title": "Parking",
@@ -336,22 +336,22 @@
       "goerlitz": {
         "q": "Where is diesel cheapest in Görlitz right now?",
         "why": "Prices change several times a day and differ even between a few stations in one town: ViaFrei names the cheapest with its price and the time the station reported it.",
-        "a": "No new price yet — the lowest last known: €{euro}.{cent} per litre at {station}, {address}, reported on {reported}; ViaFrei is asking for a new one."
+        "a": "€{euro}.{cent} per litre at {station}, {address} — reported at {reported}."
       },
       "muenchen": {
         "q": "Where is E10 petrol cheapest in Munich right now?",
-        "why": "A price can be from the morning: for Munich that afternoon ViaFrei held only prices from the morning, gave each with its time and asked for new ones.",
+        "why": "A price can be from the evening before: for Munich that afternoon ViaFrei held no new price, gave the cheapest with its time from the evening before and asked for new ones.",
         "a": "No new price yet — the lowest last known: €{euro}.{cent} per litre at {station}, {address}, reported on {reported}; ViaFrei is asking for a new one."
       },
       "leipzig": {
         "q": "Where is E5 petrol cheapest in Leipzig right now?",
-        "why": "A price can be hours old: ViaFrei says when the station reported each price — that afternoon the cheapest in Leipzig still dated from the morning.",
-        "a": "No new price yet — the lowest last known: €{euro}.{cent} per litre at {station}, {address}, reported on {reported}."
+        "why": "The nearest station is not always the cheapest: ViaFrei gives the distance with each price.",
+        "a": "€{euro}.{cent} per litre at {station}, {address} — reported at {reported}."
       },
       "nuernberg": {
         "q": "Where is diesel cheapest in Nuremberg right now?",
-        "why": "The nearest station is not always the cheapest: ViaFrei gives the distance with each price.",
-        "a": "€{euro}.{cent} per litre at {station}, {address} — reported at {reported}."
+        "why": "A price can be hours old: ViaFrei says when the station reported each price.",
+        "a": "No new price yet — the lowest last known: €{euro}.{cent} per litre at {station}, {address}, reported on {reported}; ViaFrei is asking for a new one."
       }
     },
     "fuelAll": "Up to three filling stations per state, with address and price",
@@ -389,7 +389,7 @@
       "stadtbahn": {
         "title": "Lifts and escalators on the Stadtbahn",
         "q": "What is out of service at the {stop} Stadtbahn stop in Cologne right now?",
-        "a": "{out} of {total} reported facilities: escalators {e1} and {e2}, reported since {since}, {e3} since {since3} and {e4} since {since4}; both lifts in service. {publisher} provides the data without any warranty.",
+        "a": "{out} of {total} reported facilities: escalators {e1} and {e2}, reported since {since} and {e3} since {since3}; both lifts in service. {publisher} provides the data without any warranty.",
         "note": "For Cologne's Stadtbahn stops, from the published fault list – with the time each fault was reported."
       },
       "bikes": {
@@ -401,7 +401,7 @@
       "lift": {
         "title": "Lifts at the station",
         "q": "Which lifts at {station} station are out of service right now?",
-        "a": "One is reported out of service, a lift to platforms {platforms}: {working} of {total} lifts in service. The other lift to platforms {platforms} is not monitored – its status is unknown.",
+        "a": "None is reported out of service: {working} of {total} lifts in service. One lift to platforms {platforms} is not monitored – its status is unknown.",
         "note": "For Deutsche Bahn stations, read every 20 minutes. Whatever the latest report does not mention is “unknown” – never “in service”."
       },
       "alert": {
@@ -419,13 +419,13 @@
       "ecomove": {
         "title": "Live occupancy through an aggregator",
         "q": "Is a charging point free at the fast charger at {address} right now?",
-        "a": "{site}: up to {kw} kW, €{euro}.{cent}/kWh; the last status dates from {t} — too old to say “free”.",
+        "a": "{site}: up to {kw} kW, €{euro}.{cent}/kWh; last status from {t}: {free} free, {busy} occupied — possibly out of date.",
         "note": "Here the occupancy comes from a service that gathers many operators' reports. A point without a report never counts as free."
       },
       "ocpdb": {
         "title": "Live free or busy, right in Cologne",
         "q": "Is a charging point free at the charger at {address} right now?",
-        "a": "Yes, one: Type 2 up to {kw2} kW is free, the CCS point up to {kw} kW is out of order — €{euro}.{cent}/kWh before VAT.",
+        "a": "Yes, both points are free: CCS and Type 2 up to {kw} kW — €{euro}.{cent}/kWh before VAT.",
         "note": "Occupancy comes live through Baden-Württemberg's data portal, which also lists chargers far beyond that state."
       },
       "lsr": {
@@ -467,7 +467,7 @@
       "landroad": {
         "title": "Roadworks on a state road",
         "q": "Are there roadworks on the L1025 in Thuringia this week?",
-        "a": "{count} roadworks sites, among them: {site}, a narrowing controlled by traffic lights, from {from} to {to}.",
+        "a": "One roadworks site: {site}, a narrowing controlled by traffic lights, from {from} to {to}.",
         "note": "We cover state roads in Baden-Württemberg, Lower Saxony, Thuringia and Saxony, from the road authorities' data: section and period, no coordinates and no live delay."
       },
       "saxony": {
@@ -527,17 +527,17 @@
       "weather": {
         "title": "A weather check before the mountains",
         "q": "Is there a weather warning for {name} today?",
-        "a": "Yes, for the coming night: the German Weather Service warns of light frost down to {temp} °C, valid on {day} from {from} to {to} — warning level {level}, the lowest.",
+        "a": "Yes: the German Weather Service warns of severe storm gusts above {alt} m, valid until {day} {to} — warning level {level} of 4.",
         "note": "Warnings are read every 5 minutes and apply per area; a new one can be issued at short notice."
       },
       "fuelcity": {
         "title": "The cheapest E10 in town",
         "q": "Where is Super E10 cheapest in Cologne right now?",
-        "a": "€{euro}.{cent} per litre at {station}, {address} — reported at {reported}.",
+        "a": "No new price yet — the lowest last known: €{euro}.{cent} per litre at {station}, {address}, reported on {reported}; ViaFrei is asking for a new one.",
         "note": "Fuel prices change every few minutes: this figure is an example from that afternoon, not today's price. ViaFrei says when the station reported every price it gives."
       },
       "charger": {
-        "a": "At {site}: {points} charging points, Type 2, up to {kw}.{kwd} kW, €{euro}.{cent}/kWh before VAT. None reports occupied; for {stale} the last status dates from {t}, for {unknown} there is none — so not “free”.",
+        "a": "At {site}: {points} charging points, Type 2, up to {kw}.{kwd} kW, €{euro}.{cent}/kWh before VAT. Last status from {t}: {free} free, {busy} occupied, {out} out of order, none for {unknown} — possibly out of date.",
         "title": "Live status at a charger",
         "q": "Is a charging point free at {address} right now?",
         "note": "We give live occupancy only where the operator publishes it – here through e-clearing.net. Without a report the answer is “no status data”, never “free”."
