@@ -154,8 +154,8 @@
  * holds took that day's figures and Stand (the per-card comments still quote the 02.11 answers); `fuelcity` had no
  * current price, so it takes the "no new price" sentence. Asked again 14:30-14:40: kiel, lorry, parkride and citywork
  * still hold; carpark (Altstadt-Nord/Hbf) and platform (ICE 600) take a new subject; ecomove names the operator. No
- * subject fitted after five candidates each, so these keep their 02.11 values until reworded or replaced: stadtbahn,
- * lift, ocpdb, charger, landroad, weather.
+ * subject fitted after five candidates each, so stadtbahn, lift, ocpdb, charger, landroad and weather were reworded in
+ * all 22 languages to that day's answer for the same subject (asked 14:37-14:52).
  *
  * The WORDS are copy and live in the deck (`connectPage.live.*`), one per
  * language. The VALUES are figures read off one answer and are the same in
@@ -236,7 +236,9 @@ export const LIVE_EXAMPLES: readonly LiveExample[] = [
     // named in full, its no-warranty sentence in every language.
     credits: ["delfi_zhv", "kvb_lifts"],
     names: { stop: "Ebertplatz", publisher: "Kölner Verkehrs-Betriebe AG" },
-    values: { out: "4", total: "10", e1: "51", e2: "52", since: "06.10., 17:32", e3: "62", since3: "31.10., 03:01", e4: "53", since4: "31.10., 20:21", asOf: "02.11.2026, 14:02" },
+    // 2026-11-18, asked 14:45 (Störungsliste Stand 14:37): 3 von 10 — Fahrtreppe 51 and 52 since 11.11. 17:30, Fahrtreppe 60 since
+    // 15.11. 10:36; Aufzug 01 and 02 in Betrieb. Reworded: three escalators.
+    values: { out: "3", total: "10", e1: "51", e2: "52", since: "11.11., 17:30", e3: "60", since3: "15.11., 10:36", asOf: "18.11.2026, 14:37" },
   },
   {
     key: "bikes",
@@ -263,7 +265,9 @@ export const LIVE_EXAMPLES: readonly LiveExample[] = [
     // 13:44. Reworded: the second lift to 8/9 is out of service now. The answer's Stadtbahn half (KVB) is not on this card.
     credits: ["db_stada", "mobilithek_openstation_netex", "mobilithek_openstation_siri_fm"],
     names: { station: "Köln Hbf" },
-    values: { total: "8", working: "6", platforms: "8/9", asOf: "02.11.2026, 13:44" },
+    // 2026-11-18, asked 14:40: 8 lifts, 7 in Betrieb, none außer Betrieb; "Aufzug zu Gleis 8/9 (Anlage 10849189): Status unbekannt — wird
+    // nicht überwacht". Stand 14:38. Reworded: none out of service.
+    values: { total: "8", working: "7", platforms: "8/9", asOf: "18.11.2026, 14:38" },
   },
   {
     key: "alert",
@@ -320,7 +324,8 @@ export const LIVE_EXAMPLES: readonly LiveExample[] = [
     // GmbH) — two points: CCS bis 50 kW außer Betrieb, Typ 2 bis 22 kW frei, 0,49 €/kWh netto (Stand 14:10)". Reworded: one is free.
     credits: ["mobilithek_afir_chargecloud_stat", "ocpdb_chargecloud", "osm"],
     names: { address: "Ottostraße 7, 50823 Köln" },
-    values: { kw: "50", kw2: "22", euro: "0", cent: "49", asOf: "02.11.2026, 14:10" },
+    // 2026-11-18, asked 14:45: "CCS2/Typ 2, bis 50 kW, 0,49 €/kWh netto, 2 von 2 frei". Stand 14:44. Reworded: both free.
+    values: { kw: "50", euro: "0", cent: "49", asOf: "18.11.2026, 14:44" },
   },
   {
     key: "lsr",
@@ -350,7 +355,9 @@ export const LIVE_EXAMPLES: readonly LiveExample[] = [
     // one. Stand 14:12. Reworded: nothing occupied, and too old or unknown to say "free".
     credits: ["mobilithek_afir_eclearing_stat", "mobilithek_afir_eclearing_dyn", "osm"],
     names: { address: "Martin-Luther-Platz 26, Düsseldorf", site: "Parkhaus Schadow Arkaden" },
-    values: { points: "11", kw: "22", kwd: "08", euro: "0", cent: "40", stale: "8", unknown: "3", t: "01.11., 14:19", asOf: "02.11.2026, 14:12" },
+    // 2026-11-18, asked 14:52: "Typ 2, bis 22,1 kW, 0,40 €/kWh netto, 4 frei, 5 belegt, 1 außer Betrieb, Status von 17.11. 17:27 —
+    // möglicherweise veraltet, 1 ohne Status (11 Ladeeinrichtungen)". Stand 14:52. Reworded: the last statuses, said to be old.
+    values: { points: "11", kw: "22", kwd: "1", euro: "0", cent: "40", free: "4", busy: "5", out: "1", unknown: "1", t: "17.11., 17:27", asOf: "18.11.2026, 14:52" },
   },
   {
     key: "hamburg",
@@ -451,7 +458,8 @@ export const LIVE_EXAMPLES: readonly LiveExample[] = [
     // Waltershausen, a night's closure on 06./07.11.). Stand 13:58. Reworded: two sites, the card names one.
     credits: ["mobilithek_roadworks_ald_th"],
     names: { site: "Alte Hauptstraße / Kirchplatz" },
-    values: { count: "2", from: "04.05.2026", to: "04.05.2028", asOf: "02.11.2026, 13:58" },
+    // 2026-11-18, asked 14:45: "L1025: 1 Arbeitsstelle zwischen 18.11.2026 und 25.11.2026" — the same site. Stand 13:07. Reworded: one site.
+    values: { from: "04.05.2026", to: "04.05.2028", asOf: "18.11.2026, 13:07" },
   },
   {
     key: "saxony",
@@ -642,7 +650,9 @@ export const LIVE_EXAMPLES: readonly LiveExample[] = [
     // -1 °C auf", gültig 03.11. 00:00 bis 08:00, published 12:33. Stand 14:17. Reworded: a warning now, the lowest level. The road-weather
     // forecast in the same answer is not quoted.
     credits: ["dwd"],
-    values: { temp: "-1", day: "03.11.", from: "00:00", to: "08:00", level: "1", asOf: "02.11.2026, 14:17" },
+    // 2026-11-18, asked 14:45: "Stufe 2 von 4 — Markante Wetterwarnung — SCHWERE STURMBÖEN, Gültig: bis 19.11. 00:00", "oberhalb 1500 m".
+    // Stand 14:43. Reworded: severe storm gusts, level 2 of 4.
+    values: { alt: "1500", day: "19.11.", to: "00:00", level: "2", asOf: "18.11.2026, 14:43" },
   },
   {
     key: "fuelcity",

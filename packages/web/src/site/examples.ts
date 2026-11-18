@@ -88,7 +88,8 @@ export type Moment = {
  * Re-asked on 2026-11-18 between 14:28 and 14:31 Europe/Berlin, on production, once per question, `language`
  * "de", the same tools and arguments (the A2 weekend is 21./22.11.). Every answer whose sentence still holds took
  * that day's figures and Stand (the per-entry comments above still quote the 02.11 answers). Answers the sentence no
- * longer fits keep their 02.11 values until reworded: bus a2, station a1/a3, driving a1 and jam a1/a2. Asked again
+ * longer fitted (bus a2, station a1, driving a1, jam a1/a2) were reworded in all 22 languages to that day's answer (asked
+ * 14:40-14:52); station a3 took ICE 706, the next ICE to leave. Asked again
  * 14:39-14:53 with up to five candidates each (the same board or road later, or another station or road): commute a2
  * moved to Leipzig Hbf and bus a3 to Dresden Hbf (the question's place name swapped in every language); the others
  * found none that fits its sentence. commute a1 now says "mehr als in der Stunde davor" (the region card's sentence).
@@ -148,7 +149,9 @@ export const MOMENTS: readonly Moment[] = [
       // get_train_departures {station: "Frankfurt (Main) Hauptwache"}, 2026-11-02: "14:05 S S3 → Bad Soden (Taunus), Gleis 3, pünktlich · …
       // 14:11 S S3 → Frankfurt (Main) Süd, Gleis 2, +1 min (ca. 14:12)" — every other one on time. Stand 14:03. Reworded: the next one is
       // on time, a later one is a minute late.
-      { values: { l1: "S3", t1: "14:05", p1: "3", l2: "S3", t2: "14:11", delay2: "1", exp2: "14:12", asOf: "02.11.2026, 14:03" }, names: { d1: "Bad Soden (Taunus)", d2: "Frankfurt (Main) Süd" }, credits: DB },
+      // 2026-11-18, asked 14:45: "14:38 S1 → Frankfurt-Höchst, Gleis 3, +12 min (ca. 14:50) · 14:44 S2 → Dietzenbach Bahnhof, Gleis 2,
+      // +13 min (ca. 14:57)" — the rest of the board late as well. Stand 14:45. Reworded: the next two are both late.
+      { values: { l1: "S1", t1: "14:38", p1: "3", delay1: "12", exp1: "14:50", l2: "S2", delay2: "13", exp2: "14:57", asOf: "18.11.2026, 14:45" }, names: { d1: "Frankfurt-Höchst", d2: "Dietzenbach Bahnhof" }, credits: DB },
       // get_train_departures {station: "Leipzig Hbf"}, 2026-11-02: of ten departures, "14:06 S S6 → Naumburg (Saale) Hbf, Gleis 7, +13 min"
       // and "14:12 ICE 508 → Hamburg-Altona, Gleis 11, +2 min"; the other eight "pünktlich", no platform change. Stand 14:03.
       // REPLACED 2026-11-18 (Leipzig had three and six late at 14:40 and 14:45): get_train_departures {station: "Dresden Hbf"}, asked
@@ -163,12 +166,16 @@ export const MOMENTS: readonly Moment[] = [
       // check_station_facilities {station: "Köln Hbf", facility: "elevator"}, 2026-11-02: 8 lifts, 6 in Betrieb, 1 außer Betrieb (zu Gleis
       // 8/9, Anlage 10801910), 1 without status (zu Gleis 8/9, Anlage 10849189, "wird nicht überwacht"). Stand 13:44. Reworded: one is out
       // of service now.
-      { values: { working: "6", total: "8", asOf: "02.11.2026, 13:44" }, names: { station: "Köln Hbf" }, credits: OPENSTATION },
+      // 2026-11-18, asked 14:40: 8 lifts, 7 in Betrieb, none außer Betrieb, 1 without status (zu Gleis 8/9, Anlage 10849189, "wird nicht
+      // überwacht"). Stand 14:38. Reworded: none is out of service.
+      { values: { working: "7", total: "8", asOf: "18.11.2026, 14:38" }, names: { station: "Köln Hbf" }, credits: OPENSTATION },
       // check_station_facilities {station: "Erlangen", facility: "elevator"}, 2026-11-02: "Aufzug zu Gleis 2/3: in Betrieb". Stand 13:44.
       { values: { platforms: "2/3", asOf: "18.11.2026, 14:17" }, names: { station: "Erlangen" }, credits: OPENSTATION },
       // get_train_departures {station: "Nürnberg Hbf", duration_min: 120, categories: ["ICE"]}, 2026-11-02: "14:05 ICE 506 → Kiel Hbf,
       // Gleis 6, pünktlich". Stand 14:03.
-      { values: { t: "14:05", p: "6", asOf: "02.11.2026, 14:03" }, names: { train: "ICE 506", dest: "Kiel Hbf" }, credits: DB },
+      // 2026-11-18, asked 14:46: "13:29 ICE 1007 → München Hbf, Gleis 8, +137 min (ca. 15:46) · 15:04 ICE 706 → Hamburg-Altona, Gleis 7,
+      // pünktlich · 15:29 ICE 1009 fällt aus". Stand 14:46. The next ICE to leave is ICE 706; the sentence holds as written.
+      { values: { t: "15:04", p: "7", asOf: "18.11.2026, 14:46" }, names: { train: "ICE 706", dest: "Hamburg-Altona" }, credits: DB },
     ],
   },
   {
@@ -177,7 +184,9 @@ export const MOMENTS: readonly Moment[] = [
       // check_autobahn_traffic {roads: ["A8"]}, 2026-11-02: "A8: 0 Staus, 1 Warnmeldung, 3 Sperrungen, 61 Baustellen" — Stand 14:01 — and
       // the police message "A8 Stuttgart Richtung München zwischen Günzburg (67) und Burgau (69): Unfall, Gefahr durch Personen auf der
       // Fahrbahn, Standstreifen blockiert" (since 13:19). Reworded: towards München, an accident.
-      { values: { closures: "3", works: "61", asOf: "02.11.2026, 14:01" }, names: { a: "Günzburg", b: "Burgau" }, credits: ["autobahn", "mobilithek_nms_events"], more: true },
+      // 2026-11-18, asked 14:40: "A8: 3 Staus, 3 Sperrungen, 71 Baustellen" — the jams Karlsruhe -> Stuttgart, München -> Salzburg and
+      // München -> Stuttgart, none towards München, no police message. Stand 14:39. Reworded: nothing reported towards München.
+      { values: { jams: "3", closures: "3", works: "71", asOf: "18.11.2026, 14:39" }, names: {}, credits: ["autobahn"], more: true },
       // find_roadworks_ahead {road: "A7"}, 2026-11-02: "A7: 92 Arbeitsstellen laut BASt zwischen 02.11.2026 und 09.11.2026: 49 laufend …
       // • Baustelle: A7 zw. Hammelburg → Bad Kissingen/Oberthulba 1,0 km (+3 weitere Abschnitte) — Brückenneubau, 1 von 3 Fahrstreifen
       // gesperrt, Tempo 80 — bis 30.09.2027". The BASt data's Stand: 12:27.
@@ -198,10 +207,14 @@ export const MOMENTS: readonly Moment[] = [
       // check_autobahn_traffic {roads: ["A3"]}, 2026-11-02: "A3: 4 Staus, 6 Warnmeldungen, 4 Sperrungen, 99 Baustellen" — Stand 14:01 —
       // "• Stau: A3 | Hanau - Offenbacher Kreuz · Würzburg -> Frankfurt, seit 12:23, +60 min, 8,7 km, im Stillstand", and the police: an
       // accident at the Offenbacher Kreuz. Reworded: the A3 towards Frankfurt is jammed now.
-      { values: { jams: "4", delay: "60", closures: "4", works: "99", asOf: "02.11.2026, 14:01" }, names: { a: "Hanau", b: "Offenbacher Kreuz" }, credits: ["autobahn"], more: true },
+      // 2026-11-18, asked 14:52: "A3: 5 Staus, 3 Warnmeldungen, 6 Sperrungen, 103 Baustellen" — "Stau: A3 | Kohlsberg-Nord - Marktheidenfeld
+      // · Frankfurt -> Würzburg, ca. 3,3 km, seit 14:31, +41 min", no accident named. Stand 14:50. Reworded: towards Würzburg, no accident.
+      { values: { jams: "5", delay: "41", closures: "6", works: "103", asOf: "18.11.2026, 14:50" }, names: { a: "Kohlsberg-Nord", b: "Marktheidenfeld" }, credits: ["autobahn"], more: true },
       // check_autobahn_traffic {roads: ["A1", "A3", "A4"]}, 2026-11-02: counts.jams 9 (A1 3, A3 4, A4 2) — "• Stockender Verkehr: A4 |
       // Köln-West - Köln-Eifeltor · Heerlen/Aachen -> Köln, +4 min, 4,2 km". Stand 14:01. Reworded: there is one at Köln now.
-      { values: { delay: "4", n: "9", asOf: "02.11.2026, 14:01" }, names: { a: "Köln-West", b: "Köln-Eifeltor" }, credits: ["autobahn"] },
+      // 2026-11-18, asked 14:40: counts.jams 15, and the police message "A4 Heerlen/Aachen Richtung Köln zwischen Kreuz Köln-West und
+      // Köln-Eifeltor 4 km Stau". Stand 14:39. Reworded: the police report the jam.
+      { values: { km: "4", n: "15", asOf: "18.11.2026, 14:39" }, names: { a: "Köln-West", b: "Köln-Eifeltor" }, credits: ["autobahn", "mobilithek_nms_events"] },
       // check_road_status {road: "A7", horizon_days: 1, limit: 11}, 2026-11-02: "A7: 21 Sperrungen … • Sperrung: A7, AS HH-Volkspark - AS
       // HH-Othmarschen, achtstreifige Erweiterung und Neubau Altonatunnel" (this phase to 31.10.27). Stand 14:01.
       { values: { n: "14", asOf: "18.11.2026, 14:28" }, names: { a: "HH-Volkspark", b: "HH-Othmarschen", tunnel: "Altonatunnel" }, credits: ["autobahn"] },

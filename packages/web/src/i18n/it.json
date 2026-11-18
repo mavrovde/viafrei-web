@@ -245,7 +245,7 @@
         "a1": "{s1}, a {km},{kmd} km; poi vengono {s2} e {s3}.",
         "limit": "Mostreremo l’orario di ogni fermata di autobus e tram non appena sarà caricato — fino ad allora, le stazioni e la situazione nella sua regione.",
         "board": "Orario alla sua fermata",
-        "a2": "La prossima è la {l1} per {d1} alle {t1} dal binario {p1}, in orario; la {l2} per {d2} prevista alle {t2} ha +{delay2} min, partenza verso le {exp2}.",
+        "a2": "La prossima è la {l1} per {d1} prevista alle {t1} dal binario {p1}, ha +{delay1} min, partenza verso le {exp1}; la {l2} per {d2} ha +{delay2} min, partenza verso le {exp2}.",
         "q3": "Ci sono treni in partenza in ritardo dalla stazione centrale di Dresda in questo momento?",
         "a3": "Sì, due: il {l1} per {d1}, +{dl1} min, dal binario {p1}, e la {l2} per {d2}, +{dl2} min; le altre {n} prossime partenze sono in orario."
       },
@@ -253,7 +253,7 @@
         "title": "In stazione",
         "scene": "Con il passeggino, la sedia a rotelle o le valigie: l’ascensore per il binario funziona?",
         "q1": "L’ascensore della stazione centrale di Colonia funziona?",
-        "a1": "Stazione {station}: ascensori segnalati in funzione {working} su {total}; uno è fuori servizio, per un altro la ferrovia non comunica alcuno stato.",
+        "a1": "Stazione {station}: ascensori segnalati in funzione {working} su {total}; per uno la ferrovia non comunica alcuno stato.",
         "limit": "Ascensori e scale mobili delle stazioni della Deutsche Bahn; altri gestori non ancora.",
         "q2": "Alla stazione di Erlangen tutti gli ascensori sono in funzione?",
         "a2": "Sì: l’unico ascensore segnalato nella stazione {station}, verso il binario {platforms}, è in funzione.",
@@ -264,7 +264,7 @@
         "title": "In auto",
         "scene": "Prima di partire: code, chiusure, cantieri — e dove il carburante costa poco in questo momento.",
         "q1": "L’A8 in direzione Monaco di Baviera è libera in questo momento?",
-        "a1": "Non del tutto: tra {a} e {b} in direzione Monaco di Baviera la polizia segnala un incidente; la corsia d’emergenza è bloccata.",
+        "a1": "Sì: in direzione Monaco di Baviera al momento non è segnalata alcuna coda; le code sull’A8 ({jams}) sono in altre direzioni.",
         "a1more": "Su tutta l’A8 risultano inoltre chiusure: {closures}, voci di lavori: {works}.",
         "limit": "Nessun calcolo del percorso: diciamo che cosa succede in autostrada, non quale strada deve prendere.",
         "q2": "Quali lavori ci sono sull’A7 in questo momento?",
@@ -276,13 +276,13 @@
         "title": "In coda",
         "scene": "Code in autostrada e intorno alle città: dove il traffico è fermo, quanto tempo si perde — e se stanotte c’è una chiusura.",
         "q1": "Quanto tempo fa perdere in questo momento la coda sull’A3 tra Francoforte e Würzburg?",
-        "a1": "Tra {a} e {b} in direzione Francoforte circa +{delay} min, dopo un incidente; su tutta l’A3 sono segnalate code: {jams}.",
+        "a1": "Tra {a} e {b} in direzione Würzburg circa +{delay} min; su tutta l’A3 sono segnalate code: {jams}.",
         "a1more": "Sull’A3 risultano chiusure: {closures}, voci di lavori: {works}.",
         "limit": "In città vediamo le autostrade urbane e, a Berlino, Colonia e Hannover, anche le segnalazioni sul traffico della città stessa — non ancora la situazione su ogni strada. Le segnalazioni di Amburgo e lo stato del traffico di Colonia sono stati richiesti ai fornitori.",
         "q2": "C’è coda in questo momento sull’anello autostradale di Colonia — A1, A3 o A4?",
         "q3": "L’A7 è chiusa oggi ad Amburgo?",
         "a3": "È segnalata una chiusura tra gli svincoli {a} e {b} (ampliamento a otto corsie, nuova galleria {tunnel}); lungo tutta l’A7 le chiusure sono: {n}.",
-        "a2": "Sì, sull’A4: tra {a} e {b} in direzione Colonia il traffico è rallentato, circa +{delay} min; sulle autostrade richieste sono segnalate code: {n}."
+        "a2": "Sì, sull’A4: tra {a} e {b} in direzione Colonia la polizia segnala {km} km di coda; sulle autostrade richieste sono segnalate code: {n}."
       },
       "parking": {
         "title": "Parcheggio",
@@ -389,7 +389,7 @@
       "stadtbahn": {
         "title": "Ascensori e scale mobili della metropolitana leggera",
         "q": "Che cosa è fuori servizio in questo momento alla fermata {stop} della metropolitana leggera di Colonia?",
-        "a": "Impianti segnalati fuori servizio: {out} su {total}: le scale mobili {e1} e {e2}, segnalate dal {since}, {e3} dal {since3} e {e4} dal {since4}; entrambi gli ascensori in funzione. {publisher} fornisce i dati senza alcuna garanzia.",
+        "a": "Impianti segnalati fuori servizio: {out} su {total}: le scale mobili {e1} e {e2}, segnalate dal {since} e {e3} dal {since3}; entrambi gli ascensori in funzione. {publisher} fornisce i dati senza alcuna garanzia.",
         "note": "Per le fermate della metropolitana leggera di Colonia, dall’elenco dei guasti pubblicato – con l’ora da cui ogni impianto è segnalato."
       },
       "bikes": {
@@ -401,7 +401,7 @@
       "lift": {
         "title": "Ascensori in stazione",
         "q": "Quali ascensori della stazione di {station} sono fuori servizio in questo momento?",
-        "a": "Uno è segnalato fuori servizio, un ascensore verso il binario {platforms}: ascensori in funzione {working} su {total}. L’altro ascensore verso il binario {platforms} non è monitorato – il suo stato è sconosciuto.",
+        "a": "Nessuno è segnalato fuori servizio: ascensori in funzione {working} su {total}. Un ascensore verso il binario {platforms} non è monitorato – il suo stato è sconosciuto.",
         "note": "Per le stazioni della Deutsche Bahn, letto ogni venti minuti. Ciò che l’ultima segnalazione non menziona è «sconosciuto» – mai «in funzione»."
       },
       "alert": {
@@ -425,7 +425,7 @@
       "ocpdb": {
         "title": "Libero o occupato in tempo reale – nel cuore di Colonia",
         "q": "C’è un punto di ricarica libero in questo momento alla colonnina in {address}?",
-        "a": "Sì, uno: il Tipo 2 fino a {kw2} kW è libero, il punto CCS fino a {kw} kW è fuori servizio — {euro},{cent} €/kWh IVA esclusa.",
+        "a": "Sì, entrambi i punti sono liberi: CCS e Tipo 2 fino a {kw} kW — {euro},{cent} €/kWh IVA esclusa.",
         "note": "L’occupazione arriva in tempo reale tramite il portale dati del Baden-Württemberg, che elenca anche colonnine ben oltre i confini del Land."
       },
       "lsr": {
@@ -467,7 +467,7 @@
       "landroad": {
         "title": "Lavori su una strada regionale",
         "q": "Ci sono lavori questa settimana sulla L1025 in Turingia?",
-        "a": "{count, plural, one {# cantiere} other {# cantieri}}, tra cui: {site}, un restringimento regolato da semaforo, dal {from} al {to}.",
+        "a": "Un cantiere: {site}, un restringimento regolato da semaforo, dal {from} al {to}.",
         "note": "Conosciamo le strade regionali del Baden-Württemberg, della Bassa Sassonia, della Turingia e della Sassonia, dai dati delle amministrazioni stradali: tratto e periodo, niente coordinate e nessun ritardo in tempo reale."
       },
       "saxony": {
@@ -527,7 +527,7 @@
       "weather": {
         "title": "Un controllo meteo prima delle montagne",
         "q": "C’è un’allerta meteo per {name} oggi?",
-        "a": "Sì, per la prossima notte: il Servizio meteorologico tedesco avverte di gelo debole fino a {temp} °C, valido il {day} dalle {from} alle {to} – livello di allerta {level}, il più basso.",
+        "a": "Sì: il Servizio meteorologico tedesco avverte di forti raffiche di tempesta sopra i {alt} m, valido fino al {day} alle {to} – livello di allerta {level} su 4.",
         "note": "Le allerte vengono lette ogni cinque minuti e valgono per area; una nuova può essere emessa con breve preavviso."
       },
       "fuelcity": {
@@ -537,7 +537,7 @@
         "note": "I prezzi dei carburanti cambiano ogni pochi minuti: questo dato è un esempio di quel pomeriggio, non il prezzo di oggi. ViaFrei indica per ogni prezzo quando il distributore l’ha comunicato."
       },
       "charger": {
-        "a": "Presso {site}: punti di ricarica {points}, Tipo 2, fino a {kw},{kwd} kW, {euro},{cent} €/kWh IVA esclusa. Nessuno risulta occupato; per {stale} l’ultimo stato risale al {t}, per {unknown} non ce n’è – quindi non «libero».",
+        "a": "Presso {site}: punti di ricarica {points}, Tipo 2, fino a {kw},{kwd} kW, {euro},{cent} €/kWh IVA esclusa. Ultimo stato del {t}: liberi {free}, occupati {busy}, fuori servizio {out}, per {unknown} nessuno – forse non aggiornato.",
         "title": "Stato in tempo reale a una colonnina",
         "q": "C’è un punto di ricarica libero in questo momento in {address}?",
         "note": "Indichiamo l’occupazione in tempo reale solo dove il gestore la pubblica – qui tramite e-clearing.net. Senza segnalazione la risposta è «nessun dato di stato», mai «libero»."

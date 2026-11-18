@@ -245,7 +245,7 @@
         "a1": "{s1}, {km},{kmd} km odtiaľto; ďalej {s2} a {s3}.",
         "limit": "Cestovný poriadok každej zastávky autobusu a električky ukážeme, len čo bude načítaný – dovtedy stanice a situáciu vo vašom regióne.",
         "board": "Cestovný poriadok na vašej zastávke",
-        "a2": "Najbližšie {l1} smer {d1} o {t1} z koľaje {p1}, včas; {l2} smer {d2} s plánom {t2} má +{delay2} min, odchod okolo {exp2}.",
+        "a2": "Najbližšie {l1} smer {d1} s plánom {t1} z koľaje {p1} má +{delay1} min, odchod okolo {exp1}; {l2} smer {d2} má +{delay2} min, odchod okolo {exp2}.",
         "q3": "Odchádzajú z hlavnej stanice v Drážďanoch práve vlaky s meškaním?",
         "a3": "Áno, dva: {l1} smer {d1}, +{dl1} min, z koľaje {p1}, a {l2} smer {d2}, +{dl2} min; ostatné najbližšie odchody ({n}) sú včas."
       },
@@ -253,7 +253,7 @@
         "title": "Na stanici",
         "scene": "S kočíkom, vozíkom alebo kufrom: ide výťah na nástupište?",
         "q1": "Funguje výťah na hlavnej stanici v Kolíne nad Rýnom?",
-        "a1": "V stanici {station} je v prevádzke {working} z {total} hlásených výťahov; jeden je mimo prevádzky, pri jednom železnica neuvádza stav.",
+        "a1": "V stanici {station} je v prevádzke {working} z {total} hlásených výťahov; pri jednom železnica neuvádza stav.",
         "limit": "Výťahy a eskalátory na staniciach Deutsche Bahn; iní prevádzkovatelia zatiaľ nie.",
         "q2": "Sú na stanici Erlangen všetky výťahy v prevádzke?",
         "a2": "Áno: jediný hlásený výťah v stanici {station}, ku koľaji {platforms}, je v prevádzke.",
@@ -264,7 +264,7 @@
         "title": "Autom",
         "scene": "Pred cestou: kolóny, uzávierky, práce na ceste – a kde je palivo práve lacné.",
         "q1": "Je A8 smerom na Mníchov práve voľná?",
-        "a1": "Nie celkom: v úseku {a} – {b} smerom na Mníchov hlási polícia nehodu; odstavný pruh je zablokovaný.",
+        "a1": "Áno: smerom na Mníchov teraz nie je hlásená žiadna kolóna; kolóny na A8 ({jams}) sú v iných smeroch.",
         "a1more": "Na celej A8 sú navyše uvedené uzávierky ({closures}) a záznamy o prácach na ceste ({works}).",
         "limit": "Žiadne plánovanie trasy: hovoríme, čo sa deje na diaľnici, nie ktorou cestou máte ísť.",
         "q2": "Aké práce na ceste sú práve na A7?",
@@ -276,13 +276,13 @@
         "title": "V kolóne",
         "scene": "Kolóny na diaľnici a okolo miest: kde sa stojí, koľko času to stojí – a či bude dnes v noci uzávierka.",
         "q1": "Koľko času práve stojí kolóna na A3 medzi Frankfurtom a Würzburgom?",
-        "a1": "V úseku {a} – {b} smerom na Frankfurt asi +{delay} min, po nehode; na celej A3 sú hlásené kolóny ({jams}).",
+        "a1": "V úseku {a} – {b} smerom na Würzburg asi +{delay} min; na celej A3 sú hlásené kolóny ({jams}).",
         "a1more": "Na A3 sú uvedené uzávierky ({closures}) a záznamy o prácach na ceste ({works}).",
         "limit": "V mestách vidíme mestské diaľnice a v Berlíne, Kolíne nad Rýnom a Hannoveri aj dopravné hlásenia mesta – zatiaľ nie situáciu na každej ulici. Hlásenia pre Hamburg a dopravnú situáciu pre Kolín nad Rýnom sme si u poskytovateľov vyžiadali.",
         "q2": "Tvorí sa práve kolóna na diaľničnom okruhu okolo Kolína nad Rýnom – A1, A3 alebo A4?",
         "q3": "Je A7 v Hamburgu dnes uzavretá?",
         "a3": "Hlásená je uzávierka medzi križovatkami {a} a {b} (rozšírenie na osem pruhov, nový {tunnel}); na celej A7 je uzávierok: {n}.",
-        "a2": "Áno, na A4: v úseku {a} – {b} smerom na Kolín je premávka spomalená, asi +{delay} min; na opýtaných diaľniciach sú hlásené kolóny ({n})."
+        "a2": "Áno, na A4: v úseku {a} – {b} smerom na Kolín hlási polícia kolónu {km} km; na opýtaných diaľniciach sú hlásené kolóny ({n})."
       },
       "parking": {
         "title": "Parkovanie",
@@ -389,7 +389,7 @@
       "stadtbahn": {
         "title": "Výťahy a eskalátory na Stadtbahn",
         "q": "Čo je práve mimo prevádzky na zastávke Stadtbahn {stop} v Kolíne nad Rýnom?",
-        "a": "{out} z {total} hlásených zariadení: eskalátory {e1} a {e2} od {since}, {e3} od {since3} a {e4} od {since4}; oba výťahy v prevádzke. {publisher} poskytuje dáta bez akejkoľvek záruky.",
+        "a": "{out} z {total} hlásených zariadení: eskalátory {e1} a {e2} od {since} a {e3} od {since3}; oba výťahy v prevádzke. {publisher} poskytuje dáta bez akejkoľvek záruky.",
         "note": "Pre zastávky kolínskej Stadtbahn, zo zverejneného zoznamu porúch – s časom, odkedy je zariadenie hlásené."
       },
       "bikes": {
@@ -401,7 +401,7 @@
       "lift": {
         "title": "Výťahy na stanici",
         "q": "Ktoré výťahy na stanici {station} sú práve mimo prevádzky?",
-        "a": "Jeden je hlásený mimo prevádzky, výťah ku koľaji {platforms}: {working} z {total} výťahov v prevádzke. Druhý výťah ku koľaji {platforms} nie je monitorovaný – jeho stav je neznámy.",
+        "a": "Žiadny nie je hlásený mimo prevádzky: {working} z {total} výťahov v prevádzke. Jeden výťah ku koľaji {platforms} nie je monitorovaný – jeho stav je neznámy.",
         "note": "Pre stanice Deutsche Bahn, načítané každých 20 minút. Čo posledné hlásenie neuvádza, je „neznáme“ – nikdy „v prevádzke“."
       },
       "alert": {
@@ -425,7 +425,7 @@
       "ocpdb": {
         "title": "Naživo voľné alebo obsadené – v centre Kolína nad Rýnom",
         "q": "Je na nabíjačke na adrese {address} práve voľný nabíjací bod?",
-        "a": "Áno, jeden: Typ 2 do {kw2} kW je voľný, bod CCS do {kw} kW je mimo prevádzky – {euro},{cent} €/kWh bez DPH.",
+        "a": "Áno, oba body sú voľné: CCS a Typ 2 do {kw} kW – {euro},{cent} €/kWh bez DPH.",
         "note": "Obsadenosť prichádza naživo cez dátový portál Bádenska-Württemberska, ktorý uvádza aj nabíjačky ďaleko za hranicami tejto krajiny."
       },
       "lsr": {
@@ -467,7 +467,7 @@
       "landroad": {
         "title": "Práce na ceste na krajinskej ceste",
         "q": "Sú tento týždeň práce na ceste na L1025 v Durínsku?",
-        "a": "Úseky s prácami: {count}, medzi nimi {site}, zúženie riadené semaformi, od {from} do {to}.",
+        "a": "Jeden úsek s prácami: {site}, zúženie riadené semaformi, od {from} do {to}.",
         "note": "Krajinské cesty pokrývame v Bádensku-Württembersku, Dolnom Sasku a Durínsku, štátne cesty v Sasku – z dát cestných správ: úsek a obdobie, bez súradníc a bez živého zdržania."
       },
       "saxony": {
@@ -527,7 +527,7 @@
       "weather": {
         "title": "Kontrola počasia pred horami",
         "q": "Platí dnes varovanie pred počasím pre lokalitu {name}?",
-        "a": "Áno, na nadchádzajúcu noc: Nemecká meteorologická služba varuje pred slabým mrazom do {temp} °C, platí {day} od {from} do {to} – stupeň {level}, najnižší.",
+        "a": "Áno: Nemecká meteorologická služba varuje pred silnými búrlivými nárazmi vetra nad {alt} m, platí do {day} {to} – stupeň {level} zo 4.",
         "note": "Varovania sa načítavajú každých 5 minút a platia pre oblasť; nové môže byť vydané na poslednú chvíľu."
       },
       "fuelcity": {
@@ -537,7 +537,7 @@
         "note": "Ceny palív sa menia každých pár minút: toto číslo je príklad z toho popoludnia, nie dnešná cena. ViaFrei pri každej cene uvedie, kedy ju stanica nahlásila."
       },
       "charger": {
-        "a": "{site}: nabíjacie body: {points}, Typ 2, do {kw},{kwd} kW, {euro},{cent} €/kWh bez DPH. Žiadny sa nehlási ako obsadený; pri {stale} je posledný stav z {t}, pri {unknown} žiadny nie je – teda nie „voľný“.",
+        "a": "{site}: nabíjacie body: {points}, Typ 2, do {kw},{kwd} kW, {euro},{cent} €/kWh bez DPH. Posledný stav z {t}: voľné {free}, obsadené {busy}, mimo prevádzky {out}, pri {unknown} žiadny – možno zastaraný.",
         "title": "Živý stav na nabíjačke",
         "q": "Je na adrese {address} práve voľný nabíjací bod?",
         "note": "Živú obsadenosť uvádzame len tam, kde ju prevádzkovateľ zverejňuje – tu cez e-clearing.net. Bez hlásenia je odpoveď „žiadne údaje o stave“, nikdy „voľný“."

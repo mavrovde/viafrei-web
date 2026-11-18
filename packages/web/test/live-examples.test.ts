@@ -153,7 +153,7 @@ describe("real answers on the connect page (#472, v1.8.1, v1.8.2)", () => {
       for (const lang of LIVE_LANGS) expect(t(lang, `connectPage.live.${k}.a`, { ...e.values, ...namesOf(e) }).length, `${lang}: ${k}`).toBeLessThanOrEqual(170);
     }
     const vars = (k: string) => { const e = LIVE_EXAMPLES.find((x) => x.key === k)!; return { ...e.values, ...namesOf(e) }; };
-    expect(t("de", "connectPage.live.ocpdb.a", vars("ocpdb"))).toBe("Ja, einer: Typ 2 bis 22 kW ist frei, der CCS-Ladepunkt bis 50 kW außer Betrieb – 0,49 €/kWh netto.");
+    expect(t("de", "connectPage.live.ocpdb.a", vars("ocpdb"))).toBe("Ja, beide Ladepunkte sind frei: CCS und Typ 2 bis 50 kW – 0,49 €/kWh netto.");
     expect(t("de", "connectPage.live.muenster.a", vars("muenster"))).toBe("89 von 300 Plätzen frei – dazu 4 weitere Parkhäuser in der Nähe, jedes mit seiner Belegung.");
     // the register has no live status, and says so in every language; its own Stand is quoted
     for (const lang of LIVE_LANGS) expect(t(lang, "connectPage.live.lsr.a", vars("lsr")), lang).toContain("01.09.2026");
@@ -741,11 +741,11 @@ describe("the v1.8.16 cards: the Stadtbahn lifts (#487) and the shared bikes (#4
     const e = card("stadtbahn");
     expect(e.tool).toBe("check_station_facilities");
     expect([...e.credits].sort()).toEqual(["delfi_zhv", "kvb_lifts"]);
-    // 2.5.4: a fourth escalator was out when re-asked, so the sentence carries a fourth figure
-    expect(e.values).toEqual({ out: "4", total: "10", e1: "51", e2: "52", since: "06.10., 17:32", e3: "62", since3: "31.10., 03:01", e4: "53", since4: "31.10., 20:21", asOf: "02.11.2026, 14:02" });
+    // 2.5.4: a fourth escalator was out when re-asked; 2026-11-18: three again, so the sentence carries three figures
+    expect(e.values).toEqual({ out: "3", total: "10", e1: "51", e2: "52", since: "11.11., 17:30", e3: "60", since3: "15.11., 10:36", asOf: "18.11.2026, 14:37" });
     expect(e.recheck).toBeUndefined();
     expect(answer(e, "de")).toBe(
-      "4 von 10 gemeldeten Anlagen: die Fahrtreppen 51 und 52, gemeldet seit 06.10., 17:32, 62 seit 31.10., 03:01 und 53 seit 31.10., 20:21; beide Aufzüge in Betrieb. Die Kölner Verkehrs-Betriebe AG stellt die Daten ohne jede Gewähr bereit.",
+      "3 von 10 gemeldeten Anlagen: die Fahrtreppen 51 und 52, gemeldet seit 11.11., 17:30 und 60 seit 15.11., 10:36; beide Aufzüge in Betrieb. Die Kölner Verkehrs-Betriebe AG stellt die Daten ohne jede Gewähr bereit.",
     );
   });
 

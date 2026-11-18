@@ -245,7 +245,7 @@
         "a1": "{s1}, {km},{kmd} km væk; derefter {s2} og {s3}.",
         "limit": "Køreplanen for hvert bus- og sporvognsstoppested viser vi, så snart den er indlæst — indtil da stationer og situationen i din region.",
         "board": "Køreplan ved dit stoppested",
-        "a2": "Først {l1} til {d1} kl. {t1} fra spor {p1}, til tiden; {l2} til {d2} kl. {t2} har +{delay2} min., ca. {exp2}.",
+        "a2": "Først {l1} til {d1}, planlagt kl. {t1} fra spor {p1}, har +{delay1} min., ca. {exp1}; {l2} til {d2} har +{delay2} min., ca. {exp2}.",
         "q3": "Kører der tog fra Dresden Hovedbanegård med forsinkelse lige nu?",
         "a3": "Ja, to: {l1} til {d1} med +{dl1} min. fra spor {p1} og {l2} til {d2} med +{dl2} min.; de øvrige {n} kommende afgange er til tiden."
       },
@@ -253,7 +253,7 @@
         "title": "På stationen",
         "scene": "Med barnevogn, kørestol eller kuffert: virker elevatoren til perronen?",
         "q1": "Virker elevatoren på Köln Hovedbanegård?",
-        "a1": "På {station} er {working} af {total} meldte elevatorer i drift; én er ude af drift, for én melder jernbanen ingen status.",
+        "a1": "På {station} er {working} af {total} meldte elevatorer i drift; for én melder jernbanen ingen status.",
         "limit": "Elevatorer og rulletrapper på Deutsche Bahns stationer; andre operatører endnu ikke.",
         "q2": "Er alle elevatorer på Erlangen station i drift?",
         "a2": "Ja: den ene meldte elevator på {station}, til spor {platforms}, er i drift.",
@@ -264,7 +264,7 @@
         "title": "I bil",
         "scene": "Før du kører: kø, spærringer, vejarbejde — og hvor brændstof er billigt lige nu.",
         "q1": "Er A8 mod München fri lige nu?",
-        "a1": "Ikke helt: mellem {a} og {b} mod München melder politiet et uheld; nødsporet er blokeret.",
+        "a1": "Ja: mod München er der lige nu ikke meldt nogen kø; de {jams} køer på A8 er i andre retninger.",
         "a1more": "På hele A8 er der desuden {closures} spærringer og {works} meldinger om vejarbejde.",
         "limit": "Ingen ruteplanlægning: vi siger, hvad der sker på motorvejen, ikke hvilken vej du skal køre.",
         "q2": "Hvilke vejarbejder er der på A7 lige nu?",
@@ -276,13 +276,13 @@
         "title": "I kø",
         "scene": "Kø på motorvejen og omkring byerne: hvor det står stille, hvor meget tid det koster — og om der spærres i nat.",
         "q1": "Hvor meget tid koster køen på A3 mellem Frankfurt og Würzburg lige nu?",
-        "a1": "Mellem {a} og {b} mod Frankfurt ca. +{delay} min. efter et uheld; på hele A3 er der meldt {jams} køer.",
+        "a1": "Mellem {a} og {b} mod Würzburg ca. +{delay} min.; på hele A3 er der meldt {jams} køer.",
         "a1more": "På A3 er der {closures} spærringer og {works} meldinger om vejarbejde.",
         "limit": "I byerne ser vi bymotorvejene, og i Berlin, Köln og Hannover også byens egne trafikmeldinger – endnu ikke situationen i hver gade. Meldingerne for Hamborg og trafiksituationen for Köln er søgt hos udbyderne.",
         "q2": "Er der kø på motorvejsringen om Köln lige nu — A1, A3 eller A4?",
         "q3": "Er A7 ved Hamborg spærret i dag?",
         "a3": "Der er meldt en spærring mellem tilslutningsanlæggene {a} og {b} (udvidelse til otte spor, ny {tunnel}); på hele A7 er der {n} spærringer.",
-        "a2": "Ja, på A4: mellem {a} og {b} mod Köln går trafikken langsomt, ca. +{delay} min.; på de motorveje, der blev spurgt om, er der meldt {n} køer."
+        "a2": "Ja, på A4: mellem {a} og {b} mod Köln melder politiet {km} km kø; på de motorveje, der blev spurgt om, er der meldt {n} køer."
       },
       "parking": {
         "title": "Parkering",
@@ -389,7 +389,7 @@
       "stadtbahn": {
         "title": "Elevatorer og rulletrapper på letbanen",
         "q": "Hvad er ude af drift ved letbanestoppestedet {stop} i Köln lige nu?",
-        "a": "{out} af {total} meldte anlæg: rulletrapperne {e1} og {e2} siden {since}, {e3} siden {since3} og {e4} siden {since4}; begge elevatorer kører. {publisher} leverer dataene uden nogen garanti.",
+        "a": "{out} af {total} meldte anlæg: rulletrapperne {e1} og {e2} siden {since} og {e3} siden {since3}; begge elevatorer kører. {publisher} leverer dataene uden nogen garanti.",
         "note": "For Kölns letbanestoppesteder, fra den offentliggjorte fejlliste – med klokkeslættet, hvor hvert anlæg blev meldt."
       },
       "bikes": {
@@ -401,7 +401,7 @@
       "lift": {
         "title": "Elevatorer på stationen",
         "q": "Hvilke elevatorer på {station} station er ude af drift lige nu?",
-        "a": "Én er meldt ude af drift, en elevator til spor {platforms}: {working} af {total} elevatorer i drift. Den anden elevator til spor {platforms} overvåges ikke – dens status er ukendt.",
+        "a": "Ingen er meldt ude af drift: {working} af {total} elevatorer i drift. Én til spor {platforms} overvåges ikke – dens status er ukendt.",
         "note": "For Deutsche Bahns stationer, læst igen hvert 20. minut. Hvad den seneste melding ikke nævner, hedder „ukendt“ – aldrig „i drift“."
       },
       "alert": {
@@ -425,7 +425,7 @@
       "ocpdb": {
         "title": "Live ledig eller optaget – midt i Köln",
         "q": "Er der et ledigt ladepunkt ved ladestanderen {address} lige nu?",
-        "a": "Ja, ét: type 2 op til {kw2} kW er ledigt, CCS-ladepunktet op til {kw} kW er ude af drift – {euro},{cent} €/kWh ekskl. moms.",
+        "a": "Ja, begge ladepunkter er ledige: CCS og type 2 op til {kw} kW – {euro},{cent} €/kWh ekskl. moms.",
         "note": "Belægningen kommer live via Baden-Württembergs dataportal, som også viser ladestandere langt uden for delstaten."
       },
       "lsr": {
@@ -467,7 +467,7 @@
       "landroad": {
         "title": "Vejarbejde på en delstatsvej",
         "q": "Er der vejarbejde på L1025 i Thüringen i denne uge?",
-        "a": "{count} arbejdssteder, blandt dem: {site}, en indsnævring med lysregulering, fra {from} til {to}.",
+        "a": "Ét arbejdssted: {site}, en indsnævring med lysregulering, fra {from} til {to}.",
         "note": "Delstatsveje kender vi i Baden-Württemberg, Niedersachsen, Thüringen og Sachsen, fra vejmyndighedernes data: strækning og periode, ingen koordinater og ingen live-forsinkelse."
       },
       "saxony": {
@@ -527,7 +527,7 @@
       "weather": {
         "title": "Vejrtjek før bjergene",
         "q": "Er der en vejrvarsel for {name} i dag?",
-        "a": "Ja, for den kommende nat: den tyske vejrtjeneste varsler let frost ned til {temp} °C, gældende den {day} fra kl. {from} til {to} – varselsniveau {level}, det laveste.",
+        "a": "Ja: den tyske vejrtjeneste varsler kraftige stormstød over {alt} m, gældende til den {day} kl. {to} – varselsniveau {level} af 4.",
         "note": "Varslerne læses hvert 5. minut og gælder pr. område; en ny kan udsendes med kort varsel."
       },
       "fuelcity": {
@@ -537,7 +537,7 @@
         "note": "Brændstofpriser ændrer sig med få minutters mellemrum: dette tal er et eksempel fra den eftermiddag, ikke dagens pris. ViaFrei siger ved hver pris, hvornår stationen meldte den."
       },
       "charger": {
-        "a": "Ved {site}: {points} ladepunkter, type 2, op til {kw},{kwd} kW, {euro},{cent} €/kWh ekskl. moms. Ingen melder sig optaget; for {stale} er den sidste status fra {t}, for {unknown} findes ingen – så ikke „ledig“.",
+        "a": "Ved {site}: {points} ladepunkter, type 2, op til {kw},{kwd} kW, {euro},{cent} €/kWh ekskl. Sidste status fra {t}: {free} ledige, {busy} optaget, {out} ude af drift, for {unknown} ingen – måske forældet.",
         "title": "Live-status ved en ladestander",
         "q": "Er der et ledigt ladepunkt ved {address} lige nu?",
         "note": "Live-belægning nævner vi kun, hvor operatøren offentliggør den – her via e-clearing.net. Uden melding lyder svaret „ingen statusdata“, aldrig „ledig“."
