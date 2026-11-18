@@ -31,14 +31,21 @@ describe("#1267 the Cloudflare section", () => {
     expect(section).toContain("Data Processing Addendum von Cloudflare (Version 6.4 vom 3. April 2026)");
   });
 
-  it("routes all five names through Cloudflare after the #1233 cutover, mail excepted", () => {
+  it("routes all three names through Cloudflare after the #1233 cutover, mail excepted (status and admin retired on 2026-11-18)", () => {
     expect(section).toContain(
-      "Alle Adressen dieses Angebots – die Website viafrei.de und www.viafrei.de, den MCP-Endpunkt mcp.viafrei.de, die Statusseite status.viafrei.de und die Betriebskonsole admin.viafrei.de – leiten wir über das Netz",
+      "Alle Adressen dieses Angebots – die Website viafrei.de und www.viafrei.de sowie den MCP-Endpunkt mcp.viafrei.de – leiten wir über das Netz",
     );
     expect(section).toContain("Unser Server nimmt Anfragen an diese Adressen nur von Cloudflare an;");
     expect(section).toContain("Unser E-Mail-Verkehr läuft nicht über Cloudflare.");
-    expect(section).toContain("Antworten des MCP-Endpunkts, der Statusseite und der Betriebskonsole speichert Cloudflare nicht zwischen.");
-    expect(section).toContain("also auch die, die unser Server danach ohne Inhalt abweist");
+    expect(section).toContain("Antworten des MCP-Endpunkts speichert Cloudflare nicht zwischen.");
+    expect(section).toContain("Die IP-Adresse, die unsere Server nach Punkt 3 protokollieren, ist die Adresse, die Cloudflare uns als die des anfragenden Geräts übermittelt.");
+    // the retired hosts are not named as routed, cached or checked addresses any more
+    expect(section).not.toContain("status.viafrei.de");
+    expect(section).not.toContain("admin.viafrei.de");
+    expect(section).not.toContain("Statusseite");
+    expect(section).not.toContain("Betriebskonsole");
+    expect(section).not.toContain("ohne Inhalt abweist");
+    expect(section).not.toContain("protokollieren oder prüfen");
   });
 
   it("no longer claims that mcp, status or the console bypass Cloudflare (the pre-cutover wording)", () => {

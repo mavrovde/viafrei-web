@@ -410,18 +410,18 @@ describe("the fuel card's on-demand prices (#564, owner 2026-10-12), pinned to t
   });
 
   it("says what the site discovery sends (data-steward ruling 2026-10-12): the Gemeinde centroid and 5 km, under three held stations, once per area in five minutes", () => {
-    expect(tanken).toContain("Kennen wir im Umkreis von fünf Kilometern um den gezeigten Ort weniger als drei Tankstellen");
-    // the gap trigger (05880a35) and the day's place memory (#703 E4), said where the trigger is
-    expect(tanken).toContain("oder verzeichnet OpenStreetMap um den Mittelpunkt der Gemeinde nähere Tankstellen in Deutschland als die uns bekannten");
+    // the released live ingestor's discovery: fewer than three held within 5 km of the public point and not all fresh; no OpenStreetMap check
+    expect(tanken).toContain("Kennen wir im Umkreis von fünf Kilometern um diesen öffentlichen Punkt weniger als drei Tankstellen und sind nicht alle davon aktuell, fragt unser Server stattdessen bei Tankerkönig nach den Tankstellen um den Mittelpunkt der Gemeinde (bei einem Autobahnpunkt: der ihm nächstgelegenen Gemeinde)");
     // steward 2026-10-12, T2 (b): the re-ask age said truthfully — a failed ask or a restart forgets sooner, and what is kept.
     // #712: 30 days by default (`fuel.rediscover_days`), never under one day.
-    expect(tanken).toContain("dieselbe Gemeinde fragt er danach 30 Tage lang nicht erneut ab (ein von uns einstellbarer Wert, nie unter einem Tag; nach einer gescheiterten Abfrage oder einem Neustart unseres Servers auch früher) und behält dafür so lange nur den Mittelpunkt der Gemeinde im Arbeitsspeicher");
+    // the cap is seeded from the run log at start, so a restart does not shorten it; the run log holds the public centre
+    expect(tanken).toContain("denselben Mittelpunkt fragt er danach 30 Tage lang nicht erneut ab (nach einer gescheiterten Abfrage auch früher) und vermerkt dafür allein diesen öffentlichen Mittelpunkt in seinem Abrufprotokoll, ohne Bezug zu Ihnen; beim Start liest er diese Vermerke wieder ein, ein Neustart verkürzt die Frist also nicht");
     expect(tanken).not.toContain("höchstens einmal in 24 Stunden");
     expect(internal).toContain("fuelGapAt(db, site, SITE_DISCOVER_RADIUS_KM");
     expect(fuel).toContain("export const DISCOVER_REASK_MS = FUEL_TUNING_DEFAULTS.rediscoverDays * DAY_MS;");
     expect(tuning).toContain('{ key: "fuel.rediscover_days", field: "rediscoverDays", default: 30, min: 1,');
     expect(areaSrc).toContain("export const GAP_REASK_MS = 24 * 60 * 60 * 1000;");
-    expect(tanken).toContain("übermittelt werden dafür allein der Mittelpunkt der nächstgelegenen Gemeinde und ein Suchradius von fünf Kilometern");
+    expect(tanken).toContain("übermittelt werden dafür allein dieser Mittelpunkt und ein Suchradius von fünf Kilometern");
     expect(tanken).toContain("nie Ihr Standort, das auf etwa 500 Meter gerundete Gebiet oder der aus Ihrer IP-Adresse gefundene Punkt");
     expect(internal).toContain("export const SITE_DISCOVER_RADIUS_KM = 5;");
     expect(internal).toContain("export const SITE_DISCOVER_BELOW = 3;");
@@ -433,13 +433,8 @@ describe("the fuel card's on-demand prices (#564, owner 2026-10-12), pinned to t
     expect(tanken).not.toMatch(/(pro|in der|je) Stunde/);
     // "höchstens einmal in fünf Minuten" for the same area
     expect(fuel).toContain("export const RECENT_CELL_TTL_MS = 5 * 60 * 1000;");
-    // the live-queries section names the site's discovery too, and the tool's gap trigger and day memory
-    expect(flat(src)).toContain("die Suche nach dessen Tankstellen um den Mittelpunkt der Gemeinde");
-    expect(flat(src)).toContain("weniger als drei Tankstellen oder nicht die nächstgelegenen kennen");
-    expect(flat(src)).toContain("oder verzeichnet OpenStreetMap dort nähere Tankstellen in Deutschland als die uns bekannten");
-    // steward 2026-10-12, T1 and T3
-    expect(flat(src)).toContain("oder verzeichnet OpenStreetMap dort nähere Tankstellen in Deutschland als die uns bekannten");
-    expect(flat(src)).toContain("den Suchradius an Tankerkönig. Ein so abgefragtes Gebiet fragt unser Server danach 30 Tage lang nicht erneut ab (ein von uns einstellbarer Wert, nie unter einem Tag; nach einer gescheiterten Abfrage oder einem Neustart unseres Servers auch früher); dafür behält er eine auf etwa fünf Kilometer gerundete Kennung dieses Ortes so lange und eine auf etwa 100 Meter gerundete 24 Stunden lang im Arbeitsspeicher, ohne Bezug zum Fragenden, und speichert oder protokolliert sie nicht.");
+    // the live-queries section points to the website's own path; the paragraph below pins it
+    expect(flat(src)).toContain("Die Tankkarte der Website fragt Tankerkönig auf dem unter „Aktuelle Preise für Ihren Ort“ beschriebenen Weg ab");
   });
 
   it("states the guards the MCP port enforces: ten, the 30-minute cache (never under five), once per area in five minutes", () => {
@@ -450,12 +445,18 @@ describe("the fuel card's on-demand prices (#564, owner 2026-10-12), pinned to t
     expect(tuning).toContain("export const FUEL_STATION_FLOOR_S = 300;");
     expect(fuel).toContain("export const RECENT_CELL_TTL_MS = 5 * 60 * 1000;");
     expect(fuel).toContain("export const CELL_DEGREES = 0.05;");
-    // #712, the queue (steward 2026-10-15): held while the ask waits its turn, then at most five minutes
-    expect(tanken).toContain("dieser behält von Ihrem Gebiet nur eine auf etwa fünf Kilometer gerundete Kennung im Arbeitsspeicher, solange die Abfrage in seiner Warteschlange auf ihre Reihe wartet, und danach höchstens fünf Minuten");
-    expect(tanken).toContain("ein Eintrag enthält nur Tankstellen-Kennungen oder den Mittelpunkt der Gemeinde (auf einer Autobahnseite den festen Punkt des Abschnitts) und diese Gebietskennung, keine Angabe zu Ihnen, und ein Neustart unseres Servers leert sie.");
+    // the queue is the request table of the released stack (live ingestor v0.1.0, database migration 0315): a pending row survives a restart,
+    // one waiting over ten minutes is refused; in memory only the public centre and radius of each list request and the ids of failed price requests, five minutes
+    expect(tanken).toContain("dieser bestimmt daraus im Arbeitsspeicher die nächstgelegene Gemeinde (auf einer Autobahnseite den festen Punkt des Abschnitts) und legt nur deren Gemeindeschlüssel beziehungsweise die Kennung des Autobahnpunkts als Auftrag in der Datenbank ab, wie im Abschnitt über die Werkzeuge beschrieben; die Gebietskennung selbst speichert oder protokolliert er nicht.");
+    expect(tanken).toContain("Der Auftrag wartet in der Datenbank auf seine Reihe und bleibt dort auch bei einem Neustart unseres Servers erhalten; ein Auftrag, der länger als zehn Minuten wartet, wird abgewiesen.");
+    expect(tanken).toContain("ein Auftrag enthält nur den Gemeindeschlüssel oder die Kennung des Autobahnpunkts, keine Angabe zu Ihnen.");
+    expect(tanken).toContain("Im Arbeitsspeicher behält der Dienst, der die Abfragen stellt, außer dem oben genannten Mittelpunkt der Abfrage im Umkreis von 25 Kilometern (bis zu 30 Minuten) nur den öffentlichen Mittelpunkt und den Suchradius jeder gesendeten Gebietsabfrage und die Kennungen der Tankstellen, deren Preisabfrage gescheitert ist, jeweils fünf Minuten lang, um dasselbe Gebiet nicht zweimal abzufragen.");
     expect(tanken).not.toContain("Kennung höchstens fünf Minuten im Arbeitsspeicher");
+    // the wide refresh's centre is remembered for the 30-minute window (plugin `st.wide`, filtered by freshness_s 1800); after a restart the stored prices' age (WIDE_DUE) decides
+    expect(tanken).toContain("im Arbeitsspeicher, um Abfragen aus diesem Umkreis ohne neue Abfrage zu beantworten, und speichert oder protokolliert ihn nicht; nach einem Neustart, der diesen Speicher leert, entscheidet allein das Alter der gespeicherten Preise, ob eine neue Abfrage nötig ist (jünger als 30 Minuten: keine);");
+    expect(tanken).toContain("außer dem oben genannten Mittelpunkt der Abfrage im Umkreis von 25 Kilometern (bis zu 30 Minuten) nur den öffentlichen Mittelpunkt");
     expect(tanken).toContain("Auf einer Autobahnseite fragt unser Server erst, wenn Sie dort die Kraftstoffpreise aufrufen");
-    expect(flat(src)).toContain("Diese Abfragen bei Tankerkönig stellt unser Server — für die Werkzeuge wie für die Website — nacheinander über eine Warteschlange");
+    expect(flat(src)).toContain("Diese Abfragen bei Tankerkönig stellt unser Server — für die Werkzeuge — nacheinander über eine Warteschlange");
     // …and "höchstens fünf Minuten" holds in a quiet hour too: each area forgets itself on a timer (review of #564)
     expect(fuel).toContain("forget(RECENT_CELL_TTL_MS, () => {");
     expect(fuel).toContain("forget(t + ttl - now(), () => {");
@@ -469,7 +470,7 @@ describe("the fuel card's on-demand prices (#564, owner 2026-10-12), pinned to t
     expect(tanken).toContain("im Umkreis von 25 Kilometern um den Mittelpunkt der nächstgelegenen Gemeinde (auf einer Autobahnseite um den unten beschriebenen festen Punkt des Abschnitts)");
     expect(tanken).toContain("übermittelt werden dafür allein dieser öffentlich bekannte Punkt und der Suchradius von 25 Kilometern.");
     expect(internal).toContain("const centre = isAnchor ? p : await siteOf();");
-    // the tool: the ~5 km cell's centre, never the asked point
+    // the tool: the MCP served today is the old app's, so its sentence stays: the ~5 km cell's centre, never the asked point
     expect(live).toContain("im Umkreis von 25 Kilometern um den Mittelpunkt des auf etwa fünf Kilometer gerundeten Gebiets, in dem der abgefragte Ort liegt — nie um den Ort selbst");
     expect(wide).toContain('const centre = place.door === "tool" ? cellCentre(place.lat, place.lon) : place.centre;');
     expect(wide).toContain("export const CELL_DEGREES = 0.05;");
@@ -485,8 +486,40 @@ describe("the fuel card's on-demand prices (#564, owner 2026-10-12), pinned to t
     expect(tanken).not.toContain("in keinem der beiden Fälle");
   });
 
+  it("scopes the released fuel behaviour to the website and leaves the MCP tool's sentences as the served MCP does them (ruling 2026-11-18)", () => {
+    const live = flat(src.slice(src.indexOf('<h3 id="live-abfragen">'), src.indexOf('<p id="ort-tanken">')));
+    // the MCP at mcp.viafrei.de is still the old app's: asked place's coordinates after an OpenStreetMap check, a ~5 km rounded id, queue emptied by a restart
+    expect(live).toContain("Halten wir für den abgefragten Ort noch keine Tankstelle oder verzeichnet OpenStreetMap dort nähere Tankstellen in Deutschland als die uns bekannten, übermittelt unser Server bei find_cheapest_fuel stattdessen die Koordinaten dieses Ortes und den Suchradius an Tankerkönig.");
+    expect(live).toContain("Diese Abfragen bei Tankerkönig stellt unser Server — für die Werkzeuge — nacheinander über eine Warteschlange");
+    expect(live).toContain("ein Neustart unseres Servers leert die Warteschlange.");
+    // the request table is the website's; the tools do not write it yet
+    expect(live).toContain("Die Abfragen der Werkzeuge laufen derzeit noch nicht über einen solchen Auftrag.");
+    expect(live).toContain("Fragt die Website aktuelle Kraftstoffpreise an, legt unser Server dafür in seiner Datenbank einen Auftrag an. Dieser enthält allein den achtstelligen amtlichen Gemeindeschlüssel der dem gezeigten Ort nächstgelegenen Gemeinde oder bei einer Autobahn die Kennung des öffentlichen Autobahnpunkts: nie den Ort selbst, keine Koordinaten und keinen Bezug zu Ihnen. Dazu kommen der Zeitpunkt des Auftrags, dessen Ergebnis und die Angabe, welcher unserer eigenen Dienste ihn gestellt hat. Gleichzeitige Aufträge für dieselbe Gemeinde oder denselben Autobahnpunkt fasst er zu einem zusammen. Diese Aufträge löschen wir nach 30 Tagen.");
+    expect(live).not.toContain("Fragt die Website oder ein Werkzeug");
+    expect(live).toContain("Die Tankkarte der Website fragt Tankerkönig auf dem unter „Aktuelle Preise für Ihren Ort“ beschriebenen Weg ab; dieser weicht von dem der Werkzeuge ab.");
+    expect(live).not.toContain("Dieselbe Preisabfrage");
+    expect(live).not.toContain("oder nicht die nächstgelegenen kennen");
+  });
+
+  it("no sentence anywhere on the page still describes the old website station search or queue (page-wide)", () => {
+    const page = flat(src);
+    // the OpenStreetMap trigger and its gap sentence exist only in the tool's sentence (the old MCP), exactly once
+    expect(page.match(/verzeichnet OpenStreetMap/gu)?.length).toBe(1);
+    expect(page).not.toContain("verzeichnet OpenStreetMap um den Mittelpunkt der Gemeinde");
+    expect(page).not.toContain("nicht die nächstgelegenen kennen");
+    // the website's rounded id and the emptied queue: gone from #ort-tanken and from the site's sentences; the old MCP's own sentence names the queue once
+    expect(page).not.toContain("auf etwa fünf Kilometer gerundete Kennung im Arbeitsspeicher, solange die Abfrage in seiner Warteschlange");
+    expect(page.match(/leert die Warteschlange/gu)?.length).toBe(1);
+    expect(page).not.toContain("Neustart unseres Servers leert sie");
+    expect(page).not.toContain("behält dafür so lange nur den Mittelpunkt der Gemeinde im Arbeitsspeicher");
+    expect(page).not.toContain("um den gezeigten Ort weniger als drei Tankstellen");
+    expect(page).not.toContain("dieselbe Gemeinde fragt er danach 30 Tage");
+    expect(page).not.toContain("nach einer gescheiterten Abfrage oder einem Neustart unseres Servers auch früher) und behält");
+    expect(page).not.toContain("Fragt die Website oder ein Werkzeug aktuelle Kraftstoffpreise an");
+  });
+
   it("says the area is not logged — and the internal route logs no area", () => {
-    expect(tanken).toContain("speichert oder protokolliert sie nicht");
+    expect(tanken).toContain("die Gebietskennung selbst speichert oder protokolliert er nicht");
     expect(internal).toContain("The area key is not logged");
     expect(internal).not.toMatch(/log\.[a-z]+\(\{[^}]*\bat\b/);
   });
