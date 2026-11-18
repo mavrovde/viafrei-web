@@ -52,6 +52,12 @@ export interface CarryManifest {
   readonly carried: Readonly<Record<string, CarriedEntry>>;
 }
 
+/** Code-point order, the order `Array#sort` gives strings by default, spelled out. */
+export function byCodePoint(a: string, b: string): number {
+  if (a < b) return -1;
+  return a > b ? 1 : 0;
+}
+
 /** Every regular file under `dir`, as `/`-separated paths relative to it, sorted. */
 export function listFiles(dir: string): string[] {
   const out: string[] = [];
@@ -59,12 +65,12 @@ export function listFiles(dir: string): string[] {
     for (const e of readdirSync(d, { withFileTypes: true })) {
       const p = join(d, e.name);
       if (e.isDirectory()) walk(p);
-      else if (e.isFile()) out.push(relative(dir, p).split("\\").join("/"));
+      else if (e.isFile()) out.push(relative(dir, p).replaceAll("\\", "/"));
       else throw new Error(`carry-assets: ${p} is neither a file nor a directory`);
     }
   };
   walk(dir);
-  return out.sort();
+  return out.sort(byCodePoint);
 }
 
 /** Reads an earlier image's manifest; null when it has none (an image built before #36 — all its files were current). */
@@ -77,7 +83,7 @@ export function readManifest(distDir: string): CarryManifest | null {
   }
   for (const [name, e] of Object.entries(m.carried)) {
     if (typeof e?.since !== "string" || Number.isNaN(Date.parse(e.since))) {
-      throw new Error(`carry-assets: ${p} entry ${name} has no valid "since"`);
+      throw new TypeError(`carry-assets: ${p} entry ${name} has no valid "since"`);
     }
   }
   return m as CarryManifest;
@@ -129,56 +135,87 @@ export function planCarry(sources: readonly CarrySource[], currentFiles: readonl
 
 const DIGEST_REF = /^[^\s@]+@sha256:([0-9a-f]{64})$/;
 
-/** Runs the carry for one build; returns the manifest written. Throws, and the image build fails, on any doubt. */
-export function carryAssets(previousDir: string, dist: string, previousRefs: string, now: Date): CarryManifest {
-  const refs = previousRefs.split(/\s+/).filter((r) => r !== "");
+/** Which earlier images the build names: none, the first build, or digest references. */
+type Named = { readonly refs: readonly string[]; readonly firstBuild: boolean; readonly namesImages: boolean };
+
+/** The supplied stage and the named images must agree: both "none" or both "these images". */
+function checkStage(previousDir: string, n: Named): void {
   const isDefaultStage = existsSync(join(previousDir, NO_PREVIOUS_MARKER));
-  const firstBuild = refs.length === 1 && refs[0] === FIRST_BUILD;
-  const namesImages = refs.length > 0 && !firstBuild;
-  if (isDefaultStage && namesImages) {
+  if (isDefaultStage && n.namesImages) {
     throw new Error(
-      `carry-assets: the build names the previous image(s) ${refs.join(" ")}, but the stage web-assets-previous is the ` +
+      `carry-assets: the build names the previous image(s) ${n.refs.join(" ")}, but the stage web-assets-previous is the ` +
         "Dockerfile's own (no files) — build through release.yml, whose scripts/carry-previous.sh supplies them",
     );
   }
-  if (!isDefaultStage && !namesImages) {
+  if (!isDefaultStage && !n.namesImages) {
     throw new Error(
       'carry-assets: earlier images were supplied as web-assets-previous without naming them — pass --build-arg WEB_ASSETS_PREVIOUS="<image@sha256:…> …"',
     );
   }
+}
+
+/** The 64-hex digest of each reference, refused unless every one is pinned by digest and the supplied directories are exactly those. */
+function suppliedHexes(previousDir: string, refs: readonly string[]): string[] {
+  const hexes = refs.map((r) => {
+    const m = DIGEST_REF.exec(r);
+    if (m === null) throw new Error(`carry-assets: ${r} is not pinned by digest (<image>@sha256:<64 hex>)`);
+    return m[1] as string;
+  });
+  const supplied = readdirSync(previousDir).sort(byCodePoint);
+  if (hexes.length !== new Set(hexes).size || JSON.stringify(supplied) !== JSON.stringify([...hexes].sort(byCodePoint))) {
+    throw new Error(
+      `carry-assets: web-assets-previous holds [${supplied.join(", ")}], the build names [${hexes.join(", ")}] — they must be the same images, each once`,
+    );
+  }
+  return hexes;
+}
+
+/** Each earlier image's `_a/` files and manifest, and name → the first file seen under it (for the byte comparison and the copy). */
+function readSources(previousDir: string, refs: readonly string[], hexes: readonly string[]): { sources: CarrySource[]; origin: Map<string, string> } {
+  const sources: CarrySource[] = [];
+  const origin = new Map<string, string>();
+  for (const [i, hex] of hexes.entries()) {
+    const prevAssets = join(previousDir, hex, "client", "_a");
+    const files = existsSync(prevAssets) ? listFiles(prevAssets) : [];
+    // A site image always has its stylesheet; an empty or absent _a/ is not "nothing to carry", it is a wrong image.
+    if (files.length === 0) throw new Error(`carry-assets: the previous image ${refs[i]} has no files under packages/web/dist/client/_a/`);
+    for (const name of files) {
+      const path = join(prevAssets, name);
+      const seen = origin.get(name);
+      if (seen === undefined) origin.set(name, path);
+      else if (!readFileSync(seen).equals(readFileSync(path))) {
+        throw new Error(`carry-assets: _a/${name} differs between ${refs[i]} and an earlier named image — a hashed name must name one content`);
+      }
+    }
+    sources.push({ files, manifest: readManifest(join(previousDir, hex)) });
+  }
+  return { sources, origin };
+}
+
+/** The manifest's `previous`: the named references, the first-build word, or null. */
+function previousOf(n: Named): CarryManifest["previous"] {
+  if (n.namesImages) return [...n.refs];
+  return n.firstBuild ? FIRST_BUILD : null;
+}
+
+/** How the log line names `previous`. */
+function shownPrevious(previous: CarryManifest["previous"]): string {
+  if (previous === null) return "none (a build that carries nothing)";
+  return typeof previous === "string" ? previous : previous.join(" ");
+}
+
+/** Runs the carry for one build; returns the manifest written. Throws, and the image build fails, on any doubt. */
+export function carryAssets(previousDir: string, dist: string, previousRefs: string, now: Date): CarryManifest {
+  const refs = previousRefs.split(/\s+/).filter((r) => r !== "");
+  const firstBuild = refs.length === 1 && refs[0] === FIRST_BUILD;
+  const named: Named = { refs, firstBuild, namesImages: refs.length > 0 && !firstBuild };
+  checkStage(previousDir, named);
   const assetsDir = join(dist, "client", "_a");
   if (!existsSync(assetsDir)) throw new Error(`carry-assets: this build has no ${assetsDir}`);
   const currentFiles = listFiles(assetsDir);
   let plan: CarryPlan = { carried: {}, dropped: [] };
-  if (namesImages) {
-    const hexes = refs.map((r) => {
-      const m = DIGEST_REF.exec(r);
-      if (m === null) throw new Error(`carry-assets: ${r} is not pinned by digest (<image>@sha256:<64 hex>)`);
-      return m[1] as string;
-    });
-    const supplied = readdirSync(previousDir).sort();
-    if (hexes.length !== new Set(hexes).size || JSON.stringify(supplied) !== JSON.stringify([...hexes].sort())) {
-      throw new Error(
-        `carry-assets: web-assets-previous holds [${supplied.join(", ")}], the build names [${hexes.join(", ")}] — they must be the same images, each once`,
-      );
-    }
-    const sources: CarrySource[] = [];
-    const origin = new Map<string, string>(); // name → the first file seen under it, for the byte comparison and the copy
-    for (const [i, hex] of hexes.entries()) {
-      const prevAssets = join(previousDir, hex, "client", "_a");
-      const files = existsSync(prevAssets) ? listFiles(prevAssets) : [];
-      // A site image always has its stylesheet; an empty or absent _a/ is not "nothing to carry", it is a wrong image.
-      if (files.length === 0) throw new Error(`carry-assets: the previous image ${refs[i]} has no files under packages/web/dist/client/_a/`);
-      for (const name of files) {
-        const path = join(prevAssets, name);
-        const seen = origin.get(name);
-        if (seen === undefined) origin.set(name, path);
-        else if (!readFileSync(seen).equals(readFileSync(path))) {
-          throw new Error(`carry-assets: _a/${name} differs between ${refs[i]} and an earlier named image — a hashed name must name one content`);
-        }
-      }
-      sources.push({ files, manifest: readManifest(join(previousDir, hex)) });
-    }
+  if (named.namesImages) {
+    const { sources, origin } = readSources(previousDir, refs, suppliedHexes(previousDir, refs));
     plan = planCarry(sources, currentFiles, now);
     for (const name of Object.keys(plan.carried)) {
       const to = join(assetsDir, name);
@@ -186,16 +223,10 @@ export function carryAssets(previousDir: string, dist: string, previousRefs: str
       copyFileSync(origin.get(name) as string, to);
     }
   }
-  const manifest: CarryManifest = {
-    version: 1,
-    previous: namesImages ? refs : firstBuild ? FIRST_BUILD : null,
-    builtAt: now.toISOString(),
-    carried: plan.carried,
-  };
+  const manifest: CarryManifest = { version: 1, previous: previousOf(named), builtAt: now.toISOString(), carried: plan.carried };
   writeFileSync(join(dist, MANIFEST_NAME), `${JSON.stringify(manifest, null, 2)}\n`);
-  const shown = manifest.previous === null ? "none (a build that carries nothing)" : typeof manifest.previous === "string" ? manifest.previous : manifest.previous.join(" ");
   console.log(
-    `carry-assets: previous ${shown}; ` +
+    `carry-assets: previous ${shownPrevious(manifest.previous)}; ` +
       `${currentFiles.length} current, ${Object.keys(plan.carried).length} carried, ${plan.dropped.length} dropped (older than ${CARRY_DAYS} days)`,
   );
   return manifest;

@@ -14,10 +14,10 @@ set -uo pipefail
 HERE="$(cd "$(dirname "$0")" && pwd -P)"
 DOCKER="${CARRY_DOCKER:-docker}"
 refuse() { echo "✗ carry-previous: $1" >&2; exit 2; }
-[ $# -eq 1 ] || { echo "usage: carry-previous.sh <out dir>" >&2; exit 64; }
+[[ $# -eq 1 ]] || { echo "usage: carry-previous.sh <out dir>" >&2; exit 64; }
 OUT="$1"
 mkdir -p "$OUT" || refuse "cannot create $OUT"
-[ -z "$(find "$OUT" -mindepth 1 -maxdepth 1 2> /dev/null)" ] || refuse "$OUT is not empty"
+[[ -z "$(find "$OUT" -mindepth 1 -maxdepth 1 2> /dev/null)" ]] || refuse "$OUT is not empty"
 REFS="$(bash "$HERE/pins.sh" ref carry)" || exit 2
 for ref in $REFS; do
   hex="${ref##*@sha256:}"
@@ -26,7 +26,7 @@ for ref in $REFS; do
   cid="$("$DOCKER" create "$ref")" || refuse "cannot create a container of $ref"
   "$DOCKER" cp "$cid:/app/packages/web/dist" "$OUT/$hex"; rc=$?
   "$DOCKER" rm "$cid" > /dev/null || refuse "cannot remove the container of $ref"
-  [ "$rc" = 0 ] || refuse "$ref has no /app/packages/web/dist"
-  [ -d "$OUT/$hex/client/_a" ] || refuse "$ref has no packages/web/dist/client/_a"
+  [[ "$rc" = 0 ]] || refuse "$ref has no /app/packages/web/dist"
+  [[ -d "$OUT/$hex/client/_a" ]] || refuse "$ref has no packages/web/dist/client/_a"
 done
 printf '%s\n' "$REFS"

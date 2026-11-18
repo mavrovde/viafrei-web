@@ -25,10 +25,16 @@ export type LogFields = {
   readonly fragmentKey?: true;
 };
 
+/** The bounded key of a line: a fragment key's own bound when it is one, null without a key. */
+function keyOf(fields: LogFields): string | null {
+  if (typeof fields.key !== "string") return null;
+  return fields.fragmentKey === true ? boundFragmentKey(fields.key) : boundKey(fields.key);
+}
+
 /** The line `logLine` would write, without writing it — what the tests read. */
 export function formatLogLine(level: LogLevel, fields: LogFields, message: string, now: () => number = Date.now): string {
   const out: Record<string, unknown> = { level, time: now(), kind: fields.kind };
-  const key = typeof fields.key === "string" ? (fields.fragmentKey === true ? boundFragmentKey(fields.key) : boundKey(fields.key)) : null;
+  const key = keyOf(fields);
   if (key !== null) out["key"] = key;
   if (typeof fields.status === "number") out["status"] = fields.status;
   if (typeof fields.ms === "number") out["ms"] = fields.ms;
@@ -79,7 +85,7 @@ const SLUG_WORD = /^(?:[a-z]{1,24}|[0-9]+[a-z]?|[a-z]{1,3}[0-9]{1,4})$/;
 function isOurSlug(seg: string): boolean {
   if (!/^[a-z0-9]+(?:-[a-z0-9]+)+$/.test(seg)) return false;
   const words = seg.split("-");
-  if (words.some((w, i) => i > 0 && /^[0-9]+$/.test(w) && /^[0-9]+$/.test(words[i - 1] ?? ""))) return false;
+  if (words.some((w, i) => i > 0 && /^\d+$/.test(w) && /^\d+$/.test(words[i - 1] ?? ""))) return false;
   return words.every((w) => SLUG_WORD.test(w)) && words.some((w) => /^[a-z]{4,}$/.test(w));
 }
 const SLUG_HOLD = "s";

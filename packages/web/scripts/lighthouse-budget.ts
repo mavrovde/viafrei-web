@@ -26,7 +26,7 @@
  * Linux only, like every browser gate here: run it in the pinned Playwright image (e2e-arm), never on the macOS laptop.
  */
 import { randomBytes } from "node:crypto";
-import { createServer, request, type Server } from "node:http";
+import { createServer, request, type IncomingHttpHeaders, type OutgoingHttpHeaders, type Server } from "node:http";
 import { fileURLToPath } from "node:url";
 import * as chromeLauncher from "chrome-launcher";
 import lighthouse from "lighthouse";
@@ -77,7 +77,8 @@ export function judgeBudget(runs: ReadonlyMap<string, { readonly status: number;
   for (const [page, r] of runs) {
     const med = Object.fromEntries((Object.keys(BUDGET) as Metric[]).map((m) => [m, median(r.runs.map((x) => x[m]))])) as Record<Metric, number>;
     const over = (Object.keys(BUDGET) as Metric[]).filter((m) => med[m] > BUDGET[m]);
-    lines.push(`  ${page.padEnd(34)} LCP ${show("lcpMs", med.lcpMs)}  CLS ${show("cls", med.cls)}  TBT ${show("tbtMs", med.tbtMs)}${over.length ? `   ✗ ${over.map((m) => AUDITS[m]).join(", ")}` : ""}`);
+    const marks = over.length > 0 ? "   ✗ " + over.map((m) => AUDITS[m]).join(", ") : "";
+    lines.push(`  ${page.padEnd(34)} LCP ${show("lcpMs", med.lcpMs)}  CLS ${show("cls", med.cls)}  TBT ${show("tbtMs", med.tbtMs)}${marks}`);
     if (over.length) red = true;
   }
   lines.push(red ? "✗ page budget: a median is over its budget" : `✓ page budget: ${String(runs.size)} page(s) × ${String(RUNS)} runs, every median within LCP 2.5 s · CLS 0.1 · TBT 200 ms`);
@@ -111,35 +112,75 @@ const FONT_CSS = '@font-face{font-family:Plant;src:url(/_plant/plant.woff2) form
 export const PLANT_FONT_BYTES = 800_000;
 const FONT = randomBytes(PLANT_FONT_BYTES);
 
-/** The plant's own front on `port`: `/_plant/*` served late, every HTML answer of the shell on `upstream` planted. */
-function startPlantFront(port: number, upstream: number, plant: Plant): Promise<Server> {
+type PlantAsset = { readonly type: string; readonly body: string | Buffer };
+
+/** The planted assets by path: each served `PLANT_DELAY_MS` late. */
+const PLANT_ASSETS: ReadonlyMap<string, PlantAsset> = new Map<string, PlantAsset>([
+  ["/_plant/hero.svg", { type: "image/svg+xml", body: HERO }],
+  ["/_plant/font.css", { type: "text/css", body: FONT_CSS }],
+  ["/_plant/plant.woff2", { type: "font/woff2", body: FONT }],
+]);
+
+/** A planted asset's answer: 200 with its type and bytes, or 404 for a `/_plant/` path that names none. */
+export function plantAsset(path: string): PlantAsset & { readonly status: 200 | 404 } {
+  const a = PLANT_ASSETS.get(path);
+  return a === undefined ? { status: 404, type: "text/plain", body: "" } : { status: 200, ...a };
+}
+
+/**
+ * The upstream answer's headers the plant front passes on: the ones a page's measurement depends on, and nothing that
+ * steers the browser elsewhere. No `location` (the run measures the page it names, `finalDisplayedUrl`, and refuses a
+ * redirect) and no `content-security-policy`: the planted markup and its font are the plant's own, and the site's
+ * policy allows no font at all.
+ */
+export const FORWARDED_HEADERS = ["content-type", "cache-control", "vary", "etag", "last-modified", "content-language"] as const;
+
+export function forwardedHeaders(upstream: IncomingHttpHeaders, length: number): OutgoingHttpHeaders {
+  const out: OutgoingHttpHeaders = {};
+  for (const name of FORWARDED_HEADERS) {
+    const v = upstream[name];
+    if (typeof v === "string") out[name] = v;
+  }
+  out["content-length"] = String(length);
+  return out;
+}
+
+const UPSTREAM_PROTOCOLS: readonly string[] = ["http:"];
+const UPSTREAM_HOSTS: readonly string[] = ["127.0.0.1"];
+
+/** The shell's URL for a request's path, or null when the path would leave the shell (another host, port or scheme). */
+export function upstreamUrl(rawPath: string | undefined, upstream: number): URL | null {
+  const target = new URL(rawPath ?? "/", `http://127.0.0.1:${String(upstream)}`);
+  if (!UPSTREAM_PROTOCOLS.includes(target.protocol) || !UPSTREAM_HOSTS.includes(target.hostname) || target.port !== String(upstream)) return null;
+  return target;
+}
+
+/** The plant's own front on `port` (0: any free one): `/_plant/*` served `delayMs` late, every HTML answer of the shell on `upstream` planted. */
+export function startPlantFront(port: number, upstream: number, plant: Plant, delayMs: number = PLANT_DELAY_MS): Promise<Server> {
   const server = createServer((req, res) => {
-    if (req.url?.startsWith("/_plant/")) {
-      const body = req.url === "/_plant/hero.svg" ? HERO : req.url === "/_plant/font.css" ? FONT_CSS : req.url === "/_plant/plant.woff2" ? FONT : "";
-      const type = req.url.endsWith(".svg") ? "image/svg+xml" : req.url.endsWith(".css") ? "text/css" : "font/woff2";
+    const target = upstreamUrl(req.url, upstream);
+    if (target === null) {
+      res.writeHead(400);
+      res.end();
+      return;
+    }
+    if (target.pathname.startsWith("/_plant/")) {
+      const a = plantAsset(target.pathname);
       setTimeout(() => {
-        res.writeHead(body === "" ? 404 : 200, { "content-type": type, "cache-control": "no-store" });
-        res.end(body);
-      }, PLANT_DELAY_MS);
+        res.writeHead(a.status, { "content-type": a.type, "cache-control": "no-store" });
+        res.end(a.body);
+      }, delayMs);
       return;
     }
     const headers = { ...req.headers };
     delete headers["accept-encoding"];
-    const up = request({ host: "127.0.0.1", port: upstream, method: req.method, path: req.url, headers }, (u) => {
+    const up = request(target, { method: req.method, headers }, (u) => {
       const chunks: Buffer[] = [];
       u.on("data", (c: Buffer) => chunks.push(c));
       u.on("end", () => {
         let body = Buffer.concat(chunks);
-        const out = { ...u.headers };
-        if (String(u.headers["content-type"] ?? "").startsWith("text/html")) {
-          body = Buffer.from(plantInto(body.toString("utf8"), plant), "utf8");
-          // the site's policy (`security/csp.ts`) allows no font at all; whoever adds a webfont adds its source too
-          const csp = u.headers["content-security-policy"];
-          if (plant === "blocking-font" && typeof csp === "string") out["content-security-policy"] = `${csp}; font-src 'self'`;
-        }
-        delete out["transfer-encoding"];
-        out["content-length"] = String(body.length);
-        res.writeHead(u.statusCode ?? 502, out);
+        if (String(u.headers["content-type"] ?? "").startsWith("text/html")) body = Buffer.from(plantInto(body.toString("utf8"), plant), "utf8");
+        res.writeHead(u.statusCode ?? 502, forwardedHeaders(u.headers, body.length));
         res.end(body);
       });
     });
@@ -178,13 +219,41 @@ export function plantOf(argv: readonly string[]): Plant | null {
   return v as Plant;
 }
 
-if (process.argv[1] && fileURLToPath(import.meta.url) === process.argv[1]) {
+/** The path measured in a listed page's slot: the exit page for `EXIT`, the substitute for the page the fixture lacks. */
+export function pageOf(listed: string, exitPath: string): string {
+  if (listed === EXIT) return `/de/autobahn/${exitPath}`;
+  return listed === SUBSTITUTE.from ? SUBSTITUTE.to : listed;
+}
+
+/** The run's first line: the substitute, and the plant when one is planted. */
+export function firstLine(plant: Plant | null): string {
+  const planted = plant === null ? "" : "  PLANTED: " + plant;
+  return `  (${SUBSTITUTE.from}: not in the fixture's register — its slot is measured on ${SUBSTITUTE.to})${planted}`;
+}
+
+/** One Lighthouse run of `url`: its three metrics (null when a run lacks one) and its audits. */
+export type RunOnce = (url: string) => Promise<{ readonly metrics: Metrics | null; readonly audits: Parameters<typeof breakdownOf>[0] }>;
+
+/**
+ * Up to `RUNS` complete runs of one page, one after the other (each run has the browser to itself), with two spare
+ * attempts for a run that came back without the three audits.
+ */
+export async function collectRuns(url: string, page: string, runOnce: RunOnce, rs: Metrics[] = [], attempts = 0): Promise<{ readonly runs: Metrics[]; readonly attempts: number }> {
+  if (rs.length >= RUNS || attempts >= RUNS + 2) return { runs: rs, attempts };
+  const r = await runOnce(url);
+  if (r.metrics !== null) rs.push(r.metrics);
+  // what the main thread spent its time on, per run, for a page whose blocking time is over budget
+  if (r.metrics !== null && r.metrics.tbtMs > BUDGET.tbtMs) console.log(`  (${page}: TBT ${String(Math.round(r.metrics.tbtMs))} ms — ${breakdownOf(r.audits)})`);
+  return collectRuns(url, page, runOnce, rs, attempts + 1);
+}
+
+async function main(argv: readonly string[]): Promise<number> {
   let plant: Plant | null;
   try {
-    plant = plantOf(process.argv.slice(2));
+    plant = plantOf(argv);
   } catch (e) {
     console.log(`✗ page budget: ${(e as Error).message}`);
-    process.exit(64);
+    return 64;
   }
   const port = 18_970;
   const shellPort = 18_969;
@@ -195,36 +264,35 @@ if (process.argv[1] && fileURLToPath(import.meta.url) === process.argv[1]) {
   const front = await startGzipFront(port, planted === null ? shellPort : plantPort);
   // --disable-dev-shm-usage: a container's /dev/shm is 64 MB, and Chrome without it dies before its DevTools port answers
   const chrome = await chromeLauncher.launch({ chromePath: chromium.executablePath(), chromeFlags: ["--headless=new", "--no-sandbox", "--disable-dev-shm-usage", "--disable-gpu"] });
+  // the default config is the mobile profile: Moto G Power, simulated slow 4G, 4× CPU slowdown
+  // A German visitor's Accept-Language: Chrome's own (en-US) would be sent once to /en/... by the language switch
+  // (`i18n/lang-redirect.ts`), and the run would measure a redirect and another page than the one it names.
+  const runOnce: RunOnce = async (url) => {
+    const r = await lighthouse(url, { port: chrome.port, output: "json", logLevel: "error", onlyCategories: ["performance"], extraHeaders: { "Accept-Language": GERMAN_VISITOR } });
+    if (r !== undefined && r.lhr.finalDisplayedUrl !== url) throw new Error(`${url} ended on ${r.lhr.finalDisplayedUrl}, not the page it names`);
+    return { metrics: metricsOf(r?.lhr.audits), audits: r?.lhr.audits };
+  };
   const runs = new Map<string, { status: number; runs: Metrics[] }>();
   let code: 0 | 1 | 2 = 2;
   try {
-    console.log(`  (${SUBSTITUTE.from}: not in the fixture's register — its slot is measured on ${SUBSTITUTE.to})${plant === null ? "" : `  PLANTED: ${plant}`}`);
+    console.log(firstLine(plant));
     const a7 = await (await fetch(`http://127.0.0.1:${String(shellPort)}/de/autobahn/a7`)).text();
     const exit = /<a href="(a7\/exit-[a-z0-9-]+)"/u.exec(a7)?.[1];
     if (exit === undefined) throw new Error("the A7 page names no junction, so there is no exit page to measure");
-    const only = onlyOf(process.argv.slice(2));
-    for (const listed of BUDGET_PAGES) {
-      const page = listed === EXIT ? `/de/autobahn/${exit}` : listed === SUBSTITUTE.from ? SUBSTITUTE.to : listed;
-      if (only.length > 0 && !only.includes(listed) && !only.includes(page)) continue;
-      const url = `http://127.0.0.1:${String(port)}${page}`;
-      const status = (await fetch(url)).status;
-      const rs: Metrics[] = [];
-      let attempts = 0;
-      while (status === 200 && rs.length < RUNS && attempts < RUNS + 2) {
-        attempts++;
-        // the default config is the mobile profile: Moto G Power, simulated slow 4G, 4× CPU slowdown
-        // A German visitor's Accept-Language: Chrome's own (en-US) would be sent once to /en/... by the language switch
-        // (`i18n/lang-redirect.ts`), and the run would measure a redirect and another page than the one it names.
-        const r = await lighthouse(url, { port: chrome.port, output: "json", logLevel: "error", onlyCategories: ["performance"], extraHeaders: { "Accept-Language": GERMAN_VISITOR } });
-        if (r !== undefined && r.lhr.finalDisplayedUrl !== url) throw new Error(`${page} ended on ${r.lhr.finalDisplayedUrl}, not the page it names`);
-        const m = metricsOf(r?.lhr.audits);
-        if (m !== null) rs.push(m);
-        // what the main thread spent its time on, per run, for a page whose blocking time is over budget
-        if (m !== null && m.tbtMs > BUDGET.tbtMs) console.log(`  (${page}: TBT ${String(Math.round(m.tbtMs))} ms — ${breakdownOf(r?.lhr.audits)})`);
-      }
-      if (attempts > RUNS) console.log(`  (${page}: ${String(attempts)} attempts for ${String(rs.length)} complete runs)`);
-      runs.set(page, { status, runs: rs });
-    }
+    const only = onlyOf(argv);
+    const pages = BUDGET_PAGES.map((listed) => ({ listed, page: pageOf(listed, exit) })).filter(({ listed, page }) => only.length === 0 || only.includes(listed) || only.includes(page));
+    // one page after the other: the pages share the one browser
+    await pages.reduce<Promise<void>>(
+      (before, { page }) =>
+        before.then(async () => {
+          const url = `http://127.0.0.1:${String(port)}${page}`;
+          const status = (await fetch(url)).status;
+          const r = status === 200 ? await collectRuns(url, page, runOnce) : { runs: [], attempts: 0 };
+          if (r.attempts > RUNS) console.log(`  (${page}: ${String(r.attempts)} attempts for ${String(r.runs.length)} complete runs)`);
+          runs.set(page, { status, runs: r.runs });
+        }),
+      Promise.resolve(),
+    );
     const v = judgeBudget(runs);
     for (const l of v.lines) console.log(l);
     code = v.code;
@@ -237,5 +305,7 @@ if (process.argv[1] && fileURLToPath(import.meta.url) === process.argv[1]) {
     shell.kill();
     await digest.close();
   }
-  process.exit(code);
+  return code;
 }
+
+if (process.argv[1] && fileURLToPath(import.meta.url) === process.argv[1]) process.exit(await main(process.argv.slice(2)));

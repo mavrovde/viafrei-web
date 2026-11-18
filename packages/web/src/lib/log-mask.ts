@@ -93,7 +93,7 @@ const QUOTES: ReadonlyMap<string, readonly string[]> = new Map([
  */
 function maskTokenRun(run: string): string {
   if (!run.startsWith("/") || /[+=]/.test(run)) return "<token>";
-  return run.replace(PATH_SEGMENT, (seg) => (seg.length >= 32 || (seg.length >= 16 && /[A-Z]/.test(seg) && /[a-z]/.test(seg) && /[0-9]/.test(seg)) || (seg.length >= 16 && /[A-Za-z]/.test(seg) && /[0-9]/.test(seg) && !seg.includes("-")) ? "<token>" : seg));
+  return run.replace(PATH_SEGMENT, (seg) => (seg.length >= 32 || (seg.length >= 16 && /[A-Z]/.test(seg) && /[a-z]/.test(seg) && /\d/.test(seg)) || (seg.length >= 16 && /[A-Za-z]/.test(seg) && /\d/.test(seg) && !seg.includes("-")) ? "<token>" : seg));
 }
 
 /** Step 0: our own deploy paths, shortened; nothing else is touched. */

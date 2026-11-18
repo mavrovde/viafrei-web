@@ -74,17 +74,26 @@ function pause(ms: number, signal: AbortSignal | null | undefined): Promise<bool
   });
 }
 
-async function searchLaneFetch(url: string, init: RequestInit): Promise<Response> {
-  for (let attempt = 0; ; attempt += 1) {
-    const wait = SEARCH_RETRY_WAITS_MS[attempt];
-    try {
-      const res = await fetch(url, init);
-      if (!GATEWAY.has(res.status) || wait === undefined) return res;
-      await res.body?.cancel().catch(() => undefined);
-    } catch (err) {
-      // the deadline is the caller's: an abort is never asked again
-      if (wait === undefined || init.signal?.aborted === true || (err instanceof Error && err.name === "AbortError")) throw err;
-    }
-    if (!(await pause(wait, init.signal))) throw init.signal?.reason instanceof Error ? init.signal.reason : Object.assign(new Error("aborted"), { name: "AbortError" });
+/** One ask of the search lane: the answer to keep, or "again" when a gateway answer or a failure may be asked once more. */
+async function askOnce(url: string, init: RequestInit, wait: number | undefined): Promise<Response | "again"> {
+  try {
+    const res = await fetch(url, init);
+    if (!GATEWAY.has(res.status) || wait === undefined) return res;
+    await res.body?.cancel().catch(() => undefined);
+    return "again";
+  } catch (err) {
+    // the deadline is the caller's: an abort is never asked again
+    if (wait === undefined || init.signal?.aborted === true || (err instanceof Error && err.name === "AbortError")) throw err;
+    return "again";
   }
+}
+
+/** The search lane's fetch: asked again after each of `SEARCH_RETRY_WAITS_MS` on a gateway answer or a failure, never past an abort. */
+async function searchLaneFetch(url: string, init: RequestInit, attempt = 0): Promise<Response> {
+  const wait = SEARCH_RETRY_WAITS_MS[attempt];
+  const res = await askOnce(url, init, wait);
+  if (res !== "again") return res;
+  // `wait` is defined here: askOnce answers "again" only while a wait is left
+  if (!(await pause(wait as number, init.signal))) throw init.signal?.reason instanceof Error ? init.signal.reason : Object.assign(new Error("aborted"), { name: "AbortError" });
+  return searchLaneFetch(url, init, attempt + 1);
 }

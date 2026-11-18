@@ -13,7 +13,7 @@
  * (preview.js sets it) is kept, and then nothing starts.
  */
 import { AUTOSTART_DISABLED_BY_CALLER } from "./no-autostart.js";
-import { handler, options, startServer as startAdapterServer } from "@astrojs/node/server.js";
+import { options, startServer as startAdapterServer } from "@astrojs/node/server.js";
 import { withIdleTimeouts } from "@viafrei/design/http-idle";
 
 /** The adapter's standalone server with the shared idle keep-alive; what `entry.mjs` runs at start. */
@@ -27,4 +27,5 @@ export function startServer(): ReturnType<typeof startAdapterServer> {
 // The adapter's own rule: start in standalone mode unless the caller disabled the autostart.
 if ((options as { readonly mode?: unknown }).mode === "standalone" && !AUTOSTART_DISABLED_BY_CALLER) startServer();
 
-export { handler, options };
+export { handler } from "@astrojs/node/server.js";
+export { options };

@@ -261,7 +261,17 @@ function subjectsOf(s: DescribedSubject): { readonly withLand: string | null; re
 function cutAtWord(text: string, max: number): string {
   const room = text.slice(0, max - 1);
   const at = room.lastIndexOf(" ");
-  return `${(at > 0 ? room.slice(0, at) : room).replace(/[\s,;:–—-]+$/u, "")}…`;
+  return `${trimTrailingPunctuation(at > 0 ? room.slice(0, at) : room)}…`;
+}
+
+/** The characters a cut never ends on: white space and the separators , ; : – — -. */
+const TRAILING = /[\s,;:–—-]/u;
+
+/** `text` without its trailing white space and separators: one linear pass from the end, no backtracking. */
+function trimTrailingPunctuation(text: string): string {
+  let end = text.length;
+  while (end > 0 && TRAILING.test(text.charAt(end - 1))) end -= 1;
+  return text.slice(0, end);
 }
 
 /** The page's meta description: the first form of the length rule that fits (see the header). */

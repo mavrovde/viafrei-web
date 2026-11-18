@@ -2,9 +2,11 @@
  * #1310 D1: the page-experience budget's judge, its reading of Lighthouse's audits and its two planted faults. The
  * browser run itself is `scripts/lighthouse-budget.ts` in the web leg (Linux image only).
  */
+import { createServer } from "node:http";
+import type { AddressInfo } from "node:net";
 import { all, type El } from "@viafrei/design/testing";
 import { describe, expect, it } from "vitest";
-import { AUDITS, breakdownOf, BUDGET, BUDGET_PAGES, EXIT, judgeBudget, metricsOf, onlyOf, plantInto, plantOf, SUBSTITUTE, type Metrics } from "../scripts/lighthouse-budget.js";
+import { AUDITS, breakdownOf, BUDGET, BUDGET_PAGES, collectRuns, EXIT, firstLine, forwardedHeaders, judgeBudget, metricsOf, onlyOf, pageOf, plantAsset, plantInto, plantOf, startPlantFront, SUBSTITUTE, upstreamUrl, type Metrics, type RunOnce } from "../scripts/lighthouse-budget.js";
 import { RUNS } from "../scripts/lighthouse.js";
 
 const ok: Metrics = { lcpMs: 1_800, cls: 0.02, tbtMs: 90 };
@@ -95,5 +97,79 @@ describe("the diagnostics and the focused re-run", () => {
   it("--only collects every path it is given, and nothing without it", () => {
     expect(onlyOf([])).toEqual([]);
     expect(onlyOf(["--only", "/de", "--plant", "blocking-font", "--only", "/de/place/hamburg"])).toEqual(["/de", "/de/place/hamburg"]);
+  });
+});
+
+describe("the run's pieces", () => {
+  it("measures the exit page in its slot and the substitute in the missing road's", () => {
+    expect(pageOf(EXIT, "a7/exit-1-x")).toBe("/de/autobahn/a7/exit-1-x");
+    expect(pageOf(SUBSTITUTE.from, "a7/exit-1-x")).toBe(SUBSTITUTE.to);
+    expect(pageOf("/de", "a7/exit-1-x")).toBe("/de");
+  });
+  it("says the substitute on its first line, and the plant when there is one", () => {
+    expect(firstLine(null)).toContain(`its slot is measured on ${SUBSTITUTE.to})`);
+    expect(firstLine(null)).not.toContain("PLANTED");
+    expect(firstLine("blocking-font")).toMatch(/PLANTED: blocking-font$/u);
+  });
+  it("collects RUNS complete runs, with two spare attempts for an incomplete one", async () => {
+    let n = 0;
+    const flaky: RunOnce = () => Promise.resolve({ metrics: n++ % 2 === 0 ? null : ok, audits: undefined });
+    const r = await collectRuns("http://x/de", "/de", flaky);
+    expect([r.runs.length, r.attempts]).toEqual([2, RUNS + 2]);
+    const steady = await collectRuns("http://x/de", "/de", () => Promise.resolve({ metrics: { ...ok, tbtMs: 900 }, audits: undefined }));
+    expect([steady.runs.length, steady.attempts]).toEqual([RUNS, RUNS]);
+  });
+});
+
+describe("the plant front", () => {
+  it("serves each planted asset with its type, and 404 for any other /_plant/ path", () => {
+    expect(plantAsset("/_plant/hero.svg")).toMatchObject({ status: 200, type: "image/svg+xml" });
+    expect(plantAsset("/_plant/font.css")).toMatchObject({ status: 200, type: "text/css" });
+    expect(plantAsset("/_plant/plant.woff2")).toMatchObject({ status: 200, type: "font/woff2" });
+    expect(plantAsset("/_plant/x")).toMatchObject({ status: 404, body: "" });
+  });
+  it("passes on only the listed headers: never a location, never a policy", () => {
+    const out = forwardedHeaders({ "content-type": "text/html", location: "https://elsewhere.example/", "content-security-policy": "default-src 'self'", "set-cookie": ["a=b"], vary: "accept-language" }, 12);
+    expect(out).toEqual({ "content-type": "text/html", vary: "accept-language", "content-length": "12" });
+  });
+  it("forwards a path to the shell only, never to another host", () => {
+    expect(upstreamUrl("/de?x=1", 4000)?.toString()).toBe("http://127.0.0.1:4000/de?x=1");
+    expect(upstreamUrl(undefined, 4000)?.pathname).toBe("/");
+    expect(upstreamUrl("//elsewhere.example/x", 4000)).toBeNull();
+    expect(upstreamUrl("http://elsewhere.example/x", 4000)).toBeNull();
+  });
+  it("plants every HTML answer of the shell, passes other answers through, serves its assets, and answers 502 without a shell", async () => {
+    const shell = createServer((req, res) => {
+      if (req.url === "/de") {
+        res.writeHead(200, { "content-type": "text/html; charset=utf-8", location: "https://elsewhere.example/" });
+        res.end("<html><head></head><body><main><h1>x</h1></main></body></html>");
+      } else {
+        res.writeHead(200, { "content-type": "text/css" });
+        res.end("a{}");
+      }
+    });
+    await new Promise<void>((done) => shell.listen(0, "127.0.0.1", done));
+    const shellPort = (shell.address() as AddressInfo).port;
+    const front = await startPlantFront(0, shellPort, "unsized-image", 0);
+    const base = `http://127.0.0.1:${String((front.address() as AddressInfo).port)}`;
+    try {
+      const page = await fetch(`${base}/de`);
+      expect(page.headers.get("location")).toBeNull();
+      const first = firstChildOf(await page.text(), "main");
+      expect([first.tag, first.attrs.src]).toEqual(["img", "/_plant/hero.svg"]);
+      expect(await (await fetch(`${base}/_a/x.css`)).text()).toBe("a{}");
+      const hero = await fetch(`${base}/_plant/hero.svg`);
+      expect([hero.status, hero.headers.get("content-type")]).toEqual([200, "image/svg+xml"]);
+      expect((await fetch(`${base}/_plant/none`)).status).toBe(404);
+    } finally {
+      await new Promise<void>((done) => front.close(() => done()));
+      await new Promise<void>((done) => shell.close(() => done()));
+    }
+    const dead = await startPlantFront(0, shellPort, "blocking-font", 0);
+    try {
+      expect((await fetch(`http://127.0.0.1:${String((dead.address() as AddressInfo).port)}/de`)).status).toBe(502);
+    } finally {
+      await new Promise<void>((done) => dead.close(() => done()));
+    }
   });
 });
