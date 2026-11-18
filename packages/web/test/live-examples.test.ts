@@ -337,7 +337,7 @@ describe("real answers on the connect page (#472, v1.8.1, v1.8.2)", () => {
     // #746: the B3 card, back — the two Lower Saxony lines the answer credited for its sites there
     expect(credits["roadworks"]).toEqual(["bemas_bw", "mobilithek_roadworks_ald_ni", "mobilithek_roadworks_he", "mobilithek_roadworks_nlstbv"]);
     // 2.5.4 (2026-11-02): the ferry message had ended and no SH police message stood near Kiel, so the card is the city of
-    // Kiel's own roadworks register, credited alone; the answer's other credits came from rows the card does not show (#785).
+    // Kiel's own roadworks register; its credits are the answer's whole attribution line (#746), rows the card does not show included.
     expect(credits["kiel"]).toEqual(["autobahn", "bast_lcl", "bkg_gvisys", "kiel_baustellen", "mobilithek_nms_events", "mobilithek_roadworks_bast", "sh_baustellen"]);
     // #474: the Berlin card, as production v1.8.10 answered it by place (2026-10-06T04:31:20Z).
     expect(credits["citywork"]).toEqual(["autobahn", "bast_lcl", "bb_baustellen", "berlin_planb", "berlin_verkehrsdetektion", "bkg_gvisys", "mobilithek_ald_14d", "mobilithek_nms_events", "mobilithek_roadworks_akd", "mobilithek_roadworks_bast", "mobilithek_traffic_berlin", "mobilithek_traffic_lms_berlin", "mobilithek_viz_berlin", "osm"]);

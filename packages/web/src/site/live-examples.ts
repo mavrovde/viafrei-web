@@ -483,8 +483,8 @@ export const LIVE_EXAMPLES: readonly LiveExample[] = [
     question: "connectPage.live.saxony.q",
     // find_roadworks_ahead {road: "B6"}, asked 2026-11-02: "B6: 8 Arbeitsstellen zwischen 02.11.2026 und 09.11.2026, alle bereits
     // begonnen. … Niedersachsen 4, Sachsen 4. … • Instandsetzung (Sachsen): Dresden - Ortschaft Cossebaude; Ausbau westlich Cossebaude —
-    // 04.03.2025 bis 02.03.2027". Stand 13:45. The answer's attribution line also names Sachsen's Sperrinfosys; the card quotes the
-    // LASuV site only, so its credits are unchanged.
+    // 04.03.2025 bis 02.03.2027". Stand 13:45. The credits are the answer's whole attribution line (#746), Sachsen's Sperrinfosys
+    // included, although the card quotes the LASuV site only.
     credits: ["mobilithek_roadworks_ald_ni", "mobilithek_roadworks_nlstbv", "mobilithek_roadworks_ald_sn", "mobilithek_sperrinfosys_sn"],
     names: { place: "Cossebaude" },
     values: { count: "12", from: "04.03.2025", to: "02.03.2027", asOf: "18.11.2026, 12:59" },
@@ -571,8 +571,8 @@ export const LIVE_EXAMPLES: readonly LiveExample[] = [
     sign: "parking",
     question: "connectPage.live.parkride.q",
     // find_parking {place: "Dortmund", kind: "park_and_ride"}, asked 2026-11-02: "— aus P+R NRW (CC BY-SA), separat geführt … Dortmund
-    // Hafen — P+R, 1,7 km, 430 Plätze … P&R Westfalenpark — P+R, 2,0 km, 190 Plätze …". Stand 14:20. The credit is the register's P+R NRW
-    // line alone, as the register has it.
+    // Hafen — P+R, 1,7 km, 430 Plätze … P&R Westfalenpark — P+R, 2,0 km, 190 Plätze …". Stand 14:20. The credits are the answer's whole attribution
+    // line (#746): P+R NRW beside the other parking, charging and address sources it named.
     credits: ["vrr_park_ride", "mobilithek_park_nrw_pr", "osm", "mobilithek_afir_edri_stat", "mobilithek_afir_ecomovement", "bkg_gvisys"],
     names: { p1: "Dortmund Hafen", p2: "P&R Westfalenpark" },
     // Asked again 2026-11-18 14:30: the same two rows, 430 and 190 Plätze, "Belegung übernehmen wir nicht".
