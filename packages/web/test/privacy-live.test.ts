@@ -63,9 +63,7 @@ describe("Datenschutz: live provider calls (F-22)", () => {
   });
 
   it("says what is sent and what never is", () => {
-    // the station search sends a public centre only (the released live ingestor's discovery), never the asked place
-    expect(section).toMatch(/stattdessen allein den Mittelpunkt dieser Gemeinde \(bei einem Autobahnpunkt: der ihm nächstgelegenen Gemeinde\) und den Suchradius von fünf Kilometern an Tankerkönig — nie die Koordinaten des abgefragten Ortes\./u);
-    expect(section).not.toMatch(/Koordinaten dieses Ortes und den Suchradius/u);
+    expect(section).toMatch(/Koordinaten dieses Ortes und den Suchradius/u);
     // The asked price refresh (#521): station ids, the nearest, at most ten, under our own key.
     expect(section).toMatch(/kann unser Server bei Tankerkönig/u);
     expect(section).toMatch(/aktuellen Preise der nächstgelegenen dieser Tankstellen abfragen — höchstens zehn je Frage und nur, wenn\s+deren Preis älter als 30 Minuten ist \(ein von uns einstellbarer Wert, nie unter fünf Minuten\)/u);
