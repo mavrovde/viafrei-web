@@ -264,12 +264,7 @@ describe("real answers on the connect page (#472, v1.8.1, v1.8.2)", () => {
     });
 
     it("(5) carry the Tankerkönig line and the MTS-K consumer note verbatim, German-marked", () => {
-      // 2.6.19 (#746): the answer's Quelle line names the address lookups beside the Tankerkönig line
-      const LOOKUPS = new Set(["osm", "bkg_gvisys", "geonames"]);
-      for (const e of fuel) {
-        expect(e.credits, e.key).toContain("tankerkoenig");
-        for (const id of e.credits) if (id !== "tankerkoenig") expect(LOOKUPS.has(id), `${e.key}: ${id}`).toBe(true);
-      }
+      for (const e of fuel) expect(e.credits, e.key).toEqual(["tankerkoenig"]);
       expect(register.mtskNote).toMatch(/^Hinweis zu den Kraftstoffpreisdaten \(MTS-K\): Diese Daten dürfen ausschließlich zum Zweck der Verbraucherinformation verwendet werden/);
       expect(connect).toContain('{e.credits.includes("tankerkoenig") && <p class="answer__note" lang="de">{register.mtskNote}</p>}');
     });

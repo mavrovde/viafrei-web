@@ -8,7 +8,7 @@
  *   npx tsx packages/web/scripts/api-contract.ts <dir>/openapi.json <X.Y.Z>
  *
  * The release's `openapi.json` asset is `api/openapi.json` at the release tag. Never edit the output by hand;
- * regenerate it when the `api` pin of images.pin moves (`test/api-contract.test.ts` holds the two versions equal).
+ * regenerate it when the `api` pin of images.pin moves (`test/api-client.test.ts` holds the two versions equal).
  * exit: 0 written · 2 could not read or parse the contract · 64 usage
  */
 import { createHash } from "node:crypto";

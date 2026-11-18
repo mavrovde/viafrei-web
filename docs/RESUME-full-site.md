@@ -3,7 +3,7 @@
 Branch feat/full-site-on-api. Work paused on request; this note says where it stands.
 
 Done:
-- Milestone 1 (a12181e): the shell and the design copy equal viafrei-app 2.6.23, and the release carries the site
+- Milestone 1 (07bf659): the shell and the design copy equal viafrei-app 2.6.23, and the release carries the site
   files of earlier images (web#36: scripts/carry-previous.sh, the carry pin in images.pin, release.yml, Dockerfile).
   Affected unit tests green: 216 files passed, 1 skipped.
 - WIP (this commit): packages/web/src/api/client.ts, a server-side viafrei-api client. VIAFREI_API_URL is in
@@ -13,7 +13,7 @@ Done:
 Next:
 1. (done)
 2. Gap inventory. Map every digest service method (packages/digest/src/server: Place, Motorway, ExitWalker,
-   Station, Road, State, EnergyPage, Spot, SiteSearch, FilteredCharging) to an API 0.3.0 endpoint and field.
+   Station, Road, State, EnergyPage, Spot, SiteSearch, FilteredCharging) to an API 0.3.2 endpoint and field.
    Read first: map layers, tiles, search and suggest, news traffic, SID occupancy, exits, segments and speed
    corridors, slug resolution, station top lists, site sources.
 3. Port the fragment renderers, without status or console (owner correction). Feed them from the API.

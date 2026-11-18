@@ -89,9 +89,10 @@ It depends on released images only, pinned in `images.pin`:
 
 | key | image | used for |
 |---|---|---|
-| `digest` | `ghcr.io/mavrovde/viafrei-app:2.6.17` | the digest service the stack runs, and its compiled packages for the tests |
-| `database` | `ghcr.io/mavrovde/viafrei-database:0.1.1` | migrating the stack's throwaway database |
+| `digest` | `ghcr.io/mavrovde/viafrei-app:2.6.23` | the digest service the stack runs, and its compiled packages for the tests |
+| `database` | `ghcr.io/mavrovde/viafrei-database:0.2.0` | migrating the stack's throwaway database |
 | `api` | `ghcr.io/mavrovde/viafrei-api:0.3.2` | the contract the site's API client is generated from (`api/openapi.json` at the tag) |
+| `carry` | `ghcr.io/mavrovde/viafrei-app:2.6.23` | the earlier image whose site asset files a release build keeps serving for 14 days |
 
 ## Working on it
 
