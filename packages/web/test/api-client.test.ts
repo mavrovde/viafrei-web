@@ -2,7 +2,8 @@ import { readdirSync, readFileSync, statSync } from "node:fs";
 import { join } from "node:path";
 import { fileURLToPath } from "node:url";
 import { describe, expect, it } from "vitest";
-import { API_KEY_ENV, API_MAX_TIMEOUT_MS, apiHeaders, apiUrlOf, createApiClient, type ApiFetch } from "../src/api/client.js";
+import { getOperations, render } from "../scripts/api-contract.js";
+import { API_CONTRACT, API_GET_OPERATIONS, API_KEY_ENV, API_MAX_TIMEOUT_MS, apiHeaders, apiUrlOf, createApiClient, type ApiFetch, type ApiGetPath } from "../src/api/client.js";
 import { readEnv } from "../src/lib/env.js";
 import { API_PRESSURE_PATH, apiPressureWord, createPressure, PRESSURE_ROUTE } from "../src/overload/pressure.js";
 
@@ -19,15 +20,34 @@ const json = (status: number, body: unknown, type = "application/json"): ReturnT
   Promise.resolve({ status, headers: { get: (n: string) => (n === "content-type" ? type : null) }, json: () => Promise.resolve(body) });
 
 describe("the viafrei-api client (server side, the key kept inside)", () => {
-  it("sends the key as a Bearer header only when one is set, and the language when asked", () => {
+  it("sends the key as a Bearer header only when one is set", () => {
     expect(apiHeaders({})).toEqual({ accept: "application/json" });
-    expect(apiHeaders({ [API_KEY_ENV]: "  " }, "en")).toEqual({ accept: "application/json", "accept-language": "en" });
+    expect(apiHeaders({ [API_KEY_ENV]: "  " })).toEqual({ accept: "application/json" });
     expect(apiHeaders({ [API_KEY_ENV]: "k1" })["authorization"]).toBe("Bearer k1");
   });
 
-  it("builds /v1/ URLs only, skipping undefined query values", () => {
+  it("builds the contract's URLs only, skipping undefined query values", () => {
     expect(apiUrlOf("http://api:8080", "/v1/motorways", { road: "A1", limit: 5, state: undefined })).toBe("http://api:8080/v1/motorways?road=A1&limit=5");
-    expect(() => apiUrlOf("http://api:8080", "/internal/pressure")).toThrow(/not a \/v1\//);
+    expect(() => apiUrlOf("http://api:8080", "/internal/pressure" as ApiGetPath)).toThrow(/not a GET operation of the contract/);
+  });
+
+  it("fills the path parameters, and refuses a missing one or a parameter the operation does not take", () => {
+    expect(apiUrlOf("http://api", "/v1/stations/{stationId}/departures", { stationId: "de:1 2/3", limit: 3 })).toBe("http://api/v1/stations/de%3A1%202%2F3/departures?limit=3");
+    expect(() => apiUrlOf("http://api", "/v1/stations/{stationId}/departures", { limit: 3 })).toThrow(/needs its path parameter stationId/);
+    expect(() => apiUrlOf("http://api", "/v1/motorways", { nope: 1 } as never)).toThrow(/takes no parameter nope/);
+    expect(() => apiUrlOf("http://api", "/v1/motorways", { lang: "en" } as never)).toThrow(/takes no parameter lang/);
+  });
+
+  it("sends the language as the contract's lang query parameter, only to an operation that takes it", () => {
+    expect(apiUrlOf("http://api", "/v1/motorways", { road: "A1" }, "en")).toBe("http://api/v1/motorways?road=A1&lang=en");
+    expect(apiUrlOf("http://api", "/v1/pressure", {}, "en")).toBe("http://api/v1/pressure");
+  });
+
+  it("is generated from the viafrei-api release images.pin pins", () => {
+    const pin = /^api ghcr\.io\/mavrovde\/viafrei-api:(\d+\.\d+\.\d+)@sha256:[0-9a-f]{64}$/mu.exec(readFileSync(fileURLToPath(new URL("../../../images.pin", import.meta.url)), "utf8"));
+    expect(pin?.[1]).toBe(API_CONTRACT.version);
+    expect(API_CONTRACT.contractSha256).toMatch(/^[0-9a-f]{64}$/u);
+    expect(API_GET_OPERATIONS[API_PRESSURE_PATH].operationId).toBe("getPressure");
   });
 
   it("answers the envelope on a 2xx JSON answer and null on anything else, capping the deadline", async () => {
@@ -55,6 +75,34 @@ describe("the viafrei-api client (server side, the key kept inside)", () => {
       .filter((f) => /from\s+["'][^"']*\/api\/client(\.js)?["']/.test(readFileSync(f, "utf8")))
       .filter((f) => f.endsWith(".svelte") || f.includes(`${join("src", "islands")}`) || f.includes(`${join("src", "client")}`));
     expect(offenders).toEqual([]);
+  });
+});
+
+describe("the contract generator (scripts/api-contract.ts)", () => {
+  const doc = {
+    paths: {
+      "/healthz": { get: { operationId: "getHealth" } },
+      "/v1/stations/{stationId}/departures": {
+        parameters: [{ name: "stationId", in: "path" }],
+        get: { operationId: "listStationDepartures", parameters: [{ name: "limit", in: "query" }, { name: "lang", in: "query" }, { name: "x-trace", in: "header" }] },
+      },
+      "/v1/refreshes": { post: { operationId: "createRefresh" } },
+      "/v1/meta": { get: { operationId: "getMeta" } },
+    },
+  };
+  it("lists every /v1/ GET operation with its path and query parameters, in path order", () => {
+    expect(getOperations(doc)).toEqual({
+      "/v1/meta": { operationId: "getMeta", path: [], query: [] },
+      "/v1/stations/{stationId}/departures": { operationId: "listStationDepartures", path: ["stationId"], query: ["limit", "lang"] },
+    });
+    expect(getOperations({})).toEqual({});
+    expect(() => getOperations({ paths: { "/v1/x": { get: {} } } })).toThrow(/has no operationId/);
+  });
+  it("renders a module that names the release and the contract's hash", () => {
+    const out = render(getOperations(doc), "9.9.9", "f".repeat(64));
+    expect(out).toContain(`from viafrei-api v9.9.9 api/openapi.json (sha256 ${"f".repeat(64)})`);
+    expect(out).toContain('"/v1/meta": { operationId: "getMeta", path: [], query: [] },');
+    expect(out).toContain("export type ApiGetPath = keyof typeof API_GET_OPERATIONS;");
   });
 });
 

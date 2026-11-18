@@ -230,6 +230,10 @@ version tag AND digest:
 - `digest`: the viafrei-app image whose digest service renders the fragments the shell embeds;
   its compiled packages are also what the tests import (`scripts/pinned-app.sh`).
 - `database`: the viafrei-database image that migrates the stack's throwaway database.
+- `api`: the viafrei-api release the site's API client targets. `packages/web/src/generated/api-operations.ts`
+  is generated from that release's `openapi.json` asset (`api/openapi.json` at its tag) with
+  `npx tsx packages/web/scripts/api-contract.ts <openapi.json> X.Y.Z`; a bump of the pin regenerates it in the
+  same commit (`test/api-client.test.ts` holds the two versions equal).
 
 To bump one: replace the line with the new `X.Y.Z@sha256:<digest>` (read with
 `docker buildx imagetools inspect ghcr.io/mavrovde/<image>:X.Y.Z`), then run

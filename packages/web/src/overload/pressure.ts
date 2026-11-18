@@ -8,6 +8,8 @@
  * on a minute-old "saturated". With `api`, the word is read from viafrei-api's `/v1/pressure` instead (the web→API switch). A digest that does not answer, or answers anything else, is `ok`: the challenge
  * fails OPEN — a broken signal never puts an interim page in front of anybody.
  */
+import type { ApiGetPath } from "../generated/api-operations.js";
+
 export const PRESSURE_ROUTE = "/internal/pressure";
 export const PRESSURE_MIN_INTERVAL_MS = 1_000;
 export const PRESSURE_TIMEOUT_MS = 250;
@@ -17,7 +19,7 @@ export type PressureFetch = (url: string, init: { signal: AbortSignal }) => Prom
 export type Pressure = { readonly saturated: () => Promise<boolean> };
 
 /** viafrei-api's pressure word (`GET /v1/pressure` → `{"data":{"state":"saturated"|"ok"}}`), the same signal measured there. */
-export const API_PRESSURE_PATH = "/v1/pressure";
+export const API_PRESSURE_PATH = "/v1/pressure" satisfies ApiGetPath;
 
 /** The word out of an API answer: `saturated` only when the envelope says exactly that. */
 export function apiPressureWord(body: unknown): boolean {
