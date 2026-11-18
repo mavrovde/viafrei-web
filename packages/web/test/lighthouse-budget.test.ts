@@ -6,7 +6,7 @@ import { createServer } from "node:http";
 import type { AddressInfo } from "node:net";
 import { all, type El } from "@viafrei/design/testing";
 import { describe, expect, it } from "vitest";
-import { AUDITS, breakdownOf, BUDGET, BUDGET_PAGES, collectRuns, EXIT, firstLine, forwardedHeaders, judgeBudget, metricsOf, onlyOf, pageOf, plantAsset, plantInto, plantOf, startPlantFront, SUBSTITUTE, upstreamUrl, type Metrics, type RunOnce } from "../scripts/lighthouse-budget.js";
+import { AUDITS, breakdownOf, BUDGET, BUDGET_PAGES, collectRuns, EXIT, firstLine, forwardedHeaders, forwardPath, judgeBudget, metricsOf, onlyOf, pageOf, plantAsset, plantInto, plantOf, startPlantFront, SUBSTITUTE, upstreamUrl, type Metrics, type RunOnce } from "../scripts/lighthouse-budget.js";
 import { RUNS } from "../scripts/lighthouse.js";
 
 const ok: Metrics = { lcpMs: 1_800, cls: 0.02, tbtMs: 90 };
@@ -139,6 +139,13 @@ describe("the plant front", () => {
     expect(upstreamUrl("http://elsewhere.example/x", 4000)).toBeNull();
     expect(upstreamUrl("http://127.0.0.1:4001/x", 4000)).toBeNull();
     expect(upstreamUrl("https://127.0.0.1:4000/x", 4000)).toBeNull();
+  });
+  it("forwards a path and query only as URL characters, and refuses any other", () => {
+    expect(forwardPath(new URL("http://127.0.0.1:4000/de/autobahn/a46?x=1&y=%C3%BC"))).toBe("/de/autobahn/a46?x=1&y=%C3%BC");
+    expect(forwardPath(new URL("http://127.0.0.1:4000/"))).toBe("/");
+    expect(forwardPath({ pathname: "/a b", search: "" })).toBeNull();
+    expect(forwardPath({ pathname: "/a", search: "?x=<y>" })).toBeNull();
+    expect(forwardPath({ pathname: "/a\nb", search: "" })).toBeNull();
   });
   it("plants every HTML answer of the shell, passes other answers through, serves its assets, and answers 502 without a shell", async () => {
     const shell = createServer((req, res) => {

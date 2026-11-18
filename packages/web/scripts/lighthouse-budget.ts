@@ -155,6 +155,22 @@ export function upstreamUrl(rawPath: string | undefined, upstream: number): URL 
   return target.origin === origin ? target : null;
 }
 
+/** Every character a forwarded path and query may hold (RFC 3986 unreserved, sub-delims, ":", "@", "/", "?", "%"), each mapped to itself. */
+const PATH_CHARS: ReadonlyMap<string, string> = new Map(
+  [..."ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789-._~!$&'()*+,;=:@/?%"].map((c) => [c, c]),
+);
+
+/** The path and query to forward, rebuilt from PATH_CHARS's own values, or null when one character is outside it. */
+export function forwardPath(target: Pick<URL, "pathname" | "search">): string | null {
+  const out: string[] = [];
+  for (const c of `${target.pathname}${target.search}`) {
+    const own = PATH_CHARS.get(c);
+    if (own === undefined) return null;
+    out.push(own);
+  }
+  return out.join("");
+}
+
 /** The plant's own front on `port` (0: any free one): `/_plant/*` served `delayMs` late, every HTML answer of the shell on `upstream` planted. */
 export function startPlantFront(port: number, upstream: number, plant: Plant, delayMs: number = PLANT_DELAY_MS): Promise<Server> {
   const server = createServer((req, res) => {
@@ -172,10 +188,17 @@ export function startPlantFront(port: number, upstream: number, plant: Plant, de
       }, delayMs);
       return;
     }
+    const path = forwardPath(target);
+    if (path === null) {
+      res.writeHead(400);
+      res.end();
+      return;
+    }
     const headers = { ...req.headers };
     delete headers["accept-encoding"];
-    // The destination is fixed (the loopback shell on `upstream`); the request contributes its path and query only.
-    const up = request({ host: UPSTREAM_HOST, port: upstream, path: `${target.pathname}${target.search}`, method: req.method, headers }, (u) => {
+    // The destination is fixed (the loopback shell on `upstream`); the request contributes its path and query only,
+    // and those only as characters of PATH_CHARS.
+    const up = request({ host: UPSTREAM_HOST, port: upstream, path, method: req.method, headers }, (u) => {
       const chunks: Buffer[] = [];
       u.on("data", (c: Buffer) => chunks.push(c));
       u.on("end", () => {
