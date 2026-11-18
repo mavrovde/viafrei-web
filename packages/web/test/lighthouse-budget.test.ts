@@ -33,8 +33,8 @@ describe("the budget (#1310 D1)", () => {
     });
   }
   it("judges the median, not the worst run", () => {
-    expect(judgeBudget(new Map([["/de", page([ok, { ...ok, cls: 0.4 }, ok])]])).code).toBe(0);
-    expect(judgeBudget(new Map([["/de", page([ok, { ...ok, cls: 0.4 }, { ...ok, cls: 0.3 }])]])).code).toBe(1);
+    expect(judgeBudget(new Map([["/de", page([ok, { ...ok, cls: 0.4 }, ok, { ...ok, cls: 0.3 }, ok])]])).code).toBe(0);
+    expect(judgeBudget(new Map([["/de", page([ok, { ...ok, cls: 0.4 }, { ...ok, cls: 0.3 }, ok, { ...ok, cls: 0.2 }])]])).code).toBe(1);
   });
   it("could not check: nothing measured, a page not 200, fewer runs than asked", () => {
     expect(judgeBudget(new Map()).code).toBe(2);
