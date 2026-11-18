@@ -470,7 +470,7 @@ describe("the fuel card's on-demand prices (#564, owner 2026-10-12), pinned to t
     expect(tanken).toContain("übermittelt werden dafür allein dieser öffentlich bekannte Punkt und der Suchradius von 25 Kilometern.");
     expect(internal).toContain("const centre = isAnchor ? p : await siteOf();");
     // the tool: since the fuel-refresh cutover, the Gemeinde centroid or a public motorway point, never the asked point
-    expect(live).toContain("im Umkreis von 25 Kilometern um den Mittelpunkt der Gemeinde, in der der abgefragte Ort liegt, oder um einen öffentlichen Autobahnpunkt — nie um den Ort selbst");
+    expect(live).toContain("im Umkreis von 25 Kilometern um den Mittelpunkt der dem abgefragten Ort nächstgelegenen Gemeinde oder um einen öffentlichen Autobahnpunkt — nie um den Ort selbst");
     expect(live).not.toContain("um den Mittelpunkt des auf etwa fünf Kilometer gerundeten Gebiets");
     expect(wide).toContain("export const CELL_DEGREES = 0.05;");
     expect(tk).toContain("export const MAX_RADIUS_KM = FUEL_LIST_RADIUS_MAX_KM;");
@@ -487,8 +487,8 @@ describe("the fuel card's on-demand prices (#564, owner 2026-10-12), pinned to t
 
   it("says a fuel refresh request is stored with the municipality key only, for 30 days (data-steward ruling 2026-11-17)", () => {
     const live = flat(src.slice(src.indexOf('<h3 id="live-abfragen">'), src.indexOf('<p id="ort-tanken">')));
-    expect(live).toContain("und speichert oder protokolliert sie nicht; gespeichert wird allein der unten genannte Gemeindeschlüssel; ein Neustart unseres Servers leert die Warteschlange.");
-    expect(live).toContain("Fragt die Website oder ein Werkzeug aktuelle Kraftstoffpreise an, legt unser Server dafür in seiner Datenbank einen Auftrag an. Dieser enthält allein den achtstelligen amtlichen Gemeindeschlüssel der Gemeinde, in der der abgefragte Ort liegt, oder bei einer Autobahn die Kennung des öffentlichen Autobahnpunkts: nie den Ort selbst, keine Koordinaten und keinen Bezug zu Ihnen. Dazu kommen der Zeitpunkt des Auftrags, dessen Ergebnis und die Angabe, welcher unserer eigenen Dienste (Website oder MCP-Server) ihn gestellt hat. Gleichzeitige Aufträge für dieselbe Gemeinde fasst er zu einem zusammen. Diese Aufträge löschen wir nach 30 Tagen.");
+    expect(live).toContain("und speichert oder protokolliert sie nicht; gespeichert wird allein der unten genannte Gemeindeschlüssel oder die Kennung des Autobahnpunkts; ein Neustart unseres Servers leert die Warteschlange.");
+    expect(live).toContain("Fragt die Website oder ein Werkzeug aktuelle Kraftstoffpreise an, legt unser Server dafür in seiner Datenbank einen Auftrag an. Dieser enthält allein den achtstelligen amtlichen Gemeindeschlüssel der dem abgefragten Ort nächstgelegenen Gemeinde oder bei einer Autobahn die Kennung des öffentlichen Autobahnpunkts: nie den Ort selbst, keine Koordinaten und keinen Bezug zu Ihnen. Dazu kommen der Zeitpunkt des Auftrags, dessen Ergebnis und die Angabe, welcher unserer eigenen Dienste (Website oder MCP-Server) ihn gestellt hat. Gleichzeitige Aufträge für dieselbe Gemeinde oder denselben Autobahnpunkt fasst er zu einem zusammen. Diese Aufträge löschen wir nach 30 Tagen.");
   });
 
   it("says the area is not logged — and the internal route logs no area", () => {
