@@ -81,7 +81,7 @@ export function setLogSink(next: (line: string) => void): () => void {
 // 2.6.19 review r2 S4: a letters-only word is at most 24 letters (a random letter run is longer; the longest German
 // place word, 26 letters, is then masked — the 2.6.18 answer, no leak), and no two digit-only words stand side by side
 // (`xoxb-1234-5678-<letters>`, a token's numeric groups, read as a slug: our slugs carry one number in a row)
-const SLUG_WORD = /^(?:[a-z]{1,24}|[0-9]+[a-z]?|[a-z]{1,3}[0-9]{1,4})$/;
+const SLUG_WORD = /^(?:[a-z]{1,24}|\d+[a-z]?|[a-z]{1,3}\d{1,4})$/;
 function isOurSlug(seg: string): boolean {
   if (!/^[a-z0-9]+(?:-[a-z0-9]+)+$/.test(seg)) return false;
   const words = seg.split("-");

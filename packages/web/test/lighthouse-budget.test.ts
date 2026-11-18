@@ -137,6 +137,8 @@ describe("the plant front", () => {
     expect(upstreamUrl(undefined, 4000)?.pathname).toBe("/");
     expect(upstreamUrl("//elsewhere.example/x", 4000)).toBeNull();
     expect(upstreamUrl("http://elsewhere.example/x", 4000)).toBeNull();
+    expect(upstreamUrl("http://127.0.0.1:4001/x", 4000)).toBeNull();
+    expect(upstreamUrl("https://127.0.0.1:4000/x", 4000)).toBeNull();
   });
   it("plants every HTML answer of the shell, passes other answers through, serves its assets, and answers 502 without a shell", async () => {
     const shell = createServer((req, res) => {

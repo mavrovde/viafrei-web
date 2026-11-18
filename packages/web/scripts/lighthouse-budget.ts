@@ -145,14 +145,14 @@ export function forwardedHeaders(upstream: IncomingHttpHeaders, length: number):
   return out;
 }
 
-const UPSTREAM_PROTOCOLS: readonly string[] = ["http:"];
-const UPSTREAM_HOSTS: readonly string[] = ["127.0.0.1"];
+/** The only host the plant front forwards to: the shell on the loopback. */
+const UPSTREAM_HOST = "127.0.0.1";
 
 /** The shell's URL for a request's path, or null when the path would leave the shell (another host, port or scheme). */
 export function upstreamUrl(rawPath: string | undefined, upstream: number): URL | null {
-  const target = new URL(rawPath ?? "/", `http://127.0.0.1:${String(upstream)}`);
-  if (!UPSTREAM_PROTOCOLS.includes(target.protocol) || !UPSTREAM_HOSTS.includes(target.hostname) || target.port !== String(upstream)) return null;
-  return target;
+  const origin = `http://${UPSTREAM_HOST}:${String(upstream)}`;
+  const target = new URL(rawPath ?? "/", origin);
+  return target.origin === origin ? target : null;
 }
 
 /** The plant's own front on `port` (0: any free one): `/_plant/*` served `delayMs` late, every HTML answer of the shell on `upstream` planted. */
@@ -174,7 +174,8 @@ export function startPlantFront(port: number, upstream: number, plant: Plant, de
     }
     const headers = { ...req.headers };
     delete headers["accept-encoding"];
-    const up = request(target, { method: req.method, headers }, (u) => {
+    // The destination is fixed (the loopback shell on `upstream`); the request contributes its path and query only.
+    const up = request({ host: UPSTREAM_HOST, port: upstream, path: `${target.pathname}${target.search}`, method: req.method, headers }, (u) => {
       const chunks: Buffer[] = [];
       u.on("data", (c: Buffer) => chunks.push(c));
       u.on("end", () => {

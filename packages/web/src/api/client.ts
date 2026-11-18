@@ -70,11 +70,13 @@ export function apiUrlOf<P extends ApiGetPath>(baseUrl: string, path: P, params:
   for (const k of Object.keys(given)) {
     if (!op.path.includes(k) && (k === "lang" || !op.query.includes(k))) throw new Error(`api: ${path} takes no parameter ${k}`);
   }
-  const filled = path.replace(/\{([^}]+)\}/g, (_m, name: string) => {
+  let filled: string = path;
+  for (const name of op.path) {
     const v = given[name];
     if (v === undefined || v === "") throw new Error(`api: ${path} needs its path parameter ${name}`);
-    return encodeURIComponent(String(v));
-  });
+    filled = filled.replaceAll(`{${name}}`, encodeURIComponent(String(v)));
+  }
+  if (filled.includes("{")) throw new Error(`api: ${path} has a path parameter the contract does not list`);
   const u = new URL(filled, baseUrl);
   for (const k of op.query) {
     const v = k === "lang" ? lang : given[k];
