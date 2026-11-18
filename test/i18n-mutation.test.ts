@@ -36,6 +36,15 @@ describe("the catalogue parity mutants' shards", () => {
     expect(shards[1]).toEqual(all.filter((_, p) => p % COUNT === 1));
   });
 
+  it("sort a given WEB_I18N_MUTATION_LANGS with LC_ALL=C, so its order never changes a shard", () => {
+    const two = [...langs].sort().slice(0, 2).map((f) => f.replace(/\.json$/u, ""));
+    const given = (order: string[]) => spawnSync("bash", [SCRIPT, "--list", "--shard", "2/4"], { cwd: REPO, encoding: "utf8", env: { ...process.env, WEB_I18N_MUTATION_LANGS: order.join(" ") } });
+    const a = given(two);
+    const b = given([...two].reverse());
+    expect(a.status, a.stdout + a.stderr).toBe(0);
+    expect(b.stdout).toBe(a.stdout);
+  });
+
   it("refuse a bad --shard, a second --shard, an unknown argument and an empty shard with exit 2", () => {
     for (const bad of ["0/4", "5/4", "1/0", "-1/4", "1/4/2", "1.5/4", "01/4", "a/4", "1", "", " 1/4"]) {
       const r = run("--shard", bad);

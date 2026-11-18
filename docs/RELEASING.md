@@ -135,6 +135,7 @@ required by name:
 - `Lint`
 - `Unit tests`
 - `Site gates`
+- `Catalogue parity mutants` (the fan-in of the four shards; skipped, so passing, except on a minor's release pull request or a dispatch)
 - `Image (build, scan, smoke)`
 - `Stack (the shell against the pinned releases)`
 - `CodeQL (TypeScript)`

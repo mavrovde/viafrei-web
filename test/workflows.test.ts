@@ -168,9 +168,14 @@ describe("the workflows", () => {
   it("gate a release on exactly the required checks that run on a push (scripts/ci-gate.ts REQUIRED_JOBS)", () => {
     const block = /<!-- required-checks:begin -->([\s\S]*?)<!-- required-checks:end -->/u.exec(read("docs/RELEASING.md"))?.[1] ?? "";
     const required = [...block.matchAll(/^- `([^`]+)`/gmu)].map((m) => m[1] ?? "");
-    // Dependency review runs on pull requests only, so a release's push run never has it
-    expect(required).toContain("Dependency review");
-    expect([...new Set(Object.values(REQUIRED_JOBS).flat())].sort()).toEqual(required.filter((c) => c !== "Dependency review").sort());
+    // Dependency review runs on pull requests only, and the catalogue parity mutants on a minor's release pull
+    // request or a dispatch only, so a release's push run never has either
+    const pullOnly = ["Dependency review", "Catalogue parity mutants"];
+    for (const c of pullOnly) expect(required).toContain(c);
+    expect([...new Set(Object.values(REQUIRED_JOBS).flat())].sort()).toEqual(required.filter((c) => !pullOnly.includes(c)).sort());
+    // the mutants' fan-in never runs on a push: its if: asks for a dispatch or a release-please pull request
+    const fanInIf = /\n {2}mutation:\n[\s\S]*?\n {4}if: "([^"\n]+)"/u.exec(read(".github/workflows/ci.yml"))?.[1] ?? "";
+    expect(fanInIf).toContain("&& (github.event_name == 'workflow_dispatch' || (startsWith(github.head_ref, 'release-please--') && endsWith(github.event.pull_request.title, '.0')))");
     // the Changes job gates every other job of both workflows, so both runs must carry it
     for (const jobs of Object.values(REQUIRED_JOBS)) expect(jobs).toContain("Changes (code, or prose only)");
     for (const [wf, jobs] of Object.entries(REQUIRED_JOBS)) {

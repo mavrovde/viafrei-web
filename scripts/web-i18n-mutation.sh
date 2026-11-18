@@ -52,10 +52,13 @@ mutate() { # mutate <python expression over d (the parsed catalogue) and de (the
   python3 -c "import json,sys; p='$T/i18n/$2'; d=json.load(open(p)); de=json.load(open('$T/i18n/de.json')); $1; open(p,'w').write(json.dumps(d,ensure_ascii=False,indent=2))"
 }
 
+# The list is sorted with LC_ALL=C whichever way it was given, so a shard is the same set of mutants
+# for the same languages in any order or locale.
 LANGS="${WEB_I18N_MUTATION_LANGS:-}"
 if [ -z "$LANGS" ]; then
-  LANGS="$(cd "$SRC" && for f in *.json; do [ "$f" = "de.json" ] || printf '%s\n' "${f%.json}"; done | LC_ALL=C sort | tr '\n' ' ')"
+  LANGS="$(cd "$SRC" && for f in *.json; do [ "$f" = "de.json" ] || printf '%s\n' "${f%.json}"; done)"
 fi
+LANGS="$(for l in $LANGS; do printf '%s\n' "$l"; done | LC_ALL=C sort | tr '\n' ' ')"
 N=0; for l in $LANGS; do [ -f "$SRC/$l.json" ] || { echo "✗ web-i18n-mutation: could not run — no $l.json"; exit 2; }; N=$((N + 1)); done
 [ "$N" -ge 1 ] || { echo "✗ web-i18n-mutation: could not run — no catalogue to mutate"; exit 2; }
 
