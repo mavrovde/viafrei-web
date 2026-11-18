@@ -433,13 +433,10 @@ describe("the fuel card's on-demand prices (#564, owner 2026-10-12), pinned to t
     expect(tanken).not.toMatch(/(pro|in der|je) Stunde/);
     // "höchstens einmal in fünf Minuten" for the same area
     expect(fuel).toContain("export const RECENT_CELL_TTL_MS = 5 * 60 * 1000;");
-    // the live-queries section names the site's discovery too, and the tool's gap trigger and day memory
+    // the live-queries section names the site's discovery too; the tool's station search (a public centre and 5 km,
+    // since the released live ingestor) is pinned in its own test below
     expect(flat(src)).toContain("die Suche nach dessen Tankstellen um den Mittelpunkt der Gemeinde");
     expect(flat(src)).toContain("weniger als drei Tankstellen oder nicht die nächstgelegenen kennen");
-    expect(flat(src)).toContain("oder verzeichnet OpenStreetMap dort nähere Tankstellen in Deutschland als die uns bekannten");
-    // steward 2026-10-12, T1 and T3
-    expect(flat(src)).toContain("oder verzeichnet OpenStreetMap dort nähere Tankstellen in Deutschland als die uns bekannten");
-    expect(flat(src)).toContain("den Suchradius an Tankerkönig. Ein so abgefragtes Gebiet fragt unser Server danach 30 Tage lang nicht erneut ab (ein von uns einstellbarer Wert, nie unter einem Tag; nach einer gescheiterten Abfrage oder einem Neustart unseres Servers auch früher); dafür behält er eine auf etwa fünf Kilometer gerundete Kennung dieses Ortes so lange und eine auf etwa 100 Meter gerundete 24 Stunden lang im Arbeitsspeicher, ohne Bezug zum Fragenden, und speichert oder protokolliert sie nicht.");
   });
 
   it("states the guards the MCP port enforces: ten, the 30-minute cache (never under five), once per area in five minutes", () => {
@@ -483,6 +480,15 @@ describe("the fuel card's on-demand prices (#564, owner 2026-10-12), pinned to t
     // the narrow path stays, past the day's limit or when switched off (W6, W8, W11)
     expect(tanken).toContain("ist die Tagesgrenze an so abgefragten Tankstellen erreicht oder diese Abfrageart abgeschaltet, fragt er wie zuvor beschrieben nach einzelnen Tankstellen");
     expect(tanken).not.toContain("in keinem der beiden Fälle");
+  });
+
+  it("says the station search sends the public Gemeinde centre and 5 km, never the asked place (the released live ingestor's discovery)", () => {
+    const live = flat(src.slice(src.indexOf('<h3 id="live-abfragen">'), src.indexOf('<p id="ort-tanken">')));
+    expect(live).toContain("Halten wir im Umkreis von fünf Kilometern um den Mittelpunkt der dem abgefragten Ort nächstgelegenen Gemeinde oder um einen öffentlichen Autobahnpunkt weniger als drei Tankstellen, übermittelt unser Server bei find_cheapest_fuel stattdessen allein den Mittelpunkt dieser Gemeinde (bei einem Autobahnpunkt: der ihm nächstgelegenen Gemeinde) und den Suchradius von fünf Kilometern an Tankerkönig — nie die Koordinaten des abgefragten Ortes.");
+    expect(live).toContain("Einen so abgefragten Mittelpunkt fragt unser Server danach 30 Tage lang nicht erneut ab (nach einer gescheiterten Abfrage auch früher); dafür vermerkt er allein diesen öffentlichen Mittelpunkt in seinem Abrufprotokoll, ohne Bezug zum Fragenden.");
+    expect(live).not.toContain("die Koordinaten dieses Ortes und den Suchradius");
+    expect(live).not.toContain("verzeichnet OpenStreetMap dort nähere Tankstellen");
+    expect(live).not.toContain("auf etwa 100 Meter gerundete 24 Stunden lang");
   });
 
   it("says a fuel refresh request is stored with the municipality key only, for 30 days (data-steward ruling 2026-11-17)", () => {
