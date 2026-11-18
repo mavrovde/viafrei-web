@@ -139,7 +139,18 @@ describe("the workflows", () => {
       expect(t).toContain(`${code} && (${releasePush})`);
     }
     const ci = text("ci.yml");
-    expect(ci).toContain(`        if: ${minor}\n        run: bash scripts/web-i18n-mutation.sh`);
+    // the catalogue parity mutants: four shards and their fan-in, at a minor only (test/i18n-mutation.test.ts cuts them)
+    const shards = job(ci, "mutants");
+    expect(shards).toContain(`    if: "${code} && (${releasePush}) && (${minor})"\n`);
+    expect(shards).toMatch(/\n {4}strategy:\n {6}fail-fast: false\n {6}matrix:\n {8}shard: \[1, 2, 3, 4\]\n/u);
+    expect(shards).toContain('        run: bash scripts/web-i18n-mutation.sh --shard "$SHARD/4"\n');
+    const fanIn = job(ci, "mutation");
+    expect(fanIn).toContain("    needs: [changes, mutants]\n");
+    expect(fanIn).toContain(`    if: "${code} && !cancelled() && (${releasePush}) && (${minor})"\n`);
+    expect(fanIn).toContain("          SHARDS: ${{ needs.mutants.result }}\n");
+    expect(fanIn).toContain("[[ $SHARDS == success ]] ||");
+    for (const j of [shards, fanIn]) expect(j).not.toContain("continue-on-error");
+    expect(ci.split("scripts/web-i18n-mutation.sh").length - 1, "the mutants run in the shard jobs alone").toBe(2);
     const prc = JSON.parse(read("release-please-config.json")) as { "pull-request-title-pattern": string };
     expect(prc["pull-request-title-pattern"], "the release-push condition reads the release commit by this title").toBe("chore: release ${version}");
     expect(text("scorecard.yml")).toMatch(/\non:\n(?:\s*#[^\n]*\n)*\s+workflow_dispatch:\n\n/u);
@@ -171,7 +182,7 @@ describe("the workflows", () => {
   it("pull the private viafrei-app with GHCR_READ_TOKEN, each pull behind a check that the secret is set", () => {
     const ci = text("ci.yml");
     const logins = ci.split("docker/login-action@").length - 1;
-    expect(logins).toBe(4);
+    expect(logins).toBe(5);
     expect(ci.split("password: ${{ secrets.GHCR_READ_TOKEN }}").length - 1).toBe(logins);
     expect(ci.split("- name: GHCR_READ_TOKEN must be set").length - 1).toBe(logins);
     expect(ci, "a job asks for packages it no longer reads").not.toMatch(/packages: read/u);

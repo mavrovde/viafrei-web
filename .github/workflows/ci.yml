@@ -220,9 +220,76 @@ jobs:
         env:
           EVENT: ${{ github.event_name }}
           BASE: ${{ github.event.pull_request.base.sha }}
-      - name: The catalogue parity sweep fails four ways (mutations, so at a dispatch or a minor's release pull request only)
-        if: github.event_name == 'workflow_dispatch' || (startsWith(github.head_ref, 'release-please--') && endsWith(github.event.pull_request.title, '.0'))
-        run: bash scripts/web-i18n-mutation.sh
+
+  # The catalogue parity sweep fails five ways per catalogue (scripts/web-i18n-mutation.sh), at a dispatch or a
+  # minor's release pull request only, in four parallel shards (the viafrei-database release split, mirrored):
+  # --shard k/4 takes the mutants at the positions p of the list with p mod 4 = k - 1, so the four are disjoint
+  # and together the whole list (test/i18n-mutation.test.ts proves it and holds this matrix to the count). Each
+  # shard makes its own unmutated control run. fail-fast is off, so one run reports every failing shard.
+  mutants:
+    name: Catalogue parity mutants shard
+    needs: changes
+    if: "needs.changes.outputs.code == 'true' && (github.event_name != 'push' || startsWith(github.event.head_commit.message, 'chore: release ')) && (github.event_name == 'workflow_dispatch' || (startsWith(github.head_ref, 'release-please--') && endsWith(github.event.pull_request.title, '.0')))"
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    permissions:
+      contents: read
+    strategy:
+      fail-fast: false
+      matrix:
+        shard: [1, 2, 3, 4]
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: npm
+      - run: npm ci --ignore-scripts --no-audit --no-fund
+      # the unit suite's setup file is the pinned viafrei-app's offline guard (vitest.config.ts), pulled as in Site gates
+      - name: GHCR_READ_TOKEN must be set
+        env:
+          GHCR_READ_TOKEN: ${{ secrets.GHCR_READ_TOKEN }}
+          ACTOR: ${{ github.actor }}
+        run: |
+          if [ -z "$GHCR_READ_TOKEN" ]; then
+            if [ "$ACTOR" = "dependabot[bot]" ]; then
+              echo "::error::GHCR_READ_TOKEN is not visible to this Dependabot pull request: Dependabot runs read Dependabot secrets, not Actions secrets. Add GHCR_READ_TOKEN under Settings > Secrets and variables > Dependabot (docs/RELEASING.md)."
+            else
+              echo "::error::the repository secret GHCR_READ_TOKEN is not set (a pull request from a fork never sees it); the pinned viafrei-app cannot be pulled (docs/RELEASING.md)"
+            fi
+            exit 1
+          fi
+      - uses: docker/login-action@8aa5831fb8d48d8f76594c7ddde61ae58019f550 # v4.8.0
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GHCR_READ_TOKEN }}
+      - run: npm run pinned
+      # Exits 1 on a survivor and 2 on an empty shard or a red unmutated control, so neither reads as a pass.
+      - name: Every catalogue parity mutant of the shard
+        env:
+          SHARD: ${{ matrix.shard }}
+        run: bash scripts/web-i18n-mutation.sh --shard "$SHARD/4"
+
+  # The fan-in: green only when every shard finished green. It runs unless the run was cancelled, so a shard that
+  # failed, timed out or never started (its result is then failure, cancelled or skipped, never success) fails it.
+  mutation:
+    name: Catalogue parity mutants
+    needs: [changes, mutants]
+    if: "needs.changes.outputs.code == 'true' && !cancelled() && (github.event_name != 'push' || startsWith(github.event.head_commit.message, 'chore: release ')) && (github.event_name == 'workflow_dispatch' || (startsWith(github.head_ref, 'release-please--') && endsWith(github.event.pull_request.title, '.0')))"
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    permissions:
+      contents: read
+    steps:
+      - name: Every shard finished with no survivor
+        env:
+          SHARDS: ${{ needs.mutants.result }}
+        run: |
+          [[ $SHARDS == success ]] || { echo "::error::the catalogue parity mutant shards ended '$SHARDS', not success: a survivor, a red control or a shard that did not finish (see the Catalogue parity mutants shard jobs)"; exit 1; }
+          echo "every catalogue parity mutant shard finished with no survivor"
 
   image:
     name: Image (build, scan, smoke)
