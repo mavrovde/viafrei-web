@@ -221,6 +221,19 @@ export type LiveExample = {
   readonly recheck?: "v1.8.1" | "v1.8.2" | "v1.8.9" | "v1.8.10" | "v1.9.14";
 };
 
+/** A fuel card (v1.8.2): find_cheapest_fuel's answer for a place, with the Tankerkönig credit. */
+const fuelCard = (key: LiveKey, question: MessageKey, names: Readonly<Record<string, string>>, values: Readonly<Record<string, string>>): LiveExample => ({
+  key,
+  domain: "fuel",
+  added: "v1.8.2",
+  tool: "find_cheapest_fuel",
+  sign: "fuel",
+  question,
+  credits: ["tankerkoenig"],
+  names,
+  values,
+});
+
 export const LIVE_EXAMPLES: readonly LiveExample[] = [
   {
     key: "stadtbahn",
@@ -654,47 +667,32 @@ export const LIVE_EXAMPLES: readonly LiveExample[] = [
     // Stand 14:43. Reworded: severe storm gusts, level 2 of 4.
     values: { alt: "1500", day: "19.11.", to: "00:00", level: "2", asOf: "18.11.2026, 14:43" },
   },
-  {
-    key: "fuelcity",
-    domain: "fuel",
-    added: "v1.8.2",
-    tool: "find_cheapest_fuel",
-    sign: "fuel",
-    question: "connectPage.live.fuelcity.q",
+  fuelCard(
+    "fuelcity",
+    "connectPage.live.fuelcity.q",
     // find_cheapest_fuel {place: "Köln", fuel: "e10"}, asked ONCE 2026-11-02 14:22: current prices, ranked — "1. Markant (Tankautomat)
     // Automatentankstelle, Olpener Str. 27, 51103 Köln — 2,019 €/l (Stand 14:22)", tied with a JET. 2026-11-18: no current price, so the "no new price" sentence.
-    credits: ["tankerkoenig"],
-    names: { station: "TotalEnergies", address: "Holzmarkt 49, 50676 Koeln" },
-    values: { euro: "1", cent: "879", reported: "17.11., 20:34", asOf: "18.11.2026, 14:30" },
-  },
-  {
-    key: "fuelroad",
-    domain: "fuel",
-    added: "v1.8.2",
-    tool: "find_cheapest_fuel",
-    sign: "fuel",
-    question: "connectPage.live.fuelroad.q",
+    { station: "TotalEnergies", address: "Holzmarkt 49, 50676 Koeln" },
+    { euro: "1", cent: "879", reported: "17.11., 20:34", asOf: "18.11.2026, 14:30" },
+  ),
+  fuelCard(
+    "fuelroad",
+    "connectPage.live.fuelroad.q",
     // find_cheapest_fuel {place: "Würzburg", fuel: "diesel", radius_km: 10}, asked ONCE 2026-11-02 14:23: "kein Preis aus den letzten 30
     // Minuten … TopTank, Schweinfurter Str. 42, 97076 Würzburg — 2,249 €/l … (Preis von 31.10. 20:04) — neuer Preis wird gerade abgefragt"
     // (the lowest of the five, with the JET).
-    credits: ["tankerkoenig"],
-    names: { station: "TopTank", address: "Schweinfurter Str. 42, 97076 Würzburg" },
-    values: { euro: "2", cent: "299", reported: "16.11., 12:46", asOf: "18.11.2026, 14:30" },
-  },
-  {
-    key: "fuelland",
-    domain: "fuel",
-    added: "v1.8.2",
-    tool: "find_cheapest_fuel",
-    sign: "fuel",
-    question: "connectPage.live.fuelland.q",
+    { station: "TopTank", address: "Schweinfurter Str. 42, 97076 Würzburg" },
+    { euro: "2", cent: "299", reported: "16.11., 12:46", asOf: "18.11.2026, 14:30" },
+  ),
+  fuelCard(
+    "fuelland",
+    "connectPage.live.fuelland.q",
     // find_cheapest_fuel {place: "Stuttgart", fuel: "e10"}, asked ONCE 2026-11-02 14:23: "kein Preis aus den letzten 30 Minuten … Shell,
     // Karl-Kloss-Str. 18, 70199 Stuttgart — 1,999 €/l … (Preis von 02.11. 03:33) — neuer Preis wird gerade abgefragt" (the lowest, with
     // two others).
-    credits: ["tankerkoenig"],
-    names: { station: "ESSO", address: "Immenhofer Str. 48, 70180 Stuttgart" },
-    values: { euro: "1", cent: "939", reported: "14.11., 13:17", asOf: "18.11.2026, 14:30" },
-  },
+    { station: "ESSO", address: "Immenhofer Str. 48, 70180 Stuttgart" },
+    { euro: "1", cent: "939", reported: "14.11., 13:17", asOf: "18.11.2026, 14:30" },
+  ),
 ];
 
 /**

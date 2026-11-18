@@ -323,41 +323,48 @@ export const MOMENTS: readonly Moment[] = [
 export type FuelAskKey = "goerlitz" | "muenchen" | "leipzig" | "nuernberg";
 export type FuelAsk = { readonly key: FuelAskKey; readonly tool: "find_cheapest_fuel"; readonly answer: MomentAnswer };
 
+/** One fuel request under the fuel tile: find_cheapest_fuel's answer for a place, with the Tankerkönig credit. */
+const fuelAsk = (key: FuelAskKey, values: MomentAnswer["values"], names: MomentAnswer["names"]): FuelAsk => ({
+  key,
+  tool: "find_cheapest_fuel",
+  answer: { values, names, credits: FUEL },
+});
+
 export const FUEL_ASKS: readonly FuelAsk[] = [
-  {
-    key: "goerlitz",
-    tool: "find_cheapest_fuel",
+  fuelAsk(
+    "goerlitz",
     // find_cheapest_fuel {place: "Görlitz", fuel: "diesel"}, asked ONCE 2026-11-02 14:10: no price from the last 30 minutes — "zuletzt
     // bekannte Preise … TotalEnergies, Bahnhofstr. 68-72, 02826 Goerlitz — 2,179 €/l … (Preis von 23.10. 21:36) — neuer Preis wird gerade
     // abgefragt". 2026-11-18 14:29: a current price, reported 14:29, so the current-price sentence holds.
-    answer: { values: { euro: "2", cent: "319", reported: "14:29", asOf: "18.11.2026, 14:29" }, names: { station: "TotalEnergies", address: "Bahnhofstr. 68-72, 02826 Goerlitz" }, credits: FUEL },
-  },
-  {
-    key: "muenchen",
-    tool: "find_cheapest_fuel",
+    { euro: "2", cent: "319", reported: "14:29", asOf: "18.11.2026, 14:29" },
+    { station: "TotalEnergies", address: "Bahnhofstr. 68-72, 02826 Goerlitz" },
+  ),
+  fuelAsk(
+    "muenchen",
     // find_cheapest_fuel {place: "München", fuel: "e10"}, asked ONCE 2026-11-02 14:10: "kein Preis aus den letzten 30 Minuten — zuletzt
     // bekannte Preise, je mit Uhrzeit, nicht nach Preis gerankt … Aral, Schwere-Reiter-Straße 26b, 80797 München — 1,929 €/l … (Preis von
     // 02.11. 07:34)"; the five listed span 1,929 to 1,999 €/l.
-    answer: { values: { euro: "1", cent: "789", reported: "17.11., 23:22", asOf: "18.11.2026, 14:29" }, names: { station: "AVIA", address: "Hochstr. 5, 81669 München" }, credits: FUEL },
-  },
-  {
-    key: "leipzig",
-    tool: "find_cheapest_fuel",
+    { euro: "1", cent: "789", reported: "17.11., 23:22", asOf: "18.11.2026, 14:29" },
+    { station: "AVIA", address: "Hochstr. 5, 81669 München" },
+  ),
+  fuelAsk(
+    "leipzig",
     // find_cheapest_fuel {place: "Leipzig", fuel: "e5"}, asked ONCE 2026-11-02 14:10: "kein Preis aus den letzten 30 Minuten … OIL!,
     // Wittenberger Straße 7, 04129 Leipzig — 1,999 €/l … (Preis von 02.11. 09:28)" — the lowest of the five.
     // Asked again 2026-11-18 14:45: current prices, ranked — "1. Greenline, Mockauer Str. 117, 04357 Leipzig — 2,058 €/l, 4,6 km,
     // zuletzt offen (Stand 14:31)". The "no new price" sentence no longer holds, so the request takes Görlitz's current-price
     // sentence and its why (in every language).
-    answer: { values: { euro: "2", cent: "058", reported: "14:31", asOf: "18.11.2026, 14:45" }, names: { station: "Greenline", address: "Mockauer Str. 117, 04357 Leipzig" }, credits: FUEL },
-  },
-  {
-    key: "nuernberg",
-    tool: "find_cheapest_fuel",
+    { euro: "2", cent: "058", reported: "14:31", asOf: "18.11.2026, 14:45" },
+    { station: "Greenline", address: "Mockauer Str. 117, 04357 Leipzig" },
+  ),
+  fuelAsk(
+    "nuernberg",
     // find_cheapest_fuel {place: "Nürnberg", fuel: "diesel"}, asked ONCE 2026-11-02 14:10: current prices, ranked — "1. HEM, Rothenburger
     // Str. 325, 90431 Nürnberg — 2,259 €/l, 3,6 km (Stand 14:05) 2. SUPOL, Gibitzenhofstr. 172 — 2,269 €/l, 2,5 km". Reworded: a current
     // price (the Görlitz shape of 2026-10-16); the nearer station is the dearer one.
-    answer: { values: { euro: "2", cent: "349", reported: "16.11., 12:44", asOf: "18.11.2026, 14:29" }, names: { station: "AVIA", address: "Adlerstrasse 4, 90403 Nürnberg" }, credits: FUEL },
-  },
+    { euro: "2", cent: "349", reported: "16.11., 12:44", asOf: "18.11.2026, 14:29" },
+    { station: "AVIA", address: "Adlerstrasse 4, 90403 Nürnberg" },
+  ),
 ];
 
 /**
