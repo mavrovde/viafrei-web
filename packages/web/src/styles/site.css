@@ -2126,6 +2126,13 @@ p.proof__cell.is-error { background: var(--error-bg); color: var(--error); borde
   .desk > *, .desk--road .motorway-page > .motorway > * { grid-column: 1; min-width: 0; }
   .desk .wrap { width: auto; margin-inline: 0; }
   .desk--road .motorway-page, .desk--road .motorway-page > .motorway { display: contents; }
+  /* the eight-screen budget (#1180 AC 5): the cards that never fold — the closures and the jams — take the column's width,
+     their rows two by two. Half a column wide, the longer of the two stretched the other's row with it (a road's six
+     closures made a 1 500 px row beside two jams); the same rows, each the width it had, now stand in half the height.
+     A row that is not an event (the visitor's own position, `.mwk__you`, D13) takes the whole width. */
+  .desk--road #mw-cards > :is(#mwk-closures, #mwk-jams) { grid-column: 1 / -1; }
+  .desk--road #mw-cards > :is(#mwk-closures, #mwk-jams) > .motorway__list { grid-template-columns: repeat(2, minmax(0, 1fr)); column-gap: var(--s-4); align-items: start; }
+  .desk--road #mw-cards > :is(#mwk-closures, #mwk-jams) > .motorway__list > :not(li[id]) { grid-column: 1 / -1; }
   /* a place: the place bar, its slot and the fragment's section stand aside, so the Ampel card is a cell of the grid */
   .desk--place .placebar, .desk--place .placebar > .wrap, .desk--place .place-slot, .desk--place .place-slot > .place { display: contents; }
   .desk--place :is(.placebar > .wrap, .place-slot, .place-slot > .place) > * { grid-column: 1; min-width: 0; }
@@ -2225,6 +2232,9 @@ p.proof__cell.is-error { background: var(--error-bg); color: var(--error); borde
   .desk--home .place__cards { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); grid-auto-flow: row dense; gap: var(--s-3); }
   .desk--home .place__cards > :not([data-desk]) { grid-column: 1 / -1; }
   .desk--home .place__cards > .pcard { margin: 0; }
+  /* the eight-screen budget (#1180 AC 5): the roads card never folds; its events stand two by two, as a road page's
+     closures and jams do */
+  .desk--home .place__cards > #pcard-roads .pcard__fold > .pcard__list { grid-template-columns: repeat(2, minmax(0, 1fr)); column-gap: var(--s-4); align-items: start; }
   /* the place's map stands behind its line, as on a station page: the Ampel, its reasons and its line are the first screen */
   .desk--home #place-ampel > .ampel__mapfold > .fold__summary { display: list-item; }
   .desk--home #place-ampel > .ampel__mapfold:not([open])::details-content { content-visibility: hidden; display: block; height: 0; }
@@ -2248,6 +2258,9 @@ p.proof__cell.is-error { background: var(--error-bg); color: var(--error); borde
      (`.tmchips`, 28 px, still above the 24 px target of WCAG 2.5.8), so the place's status stays in the first window */
   .desk--home .tpf__opts { gap: var(--s-1); }
   .desk--home .tpf__opts .tpf__opt { white-space: nowrap; min-height: 28px; gap: var(--s-1); padding: 0 var(--s-2); font-size: var(--fs-0); }
+  /* the place's jump links in the same compact chip (28 px, the 24 px target of WCAG 2.5.8 kept): four rows of 44 px
+     targets in the narrow first column made it the page's longest (#1180 AC 5) */
+  .desk--home .place .jumps__chip { min-height: 28px; }
   .desk--home .now > .wrap > .block__head .lead { display: none; }
   /* the heat strip: the motorways and the stations most affected now, side by side, open */
   .desk__heat:has(> *) { display: grid; gap: var(--s-3); margin-block: var(--s-3); align-items: start; }
@@ -2301,6 +2314,13 @@ p.proof__cell.is-error { background: var(--error-bg); color: var(--error); borde
   .desk--home .moment, .desk--home .moment__lead { gap: var(--s-2); }
   .desk--home .moments { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--s-3); align-items: start; }
   .desk--home .hero--rest .hero__grid { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); }
+  /* the sign in its half of the column is a phone's width (342 px at 1280), so it takes a phone's sign: the deck's 96 px
+     arrow and padding left its answer a 166 px column and the sign 705 px tall, the longest of the home's rows (#1180 AC 5) */
+  .desk--home .hero--rest .sign__panel { aspect-ratio: auto; grid-template-columns: minmax(0, 1fr) 56px; padding: var(--s-5); }
+  .desk--home .hero--rest .sign__a { font-size: var(--fs-3); }
+  .desk--home .hero--rest .sign__arrow { width: 52px; height: 52px; }
+  .desk--home .hero--rest .sign__arrow::before { width: 30px; height: 11px; margin-top: -5.5px; }
+  .desk--home .hero--rest .sign__arrow::after { margin-top: -17px; border-top-width: 17px; border-bottom-width: 17px; border-left-width: 24px; }
   #desk-ask { display: grid; gap: var(--s-2); margin-top: var(--s-3); padding: var(--s-3); border: 1px solid var(--line); border-radius: var(--r-sm); background: var(--surface); }
   .askbox__h { font-size: var(--fs-2); margin: 0; }
   .askbox__q { margin: 0; color: var(--fg); }
