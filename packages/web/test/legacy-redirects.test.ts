@@ -251,7 +251,7 @@ describe("#1166: the lookup and the page after it share the request's two second
   }
   it("the middleware opens the budget first and hands the lookup that one, and the place route reads under it too", () => {
     const mw = readFileSync(join(SRC, "middleware.ts"), "utf8");
-    expect(mw).toMatch(/context\.locals\.budgetEndsAt = budgetFrom\(\);[\s\S]*legacyRedirect\(context\.url, \{[^}]*\}, context\.locals\.budgetEndsAt\)/);
+    expect(mw).toMatch(/context\.locals\.budgetEndsAt = budgetFrom\(Date\.now\(\), currentAgentClass\(\)\);[\s\S]*legacyRedirect\(context\.url, \{[^}]*\}, context\.locals\.budgetEndsAt\)/);
     const place = readFileSync(join(SRC, "pages", "[lang]", "place", "[slug].astro"), "utf8");
     expect(place).toContain("endsAt: Astro.locals.budgetEndsAt");
   });

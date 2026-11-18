@@ -74,8 +74,11 @@ export type TopItem = {
   readonly what: Html;
   /** Where ("AS Köln-Ost – AS Köln-Mülheim"); may hold a link built from escaped text. */
   readonly where: Html;
-  /** Since or until, said in the page's language; none when not known. */
-  readonly when?: Html | null;
+  /**
+   * Since or until, said in the page's language; none when not known. Several phrases ("seit … · bis …", #1312) are
+   * each kept whole and the line may break between them, so a long pair cannot push a phone's page wide.
+   */
+  readonly when?: Html | readonly Html[] | null;
   /**
    * #1181 feature 3: the item's identity across visits ("jam|A3 | Köln-Ost - Leverkusen| Köln -> Frankfurt") and its
    * length (a jam's delay in minutes), written as `data-vf-key`/`data-vf-len` for the "since your last visit" marks of a
@@ -90,15 +93,26 @@ export function bySeverity<T extends { readonly severity: Severity }>(items: rea
   return items.map((x, i) => ({ x, i })).sort((a, b) => SEVERITY_ORDER.indexOf(a.x.severity) - SEVERITY_ORDER.indexOf(b.x.severity) || a.i - b.i).map((e) => e.x);
 }
 
+/** An item's `when`: none, one phrase or several, always as a list. */
+function whenPhrases(when: TopItem["when"]): readonly Html[] {
+  if (when === undefined || when === null) return [];
+  return typeof when === "string" ? [when] : when;
+}
+
+/** The ` data-vf-len` attribute of an item with a length, "" without one. */
+function lengthAttr(length: TopItem["length"]): string {
+  return length === undefined || length === null ? "" : ` data-vf-len="${String(Math.round(length))}"`;
+}
+
 /** The first `TOP_ITEMS_DESK` items by severity, as a list, the ones after `TOP_ITEMS_MAX` marked desktop-only; "" when there are none. */
 export function topItems(items: readonly TopItem[], label: Html): Html {
   if (items.length === 0) return raw("");
   const rows = bySeverity(items)
     .slice(0, TOP_ITEMS_DESK)
     .map((x, i) => {
-      const when = x.when === undefined || x.when === null ? "" : ` <span class="topitems__when">· ${x.when}</span>`;
+      const when = whenPhrases(x.when).map((w) => ` <span class="topitems__when">· ${w}</span>`).join("");
       const desk = i < TOP_ITEMS_MAX ? "" : " topitems__extra";
-      const key = x.key === undefined || x.key === null ? "" : ` data-vf-key="${esc(x.key)}"${x.length === undefined || x.length === null ? "" : ` data-vf-len="${String(Math.round(x.length))}"`}`;
+      const key = x.key === undefined || x.key === null ? "" : ` data-vf-key="${esc(x.key)}"${lengthAttr(x.length)}`;
       return `<li class="topitems__row topitems__row--${x.severity}${desk}"${key}><span class="topitems__mark" aria-hidden="true"></span><span class="topitems__body"><strong class="topitems__what">${x.what}</strong> <span class="topitems__where">${x.where}</span>${when}</span></li>`;
     });
   return raw(`<ul class="topitems" aria-label="${label}">${rows.join("")}</ul>`);

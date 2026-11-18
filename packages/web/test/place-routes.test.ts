@@ -8,6 +8,8 @@ import { readFileSync } from "node:fs";
 import { all, first, text } from "@viafrei/design/testing";
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import { placeRoute, suggestRoute } from "../src/lib/fragment-route.js";
+import { withAgentClass } from "../src/lib/agent-class.js";
+import { CRAWLER_PAGE_BUDGET_MS } from "../src/lib/page-budget.js";
 import { PLACE_NAME_INDEX_TTL_MS, PLACE_PAGE_BUDGET_MS, PLACE_PAGE_CARDS_MS, resetPlaceNameIndex, resolvePlacePage, type PlacePageAnswer } from "../src/lib/place-page.js";
 import { resetSlugKeys } from "../src/lib/place.js";
 import { CARDS_MIN_MS, placeFirstRender } from "../src/lib/place-first.js";
@@ -15,8 +17,8 @@ import { PLACE_NAME_CHOICES, placesByName } from "../src/site/places.js";
 import { placesLangXml } from "../src/site/sitemaps.js";
 import { LIVE_LANGS } from "../src/site/pages.js";
 import { lastmodOf } from "../src/site/lastmod.js";
-import { placeDescription, placeMeta } from "../src/site/meta.js";
-import { liftPlaceFirst, placeNowOf, placeRoadsOf } from "../src/lib/place-head.js";
+import { placeMeta } from "../src/site/meta.js";
+import { liftPlaceFirst, placeNowOf } from "../src/lib/place-head.js";
 import { robotsTxt } from "../src/site/discovery.js";
 import { DEFAULT_PLACE_TIMEOUT_MS, DEFAULT_TILE_TIMEOUT_MS } from "../src/lib/env.js";
 import type { FetchLike } from "../src/lib/tiles.js";
@@ -494,6 +496,19 @@ describe("#1166: a place page answers inside two seconds — late cards are fill
     expect(asked.some((u) => u.includes("/internal/place/cards"))).toBe(false);
   });
 
+  it("#1310 A2: a verified crawler's key arriving at 3 000 ms is its page, not the 503 a person's two seconds leave", async () => {
+    const asked: string[] = [];
+    const a = await within(withAgentClass("search", () => resolvePlacePage("de", "koeln", prod(lateKey(asked, 3_000)))), CRAWLER_PAGE_BUDGET_MS);
+    expect(a).toMatchObject({ kind: "page", slug: "koeln", place: { label: "Köln" } });
+    resetSlugKeys();
+    expect(await within(resolvePlacePage("de", "koeln", prod(lateKey([], 3_000))), PLACE_PAGE_BUDGET_MS + 10)).toEqual({ kind: "unavailable" });
+  });
+
+  it("#1310 A2: a verified crawler's key that never arrives is still answered inside its eight seconds", async () => {
+    const a = await within(withAgentClass("search", () => resolvePlacePage("de", "koeln", prod(saturated([], { key: "hang" })))), CRAWLER_PAGE_BUDGET_MS + 10);
+    expect(a).toEqual({ kind: "unavailable" });
+  });
+
   it("a key arriving at 1 300 ms and cards that hang: the cards get what is left after the index's share, the page by 2 000 ms", async () => {
     const asked: string[] = [];
     const a = await within(resolvePlacePage("de", "koeln", prod(lateKey(asked, 1_300, { cards: "hang" }))), PLACE_PAGE_BUDGET_MS);
@@ -536,8 +551,8 @@ describe("#1166: a place page answers inside two seconds — late cards are fill
       expect(loading(a), lang).toBe(true);
       const page = a as Extract<PlacePageAnswer, { kind: "page" }>;
       // what PlacePage.astro puts in the head (pinned below as its source)
-      const meta = placeMeta(page.place.label, lang, placeRoadsOf(page.place.html), placeNowOf(liftPlaceFirst(page.place.html).first));
-      expect(meta.description, lang).toBe(placeDescription("Köln", lang, []));
+      const meta = placeMeta(page.place.label, lang, placeNowOf(liftPlaceFirst(page.place.html).first));
+      expect(meta.description, lang).toBe(placeMeta("Köln", lang).description);
       expect(meta.description, lang).toContain("Köln");
       expect(meta.description.length, lang).toBeGreaterThanOrEqual(60);
       expect(meta.description, lang).not.toMatch(/\{place\}|place\.pageDescription/);
@@ -545,7 +560,7 @@ describe("#1166: a place page answers inside two seconds — late cards are fill
     }
     const layout = readFileSync(new URL("../src/layouts/PlacePage.astro", import.meta.url), "utf8");
     // the head's meta IS that one: nothing after it in the same object overrides its title or description
-    expect(layout).toMatch(/dynamic=\{\{ \.\.\.placeMeta\(place\.label, lang, placeRoadsOf\(place\.html\), placeNowOf\(lifted\.first\)\), path: placePath\(lang, slug\), alternates, jsonLd: [^}]*\}\}/);
+    expect(layout).toMatch(/dynamic=\{\{ \.\.\.placeMeta\(place\.label, lang, placeNowOf\(lifted\.first\), land\), path: placePath\(lang, slug\), alternates, jsonLd: [^}]*\}\}/);
   });
 
   it("an index the digest does not refresh keeps the one the shell holds (a stale name beats no page)", async () => {

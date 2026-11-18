@@ -8,7 +8,7 @@
  */
 import { readFileSync } from "node:fs";
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
-import { formatLogLine, logFragmentFailure, setLogSink } from "../src/lib/log.js";
+import { formatLogLine, logFragmentFailure, logLine, setLogSink } from "../src/lib/log.js";
 import { routeTemplate } from "../src/lib/log-mask.js";
 import { getFragment } from "../src/lib/place.js";
 import { getMotorwayFragment } from "../src/lib/motorway.js";
@@ -104,6 +104,51 @@ describe("a digest fragment that did not arrive (#741)", () => {
     await getMotorwayFragment("http://digest:8791/internal/motorway/A999", opts(() => answer(404)), /^<section/, "</section>", false);
     await getFragment("http://digest:8791/internal/place/index", opts(() => answer(200, "<ul></ul>")), /^<ul/, "</ul>");
     expect(lines).toEqual([]);
+  });
+  it("#1310 H: a fragment path of 32 characters and more is the key, unmasked; a token in a segment is still masked", () => {
+    logFragmentFailure("http://digest:8791/internal/motorway/a1/exit-84-dortmund-unna?lang=nl&map=other", null, "timeout after 2000 ms", 2001);
+    logFragmentFailure("http://digest:8791/internal/station/a1B2c3D4e5F6g7H8i9J0k1L2m3N4o5P6q7R8s9T0/area", 504, "HTTP 504", 12);
+    expect(lines.map((l) => (JSON.parse(l) as Record<string, unknown>)["key"])).toEqual(["/internal/motorway/a1/exit-84-dortmund-unna", "/internal/station/<token>/area"]);
+    expect(lines.join("\n")).not.toContain("a1B2c3D4e5F6");
+  });
+  it("2.6.19: a long slug of our own is kept whole; a long value that mixes letters and digits in a word is not", () => {
+    logFragmentFailure("http://digest:8791/internal/exit/A40/exit-26-gelsenkirchen-ueckendorf-sued/area", null, "timeout after 2000 ms", 1962);
+    logFragmentFailure("http://digest:8791/internal/charging/ladenetz-ruesselsheim-kaufland-100a/area", null, "timeout after 2000 ms", 2003);
+    logFragmentFailure("http://digest:8791/internal/station/k3j9q2m8-v7n4p1z6-r5t0w8y2-q2m8v7n4-abcd/area", null, "timeout after 2000 ms", 2001);
+    expect(lines.map((l) => (JSON.parse(l) as Record<string, unknown>)["key"])).toEqual([
+      "/internal/exit/A40/exit-26-gelsenkirchen-ueckendorf-sued/area",
+      "/internal/charging/ladenetz-ruesselsheim-kaufland-100a/area",
+      "/internal/station/<token>/area",
+    ]);
+  });
+  it("2.6.19 review B1: a slug-shaped value is kept only at the slug position of our own fragment key", () => {
+    for (const p of [
+      "/x/abcdefghijklmnop-qrstuvwxyzabcdefghij",
+      "/x/ghp-abcdefghijklmnopqrstuvwxyzabcdefgh",
+      "/x/whsec-abcdefghijklmnopqrstuvwxyz",
+      "/reset/correct-horse-battery-staple-orange-violin",
+      "/internal/exit/A40/area/correct-horse-battery-staple-orange-violin",
+      "/internal/charging/x/correct-horse-battery-staple-orange-violin",
+      "/elsewhere/charging/correct-horse-battery-staple-orange-violin",
+      "/internal/charging/abcdefghijklmnopqrstuvwxyzabcdefghijkl-ab/area",
+      "/internal/charging/xoxb-1234-5678-abcdefghijklmnopqrstuvwx/area",
+    ]) logFragmentFailure(`http://digest:8791${p}`, null, "timeout after 2000 ms", 2001);
+    logLine(40, { kind: "x", key: "/internal/charging/correct-horse-battery-staple-orange-violin/area" }, "a line that is not a fragment's");
+    const keys = lines.map((l) => (JSON.parse(l) as Record<string, unknown>)["key"]);
+    expect(keys).toEqual([
+      "/x/<token>", "/x/<token>", "/x/<token>", "/reset/<token>",
+      "/internal/exit/A40/area/<token>", "/internal/charging/x/<token>", "/elsewhere/charging/<token>",
+      "/internal/charging/<token>/area", "/internal/charging/<token>/area",
+      "/internal/charging/<token>/area",
+    ]);
+  });
+  it("2.6.19 review r2 N5: a slug that would not fit the key whole is not cut — the key is the general one", () => {
+    logFragmentFailure("http://digest:8791/internal/exit/A40/exit-26-gelsenkirchen-ueckendorf-sued-nord/area", null, "timeout after 2000 ms", 2001);
+    logFragmentFailure("http://digest:8791/internal/charging/ladenetz-ruesselsheim-kaufland-100a/area", null, "timeout after 2000 ms", 2001);
+    expect(lines.map((l) => (JSON.parse(l) as Record<string, unknown>)["key"])).toEqual([
+      "/internal/exit/A40/<token>/area",
+      "/internal/charging/ladenetz-ruesselsheim-kaufland-100a/area",
+    ]);
   });
   it("an address that does not parse is keyed by nothing rather than by itself", () => {
     logFragmentFailure(`not a url ${ALL}`, null, "boom", 1);

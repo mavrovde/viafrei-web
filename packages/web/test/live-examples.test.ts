@@ -105,10 +105,10 @@ describe("real answers on the connect page (#472, v1.8.1, v1.8.2)", () => {
 
   it("credit the v1.8.1 feeds each example rests on", () => {
     const credits = Object.fromEntries(LIVE_EXAMPLES.map((e) => [e.key, [...e.credits].sort()]));
-    expect(credits["lift"]).toEqual(["db_stada", "mobilithek_openstation_netex", "mobilithek_openstation_siri_fm"]);
+    expect(credits["lift"]).toEqual(["db_stada", "delfi_zhv", "kvb_lifts", "mobilithek_openstation_netex", "mobilithek_openstation_siri_fm"]);
     expect(credits["alert"]).toEqual(["delfi_rt_sa", "delfi_rt_tu", "delfi_siri_sx", "delfi_static"]);
     // The e-clearing.net charger (#468), back since #746: its static and availability lines, and OSM for the address.
-    expect(credits["charger"]).toEqual(["mobilithek_afir_eclearing_dyn", "mobilithek_afir_eclearing_stat", "osm"]);
+    expect(credits["charger"]).toEqual(["bnetza_lsr", "mobilithek_afir_eclearing_dyn", "mobilithek_afir_eclearing_stat", "osm"]);
   });
 
   it("show a live AFIR pair on the site, each with BOTH its halves' lines, as production answered (#467)", () => {
@@ -127,7 +127,7 @@ describe("real answers on the connect page (#472, v1.8.1, v1.8.2)", () => {
     for (const k of ["enbw", "ecomove"] as const) {
       const e = LIVE_EXAMPLES.find((x) => x.key === k)!;
       expect(e.recheck, k).toBeUndefined();
-      expect(e.values["asOf"], k).toMatch(/^02\.11\.2026, 14:11$/);
+      expect(e.values["asOf"], k).toMatch(/^18\.11\.2026, 14:29$/);
       const vars = { ...e.values, ...namesOf(e) };
       expect(t("de", `connectPage.live.${k}.a`, vars), k).toContain(`${e.values["euro"]},${e.values["cent"]} €/kWh`);
       expect(t("en", `connectPage.live.${k}.a`, vars), k).toContain(`€${e.values["euro"]}.${e.values["cent"]}/kWh`);
@@ -136,25 +136,25 @@ describe("real answers on the connect page (#472, v1.8.1, v1.8.2)", () => {
     }
     // 2.5.4: EnBW gave no status at all and JOLT's was from the day before, and the cards say so rather than "free"
     expect(t("de", "connectPage.live.enbw.a", { ...LIVE_EXAMPLES.find((x) => x.key === "enbw")!.values })).toBe("Bis 300 kW, 0,70 €/kWh – doch für keinen der 5 Ladepunkte liegt ein Status vor, also sagt ViaFrei nicht „frei“.");
-    expect(t("de", "connectPage.live.ecomove.a", { ...LIVE_EXAMPLES.find((x) => x.key === "ecomove")!.values, site: "JOLT HH008701" })).toBe("JOLT HH008701: bis 350 kW, 0,79 €/kWh; der letzte Status stammt vom 01.11., 20:15 – zu alt, um „frei“ zu sagen.");
+    expect(t("de", "connectPage.live.ecomove.a", { ...LIVE_EXAMPLES.find((x) => x.key === "ecomove")!.values, site: "JOLT Energy" })).toBe("JOLT Energy: bis 350 kW, 0,79 €/kWh; letzter Status vom 15.11., 16:20: 1 frei, 1 belegt – möglicherweise veraltet.");
   });
 
   it("show one card per feed that went live in v1.8.12, each crediting exactly what production answered (#481, #482, #484, #485)", () => {
     const credits = Object.fromEntries(LIVE_EXAMPLES.map((e) => [e.key, [...e.credits].sort()]));
     expect(credits["ocpdb"]).toEqual(["mobilithek_afir_chargecloud_stat", "ocpdb_chargecloud", "osm"]);
     expect(credits["lsr"]).toEqual(["bnetza_lsr", "osm"]);
-    expect(credits["hamburg"]).toEqual(["delfi_zhv", "hamburg_parkhaeuser", "osm"]);
-    expect(credits["muenster"]).toEqual(["delfi_zhv", "muenster_pls"]);
+    expect(credits["hamburg"]).toEqual(["delfi_zhv", "hamburg_parkhaeuser", "mobilithek_afir_eclearing_stat", "mobilithek_afir_ecomovement", "mobilithek_afir_eround_stat", "osm"]);
+    expect(credits["muenster"]).toEqual(["bkg_gvisys", "delfi_zhv", "mobilithek_afir_chargecloud_stat", "muenster_pls", "osm"]);
     for (const k of ["ocpdb", "lsr", "hamburg", "muenster"] as const) {
       const e = LIVE_EXAMPLES.find((x) => x.key === k)!;
       expect(e.recheck, k).toBeUndefined();
-      expect(e.values["asOf"], k).toMatch(/^02\.11\.2026, 14:\d\d$/);
+      expect(e.values["asOf"], k).toMatch(/^18\.11\.2026, 14:\d\d$/);
       // short cards: the page-weight budget (owner)
       for (const lang of LIVE_LANGS) expect(t(lang, `connectPage.live.${k}.a`, { ...e.values, ...namesOf(e) }).length, `${lang}: ${k}`).toBeLessThanOrEqual(170);
     }
     const vars = (k: string) => { const e = LIVE_EXAMPLES.find((x) => x.key === k)!; return { ...e.values, ...namesOf(e) }; };
-    expect(t("de", "connectPage.live.ocpdb.a", vars("ocpdb"))).toBe("Ja, einer: Typ 2 bis 22 kW ist frei, der CCS-Ladepunkt bis 50 kW außer Betrieb – 0,49 €/kWh netto.");
-    expect(t("de", "connectPage.live.muenster.a", vars("muenster"))).toBe("105 von 300 Plätzen frei – dazu 4 weitere Parkhäuser in der Nähe, jedes mit seiner Belegung.");
+    expect(t("de", "connectPage.live.ocpdb.a", vars("ocpdb"))).toBe("Ja, beide Ladepunkte sind frei: CCS und Typ 2 bis 50 kW – 0,49 €/kWh netto.");
+    expect(t("de", "connectPage.live.muenster.a", vars("muenster"))).toBe("89 von 300 Plätzen frei – dazu 4 weitere Parkhäuser in der Nähe, jedes mit seiner Belegung.");
     // the register has no live status, and says so in every language; its own Stand is quoted
     for (const lang of LIVE_LANGS) expect(t(lang, "connectPage.live.lsr.a", vars("lsr")), lang).toContain("01.09.2026");
     // CC BY 4.0 § 3(a)(1)(A)(iv): the publisher's no-warranty notice travels with every share of register data
@@ -181,19 +181,19 @@ describe("real answers on the connect page (#472, v1.8.1, v1.8.2)", () => {
 
   it("credit the feeds behind each answer asked of production on 2026-10-05, re-asked on 2026-10-16 (#746) and 2026-11-02 (2.5.4)", () => {
     const credits = Object.fromEntries(LIVE_EXAMPLES.map((e) => [e.key, [...e.credits].sort()]));
-    expect(credits["truckstop"]).toEqual(["mobilithek_park_bosch_dyn", "mobilithek_park_bosch_static", "mobilithek_truckpark_static_geonutzv"]);
-    expect(credits["parkride"]).toEqual(["mobilithek_park_nrw_pr"]);
-    expect(credits["platform"]).toEqual(["db_stada", "db_timetables"]);
-    expect(credits["region"]).toEqual(["delfi_rt_tu"]);
-    expect(credits["tomorrow"]).toEqual(["mobilithek_roadworks_bast"]);
-    expect(credits["closure"]).toEqual(["autobahn"]);
-    expect(credits["weather"]).toEqual(["dwd"]);
+    expect(credits["truckstop"]).toEqual(["autobahn", "mobilithek_afir_ecomovement", "mobilithek_park_bosch_dyn", "mobilithek_park_bosch_static", "mobilithek_truckpark_static_geonutzv", "osm"]);
+    expect(credits["parkride"]).toEqual(["bkg_gvisys", "mobilithek_afir_ecomovement", "mobilithek_afir_edri_stat", "mobilithek_park_nrw_pr", "osm", "vrr_park_ride"]);
+    expect(credits["platform"]).toEqual(["db_stada", "db_timetables", "delfi_static", "delfi_zhv", "mobilithek_openstation_netex"]);
+    expect(credits["region"]).toEqual(["delfi_rt_tu", "delfi_static"]);
+    expect(credits["tomorrow"]).toEqual(["bast_lcl", "bkg_gvisys", "mobilithek_ald_14d", "mobilithek_roadworks_akd", "mobilithek_roadworks_bast"]);
+    expect(credits["closure"]).toEqual(["autobahn", "bast_lcl", "bkg_gvisys", "mobilithek_ald_14d", "mobilithek_bab_messages", "mobilithek_roadworks_akd", "mobilithek_roadworks_bast", "mobilithek_traffic_sh"]);
+    expect(credits["weather"]).toEqual(["bkg_gvisys", "dwd", "dwd_road"]);
     for (const k of ["fuelcity", "fuelroad", "fuelland"]) expect(credits[k], k).toEqual(["tankerkoenig"]);
-    // production's own answers: nothing to re-check, every one re-asked on 2026-11-02 (2.5.4)
+    // production's own answers: nothing to re-check, every one re-asked on 2026-11-02 (2.5.4) and 2026-11-18
     for (const k of ASKED_OF_PRODUCTION) {
       const e = LIVE_EXAMPLES.find((x) => x.key === k)!;
       expect(e.recheck, k).toBeUndefined();
-      expect(e.values["asOf"], k).toMatch(/^02\.11\.2026, \d\d:\d\d$/);
+      expect(e.values["asOf"], k).toMatch(/^18\.11\.2026, \d\d:\d\d$/);
     }
     // the share-alike P+R line keeps its licence in the credit, never in the copy
     expect(catalogue.credits.find((c) => c.id === "mobilithek_park_nrw_pr")?.text).toContain("CC BY-SA");
@@ -223,7 +223,7 @@ describe("real answers on the connect page (#472, v1.8.1, v1.8.2)", () => {
     for (const e of fuel) {
       expect(namesOf(e)["station"], e.key).toBeTruthy();
       expect(namesOf(e)["address"], e.key).toMatch(/\d{5} /);
-      expect(e.values["asOf"], e.key).toMatch(/^02\.11\.2026, 14:2\d$/);
+      expect(e.values["asOf"], e.key).toMatch(/^18\.11\.2026, 14:30$/);
       const vars = { ...e.values, ...namesOf(e) };
       expect(t("de", `connectPage.live.${e.key}.a`, vars), e.key).toContain(`${e.values["euro"]},${e.values["cent"]} €/l`);
       expect(t("en", `connectPage.live.${e.key}.a`, vars), e.key).toContain(`€${e.values["euro"]}.${e.values["cent"]}`);
@@ -330,17 +330,17 @@ describe("real answers on the connect page (#472, v1.8.1, v1.8.2)", () => {
   it("credit the v1.8.2 feeds each example rests on, and carry the RVWD line under the Baden-Württemberg credit", () => {
     const credits = Object.fromEntries(LIVE_EXAMPLES.map((e) => [e.key, [...e.credits].sort()]));
     // The BW police message left the page (#454 C1); the A6 card is an Autobahn GmbH answer, credited as answered.
-    expect(credits["motorway"]).toEqual(["autobahn", "mobilithek_roadworks_bast"]);
+    expect(credits["motorway"]).toEqual(["autobahn", "bast_lcl", "bkg_gvisys", "mobilithek_ald_14d", "mobilithek_bab_messages", "mobilithek_roadworks_akd", "mobilithek_roadworks_bast"]);
     expect(LIVE_EXAMPLES.filter((e) => e.credits.includes("mobilithek_traffic_bw")).map((e) => e.key)).toEqual([]);
     expect(credits["landroad"]).toEqual(["mobilithek_roadworks_ald_th"]);
-    expect(credits["saxony"]).toEqual(["mobilithek_roadworks_ald_ni", "mobilithek_roadworks_ald_sn", "mobilithek_roadworks_nlstbv"]);
+    expect(credits["saxony"]).toEqual(["mobilithek_roadworks_ald_ni", "mobilithek_roadworks_ald_sn", "mobilithek_roadworks_nlstbv", "mobilithek_sperrinfosys_sn"]);
     // #746: the B3 card, back — the two Lower Saxony lines the answer credited for its sites there
-    expect(credits["roadworks"]).toEqual(["mobilithek_roadworks_ald_ni", "mobilithek_roadworks_nlstbv"]);
+    expect(credits["roadworks"]).toEqual(["bemas_bw", "mobilithek_roadworks_ald_ni", "mobilithek_roadworks_he", "mobilithek_roadworks_nlstbv"]);
     // 2.5.4 (2026-11-02): the ferry message had ended and no SH police message stood near Kiel, so the card is the city of
-    // Kiel's own roadworks register, credited alone; the answer's other credits came from rows the card does not show (#785).
-    expect(credits["kiel"]).toEqual(["kiel_baustellen"]);
+    // Kiel's own roadworks register; its credits are the answer's whole attribution line (#746), rows the card does not show included.
+    expect(credits["kiel"]).toEqual(["autobahn", "bast_lcl", "bkg_gvisys", "kiel_baustellen", "mobilithek_nms_events", "mobilithek_roadworks_bast", "sh_baustellen"]);
     // #474: the Berlin card, as production v1.8.10 answered it by place (2026-10-06T04:31:20Z).
-    expect(credits["citywork"]).toEqual(["autobahn", "mobilithek_nms_events", "mobilithek_roadworks_bast", "mobilithek_traffic_berlin", "osm"]);
+    expect(credits["citywork"]).toEqual(["autobahn", "bast_lcl", "bb_baustellen", "berlin_planb", "berlin_verkehrsdetektion", "bkg_gvisys", "mobilithek_ald_14d", "mobilithek_nms_events", "mobilithek_roadworks_akd", "mobilithek_roadworks_bast", "mobilithek_traffic_berlin", "mobilithek_traffic_lms_berlin", "mobilithek_viz_berlin", "osm"]);
     const credit = (id: string) => catalogue.credits.find((c) => c.id === id);
     // The condition of use is the register's, German, under the one credit that owes it (#454).
     expect(credit("mobilithek_traffic_bw")?.condition).toMatch(/^Amtliche Meldungen des Verkehrswarndienstes .*RVWD.* ungekürzt und nur aktuell wiedergegeben\.$/);
@@ -439,13 +439,13 @@ describe("real answers on the connect page (#472, v1.8.1, v1.8.2)", () => {
     }
   });
 
-  it("say the BEMaS sites as production answered them, credited to BEMaS alone, in every language (#488, re-asked #746)", () => {
+  it("say the BEMaS sites as production answered them, credited as the answer's Quelle line, in every language (#488, re-asked #746)", () => {
     const e = LIVE_EXAMPLES.find((x) => x.key === "bwroad")!;
-    expect([...e.credits]).toEqual(["bemas_bw"]);
+    expect([...e.credits]).toEqual(["mobilithek_roadworks_ald_ni", "mobilithek_roadworks_nlstbv", "bemas_bw", "mobilithek_roadworks_bayern", "mobilithek_roadworks_he"]);
     expect(e.recheck).toBeUndefined();
     const a = (lang: (typeof LIVE_LANGS)[number]): string => t(lang, "connectPage.live.bwroad.a", { ...e.values, ...namesOf(e) });
-    expect(a("de")).toBe("3 von 12 Arbeitsstellen in Baden-Württemberg, etwa Stuttgart – Heilbronn: neue Fahrbahndecke vom 15.06.2025 bis 12.12.2026.");
-    expect(a("en")).toBe("3 of 12 sites are in Baden-Württemberg, e.g. Stuttgart – Heilbronn: a new road surface from 15.06.2025 to 12.12.2026.");
+    expect(a("de")).toBe("4 von 11 Arbeitsstellen in Baden-Württemberg, etwa Stuttgart – Heilbronn: neue Fahrbahndecke vom 15.06.2025 bis 12.12.2026.");
+    expect(a("en")).toBe("4 of 11 sites are in Baden-Württemberg, e.g. Stuttgart – Heilbronn: a new road surface from 15.06.2025 to 12.12.2026.");
     for (const lang of LIVE_LANGS) expect(a(lang).length, lang).toBeLessThanOrEqual(140);
     // The catalogue carries the steward's line (DL-DE BY 2.0, "bearbeitet") the card renders.
     expect(catalogue.credits.find((c) => c.id === "bemas_bw")?.text).toMatch(/Datenlizenz Deutschland – Namensnennung – Version 2\.0.*bearbeitet$/);
@@ -612,7 +612,7 @@ describe("the Berlin card: a city-street message found by place, confirmed on pr
   it("names the question production was asked, with the answer's own Stand and no recheck flag", () => {
     expect(card.tool).toBe("check_road_status");
     expect(card.recheck).toBeUndefined();
-    expect(card.values["asOf"]).toBe("02.11.2026, 14:10");
+    expect(card.values["asOf"]).toBe("18.11.2026, 13:54");
     expect(card.names).toEqual({ street: "Schiffbauerdamm", a: "Luisenstraße", b: "Albrechtstraße" });
     expect(t("de", card.question, { ...card.values, ...namesOf(card) })).toBe("Ist am Schiffbauerdamm in Berlin etwas gesperrt?");
     // the note promises what v1.8.10 does: by place, nearest first
@@ -635,9 +635,9 @@ describe("the closure card: an A7 closure near Hamburg, re-asked of production o
   it("names the question production was asked, with the answer's own Stand and no recheck flag", () => {
     expect(card.tool).toBe("check_road_status");
     expect(card.recheck).toBeUndefined();
-    expect(card.credits).toEqual(["autobahn"]);
+    expect(card.credits).toEqual(["autobahn", "mobilithek_roadworks_bast", "mobilithek_ald_14d", "mobilithek_bab_messages", "mobilithek_traffic_sh", "mobilithek_roadworks_akd", "bast_lcl", "bkg_gvisys"]);
     // 2.5.4: the Maschener Kreuz closure was gone; the answer's closure near Hamburg is a ramp on the Altonatunnel works
-    expect(card.values).toEqual({ until: "31.10.2027", end: "05:00", asOf: "02.11.2026, 14:17" });
+    expect(card.values).toEqual({ until: "31.10.2027", end: "05:00", asOf: "18.11.2026, 14:28" });
     expect(card.names).toEqual({ at: "Hamburg-Bahrenfeld", a: "HH-Volkspark", b: "HH-Othmarschen" });
     const vars = { ...card.values, ...namesOf(card) };
     expect(t("de", card.question, vars)).toBe("Ist auf der A7 bei Hamburg gerade etwas gesperrt?");
@@ -741,11 +741,11 @@ describe("the v1.8.16 cards: the Stadtbahn lifts (#487) and the shared bikes (#4
     const e = card("stadtbahn");
     expect(e.tool).toBe("check_station_facilities");
     expect([...e.credits].sort()).toEqual(["delfi_zhv", "kvb_lifts"]);
-    // 2.5.4: a fourth escalator was out when re-asked, so the sentence carries a fourth figure
-    expect(e.values).toEqual({ out: "4", total: "10", e1: "51", e2: "52", since: "06.10., 17:32", e3: "62", since3: "31.10., 03:01", e4: "53", since4: "31.10., 20:21", asOf: "02.11.2026, 14:02" });
+    // 2.5.4: a fourth escalator was out when re-asked; 2026-11-18: three again, so the sentence carries three figures
+    expect(e.values).toEqual({ out: "3", total: "10", e1: "51", e2: "52", since: "11.11., 17:30", e3: "60", since3: "15.11., 10:36", asOf: "18.11.2026, 14:37" });
     expect(e.recheck).toBeUndefined();
     expect(answer(e, "de")).toBe(
-      "4 von 10 gemeldeten Anlagen: die Fahrtreppen 51 und 52, gemeldet seit 06.10., 17:32, 62 seit 31.10., 03:01 und 53 seit 31.10., 20:21; beide Aufzüge in Betrieb. Die Kölner Verkehrs-Betriebe AG stellt die Daten ohne jede Gewähr bereit.",
+      "3 von 10 gemeldeten Anlagen: die Fahrtreppen 51 und 52, gemeldet seit 11.11., 17:30 und 60 seit 15.11., 10:36; beide Aufzüge in Betrieb. Die Kölner Verkehrs-Betriebe AG stellt die Daten ohne jede Gewähr bereit.",
     );
   });
 
@@ -776,11 +776,11 @@ describe("the v1.8.16 cards: the Stadtbahn lifts (#487) and the shared bikes (#4
     expect(e.tool).toBe("find_sharing");
     expect([...e.credits].sort()).toEqual(["db_stada", "gbfs_donkey"]);
     expect(namesOf(e)).toEqual({ station: "Kiel Hbf", dock: "Hauptbahnhof", operator: "Donkey Republic" });
-    expect(e.values).toEqual({ free: "6", docks: "8", radius: "1", asOf: "02.11.2026, 14:09" });
+    expect(e.values).toEqual({ free: "5", docks: "8", radius: "1", asOf: "18.11.2026, 14:27" });
     expect(marks(e)).toEqual([]);
     for (const lang of LIVE_LANGS) for (const s of texts(e, lang)) expect(s, lang).not.toMatch(/K(ö|oe)ln|Cologne|Кельн|Кёльн|Кьолн/u);
     expect(answer(e, "de")).toBe(
-      "Station Hauptbahnhof von Donkey Republic: 6 Räder frei – und 8 Stationen im Umkreis von 1 km, jede mit ihrem Bestand.",
+      "Station Hauptbahnhof von Donkey Republic: 5 Räder frei – und 8 Stationen im Umkreis von 1 km, jede mit ihrem Bestand.",
     );
   });
 });

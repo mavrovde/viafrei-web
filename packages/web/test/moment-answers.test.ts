@@ -64,8 +64,8 @@ describe("the home's moments answer EVERY question (owner 2026-10-05: \"Not only
     for (const [idx, a] of m.answers.entries()) {
       const i = (idx + 1) as 1 | 2 | 3;
       it(`${m.key} a${String(i)}: a response excerpt in every language, with its figures, names, date and credits`, () => {
-        // asked of production on 2026-11-02 (re-asked, #746); test/example-freshness.test.ts holds every date to 14 days
-        expect(a.values.asOf, m.key).toMatch(/^02\.11\.2026, \d\d:\d\d$/);
+        // asked of production on 2026-11-18 (re-asked, #746); test/example-freshness.test.ts holds every date to 14 days
+        expect(a.values.asOf, m.key).toMatch(/^18\.11\.2026, \d\d:\d\d$/);
         expect(a.credits.length).toBeGreaterThan(0);
         const live = new Set(catalogue.credits.map((c) => c.id));
         for (const id of a.credits) expect(live.has(id), `${m.key}: ${id}`).toBe(true);
@@ -104,7 +104,9 @@ describe("the home's moments answer EVERY question (owner 2026-10-05: \"Not only
     expect(day).toContain("msg={answerKey(m, i)} answer={m.answers[i - 1]}");
     expect(ans).toContain('translate="no"');
     // every credit line through the one CreditItem component (data-steward ruling 2026-10-07: the BKG line's prescribed links)
-    expect(ans).toContain("<CreditItem c={c} lang={lang} />");
+    // 2.6.19 (#746): through CreditList, whose every line is a CreditItem
+    expect(ans).toContain("<CreditList lang={lang} credits={full}");
+    expect(readFileSync(join(SRC, "components", "CreditList.astro"), "utf8")).toContain("<CreditItem c={c} lang={lang} />");
     expect(all(readFileSync(join(SRC, "components", "CreditItem.astro"), "utf8"), "li[lang=\"de\"]").length).toBeGreaterThan(0);
     expect(ans).toContain('t(lang, "day.answer.asOf", answer.values)');
     // the first is shown open, outside the fold

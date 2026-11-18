@@ -1,6 +1,7 @@
 {
   "meta": {
     "tagline": "A valós idejű német mobilitási platform az MI számára",
+    "titleTagline": "A valós idejű német mobilitási platform",
     "pitch": "A ViaFrei valós idejű tudást ad az MI-asszisztenseknek Németországról. Vonatok és buszok, forgalom és útépítések, üzemanyag, töltés, parkolás és időjárás. Egy MCP. Nincs API-kulcs. Nincs regisztráció.",
     "description": "Dugók, lezárások, útfelújítások, vasút, parkolás, töltés és üzemanyag Németországban – élőben, nyílt adatokból, az MI-asszisztens válaszaként, forrással.",
     "siteName": "ViaFrei"
@@ -221,7 +222,8 @@
     "more": "Még két kérdés és egy korlát",
     "answer": {
       "label": "A ViaFrei válasza",
-      "asOf": "Állapot: {asOf}"
+      "asOf": "Állapot: {asOf}",
+      "again": "A fenti forrásokból is:"
     },
     "limitLabel": "Őszintén szólva",
     "cta": "Indulás",
@@ -230,9 +232,9 @@
         "title": "Reggeli munkába járás",
         "scene": "7:10, kávéval a kézben: rendben jár a tömegközlekedés — és pontos a vonatom?",
         "q1": "Pontosan járnak most a buszok és vonatok Hamburgban?",
-        "a1": "Az elmúlt órában megfigyelt járatok {share} %-a késett 5 percnél többet — nagyjából annyi, mint az előző órában ({before} %).",
+        "a1": "Az elmúlt órában megfigyelt járatok {share} %-a késett 5 percnél többet — több, mint az előző órában ({before} %).",
         "limit": "A pontosságot régiónként mutatjuk, nem vonalanként.",
-        "q2": "Mikor indul a következő vonat a hannoveri főpályaudvarról, és késik-e?",
+        "q2": "Mikor indul a következő vonat a lipcsei főpályaudvarról, és késik-e?",
         "q3": "Kimarad valamelyik vonat a kölni főpályaudvar indulási tábláján a következő órában?",
         "a2": "Következik: {l1}, cél: {d1} (menetrend szerint {t1}, vágány: {p1}), +{delay} perc, indulás kb. {exp}; utána {l2}, cél: {d2}, {t2}, pontosan.",
         "a3": "Egyik sem marad ki: {n} indulás eddig: {last}; a legnagyobb késés: {l1}, cél: {d1}, +{delay} perc."
@@ -245,15 +247,15 @@
         "a1": "{s1}, {km},{kmd} km távolságra; utána: {s2} és {s3}.",
         "limit": "Minden busz- és villamosmegálló menetrendjét megmutatjuk, amint betöltöttük — addig az állomásokat és a régió helyzetét.",
         "board": "Menetrend a megállójában",
-        "a2": "Következik: {l1}, cél: {d1}, {t1}-kor a(z) {p1}. vágányról, pontosan; a(z) {l2}, cél: {d2}, menetrend szerint {t2}, +{delay2} perc, indulás kb. {exp2}.",
-        "q3": "Késnek most a vonatok a lipcsei főpályaudvarról?",
+        "a2": "Következik: {l1}, cél: {d1}, menetrend szerint {t1}, a(z) {p1}. vágányról, +{delay1} perc, indulás kb. {exp1}; a(z) {l2}, cél: {d2}, +{delay2} perc, indulás kb. {exp2}.",
+        "q3": "Késnek most a vonatok a drezdai főpályaudvarról?",
         "a3": "Igen, kettő: {l1}, cél: {d1}, +{dl1} perc, vágány: {p1}, és {l2}, cél: {d2}, +{dl2} perc; a többi következő indulás ({n}) pontos."
       },
       "station": {
         "title": "Az állomáson",
         "scene": "Babakocsival, kerekesszékkel vagy csomaggal: működik a lift a peronhoz?",
         "q1": "Működik a lift a kölni főpályaudvaron?",
-        "a1": "Állomás: {station} – a bejelentett liftek közül {working} / {total} üzemel; egy nem üzemel, egynél a vasút nem jelez állapotot.",
+        "a1": "Állomás: {station} – a bejelentett liftek közül {working} / {total} üzemel; egynél a vasút nem jelez állapotot.",
         "limit": "Liftek és mozgólépcsők a Deutsche Bahn állomásain; más üzemeltetőknél még nem.",
         "q2": "Üzemel minden lift Erlangen állomáson?",
         "a2": "Igen: az egyetlen bejelentett lift ({station}, peron: {platforms}) üzemel.",
@@ -264,7 +266,7 @@
         "title": "Az úton",
         "scene": "Indulás előtt: dugók, lezárások, útépítések — és hol olcsó most az üzemanyag.",
         "q1": "Szabad most az A8 München felé?",
-        "a1": "Nem egészen: a(z) {a} – {b} szakaszon München felé a rendőrség balesetet jelez; a leállósáv el van zárva.",
+        "a1": "Igen: München felé most nincs bejelentett dugó; az A8 dugói ({jams}) más irányban vannak.",
         "a1more": "A teljes A8-on emellett lezárások ({closures}) és útépítések ({works}) is szerepelnek.",
         "limit": "Nincs útvonaltervezés: megmondjuk, mi történik az autópályán, nem azt, merre menjen.",
         "q2": "Milyen útépítések vannak most az A7-en?",
@@ -276,13 +278,13 @@
         "title": "Dugóban",
         "scene": "Dugók az autópályán és a városok körül: hol áll a forgalom, mennyi időbe kerül — és lesz-e ma éjjel lezárás.",
         "q1": "Mennyi időt veszít most az ember az A3 dugójában Frankfurt és Würzburg között?",
-        "a1": "A(z) {a} – {b} szakaszon Frankfurt felé kb. +{delay} perc egy baleset után; a teljes A3-on dugók: {jams}.",
+        "a1": "A(z) {a} – {b} szakaszon Würzburg felé kb. +{delay} perc; a teljes A3-on dugók: {jams}.",
         "a1more": "Az A3-on szerepel még: lezárások: {closures}, útépítések: {works}.",
         "limit": "A városokban a városi autópályákat látjuk, Berlinben, Kölnben és Hannoverben a város saját forgalmi híreit is — de még nem minden utca helyzetét. Hamburg híreit és Köln forgalmi állapotát kértük a szolgáltatóktól.",
         "q2": "Áll most a forgalom a kölni autópálya-gyűrűn — az A1-en, A3-on vagy A4-en?",
         "q3": "Le van zárva ma az A7 Hamburgban?",
         "a3": "Lezárás van bejelentve a(z) {a} és {b} csomópont között (bővítés nyolc sávra, új {tunnel}); a teljes A7-en lezárások: {n}.",
-        "a2": "Igen, az A4-en: a(z) {a} – {b} szakaszon Köln felé torlódik a forgalom, kb. +{delay} perc; a kérdezett autópályákon dugók: {n}."
+        "a2": "Igen, az A4-en: a(z) {a} – {b} szakaszon Köln felé a rendőrség {km} km-es dugót jelez; a kérdezett autópályákon dugók: {n}."
       },
       "parking": {
         "title": "Parkolás",
@@ -336,22 +338,22 @@
       "goerlitz": {
         "q": "Hol a legolcsóbb most a dízel Görlitzben?",
         "why": "Az árak naponta többször változnak, és egy városon belül néhány kút között is eltérnek: a ViaFrei megnevezi a legolcsóbbat az árával és azzal az időponttal, amikor a kút jelentette.",
-        "a": "Még nincs új ár — a legalacsonyabb utolsó ismert: {euro},{cent} € literenként: {station}, {address}, jelentve: {reported}; a ViaFrei újat kér."
+        "a": "{euro},{cent} € literenként: {station}, {address} — jelentve: {reported}."
       },
       "muenchen": {
         "q": "Hol a legolcsóbb most az E10 benzin Münchenben?",
-        "why": "Egy ár lehet reggeli is: Münchenre azon a délutánon a ViaFrei csak a reggeli árakat ismerte, mindegyiket az időpontjával adta meg, és újakat kért.",
+        "why": "Egy ár lehet előző esti is: Münchenre azon a délutánon a ViaFrei nem ismert új árat, a legolcsóbbat az előző esti időpontjával adta meg, és újakat kért.",
         "a": "Még nincs új ár — a legalacsonyabb utolsó ismert: {euro},{cent} € literenként: {station}, {address}, jelentve: {reported}; a ViaFrei újat kér."
       },
       "leipzig": {
         "q": "Hol a legolcsóbb most az E5 benzin Lipcsében?",
-        "why": "Egy ár lehet órákkal korábbi is: a ViaFrei megmondja, mikor jelentette a kút az egyes árakat — azon a délutánon a legolcsóbb lipcsei ár még délelőttről származott.",
-        "a": "Még nincs új ár — a legalacsonyabb utolsó ismert: {euro},{cent} € literenként: {station}, {address}, jelentve: {reported}."
+        "why": "A legközelebbi kút nem mindig a legolcsóbb: a ViaFrei minden árhoz megadja a távolságot.",
+        "a": "{euro},{cent} € literenként: {station}, {address} — jelentve: {reported}."
       },
       "nuernberg": {
         "q": "Hol a legolcsóbb most a dízel Nürnbergben?",
-        "why": "A legközelebbi kút nem mindig a legolcsóbb: a ViaFrei minden árhoz megadja a távolságot.",
-        "a": "{euro},{cent} € literenként: {station}, {address} — jelentve: {reported}."
+        "why": "Egy ár lehet órákkal korábbi is: a ViaFrei megmondja, mikor jelentette a kút az egyes árakat.",
+        "a": "Még nincs új ár — a legalacsonyabb utolsó ismert: {euro},{cent} € literenként: {station}, {address}, jelentve: {reported}; a ViaFrei újat kér."
       }
     },
     "fuelAll": "Tartományonként legfeljebb három benzinkút, címmel és árral",
@@ -389,7 +391,7 @@
       "stadtbahn": {
         "title": "A Stadtbahn liftjei és mozgólépcsői",
         "q": "Mi nem üzemel most Kölnben a(z) {stop} Stadtbahn-megállóban?",
-        "a": "Üzemen kívül {out} / {total}: {e1}, {e2} mozgólépcső {since} óta, {e3} {since3} óta, {e4} {since4} óta; mindkét lift üzemel. A {publisher} az adatokat szavatosság nélkül adja közre.",
+        "a": "Üzemen kívül {out} / {total}: {e1}, {e2} mozgólépcső {since} óta, {e3} {since3} óta; mindkét lift üzemel. A {publisher} az adatokat szavatosság nélkül adja közre.",
         "note": "A kölni Stadtbahn megállóira, a közzétett hibalistából – azzal az időponttal, amióta egy berendezés be van jelentve."
       },
       "bikes": {
@@ -401,7 +403,7 @@
       "lift": {
         "title": "Liftek az állomáson",
         "q": "Melyik lift nem üzemel most ezen az állomáson: {station}?",
-        "a": "Egyet üzemen kívülinek jelentettek, egy liftet a(z) {platforms} vágányhoz: {working} / {total} lift üzemel. A(z) {platforms} vágányhoz vezető másik liftet nem felügyelik – állapota ismeretlen.",
+        "a": "Egyiket sem jelentették üzemen kívülinek: {working} / {total} lift üzemel. A(z) {platforms} vágányhoz vezető egyik liftet nem felügyelik – állapota ismeretlen.",
         "note": "A Deutsche Bahn állomásaira, 20 percenként újraolvasva. Amit a legutóbbi jelentés nem említ, az „ismeretlen” – soha nem „üzemel”."
       },
       "alert": {
@@ -419,13 +421,13 @@
       "ecomove": {
         "title": "Élő foglaltság egy adatgyűjtőn keresztül",
         "q": "Van most szabad töltőpont ennél a gyorstöltőnél: {address}?",
-        "a": "{site}: legfeljebb {kw} kW, {euro},{cent} €/kWh; az utolsó állapot ideje: {t} – túl régi ahhoz, hogy „szabad” legyen.",
+        "a": "{site}: legfeljebb {kw} kW, {euro},{cent} €/kWh; utolsó állapot: {t} – szabad: {free}, foglalt: {busy} – lehet, hogy elavult.",
         "note": "A foglaltság itt egy olyan szolgáltatástól jön, amely sok üzemeltető jelentéseit gyűjti össze. Jelentés nélküli pont soha nem számít szabadnak."
       },
       "ocpdb": {
         "title": "Élőben szabad vagy foglalt – Köln közepén",
         "q": "Van most szabad töltőpont ennél a töltőoszlopnál: {address}?",
-        "a": "Igen, egy: a legfeljebb {kw2} kW-os Type 2 szabad, a legfeljebb {kw} kW-os CCS-pont üzemen kívül – {euro},{cent} €/kWh nettó.",
+        "a": "Igen, mindkét pont szabad: CCS és Type 2, legfeljebb {kw} kW – {euro},{cent} €/kWh nettó.",
         "note": "A foglaltság élőben jön Baden-Württemberg adatportálján keresztül, amely a tartományon messze túli oszlopokat is nyilvántart."
       },
       "lsr": {
@@ -467,7 +469,7 @@
       "landroad": {
         "title": "Útépítés egy tartományi úton",
         "q": "Van ezen a héten útépítés az L1025-ön Türingiában?",
-        "a": "Munkaterületek: {count}, köztük {site}, közlekedési lámpával szabályozott szűkület, időszak: {from} – {to}.",
+        "a": "Egy munkaterület: {site}, közlekedési lámpával szabályozott szűkület, időszak: {from} – {to}.",
         "note": "Tartományi utakat ismerünk Baden-Württembergben, Alsó-Szászországban, Türingiában és Szászországban – az útügyi hatóságok adataiból: szakasz és időszak, koordináták és élő késés nélkül."
       },
       "saxony": {
@@ -527,17 +529,17 @@
       "weather": {
         "title": "Időjárás-ellenőrzés a hegyek előtt",
         "q": "Van ma időjárási figyelmeztetés erre a helyre: {name}?",
-        "a": "Igen, a következő éjszakára: a Német Meteorológiai Szolgálat gyenge fagyra figyelmeztet, {temp} °C-ig, érvényes: {day}, {from} és {to} között – {level}. fokozat, a legalacsonyabb.",
+        "a": "Igen: a Német Meteorológiai Szolgálat erős viharos széllökésekre figyelmeztet {alt} m felett, érvényes: {day} {to}-ig – {level}. fokozat a 4-ből.",
         "note": "A figyelmeztetéseket 5 percenként olvassuk, és területenként érvényesek; új figyelmeztetést rövid időn belül is kiadhatnak."
       },
       "fuelcity": {
         "title": "A legolcsóbb E10 a városban",
         "q": "Hol a legolcsóbb most a Super E10 Kölnben?",
-        "a": "{euro},{cent} € literenként: {station}, {address} — jelentve: {reported}.",
+        "a": "Még nincs új ár – utoljára a legolcsóbb: {euro},{cent} €/l, {station}, {address}, jelentve: {reported}; a ViaFrei éppen újra lekérdezi.",
         "note": "Az üzemanyagárak percenként változnak: ez a szám egy példa arról a délutánról, nem a mai ár. A ViaFrei minden árhoz megadja, mikor jelentette a kút."
       },
       "charger": {
-        "a": "{site}: {points} töltőpont, Type 2, max. {kw},{kwd} kW, {euro},{cent} €/kWh nettó. Egyik sem jelez foglaltat; {stale} pontnál az utolsó állapot: {t}, {unknown} pontnál nincs – így nem „szabad”.",
+        "a": "{site}: {points} töltőpont, Type 2, max. {kw},{kwd} kW, {euro},{cent} €/kWh nettó. Utolsó állapot: {t} – szabad: {free}, foglalt: {busy}, üzemen kívül: {out}, {unknown} pontnál nincs – lehet, hogy elavult.",
         "title": "Élő állapot a töltőoszlopnál",
         "q": "Van most szabad töltőpont itt: {address}?",
         "note": "Élő foglaltságot csak ott adunk meg, ahol az üzemeltető közzéteszi – itt az e-clearing.net-en keresztül. Jelentés nélkül a válasz „nincs állapotadat”, soha nem „szabad”."

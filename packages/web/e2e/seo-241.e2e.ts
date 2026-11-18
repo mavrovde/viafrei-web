@@ -96,7 +96,9 @@ describe("an exit page's head (#1025), German and English", () => {
       expect(title.length, title).toBeLessThanOrEqual(TITLE_MAX);
       expect(description.length, description).toBeLessThanOrEqual(DESCRIPTION_MAX);
       expect(title).toMatch(/^A7 /);
-      expect(description).toMatch(/^A7 /);
+      // #1310 B2: the evergreen description leads with the junction, its road and Land, and carries nothing of the read
+      expect(description).toMatch(/^[^:(]+ \(A7, /);
+      expect(description).not.toMatch(/Stand|\d{1,2}:\d{2}/);
       // the exit rule indexes it (a live item there): no index directive; `noarchive` exactly when its around block
       // carries the fuel card (#1188, the MTS-K terms), and nothing else
       expect(robotsOf(r.body)).toEqual(exitRobots(true, r.body));

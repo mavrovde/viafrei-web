@@ -1,6 +1,7 @@
 {
   "meta": {
     "tagline": "Die Echtzeit-Mobilitätsplattform für KI in Deutschland",
+    "titleTagline": "Die Echtzeit-Mobilitätsplattform für KI",
     "pitch": "ViaFrei gibt KI-Assistenten Echtzeit-Wissen über Deutschland. Bahn und Bus, Verkehr und Baustellen, Sprit, Laden, Parken und Wetter. Ein MCP. Kein API-Schlüssel. Keine Anmeldung.",
     "description": "Stau, Sperrungen, Baustellen, Bahn, Parken, Laden und Tanken in Deutschland – live aus offenen Daten, als Antwort Ihres KI-Assistenten, jede Zahl mit Quelle.",
     "siteName": "ViaFrei"
@@ -221,7 +222,8 @@
     "more": "2 weitere Fragen und eine Grenze",
     "answer": {
       "label": "ViaFrei antwortete",
-      "asOf": "Stand: {asOf}"
+      "asOf": "Stand: {asOf}",
+      "again": "Ebenso aus den Quellen oben:"
     },
     "limitLabel": "Ehrlich gesagt",
     "cta": "Startklar machen",
@@ -230,9 +232,9 @@
         "title": "Morgens zur Arbeit",
         "scene": "7:10 Uhr, Kaffee in der Hand: Läuft der Nahverkehr normal — und fährt mein Zug?",
         "q1": "Fahren Busse und Bahnen in Hamburg gerade pünktlich?",
-        "a1": "{share} % der beobachteten Fahrten der letzten Stunde mehr als 5 Minuten zu spät – etwa so viele wie in der Stunde davor ({before} %).",
+        "a1": "{share} % der beobachteten Fahrten der letzten Stunde mehr als 5 Minuten zu spät – mehr als in der Stunde davor ({before} %).",
         "limit": "Pünktlichkeit zeigen wir je Region, nicht je Linie.",
-        "q2": "Wann fährt der nächste Zug ab Hannover Hbf, und hat er Verspätung?",
+        "q2": "Wann fährt der nächste Zug ab Leipzig Hbf, und hat er Verspätung?",
         "q3": "Fallen an der Abfahrtstafel vom Kölner Hauptbahnhof in der nächsten Stunde Züge aus?",
         "a2": "Als Nächstes {l1} nach {d1} (planmäßig {t1}, Gleis {p1}) mit +{delay} Min., gegen {exp}; danach pünktlich {l2} nach {d2} um {t2}.",
         "a3": "Keine fällt aus: {n} Abfahrten bis {last}; die größte Verspätung hat {l1} nach {d1} mit +{delay} Min."
@@ -245,15 +247,15 @@
         "a1": "{s1}, {km},{kmd} km entfernt; danach {s2} und {s3}.",
         "limit": "Den Fahrplan jeder Bus- und Tramhaltestelle zeigen wir, sobald er geladen ist — bis dahin Bahnhöfe und die Lage in Ihrer Region.",
         "board": "Fahrplan an Ihrer Haltestelle",
-        "a2": "Als Nächstes die {l1} nach {d1} um {t1} von Gleis {p1}, pünktlich; die {l2} nach {d2} von {t2} kommt mit +{delay2} Min. gegen {exp2}.",
-        "q3": "Fahren am Leipziger Hauptbahnhof gerade Züge mit Verspätung ab?",
+        "a2": "Als Nächstes die {l1} nach {d1}, planmäßig {t1} von Gleis {p1}, mit +{delay1} Min. gegen {exp1}; die {l2} nach {d2} kommt mit +{delay2} Min. gegen {exp2}.",
+        "q3": "Fahren am Dresdner Hauptbahnhof gerade Züge mit Verspätung ab?",
         "a3": "Ja, zwei: der {l1} nach {d1} mit +{dl1} Min. von Gleis {p1} und die {l2} nach {d2} mit +{dl2} Min.; die übrigen {n} der nächsten Abfahrten sind pünktlich."
       },
       "station": {
         "title": "Am Bahnhof",
         "scene": "Mit Kinderwagen, Rollstuhl oder Koffer: Geht der Aufzug zum Gleis?",
         "q1": "Funktioniert der Aufzug am Kölner Hauptbahnhof?",
-        "a1": "In {station} sind {working} von {total} gemeldeten Aufzügen in Betrieb; einer ist außer Betrieb, für einen meldet die Bahn keinen Status.",
+        "a1": "In {station} sind {working} von {total} gemeldeten Aufzügen in Betrieb; für einen meldet die Bahn keinen Status.",
         "limit": "Aufzüge und Fahrtreppen der Bahnhöfe der Deutschen Bahn; andere Betreiber noch nicht.",
         "q2": "Sind am Bahnhof Erlangen alle Aufzüge in Betrieb?",
         "a2": "Ja: Der eine gemeldete Aufzug in {station}, zu Gleis {platforms}, ist in Betrieb.",
@@ -264,7 +266,7 @@
         "title": "Mit dem Auto",
         "scene": "Vor der Fahrt: Staus, Sperrungen, Baustellen — und wo der Sprit gerade günstig ist.",
         "q1": "Ist die A8 Richtung München gerade frei?",
-        "a1": "Nicht ganz: Zwischen {a} und {b} Richtung München meldet die Polizei einen Unfall, der Standstreifen ist blockiert.",
+        "a1": "Ja: Richtung München ist gerade kein Stau gemeldet; die {jams} Staus auf der A8 betreffen andere Richtungen.",
         "a1more": "Auf der ganzen A8 sind außerdem {closures} Sperrungen und {works} Baustellen-Einträge gelistet.",
         "limit": "Keine Routenberechnung: Wir sagen, was auf der Autobahn los ist, nicht welche Strecke Sie fahren sollen.",
         "q2": "Welche Baustellen gibt es gerade an der A7?",
@@ -276,13 +278,13 @@
         "title": "Im Stau",
         "scene": "Stau auf der Autobahn und rund um die Städte: wo es steht, wie viel Zeit es kostet — und ob heute Nacht gesperrt wird.",
         "q1": "Wie viel Zeit kostet der Stau auf der A3 zwischen Frankfurt und Würzburg gerade?",
-        "a1": "Zwischen {a} und {b} Richtung Frankfurt etwa +{delay} Min., nach einem Unfall; auf der ganzen A3 sind {jams} Staus gemeldet.",
+        "a1": "Zwischen {a} und {b} Richtung Würzburg etwa +{delay} Min.; auf der ganzen A3 sind {jams} Staus gemeldet.",
         "a1more": "Gelistet sind {closures} Sperrungen und {works} Baustellen-Einträge.",
         "limit": "In der Stadt sehen wir die Stadtautobahnen und in Berlin, Köln und Hannover auch die Verkehrsmeldungen der Stadt – noch nicht die Lage auf jeder Straße. Die Meldungen für Hamburg und die Verkehrslage für Köln sind bei den Anbietern beantragt.",
         "q2": "Staut es sich in Köln gerade auf dem Autobahnring — A1, A3 oder A4?",
         "q3": "Ist die A7 in Hamburg heute gesperrt?",
         "a3": "Gemeldet ist eine Sperrung zwischen den Anschlussstellen {a} und {b} (achtstreifiger Ausbau, Neubau {tunnel}); auf der ganzen A7 sind es {n} Sperrungen.",
-        "a2": "Ja, auf der A4: Zwischen {a} und {b} Richtung Köln stockt der Verkehr, etwa +{delay} Min.; auf den gefragten Autobahnen sind {n} Staus gemeldet."
+        "a2": "Ja, auf der A4: Zwischen {a} und {b} Richtung Köln meldet die Polizei {km} km Stau; auf den gefragten Autobahnen sind {n} Staus gemeldet."
       },
       "parking": {
         "title": "Parken",
@@ -336,22 +338,22 @@
       "goerlitz": {
         "q": "Wo tanke ich in Görlitz gerade Diesel am günstigsten?",
         "why": "Preise ändern sich mehrmals am Tag und unterscheiden sich schon zwischen wenigen Tankstellen einer Stadt: ViaFrei nennt die günstigste mit ihrem Preis und der Uhrzeit, zu der sie ihn gemeldet hat.",
-        "a": "Noch kein neuer Preis – zuletzt am günstigsten: {euro},{cent} €/l bei {station}, {address}, gemeldet am {reported}; ViaFrei fragt gerade neu ab."
+        "a": "{euro},{cent} €/l bei {station}, {address} – gemeldet um {reported}."
       },
       "muenchen": {
         "q": "Wo ist Super E10 in München gerade am günstigsten?",
-        "why": "Ein Preis kann vom Morgen sein: Für München hatte ViaFrei an diesem Nachmittag nur Preise vom Morgen, nannte jeden mit seiner Uhrzeit und fragte neue ab.",
+        "why": "Ein Preis kann vom Vorabend sein: Für München hatte ViaFrei an diesem Nachmittag keinen neuen Preis, nannte den günstigsten mit seiner Uhrzeit vom Vorabend und fragte neue ab.",
         "a": "Noch kein neuer Preis – zuletzt am günstigsten: {euro},{cent} €/l bei {station}, {address}, gemeldet am {reported}; ViaFrei fragt gerade neu ab."
       },
       "leipzig": {
         "q": "Wo gibt es in Leipzig gerade das günstigste Super E5?",
-        "why": "Ein Preis kann Stunden alt sein: ViaFrei nennt zu jedem Preis, wann die Tankstelle ihn gemeldet hat – die günstigsten in Leipzig stammten an diesem Nachmittag noch vom Vormittag.",
-        "a": "Noch kein neuer Preis – zuletzt am günstigsten: {euro},{cent} €/l bei {station}, {address}, gemeldet am {reported}."
+        "why": "Die nächste Tankstelle ist nicht immer die günstigste: ViaFrei nennt zu jedem Preis die Entfernung.",
+        "a": "{euro},{cent} €/l bei {station}, {address} – gemeldet um {reported}."
       },
       "nuernberg": {
         "q": "Wo ist Diesel in Nürnberg gerade am günstigsten?",
-        "why": "Die nächste Tankstelle ist nicht immer die günstigste: ViaFrei nennt zu jedem Preis die Entfernung.",
-        "a": "{euro},{cent} €/l bei {station}, {address} – gemeldet um {reported}."
+        "why": "Ein Preis kann Stunden alt sein: ViaFrei nennt zu jedem Preis, wann die Tankstelle ihn gemeldet hat.",
+        "a": "Noch kein neuer Preis – zuletzt am günstigsten: {euro},{cent} €/l bei {station}, {address}, gemeldet am {reported}; ViaFrei fragt gerade neu ab."
       }
     },
     "fuelAll": "Je Bundesland bis zu drei Tankstellen mit Adresse und Preis",
@@ -389,7 +391,7 @@
       "stadtbahn": {
         "title": "Aufzüge und Fahrtreppen der Stadtbahn",
         "q": "Was ist an der Stadtbahn-Haltestelle {stop} in Köln gerade außer Betrieb?",
-        "a": "{out} von {total} gemeldeten Anlagen: die Fahrtreppen {e1} und {e2}, gemeldet seit {since}, {e3} seit {since3} und {e4} seit {since4}; beide Aufzüge in Betrieb. Die {publisher} stellt die Daten ohne jede Gewähr bereit.",
+        "a": "{out} von {total} gemeldeten Anlagen: die Fahrtreppen {e1} und {e2}, gemeldet seit {since} und {e3} seit {since3}; beide Aufzüge in Betrieb. Die {publisher} stellt die Daten ohne jede Gewähr bereit.",
         "note": "Für die Haltestellen der Kölner Stadtbahn, aus der veröffentlichten Störungsliste – mit der Uhrzeit, seit der eine Anlage gemeldet ist."
       },
       "bikes": {
@@ -401,7 +403,7 @@
       "lift": {
         "title": "Aufzüge am Bahnhof",
         "q": "Welche Aufzüge sind am Bahnhof {station} gerade außer Betrieb?",
-        "a": "Einer ist als außer Betrieb gemeldet, ein Aufzug zu Gleis {platforms}: {working} von {total} Aufzügen in Betrieb. Der andere Aufzug zu Gleis {platforms} wird nicht überwacht – sein Status ist unbekannt.",
+        "a": "Keiner ist als außer Betrieb gemeldet: {working} von {total} Aufzügen in Betrieb. Einer zu Gleis {platforms} wird nicht überwacht – sein Status ist unbekannt.",
         "note": "Für die Bahnhöfe der Deutschen Bahn, alle 20 Minuten neu gelesen. Was die letzte Meldung nicht nennt, heißt „unbekannt“ – nie „in Betrieb“."
       },
       "alert": {
@@ -419,13 +421,13 @@
       "ecomove": {
         "title": "Live-Belegung über einen Datensammler",
         "q": "Ist am Schnelllader {address} gerade ein Ladepunkt frei?",
-        "a": "{site}: bis {kw} kW, {euro},{cent} €/kWh; der letzte Status stammt vom {t} – zu alt, um „frei“ zu sagen.",
+        "a": "{site}: bis {kw} kW, {euro},{cent} €/kWh; letzter Status vom {t}: {free} frei, {busy} belegt – möglicherweise veraltet.",
         "note": "Die Belegung kommt hier von einem Dienst, der die Meldungen vieler Betreiber bündelt. Ein Punkt ohne Meldung zählt nie als frei."
       },
       "ocpdb": {
         "title": "Live frei oder belegt – mitten in Köln",
         "q": "Ist an der Ladesäule {address} gerade ein Ladepunkt frei?",
-        "a": "Ja, einer: Typ 2 bis {kw2} kW ist frei, der CCS-Ladepunkt bis {kw} kW außer Betrieb – {euro},{cent} €/kWh netto.",
+        "a": "Ja, beide Ladepunkte sind frei: CCS und Typ 2 bis {kw} kW – {euro},{cent} €/kWh netto.",
         "note": "Die Belegung kommt live über das Datenportal Baden-Württembergs, das auch Säulen weit außerhalb des Landes führt."
       },
       "lsr": {
@@ -467,7 +469,7 @@
       "landroad": {
         "title": "Baustelle auf einer Landesstraße",
         "q": "Gibt es diese Woche Baustellen auf der L1025 in Thüringen?",
-        "a": "{count} Arbeitsstellen, darunter: {site}, eine Engstelle mit Ampel, vom {from} bis {to}.",
+        "a": "Eine Arbeitsstelle: {site}, eine Engstelle mit Ampel, vom {from} bis {to}.",
         "note": "Landesstraßen kennen wir in Baden-Württemberg, Niedersachsen und Thüringen, Staatsstraßen in Sachsen – aus den Daten der Straßenbauverwaltungen: Abschnitt und Zeitraum, keine Koordinaten und keine Live-Verzögerung."
       },
       "saxony": {
@@ -527,17 +529,17 @@
       "weather": {
         "title": "Wettercheck vor den Bergen",
         "q": "Gibt es heute eine Wetterwarnung für {name}?",
-        "a": "Ja, für die kommende Nacht: Der Deutsche Wetterdienst warnt vor leichtem Frost bis {temp} °C, gültig am {day} von {from} bis {to} Uhr – Warnstufe {level}, die niedrigste.",
+        "a": "Ja: Der Deutsche Wetterdienst warnt in Lagen über {alt} m vor schweren Sturmböen, gültig bis {day}, {to} Uhr – Warnstufe {level} von 4.",
         "note": "Warnungen werden alle 5 Minuten gelesen und gelten je Gebiet; eine neue kann kurzfristig herausgegeben werden."
       },
       "fuelcity": {
         "title": "Das günstigste E10 in der Stadt",
         "q": "Wo ist Super E10 in Köln gerade am günstigsten?",
-        "a": "{euro},{cent} €/l bei {station}, {address} – gemeldet um {reported}.",
+        "a": "Noch kein neuer Preis – zuletzt am günstigsten: {euro},{cent} €/l bei {station}, {address}, gemeldet am {reported}; ViaFrei fragt gerade neu ab.",
         "note": "Spritpreise ändern sich alle paar Minuten: Diese Zahl ist ein Beispiel von diesem Nachmittag, nicht der heutige Preis. ViaFrei nennt zu jedem Preis, wann die Tankstelle ihn gemeldet hat."
       },
       "charger": {
-        "a": "Im {site}: {points} Ladepunkte, Typ 2, bis {kw},{kwd} kW, {euro},{cent} €/kWh netto. Keiner meldet sich belegt; für {stale} stammt der letzte Status vom {t}, für {unknown} liegt keiner vor – also nicht „frei“.",
+        "a": "Im {site}: {points} Ladepunkte, Typ 2, bis {kw},{kwd} kW, {euro},{cent} €/kWh netto. Letzter Status vom {t}: {free} frei, {busy} belegt, {out} außer Betrieb, für {unknown} keiner – möglicherweise veraltet.",
         "title": "Live-Status an der Ladesäule",
         "q": "Ist am {address} gerade ein Ladepunkt frei?",
         "note": "Live-Belegung nennen wir nur, wo der Betreiber sie veröffentlicht – hier über e-clearing.net. Ohne Meldung heißt es „keine Statusdaten“, nie „frei“."

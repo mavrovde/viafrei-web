@@ -16,12 +16,13 @@
  * answer carries the MTS-K note under them. Under the card stands the "works
  * only with ViaFrei connected" note (#1001, `lib/connect-note.ts`).
  */
-import CreditItem from "./CreditItem.astro";
-import type { ConnectSource } from "@viafrei/design";
+import CreditList from "./CreditList.astro";
+import { shortSource, type ConnectSource } from "@viafrei/design";
 import catalogue from "../generated/catalogue.json" with { type: "json" };
 import register from "../generated/register.json" with { type: "json" };
 import { t, type MessageKey } from "../i18n/index.js";
 import { connectNoteHtml } from "../lib/connect-note.js";
+import { staysWhole } from "../lib/fold-credits.js";
 import type { MomentAnswer } from "../site/examples.js";
 import type { Lang } from "../site/pages.js";
 
@@ -34,8 +35,17 @@ interface Props {
   class?: string;
   /** The surface, for the "works only with ViaFrei connected" note under the answer (#1001) and its click's `source`. */
   source: ConnectSource;
+  /**
+   * The register ids whose full credit line already stands above this answer on the same card and is in view whenever
+   * this answer is (#1193: a card prints a credit line once). Each is named here by its publisher in one short line
+   * "the sources above: …" instead of its full line again, so the answer still names every source of its Quelle line.
+   * A line that must stay whole (`staysWhole`) is printed in full regardless.
+   */
+  above?: readonly string[];
+  /** The examples page: the credit lines by #1120's sources rule (`CreditList`). */
+  foldCredits?: boolean;
 }
-const { lang, msg, answer, class: cls, source } = Astro.props;
+const { lang, msg, answer, class: cls, source, above = [], foldCredits = false } = Astro.props;
 const HOLE = "\u0000";
 type Part = { readonly text: string; readonly name: boolean };
 const keys = Object.keys(answer.names);
@@ -46,6 +56,11 @@ const parts: readonly Part[] = t(lang, msg, { ...answer.values, ...holes })
   .filter((p) => p.text !== "");
 type Credit = (typeof catalogue.credits)[number];
 const credits = answer.credits.map((id) => catalogue.credits.find((c) => c.id === id)).filter((c): c is Credit => c !== undefined);
+// data-steward on 2.6.19: a line that must stay whole (a condition, or an ALWAYS_SHOWN provider, Tankerkönig among them,
+// FS5) stands beside every answer it credits, never only above it
+const named = (c: Credit): boolean => above.includes(c.id) && !staysWhole(c);
+const full = credits.filter((c) => !named(c));
+const again = [...new Set(credits.filter(named).map((c) => shortSource(c.text)))];
 const fuel = answer.credits.includes("tankerkoenig");
 ---
 
@@ -54,9 +69,9 @@ const fuel = answer.credits.includes("tankerkoenig");
     <strong>{t(lang, "day.answer.label")}</strong> · {fuel ? <strong class="qa-answer__fuel">{t(lang, "connectPage.live.fuelExample", answer.values)}</strong> : <span class="qa-answer__when">{t(lang, "day.answer.asOf", answer.values)}</span>}
   </p>
   <p class="qa-answer__text">{parts.map((p) => (p.name ? <span translate="no">{p.text}</span> : p.text))}</p>
-  <ul class="credits qa-answer__credits">
-    {credits.map((c) => <CreditItem c={c} lang={lang} />)}
-  </ul>
+  <CreditList lang={lang} credits={full} class="credits qa-answer__credits" fold={foldCredits}>
+    {again.length > 0 && <li class="qa-answer__again">{t(lang, "day.answer.again")} {again.map((n, i) => <>{i > 0 && ", "}<span translate="no" lang="de">{n}</span></>)}</li>}
+  </CreditList>
   {fuel && <p class="qa-answer__note" lang="de">{register.mtskNote}</p>}
 </div>
 <Fragment set:html={connectNoteHtml(lang, source)} />

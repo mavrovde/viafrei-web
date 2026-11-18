@@ -16,6 +16,8 @@ import { afterAll, beforeAll, describe, expect, it } from "vitest";
 import { DWD_LEVEL_NAMES, DWD_ROAD_SUMMARY_LINE, DWD_SUMMARY_LINE, DWD_TRANSLATED_LINE } from "@viafrei/digest";
 import { LICENCE_CATALOGUE, MTSK_CONSUMER_NOTE, POI_NEEDS, conditionAsRegistered, datedAttribution } from "@viafrei/ingest";
 import { ATTRIBUTION } from "@viafrei/mcp";
+import { shortSource } from "@viafrei/design";
+import catalogue from "../src/generated/catalogue.json" with { type: "json" };
 import { LIVE_LANGS, pathFor, type PageId } from "../src/site/pages.js";
 import { placePath } from "../src/site/places.js";
 import { motorwayPath } from "../src/site/motorways.js";
@@ -44,6 +46,10 @@ const VERBATIM: readonly string[] = [
   // #716 (steward M25/M26): a motorway page names a DWD warning's level by the DWD's own German Warnstufe name, with our gloss beside it.
   ...DWD_LEVEL_NAMES,
 ];
+// #746: the publishers a later example answer names as standing above it ("Ebenso aus den Quellen oben: ..."), each a
+// `<span translate="no" lang="de">` holding exactly `shortSource` of its register line, derived here the same way
+// the set is the register's possible prints; a text is matched against it whole and exactly, never by substring
+const PUBLISHERS: ReadonlySet<string> = new Set(catalogue.credits.map((c) => shortSource(c.text).replace(/\s+/g, " ").trim()));
 const USED = new Set<string>();
 let browser: Browser;
 let shell: ChildProcess;
@@ -77,7 +83,7 @@ describe("translated pages speak only their own language (#449)", () => {
           // the check read the page: a page whose text it could not reach would pass on nothing
           expect(text.texts.length, path).toBeGreaterThan(20);
           if (id === "start") expect(text.otherLang.filter((x) => x.lang === "de").length, `${path}: the tiles' credit lines were read`).toBeGreaterThan(3);
-          const findings = judge(lang, text, VERBATIM, USED);
+          const findings = judge(lang, text, VERBATIM, USED, PUBLISHERS);
           expect(findings.map((f) => `${f.why} @ ${f.where}: ${f.text}`), path).toEqual([]);
         } finally {
           await page.close();
@@ -97,7 +103,7 @@ describe("translated pages speak only their own language (#449)", () => {
         expect(await page.locator("#motorway .motorway__ask").count(), a7).toBe(1);
         const text: PageText = await page.evaluate(COLLECT_JS);
         expect(text.texts.length, a7).toBeGreaterThan(20);
-        const findings = judge(lang, text, VERBATIM, USED);
+        const findings = judge(lang, text, VERBATIM, USED, PUBLISHERS);
         expect(findings.map((f) => `${f.why} @ ${f.where}: ${f.text}`), a7).toEqual([]);
       } finally {
         await page.close();
@@ -117,7 +123,7 @@ describe("translated pages speak only their own language (#449)", () => {
         });
         const text: PageText = await page.evaluate(COLLECT_JS);
         expect(text.texts.length, place).toBeGreaterThan(20);
-        const findings = judge(lang, text, VERBATIM, USED);
+        const findings = judge(lang, text, VERBATIM, USED, PUBLISHERS);
         expect(findings.map((f) => `${f.why} @ ${f.where}: ${f.text}`), place).toEqual([]);
       } finally {
         await page.close();
@@ -138,7 +144,7 @@ describe("translated pages speak only their own language (#449)", () => {
         });
         const text: PageText = await page.evaluate(COLLECT_JS);
         expect(text.texts.length, station).toBeGreaterThan(20);
-        const findings = judge(lang, text, VERBATIM, USED);
+        const findings = judge(lang, text, VERBATIM, USED, PUBLISHERS);
         expect(findings.map((f) => `${f.why} @ ${f.where}: ${f.text}`), station).toEqual([]);
       } finally {
         await page.close();
@@ -154,7 +160,7 @@ describe("translated pages speak only their own language (#449)", () => {
 describe("the check itself can say NO", () => {
   type Extra = { readonly names?: readonly string[]; readonly otherLang?: readonly { lang: string; text: string }[] };
   const on = (lang: string, texts: readonly string[], extra: Extra = {}): string[] =>
-    judge(lang, { pageLang: lang, texts: texts.map((text) => ({ where: "p", text })), names: extra.names ?? [], otherLang: extra.otherLang ?? [] }, VERBATIM).map((f) => f.why);
+    judge(lang, { pageLang: lang, texts: texts.map((text) => ({ where: "p", text })), names: extra.names ?? [], otherLang: extra.otherLang ?? [] }, VERBATIM, undefined, PUBLISHERS).map((f) => f.why);
 
   it("flags German words, letters and quotation marks on a translated page", () => {
     expect(on("ru", ["Wann fährt der nächste Zug?"]).length).toBeGreaterThan(0);
@@ -188,6 +194,17 @@ describe("the check itself can say NO", () => {
   it("flags an element in another language, and German-marked text that is not licence text", () => {
     expect(on("ru", [], { otherLang: [{ lang: "en", text: "No fares, tickets or booking of any kind." }] })).toEqual(['an element in "en" on a "ru" page']);
     expect(on("en", [], { otherLang: [{ lang: "de", text: "Vollsperrung nach Unfall" }] })).toEqual(["German-marked text that is not licence text"]);
+  });
+  it("accepts a register publisher's short name marked German (#746), and nothing more around it", () => {
+    const delfi = catalogue.credits.find((c) => c.id === "delfi_rt_tu")!;
+    const name = shortSource(delfi.text);
+    expect(PUBLISHERS.has(name)).toBe(true);
+    expect(on("en", [], { otherLang: [{ lang: "de", text: name }] })).toEqual([]);
+    expect(on("en", [], { otherLang: [{ lang: "de", text: ` ${name} ` }] })).toEqual([]);
+    // the mutants: an invented German phrase, and a register name with German words beside it, still fail
+    expect(on("en", [], { otherLang: [{ lang: "de", text: "Ebenso aus den Quellen oben" }] })).toEqual(["German-marked text that is not licence text"]);
+    expect(on("en", [], { otherLang: [{ lang: "de", text: `${name} und Partner` }] })).toEqual(["German-marked text that is not licence text"]);
+    expect(on("en", [], { otherLang: [{ lang: "de", text: "Verkehrsverbund Musterstadt" }] })).toEqual(["German-marked text that is not licence text"]);
   });
   it("accepts the language's own words, its quotation marks, allowed Latin words and licence text", () => {
     expect(on("ru", ["Спросите: «Свободна ли A8 в сторону Мюнхена?»"])).toEqual([]);

@@ -1,5 +1,32 @@
 # Changelog
 
+## [0.2.1](https://github.com/mavrovde/viafrei-web/compare/v0.2.0...v0.2.1) (2026-11-18)
+
+
+### Fixed
+
+* **web:** the road and the home with a place fit eight desktop screens again at 1280x800 ([#43](https://github.com/mavrovde/viafrei-web/issues/43)) ([fbc2593](https://github.com/mavrovde/viafrei-web/commit/fbc25937baf5f9c5081da6de41eb4089db2e1162))
+
+## [0.2.0](https://github.com/mavrovde/viafrei-web/compare/v0.1.1...v0.2.0) (2026-11-18)
+
+
+0.2.0 was tagged, but its image was never published: the release's browser suite failed the eight-desktop-screens rule on the road page and the home with a place at 1280×800 (fixed in 0.2.1). 0.2.1 is the first published 0.2 release.
+
+
+### Added
+
+* the full site and every HTML fragment, rendered here from viafrei-api (no digest, no database) ([#37](https://github.com/mavrovde/viafrei-web/issues/37)) ([1371f1a](https://github.com/mavrovde/viafrei-web/commit/1371f1a36f7773cd4931ec0bf38e9f5e86dc6046))
+
+
+### Fixed
+
+* **web:** every recorded example re-asked of production on 2026-11-18 ([edc465b](https://github.com/mavrovde/viafrei-web/commit/edc465b6e39072bc9738fa03a63e688036ea9752))
+
+
+### Build and CI
+
+* the mutation check runs in 4 parallel shards ([#38](https://github.com/mavrovde/viafrei-web/issues/38)) ([2048a12](https://github.com/mavrovde/viafrei-web/commit/2048a12c015ad25cab479018ff78d570e6193896))
+
 ## [0.1.1](https://github.com/mavrovde/viafrei-web/compare/v0.1.0...v0.1.1) (2026-11-16)
 
 

@@ -15,6 +15,7 @@ import Star from "../components/Star.astro";
 import { LIVE_LANGS, type Lang } from "../site/pages.js";
 import { STATES, statePath } from "../site/states.js";
 import { fitDescription, fitTitle } from "../site/meta.js";
+import { pageDescription } from "@viafrei/design";
 import { stateCrumbs, stateJsonLd } from "../site/structured-data.js";
 import type { StateHead } from "../lib/state-page.js";
 import { liftPlaceFirst } from "../lib/place-head.js";
@@ -31,7 +32,7 @@ const row = STATES.find((s) => s.slug === slug);
 const name = head.name ?? (lang === "en" ? (row?.nameEn ?? slug) : slug);
 const path = statePath(lang, slug);
 const title = head.title ?? `${name} – ViaFrei`;
-const meta = { title: fitTitle(title), description: fitDescription(head.description ?? title) };
+const meta = { title: fitTitle(title), description: fitDescription(head.description ?? pageDescription(lang, { kind: "state", name })) }; // #1310 B2: evergreen
 const h1 = title.replace(/\s[—–]\sViaFrei$/u, "");
 // #1182: the first block (lamp, top items, jump links) stands under the H1, like every page type of #1173
 const lifted = liftPlaceFirst(head.html);

@@ -3,6 +3,7 @@
 import StationPage from "../../../layouts/StationPage.astro";
 import { isLang } from "../../../i18n/index.js";
 import { readEnv } from "../../../lib/env.js";
+import { withinBudget } from "../../../lib/page-budget.js";
 import { unavailableAnswer } from "../../../lib/degraded.js";
 import { resolveStationPage } from "../../../lib/station-page.js";
 import { hasChargingFilter } from "../../../lib/charging-filter.js";
@@ -11,7 +12,7 @@ import { topicsOf } from "../../../lib/topic-filter.js";
 const lang = Astro.params["lang"] ?? "";
 if (!isLang(lang)) return Astro.rewrite("/404");
 const env = readEnv();
-const a = await resolveStationPage(lang, Astro.params["slug"] ?? "", { baseUrl: env.digestUrl, timeoutMs: env.tileTimeoutMs, mapPlatform: Astro.locals.mapPlatform }, Astro.url.searchParams);
+const a = await resolveStationPage(lang, Astro.params["slug"] ?? "", withinBudget({ baseUrl: env.digestUrl, timeoutMs: env.tileTimeoutMs, mapPlatform: Astro.locals.mapPlatform }, Astro.locals.budgetEndsAt), Astro.url.searchParams);
 if (a.kind === "missing") return Astro.rewrite("/404");
 if (a.kind === "unavailable") return unavailableAnswer(lang, Astro.request);
 if (a.kind === "redirect") return Astro.redirect(a.to, 301);

@@ -52,7 +52,7 @@
  *    3, keyed on the class so a person on the same address is untouched) or a
  *    per-address or crawler zone. nginx's error log names the zone
  *    (`by zone "vf_auto"`); the console's Host screen counts both per zone and
- *    per agent class (scripts/landing-collect.sh).
+ *    per agent class (the edge access-log collector).
  *  - 403: answered by nobody since 2.5.22. It was the interim hand edit of
  *    2026-11-08 (`$vf_block_pf`, Lightpanda refused outright), replaced by the
  *    `vf_auto` zone; a 403 in an older log is that edit.

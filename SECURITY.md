@@ -44,7 +44,7 @@ its jobs). Everything is run locally before the one push.
 | type checking, linting, shell syntax, actionlint | CI (Lint) | every pull request, every push to `main` |
 | unit tests, with coverage | CI | every pull request, a release's merge commit |
 | contrast, boundary, static pages, the pins | CI (Site gates) | every pull request, a release's merge commit |
-| the i18n mutation proof | CI (Site gates) | a minor's release pull request, a dispatch |
+| the i18n mutation proof | CI (Catalogue parity mutants, four shards) | a minor's release pull request, a dispatch |
 | the browser suite, page weight, Lighthouse, latency, visual | Release (Web) | every release, before the image is published; a dispatch on a branch |
 | Trivy over the image, the image smoke | CI (Image) | every pull request, a release's merge commit |
 | the shell against the pinned releases | CI (Stack) | every pull request, a release's merge commit |

@@ -12,6 +12,10 @@
     "./testing": {
       "viafrei-dist": "./dist/src/testing/index.js",
       "default": "./src/testing/index.ts"
+    },
+    "./http-idle": {
+      "viafrei-dist": "./dist/src/http-idle.js",
+      "default": "./src/http-idle.ts"
     }
   }
 }

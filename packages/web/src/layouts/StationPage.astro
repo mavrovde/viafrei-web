@@ -58,7 +58,7 @@ const head = { ...whole, html: lifted.html };
 const first = withParkingJump(lifted.first, area.kind === "ok" ? area.html : null);
 const name = head.name ?? t(lang, "seo.crumbStations");
 const path = stationPath(lang, slug);
-const meta = stationMeta(name, lang, facts?.city ?? null, stationNowOf(first));
+const meta = stationMeta(name, lang, facts?.city ?? null, stationNowOf(first), facts?.land ?? null);
 // #1095: the H1 names the station AND its town (the title's label: "Kleinhalt (Görlitz)", "Köln Hbf" as it is), and a
 // visible lead says what the page shows for it, with its Land — the description's sentence, so what a search result
 // promises is the first thing the page says. The names are proper names (`translate="no"`); the rest is the page's language.

@@ -33,6 +33,10 @@ const VIEWS = [
 ] as const;
 const LANGS = ["de", "en"] as const;
 const SCREENS_MAX = 25;
+// Owner 2026-11-16 ("Increase the budget"): the examples page may run to 27 screens. #746 gave each re-asked answer its
+// full credits; with the #1120 fold it measured 26.1 (de) and 25.8 (en) screens at 1440×900 in 2.6.19. Every other page
+// type keeps 25.
+const SCREENS_MAX_EXAMPLES = 27;
 const RAW_MAX = 700_000;
 const GZIP_MAX = 200_000;
 const DESK_H1_TOP_MAX = 160;
@@ -153,7 +157,7 @@ describe("#1182: every page type in the #1173 order, within its budgets", () => 
             }
             const screens = await page.evaluate(() => document.documentElement.scrollHeight / window.innerHeight);
             console.log(`1182 ${k.id} ${lang} ${v.name}: ${screens.toFixed(1)} screens`);
-            expect(screens).toBeLessThanOrEqual(SCREENS_MAX);
+            expect(screens).toBeLessThanOrEqual(k.id === "examples" ? SCREENS_MAX_EXAMPLES : SCREENS_MAX);
           } finally {
             await page.context().close();
           }

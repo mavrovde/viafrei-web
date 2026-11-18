@@ -103,8 +103,8 @@ const handle = async (context: Parameters<Handler>[0], next: Parameters<Handler>
   // anything else, and only that value goes on — to the digest's `map=` and so to every cache key. It is not
   // logged, and no client hint is asked for (no Accept-CH).
   context.locals.mapPlatform = mapPlatformOfUserAgent(context.request.headers.get("user-agent"));
-  // #1166: one two-second budget for every digest read of this request — the legacy lookup below and the page's own.
-  context.locals.budgetEndsAt = budgetFrom();
+  // #1166: one two-second budget for every digest read of this request (#1310: a verified crawler's is eight, `pageBudgetMs`) — the legacy lookup below and the page's own.
+  context.locals.budgetEndsAt = budgetFrom(Date.now(), currentAgentClass());
   const nonce = newNonce((n) => randomBytes(n));
   const googleTag = STAGING || process.env["GOOGLE_TAG"] === "" ? undefined : process.env["GOOGLE_TAG"];
   context.locals.nonce = nonce;

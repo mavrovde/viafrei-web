@@ -62,8 +62,6 @@ export const PAGE_HEAD_COPY: Readonly<Record<PageHeadLang, PageHeadCopy>> = {
 
 /** A title's limit: what the snippet shows whole. */
 export const NOW_TITLE_MAX = 60;
-/** A description's limit. */
-export const NOW_DESCRIPTION_MAX = 155;
 
 /** What is happening now: the kind a title leads with, or none reported. */
 export type NowKind = "closure" | "jam" | "disruption" | "roadworks" | "nothing";
@@ -77,15 +75,4 @@ const BRAND = " – ViaFrei";
 export function nowTitle(lang: PageHeadLang, name: string, kind: NowKind): string {
   const body = `${name}: ${PAGE_HEAD_COPY[lang].now[kind]}`;
   return body.length + BRAND.length <= NOW_TITLE_MAX ? `${body}${BRAND}` : body;
-}
-
-/**
- * The status line, then the first item as far as the limit lets it: the one description rule of a live page. The first
- * item is left out rather than cut in a word.
- */
-export function nowDescription(status: string, first: string | null): string {
-  const a = status.trim();
-  if (first === null) return a;
-  const whole = `${a} ${first.trim()}`;
-  return whole.length <= NOW_DESCRIPTION_MAX ? whole : a;
 }

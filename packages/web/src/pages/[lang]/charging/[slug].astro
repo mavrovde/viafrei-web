@@ -3,13 +3,14 @@
 import EnergyPage from "../../../layouts/EnergyPage.astro";
 import { isLang } from "../../../i18n/index.js";
 import { readEnv } from "../../../lib/env.js";
+import { withinBudget } from "../../../lib/page-budget.js";
 import { unavailableAnswer } from "../../../lib/degraded.js";
 import { resolveEnergyPage } from "../../../lib/energy-page.js";
 
 const lang = Astro.params["lang"] ?? "";
 if (!isLang(lang)) return Astro.rewrite("/404");
 const env = readEnv();
-const a = await resolveEnergyPage("charging", lang, Astro.params["slug"] ?? "", { baseUrl: env.digestUrl, timeoutMs: env.placeTimeoutMs, mapPlatform: Astro.locals.mapPlatform });
+const a = await resolveEnergyPage("charging", lang, Astro.params["slug"] ?? "", withinBudget({ baseUrl: env.digestUrl, timeoutMs: env.placeTimeoutMs, mapPlatform: Astro.locals.mapPlatform }, Astro.locals.budgetEndsAt));
 if (a.kind === "missing") return Astro.rewrite("/404");
 if (a.kind === "unavailable") return unavailableAnswer(lang, Astro.request);
 if (a.kind === "redirect") return Astro.redirect(a.to, 301);

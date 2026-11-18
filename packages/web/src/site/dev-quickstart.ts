@@ -10,13 +10,13 @@
  * resolves it to the bridge's newest release.
  *
  * The raw-HTTP tab and the try-it's curl are the SAME session — `initialize`, read `Mcp-Session-Id`, send
- * `notifications/initialized`, then the call — as `scripts/mcp-probe.sh` makes it, so what a reader pastes is what our
+ * `notifications/initialized`, then the call — as the public MCP probe makes it, so what a reader pastes is what our
  * own release probe runs.
  */
 import type { DevClient } from "../analytics/events.js";
 import { MCP_ENDPOINT } from "./endpoints.js";
 
-/** The protocol revision the curl sessions ask for (the one `scripts/mcp-probe.sh` asks for). */
+/** The protocol revision the curl sessions ask for (the one the public MCP probe asks for). */
 export const CURL_PROTOCOL = "2025-06-18";
 
 export type QuickTab = {

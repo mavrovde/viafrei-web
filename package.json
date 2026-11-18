@@ -1,6 +1,6 @@
 {
   "name": "viafrei-web",
-  "version": "0.1.1",
+  "version": "0.2.1",
   "description": "ViaFrei's user interface: the viafrei.de site shell (Astro SSR with Svelte islands) and the design tokens and building blocks it is made of. Reads no database: the live fragments come from the released digest image.",
   "private": true,
   "type": "module",

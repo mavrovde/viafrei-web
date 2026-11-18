@@ -14,6 +14,7 @@ import NextStep from "../components/NextStep.astro";
 import { LIVE_LANGS, type Lang } from "../site/pages.js";
 import { roadLabelOfId, roadPath } from "../site/roads.js";
 import { fitDescription, fitTitle } from "../site/meta.js";
+import { pageDescription } from "@viafrei/design";
 import { roadCrumbs, roadJsonLd } from "../site/structured-data.js";
 import { nextRoads } from "../lib/next-step.js";
 import type { RoadHead } from "../lib/road-page.js";
@@ -30,7 +31,7 @@ const { lang, id, head } = Astro.props;
 const road = head.road ?? roadLabelOfId(id);
 const path = roadPath(lang, id);
 const title = head.title ?? `${road} – ViaFrei`;
-const meta = { title: fitTitle(title), description: fitDescription(head.description ?? title) };
+const meta = { title: fitTitle(title), description: fitDescription(head.description ?? pageDescription(lang, { kind: "road", name: road })) }; // #1310 B2: evergreen, the digest's with its Land
 const h1 = title.replace(/\s[—–]\sViaFrei$/u, "");
 // #1182: a fragment's first block (when the digest renders one) stands under the H1, as on a motorway page
 const lifted = liftPlaceFirst(head.html);

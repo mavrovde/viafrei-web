@@ -149,6 +149,13 @@
  * (in all 22 languages). Two were replaced in kind: `kiel` (the ferry's message had ended; a closure from the city of
  * Kiel's own roadworks list, the same question shape) and `platform` (no platform change on the board; a live delay).
  * `test/example-freshness.test.ts` fails a card older than 14 days against the real clock.
+ * 2026-11-18: every card ASKED OF PRODUCTION again between 14:29 and 14:31 Europe/Berlin, one call per card with
+ * `language: "de"`, every fuel question ONCE (B27: the week 23.-29.11.; A7 tomorrow: 19.11.). Cards whose sentence still
+ * holds took that day's figures and Stand (the per-card comments still quote the 02.11 answers); `fuelcity` had no
+ * current price, so it takes the "no new price" sentence. Asked again 14:30-14:40: kiel, lorry, parkride and citywork
+ * still hold; carpark (Altstadt-Nord/Hbf) and platform (ICE 600) take a new subject; ecomove names the operator. No
+ * subject fitted after five candidates each, so stadtbahn, lift, ocpdb, charger, landroad and weather were reworded in
+ * all 22 languages to that day's answer for the same subject (asked 14:37-14:52).
  *
  * The WORDS are copy and live in the deck (`connectPage.live.*`), one per
  * language. The VALUES are figures read off one answer and are the same in
@@ -214,6 +221,19 @@ export type LiveExample = {
   readonly recheck?: "v1.8.1" | "v1.8.2" | "v1.8.9" | "v1.8.10" | "v1.9.14";
 };
 
+/** A fuel card (v1.8.2): find_cheapest_fuel's answer for a place, with the Tankerkönig credit. */
+const fuelCard = (key: LiveKey, question: MessageKey, names: Readonly<Record<string, string>>, values: Readonly<Record<string, string>>): LiveExample => ({
+  key,
+  domain: "fuel",
+  added: "v1.8.2",
+  tool: "find_cheapest_fuel",
+  sign: "fuel",
+  question,
+  credits: ["tankerkoenig"],
+  names,
+  values,
+});
+
 export const LIVE_EXAMPLES: readonly LiveExample[] = [
   {
     key: "stadtbahn",
@@ -229,7 +249,9 @@ export const LIVE_EXAMPLES: readonly LiveExample[] = [
     // named in full, its no-warranty sentence in every language.
     credits: ["delfi_zhv", "kvb_lifts"],
     names: { stop: "Ebertplatz", publisher: "Kölner Verkehrs-Betriebe AG" },
-    values: { out: "4", total: "10", e1: "51", e2: "52", since: "06.10., 17:32", e3: "62", since3: "31.10., 03:01", e4: "53", since4: "31.10., 20:21", asOf: "02.11.2026, 14:02" },
+    // 2026-11-18, asked 14:45 (Störungsliste Stand 14:37): 3 von 10 — Fahrtreppe 51 and 52 since 11.11. 17:30, Fahrtreppe 60 since
+    // 15.11. 10:36; Aufzug 01 and 02 in Betrieb. Reworded: three escalators.
+    values: { out: "3", total: "10", e1: "51", e2: "52", since: "11.11., 17:30", e3: "60", since3: "15.11., 10:36", asOf: "18.11.2026, 14:37" },
   },
   {
     key: "bikes",
@@ -242,7 +264,7 @@ export const LIVE_EXAMPLES: readonly LiveExample[] = [
     // Kiel) — 6 Räder frei · 112 m …" — eight docks; Stand 14:09. Kiel and not Köln on purpose (data steward, #486).
     credits: ["gbfs_donkey", "db_stada"],
     names: { station: "Kiel Hbf", dock: "Hauptbahnhof", operator: "Donkey Republic" },
-    values: { free: "6", docks: "8", radius: "1", asOf: "02.11.2026, 14:09" },
+    values: { free: "5", docks: "8", radius: "1", asOf: "18.11.2026, 14:27" },
   },
   {
     key: "lift",
@@ -254,9 +276,11 @@ export const LIVE_EXAMPLES: readonly LiveExample[] = [
     // check_station_facilities {station: "Köln Hbf", facility: "elevator"}, asked 2026-11-02 14:10: 8 lifts, 6 in Betrieb; "Aufzug zu Gleis
     // 8/9 (Anlage 10801910): außer Betrieb" and "Aufzug zu Gleis 8/9 (Anlage 10849189): Status unbekannt — wird nicht überwacht". Stand
     // 13:44. Reworded: the second lift to 8/9 is out of service now. The answer's Stadtbahn half (KVB) is not on this card.
-    credits: ["db_stada", "mobilithek_openstation_netex", "mobilithek_openstation_siri_fm"],
+    credits: ["db_stada", "mobilithek_openstation_netex", "mobilithek_openstation_siri_fm", "delfi_zhv", "kvb_lifts"],
     names: { station: "Köln Hbf" },
-    values: { total: "8", working: "6", platforms: "8/9", asOf: "02.11.2026, 13:44" },
+    // 2026-11-18, asked 14:40: 8 lifts, 7 in Betrieb, none außer Betrieb; "Aufzug zu Gleis 8/9 (Anlage 10849189): Status unbekannt — wird
+    // nicht überwacht". Stand 14:38. Reworded: none out of service.
+    values: { total: "8", working: "7", platforms: "8/9", asOf: "18.11.2026, 14:38" },
   },
   {
     key: "alert",
@@ -270,7 +294,7 @@ export const LIVE_EXAMPLES: readonly LiveExample[] = [
     // (gültig 27.07.2026 bis 12.12.2026)".
     credits: ["delfi_rt_tu", "delfi_static", "delfi_rt_sa", "delfi_siri_sx"],
     names: { a: "Lilienthal", b: "Grasberg" },
-    values: { count: "169", lines: "831, 863, 864", road: "L133", from: "27.07.2026", to: "12.12.2026", asOf: "02.11.2026, 13:58" },
+    values: { count: "163", lines: "831, 863, 864", road: "L133", from: "27.07.2026", to: "12.12.2026", asOf: "18.11.2026, 14:28" },
   },
   {
     key: "enbw",
@@ -284,7 +308,7 @@ export const LIVE_EXAMPLES: readonly LiveExample[] = [
     // the sources. Stand 14:11. Reworded: no status at all; the credits are the answer's (EnBW static, the register, OSM).
     credits: ["mobilithek_afir_enbw_stat", "bnetza_lsr", "osm"],
     names: { brand: "EnBW", address: "Schumanstraße 4, Würselen" },
-    values: { n: "5", kw: "300", euro: "0", cent: "70", asOf: "02.11.2026, 14:11" },
+    values: { n: "5", kw: "300", euro: "0", cent: "70", asOf: "18.11.2026, 14:29" },
   },
   {
     key: "ecomove",
@@ -295,10 +319,12 @@ export const LIVE_EXAMPLES: readonly LiveExample[] = [
     question: "connectPage.live.ecomove.q",
     // find_charging_station {place: "Schiffbeker Weg 299, Hamburg", limit: 2}, asked 2026-11-02 14:11: "1. JOLT HH008701, Schiffbeker Weg
     // 299, 22043 Hamburg (JOLT Energy) — CCS2, bis 350 kW, 0,785 €/kWh, Status von 01.11. 20:15 — möglicherweise veraltet". Stand 14:11.
-    // The card rounds the price to the cent.
+    // The card rounds the price to the cent. Asked again 2026-11-18 14:29: "1. Schiffbeker Weg 299, 22043 Hamburg (JOLT Energy) — CCS2,
+    // bis 350 kW, 0,79 €/kWh, 1 frei, 1 belegt, Status von 15.11. 16:20 — möglicherweise veraltet": the site id is no longer printed,
+    // so the card names the operator the answer names. Reworded: the two last statuses, possibly out of date (as charger).
     credits: ["mobilithek_afir_ecomovement", "mobilithek_afir_ecomovement_dyn", "osm"],
-    names: { site: "JOLT HH008701", address: "Schiffbeker Weg 299, Hamburg" },
-    values: { kw: "350", euro: "0", cent: "79", t: "01.11., 20:15", asOf: "02.11.2026, 14:11" },
+    names: { site: "JOLT Energy", address: "Schiffbeker Weg 299, Hamburg" },
+    values: { kw: "350", euro: "0", cent: "79", free: "1", busy: "1", t: "15.11., 16:20", asOf: "18.11.2026, 14:29" },
   },
   {
     key: "ocpdb",
@@ -311,7 +337,8 @@ export const LIVE_EXAMPLES: readonly LiveExample[] = [
     // GmbH) — two points: CCS bis 50 kW außer Betrieb, Typ 2 bis 22 kW frei, 0,49 €/kWh netto (Stand 14:10)". Reworded: one is free.
     credits: ["mobilithek_afir_chargecloud_stat", "ocpdb_chargecloud", "osm"],
     names: { address: "Ottostraße 7, 50823 Köln" },
-    values: { kw: "50", kw2: "22", euro: "0", cent: "49", asOf: "02.11.2026, 14:10" },
+    // 2026-11-18, asked 14:45: "CCS2/Typ 2, bis 50 kW, 0,49 €/kWh netto, 2 von 2 frei". Stand 14:44. Reworded: both free.
+    values: { kw: "50", euro: "0", cent: "49", asOf: "18.11.2026, 14:44" },
   },
   {
     key: "lsr",
@@ -326,7 +353,7 @@ export const LIVE_EXAMPLES: readonly LiveExample[] = [
     // (one find_address call), as this answer printed no distance.
     credits: ["bnetza_lsr", "osm"],
     names: { address: "Friedrich-Ebert-Straße 51, Leipzig" },
-    values: { m: "19", kw: "22", register: "01.09.2026", asOf: "02.11.2026, 14:11" },
+    values: { m: "19", kw: "22", register: "01.09.2026", asOf: "18.11.2026, 14:29" },
   },
   {
     key: "charger",
@@ -339,9 +366,11 @@ export const LIVE_EXAMPLES: readonly LiveExample[] = [
     // asked 2026-11-02 14:12: "2. Parkhaus Schadow Arkaden, Martin-Luther-Platz 26, 40212 Düsseldorf (Ladenetz) — Typ 2, bis 22,08 kW,
     // 0,403 €/kWh netto (11 Ladeeinrichtungen)": none occupied, 8 with a status from 01.11. 14:19 (möglicherweise veraltet), 3 without
     // one. Stand 14:12. Reworded: nothing occupied, and too old or unknown to say "free".
-    credits: ["mobilithek_afir_eclearing_stat", "mobilithek_afir_eclearing_dyn", "osm"],
+    credits: ["bnetza_lsr", "mobilithek_afir_eclearing_stat", "mobilithek_afir_eclearing_dyn", "osm"],
     names: { address: "Martin-Luther-Platz 26, Düsseldorf", site: "Parkhaus Schadow Arkaden" },
-    values: { points: "11", kw: "22", kwd: "08", euro: "0", cent: "40", stale: "8", unknown: "3", t: "01.11., 14:19", asOf: "02.11.2026, 14:12" },
+    // 2026-11-18, asked 14:52: "Typ 2, bis 22,1 kW, 0,40 €/kWh netto, 4 frei, 5 belegt, 1 außer Betrieb, Status von 17.11. 17:27 —
+    // möglicherweise veraltet, 1 ohne Status (11 Ladeeinrichtungen)". Stand 14:52. Reworded: the last statuses, said to be old.
+    values: { points: "11", kw: "22", kwd: "1", euro: "0", cent: "40", free: "4", busy: "5", out: "1", unknown: "1", t: "17.11., 17:27", asOf: "18.11.2026, 14:52" },
   },
   {
     key: "hamburg",
@@ -353,9 +382,9 @@ export const LIVE_EXAMPLES: readonly LiveExample[] = [
     // find_parking {place: "Hamburg Jungfernstieg"}, asked 2026-11-02 14:12: "1. Europa-Passage — Parkhaus, 0,1 km, 690 Plätze, 19 frei,
     // Störung … 2. Alsterhaus — Parkhaus, 0,2 km, 87 Plätze, 0 frei (Stand 14:07)" and the city's caveat „Diese Echtzeitdaten sind
     // ungeprüft.“ The card quotes the Alsterhaus, whose figure carries no fault flag; sources as answered.
-    credits: ["hamburg_parkhaeuser", "osm", "delfi_zhv"],
+    credits: ["hamburg_parkhaeuser", "osm", "mobilithek_afir_eround_stat", "mobilithek_afir_ecomovement", "mobilithek_afir_eclearing_stat", "delfi_zhv"],
     names: { stop: "Jungfernstieg", park: "Alsterhaus" },
-    values: { free: "0", total: "87", asOf: "02.11.2026, 14:07" },
+    values: { free: "8", total: "87", asOf: "18.11.2026, 14:25" },
   },
   {
     key: "hhworks",
@@ -367,9 +396,9 @@ export const LIVE_EXAMPLES: readonly LiveExample[] = [
     // find_roadworks_ahead {place: "Steinstraße, Hamburg"}, asked 2026-11-02 14:12: "• Steinstraße, Speersort / Straßenumbau — Autoverkehr:
     // Die Steinstraße bleibt bis auf die Vollsperrung (voraussichtlich im Frühjahr 2027) durchgehend a… (laufend, 31.08.2026–31.05.2028;
     // 0,3 km)". Stand 14:10. Confirmed.
-    credits: ["hh_bauweiser", "delfi_zhv"],
+    credits: ["hh_bauweiser", "delfi_zhv", "geonames", "bkg_gvisys"],
     names: { street: "Steinstraße", b: "Speersort" },
-    values: { from: "31.08.2026", to: "31.05.2028", asOf: "02.11.2026, 14:10" },
+    values: { from: "31.08.2026", to: "31.05.2028", asOf: "18.11.2026, 14:14" },
   },
   {
     key: "muenster",
@@ -381,8 +410,8 @@ export const LIVE_EXAMPLES: readonly LiveExample[] = [
     name: "Parkhaus Stubengasse",
     // find_parking {place: "Stubengasse, Münster", kind: "car_park"}, asked 2026-11-02 14:12: "1. Parkhaus Stubengasse — 300 Plätze,
     // 105 frei (Stand 14:09)", then four more car parks, each with its own "frei". Stand 14:09. The separate OSM list is not quoted.
-    credits: ["muenster_pls", "delfi_zhv"],
-    values: { free: "105", total: "300", more: "4", asOf: "02.11.2026, 14:09" },
+    credits: ["muenster_pls", "osm", "mobilithek_afir_chargecloud_stat", "delfi_zhv", "bkg_gvisys"],
+    values: { free: "89", total: "300", more: "4", asOf: "18.11.2026, 14:25" },
   },
   {
     key: "carpark",
@@ -391,12 +420,15 @@ export const LIVE_EXAMPLES: readonly LiveExample[] = [
     tool: "find_parking",
     sign: "parking",
     question: "connectPage.live.carpark.q",
-    name: "Brückenstraße",
+    name: "Altstadt-Nord/Hbf",
     // find_parking {place: "Köln", kind: "car_park"}, asked 2026-11-02 14:12: "Brückenstraße — Parkhaus, 0,1 km, 531 Plätze, 340 frei",
     // published 13:48 and flagged as no longer current (every Köln car park was; the feed was last read 13:49). Reworded: "zuletzt …
     // gemeldet", an older report. Sources as answered (OSM for the separate list, the BKG for the place).
-    credits: ["mobilithek_park_koeln_static", "mobilithek_park_koeln_dyn", "osm", "bkg_gvisys"],
-    values: { free: "340", total: "531", asOf: "02.11.2026, 13:48" },
+    // REPLACED 2026-11-18 (Brückenstraße now reports current figures): find_parking {place: "Köln Hbf", kind: "car_park"}, asked
+    // 14:40: "2. Altstadt-Nord/Hbf — Parkhaus, 0,2 km, 550 Plätze, zuletzt 458 frei gemeldet … (Stand 12:38, vor 2 h 2 min)". Sources
+    // as answered (Stadt Köln, Parkhäuser NRW, OSM for the separate list).
+    credits: ["mobilithek_park_koeln_static", "mobilithek_park_koeln_dyn", "mobilithek_park_nrw_parken", "osm"],
+    values: { free: "458", total: "550", asOf: "18.11.2026, 12:38" },
   },
   {
     key: "motorway",
@@ -408,9 +440,9 @@ export const LIVE_EXAMPLES: readonly LiveExample[] = [
     // check_road_status {road: "A6"}, asked 2026-11-02 14:12: "A6: 7 Sperrungen … • Sperrung: A6 Ersatzneubau BW 6416707 AS Frankenthal
     // · AS Frankenthal (aus Richtung Frankenthal) nach A6 — Zeitraum dieser Bauphase: Beginn: 20.03.25 …, Ende: 30.01.27 …". Stand 14:12.
     // It replaced the BW police message (#454 C1): an Autobahn GmbH answer carries no RVWD condition.
-    credits: ["autobahn", "mobilithek_roadworks_bast"],
+    credits: ["autobahn", "mobilithek_roadworks_bast", "mobilithek_ald_14d", "mobilithek_bab_messages", "mobilithek_roadworks_akd", "bast_lcl", "bkg_gvisys"],
     names: { place: "Frankenthal" },
-    values: { from: "20.03.2025", to: "30.01.2027", count: "7", asOf: "02.11.2026, 14:12" },
+    values: { from: "20.03.2025", to: "30.01.2027", count: "6", asOf: "18.11.2026, 14:28" },
   },
   {
     key: "citywork",
@@ -422,9 +454,10 @@ export const LIVE_EXAMPLES: readonly LiveExample[] = [
     // check_road_status {place: "Schiffbauerdamm, Berlin"}, asked 2026-11-02 14:13: "• Sperrung: Schiffbauerdamm (Mitte) — in beiden
     // Richtungen zwischen Luisenstraße und Albrechtstraße Leitungsbau, Vollsperrung für Kfz-Verkehr. … (09.07.2025–31.08.2028)". Stand
     // 14:10. The same message with a later end, so CITYWORK_CARD_EXPIRES moves with it.
-    credits: ["autobahn", "mobilithek_roadworks_bast", "mobilithek_nms_events", "mobilithek_traffic_berlin", "osm"],
+    credits: ["autobahn", "mobilithek_roadworks_bast", "mobilithek_ald_14d", "mobilithek_nms_events", "mobilithek_traffic_berlin", "bb_baustellen", "berlin_planb", "mobilithek_traffic_lms_berlin", "mobilithek_viz_berlin", "mobilithek_roadworks_akd", "bast_lcl", "berlin_verkehrsdetektion", "bkg_gvisys", "osm"],
     names: { street: "Schiffbauerdamm", a: "Luisenstraße", b: "Albrechtstraße" },
-    values: { from: "09.07.2025", to: "31.08.2028", asOf: "02.11.2026, 14:10" },
+    // Asked again 2026-11-18 14:31: the same message, same dates; Senatsverwaltung Stand 13:54.
+    values: { from: "09.07.2025", to: "31.08.2028", asOf: "18.11.2026, 13:54" },
   },
   {
     key: "landroad",
@@ -438,7 +471,8 @@ export const LIVE_EXAMPLES: readonly LiveExample[] = [
     // Waltershausen, a night's closure on 06./07.11.). Stand 13:58. Reworded: two sites, the card names one.
     credits: ["mobilithek_roadworks_ald_th"],
     names: { site: "Alte Hauptstraße / Kirchplatz" },
-    values: { count: "2", from: "04.05.2026", to: "04.05.2028", asOf: "02.11.2026, 13:58" },
+    // 2026-11-18, asked 14:45: "L1025: 1 Arbeitsstelle zwischen 18.11.2026 und 25.11.2026" — the same site. Stand 13:07. Reworded: one site.
+    values: { from: "04.05.2026", to: "04.05.2028", asOf: "18.11.2026, 13:07" },
   },
   {
     key: "saxony",
@@ -449,11 +483,11 @@ export const LIVE_EXAMPLES: readonly LiveExample[] = [
     question: "connectPage.live.saxony.q",
     // find_roadworks_ahead {road: "B6"}, asked 2026-11-02: "B6: 8 Arbeitsstellen zwischen 02.11.2026 und 09.11.2026, alle bereits
     // begonnen. … Niedersachsen 4, Sachsen 4. … • Instandsetzung (Sachsen): Dresden - Ortschaft Cossebaude; Ausbau westlich Cossebaude —
-    // 04.03.2025 bis 02.03.2027". Stand 13:45. The answer's attribution line also names Sachsen's Sperrinfosys; the card quotes the
-    // LASuV site only, so its credits are unchanged.
-    credits: ["mobilithek_roadworks_ald_ni", "mobilithek_roadworks_nlstbv", "mobilithek_roadworks_ald_sn"],
+    // 04.03.2025 bis 02.03.2027". Stand 13:45. The credits are the answer's whole attribution line (#746), Sachsen's Sperrinfosys
+    // included, although the card quotes the LASuV site only.
+    credits: ["mobilithek_roadworks_ald_ni", "mobilithek_roadworks_nlstbv", "mobilithek_roadworks_ald_sn", "mobilithek_sperrinfosys_sn"],
     names: { place: "Cossebaude" },
-    values: { count: "8", from: "04.03.2025", to: "02.03.2027", asOf: "02.11.2026, 13:45" },
+    values: { count: "12", from: "04.03.2025", to: "02.03.2027", asOf: "18.11.2026, 12:59" },
   },
   {
     key: "bwroad",
@@ -466,9 +500,9 @@ export const LIVE_EXAMPLES: readonly LiveExample[] = [
     // 09.11.2026 und 15.11.2026, alle bereits begonnen. … Niedersachsen 2, Baden-Württemberg 3, Bayern 4, Hessen 3. … • Instandsetzung
     // (Baden-Württemberg): B 27 Bietigheim-Bissingen BA 4 zwischen Geisinger Straße und Wilhelmstraße, Stuttgart-Heilbronn — Erneuerung an
     // der Decke, 1 von 2 Fahrstreifen eingeschränkt, 15.06.2025 bis 12.12.2026". Stand 14:10. The week asked is the coming one, as before.
-    credits: ["bemas_bw"],
+    credits: ["mobilithek_roadworks_ald_ni", "mobilithek_roadworks_nlstbv", "bemas_bw", "mobilithek_roadworks_bayern", "mobilithek_roadworks_he"],
     names: { a: "Stuttgart", b: "Heilbronn" },
-    values: { count: "3", all: "12", from: "15.06.2025", to: "12.12.2026", asOf: "02.11.2026, 14:10" },
+    values: { count: "4", all: "11", from: "15.06.2025", to: "12.12.2026", asOf: "18.11.2026, 14:28" },
   },
   {
     key: "roadworks",
@@ -480,9 +514,9 @@ export const LIVE_EXAMPLES: readonly LiveExample[] = [
     // find_roadworks_ahead {road: "B3"}, asked 2026-11-02: "B3: 21 Arbeitsstellen zwischen 02.11.2026 und 09.11.2026 … Niedersachsen 5
     // (alle begonnen), Baden-Württemberg 2, Hessen 14. • Arbeitsstelle (Niedersachsen): BW Örtzebrücke, Unterführung der Örtze — 01.07.2021
     // bis 30.09.2029 …". Stand 14:10. Confirmed.
-    credits: ["mobilithek_roadworks_ald_ni", "mobilithek_roadworks_nlstbv"],
+    credits: ["mobilithek_roadworks_ald_ni", "mobilithek_roadworks_nlstbv", "bemas_bw", "mobilithek_roadworks_he"],
     names: { section: "BW Örtzebrücke, Unterführung der Örtze" },
-    values: { count: "5", start: "01.07.2021", end: "30.09.2029", asOf: "02.11.2026, 14:10" },
+    values: { count: "5", start: "01.07.2021", end: "30.09.2029", asOf: "18.11.2026, 14:20" },
   },
   {
     key: "kiel",
@@ -496,9 +530,10 @@ export const LIVE_EXAMPLES: readonly LiveExample[] = [
     // kind of card from the same answer, a closure in Kiel found by place: "• Sperrung: Kanalbauarbeiten für Neubau Schmutzwasser und
     // Regenwasser — Lorentzendamm, Lorentzendamm zw. Hausnr. 14 und Dahlmannstraße, Damperhof … (02.11.2026–27.11.2026; 0,6 km)", from
     // the city's own roadworks list. Stand 14:12. Still a summary with every element, said so in each language (#473).
-    credits: ["kiel_baustellen"],
+    credits: ["autobahn", "mobilithek_roadworks_bast", "mobilithek_nms_events", "kiel_baustellen", "sh_baustellen", "bast_lcl", "bkg_gvisys"],
     names: { street: "Lorentzendamm", b: "Dahlmannstraße" },
-    values: { no: "14", from: "02.11.2026", to: "27.11.2026", asOf: "02.11.2026, 14:12" },
+    // Asked again 2026-11-18 14:30: the same message, same dates; the city's list Stand 14:18.
+    values: { no: "14", from: "02.11.2026", to: "27.11.2026", asOf: "18.11.2026, 14:18" },
   },
   {
     key: "truckstop",
@@ -510,8 +545,8 @@ export const LIVE_EXAMPLES: readonly LiveExample[] = [
     name: "BREAK Autohof Hamburg-Nordheide",
     // find_parking {lat: 53.162, lon: 10.062, kind: "truck"}, asked 2026-11-02: "1. BREAK Autohof Hamburg-Nordheide — Lkw-Parkplatz,
     // 150 Plätze, 125 frei (Stand 13:46)". Sources as answered (the Lkw-Parken BAB register for the other rows).
-    credits: ["mobilithek_park_bosch_static", "mobilithek_park_bosch_dyn", "mobilithek_truckpark_static_geonutzv"],
-    values: { free: "125", total: "150", asOf: "02.11.2026, 13:46" },
+    credits: ["mobilithek_park_bosch_static", "mobilithek_park_bosch_dyn", "mobilithek_truckpark_static_geonutzv", "autobahn", "osm", "mobilithek_afir_ecomovement"],
+    values: { free: "135", total: "150", asOf: "18.11.2026, 14:29" },
   },
   {
     key: "lorry",
@@ -524,8 +559,9 @@ export const LIVE_EXAMPLES: readonly LiveExample[] = [
     // find_parking {place: "Emstek"}, asked 2026-11-02: "Außerdem, aus einer separat geführten ODbL-Datenbank (nicht mit den Listen
     // oben abgeglichen): 1. Trucklounge Ecopark — Lkw-Parkplatz, 3,0 km, 54 frei (Stand 14:15)" and the ODbL § 4.6 offer, which the card
     // prints in the page's language (`offerHtml`). Sources as answered.
-    credits: ["mobilithek_truckpark_static_geonutzv", "mobilithek_park_trucklounge", "mobilithek_park_trucklounge_occ", "bkg_gvisys"],
-    values: { free: "54", asOf: "02.11.2026, 14:15" },
+    credits: ["mobilithek_truckpark_static_geonutzv", "autobahn", "mobilithek_park_trucklounge", "mobilithek_park_trucklounge_occ", "osm", "mobilithek_afir_ewe_stat", "bkg_gvisys"],
+    // Asked again 2026-11-18 14:30: "1. Trucklounge Ecopark — Lkw-Parkplatz, 3,0 km, 54 frei … (Stand 14:15)".
+    values: { free: "54", asOf: "18.11.2026, 14:15" },
   },
   {
     key: "parkride",
@@ -535,11 +571,12 @@ export const LIVE_EXAMPLES: readonly LiveExample[] = [
     sign: "parking",
     question: "connectPage.live.parkride.q",
     // find_parking {place: "Dortmund", kind: "park_and_ride"}, asked 2026-11-02: "— aus P+R NRW (CC BY-SA), separat geführt … Dortmund
-    // Hafen — P+R, 1,7 km, 430 Plätze … P&R Westfalenpark — P+R, 2,0 km, 190 Plätze …". Stand 14:20. The credit is the register's P+R NRW
-    // line alone, as the register has it.
-    credits: ["mobilithek_park_nrw_pr"],
+    // Hafen — P+R, 1,7 km, 430 Plätze … P&R Westfalenpark — P+R, 2,0 km, 190 Plätze …". Stand 14:20. The credits are the answer's whole attribution
+    // line (#746): P+R NRW beside the other parking, charging and address sources it named.
+    credits: ["vrr_park_ride", "mobilithek_park_nrw_pr", "osm", "mobilithek_afir_edri_stat", "mobilithek_afir_ecomovement", "bkg_gvisys"],
     names: { p1: "Dortmund Hafen", p2: "P&R Westfalenpark" },
-    values: { t1: "430", t2: "190", asOf: "02.11.2026, 14:20" },
+    // Asked again 2026-11-18 14:30: the same two rows, 430 and 190 Plätze, "Belegung übernehmen wir nicht".
+    values: { t1: "430", t2: "190", asOf: "18.11.2026, 14:30" },
   },
   {
     key: "platform",
@@ -551,9 +588,11 @@ export const LIVE_EXAMPLES: readonly LiveExample[] = [
     // get_train_departures {station: "Berlin Hbf"}, asked 2026-11-02: no platform change among the ten departures; the first,
     // "13:56 ICE 2795 → Innsbruck Hbf, Gleis 3, +29 min (ca. 14:25)". Stand 14:20. REPLACED in kind: no platform change to show, so the
     // card shows a live delay from the same board (title, question and answer reworded in every language).
-    credits: ["db_timetables", "db_stada"],
-    names: { station: "Berlin Hbf", train: "ICE 2795", dest: "Innsbruck Hbf" },
-    values: { planned: "13:56", expected: "14:25", delay: "29", platform: "3", asOf: "02.11.2026, 14:20" },
+    credits: ["db_timetables", "db_stada", "mobilithek_openstation_netex", "delfi_static", "delfi_zhv"],
+    // REPLACED 2026-11-18 (ICE 2795 is not on the board): get_train_departures {station: "Berlin Hbf"}, asked 14:40: "13:37 ICE 600 →
+    // Hamburg-Altona, ab Berlin Hbf, Gleis 6, +65 min (ca. 14:42)", no platform change. Stand 14:40.
+    names: { station: "Berlin Hbf", train: "ICE 600", dest: "Hamburg-Altona" },
+    values: { planned: "13:37", expected: "14:42", delay: "65", platform: "6", asOf: "18.11.2026, 14:40" },
   },
   {
     key: "train",
@@ -565,9 +604,9 @@ export const LIVE_EXAMPLES: readonly LiveExample[] = [
     // get_train_departures {station: "Frankfurt (Main) Hbf", categories: ["RE", "RB"]}, asked 2026-11-02: "14:34 RE RE60 → Mannheim
     // Hbf, Gleis 10, pünktlich …" — ten regional departures to 14:50, nine on time (the RE50 to Bad Hersfeld +3 min, from another
     // platform). Stand 14:21. Reworded: nine of ten, not all. The note still says where SIRI ET comes in.
-    credits: ["db_timetables", "db_stada"],
+    credits: ["db_timetables", "db_stada", "mobilithek_openstation_netex"],
     names: { station: "Frankfurt (Main) Hbf", dest: "Mannheim Hbf" },
-    values: { line: "RE60", planned: "14:34", platform: "10", n: "9", all: "10", last: "14:50", asOf: "02.11.2026, 14:21" },
+    values: { line: "RE60", planned: "14:34", platform: "10", n: "8", all: "10", last: "14:59", asOf: "18.11.2026, 14:30" },
   },
   {
     key: "region",
@@ -579,8 +618,8 @@ export const LIVE_EXAMPLES: readonly LiveExample[] = [
     // check_transit_disruption {region: "Rhein-Ruhr"}, asked 2026-11-02: "Rhein-Ruhr (30 Kreise und kreisfreie Städte zusammen): 15 %
     // der beobachteten Fahrten mehr als 5 Minuten zu spät … Trend: schlechter als in den 60 Minuten davor (12 %)." Stand 13:58. Reworded:
     // "more than", as the tool says.
-    credits: ["delfi_rt_tu"],
-    values: { share: "15", before: "12", districts: "30", asOf: "02.11.2026, 13:58" },
+    credits: ["delfi_rt_tu", "delfi_static"],
+    values: { share: "20", before: "16", districts: "30", asOf: "18.11.2026, 14:28" },
   },
   {
     key: "tomorrow",
@@ -593,9 +632,9 @@ export const LIVE_EXAMPLES: readonly LiveExample[] = [
     // zwischen 03.11.2026 und 03.11.2026: 49 laufend … • Baustelle: A7 zw. Hammelburg → Bad Kissingen/Oberthulba 1,0 km — Brückenneubau,
     // 1 von 3 Fahrstreifen gesperrt, Tempo 80 — bis 30.09.2027". Stand 13:58. Reworded: not all are running yet, and the Derneburg site
     // is not among the ten shown, so the card names the bridge (the driving moment quotes it too).
-    credits: ["mobilithek_roadworks_bast"],
+    credits: ["mobilithek_roadworks_bast", "mobilithek_ald_14d", "mobilithek_roadworks_akd", "bast_lcl", "bkg_gvisys"],
     names: { a: "Hammelburg", b: "Bad Kissingen/Oberthulba" },
-    values: { count: "78", started: "49", km: "1", speed: "80", until: "30.09.2027", asOf: "02.11.2026, 13:58" },
+    values: { count: "78", started: "42", km: "1", speed: "80", until: "30.09.2027", asOf: "18.11.2026, 14:20" },
   },
   {
     key: "closure",
@@ -608,9 +647,9 @@ export const LIVE_EXAMPLES: readonly LiveExample[] = [
     // more; near Hamburg: "A7, AS HH-Volkspark - AS HH-Othmarschen, achtstreifige Erweiterung und Neubau Altonatunnel — Bauphase …, Ende
     // 31.10.27 05:00", a closed ramp at AS Hamburg-Bahrenfeld, no direction given. Stand 14:17. Reworded: a ramp at a junction on that
     // works section. Withdrawn by CLOSURE_CARD_EXPIRES.
-    credits: ["autobahn"],
+    credits: ["autobahn", "mobilithek_roadworks_bast", "mobilithek_ald_14d", "mobilithek_bab_messages", "mobilithek_traffic_sh", "mobilithek_roadworks_akd", "bast_lcl", "bkg_gvisys"],
     names: { at: "Hamburg-Bahrenfeld", a: "HH-Volkspark", b: "HH-Othmarschen" },
-    values: { until: "31.10.2027", end: "05:00", asOf: "02.11.2026, 14:17" },
+    values: { until: "31.10.2027", end: "05:00", asOf: "18.11.2026, 14:28" },
   },
   {
     key: "weather",
@@ -623,50 +662,37 @@ export const LIVE_EXAMPLES: readonly LiveExample[] = [
     // check_weather_warnings {place: "Oberstdorf"}, asked 2026-11-02: one warning — "FROST, Warnstufe 1: Es tritt leichter Frost bis
     // -1 °C auf", gültig 03.11. 00:00 bis 08:00, published 12:33. Stand 14:17. Reworded: a warning now, the lowest level. The road-weather
     // forecast in the same answer is not quoted.
-    credits: ["dwd"],
-    values: { temp: "-1", day: "03.11.", from: "00:00", to: "08:00", level: "1", asOf: "02.11.2026, 14:17" },
+    credits: ["dwd", "dwd_road", "bkg_gvisys"],
+    // 2026-11-18, asked 14:45: "Stufe 2 von 4 — Markante Wetterwarnung — SCHWERE STURMBÖEN, Gültig: bis 19.11. 00:00", "oberhalb 1500 m".
+    // Stand 14:43. Reworded: severe storm gusts, level 2 of 4.
+    values: { alt: "1500", day: "19.11.", to: "00:00", level: "2", asOf: "18.11.2026, 14:43" },
   },
-  {
-    key: "fuelcity",
-    domain: "fuel",
-    added: "v1.8.2",
-    tool: "find_cheapest_fuel",
-    sign: "fuel",
-    question: "connectPage.live.fuelcity.q",
+  fuelCard(
+    "fuelcity",
+    "connectPage.live.fuelcity.q",
     // find_cheapest_fuel {place: "Köln", fuel: "e10"}, asked ONCE 2026-11-02 14:22: current prices, ranked — "1. Markant (Tankautomat)
-    // Automatentankstelle, Olpener Str. 27, 51103 Köln — 2,019 €/l (Stand 14:22)", tied with a JET. Reworded: a current price.
-    credits: ["tankerkoenig"],
-    names: { station: "Markant (Tankautomat)", address: "Olpener Str. 27, 51103 Köln" },
-    values: { euro: "2", cent: "019", reported: "14:22", asOf: "02.11.2026, 14:22" },
-  },
-  {
-    key: "fuelroad",
-    domain: "fuel",
-    added: "v1.8.2",
-    tool: "find_cheapest_fuel",
-    sign: "fuel",
-    question: "connectPage.live.fuelroad.q",
+    // Automatentankstelle, Olpener Str. 27, 51103 Köln — 2,019 €/l (Stand 14:22)", tied with a JET. 2026-11-18: no current price, so the "no new price" sentence.
+    { station: "TotalEnergies", address: "Holzmarkt 49, 50676 Koeln" },
+    { euro: "1", cent: "879", reported: "17.11., 20:34", asOf: "18.11.2026, 14:30" },
+  ),
+  fuelCard(
+    "fuelroad",
+    "connectPage.live.fuelroad.q",
     // find_cheapest_fuel {place: "Würzburg", fuel: "diesel", radius_km: 10}, asked ONCE 2026-11-02 14:23: "kein Preis aus den letzten 30
     // Minuten … TopTank, Schweinfurter Str. 42, 97076 Würzburg — 2,249 €/l … (Preis von 31.10. 20:04) — neuer Preis wird gerade abgefragt"
     // (the lowest of the five, with the JET).
-    credits: ["tankerkoenig"],
-    names: { station: "TopTank", address: "Schweinfurter Str. 42, 97076 Würzburg" },
-    values: { euro: "2", cent: "249", reported: "31.10., 20:04", asOf: "02.11.2026, 14:23" },
-  },
-  {
-    key: "fuelland",
-    domain: "fuel",
-    added: "v1.8.2",
-    tool: "find_cheapest_fuel",
-    sign: "fuel",
-    question: "connectPage.live.fuelland.q",
+    { station: "TopTank", address: "Schweinfurter Str. 42, 97076 Würzburg" },
+    { euro: "2", cent: "299", reported: "16.11., 12:46", asOf: "18.11.2026, 14:30" },
+  ),
+  fuelCard(
+    "fuelland",
+    "connectPage.live.fuelland.q",
     // find_cheapest_fuel {place: "Stuttgart", fuel: "e10"}, asked ONCE 2026-11-02 14:23: "kein Preis aus den letzten 30 Minuten … Shell,
     // Karl-Kloss-Str. 18, 70199 Stuttgart — 1,999 €/l … (Preis von 02.11. 03:33) — neuer Preis wird gerade abgefragt" (the lowest, with
     // two others).
-    credits: ["tankerkoenig"],
-    names: { station: "Shell", address: "Karl-Kloss-Str. 18, 70199 Stuttgart" },
-    values: { euro: "1", cent: "999", reported: "02.11., 03:33", asOf: "02.11.2026, 14:23" },
-  },
+    { station: "ESSO", address: "Immenhofer Str. 48, 70180 Stuttgart" },
+    { euro: "1", cent: "939", reported: "14.11., 13:17", asOf: "18.11.2026, 14:30" },
+  ),
 ];
 
 /**

@@ -257,6 +257,17 @@ describe("links (#379, the #138 rule on the built site)", () => {
   it("every internal link and fragment on every page resolves", async () => {
     let checked = 0;
     let markers = 0;
+    // 2.6.19: an address that is not one of the pages read above is fetched ONCE and its answer kept for every link to it.
+    // Each link fetched it twice (its body, then its status): 6 116 requests, the same addresses again and again (the
+    // manifest 616 times, each place page 34), 98 % of the test's 81 s, past its 60 s limit on a loaded laptop.
+    const others = new Map<string, Promise<{ status: number; body: string }>>();
+    const other = (path: string): Promise<{ status: number; body: string }> => {
+      const known = others.get(path);
+      if (known !== undefined) return known;
+      const got = get(path);
+      others.set(path, got);
+      return got;
+    };
     for (const [page, body] of html) {
       for (const m of body.matchAll(/href="(\/[^"]*|#[^"]*)"/g)) {
         const href = m[1]!;
@@ -266,8 +277,9 @@ describe("links (#379, the #138 rule on the built site)", () => {
         // without it (`i18n/lang-redirect.ts`); the link resolves when that address does
         const path = marked.replace(/[?&]setlang=1$/, "");
         if (path !== marked) markers++;
-        const target = path === page ? body : (html.get(path) ?? (await get(path)).body);
-        if (path !== page && !html.has(path)) expect((await get(path)).status, `${page} → ${href}`).toBe(200);
+        const read = path === page || html.has(path) ? null : await other(path);
+        const target = path === page ? body : (html.get(path) ?? read!.body);
+        if (read !== null) expect(read.status, `${page} → ${href}`).toBe(200);
         if (frag) expect(target, `${page} → ${href}`).toContain(`id="${frag}"`);
         checked++;
       }

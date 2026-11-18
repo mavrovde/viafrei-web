@@ -156,7 +156,7 @@ function contentOf(rel: string, text: string): string {
  * meta.ts's own text, so the two cannot drift.
  */
 export const META_KEYS: Readonly<Record<Exclude<PageId, "404" | "news"> | "place" | "motorway", readonly string[]>> = {
-  start: ["meta.tagline", "meta.pitch"],
+  start: ["meta.tagline", "meta.pitch", "meta.titleTagline"],
   connect: ["seo.connectTitle", "seo.connectDescription"],
   developers: ["seo.developersTitle", "seo.developersDescription"],
   business: ["seo.businessTitle", "seo.businessDescription"],

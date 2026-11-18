@@ -113,7 +113,7 @@ const NEWS_INLINE: readonly NewsEntry[] = [
     // card. Drafted at 2.6.18 under the owner's standing "Yes to any news" (2026-10-24); the cut re-dates it.
     id: "blitzer-autobahnseiten",
     kind: "new",
-    date: "2026-11-14",
+    date: "2026-11-16",
     release: "2.6.18",
     issue: 1304,
     credits: ["mobilithek_speed_karlsruhe", "osm_speed_cameras"],

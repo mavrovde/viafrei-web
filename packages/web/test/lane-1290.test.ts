@@ -11,7 +11,7 @@
  *  - the marker the digest reads comes from the request's scope only: a copy in a fetcher's own headers is removed
  *    (a person's request sends none, a crawler's sends its own class over it).
  * The edge half (nginx SETS `X-VF-Agent-Class`, so a client's copy never reaches the shell; a verified assistant past
- * 20 a minute is never refused, a spoofed one and a verified GPTBot are) is run in `scripts/landing-conf.test.sh` 4c/4f.
+ * 20 a minute is never refused, a spoofed one and a verified GPTBot are) is run in the edge configuration tests.
  * No network: the resolver and the range files are stubs, the global fetch a recorder.
  */
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
@@ -90,6 +90,13 @@ describe("#1290 (owner 2026-11-12): the search engines and AI assistants share o
         }
       }
     }
+  });
+
+  it("#1323: a verified ShapBot (an AI search indexer) reads on the search lane, an unverified claim of it on the crawler lane", async () => {
+    // the User-Agent Cloudflare logged, verified with category "AI Search", on the charging-page 503s of 2026-11-17
+    const SHAPBOT = "Mozilla/5.0 AppleWebKit/537.36 (KHTML, like Gecko); compatible; ShapBot/0.1.0";
+    for (const nginx of [{}, { [AGENT_CLASS_HEADER]: "crawler" }]) expect(await cls({ "user-agent": SHAPBOT, ...MARK, ...nginx })).toBe("search");
+    for (const saturated of [false, true]) expect(await cls({ "user-agent": SHAPBOT, [AGENT_CLASS_HEADER]: "crawler" }, saturated)).toBe("crawler");
   });
 
   it("a training crawler stays on the crawler lane, verified by the edge or not; a verified SEO tool stays seo", async () => {

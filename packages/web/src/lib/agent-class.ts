@@ -48,5 +48,52 @@ export function digestFetch(url: string, init: RequestInit = {}): Promise<Respon
   if (cls === null && !headers.has(AGENT_CLASS_HEADER)) return fetch(url, init);
   headers.delete(AGENT_CLASS_HEADER);
   if (cls !== null) headers.set(AGENT_CLASS_HEADER, cls);
+  const method = (init.method ?? "GET").toUpperCase();
+  if (cls === "search" && (method === "GET" || method === "HEAD")) return searchLaneFetch(url, { ...init, headers });
   return fetch(url, { ...init, headers });
+}
+
+/**
+ * #1310 A3 (a digest roll causes no priority-crawler 503): the waits between a verified crawler's attempts at one
+ * digest read. A roll ends a pod's connections — a reset, a refused connect, the fragment cache's or the Service's
+ * 502/504 while the next pod takes over — and a person's page answers that with its degraded 200, a crawler's with a
+ * 503 when nothing is held. So a search-lane read that FAILED TO ARRIVE is asked again after these waits, for as long
+ * as the caller's own deadline (`init.signal`, the crawler's budget of `page-budget.ts`) lets it. An answer the digest
+ * GAVE — any status but 502/504, a 503 refusal among them — is returned as it is: asking again is only for a read that
+ * never reached a digest that could answer it. GET and HEAD only, which carry no body to send twice.
+ */
+export const SEARCH_RETRY_WAITS_MS: readonly number[] = [100, 250, 500, 1_000, 1_000];
+const GATEWAY = new Set([502, 504]);
+
+function pause(ms: number, signal: AbortSignal | null | undefined): Promise<boolean> {
+  if (signal?.aborted === true) return Promise.resolve(false);
+  return new Promise((done) => {
+    const timer = setTimeout(() => { signal?.removeEventListener("abort", stop); done(true); }, ms);
+    const stop = (): void => { clearTimeout(timer); done(false); };
+    signal?.addEventListener("abort", stop, { once: true });
+  });
+}
+
+/** One ask of the search lane: the answer to keep, or "again" when a gateway answer or a failure may be asked once more. */
+async function askOnce(url: string, init: RequestInit, wait: number | undefined): Promise<Response | "again"> {
+  try {
+    const res = await fetch(url, init);
+    if (!GATEWAY.has(res.status) || wait === undefined) return res;
+    await res.body?.cancel().catch(() => undefined);
+    return "again";
+  } catch (err) {
+    // the deadline is the caller's: an abort is never asked again
+    if (wait === undefined || init.signal?.aborted === true || (err instanceof Error && err.name === "AbortError")) throw err;
+    return "again";
+  }
+}
+
+/** The search lane's fetch: asked again after each of `SEARCH_RETRY_WAITS_MS` on a gateway answer or a failure, never past an abort. */
+async function searchLaneFetch(url: string, init: RequestInit, attempt = 0): Promise<Response> {
+  const wait = SEARCH_RETRY_WAITS_MS[attempt];
+  const res = await askOnce(url, init, wait);
+  if (res !== "again") return res;
+  // `wait` is defined here: askOnce answers "again" only while a wait is left
+  if (!(await pause(wait as number, init.signal))) throw init.signal?.reason instanceof Error ? init.signal.reason : Object.assign(new Error("aborted"), { name: "AbortError" });
+  return searchLaneFetch(url, init, attempt + 1);
 }
