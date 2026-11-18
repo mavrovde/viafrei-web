@@ -28,7 +28,9 @@ export const REQUIRED_WORKFLOWS = [".github/workflows/ci.yml", ".github/workflow
 
 /**
  * The jobs each required workflow must have RUN and passed: the required checks of docs/RELEASING.md,
- * less `Dependency review`, which runs on pull requests only (test/workflows.test.ts holds the two equal).
+ * less `Dependency review`, which runs on pull requests only, and `Catalogue parity mutants`, which runs on a
+ * minor's release pull request or a dispatch only (its `if:` is never true on a push), so a release's push run
+ * never has either (test/workflows.test.ts holds the two equal).
  * The browser job is not here: it is a job of release.yml itself, which publish needs.
  */
 export const REQUIRED_JOBS: Readonly<Record<(typeof REQUIRED_WORKFLOWS)[number], readonly string[]>> = {

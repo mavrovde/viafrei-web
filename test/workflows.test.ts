@@ -139,7 +139,18 @@ describe("the workflows", () => {
       expect(t).toContain(`${code} && (${releasePush})`);
     }
     const ci = text("ci.yml");
-    expect(ci).toContain(`        if: ${minor}\n        run: bash scripts/web-i18n-mutation.sh`);
+    // the catalogue parity mutants: four shards and their fan-in, at a minor only (test/i18n-mutation.test.ts cuts them)
+    const shards = job(ci, "mutants");
+    expect(shards).toContain(`    if: "${code} && (${releasePush}) && (${minor})"\n`);
+    expect(shards).toMatch(/\n {4}strategy:\n {6}fail-fast: false\n {6}matrix:\n {8}shard: \[1, 2, 3, 4\]\n/u);
+    expect(shards).toContain('        run: bash scripts/web-i18n-mutation.sh --shard "$SHARD/4"\n');
+    const fanIn = job(ci, "mutation");
+    expect(fanIn).toContain("    needs: [changes, mutants]\n");
+    expect(fanIn).toContain(`    if: "${code} && !cancelled() && (${releasePush}) && (${minor})"\n`);
+    expect(fanIn).toContain("          SHARDS: ${{ needs.mutants.result }}\n");
+    expect(fanIn).toContain("[[ $SHARDS == success ]] ||");
+    for (const j of [shards, fanIn]) expect(j).not.toContain("continue-on-error");
+    expect(ci.split("scripts/web-i18n-mutation.sh").length - 1, "the mutants run in the shard jobs alone").toBe(2);
     const prc = JSON.parse(read("release-please-config.json")) as { "pull-request-title-pattern": string };
     expect(prc["pull-request-title-pattern"], "the release-push condition reads the release commit by this title").toBe("chore: release ${version}");
     expect(text("scorecard.yml")).toMatch(/\non:\n(?:\s*#[^\n]*\n)*\s+workflow_dispatch:\n\n/u);
@@ -157,9 +168,14 @@ describe("the workflows", () => {
   it("gate a release on exactly the required checks that run on a push (scripts/ci-gate.ts REQUIRED_JOBS)", () => {
     const block = /<!-- required-checks:begin -->([\s\S]*?)<!-- required-checks:end -->/u.exec(read("docs/RELEASING.md"))?.[1] ?? "";
     const required = [...block.matchAll(/^- `([^`]+)`/gmu)].map((m) => m[1] ?? "");
-    // Dependency review runs on pull requests only, so a release's push run never has it
-    expect(required).toContain("Dependency review");
-    expect([...new Set(Object.values(REQUIRED_JOBS).flat())].sort()).toEqual(required.filter((c) => c !== "Dependency review").sort());
+    // Dependency review runs on pull requests only, and the catalogue parity mutants on a minor's release pull
+    // request or a dispatch only, so a release's push run never has either
+    const pullOnly = ["Dependency review", "Catalogue parity mutants"];
+    for (const c of pullOnly) expect(required).toContain(c);
+    expect([...new Set(Object.values(REQUIRED_JOBS).flat())].sort()).toEqual(required.filter((c) => !pullOnly.includes(c)).sort());
+    // the mutants' fan-in never runs on a push: its if: asks for a dispatch or a release-please pull request
+    const fanInIf = /\n {2}mutation:\n[\s\S]*?\n {4}if: "([^"\n]+)"/u.exec(read(".github/workflows/ci.yml"))?.[1] ?? "";
+    expect(fanInIf).toContain("&& (github.event_name == 'workflow_dispatch' || (startsWith(github.head_ref, 'release-please--') && endsWith(github.event.pull_request.title, '.0')))");
     // the Changes job gates every other job of both workflows, so both runs must carry it
     for (const jobs of Object.values(REQUIRED_JOBS)) expect(jobs).toContain("Changes (code, or prose only)");
     for (const [wf, jobs] of Object.entries(REQUIRED_JOBS)) {
@@ -171,7 +187,7 @@ describe("the workflows", () => {
   it("pull the private viafrei-app with GHCR_READ_TOKEN, each pull behind a check that the secret is set", () => {
     const ci = text("ci.yml");
     const logins = ci.split("docker/login-action@").length - 1;
-    expect(logins).toBe(4);
+    expect(logins).toBe(5);
     expect(ci.split("password: ${{ secrets.GHCR_READ_TOKEN }}").length - 1).toBe(logins);
     expect(ci.split("- name: GHCR_READ_TOKEN must be set").length - 1).toBe(logins);
     expect(ci, "a job asks for packages it no longer reads").not.toMatch(/packages: read/u);

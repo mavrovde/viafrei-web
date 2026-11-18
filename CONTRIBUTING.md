@@ -58,7 +58,12 @@ runs that job alone on a branch and publishes nothing.
 - **Every colour pair is declared and passes the contrast check** in both themes: 4.5:1, and 7:1
   for body text (`scripts/web-contrast.mjs` over `packages/design/tokens.css`).
 - **Every catalogue has every key in every language** (`packages/web/test/i18n-parity.test.ts`).
-  `scripts/web-i18n-mutation.sh` proves that check can fail.
+  `scripts/web-i18n-mutation.sh` proves that check can fail: five mutants per catalogue, each
+  on a copy. `--shard k/4` runs one of four disjoint shards (the mutants at the positions p with
+  p mod 4 = k - 1), as the four `Catalogue parity mutants shard` jobs do at a minor's release pull
+  request or a dispatch, gathered by the `Catalogue parity mutants` job; `--list` prints a
+  selection. A bad `--shard` or an empty shard is exit 2; `test/i18n-mutation.test.ts` proves the
+  four shards disjoint, complete and none empty.
 - **`scripts/site-pages.txt` is generated** from `packages/web/src/site/pages.ts` by
   `packages/web/scripts/site-map.ts`. If the file drifts from the page map, `site-map.test.ts`
   fails.

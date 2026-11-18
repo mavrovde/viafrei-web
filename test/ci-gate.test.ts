@@ -20,10 +20,11 @@ const run = (o: Partial<Run> & { path: string }): Run => ({
   ...o,
 });
 const green = REQUIRED_WORKFLOWS.map((path, i) => run({ path, id: i + 1 }));
-/** Every required job of every run passed, plus a pull-request-only job that was skipped. */
+/** Every required job of every run passed, plus the two jobs that never run on a push, skipped. */
 const passed = (id: number): Job[] => [
   ...(REQUIRED_JOBS[REQUIRED_WORKFLOWS[id - 1] ?? REQUIRED_WORKFLOWS[0]] ?? []).map((name) => ({ name, status: "completed", conclusion: "success" })),
   { name: "Dependency review", status: "completed", conclusion: "skipped" },
+  { name: "Catalogue parity mutants", status: "completed", conclusion: "skipped" },
 ];
 const jobsWith = (path: string, name: string, o: Partial<Job> | null) => (id: number): Job[] => {
   const base = passed(id);
@@ -95,9 +96,10 @@ describe("judgeCi reads the jobs, not the run's conclusion alone", () => {
     expect(judgeCi(green, SHA, REPO_, jobsWith(ci, "Site gates", { conclusion: "failure" })).ok).toBe(false);
     expect(judgeCi(green, SHA, REPO_, jobsWith(ci, "Stack (the shell against the pinned releases)", { conclusion: "cancelled" })).ok).toBe(false);
   });
-  it("a skipped Dependency review (pull requests only) is no reason to refuse", () => {
+  it("a skipped Dependency review or Catalogue parity mutants (never on a push) is no reason to refuse", () => {
     expect(judgeCi(green, SHA, REPO_, passed).ok).toBe(true);
     expect(Object.values(REQUIRED_JOBS).flat()).not.toContain("Dependency review");
+    expect(Object.values(REQUIRED_JOBS).flat()).not.toContain("Catalogue parity mutants");
   });
   it("judges a job's newest attempt", () => {
     const retried = (id: number): Job[] => [...passed(id).map((j) => (j.name === "Lint" ? { ...j, conclusion: "failure", run_attempt: 1 } : j)), ...(id === 1 ? [{ name: "Lint", status: "completed", conclusion: "success", run_attempt: 2 }] : [])];
