@@ -230,7 +230,7 @@
         "title": "Til arbejde om morgenen",
         "scene": "Kl. 7.10, kaffe i hånden: kører den kollektive trafik normalt — og kører mit tog?",
         "q1": "Kører busser og tog i Hamborg til tiden lige nu?",
-        "a1": "{share} % af de observerede afgange i den seneste time var mere end 5 minutter forsinket – omtrent som timen før ({before} %).",
+        "a1": "{share} % af de observerede afgange i den seneste time var mere end 5 minutter forsinket – flere end timen før ({before} %).",
         "limit": "Vi viser rettidighed pr. region, ikke pr. linje.",
         "q2": "Hvornår kører det næste tog fra Hannover Hovedbanegård, og er det forsinket?",
         "q3": "Bliver nogen tog på afgangstavlen på Köln Hovedbanegård aflyst i den næste time?",
@@ -336,7 +336,7 @@
       "goerlitz": {
         "q": "Hvor tanker jeg billigst diesel i Görlitz lige nu?",
         "why": "Priserne ændrer sig flere gange om dagen og varierer selv mellem få tankstationer i samme by: ViaFrei nævner den billigste med prisen og klokkeslættet, hvor stationen meldte den.",
-        "a": "Ingen ny pris endnu – senest billigst: {euro},{cent} €/l hos {station}, {address}, meldt den {reported}; ViaFrei henter netop en ny."
+        "a": "{euro},{cent} €/l hos {station}, {address} – meldt kl. {reported}."
       },
       "muenchen": {
         "q": "Hvor er blyfri 95 E10 billigst i München lige nu?",
@@ -351,7 +351,7 @@
       "nuernberg": {
         "q": "Hvor er diesel billigst i Nürnberg lige nu?",
         "why": "Den nærmeste tankstation er ikke altid den billigste: ViaFrei oplyser afstanden ved hver pris.",
-        "a": "{euro},{cent} €/l hos {station}, {address} – meldt kl. {reported}."
+        "a": "Ingen ny pris endnu – senest billigst: {euro},{cent} €/l hos {station}, {address}, meldt den {reported}; ViaFrei henter netop en ny."
       }
     },
     "fuelAll": "Op til tre tankstationer pr. delstat med adresse og pris",
@@ -533,7 +533,7 @@
       "fuelcity": {
         "title": "Den billigste E10 i byen",
         "q": "Hvor er blyfri 95 E10 billigst i Köln lige nu?",
-        "a": "{euro},{cent} €/l hos {station}, {address} – meldt kl. {reported}.",
+        "a": "Ingen ny pris endnu – senest billigst: {euro},{cent} €/l hos {station}, {address}, meldt den {reported}; ViaFrei henter netop en ny.",
         "note": "Brændstofpriser ændrer sig med få minutters mellemrum: dette tal er et eksempel fra den eftermiddag, ikke dagens pris. ViaFrei siger ved hver pris, hvornår stationen meldte den."
       },
       "charger": {

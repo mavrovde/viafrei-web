@@ -230,7 +230,7 @@
         "title": "Rano do pracy",
         "scene": "7:10, kawa w ręku: czy komunikacja kursuje normalnie — i czy mój pociąg jedzie?",
         "q1": "Czy autobusy i pociągi w Hamburgu kursują teraz punktualnie?",
-        "a1": "{share}% kursów z ostatniej godziny miało ponad 5 minut opóźnienia — mniej więcej tyle samo co godzinę wcześniej ({before}%).",
+        "a1": "{share}% kursów z ostatniej godziny miało ponad 5 minut opóźnienia – więcej niż godzinę wcześniej ({before}%).",
         "limit": "Punktualność pokazujemy dla regionu, nie dla linii.",
         "q2": "Kiedy odjeżdża najbliższy pociąg z dworca głównego w Hanowerze i czy jest opóźniony?",
         "q3": "Czy na tablicy odjazdów dworca głównego w Kolonii w najbliższej godzinie są odwołane pociągi?",
@@ -336,7 +336,7 @@
       "goerlitz": {
         "q": "Gdzie w Görlitz jest teraz najtańszy diesel?",
         "why": "Ceny zmieniają się kilka razy dziennie i różnią się nawet między kilkoma stacjami w jednym mieście: ViaFrei podaje najtańszą z ceną i godziną, o której stacja ją zgłosiła.",
-        "a": "Brak nowej ceny — ostatnio najtaniej: {euro},{cent} €/l na stacji {station}, {address}, zgłoszono {reported}; ViaFrei właśnie pyta o nową."
+        "a": "{euro},{cent} €/l na stacji {station}, {address} — zgłoszono o {reported}."
       },
       "muenchen": {
         "q": "Gdzie w Monachium jest teraz najtańsza benzyna E10?",
@@ -351,7 +351,7 @@
       "nuernberg": {
         "q": "Gdzie w Norymberdze jest teraz najtańszy diesel?",
         "why": "Najbliższa stacja nie zawsze jest najtańsza: ViaFrei podaje przy każdej cenie odległość.",
-        "a": "{euro},{cent} €/l na stacji {station}, {address} — zgłoszono o {reported}."
+        "a": "Brak nowej ceny — ostatnio najtaniej: {euro},{cent} €/l na stacji {station}, {address}, zgłoszono {reported}; ViaFrei właśnie pyta o nową."
       }
     },
     "fuelAll": "Do trzech stacji paliw w każdym kraju związkowym, z adresem i ceną",
@@ -533,7 +533,7 @@
       "fuelcity": {
         "title": "Najtańsza E10 w mieście",
         "q": "Gdzie w Kolonii jest teraz najtańsza benzyna E10?",
-        "a": "{euro},{cent} €/l na stacji {station}, {address} — zgłoszono o {reported}.",
+        "a": "Brak nowej ceny – ostatnio najtaniej: {euro},{cent} €/l na stacji {station}, {address}, zgłoszono {reported}; ViaFrei właśnie pyta o nową.",
         "note": "Ceny paliw zmieniają się co kilka minut: ta liczba to przykład z tamtego popołudnia, a nie dzisiejsza cena. ViaFrei podaje przy każdej cenie, kiedy stacja ją zgłosiła."
       },
       "charger": {

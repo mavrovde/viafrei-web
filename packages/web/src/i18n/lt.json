@@ -230,7 +230,7 @@
         "title": "Rytinė kelionė į darbą",
         "scene": "7:10, kava rankoje: ar viešasis transportas važiuoja įprastai — ir ar mano traukinys laiku?",
         "q1": "Ar autobusai ir traukiniai Hamburge šiuo metu važiuoja laiku?",
-        "a1": "{share} % per pastarąją valandą stebėtų reisų vėlavo daugiau nei 5 minutes — panašiai kaip valandą prieš tai ({before} %).",
+        "a1": "{share} % per pastarąją valandą stebėtų reisų vėlavo daugiau nei 5 minutes — daugiau nei valandą prieš tai ({before} %).",
         "limit": "Punktualumą rodome pagal regioną, ne pagal liniją.",
         "q2": "Kada išvyksta kitas traukinys iš Hanoverio centrinės stoties ir ar jis vėluoja?",
         "q3": "Ar per artimiausią valandą atšauktas koks nors traukinys iš Kelno centrinės stoties išvykimų lentos?",
@@ -336,7 +336,7 @@
       "goerlitz": {
         "q": "Kur Gerlice šiuo metu pigiausias dyzelinas?",
         "why": "Kainos keičiasi kelis kartus per dieną ir skiriasi net tarp kelių degalinių viename mieste: ViaFrei nurodo pigiausią su kaina ir laiku, kada degalinė ją pranešė.",
-        "a": "Naujos kainos dar nėra — mažiausia paskutinė žinoma: {euro},{cent} €/l degalinėje {station}, {address}, pranešta {reported}; ViaFrei prašo naujos."
+        "a": "{euro},{cent} €/l degalinėje {station}, {address} — pranešta {reported}."
       },
       "muenchen": {
         "q": "Kur Miunchene šiuo metu pigiausias benzinas E10?",
@@ -351,7 +351,7 @@
       "nuernberg": {
         "q": "Kur Niurnberge šiuo metu pigiausias dyzelinas?",
         "why": "Artimiausia degalinė ne visada pigiausia: ViaFrei prie kiekvienos kainos nurodo atstumą.",
-        "a": "{euro},{cent} €/l degalinėje {station}, {address} — pranešta {reported}."
+        "a": "Naujos kainos dar nėra — mažiausia paskutinė žinoma: {euro},{cent} €/l degalinėje {station}, {address}, pranešta {reported}; ViaFrei prašo naujos."
       }
     },
     "fuelAll": "Iki trijų degalinių kiekvienoje žemėje, su adresu ir kaina",
@@ -533,7 +533,7 @@
       "fuelcity": {
         "title": "Pigiausias E10 mieste",
         "q": "Kur Kelne šiuo metu pigiausias Super E10?",
-        "a": "{euro},{cent} €/l degalinėje {station}, {address} — pranešta {reported}.",
+        "a": "Naujos kainos dar nėra — mažiausia paskutinė žinoma: {euro},{cent} €/l degalinėje {station}, {address}, pranešta {reported}; ViaFrei prašo naujos.",
         "note": "Degalų kainos keičiasi kas kelias minutes: šis skaičius yra tos popietės pavyzdys, o ne šiandienos kaina. ViaFrei nurodo, kada degalinė pranešė kiekvieną pateikiamą kainą."
       },
       "charger": {

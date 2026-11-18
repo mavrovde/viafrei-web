@@ -230,7 +230,7 @@
         "title": "Morgens zur Arbeit",
         "scene": "7:10 Uhr, Kaffee in der Hand: Läuft der Nahverkehr normal — und fährt mein Zug?",
         "q1": "Fahren Busse und Bahnen in Hamburg gerade pünktlich?",
-        "a1": "{share} % der beobachteten Fahrten der letzten Stunde mehr als 5 Minuten zu spät – etwa so viele wie in der Stunde davor ({before} %).",
+        "a1": "{share} % der beobachteten Fahrten der letzten Stunde mehr als 5 Minuten zu spät – mehr als in der Stunde davor ({before} %).",
         "limit": "Pünktlichkeit zeigen wir je Region, nicht je Linie.",
         "q2": "Wann fährt der nächste Zug ab Hannover Hbf, und hat er Verspätung?",
         "q3": "Fallen an der Abfahrtstafel vom Kölner Hauptbahnhof in der nächsten Stunde Züge aus?",
@@ -336,7 +336,7 @@
       "goerlitz": {
         "q": "Wo tanke ich in Görlitz gerade Diesel am günstigsten?",
         "why": "Preise ändern sich mehrmals am Tag und unterscheiden sich schon zwischen wenigen Tankstellen einer Stadt: ViaFrei nennt die günstigste mit ihrem Preis und der Uhrzeit, zu der sie ihn gemeldet hat.",
-        "a": "Noch kein neuer Preis – zuletzt am günstigsten: {euro},{cent} €/l bei {station}, {address}, gemeldet am {reported}; ViaFrei fragt gerade neu ab."
+        "a": "{euro},{cent} €/l bei {station}, {address} – gemeldet um {reported}."
       },
       "muenchen": {
         "q": "Wo ist Super E10 in München gerade am günstigsten?",
@@ -351,7 +351,7 @@
       "nuernberg": {
         "q": "Wo ist Diesel in Nürnberg gerade am günstigsten?",
         "why": "Die nächste Tankstelle ist nicht immer die günstigste: ViaFrei nennt zu jedem Preis die Entfernung.",
-        "a": "{euro},{cent} €/l bei {station}, {address} – gemeldet um {reported}."
+        "a": "Noch kein neuer Preis – zuletzt am günstigsten: {euro},{cent} €/l bei {station}, {address}, gemeldet am {reported}; ViaFrei fragt gerade neu ab."
       }
     },
     "fuelAll": "Je Bundesland bis zu drei Tankstellen mit Adresse und Preis",
@@ -533,7 +533,7 @@
       "fuelcity": {
         "title": "Das günstigste E10 in der Stadt",
         "q": "Wo ist Super E10 in Köln gerade am günstigsten?",
-        "a": "{euro},{cent} €/l bei {station}, {address} – gemeldet um {reported}.",
+        "a": "Noch kein neuer Preis – zuletzt am günstigsten: {euro},{cent} €/l bei {station}, {address}, gemeldet am {reported}; ViaFrei fragt gerade neu ab.",
         "note": "Spritpreise ändern sich alle paar Minuten: Diese Zahl ist ein Beispiel von diesem Nachmittag, nicht der heutige Preis. ViaFrei nennt zu jedem Preis, wann die Tankstelle ihn gemeldet hat."
       },
       "charger": {

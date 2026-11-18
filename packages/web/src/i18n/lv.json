@@ -230,7 +230,7 @@
         "title": "Rīta ceļš uz darbu",
         "scene": "7:10, kafija rokā: vai sabiedriskais transports kursē kā parasti — un vai mans vilciens ir laikā?",
         "q1": "Vai autobusi un vilcieni Hamburgā pašlaik kursē laikā?",
-        "a1": "{share} % pēdējā stundā novēroto braucienu kavējās vairāk nekā 5 minūtes — aptuveni tikpat, cik stundu iepriekš ({before} %).",
+        "a1": "{share} % pēdējā stundā novēroto braucienu kavējās vairāk nekā 5 minūtes — vairāk nekā stundu iepriekš ({before} %).",
         "limit": "Punktualitāti rādām pa reģioniem, nevis pa līnijām.",
         "q2": "Kad atiet nākamais vilciens no Hannoveres centrālās stacijas, un vai tas kavējas?",
         "q3": "Vai tuvākās stundas laikā kāds vilciens Ķelnes centrālās stacijas atiešanas tablo ir atcelts?",
@@ -336,7 +336,7 @@
       "goerlitz": {
         "q": "Kur Gerlicā pašlaik ir vislētākā dīzeļdegviela?",
         "why": "Cenas mainās vairākas reizes dienā un atšķiras pat starp dažām stacijām vienā pilsētā: ViaFrei nosauc lētāko ar cenu un laiku, kad stacija to ziņoja.",
-        "a": "Jaunas cenas vēl nav — zemākā pēdējā zināmā: {euro},{cent} €/l stacijā {station}, {address}, ziņots {reported}; ViaFrei pieprasa jaunu."
+        "a": "{euro},{cent} €/l stacijā {station}, {address} — ziņots {reported}."
       },
       "muenchen": {
         "q": "Kur Minhenē pašlaik ir vislētākais benzīns E10?",
@@ -351,7 +351,7 @@
       "nuernberg": {
         "q": "Kur Nirnbergā pašlaik ir vislētākā dīzeļdegviela?",
         "why": "Tuvākā stacija ne vienmēr ir lētākā: ViaFrei pie katras cenas norāda attālumu.",
-        "a": "{euro},{cent} €/l stacijā {station}, {address} — ziņots {reported}."
+        "a": "Jaunas cenas vēl nav — zemākā pēdējā zināmā: {euro},{cent} €/l stacijā {station}, {address}, ziņots {reported}; ViaFrei pieprasa jaunu."
       }
     },
     "fuelAll": "Līdz trim degvielas uzpildes stacijām katrā federālajā zemē, ar adresi un cenu",
@@ -533,7 +533,7 @@
       "fuelcity": {
         "title": "Lētākais E10 pilsētā",
         "q": "Kur Ķelnē pašlaik ir lētākais Super E10?",
-        "a": "{euro},{cent} €/l stacijā {station}, {address} — ziņots {reported}.",
+        "a": "Jaunas cenas vēl nav — zemākā pēdējā zināmā: {euro},{cent} €/l stacijā {station}, {address}, ziņots {reported}; ViaFrei pieprasa jaunu.",
         "note": "Degvielas cenas mainās ik pēc dažām minūtēm: šis skaitlis ir tās pēcpusdienas piemērs, nevis šodienas cena. ViaFrei saka, kad stacija ziņoja katru sniegto cenu."
       },
       "charger": {

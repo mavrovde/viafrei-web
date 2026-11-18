@@ -230,7 +230,7 @@
         "title": "Dimineața spre serviciu",
         "scene": "7:10, cafeaua în mână: transportul public circulă normal — și e trenul meu la timp?",
         "q1": "Circulă acum la timp autobuzele și trenurile în Hamburg?",
-        "a1": "{share} % dintre cursele observate în ultima oră au întârziat peste 5 minute – cam la fel ca în ora dinainte ({before} %).",
+        "a1": "{share} % dintre cursele observate în ultima oră au întârziat peste 5 minute – mai multe decât în ora dinainte ({before} %).",
         "limit": "Arătăm punctualitatea pe regiuni, nu pe linii.",
         "q2": "Când pleacă următorul tren din Gara Centrală din Hanovra și are întârziere?",
         "q3": "Sunt trenuri anulate pe tabela Gării Centrale din Köln în următoarea oră?",
@@ -336,7 +336,7 @@
       "goerlitz": {
         "q": "Unde este acum cea mai ieftină motorină în Görlitz?",
         "why": "Prețurile se schimbă de mai multe ori pe zi și diferă chiar între câteva benzinării din același oraș: ViaFrei o numește pe cea mai ieftină, cu prețul ei și ora la care benzinăria l-a raportat.",
-        "a": "Încă niciun preț nou – cel mai mic dintre ultimele cunoscute: {euro},{cent} €/l la {station}, {address}, raportat pe {reported}; ViaFrei cere acum unul nou."
+        "a": "{euro},{cent} €/l la {station}, {address} – raportat la {reported}."
       },
       "muenchen": {
         "q": "Unde este acum cea mai ieftină benzină E10 în München?",
@@ -351,7 +351,7 @@
       "nuernberg": {
         "q": "Unde e cea mai ieftină motorină în Nürnberg acum?",
         "why": "Cea mai apropiată benzinărie nu e mereu cea mai ieftină: ViaFrei dă distanța la fiecare preț.",
-        "a": "{euro},{cent} €/l la {station}, {address} – raportat la {reported}."
+        "a": "Încă niciun preț nou – cel mai mic dintre ultimele cunoscute: {euro},{cent} €/l la {station}, {address}, raportat pe {reported}; ViaFrei cere acum unul nou."
       }
     },
     "fuelAll": "Până la trei benzinării în fiecare land, cu adresă și preț",
@@ -533,7 +533,7 @@
       "fuelcity": {
         "title": "Cel mai ieftin E10 din oraș",
         "q": "Unde e acum cel mai ieftin Super E10 în Köln?",
-        "a": "{euro},{cent} €/l la {station}, {address} – raportat la {reported}.",
+        "a": "Încă niciun preț nou – cel mai mic dintre ultimele cunoscute: {euro},{cent} €/l la {station}, {address}, raportat pe {reported}; ViaFrei cere acum unul nou.",
         "note": "Prețurile carburanților se schimbă la câteva minute: cifra aceasta e un exemplu din acea după-amiază, nu prețul de azi. ViaFrei spune când a raportat stația fiecare preț."
       },
       "charger": {

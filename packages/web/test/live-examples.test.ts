@@ -127,7 +127,7 @@ describe("real answers on the connect page (#472, v1.8.1, v1.8.2)", () => {
     for (const k of ["enbw", "ecomove"] as const) {
       const e = LIVE_EXAMPLES.find((x) => x.key === k)!;
       expect(e.recheck, k).toBeUndefined();
-      expect(e.values["asOf"], k).toMatch(/^02\.11\.2026, 14:11$/);
+      expect(e.values["asOf"], k).toMatch(/^18\.11\.2026, 14:29$/);
       const vars = { ...e.values, ...namesOf(e) };
       expect(t("de", `connectPage.live.${k}.a`, vars), k).toContain(`${e.values["euro"]},${e.values["cent"]} €/kWh`);
       expect(t("en", `connectPage.live.${k}.a`, vars), k).toContain(`€${e.values["euro"]}.${e.values["cent"]}/kWh`);
@@ -136,7 +136,7 @@ describe("real answers on the connect page (#472, v1.8.1, v1.8.2)", () => {
     }
     // 2.5.4: EnBW gave no status at all and JOLT's was from the day before, and the cards say so rather than "free"
     expect(t("de", "connectPage.live.enbw.a", { ...LIVE_EXAMPLES.find((x) => x.key === "enbw")!.values })).toBe("Bis 300 kW, 0,70 €/kWh – doch für keinen der 5 Ladepunkte liegt ein Status vor, also sagt ViaFrei nicht „frei“.");
-    expect(t("de", "connectPage.live.ecomove.a", { ...LIVE_EXAMPLES.find((x) => x.key === "ecomove")!.values, site: "JOLT HH008701" })).toBe("JOLT HH008701: bis 350 kW, 0,79 €/kWh; der letzte Status stammt vom 01.11., 20:15 – zu alt, um „frei“ zu sagen.");
+    expect(t("de", "connectPage.live.ecomove.a", { ...LIVE_EXAMPLES.find((x) => x.key === "ecomove")!.values, site: "JOLT HH008701" })).toBe("JOLT HH008701: bis 350 kW, 0,79 €/kWh; der letzte Status stammt vom 15.11., 16:20 – zu alt, um „frei“ zu sagen.");
   });
 
   it("show one card per feed that went live in v1.8.12, each crediting exactly what production answered (#481, #482, #484, #485)", () => {
@@ -148,13 +148,13 @@ describe("real answers on the connect page (#472, v1.8.1, v1.8.2)", () => {
     for (const k of ["ocpdb", "lsr", "hamburg", "muenster"] as const) {
       const e = LIVE_EXAMPLES.find((x) => x.key === k)!;
       expect(e.recheck, k).toBeUndefined();
-      expect(e.values["asOf"], k).toMatch(/^02\.11\.2026, 14:\d\d$/);
+      expect(e.values["asOf"], k).toMatch(/^(?:02|18)\.11\.2026, 14:\d\d$/);
       // short cards: the page-weight budget (owner)
       for (const lang of LIVE_LANGS) expect(t(lang, `connectPage.live.${k}.a`, { ...e.values, ...namesOf(e) }).length, `${lang}: ${k}`).toBeLessThanOrEqual(170);
     }
     const vars = (k: string) => { const e = LIVE_EXAMPLES.find((x) => x.key === k)!; return { ...e.values, ...namesOf(e) }; };
     expect(t("de", "connectPage.live.ocpdb.a", vars("ocpdb"))).toBe("Ja, einer: Typ 2 bis 22 kW ist frei, der CCS-Ladepunkt bis 50 kW außer Betrieb – 0,49 €/kWh netto.");
-    expect(t("de", "connectPage.live.muenster.a", vars("muenster"))).toBe("105 von 300 Plätzen frei – dazu 4 weitere Parkhäuser in der Nähe, jedes mit seiner Belegung.");
+    expect(t("de", "connectPage.live.muenster.a", vars("muenster"))).toBe("89 von 300 Plätzen frei – dazu 4 weitere Parkhäuser in der Nähe, jedes mit seiner Belegung.");
     // the register has no live status, and says so in every language; its own Stand is quoted
     for (const lang of LIVE_LANGS) expect(t(lang, "connectPage.live.lsr.a", vars("lsr")), lang).toContain("01.09.2026");
     // CC BY 4.0 § 3(a)(1)(A)(iv): the publisher's no-warranty notice travels with every share of register data
@@ -193,7 +193,7 @@ describe("real answers on the connect page (#472, v1.8.1, v1.8.2)", () => {
     for (const k of ASKED_OF_PRODUCTION) {
       const e = LIVE_EXAMPLES.find((x) => x.key === k)!;
       expect(e.recheck, k).toBeUndefined();
-      expect(e.values["asOf"], k).toMatch(/^02\.11\.2026, \d\d:\d\d$/);
+      expect(e.values["asOf"], k).toMatch(/^(?:02|18)\.11\.2026, \d\d:\d\d$/);
     }
     // the share-alike P+R line keeps its licence in the credit, never in the copy
     expect(catalogue.credits.find((c) => c.id === "mobilithek_park_nrw_pr")?.text).toContain("CC BY-SA");
@@ -223,7 +223,7 @@ describe("real answers on the connect page (#472, v1.8.1, v1.8.2)", () => {
     for (const e of fuel) {
       expect(namesOf(e)["station"], e.key).toBeTruthy();
       expect(namesOf(e)["address"], e.key).toMatch(/\d{5} /);
-      expect(e.values["asOf"], e.key).toMatch(/^02\.11\.2026, 14:2\d$/);
+      expect(e.values["asOf"], e.key).toMatch(/^18\.11\.2026, 14:30$/);
       const vars = { ...e.values, ...namesOf(e) };
       expect(t("de", `connectPage.live.${e.key}.a`, vars), e.key).toContain(`${e.values["euro"]},${e.values["cent"]} €/l`);
       expect(t("en", `connectPage.live.${e.key}.a`, vars), e.key).toContain(`€${e.values["euro"]}.${e.values["cent"]}`);
@@ -444,8 +444,8 @@ describe("real answers on the connect page (#472, v1.8.1, v1.8.2)", () => {
     expect([...e.credits]).toEqual(["bemas_bw"]);
     expect(e.recheck).toBeUndefined();
     const a = (lang: (typeof LIVE_LANGS)[number]): string => t(lang, "connectPage.live.bwroad.a", { ...e.values, ...namesOf(e) });
-    expect(a("de")).toBe("3 von 12 Arbeitsstellen in Baden-Württemberg, etwa Stuttgart – Heilbronn: neue Fahrbahndecke vom 15.06.2025 bis 12.12.2026.");
-    expect(a("en")).toBe("3 of 12 sites are in Baden-Württemberg, e.g. Stuttgart – Heilbronn: a new road surface from 15.06.2025 to 12.12.2026.");
+    expect(a("de")).toBe("4 von 11 Arbeitsstellen in Baden-Württemberg, etwa Stuttgart – Heilbronn: neue Fahrbahndecke vom 15.06.2025 bis 12.12.2026.");
+    expect(a("en")).toBe("4 of 11 sites are in Baden-Württemberg, e.g. Stuttgart – Heilbronn: a new road surface from 15.06.2025 to 12.12.2026.");
     for (const lang of LIVE_LANGS) expect(a(lang).length, lang).toBeLessThanOrEqual(140);
     // The catalogue carries the steward's line (DL-DE BY 2.0, "bearbeitet") the card renders.
     expect(catalogue.credits.find((c) => c.id === "bemas_bw")?.text).toMatch(/Datenlizenz Deutschland – Namensnennung – Version 2\.0.*bearbeitet$/);
@@ -637,7 +637,7 @@ describe("the closure card: an A7 closure near Hamburg, re-asked of production o
     expect(card.recheck).toBeUndefined();
     expect(card.credits).toEqual(["autobahn"]);
     // 2.5.4: the Maschener Kreuz closure was gone; the answer's closure near Hamburg is a ramp on the Altonatunnel works
-    expect(card.values).toEqual({ until: "31.10.2027", end: "05:00", asOf: "02.11.2026, 14:17" });
+    expect(card.values).toEqual({ until: "31.10.2027", end: "05:00", asOf: "18.11.2026, 14:28" });
     expect(card.names).toEqual({ at: "Hamburg-Bahrenfeld", a: "HH-Volkspark", b: "HH-Othmarschen" });
     const vars = { ...card.values, ...namesOf(card) };
     expect(t("de", card.question, vars)).toBe("Ist auf der A7 bei Hamburg gerade etwas gesperrt?");
@@ -776,11 +776,11 @@ describe("the v1.8.16 cards: the Stadtbahn lifts (#487) and the shared bikes (#4
     expect(e.tool).toBe("find_sharing");
     expect([...e.credits].sort()).toEqual(["db_stada", "gbfs_donkey"]);
     expect(namesOf(e)).toEqual({ station: "Kiel Hbf", dock: "Hauptbahnhof", operator: "Donkey Republic" });
-    expect(e.values).toEqual({ free: "6", docks: "8", radius: "1", asOf: "02.11.2026, 14:09" });
+    expect(e.values).toEqual({ free: "5", docks: "8", radius: "1", asOf: "18.11.2026, 14:27" });
     expect(marks(e)).toEqual([]);
     for (const lang of LIVE_LANGS) for (const s of texts(e, lang)) expect(s, lang).not.toMatch(/K(ö|oe)ln|Cologne|Кельн|Кёльн|Кьолн/u);
     expect(answer(e, "de")).toBe(
-      "Station Hauptbahnhof von Donkey Republic: 6 Räder frei – und 8 Stationen im Umkreis von 1 km, jede mit ihrem Bestand.",
+      "Station Hauptbahnhof von Donkey Republic: 5 Räder frei – und 8 Stationen im Umkreis von 1 km, jede mit ihrem Bestand.",
     );
   });
 });

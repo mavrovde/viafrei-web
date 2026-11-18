@@ -65,7 +65,7 @@ describe("the home's moments answer EVERY question (owner 2026-10-05: \"Not only
       const i = (idx + 1) as 1 | 2 | 3;
       it(`${m.key} a${String(i)}: a response excerpt in every language, with its figures, names, date and credits`, () => {
         // asked of production on 2026-11-02 (re-asked, #746); test/example-freshness.test.ts holds every date to 14 days
-        expect(a.values.asOf, m.key).toMatch(/^02\.11\.2026, \d\d:\d\d$/);
+        expect(a.values.asOf, m.key).toMatch(/^(?:02|18)\.11\.2026, \d\d:\d\d$/);
         expect(a.credits.length).toBeGreaterThan(0);
         const live = new Set(catalogue.credits.map((c) => c.id));
         for (const id of a.credits) expect(live.has(id), `${m.key}: ${id}`).toBe(true);

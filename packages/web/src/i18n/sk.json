@@ -230,7 +230,7 @@
         "title": "Ráno do práce",
         "scene": "7:10, káva v ruke: jazdí verejná doprava normálne – a ide môj vlak?",
         "q1": "Jazdia autobusy a vlaky v Hamburgu práve načas?",
-        "a1": "{share} % jázd sledovaných za poslednú hodinu meškalo viac ako 5 minút – zhruba rovnako ako hodinu predtým ({before} %).",
+        "a1": "{share} % jázd sledovaných za poslednú hodinu meškalo viac ako 5 minút – viac ako hodinu predtým ({before} %).",
         "limit": "Presnosť ukazujeme po regiónoch, nie po linkách.",
         "q2": "Kedy ide najbližší vlak z hlavnej stanice v Hannoveri a mešká?",
         "q3": "Rušia sa na odchodovej tabuli hlavnej stanice v Kolíne nad Rýnom v najbližšej hodine nejaké vlaky?",
@@ -336,7 +336,7 @@
       "goerlitz": {
         "q": "Kde je v Görlitzi práve najlacnejšia nafta?",
         "why": "Ceny sa menia niekoľkokrát denne a líšia sa aj medzi pár čerpacími stanicami v jednom meste: ViaFrei uvedie najlacnejšiu s cenou a časom, keď ju stanica nahlásila.",
-        "a": "Zatiaľ žiadna nová cena – naposledy najlacnejšie: {euro},{cent} €/l: {station}, {address}, nahlásené {reported}; ViaFrei sa práve pýta znova."
+        "a": "{euro},{cent} €/l: {station}, {address} – nahlásené o {reported}."
       },
       "muenchen": {
         "q": "Kde je v Mníchove práve najlacnejší benzín E10?",
@@ -351,7 +351,7 @@
       "nuernberg": {
         "q": "Kde je v Norimbergu práve najlacnejšia nafta?",
         "why": "Najbližšia čerpacia stanica nie je vždy najlacnejšia: ViaFrei pri každej cene uvedie vzdialenosť.",
-        "a": "{euro},{cent} €/l: {station}, {address} – nahlásené o {reported}."
+        "a": "Zatiaľ žiadna nová cena – naposledy najlacnejšie: {euro},{cent} €/l: {station}, {address}, nahlásené {reported}; ViaFrei sa práve pýta znova."
       }
     },
     "fuelAll": "Až tri čerpacie stanice v každej spolkovej krajine, s adresou a cenou",
@@ -533,7 +533,7 @@
       "fuelcity": {
         "title": "Najlacnejší E10 v meste",
         "q": "Kde je v Kolíne nad Rýnom práve najlacnejší Super E10?",
-        "a": "{euro},{cent} €/l: {station}, {address} – nahlásené o {reported}.",
+        "a": "Zatiaľ žiadna nová cena – naposledy najlacnejšie: {euro},{cent} €/l: {station}, {address}, nahlásené {reported}; ViaFrei sa práve pýta znova.",
         "note": "Ceny palív sa menia každých pár minút: toto číslo je príklad z toho popoludnia, nie dnešná cena. ViaFrei pri každej cene uvedie, kedy ju stanica nahlásila."
       },
       "charger": {

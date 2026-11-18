@@ -230,7 +230,7 @@
         "title": "El trayecto de la mañana",
         "scene": "Las 7:10, café en mano: ¿funciona con normalidad el transporte público y llega a su hora mi tren?",
         "q1": "¿Van puntuales ahora mismo los autobuses y trenes en Hamburgo?",
-        "a1": "El {share} % de los trayectos observados en la última hora llevaban más de 5 minutos de retraso, más o menos como en la hora anterior ({before} %).",
+        "a1": "El {share} % de los trayectos observados en la última hora llevaban más de 5 minutos de retraso, más que en la hora anterior ({before} %).",
         "limit": "Indicamos la puntualidad por región, no por línea.",
         "q2": "¿Cuándo sale el próximo tren de la estación central de Hannover y lleva retraso?",
         "q3": "¿Hay trenes cancelados en el panel de salidas de la estación central de Colonia en la próxima hora?",
@@ -336,7 +336,7 @@
       "goerlitz": {
         "q": "¿Dónde está más barato el diésel en Görlitz ahora mismo?",
         "why": "Los precios cambian varias veces al día y difieren incluso entre unas pocas estaciones de una misma ciudad: ViaFrei indica la más barata con su precio y la hora en que la estación lo notificó.",
-        "a": "Todavía no hay precio nuevo; el más bajo conocido: {euro},{cent} € por litro en {station}, {address}, notificado el {reported}; ViaFrei está pidiendo uno nuevo."
+        "a": "{euro},{cent} € por litro en {station}, {address}, notificado a las {reported}."
       },
       "muenchen": {
         "q": "¿Dónde está más barata la gasolina E10 en Múnich ahora mismo?",
@@ -351,7 +351,7 @@
       "nuernberg": {
         "q": "¿Dónde está más barato el diésel en Núremberg ahora mismo?",
         "why": "La estación más cercana no siempre es la más barata: ViaFrei da la distancia con cada precio.",
-        "a": "{euro},{cent} € por litro en {station}, {address}, notificado a las {reported}."
+        "a": "Todavía no hay precio nuevo; el más bajo conocido: {euro},{cent} € por litro en {station}, {address}, notificado el {reported}; ViaFrei está pidiendo uno nuevo."
       }
     },
     "fuelAll": "Hasta tres gasolineras por estado federado, con dirección y precio",
@@ -533,7 +533,7 @@
       "fuelcity": {
         "title": "La Super E10 más barata de la ciudad",
         "q": "¿Dónde está más barata la Super E10 en Colonia ahora mismo?",
-        "a": "{euro},{cent} € por litro en {station}, {address}, notificado a las {reported}.",
+        "a": "Todavía no hay precio nuevo; el más bajo conocido: {euro},{cent} € por litro en {station}, {address}, notificado el {reported}; ViaFrei está pidiendo uno nuevo.",
         "note": "Los precios del combustible cambian cada pocos minutos: esta cifra es un ejemplo de aquella tarde, no el precio de hoy. ViaFrei dice cuándo notificó la estación cada precio que da."
       },
       "charger": {

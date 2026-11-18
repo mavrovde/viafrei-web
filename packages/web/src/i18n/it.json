@@ -230,7 +230,7 @@
         "title": "Al lavoro la mattina",
         "scene": "Le 7:10, caffè in mano: il trasporto pubblico funziona regolarmente — e il mio treno parte?",
         "q1": "Autobus e treni ad Amburgo sono puntuali in questo momento?",
-        "a1": "Il {share}% delle corse osservate nell’ultima ora aveva più di 5 minuti di ritardo — più o meno come nell’ora precedente ({before}%).",
+        "a1": "Il {share}% delle corse osservate nell’ultima ora aveva più di 5 minuti di ritardo – più che nell’ora precedente ({before}%).",
         "limit": "Mostriamo la puntualità per regione, non per linea.",
         "q2": "Quando parte il prossimo treno dalla stazione centrale di Hannover, ed è in ritardo?",
         "q3": "Ci sono treni soppressi nella prossima ora sul tabellone delle partenze della stazione centrale di Colonia?",
@@ -336,7 +336,7 @@
       "goerlitz": {
         "q": "Dove costa meno il gasolio a Görlitz in questo momento?",
         "why": "I prezzi cambiano più volte al giorno e variano anche tra pochi distributori della stessa città: ViaFrei indica il più economico con il suo prezzo e l’ora in cui il distributore l’ha comunicato.",
-        "a": "Ancora nessun prezzo nuovo — il più basso finora noto: {euro},{cent} €/l presso {station}, {address}, comunicato il {reported}; ViaFrei sta richiedendo un prezzo nuovo."
+        "a": "{euro},{cent} €/l presso {station}, {address} — comunicato alle {reported}."
       },
       "muenchen": {
         "q": "Dove costa meno la benzina E10 a Monaco di Baviera in questo momento?",
@@ -351,7 +351,7 @@
       "nuernberg": {
         "q": "Dove costa meno il gasolio a Norimberga in questo momento?",
         "why": "Il distributore più vicino non è sempre il più economico: ViaFrei indica la distanza accanto a ogni prezzo.",
-        "a": "{euro},{cent} €/l presso {station}, {address} — comunicato alle {reported}."
+        "a": "Ancora nessun prezzo nuovo — il più basso finora noto: {euro},{cent} €/l presso {station}, {address}, comunicato il {reported}; ViaFrei sta richiedendo un prezzo nuovo."
       }
     },
     "fuelAll": "Fino a tre distributori per Land, con indirizzo e prezzo",
@@ -533,7 +533,7 @@
       "fuelcity": {
         "title": "La E10 più economica in città",
         "q": "Dove costa meno la Super E10 a Colonia in questo momento?",
-        "a": "{euro},{cent} €/l presso {station}, {address} — comunicato alle {reported}.",
+        "a": "Ancora nessun prezzo nuovo — il più basso finora noto: {euro},{cent} €/l presso {station}, {address}, comunicato il {reported}; ViaFrei sta richiedendo un prezzo nuovo.",
         "note": "I prezzi dei carburanti cambiano ogni pochi minuti: questo dato è un esempio di quel pomeriggio, non il prezzo di oggi. ViaFrei indica per ogni prezzo quando il distributore l’ha comunicato."
       },
       "charger": {

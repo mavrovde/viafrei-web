@@ -230,7 +230,7 @@
         "title": "Reggeli munkába járás",
         "scene": "7:10, kávéval a kézben: rendben jár a tömegközlekedés — és pontos a vonatom?",
         "q1": "Pontosan járnak most a buszok és vonatok Hamburgban?",
-        "a1": "Az elmúlt órában megfigyelt járatok {share} %-a késett 5 percnél többet — nagyjából annyi, mint az előző órában ({before} %).",
+        "a1": "Az elmúlt órában megfigyelt járatok {share} %-a késett 5 percnél többet — több, mint az előző órában ({before} %).",
         "limit": "A pontosságot régiónként mutatjuk, nem vonalanként.",
         "q2": "Mikor indul a következő vonat a hannoveri főpályaudvarról, és késik-e?",
         "q3": "Kimarad valamelyik vonat a kölni főpályaudvar indulási tábláján a következő órában?",
@@ -336,7 +336,7 @@
       "goerlitz": {
         "q": "Hol a legolcsóbb most a dízel Görlitzben?",
         "why": "Az árak naponta többször változnak, és egy városon belül néhány kút között is eltérnek: a ViaFrei megnevezi a legolcsóbbat az árával és azzal az időponttal, amikor a kút jelentette.",
-        "a": "Még nincs új ár — a legalacsonyabb utolsó ismert: {euro},{cent} € literenként: {station}, {address}, jelentve: {reported}; a ViaFrei újat kér."
+        "a": "{euro},{cent} € literenként: {station}, {address} — jelentve: {reported}."
       },
       "muenchen": {
         "q": "Hol a legolcsóbb most az E10 benzin Münchenben?",
@@ -351,7 +351,7 @@
       "nuernberg": {
         "q": "Hol a legolcsóbb most a dízel Nürnbergben?",
         "why": "A legközelebbi kút nem mindig a legolcsóbb: a ViaFrei minden árhoz megadja a távolságot.",
-        "a": "{euro},{cent} € literenként: {station}, {address} — jelentve: {reported}."
+        "a": "Még nincs új ár — a legalacsonyabb utolsó ismert: {euro},{cent} € literenként: {station}, {address}, jelentve: {reported}; a ViaFrei újat kér."
       }
     },
     "fuelAll": "Tartományonként legfeljebb három benzinkút, címmel és árral",
@@ -533,7 +533,7 @@
       "fuelcity": {
         "title": "A legolcsóbb E10 a városban",
         "q": "Hol a legolcsóbb most a Super E10 Kölnben?",
-        "a": "{euro},{cent} € literenként: {station}, {address} — jelentve: {reported}.",
+        "a": "Még nincs új ár – utoljára a legolcsóbb: {euro},{cent} €/l, {station}, {address}, jelentve: {reported}; a ViaFrei éppen újra lekérdezi.",
         "note": "Az üzemanyagárak percenként változnak: ez a szám egy példa arról a délutánról, nem a mai ár. A ViaFrei minden árhoz megadja, mikor jelentette a kút."
       },
       "charger": {

@@ -230,7 +230,7 @@
         "title": "Sabah işe giderken",
         "scene": "07.10, elinizde kahve: toplu taşıma normal çalışıyor mu — trenim zamanında mı?",
         "q1": "Hamburg'da otobüs ve trenler şu anda zamanında mı?",
-        "a1": "Gecikme oranı % {share}: son bir saatte izlenen seferlerin bu kadarı 5 dakikadan fazla geç kaldı — bir önceki saatle aşağı yukarı aynı (% {before}).",
+        "a1": "Gecikme oranı % {share}: son bir saatte izlenen seferlerin bu kadarı 5 dakikadan fazla geç kaldı — bir önceki saatten daha fazla (% {before}).",
         "limit": "Dakikliği hat bazında değil, bölge bazında gösteriyoruz.",
         "q2": "Hannover Ana Garı'ndan bir sonraki tren ne zaman ve gecikmeli mi?",
         "q3": "Köln Ana Garı kalkış tablosunda önümüzdeki bir saatte iptal edilen tren var mı?",
@@ -336,7 +336,7 @@
       "goerlitz": {
         "q": "Görlitz'de şu anda en ucuz dizel nerede?",
         "why": "Fiyatlar günde birkaç kez değişir ve aynı şehirdeki birkaç istasyon arasında bile farklıdır: ViaFrei en ucuzunu fiyatı ve istasyonun onu bildirdiği saatle birlikte söyler.",
-        "a": "Henüz yeni fiyat yok — bilinen son fiyatların en düşüğü: {station}, {address} — litresi {euro},{cent} €, {reported} tarihinde bildirildi; ViaFrei şu anda yenisini istiyor."
+        "a": "{station}, {address} — litresi {euro},{cent} €, {reported} saatinde bildirildi."
       },
       "muenchen": {
         "q": "Münih'te şu anda en ucuz E10 benzin nerede?",
@@ -351,7 +351,7 @@
       "nuernberg": {
         "q": "Nürnberg'de şu anda en ucuz dizel nerede?",
         "why": "En yakın istasyon her zaman en ucuzu değildir: ViaFrei her fiyatla birlikte mesafeyi de verir.",
-        "a": "{station}, {address} — litresi {euro},{cent} €, {reported} saatinde bildirildi."
+        "a": "Henüz yeni fiyat yok — bilinen son fiyatların en düşüğü: {station}, {address} — litresi {euro},{cent} €, {reported} tarihinde bildirildi; ViaFrei şu anda yenisini istiyor."
       }
     },
     "fuelAll": "Her eyalette en fazla üç istasyon, adresi ve fiyatıyla",
@@ -533,7 +533,7 @@
       "fuelcity": {
         "title": "Şehirdeki en ucuz E10",
         "q": "Köln'de Super E10 şu anda en ucuz nerede?",
-        "a": "{station}, {address} — litresi {euro},{cent} €, {reported} saatinde bildirildi.",
+        "a": "Henüz yeni fiyat yok — bilinen son fiyatların en düşüğü: {station}, {address} — litresi {euro},{cent} €, {reported} tarihinde bildirildi; ViaFrei şu anda yenisini istiyor.",
         "note": "Akaryakıt fiyatları birkaç dakikada bir değişir: bu rakam o öğleden sonradan bir örnektir, bugünkü fiyat değildir. ViaFrei her fiyatın istasyon tarafından ne zaman bildirildiğini söyler."
       },
       "charger": {

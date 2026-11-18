@@ -230,7 +230,7 @@
         "title": "De manhã, a caminho do trabalho",
         "scene": "7:10, café na mão: os transportes públicos estão a funcionar normalmente — e o meu comboio circula?",
         "q1": "Os autocarros e comboios em Hamburgo estão a horas neste momento?",
-        "a1": "{share}% das viagens observadas na última hora tiveram mais de 5 minutos de atraso — mais ou menos o mesmo que na hora anterior ({before}%).",
+        "a1": "{share}% das viagens observadas na última hora tiveram mais de 5 minutos de atraso – mais do que na hora anterior ({before}%).",
         "limit": "Mostramos a pontualidade por região, não por linha.",
         "q2": "Quando parte o próximo comboio da estação central de Hanôver, e vem atrasado?",
         "q3": "Há comboios suprimidos na próxima hora no painel de partidas da estação central de Colónia?",
@@ -336,7 +336,7 @@
       "goerlitz": {
         "q": "Onde está o gasóleo mais barato em Görlitz neste momento?",
         "why": "Os preços mudam várias vezes por dia e variam até entre poucos postos da mesma cidade: o ViaFrei indica o mais barato com o seu preço e a hora a que o posto o comunicou.",
-        "a": "Ainda não há preço novo — o mais baixo conhecido: {euro},{cent} €/l em {station}, {address}, comunicado em {reported}; o ViaFrei está a pedir um novo."
+        "a": "{euro},{cent} €/l em {station}, {address} — comunicado às {reported}."
       },
       "muenchen": {
         "q": "Onde está a gasolina E10 mais barata em Munique neste momento?",
@@ -351,7 +351,7 @@
       "nuernberg": {
         "q": "Onde está o gasóleo mais barato em Nuremberga neste momento?",
         "why": "O posto mais próximo nem sempre é o mais barato: o ViaFrei indica a distância junto a cada preço.",
-        "a": "{euro},{cent} €/l em {station}, {address} — comunicado às {reported}."
+        "a": "Ainda não há preço novo — o mais baixo conhecido: {euro},{cent} €/l em {station}, {address}, comunicado em {reported}; o ViaFrei está a pedir um novo."
       }
     },
     "fuelAll": "Até três postos de combustível por estado federado, com morada e preço",
@@ -533,7 +533,7 @@
       "fuelcity": {
         "title": "A E10 mais barata da cidade",
         "q": "Onde está a Super E10 mais barata em Colónia neste momento?",
-        "a": "{euro},{cent} €/l em {station}, {address} — comunicado às {reported}.",
+        "a": "Ainda não há preço novo — o mais baixo conhecido: {euro},{cent} €/l em {station}, {address}, comunicado em {reported}; o ViaFrei está a pedir um novo.",
         "note": "Os preços dos combustíveis mudam a cada poucos minutos: este número é um exemplo dessa tarde, não o preço de hoje. O ViaFrei indica, para cada preço, quando o posto o comunicou."
       },
       "charger": {

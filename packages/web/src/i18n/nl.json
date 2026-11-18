@@ -230,7 +230,7 @@
         "title": "’s Ochtends naar het werk",
         "scene": "7.10 uur, koffie in de hand: rijdt het openbaar vervoer normaal — en rijdt mijn trein?",
         "q1": "Rijden bussen en treinen in Hamburg nu op tijd?",
-        "a1": "{share}% van de waargenomen ritten van het afgelopen uur had meer dan 5 minuten vertraging – ongeveer evenveel als het uur ervoor ({before}%).",
+        "a1": "{share}% van de waargenomen ritten van het afgelopen uur had meer dan 5 minuten vertraging – meer dan het uur ervoor ({before}%).",
         "limit": "Stiptheid tonen we per regio, niet per lijn.",
         "q2": "Wanneer vertrekt de volgende trein van Hannover Centraal, en heeft hij vertraging?",
         "q3": "Vallen er op het vertrekbord van Keulen Centraal het komende uur treinen uit?",
@@ -336,7 +336,7 @@
       "goerlitz": {
         "q": "Waar tank ik in Görlitz nu het goedkoopst diesel?",
         "why": "Prijzen veranderen meerdere keren per dag en verschillen zelfs tussen een paar tankstations in één stad: ViaFrei noemt de goedkoopste met de prijs en het tijdstip waarop het station die meldde.",
-        "a": "Nog geen nieuwe prijs – laatst bekend als goedkoopst: € {euro},{cent} per liter bij {station}, {address}, gemeld op {reported}; ViaFrei vraagt een nieuwe op."
+        "a": "€ {euro},{cent} per liter bij {station}, {address} – gemeld om {reported}."
       },
       "muenchen": {
         "q": "Waar is Euro 95 E10 in München nu het goedkoopst?",
@@ -351,7 +351,7 @@
       "nuernberg": {
         "q": "Waar is diesel in Neurenberg nu het goedkoopst?",
         "why": "Het dichtstbijzijnde tankstation is niet altijd het goedkoopste: ViaFrei geeft bij elke prijs de afstand.",
-        "a": "€ {euro},{cent} per liter bij {station}, {address} – gemeld om {reported}."
+        "a": "Nog geen nieuwe prijs – laatst bekend als goedkoopst: € {euro},{cent} per liter bij {station}, {address}, gemeld op {reported}; ViaFrei vraagt een nieuwe op."
       }
     },
     "fuelAll": "Per deelstaat tot drie tankstations met adres en prijs",
@@ -533,7 +533,7 @@
       "fuelcity": {
         "title": "De goedkoopste E10 in de stad",
         "q": "Waar is Euro 95 E10 in Keulen nu het goedkoopst?",
-        "a": "€ {euro},{cent} per liter bij {station}, {address} – gemeld om {reported}.",
+        "a": "Nog geen nieuwe prijs – laatst het goedkoopst: € {euro},{cent}/l bij {station}, {address}, gemeld op {reported}; ViaFrei vraagt een nieuwe op.",
         "note": "Brandstofprijzen veranderen om de paar minuten: dit cijfer is een voorbeeld van die middag, niet de prijs van vandaag. ViaFrei zegt bij elke prijs wanneer het station die meldde."
       },
       "charger": {

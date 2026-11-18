@@ -230,7 +230,7 @@
         "title": "Le trajet du matin",
         "scene": "7 h 10, café à la main : les transports en commun circulent-ils normalement — et mon train est-il à l’heure ?",
         "q1": "Les bus et les trains sont-ils à l’heure à Hambourg en ce moment ?",
-        "a1": "{share} % des trajets observés au cours de la dernière heure avaient plus de 5 minutes de retard — à peu près comme l’heure précédente ({before} %).",
+        "a1": "{share} % des trajets observés au cours de la dernière heure avaient plus de 5 minutes de retard — plus que l’heure précédente ({before} %).",
         "limit": "Nous indiquons la ponctualité par région, pas par ligne.",
         "q2": "Quand part le prochain train de la gare centrale de Hanovre, et a-t-il du retard ?",
         "q3": "Des trains sont-ils supprimés au tableau des départs de la gare centrale de Cologne dans l’heure qui vient ?",
@@ -336,7 +336,7 @@
       "goerlitz": {
         "q": "Où le gazole est-il le moins cher à Görlitz en ce moment ?",
         "why": "Les prix changent plusieurs fois par jour et varient même entre quelques stations d’une même ville : ViaFrei indique la moins chère avec son prix et l’heure à laquelle la station l’a signalé.",
-        "a": "Pas encore de nouveau prix — le plus bas connu : {euro},{cent} € le litre chez {station}, {address}, signalé le {reported} ; ViaFrei en demande un nouveau."
+        "a": "{euro},{cent} € le litre chez {station}, {address} — signalé à {reported}."
       },
       "muenchen": {
         "q": "Où le sans-plomb E10 est-il le moins cher à Munich en ce moment ?",
@@ -351,7 +351,7 @@
       "nuernberg": {
         "q": "Où le gazole est-il le moins cher à Nuremberg en ce moment ?",
         "why": "La station la plus proche n’est pas toujours la moins chère : ViaFrei donne la distance avec chaque prix.",
-        "a": "{euro},{cent} € le litre chez {station}, {address} — signalé à {reported}."
+        "a": "Pas encore de nouveau prix — le plus bas connu : {euro},{cent} € le litre chez {station}, {address}, signalé le {reported} ; ViaFrei en demande un nouveau."
       }
     },
     "fuelAll": "Jusqu’à trois stations-service par Land, avec adresse et prix",
@@ -533,7 +533,7 @@
       "fuelcity": {
         "title": "Le Super E10 le moins cher en ville",
         "q": "Où le Super E10 est-il le moins cher à Cologne en ce moment ?",
-        "a": "{euro},{cent} € le litre chez {station}, {address} — signalé à {reported}.",
+        "a": "Pas encore de nouveau prix — le plus bas connu : {euro},{cent} € le litre chez {station}, {address}, signalé le {reported} ; ViaFrei en demande un nouveau.",
         "note": "Les prix des carburants changent toutes les quelques minutes : ce chiffre est un exemple de cet après-midi-là, pas le prix du jour. ViaFrei indique quand la station a signalé chaque prix qu’il donne."
       },
       "charger": {

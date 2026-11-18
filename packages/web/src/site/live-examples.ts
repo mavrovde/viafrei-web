@@ -149,6 +149,12 @@
  * (in all 22 languages). Two were replaced in kind: `kiel` (the ferry's message had ended; a closure from the city of
  * Kiel's own roadworks list, the same question shape) and `platform` (no platform change on the board; a live delay).
  * `test/example-freshness.test.ts` fails a card older than 14 days against the real clock.
+ * 2026-11-18: every card ASKED OF PRODUCTION again between 14:29 and 14:31 Europe/Berlin, one call per card with
+ * `language: "de"`, every fuel question ONCE (B27: the week 23.-29.11.; A7 tomorrow: 19.11.). Cards whose sentence still
+ * holds took that day's figures and Stand (the per-card comments still quote the 02.11 answers); `fuelcity` had no
+ * current price, so it takes the "no new price" sentence. Cards the answer no longer fits keep their 02.11 values
+ * until reworded or replaced: stadtbahn, lift, ocpdb, charger, carpark, citywork, landroad, kiel, lorry, parkride,
+ * platform, weather.
  *
  * The WORDS are copy and live in the deck (`connectPage.live.*`), one per
  * language. The VALUES are figures read off one answer and are the same in
@@ -242,7 +248,7 @@ export const LIVE_EXAMPLES: readonly LiveExample[] = [
     // Kiel) — 6 Räder frei · 112 m …" — eight docks; Stand 14:09. Kiel and not Köln on purpose (data steward, #486).
     credits: ["gbfs_donkey", "db_stada"],
     names: { station: "Kiel Hbf", dock: "Hauptbahnhof", operator: "Donkey Republic" },
-    values: { free: "6", docks: "8", radius: "1", asOf: "02.11.2026, 14:09" },
+    values: { free: "5", docks: "8", radius: "1", asOf: "18.11.2026, 14:27" },
   },
   {
     key: "lift",
@@ -270,7 +276,7 @@ export const LIVE_EXAMPLES: readonly LiveExample[] = [
     // (gültig 27.07.2026 bis 12.12.2026)".
     credits: ["delfi_rt_tu", "delfi_static", "delfi_rt_sa", "delfi_siri_sx"],
     names: { a: "Lilienthal", b: "Grasberg" },
-    values: { count: "169", lines: "831, 863, 864", road: "L133", from: "27.07.2026", to: "12.12.2026", asOf: "02.11.2026, 13:58" },
+    values: { count: "163", lines: "831, 863, 864", road: "L133", from: "27.07.2026", to: "12.12.2026", asOf: "18.11.2026, 14:28" },
   },
   {
     key: "enbw",
@@ -284,7 +290,7 @@ export const LIVE_EXAMPLES: readonly LiveExample[] = [
     // the sources. Stand 14:11. Reworded: no status at all; the credits are the answer's (EnBW static, the register, OSM).
     credits: ["mobilithek_afir_enbw_stat", "bnetza_lsr", "osm"],
     names: { brand: "EnBW", address: "Schumanstraße 4, Würselen" },
-    values: { n: "5", kw: "300", euro: "0", cent: "70", asOf: "02.11.2026, 14:11" },
+    values: { n: "5", kw: "300", euro: "0", cent: "70", asOf: "18.11.2026, 14:29" },
   },
   {
     key: "ecomove",
@@ -298,7 +304,7 @@ export const LIVE_EXAMPLES: readonly LiveExample[] = [
     // The card rounds the price to the cent.
     credits: ["mobilithek_afir_ecomovement", "mobilithek_afir_ecomovement_dyn", "osm"],
     names: { site: "JOLT HH008701", address: "Schiffbeker Weg 299, Hamburg" },
-    values: { kw: "350", euro: "0", cent: "79", t: "01.11., 20:15", asOf: "02.11.2026, 14:11" },
+    values: { kw: "350", euro: "0", cent: "79", t: "15.11., 16:20", asOf: "18.11.2026, 14:29" },
   },
   {
     key: "ocpdb",
@@ -326,7 +332,7 @@ export const LIVE_EXAMPLES: readonly LiveExample[] = [
     // (one find_address call), as this answer printed no distance.
     credits: ["bnetza_lsr", "osm"],
     names: { address: "Friedrich-Ebert-Straße 51, Leipzig" },
-    values: { m: "19", kw: "22", register: "01.09.2026", asOf: "02.11.2026, 14:11" },
+    values: { m: "19", kw: "22", register: "01.09.2026", asOf: "18.11.2026, 14:29" },
   },
   {
     key: "charger",
@@ -355,7 +361,7 @@ export const LIVE_EXAMPLES: readonly LiveExample[] = [
     // ungeprüft.“ The card quotes the Alsterhaus, whose figure carries no fault flag; sources as answered.
     credits: ["hamburg_parkhaeuser", "osm", "delfi_zhv"],
     names: { stop: "Jungfernstieg", park: "Alsterhaus" },
-    values: { free: "0", total: "87", asOf: "02.11.2026, 14:07" },
+    values: { free: "8", total: "87", asOf: "18.11.2026, 14:25" },
   },
   {
     key: "hhworks",
@@ -369,7 +375,7 @@ export const LIVE_EXAMPLES: readonly LiveExample[] = [
     // 0,3 km)". Stand 14:10. Confirmed.
     credits: ["hh_bauweiser", "delfi_zhv"],
     names: { street: "Steinstraße", b: "Speersort" },
-    values: { from: "31.08.2026", to: "31.05.2028", asOf: "02.11.2026, 14:10" },
+    values: { from: "31.08.2026", to: "31.05.2028", asOf: "18.11.2026, 14:14" },
   },
   {
     key: "muenster",
@@ -382,7 +388,7 @@ export const LIVE_EXAMPLES: readonly LiveExample[] = [
     // find_parking {place: "Stubengasse, Münster", kind: "car_park"}, asked 2026-11-02 14:12: "1. Parkhaus Stubengasse — 300 Plätze,
     // 105 frei (Stand 14:09)", then four more car parks, each with its own "frei". Stand 14:09. The separate OSM list is not quoted.
     credits: ["muenster_pls", "delfi_zhv"],
-    values: { free: "105", total: "300", more: "4", asOf: "02.11.2026, 14:09" },
+    values: { free: "89", total: "300", more: "4", asOf: "18.11.2026, 14:25" },
   },
   {
     key: "carpark",
@@ -410,7 +416,7 @@ export const LIVE_EXAMPLES: readonly LiveExample[] = [
     // It replaced the BW police message (#454 C1): an Autobahn GmbH answer carries no RVWD condition.
     credits: ["autobahn", "mobilithek_roadworks_bast"],
     names: { place: "Frankenthal" },
-    values: { from: "20.03.2025", to: "30.01.2027", count: "7", asOf: "02.11.2026, 14:12" },
+    values: { from: "20.03.2025", to: "30.01.2027", count: "6", asOf: "18.11.2026, 14:28" },
   },
   {
     key: "citywork",
@@ -453,7 +459,7 @@ export const LIVE_EXAMPLES: readonly LiveExample[] = [
     // LASuV site only, so its credits are unchanged.
     credits: ["mobilithek_roadworks_ald_ni", "mobilithek_roadworks_nlstbv", "mobilithek_roadworks_ald_sn"],
     names: { place: "Cossebaude" },
-    values: { count: "8", from: "04.03.2025", to: "02.03.2027", asOf: "02.11.2026, 13:45" },
+    values: { count: "12", from: "04.03.2025", to: "02.03.2027", asOf: "18.11.2026, 12:59" },
   },
   {
     key: "bwroad",
@@ -468,7 +474,7 @@ export const LIVE_EXAMPLES: readonly LiveExample[] = [
     // der Decke, 1 von 2 Fahrstreifen eingeschränkt, 15.06.2025 bis 12.12.2026". Stand 14:10. The week asked is the coming one, as before.
     credits: ["bemas_bw"],
     names: { a: "Stuttgart", b: "Heilbronn" },
-    values: { count: "3", all: "12", from: "15.06.2025", to: "12.12.2026", asOf: "02.11.2026, 14:10" },
+    values: { count: "4", all: "11", from: "15.06.2025", to: "12.12.2026", asOf: "18.11.2026, 14:28" },
   },
   {
     key: "roadworks",
@@ -482,7 +488,7 @@ export const LIVE_EXAMPLES: readonly LiveExample[] = [
     // bis 30.09.2029 …". Stand 14:10. Confirmed.
     credits: ["mobilithek_roadworks_ald_ni", "mobilithek_roadworks_nlstbv"],
     names: { section: "BW Örtzebrücke, Unterführung der Örtze" },
-    values: { count: "5", start: "01.07.2021", end: "30.09.2029", asOf: "02.11.2026, 14:10" },
+    values: { count: "5", start: "01.07.2021", end: "30.09.2029", asOf: "18.11.2026, 14:20" },
   },
   {
     key: "kiel",
@@ -511,7 +517,7 @@ export const LIVE_EXAMPLES: readonly LiveExample[] = [
     // find_parking {lat: 53.162, lon: 10.062, kind: "truck"}, asked 2026-11-02: "1. BREAK Autohof Hamburg-Nordheide — Lkw-Parkplatz,
     // 150 Plätze, 125 frei (Stand 13:46)". Sources as answered (the Lkw-Parken BAB register for the other rows).
     credits: ["mobilithek_park_bosch_static", "mobilithek_park_bosch_dyn", "mobilithek_truckpark_static_geonutzv"],
-    values: { free: "125", total: "150", asOf: "02.11.2026, 13:46" },
+    values: { free: "135", total: "150", asOf: "18.11.2026, 14:29" },
   },
   {
     key: "lorry",
@@ -567,7 +573,7 @@ export const LIVE_EXAMPLES: readonly LiveExample[] = [
     // platform). Stand 14:21. Reworded: nine of ten, not all. The note still says where SIRI ET comes in.
     credits: ["db_timetables", "db_stada"],
     names: { station: "Frankfurt (Main) Hbf", dest: "Mannheim Hbf" },
-    values: { line: "RE60", planned: "14:34", platform: "10", n: "9", all: "10", last: "14:50", asOf: "02.11.2026, 14:21" },
+    values: { line: "RE60", planned: "14:34", platform: "10", n: "8", all: "10", last: "14:59", asOf: "18.11.2026, 14:30" },
   },
   {
     key: "region",
@@ -580,7 +586,7 @@ export const LIVE_EXAMPLES: readonly LiveExample[] = [
     // der beobachteten Fahrten mehr als 5 Minuten zu spät … Trend: schlechter als in den 60 Minuten davor (12 %)." Stand 13:58. Reworded:
     // "more than", as the tool says.
     credits: ["delfi_rt_tu"],
-    values: { share: "15", before: "12", districts: "30", asOf: "02.11.2026, 13:58" },
+    values: { share: "20", before: "16", districts: "30", asOf: "18.11.2026, 14:28" },
   },
   {
     key: "tomorrow",
@@ -595,7 +601,7 @@ export const LIVE_EXAMPLES: readonly LiveExample[] = [
     // is not among the ten shown, so the card names the bridge (the driving moment quotes it too).
     credits: ["mobilithek_roadworks_bast"],
     names: { a: "Hammelburg", b: "Bad Kissingen/Oberthulba" },
-    values: { count: "78", started: "49", km: "1", speed: "80", until: "30.09.2027", asOf: "02.11.2026, 13:58" },
+    values: { count: "78", started: "42", km: "1", speed: "80", until: "30.09.2027", asOf: "18.11.2026, 14:20" },
   },
   {
     key: "closure",
@@ -610,7 +616,7 @@ export const LIVE_EXAMPLES: readonly LiveExample[] = [
     // works section. Withdrawn by CLOSURE_CARD_EXPIRES.
     credits: ["autobahn"],
     names: { at: "Hamburg-Bahrenfeld", a: "HH-Volkspark", b: "HH-Othmarschen" },
-    values: { until: "31.10.2027", end: "05:00", asOf: "02.11.2026, 14:17" },
+    values: { until: "31.10.2027", end: "05:00", asOf: "18.11.2026, 14:28" },
   },
   {
     key: "weather",
@@ -636,8 +642,8 @@ export const LIVE_EXAMPLES: readonly LiveExample[] = [
     // find_cheapest_fuel {place: "Köln", fuel: "e10"}, asked ONCE 2026-11-02 14:22: current prices, ranked — "1. Markant (Tankautomat)
     // Automatentankstelle, Olpener Str. 27, 51103 Köln — 2,019 €/l (Stand 14:22)", tied with a JET. Reworded: a current price.
     credits: ["tankerkoenig"],
-    names: { station: "Markant (Tankautomat)", address: "Olpener Str. 27, 51103 Köln" },
-    values: { euro: "2", cent: "019", reported: "14:22", asOf: "02.11.2026, 14:22" },
+    names: { station: "TotalEnergies", address: "Holzmarkt 49, 50676 Koeln" },
+    values: { euro: "1", cent: "879", reported: "17.11., 20:34", asOf: "18.11.2026, 14:30" },
   },
   {
     key: "fuelroad",
@@ -651,7 +657,7 @@ export const LIVE_EXAMPLES: readonly LiveExample[] = [
     // (the lowest of the five, with the JET).
     credits: ["tankerkoenig"],
     names: { station: "TopTank", address: "Schweinfurter Str. 42, 97076 Würzburg" },
-    values: { euro: "2", cent: "249", reported: "31.10., 20:04", asOf: "02.11.2026, 14:23" },
+    values: { euro: "2", cent: "299", reported: "16.11., 12:46", asOf: "18.11.2026, 14:30" },
   },
   {
     key: "fuelland",
@@ -664,8 +670,8 @@ export const LIVE_EXAMPLES: readonly LiveExample[] = [
     // Karl-Kloss-Str. 18, 70199 Stuttgart — 1,999 €/l … (Preis von 02.11. 03:33) — neuer Preis wird gerade abgefragt" (the lowest, with
     // two others).
     credits: ["tankerkoenig"],
-    names: { station: "Shell", address: "Karl-Kloss-Str. 18, 70199 Stuttgart" },
-    values: { euro: "1", cent: "999", reported: "02.11., 03:33", asOf: "02.11.2026, 14:23" },
+    names: { station: "ESSO", address: "Immenhofer Str. 48, 70180 Stuttgart" },
+    values: { euro: "1", cent: "939", reported: "14.11., 13:17", asOf: "18.11.2026, 14:30" },
   },
 ];
 

@@ -230,7 +230,7 @@
         "title": "The morning commute",
         "scene": "7:10, coffee in hand: is public transport running normally — and is my train on time?",
         "q1": "Are buses and trains in Hamburg running on time right now?",
-        "a1": "{share} % of the trips observed in the last hour were more than 5 minutes late — about the same as the hour before ({before} %).",
+        "a1": "{share} % of the trips observed in the last hour were more than 5 minutes late — more than the hour before ({before} %).",
         "limit": "We show punctuality per region, not per line.",
         "q2": "When is the next train from Hanover Central Station, and is it late?",
         "q3": "Are any trains on the Cologne Central Station departure board cancelled in the next hour?",
@@ -336,7 +336,7 @@
       "goerlitz": {
         "q": "Where is diesel cheapest in Görlitz right now?",
         "why": "Prices change several times a day and differ even between a few stations in one town: ViaFrei names the cheapest with its price and the time the station reported it.",
-        "a": "No new price yet — the lowest last known: €{euro}.{cent} per litre at {station}, {address}, reported on {reported}; ViaFrei is asking for a new one."
+        "a": "€{euro}.{cent} per litre at {station}, {address} — reported at {reported}."
       },
       "muenchen": {
         "q": "Where is E10 petrol cheapest in Munich right now?",
@@ -351,7 +351,7 @@
       "nuernberg": {
         "q": "Where is diesel cheapest in Nuremberg right now?",
         "why": "The nearest station is not always the cheapest: ViaFrei gives the distance with each price.",
-        "a": "€{euro}.{cent} per litre at {station}, {address} — reported at {reported}."
+        "a": "No new price yet — the lowest last known: €{euro}.{cent} per litre at {station}, {address}, reported on {reported}; ViaFrei is asking for a new one."
       }
     },
     "fuelAll": "Up to three filling stations per state, with address and price",
@@ -533,7 +533,7 @@
       "fuelcity": {
         "title": "The cheapest E10 in town",
         "q": "Where is Super E10 cheapest in Cologne right now?",
-        "a": "€{euro}.{cent} per litre at {station}, {address} — reported at {reported}.",
+        "a": "No new price yet — the lowest last known: €{euro}.{cent} per litre at {station}, {address}, reported on {reported}; ViaFrei is asking for a new one.",
         "note": "Fuel prices change every few minutes: this figure is an example from that afternoon, not today's price. ViaFrei says when the station reported every price it gives."
       },
       "charger": {

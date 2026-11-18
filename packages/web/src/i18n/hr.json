@@ -230,7 +230,7 @@
         "title": "Jutarnji put na posao",
         "scene": "7:10, kava u ruci: vozi li javni prijevoz normalno — i vozi li moj vlak na vrijeme?",
         "q1": "Voze li autobusi i vlakovi u Hamburgu trenutačno na vrijeme?",
-        "a1": "{share} % vožnji praćenih u posljednjih sat vremena kasnilo je više od 5 minuta — otprilike kao i sat prije ({before} %).",
+        "a1": "{share} % vožnji praćenih u posljednjih sat vremena kasnilo je više od 5 minuta — više nego sat prije ({before} %).",
         "limit": "Točnost prikazujemo po regiji, a ne po liniji.",
         "q2": "Kada polazi sljedeći vlak s glavnog kolodvora u Hannoveru i kasni li?",
         "q3": "Je li neki vlak na ploči polazaka glavnog kolodvora u Kölnu otkazan u sljedećih sat vremena?",
@@ -336,7 +336,7 @@
       "goerlitz": {
         "q": "Gdje je dizel u Görlitzu trenutačno najjeftiniji?",
         "why": "Cijene se mijenjaju nekoliko puta dnevno i razlikuju se čak i među nekoliko postaja u istom gradu: ViaFrei navodi najjeftiniju s cijenom i vremenom kad ju je postaja javila.",
-        "a": "Nove cijene još nema — zadnja najniža: {euro},{cent} €/l kod {station}, {address}, javljeno {reported}; ViaFrei upravo traži novu."
+        "a": "{euro},{cent} €/l na postaji {station}, {address} — javljeno u {reported}."
       },
       "muenchen": {
         "q": "Gdje je benzin E10 u Münchenu trenutačno najjeftiniji?",
@@ -351,7 +351,7 @@
       "nuernberg": {
         "q": "Gdje je dizel u Nürnbergu trenutačno najjeftiniji?",
         "why": "Najbliža postaja nije uvijek najjeftinija: ViaFrei uz svaku cijenu navodi udaljenost.",
-        "a": "{euro},{cent} €/l na postaji {station}, {address} — javljeno u {reported}."
+        "a": "Nove cijene još nema — zadnja najniža: {euro},{cent} €/l kod {station}, {address}, javljeno {reported}; ViaFrei upravo traži novu."
       }
     },
     "fuelAll": "Do tri benzinske postaje po saveznoj zemlji, s adresom i cijenom",
@@ -533,7 +533,7 @@
       "fuelcity": {
         "title": "Najjeftiniji E10 u gradu",
         "q": "Gdje je Super E10 u Kölnu trenutačno najjeftiniji?",
-        "a": "{euro},{cent} €/l na postaji {station}, {address} — javljeno u {reported}.",
+        "a": "Nove cijene još nema — zadnja najniža: {euro},{cent} €/l kod {station}, {address}, javljeno {reported}; ViaFrei upravo traži novu.",
         "note": "Cijene goriva mijenjaju se svakih nekoliko minuta: ova je brojka primjer od tog poslijepodneva, a ne današnja cijena. ViaFrei za svaku cijenu kaže kad ju je postaja javila."
       },
       "charger": {
