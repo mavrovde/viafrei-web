@@ -1,5 +1,17 @@
 # Changelog
 
+## [0.2.2](https://github.com/mavrovde/viafrei-web/compare/v0.2.1...v0.2.2) (2026-11-25)
+
+
+### Dependencies
+
+* Bump minimatch, eslint and typescript-eslint ([#42](https://github.com/mavrovde/viafrei-web/issues/42)) ([c402246](https://github.com/mavrovde/viafrei-web/commit/c4022464bba8ce26048062dbc1d8635fb888cc11))
+
+
+### Documentation
+
+* **privacy:** fuel refresh requests stored by municipality key only, 30 days ([#35](https://github.com/mavrovde/viafrei-web/issues/35)) ([ed00cb4](https://github.com/mavrovde/viafrei-web/commit/ed00cb463af82dab8cfc0808ce70765041e80f54))
+
 ## [0.2.1](https://github.com/mavrovde/viafrei-web/compare/v0.2.0...v0.2.1) (2026-11-18)
 
 
