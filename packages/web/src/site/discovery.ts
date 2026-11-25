@@ -331,7 +331,7 @@ function llmsBody(full: boolean, now: Date = new Date()): string {
       ...catalogue.tools.map((x) => `- \`${x.name}\` — ${x.title}: ${x.description}`),
       "",
       // 2.1.17 (#716): every motorway page of the register, both addresses — the list the motorway sitemaps are made of (`MOTORWAY_REGISTER`), so the two cannot drift. URLs only (steward M27: no data here).
-      `## Motorway pages (${MOTORWAY_REGISTER.length}, English and German; ${String(LIVE_LANGS.length - 2)} more languages each, see the sitemaps)`,
+      `## Motorway pages (${MOTORWAY_REGISTER.length}, English and German; ${String(LIVE_LANGS.length - 2)} more languages each, linked from every page; the sitemaps list English and German)`,
       "",
       ...motorwayLines(),
       "",

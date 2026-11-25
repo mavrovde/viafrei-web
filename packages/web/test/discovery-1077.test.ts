@@ -78,7 +78,7 @@ describe("#1077 (2) current: no number typed beside what it counts", () => {
     });
   }
   it("llms-full.txt counts the other languages from the language list", () => {
-    expect(llmsFullTxt()).toContain(`English and German; ${String(LIVE_LANGS.length - 2)} more languages each`);
+    expect(llmsFullTxt()).toContain(`English and German; ${String(LIVE_LANGS.length - 2)} more languages each, linked from every page; the sitemaps list English and German`);
   });
   it("the place sitemap threshold is the digest's", () => {
     expect(PLACE_SITEMAP_MIN_POPULATION).toBe(PLACE_PAGE_MIN_POPULATION);
