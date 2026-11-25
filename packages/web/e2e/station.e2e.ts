@@ -16,7 +16,7 @@ import { all, text as nodeText } from "@viafrei/design/testing";
 import { DEFAULT_LANG, LIVE_LANGS, pathFor } from "../src/site/pages.js";
 import { placePath } from "../src/site/places.js";
 import { stationPath } from "../src/site/stations.js";
-import { stationsSitemap } from "../src/site/sitemaps.js";
+import { isSitemapLang, stationsSitemap } from "../src/site/sitemaps.js";
 import { startRealDigest } from "./real-digest.js";
 import { startShell } from "./server.js";
 
@@ -134,11 +134,19 @@ describe("the station catalogue (#1041)", () => {
 });
 
 describe("the station sitemaps (#1041)", () => {
-  it("each language's file lists every station page (address and lastmod; the alternates are in the head); robots.txt names every file", async () => {
+  it("the de and en files list every station page (address and lastmod; the alternates are in the head); robots.txt names them alone", async () => {
     const robots = (await get("/robots.txt")).body;
+    const index = (await get("/sitemap-index.xml")).body;
     for (const lang of LIVE_LANGS) {
       const r = await get(stationsSitemap(lang));
-      expect(r.status).toBe(200);
+      if (!isSitemapLang(lang)) {
+        // #49: a language other than de and en has no sitemap, and no index or robots.txt line names one
+        expect(r.status, lang).toBe(404);
+        expect(robots, lang).not.toContain(stationsSitemap(lang));
+        expect(index, lang).not.toContain(stationsSitemap(lang));
+        continue;
+      }
+      expect(r.status, lang).toBe(200);
       const locs = all(r.body, "url loc").map((e) => nodeText(e));
       expect(locs).toContain(`https://viafrei.de${stationPath(lang, "koeln-hbf")}`);
       expect(locs).toContain(`https://viafrei.de${stationPath(lang, "bonn-hbf")}`);

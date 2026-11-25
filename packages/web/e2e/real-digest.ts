@@ -1862,9 +1862,9 @@ function stateDeps(): { readonly states: ReturnType<typeof createStateService> }
 import { autohofEnergy } from "./energy-autohof.js";
 
 // #1190: every other digest serves the place pages' OWN charging world — a page for each site of `CHARGING_SITES` (the
-// sites the Köln charging card links, by the card's own slug rule) and the sitemap list of them — so the charging
-// sitemap answers 200 and no place page links a charging page that answers 404 (before 2.5.15 only the Autohof digest
-// held a page service, and the crawl met three 404s from Köln's card).
+// sites the Köln charging card links, by the card's own slug rule) — so no place page links a charging page that
+// answers 404 (before 2.5.15 only the Autohof digest held a page service, and the crawl met three 404s from Köln's
+// card). Since #49 no sitemap lists the charging pages; they are reached through the place pages' links.
 function energyDeps(kind: "autohof" | undefined): { readonly energy: EnergyPageService } {
   return { energy: kind === "autohof" ? autohofEnergy(() => NOW) : placeChargingEnergy() };
 }

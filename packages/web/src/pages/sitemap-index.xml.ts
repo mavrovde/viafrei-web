@@ -2,7 +2,7 @@
  * `/sitemap-index.xml` (#715, 2.1.13): every sitemap of the site with its real lastmod (`site/sitemaps.ts`). Since
  * #1025 the exit files' lastmod is the newest day of the exit register, read with the sitemaps' deadline; a register
  * that does not answer leaves them the exit template's day; the station files' (#1041) likewise from the station list.
- * Since #49 it names the indexable languages' files only (de, en: `site/indexable.ts`) and no charging part file.
+ * Since #49 it names the indexable languages' files only (de, en: `SITEMAP_LANGS` in `site/sitemaps.ts`) and no charging part file.
  */
 import type { APIRoute } from "astro";
 import { readEnv } from "../lib/env.js";

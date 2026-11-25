@@ -16,6 +16,7 @@ import { afterAll, beforeAll, describe, expect, it } from "vitest";
 import { TITLE_MAX, DESCRIPTION_MAX, motorwayMeta } from "../src/site/meta.js";
 import { LCL_CREDIT } from "../src/site/lcl-credit.js";
 import { LIVE_LANGS } from "../src/site/pages.js";
+import { isSitemapLang, SITEMAP_LANGS } from "../src/site/sitemaps.js";
 import { firstScreen } from "./first-screen.js";
 import { startRealDigest } from "./real-digest.js";
 import { startShell } from "./server.js";
@@ -188,13 +189,20 @@ describe("the exit sitemaps (#1025)", () => {
       await early.close();
     }
   });
-  it("the index and robots.txt name every exit file", async () => {
+  it("the index and robots.txt name the de and en exit files alone; another language's file answers 404", async () => {
     const idx = await get("/sitemap-index.xml");
     const robots = await get("/robots.txt");
     expect(idx.status).toBe(200);
-    for (const l of LIVE_LANGS) {
+    for (const l of SITEMAP_LANGS) {
+      expect((await get(`/sitemap-exits-${l}.xml`)).status, l).toBe(200);
       expect(idx.body, l).toContain(`<loc>${ORIGIN}/sitemap-exits-${l}.xml</loc>`);
       expect(robots.body, l).toContain(`Sitemap: ${ORIGIN}/sitemap-exits-${l}.xml\n`);
+    }
+    // #49: a language other than de and en has no sitemap
+    for (const l of LIVE_LANGS.filter((x) => !isSitemapLang(x))) {
+      expect((await get(`/sitemap-exits-${l}.xml`)).status, l).toBe(404);
+      expect(idx.body, l).not.toContain(`/sitemap-exits-${l}.xml`);
+      expect(robots.body, l).not.toContain(`/sitemap-exits-${l}.xml`);
     }
   });
 });
