@@ -244,7 +244,10 @@ describe("the sitemap between cuts (#934 C1, C2, A4)", () => {
     const urls = xml.match(/<url>/g)?.length ?? 0;
     expect(urls).toBeGreaterThan(0);
     expect(xml.match(/<\/loc><lastmod>\d{4}-\d{2}-\d{2}<\/lastmod>/g)?.length).toBe(urls);
-    expect(xml).toContain("/tr/fuel</loc><lastmod>2026-10-30</lastmod>");
+    // #49: /sitemap.xml lists de and en alone, so the new row is read through an English one
+    expect(xml).not.toContain("<loc>https://viafrei.de/tr/fuel</loc>");
+    const rowsEn = without(committed!.pages, "fuel:en");
+    expect(sitemapXml((p, l) => lastmodFrom(rowsEn, p, l, () => "2026-10-30"))).toContain("/en/fuel</loc><lastmod>2026-10-30</lastmod>");
   });
 
   it("a row whose page has gone is in no sitemap meanwhile, and the next cut drops it", () => {

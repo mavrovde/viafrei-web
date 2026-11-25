@@ -84,7 +84,8 @@ describe("#1077 (4) the served robots.txt: every sitemap answers, in every live 
     expect(r.status).toBe(200);
     const named = r.body.split("\n").filter((l) => l.startsWith("Sitemap: ")).map((l) => l.slice("Sitemap: ".length));
     expect([...named].sort()).toEqual(ALL_SITEMAPS.map((p) => `${SITE_ORIGIN}${p}`).sort());
-    for (const l of LIVE_LANGS) for (const kind of ["places", "motorways", "exits", "stations"]) expect(named, `${kind} ${l}`).toContain(`${SITE_ORIGIN}/sitemap-${kind}-${l}.xml`);
+    // #49: de and en only — every other language has no sitemap
+    for (const l of LIVE_LANGS) for (const kind of ["places", "motorways", "exits", "stations"]) expect(named.includes(`${SITE_ORIGIN}/sitemap-${kind}-${l}.xml`), `${kind} ${l}`).toBe(l === "de" || l === "en");
     for (const u of named) {
       const s = await get(new URL(u).pathname);
       expect(s.status, u).toBe(200);

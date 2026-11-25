@@ -1,24 +1,22 @@
 /**
  * #1076: the fuel station and charging site pages in the shell — the address rule, the resolver (page / 301 / 404 /
- * 503), the head read off the fragment, the person-gated prices (a crawler never asks a refresh), the charging sitemaps
- * (the part bound, under 1 MB, 503 never an empty urlset; no fuel sitemap, #1167 S1) and the robots rule (the fuel
+ * 503), the head read off the fragment, the person-gated prices (a crawler never asks a refresh), no energy sitemap
+ * (#49 A: the charging part files retired; no fuel sitemap, #1167 S1) and the robots rule (the fuel
  * pages off the corpus crawlers, the charging pages not). Every digest answer is a stub: no network, no live provider.
  */
 import { describe, expect, it } from "vitest";
 import { canonicalPageSlugs, fuelPageKeyedSlug, chargingPageKeyedSlug, energyPagePath, pageKeyOf, ROUTE_WORDS as INGEST_WORDS } from "@viafrei/ingest";
-import { ENERGY_KEY_LEN, ENERGY_PARTS_MAX, ENERGY_SITEMAP_PART, energyIndexSitemap, energyPartSitemap, energyPath, isEnergySlug } from "../src/site/energy.js";
-import { ENERGY_PAGE_SHAPE, energyHeadOf, fetchEnergyList, resolveEnergyPage } from "../src/lib/energy-page.js";
+import { readdirSync } from "node:fs";
+import { dirname, join } from "node:path";
+import { fileURLToPath } from "node:url";
+import { ENERGY_KEY_LEN, energyPath, isEnergySlug } from "../src/site/energy.js";
+import { ENERGY_PAGE_SHAPE, energyHeadOf, resolveEnergyPage } from "../src/lib/energy-page.js";
 import { FUEL_STATION_PATH, FUEL_STATION_ROOT, fuelStationRoute, fuelStationScript, stationPersonAsks } from "../src/lib/fuel-station.js";
-import { energyIndexRoute, energyPartRoute } from "../src/lib/energy-sitemaps.js";
-import { clearHeldSitemaps } from "../src/lib/sitemap-held.js";
-import { DEGRADED_HEADER } from "../src/lib/degraded.js";
-import { ALL_SITEMAPS, energyPartFiles, energyPartXml, indexFiles } from "../src/site/sitemaps.js";
+import { ALL_SITEMAPS, indexFiles } from "../src/site/sitemaps.js";
 import { CORPUS_CRAWLERS, CORPUS_DISALLOW, FRAGMENT_DISALLOW, robotsTxt } from "../src/site/discovery.js";
 import { energyJsonLd } from "../src/site/structured-data.js";
 import { LIVE_LANGS } from "../src/site/pages.js";
 
-/** A sitemap's entries as [loc, lastmod] pairs (lastmod "" in an index). */
-const locs = (xml: string): string[][] => [...xml.matchAll(/<loc>([^<]*)<\/loc>(?:<lastmod>([^<]*)<\/lastmod>)?/g)].map((m) => [m[1] ?? "", m[2] ?? ""]);
 import type { FetchLike } from "../src/lib/tiles.js";
 import type { PostLike } from "../src/lib/fuel-refresh.js";
 
@@ -216,77 +214,16 @@ describe("#1076 the prices of one station: a person's view only (PF2/PF3), and a
   });
 });
 
-describe("#1076 the sitemaps: per kind, per language, per part — each far under 1 MB, never an empty answer", () => {
-  const longest = (i: number): string => `${"x".repeat(80 - ENERGY_KEY_LEN - 1 - 6)}${String(i).padStart(6, "0")}-abcdefghij`;
-  it("a full part of the longest slugs in the longest language prefix is under 1 MB", () => {
-    const entries = Array.from({ length: ENERGY_SITEMAP_PART }, (_, i) => ({ slug: longest(i), day: "2026-11-02" }));
-    const xml = energyPartXml("charging", "de", entries);
-    expect(Buffer.byteLength(xml, "utf8")).toBeLessThan(1_000_000);
-    expect(xml.match(/<url>/g)).toHaveLength(ENERGY_SITEMAP_PART);
-    expect(xml).not.toContain("hreflang");
+describe("#49 A: no energy sitemap — the charging part files are retired, the pages stay", () => {
+  it("robots.txt and every index name no charging (and no fuel) sitemap; the charging sitemap routes are gone", () => {
+    const named = [...ALL_SITEMAPS, ...indexFiles("2026-11-01", "2026-11-01", "2026-11-01", "2026-11-01").map((f) => f.path)];
+    expect(named.filter((p) => /charging|fuel/.test(p))).toEqual([]);
+    expect(robotsTxt()).not.toMatch(/^Sitemap: .*(charging|fuel)/mu);
+    const routes = readdirSync(join(dirname(fileURLToPath(import.meta.url)), "..", "src", "pages"));
+    expect(routes.filter((f) => /^sitemap-(charging|fuel)/.test(f))).toEqual([]);
   });
-  const list = (total: number, n: number, extra: Record<string, string> = {}) => (): Answer => ({
-    type: "text/plain; charset=utf-8",
-    headers: { "energy-pages": String(total), "energy-parts": String(Math.ceil(total / ENERGY_SITEMAP_PART)), ...extra },
-    body: Array.from({ length: n }, (_, i) => `st-${String(i)}-abcdefghij\t2026-11-0${String((i % 9) + 1)}\n`).join(""),
-  });
-  it("a part is read with its bound; a longer one, a bad line or headers that do not add up are no answer", async () => {
-    const o = (f: FetchLike) => ({ baseUrl: BASE, timeoutMs: 500, fetchImpl: f });
-    const ok = await fetchEnergyList("charging", 1, o(digest(list(7000, ENERGY_SITEMAP_PART))));
-    expect(ok?.parts).toBe(2);
-    expect(ok?.entries).toHaveLength(ENERGY_SITEMAP_PART);
-    expect(await fetchEnergyList("charging", 1, o(digest(list(7000, ENERGY_SITEMAP_PART + 1))))).toBeNull();
-    expect(await fetchEnergyList("charging", 1, o(digest(list(7000, 3, { "energy-parts": "3" }))))).toBeNull();
-    expect(await fetchEnergyList("charging", 1, o(digest(() => ({ type: "text/plain", headers: { "energy-pages": "1", "energy-parts": "1" }, body: "Not A Slug\t2026-11-02\n" }))))).toBeNull();
-    expect(await fetchEnergyList("charging", 1, o(digest(list(7000, 0))))).toBeNull();
-    expect(await fetchEnergyList("charging", 0, o(digest(list(7000, 5))))).toBeNull();
-    // more parts than the index may name (50 x 5 000): no answer, though the headers add up
-    expect(await fetchEnergyList("charging", 1, o(digest(list(ENERGY_PARTS_MAX * ENERGY_SITEMAP_PART, 5))))).not.toBeNull();
-    expect(await fetchEnergyList("charging", 1, o(digest(list(ENERGY_PARTS_MAX * ENERGY_SITEMAP_PART + 1, 5))))).toBeNull();
-  });
-  it("a part route: the urlset; past the count a 404; the digest not answering a 503, never an empty urlset", async () => {
-    const res = await energyPartRoute("charging", "en", "1", { baseUrl: BASE, fetchImpl: digest(list(12, 12)) });
-    expect(res.status).toBe(200);
-    const xml = await res.text();
-    expect(xml.match(/<url>/g)).toHaveLength(12);
-    expect(locs(xml)).toContainEqual(["https://viafrei.de/en/charging/st-0-abcdefghij", "2026-11-01"]);
-    expect((await energyPartRoute("charging", "en", "2", { baseUrl: BASE, fetchImpl: digest(() => ({ type: "text/plain", headers: { "energy-pages": "12", "energy-parts": "1" }, body: "" })) })).status).toBe(404);
-    // #1205: the digest not answering serves the list this process last built for that address (a 200, degraded) …
-    const held = await energyPartRoute("charging", "en", "1", { baseUrl: BASE, fetchImpl: digest(() => ({ status: 500 })) });
-    expect(held.status).toBe(200);
-    expect(held.headers.get(DEGRADED_HEADER)).toBe("1");
-    expect(await held.text()).toBe(xml);
-    // … and with nothing held, the 503 — never an empty urlset
-    clearHeldSitemaps();
-    expect((await energyPartRoute("charging", "en", "1", { baseUrl: BASE, fetchImpl: digest(() => ({ status: 500 })) })).status).toBe(503);
-    for (const [l, p] of [["xx", "1"], ["en", "0"], ["en", "01"], ["en", "51"], ["en", "x"]] as const) expect((await energyPartRoute("charging", l, p, { baseUrl: BASE, fetchImpl: digest(list(1, 1)) })).status, `${l} ${p}`).toBe(404);
-  });
-  it("the charging index names every part in every language; the site index names them too; robots.txt names the index", async () => {
-    const res = await energyIndexRoute("charging", { baseUrl: BASE, fetchImpl: digest(list(12_001, ENERGY_SITEMAP_PART)) });
-    const xml = await res.text();
-    expect(xml.match(/<sitemap>/g)).toHaveLength(3 * LIVE_LANGS.length);
-    expect(locs(xml).map(([loc]) => loc)).toContain(`https://viafrei.de${energyPartSitemap("charging", "de", 3)}`);
-    expect(xml).not.toContain(energyPartSitemap("charging", "de", 4));
-    expect((await energyIndexRoute("charging", { baseUrl: BASE, fetchImpl: digest(() => ({ status: 503 })) })).status, "held from the build above").toBe(200);
-    clearHeldSitemaps();
-    expect((await energyIndexRoute("charging", { baseUrl: BASE, fetchImpl: digest(() => ({ status: 503 })) })).status).toBe(503);
-    expect(energyPartFiles("charging", 2)).toHaveLength(2 * LIVE_LANGS.length);
-    expect(energyPartFiles("charging", 1000)).toHaveLength(50 * LIVE_LANGS.length);
-    const paths = indexFiles(null, null, null, null, { charging: 2 }).map((f) => f.path);
-    for (const l of LIVE_LANGS) {
-      expect(paths).toContain(energyPartSitemap("charging", l, 2));
-      expect(paths).not.toContain(energyPartSitemap("charging", l, 3));
-    }
-    expect(indexFiles().map((f) => f.path).some((p) => /fuel|charging/.test(p))).toBe(false);
-    expect(ALL_SITEMAPS).toContain(energyIndexSitemap("charging"));
-    expect(robotsTxt()).toContain(`Sitemap: https://viafrei.de${energyIndexSitemap("charging")}\n`);
-  });
-  it("#1167 S1: no fuel sitemap — the site index names no fuel part however the digest counts, robots.txt names none", () => {
-    // a stray `fuel` count (the pre-#1167 shape of the call) is not a fuel part either
-    const paths = indexFiles(null, null, null, null, { charging: 2, ...({ fuel: 3 } as object) }).map((f) => f.path);
-    expect(paths.filter((p) => p.includes("fuel"))).toEqual([]);
-    expect(ALL_SITEMAPS.filter((p) => p.includes("fuel"))).toEqual([]);
-    expect(robotsTxt()).not.toMatch(/^Sitemap: .*fuel/mu);
+  it("a charging site's page still has its address in every language", () => {
+    for (const l of LIVE_LANGS) expect(energyPath("charging", l, SLUG)).toBe(`/${l}/charging/${SLUG}`);
   });
 });
 

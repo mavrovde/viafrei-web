@@ -18,8 +18,7 @@
  * person-gated `/fragment/fuel-station` fills (`lib/fuel-station.ts`).
  */
 import type { Lang } from "../site/pages.js";
-import { ENERGY_PARTS_MAX, ENERGY_SITEMAP_PART, energyPath, isEnergySlug, type EnergyKind, type SitemapEnergyKind } from "../site/energy.js";
-import { isSlug } from "../site/slug.js";
+import { energyPath, isEnergySlug, type EnergyKind } from "../site/energy.js";
 import { logFragmentFailure } from "./log.js";
 import { mapQuery, type FetchLike, type TileFetchOptions } from "./tiles.js";
 import { digestFetch } from "./agent-class.js";
@@ -28,8 +27,6 @@ import { fetchArea, type ObjectArea } from "./object-area.js";
 
 export const ENERGY_HEAD_TITLE_LIMIT = 140;
 export const ENERGY_HEAD_DESCRIPTION_LIMIT = 300;
-/** A sitemap part's read: at most 5 000 lines from an indexed read the digest caches. */
-export const ENERGY_LIST_TIMEOUT_MS = 2_000;
 
 export const ENERGY_PAGE_SHAPE = /^<section class="energypage energypage--(fuel|charging)" id="energypage"([^>]*)>/;
 
@@ -134,40 +131,4 @@ export async function resolveEnergyPage(kind: EnergyKind, lang: Lang, raw: strin
   if (r.kind === "failed") return { kind: "unavailable" };
   if (r.kind === "moved") return { kind: "redirect", to: energyPath(kind, lang, r.slug) };
   return { kind: "page", slug: raw, path: energyPath(kind, lang, raw), head: energyHeadOf(r.html, kind, raw), area };
-}
-
-export type EnergyListEntry = { readonly slug: string; readonly day: string | null };
-export type EnergyList = { readonly total: number; readonly parts: number; readonly entries: readonly EnergyListEntry[] };
-
-/**
- * One sitemap part (the digest's `slug<TAB>YYYY-MM-DD` lines, the day empty when unknown) with its total and part
- * count. Null when the digest does not answer, or answers anything but that shape — a line that is not one, a part
- * longer than the bound, or headers that do not add up are a failed read, never a shorter list.
- */
-export async function fetchEnergyList(kind: SitemapEnergyKind, part: number, o: TileFetchOptions): Promise<EnergyList | null> {
-  if (!Number.isInteger(part) || part < 1 || part > ENERGY_PARTS_MAX) return null;
-  const fetchImpl: FetchLike = o.fetchImpl ?? ((u, init) => digestFetch(u, init));
-  const controller = new AbortController();
-  const timer = setTimeout(() => controller.abort(), o.timeoutMs);
-  try {
-    const res = await fetchImpl(`${o.baseUrl}/internal/${kind}/list?part=${String(part)}`, { signal: controller.signal, headers: { accept: "text/plain" } });
-    if (res.status !== 200 || !(res.headers.get("content-type") ?? "").startsWith("text/plain")) return null;
-    const total = Number(res.headers.get("energy-pages"));
-    const parts = Number(res.headers.get("energy-parts"));
-    if (!Number.isInteger(total) || total < 0 || !Number.isInteger(parts) || parts < 0 || parts > ENERGY_PARTS_MAX || parts !== Math.ceil(total / ENERGY_SITEMAP_PART)) return null;
-    const entries: EnergyListEntry[] = [];
-    for (const l of (await res.text()).split("\n").filter((x) => x !== "")) {
-      const m = /^([a-z0-9-]{1,80})\t(\d{4}-\d{2}-\d{2})?$/.exec(l);
-      if (m === null || !isSlug(m[1]!) || !isEnergySlug(m[1]!)) return null;
-      entries.push({ slug: m[1]!, day: m[2] ?? null });
-    }
-    // the count and the part are two reads, so a station added between them may shift a line; a part longer than
-    // the bound, or an empty part inside the count, is still no answer
-    if (entries.length > ENERGY_SITEMAP_PART || (part <= parts && entries.length === 0)) return null;
-    return { total, parts, entries };
-  } catch {
-    return null;
-  } finally {
-    clearTimeout(timer);
-  }
 }

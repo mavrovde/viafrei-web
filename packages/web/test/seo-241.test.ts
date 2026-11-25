@@ -61,9 +61,10 @@ describe("the exit sitemaps (#1025)", () => {
     expect(exitsLangXml("de", [{ road: "A7", slug: "exit-1-x", day: "2026-01-01" }], "2026-10-20")).toContain("<lastmod>2026-10-20</lastmod>");
     expect(exitsLangXml("de", [])).toMatch(/<urlset[^>]*><\/urlset>\n$/);
   });
-  it("the index names the 22 exit files with the register's newest day, or the template's when the register did not answer", () => {
+  it("the index names the de and en exit files (#49) with the register's newest day, or the template's when the register did not answer", () => {
     const files = indexFiles("2099-01-01");
-    for (const l of LIVE_LANGS) {
+    expect(files.filter((f) => f.path.startsWith("/sitemap-exits-")).map((f) => f.path)).toEqual(["de", "en"].map((l) => exitsSitemap(l as Lang)));
+    for (const l of ["de", "en"] as const) {
       expect(files.find((f) => f.path === exitsSitemap(l))?.lastmod, l).toBe("2099-01-01");
       expect(indexFiles(null).find((f) => f.path === exitsSitemap(l))?.lastmod, l).toBe(lastmodOf("motorway", l));
     }
