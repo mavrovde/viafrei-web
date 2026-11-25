@@ -117,7 +117,7 @@ line above:
 | `packages/web/test/place-fuel-1065.test.ts` | cross-repo | 1 | the edge's answers on the route — viafrei-infra's configuration |
 | `packages/web/test/privacy-errors.test.ts` | cross-repo | 5 | the error collector, its timer, the deploy and the backup — viafrei-infra's configuration |
 | `packages/web/test/privacy-location.test.ts` | cross-repo | 1 | the edge's access-log switch for /fragment/spot — viafrei-infra's configuration |
-| `packages/web/test/privacy-status.test.ts` | cross-repo | 2 | the public smoke, the backup and rollup jobs — viafrei-infra's configuration |
+| `packages/web/test/privacy-status.test.ts` | cross-repo | 1 | the backup and rollup jobs (the status page's public smoke is retired with the page) — viafrei-infra's configuration |
 | `packages/web/test/privacy-visitors.test.ts` | cross-repo | 1 | the log rotation and its deploy gate — viafrei-infra's configuration |
 | `packages/web/test/slug.test.ts` | cross-repo | 1 | a byte-identical copy of an ingest source file |
 | `packages/web/test/station-near-1182.test.ts` | cross-repo | 2 | the edge's access-log format — viafrei-infra's configuration |

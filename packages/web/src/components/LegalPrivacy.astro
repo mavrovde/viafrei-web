@@ -73,15 +73,15 @@
  * cutover, which runs deploy → edge gate → proxy in one sitting (#1267).
  * Its scope since the new host's cutover (#1233, #1235 S4 bullet 4; data-steward
  * ruling of 2026-11-11, DPA v6.4 re-read that day — Annex 1 covers end users of
- * "domains, networks, websites, and APIs"): ALL five names (apex, www, mcp,
- * admin, status) are proxied, each origin site requires Cloudflare's
+ * "domains, networks, websites, and APIs"): ALL names (apex, www, mcp; admin
+ * and status until they were retired on 2026-11-18) are proxied, each origin site requires Cloudflare's
  * Authenticated Origin Pulls client certificate from our own CA
  * (the edge runbook, decision 2026-11-10), mail stays DNS-only, so
  * no name bypasses Cloudflare and the objection paragraph offers no bypass.
  * This wording is true only from that cutover (branch
- * wip/2.6-privacy-cutover); the "nicht zwischengespeichert" sentence for mcp,
- * status and admin is true only while the zone's cache-bypass rules for those
- * hosts and paths hold (the edge zone check after the cutover).
+ * wip/2.6-privacy-cutover); the "nicht zwischengespeichert" sentence for mcp
+ * is true only while the zone's cache-bypass rule for that host and its paths
+ * holds (the edge zone check after the cutover).
  * Section 2's host paragraphs (#1235, data-steward ruling S4 on #1232's copy
  * set, 2026-11-10): Hetzner Online GmbH as the Art. 28 processor, true since
  * the AVV concluded in Robot on 2026-11-10 (#1276), the data centre read off
@@ -137,8 +137,8 @@ const motorwayAround = motorwayAroundOn();
 
   <h3 id="cloudflare">Auslieferung über Cloudflare</h3>
   <p>
-    Alle Adressen dieses Angebots – die Website viafrei.de und www.viafrei.de, den MCP-Endpunkt mcp.viafrei.de, die Statusseite status.viafrei.de und die
-    Betriebskonsole admin.viafrei.de – leiten wir über das Netz der Cloudflare, Inc., 101 Townsend St., San Francisco, CA 94107, USA („Cloudflare“).
+    Alle Adressen dieses Angebots – die Website viafrei.de und www.viafrei.de sowie den MCP-Endpunkt mcp.viafrei.de – leiten wir über das Netz der
+    Cloudflare, Inc., 101 Townsend St., San Francisco, CA 94107, USA („Cloudflare“).
     Cloudflare steht als Reverse-Proxy und Content-Delivery-Netz zwischen dem anfragenden Gerät und unserem Server: Ihr Browser oder das Programm, das unsere
     Werkzeuge abfragt, verbindet sich mit einem Rechenzentrum von Cloudflare, in der Regel einem in seiner Nähe; dort endet die verschlüsselte Verbindung, und
     Cloudflare leitet die Anfrage über eine neue, ebenfalls verschlüsselte Verbindung an unseren Server weiter und dessen Antwort zurück. Unser Server nimmt
@@ -171,14 +171,11 @@ const motorwayAround = motorwayAroundOn();
     <li>die Antwort unseres Servers.</li>
   </ul>
   <p>
-    Das gilt auch für Anfragen an die Statusseite und die Betriebskonsole: Cloudflare erhält sie, bevor unser Server prüft, ob sie von einer zugelassenen
-    Adresse kommen, also auch die, die unser Server danach ohne Inhalt abweist (Punkt 3).
     Zum Schutz vor automatisierten Zugriffen bewertet Cloudflare anhand dieser Angaben, ob eine Anfrage von einem Menschen oder von einem Programm stammt.
     Hält Cloudflare eine Anfrage für verdächtig, kann es statt der Seite zunächst eine Prüfseite zeigen, auf der ein Skript von Cloudflare in Ihrem Browser
     technische Merkmale des Browsers prüft; meist geschieht das ohne Ihr Zutun. Unveränderliche Dateien unserer Seite (etwa Stilangaben, Skripte und Bilder)
-    kann Cloudflare in seinen Rechenzentren zwischenspeichern; sie enthalten keine Angaben zu Ihnen. Antworten des MCP-Endpunkts, der Statusseite und der
-    Betriebskonsole speichert Cloudflare nicht zwischen. Die IP-Adresse, die unsere Server nach Punkt 3 protokollieren oder prüfen, ist die Adresse, die
-    Cloudflare uns als die des anfragenden Geräts übermittelt.
+    kann Cloudflare in seinen Rechenzentren zwischenspeichern; sie enthalten keine Angaben zu Ihnen. Antworten des MCP-Endpunkts speichert Cloudflare nicht
+    zwischen. Die IP-Adresse, die unsere Server nach Punkt 3 protokollieren, ist die Adresse, die Cloudflare uns als die des anfragenden Geräts übermittelt.
   </p>
   <p id="cloudflare-cookies">
     <strong>Cookies:</strong> Für seine Bot-Erkennung kann Cloudflare unter unserer Domain das Cookie <code>__cf_bm</code> setzen. Es enthält nach Angaben von
@@ -229,9 +226,9 @@ const motorwayAround = motorwayAroundOn();
 
   <h2>3. Server-Logfiles</h2>
   <p>
-    Dieses Angebot besteht aus vier Adressen: der Website viafrei.de, dem MCP-Endpunkt mcp.viafrei.de, über den KI-Assistenten unsere Werkzeuge abfragen,
-    der Statusseite status.viafrei.de und der Betriebskonsole admin.viafrei.de; die letzten beiden sind nur dem Betreiber zugänglich. Für sie fallen
-    unterschiedliche Protokolle an.
+    Dieses Angebot besteht aus zwei Adressen: der Website viafrei.de (auch www.viafrei.de) und dem MCP-Endpunkt mcp.viafrei.de, über den KI-Assistenten
+    unsere Werkzeuge abfragen. Für sie fallen unterschiedliche Protokolle an. Die frühere Statusseite und Betriebskonsole sind eingestellt (siehe
+    <a href="#statusseite">unten</a>).
   </p>
 
   <h3>Website viafrei.de</h3>
@@ -395,23 +392,22 @@ const motorwayAround = motorwayAroundOn();
     unser berechtigtes Interesse ist der bedarfsgerechte, störungsfreie und ausreichend schnelle Betrieb des MCP-Endpunkts.
   </p>
 
-  <h3 id="statusseite">Statusseite und Betriebskonsole</h3>
+  <h3 id="statusseite">Frühere Statusseite und Betriebskonsole (eingestellt am 18.11.2026)</h3>
   <p>
-    Die Statusseite status.viafrei.de zeigt, ob unsere Datenquellen und der MCP-Endpunkt arbeiten. Sie ist wie die Betriebskonsole nur dem Betreiber
-    zugänglich: Anfragen von anderen Adressen werden ohne Inhalt abgewiesen; ihre Adresse wird dabei nicht gespeichert, und für den Aufruf schreiben wir
-    kein Zugriffsprotokoll.
+    Bis zum 18.11.2026 betrieben wir unter status.viafrei.de eine Statusseite und unter admin.viafrei.de eine Betriebskonsole; beide waren nur dem Betreiber
+    zugänglich. Beide Adressen sind abgeschaltet und ihre Einträge im Namensdienst gelöscht. Cookies der Konsole (Anmeldung des Betreibers) werden
+    nicht mehr gesetzt. Besucher der Website viafrei.de und des MCP-Endpunkts wurden in der Konsole nie erfasst: Sie hat keine Angaben aus deren Aufrufen
+    gespeichert, und für den Aufruf der Statusseite haben wir kein Zugriffsprotokoll geschrieben.
   </p>
   <p>
-    Die Betriebskonsole admin.viafrei.de ist nur dem Betreiber zugänglich: Anfragen von anderen Adressen werden ohne Inhalt abgewiesen; ihre Adresse wird
-    dabei nicht gespeichert. Für die Anmeldung des Betreibers setzt sie ein technisch notwendiges Sitzungs-Cookie (<code>__Host-vf_console</code>, gültig
-    acht Stunden) und, nur während einer Anmeldung mit Passkey, ein ebenfalls technisch notwendiges Cookie (<code>__Host-vf_passkey</code>, gültig zwei
-    Minuten), das diese Anmeldung an den Browser bindet, in dem sie begonnen wurde; beide nach § 25 Abs. 2 Nr. 2 TDDDG. Weitere Cookies oder Analysedienste
-    verwendet sie nicht. Jede Anmeldung, jeden abgelehnten Anmeldeversuch und jede Aktion hält sie mit der IP-Adresse, von der die Anfrage kam, in einem Prüfprotokoll fest, um Änderungen am Betrieb nachvollziehen und Missbrauch erkennen
-    zu können (Art. 6 Abs. 1 lit. f DSGVO). Dieses Protokoll kann nachträglich nicht geändert werden, mit einer Ausnahme: Zwölf Monate nach einem Eintrag wird
-    dessen IP-Adresse automatisch gelöscht. Der Eintrag bleibt danach ohne IP-Adresse erhalten (Zeitpunkt, Aktion, betroffene Funktion
-    oder Einstellung und Ergebnis) und lässt sich keiner Person außer dem Betreiber mehr zuordnen. In unseren nächtlichen
-    Datensicherungen ist die Adresse noch enthalten, bis die jeweilige Sicherung im regelmäßigen Wechsel gelöscht wird; wir bewahren nur
-    die sieben jüngsten Sicherungen auf.
+    Erhalten bleibt das Prüfprotokoll der Konsole. Es enthält je Eintrag den Zeitpunkt, den Handelnden (den Betreiber), die Aktion, die betroffene Funktion
+    oder Einstellung, die Werte davor und danach, das Ergebnis und die IP-Adresse des Betreibers, von der die Anfrage kam; es betrifft nur Handlungen des
+    Betreibers (Art. 6 Abs. 1 lit. f DSGVO: Nachvollziehbarkeit von Änderungen am Betrieb, Erkennen von Missbrauch). Es kann nachträglich nicht geändert
+    werden, mit einer Ausnahme: Zwölf Monate nach einem Eintrag wird dessen IP-Adresse automatisch gelöscht; der Eintrag bleibt danach ohne IP-Adresse
+    erhalten und lässt sich keiner Person außer dem Betreiber mehr zuordnen. In unseren nächtlichen Datensicherungen ist die Adresse noch enthalten, bis
+    die jeweilige Sicherung im regelmäßigen Wechsel gelöscht wird; wir bewahren nur die sieben jüngsten Sicherungen auf. Zum Zeitpunkt dieser Erklärung
+    enthält das Prüfprotokoll keine Einträge. Ebenso bleiben aggregierte Betriebsstatistiken (Zählwerte zu Abrufen und Datenquellen ohne Angaben zu einzelnen
+    Personen) erhalten.
   </p>
 
   <h3 id="live-abfragen">Live-Abfragen bei Datenanbietern</h3>
@@ -427,10 +423,13 @@ const motorwayAround = motorwayAroundOn();
     Ort liegt — nie um den Ort selbst; übermittelt werden dafür allein dieser Mittelpunkt und der Suchradius von 25 Kilometern. Diesen Mittelpunkt behält er
     danach bis zu 30 Minuten (die Dauer des Preisfensters) im Arbeitsspeicher, um weitere Fragen aus diesem Umkreis ohne neue Abfrage zu beantworten, ohne
     Bezug zum Fragenden, und speichert oder protokolliert ihn nicht; ist die Tagesgrenze an so abgefragten Tankstellen erreicht oder diese Abfrageart
-    abgeschaltet, gilt der zuvor beschriebene Weg. Diese Abfragen bei Tankerkönig stellt unser Server — für die Werkzeuge wie für die Website — nacheinander über eine Warteschlange, grundsätzlich in der Reihenfolge ihres Eingangs und höchstens eine je Minute; bis eine Abfrage an der Reihe ist, hält er dafür nur die Tankstellen-Kennungen oder die Koordinaten und den Suchradius sowie eine auf etwa fünf Kilometer gerundete Kennung des Gebiets im Arbeitsspeicher, nach einer Preisabfrage diese Kennung noch höchstens fünf Minuten (nach einer Abfrage im Umkreis von 25 Kilometern dessen Mittelpunkt bis zu 30 Minuten), ohne Bezug zum Fragenden, und speichert oder protokolliert sie nicht; ein Neustart unseres Servers leert die Warteschlange. <strong>Zugabfahrten</strong> (<code>get_train_departures</code>) und <strong>Aufzüge und Fahrtreppen</strong>
+    abgeschaltet, gilt der zuvor beschriebene Weg. Diese Abfragen bei Tankerkönig stellt unser Server — für die Werkzeuge — nacheinander über eine Warteschlange, grundsätzlich in der Reihenfolge ihres Eingangs und höchstens eine je Minute; bis eine Abfrage an der Reihe ist, hält er dafür nur die Tankstellen-Kennungen oder die Koordinaten und den Suchradius sowie eine auf etwa fünf Kilometer gerundete Kennung des Gebiets im Arbeitsspeicher, nach einer Preisabfrage diese Kennung noch höchstens fünf Minuten (nach einer Abfrage im Umkreis von 25 Kilometern dessen Mittelpunkt bis zu 30 Minuten), ohne Bezug zum Fragenden, und speichert oder protokolliert sie nicht; ein Neustart unseres Servers leert die Warteschlange. Die Abfragen der Werkzeuge laufen derzeit noch nicht über einen solchen Auftrag. Fragt die Website aktuelle Kraftstoffpreise an, legt unser Server dafür in seiner Datenbank einen Auftrag an. Dieser enthält allein den
+    achtstelligen amtlichen Gemeindeschlüssel der dem gezeigten Ort nächstgelegenen Gemeinde oder bei einer Autobahn die Kennung des öffentlichen
+    Autobahnpunkts: nie den Ort selbst, keine Koordinaten und keinen Bezug zu Ihnen. Dazu kommen der Zeitpunkt des Auftrags, dessen Ergebnis und die Angabe,
+    welcher unserer eigenen Dienste ihn gestellt hat. Gleichzeitige Aufträge für dieselbe Gemeinde oder denselben Autobahnpunkt fasst er zu einem zusammen. Diese
+    Aufträge löschen wir nach 30 Tagen. <strong>Zugabfahrten</strong> (<code>get_train_departures</code>) und <strong>Aufzüge und Fahrtreppen</strong>
     (<code>check_station_facilities</code>): Unser Server übermittelt die Nummer des abgefragten Bahnhofs — bei Abfahrten zusätzlich Datum und Stunde — an
-    die DB API Marketplace der Deutschen Bahn (apis.deutschebahn.com). Dieselbe Preisabfrage — in der Regel die im Umkreis von 25 Kilometern um den Mittelpunkt der Gemeinde, sonst die einzelner Tankstellen, und, wo wir für einen Ort weniger als drei Tankstellen
-    oder nicht die nächstgelegenen kennen, die Suche nach dessen Tankstellen um den Mittelpunkt der Gemeinde — stellt unser Server auch für die Tankkarte der Website, wie unter „<a href="#ort-tanken">Aktuelle Preise für Ihren Ort</a>“ beschrieben.
+    die DB API Marketplace der Deutschen Bahn (apis.deutschebahn.com). Die Tankkarte der Website fragt Tankerkönig auf dem unter „<a href="#ort-tanken">Aktuelle Preise für Ihren Ort</a>“ beschriebenen Weg ab; dieser weicht von dem der Werkzeuge ab.
   </p>
   <p>
     Übermittelt wird jeweils nur, was den abgefragten Ort betrifft — Tankstellen-Kennungen, Koordinaten oder eine Bahnhofsnummer —, niemals der eingegebene
@@ -445,7 +444,7 @@ const motorwayAround = motorwayAroundOn();
 
   <h3 id="fehlermeldungen">Fehlermeldungen unserer Dienste</h3>
   <p>
-    Damit wir Störungen auch nach einem Neustart oder einer Aktualisierung unserer Dienste noch nachvollziehen können, übernimmt ein Programm auf unserem Server alle fünf Minuten und vor jeder Aktualisierung die Warn- und Fehlermeldungen unserer Dienste – des MCP-Servers, der Website-Anwendung, des Dienstes, der die Karten erstellt, der Statusseite und Betriebskonsole, der Datenbank und der Datenabrufe – aus deren Containerprotokollen in eine Tabelle unserer Datenbank auf diesem Server. Die Protokolle des ausliefernden Webservers der Website (oben unter „Website viafrei.de“) gehören nicht dazu. Gespeichert werden je Meldung nur: der Dienst, die Art des Fehlers als festes Kürzel, die betroffene Funktion (etwa der Name eines Werkzeugs oder die Art einer Seite, nie die vollständige aufgerufene Adresse), der HTTP-Statuscode, die Bearbeitungsdauer, ein auf 300 Zeichen gekürzter Meldungstext und ein auf 2 KB gekürzter technischer Ablaufbericht sowie je Stunde der Zeitpunkt und die Anzahl. Vor dem Speichern entfernen wir aus dem Text IP-Adressen, Sitzungskennungen, Zugangsschlüssel und andere Kennungen, Koordinaten und Gebietskennungen, Zahlen mit zwei oder mehr Nachkommastellen, Zahlenfolgen ab fünf Ziffern, Anfrageparameter und alles, was in Anführungszeichen steht. Werkzeugargumente, Suchtexte, Orte oder Gebiete, nach denen gefragt wurde, Browserkennungen (User-Agent), Cookies und Anfrageinhalte werden nicht gespeichert. Die Einträge sind nur dem Betreiber in der Betriebskonsole zugänglich, werden an niemanden weitergegeben, nicht in die nächtliche Datensicherung aufgenommen und nach 30 Tagen automatisch gelöscht; bei jeder Bereitstellung prüfen wir, dass kein älterer Eintrag besteht. <strong>Zweck:</strong> das Erkennen, Nachvollziehen und Beheben von Störungen. <strong>Rechtsgrundlage:</strong> Soweit die Einträge nach dieser Bereinigung überhaupt noch personenbezogene Daten enthalten, Art. 6 Abs. 1 lit. f DSGVO; unser berechtigtes Interesse ist der sichere und störungsfreie Betrieb des Angebots.
+    Damit wir Störungen auch nach einem Neustart oder einer Aktualisierung unserer Dienste noch nachvollziehen können, übernimmt ein Programm auf unserem Server alle fünf Minuten und vor jeder Aktualisierung die Warn- und Fehlermeldungen unserer Dienste – des MCP-Servers, der Website-Anwendung, des Dienstes, der die Karten erstellt, der Datenbank und der Datenabrufe – aus deren Containerprotokollen in eine Tabelle unserer Datenbank auf diesem Server. Die Protokolle des ausliefernden Webservers der Website (oben unter „Website viafrei.de“) gehören nicht dazu. Gespeichert werden je Meldung nur: der Dienst, die Art des Fehlers als festes Kürzel, die betroffene Funktion (etwa der Name eines Werkzeugs oder die Art einer Seite, nie die vollständige aufgerufene Adresse), der HTTP-Statuscode, die Bearbeitungsdauer, ein auf 300 Zeichen gekürzter Meldungstext und ein auf 2 KB gekürzter technischer Ablaufbericht sowie je Stunde der Zeitpunkt und die Anzahl. Vor dem Speichern entfernen wir aus dem Text IP-Adressen, Sitzungskennungen, Zugangsschlüssel und andere Kennungen, Koordinaten und Gebietskennungen, Zahlen mit zwei oder mehr Nachkommastellen, Zahlenfolgen ab fünf Ziffern, Anfrageparameter und alles, was in Anführungszeichen steht. Werkzeugargumente, Suchtexte, Orte oder Gebiete, nach denen gefragt wurde, Browserkennungen (User-Agent), Cookies und Anfrageinhalte werden nicht gespeichert. Die Einträge liest nur der Betreiber, unmittelbar in der Datenbank und nur lesend; sie werden an niemanden weitergegeben, nicht in die nächtliche Datensicherung aufgenommen und nach 30 Tagen automatisch gelöscht; bei jeder Bereitstellung prüfen wir, dass kein älterer Eintrag besteht. <strong>Zweck:</strong> das Erkennen, Nachvollziehen und Beheben von Störungen. <strong>Rechtsgrundlage:</strong> Soweit die Einträge nach dieser Bereinigung überhaupt noch personenbezogene Daten enthalten, Art. 6 Abs. 1 lit. f DSGVO; unser berechtigtes Interesse ist der sichere und störungsfreie Betrieb des Angebots.
   </p>
 
   <h2 id="besucherzaehlung">4. Besucherzählung ohne Cookies</h2>
@@ -869,12 +868,12 @@ const motorwayAround = motorwayAroundOn();
     Umkreis von 25 Kilometern um den Mittelpunkt der nächstgelegenen Gemeinde (auf einer Autobahnseite um den unten beschriebenen festen Punkt des
     Abschnitts); <strong>übermittelt werden dafür allein dieser öffentlich bekannte Punkt und der Suchradius von 25 Kilometern.</strong> Diesen Punkt behält
     unser Server danach bis zu 30 Minuten (die Dauer des Preisfensters) im Arbeitsspeicher, um Abfragen aus diesem Umkreis ohne neue Abfrage zu beantworten,
-    und speichert oder protokolliert ihn nicht; ist die Tagesgrenze an so abgefragten Tankstellen erreicht oder diese Abfrageart abgeschaltet, fragt er wie
+    und speichert oder protokolliert ihn nicht; nach einem Neustart, der diesen Speicher leert, entscheidet allein das Alter der gespeicherten Preise, ob eine neue Abfrage nötig ist (jünger als 30 Minuten: keine); ist die Tagesgrenze an so abgefragten Tankstellen erreicht oder diese Abfrageart abgeschaltet, fragt er wie
     zuvor beschrieben nach einzelnen Tankstellen. Dafür geht
     innerhalb unseres Servers die Gebietskennung, die die Karten ohnehin lädt (die Gemeinde, das auf etwa 500 Meter gerundete Gebiet oder der aus der
-    IP-Adresse gefundene, auf etwa einen Kilometer gerundete Punkt), vom Webserver an den Dienst, der die Abfrage stellt; dieser behält von Ihrem Gebiet nur eine auf etwa fünf Kilometer gerundete Kennung im Arbeitsspeicher, solange die Abfrage in seiner Warteschlange auf ihre Reihe wartet, und danach höchstens fünf Minuten, um dasselbe Gebiet nicht zweimal abzufragen, und speichert oder
-    protokolliert sie nicht. Die Warteschlange stellt die Abfragen nacheinander, grundsätzlich in der Reihenfolge ihres Eingangs und höchstens eine je Minute; ein Eintrag enthält nur Tankstellen-Kennungen oder den Mittelpunkt der Gemeinde (auf einer Autobahnseite den festen Punkt des Abschnitts) und diese Gebietskennung, keine Angabe zu Ihnen, und ein Neustart unseres Servers leert sie. <strong>Für die Preisabfrage einzelner Tankstellen übermittelt unser Server an Tankerkönig allein die Kennungen der Tankstellen.</strong> Kennen wir
-    im Umkreis von fünf Kilometern um den gezeigten Ort weniger als drei Tankstellen oder verzeichnet OpenStreetMap um den Mittelpunkt der Gemeinde nähere Tankstellen in Deutschland als die uns bekannten, fragt unser Server stattdessen bei Tankerkönig nach den Tankstellen dieses Ortes; dieselbe Gemeinde fragt er danach 30 Tage lang nicht erneut ab (ein von uns einstellbarer Wert, nie unter einem Tag; nach einer gescheiterten Abfrage oder einem Neustart unseres Servers auch früher) und behält dafür so lange nur den Mittelpunkt der Gemeinde im Arbeitsspeicher; übermittelt werden dafür allein der Mittelpunkt der nächstgelegenen Gemeinde und ein
+    IP-Adresse gefundene, auf etwa einen Kilometer gerundete Punkt), vom Webserver an den Dienst, der die Abfrage stellt; dieser bestimmt daraus im Arbeitsspeicher die nächstgelegene Gemeinde (auf einer Autobahnseite den festen Punkt des Abschnitts) und legt nur deren Gemeindeschlüssel beziehungsweise die Kennung des Autobahnpunkts als Auftrag in der Datenbank ab, wie im Abschnitt über die Werkzeuge beschrieben; die Gebietskennung selbst speichert oder
+    protokolliert er nicht. Der Auftrag wartet in der Datenbank auf seine Reihe und bleibt dort auch bei einem Neustart unseres Servers erhalten; ein Auftrag, der länger als zehn Minuten wartet, wird abgewiesen. Die Abfragen werden nacheinander gestellt, grundsätzlich in der Reihenfolge ihres Eingangs und höchstens eine je Minute; ein Auftrag enthält nur den Gemeindeschlüssel oder die Kennung des Autobahnpunkts, keine Angabe zu Ihnen. Im Arbeitsspeicher behält der Dienst, der die Abfragen stellt, außer dem oben genannten Mittelpunkt der Abfrage im Umkreis von 25 Kilometern (bis zu 30 Minuten) nur den öffentlichen Mittelpunkt und den Suchradius jeder gesendeten Gebietsabfrage und die Kennungen der Tankstellen, deren Preisabfrage gescheitert ist, jeweils fünf Minuten lang, um dasselbe Gebiet nicht zweimal abzufragen. <strong>Für die Preisabfrage einzelner Tankstellen übermittelt unser Server an Tankerkönig allein die Kennungen der Tankstellen.</strong> Kennen wir
+    im Umkreis von fünf Kilometern um diesen öffentlichen Punkt weniger als drei Tankstellen und sind nicht alle davon aktuell, fragt unser Server stattdessen bei Tankerkönig nach den Tankstellen um den Mittelpunkt der Gemeinde (bei einem Autobahnpunkt: der ihm nächstgelegenen Gemeinde); denselben Mittelpunkt fragt er danach 30 Tage lang nicht erneut ab (nach einer gescheiterten Abfrage auch früher) und vermerkt dafür allein diesen öffentlichen Mittelpunkt in seinem Abrufprotokoll, ohne Bezug zu Ihnen; beim Start liest er diese Vermerke wieder ein, ein Neustart verkürzt die Frist also nicht; übermittelt werden dafür allein dieser Mittelpunkt und ein
     Suchradius von fünf Kilometern. Dieser Mittelpunkt ist ein öffentlich bekannter Punkt, für alle in dieser Gemeinde derselbe — nie Ihr Standort, das auf
     etwa 500 Meter gerundete Gebiet oder der aus Ihrer IP-Adresse gefundene Punkt. <strong>Ihre IP-Adresse oder eine sonstige Angabe zu Ihrer Person erreicht
     Tankerkönig in keinem dieser Fälle</strong>; die Abfrage stellt unser Server unter eigener Kennung, mit unserem eigenen Zugangsschlüssel. Für
