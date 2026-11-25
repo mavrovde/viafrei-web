@@ -23,6 +23,7 @@ import { afterAll, beforeAll, describe, expect, it } from "vitest";
 import { startRealDigest } from "./real-digest.js";
 import { startShell } from "./server.js";
 import { LIVE_LANGS, pathFor, type Lang } from "../src/site/pages.js";
+import { roadPath } from "../src/site/roads.js";
 
 const PORT = 8911;
 const UA = "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36";
@@ -60,7 +61,8 @@ async function firstHref(path: string, re: RegExp, what: string): Promise<string
 const KINDS: readonly Kind[] = [
   { id: "state", path: (l) => Promise.resolve(`/${l}/state/bayern`), live: true },
   { id: "states", path: (l) => Promise.resolve(`/${l}/states`), live: false },
-  { id: "road", path: async (l) => firstHref(`/sitemap-roads-${l}.xml`, /<loc>https?:\/\/[^/]+(\/[^<]+)<\/loc>/u, "road"), live: true },
+  // #49: the roads sitemaps are de and en alone, so the road is read off the German file and addressed in each language
+  { id: "road", path: async (l) => roadPath(l as Lang, (await firstHref("/sitemap-roads-de.xml", /<loc>https?:\/\/[^/]+(\/[^<]+)<\/loc>/u, "road")).slice(roadPath("de", "").length)), live: true },
   { id: "exit", path: async (l) => firstHref(`/${l}/autobahn/a7`, /<a href="(a7\/exit-[a-z0-9-]+)"/u, "junction"), live: true },
   { id: "motorways", path: (l) => Promise.resolve(`/${l}/autobahn`), live: false },
   { id: "stations", path: (l) => Promise.resolve(`/${l}/station`), live: false },

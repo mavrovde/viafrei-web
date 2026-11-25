@@ -10,6 +10,7 @@ import { afterAll, beforeAll, describe, expect, it } from "vitest";
 import { all, text as nodeText } from "@viafrei/design/testing";
 import { LIVE_LANGS } from "../src/site/pages.js";
 import { roadPath } from "../src/site/roads.js";
+import { isSitemapLang } from "../src/site/sitemaps.js";
 import { startRealDigest } from "./real-digest.js";
 import { startShell } from "./server.js";
 
@@ -63,12 +64,20 @@ describe("a road page (#1027)", () => {
 });
 
 describe("the roads sitemaps (#1027)", () => {
-  it("each language's file lists exactly the fixture's indexable roads, each with its lastmod", async () => {
+  it("the de and en files list exactly the fixture's indexable roads, each with its lastmod; robots.txt names them alone", async () => {
+    const robots = (await get(BASE, "/robots.txt")).body;
     for (const lang of LIVE_LANGS) {
       const r = await get(BASE, `/sitemap-roads-${lang}.xml`);
+      if (!isSitemapLang(lang)) {
+        // #49: a language other than de and en has no sitemap, and no index or robots.txt line names one
+        expect(r.status, lang).toBe(404);
+        expect(robots, lang).not.toContain(`/sitemap-roads-${lang}.xml`);
+        continue;
+      }
       expect(r.status, lang).toBe(200);
       expect(sitemapIds(r.body, lang), lang).toEqual(["b51", "nw/l249"]);
       expect(r.body.match(/<lastmod>\d{4}-\d{2}-\d{2}<\/lastmod>/gu)?.length, lang).toBe(2);
+      expect(robots, lang).toContain(`Sitemap: https://viafrei.de/sitemap-roads-${lang}.xml`);
     }
     expect((await get(BASE, "/sitemap-roads-xx.xml")).status).toBe(404);
   });

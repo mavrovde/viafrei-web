@@ -238,7 +238,8 @@ describe("the place pages", () => {
     expect(locs).toEqual(LIVE_LANGS.map((l) => `https://viafrei.de/${l}/place/koeln`));
     expect(placesLangXml("en", ["koeln"])).not.toContain("hreflang");
     expect(robotsTxt()).toMatch(/^Sitemap: https:\/\/viafrei\.de\/sitemap-places\.xml$/m);
-    for (const l of LIVE_LANGS) expect(robotsTxt()).toContain(`Sitemap: https://viafrei.de/sitemap-places-${l}.xml`);
+    // #49: robots.txt names the de and en place files alone
+    for (const l of LIVE_LANGS) expect(robotsTxt().includes(`Sitemap: https://viafrei.de/sitemap-places-${l}.xml`), l).toBe(l === "de" || l === "en");
     // the default lastmod is the place TEMPLATE's content day per language, never today's
     for (const l of ["de", "en", "tr"] as const) expect(placesLangXml(l, ["koeln"])).toContain(`<loc>https://viafrei.de/${l}/place/koeln</loc><lastmod>${lastmodOf("place", l)!}</lastmod>`);
   });

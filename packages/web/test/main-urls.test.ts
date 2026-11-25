@@ -42,8 +42,12 @@ describe("#1110: the main URLs", () => {
     expect(URLS.slice(0, 2 * MAIN_PAGES.length).map((u) => `${u.lang} ${u.family}`)).toEqual([...MAIN_PAGES.map(() => "de page"), ...MAIN_PAGES.map(() => "en page")]);
     expect(URLS[0]!.url).toBe(`${SITE_ORIGIN}/de`);
   });
-  it("each is in a sitemap robots.txt declares", () => {
-    for (const u of URLS) {
+  it("each German and English one is in a sitemap robots.txt declares; no other language is (#49)", () => {
+    for (const u of URLS.filter((x) => x.lang !== "de" && x.lang !== "en")) {
+      const s = sitemapOf(u);
+      expect(declared.has(`${SITE_ORIGIN}${s.path}`) && s.xml.includes(`<loc>${u.url}</loc>`), `${u.url} is listed in ${s.path}`).toBe(false);
+    }
+    for (const u of URLS.filter((x) => x.lang === "de" || x.lang === "en")) {
       const s = sitemapOf(u);
       expect(declared.has(`${SITE_ORIGIN}${s.path}`), `${u.url}: ${s.path} not declared`).toBe(true);
       expect(s.xml.includes(`<loc>${u.url}</loc>`), `${u.url} not in ${s.path}`).toBe(true);

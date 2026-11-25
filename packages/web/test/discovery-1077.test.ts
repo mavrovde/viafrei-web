@@ -13,7 +13,7 @@ import { t } from "../src/i18n/index.js";
 import { CORPUS_CRAWLERS, CRAWLERS_CHECKED, ROBOTS_CRAWLERS } from "../src/site/crawlers.js";
 import { AI_CRAWLERS, CORPUS_DISALLOW, FRAGMENT_DISALLOW, NEWS_IN_LLMS, PAGE_FAMILIES, PLACE_SITEMAP_MIN_POPULATION, llmsFullTxt, llmsTxt, newsLines, robotsTxt, serverCard } from "../src/site/discovery.js";
 import { MOTORWAY_REGISTER } from "../src/site/motorways.js";
-import { ALL_SITEMAPS } from "../src/site/sitemaps.js";
+import { ALL_SITEMAPS, SITEMAP_LANGS } from "../src/site/sitemaps.js";
 import { SITE_ORIGIN } from "../src/site/endpoints.js";
 import { LIVE_LANGS, PAGES, pathFor, type Lang, type PageId } from "../src/site/pages.js";
 import { MOTORWAY_ADDITIONAL_TYPE, exitJsonLd, motorwayJsonLd, placeJsonLd, stationJsonLd, structuredData } from "../src/site/structured-data.js";
@@ -78,7 +78,7 @@ describe("#1077 (2) current: no number typed beside what it counts", () => {
     });
   }
   it("llms-full.txt counts the other languages from the language list", () => {
-    expect(llmsFullTxt()).toContain(`English and German; ${String(LIVE_LANGS.length - 2)} more languages each`);
+    expect(llmsFullTxt()).toContain(`English and German; ${String(LIVE_LANGS.length - 2)} more languages each, linked from every page; the sitemaps list English and German`);
   });
   it("the place sitemap threshold is the digest's", () => {
     expect(PLACE_SITEMAP_MIN_POPULATION).toBe(PLACE_PAGE_MIN_POPULATION);
@@ -221,7 +221,7 @@ const NOT_A_FAMILY: Readonly<Record<string, string>> = {
   "news.xml.ts": "the News page's Atom feed, linked from the News family's page — a feed, not a page",
   // #1076: one page per station, found through their sitemaps and the links of the town, motorway and station pages
   "fuel/[slug].astro": "#1076: one fuel station's page — consumer information off the corpus crawlers, so not offered to AI tools here; in no sitemap (#1167 S1)",
-  "charging/[slug].astro": "#1076: one charging site's page — ~100 000 of them with no address stable enough to be an example; listed in /sitemap-charging.xml",
+  "charging/[slug].astro": "#1076: one charging site's page — ~100 000 of them with no address stable enough to be an example; in no sitemap since #49 A, found through the links of the town, motorway and station pages",
   "station/[slug]/stop/[stop].astro": "#1043 (c): one stop around a station — a view of the station page's \"Haltestellen in der Nähe\" card, noindex and in no sitemap; the station page is the one to find",
 };
 
@@ -288,16 +288,14 @@ describe("#1077 drift: a page or a page family added to the site is named in llm
 });
 
 describe("#1077 drift: a language or a sitemap added is in robots.txt", () => {
-  it("the sitemap route files, each per-language one in every live language, are exactly ALL_SITEMAPS", () => {
+  it("the sitemap route files, each per-language one in de and en (#49), are exactly ALL_SITEMAPS", () => {
     const files = readdirSync(PAGES_DIR).filter((f) => /^sitemap.*\.xml\.ts$/u.test(f));
-    // #1076: a part file (`[part]`) is as many files as the digest counts — robots.txt names its kind's index instead;
-    // charging alone, since there is no fuel sitemap (#1167 S1)
-    const parts = files.filter((f) => f.includes("[part]"));
-    expect(parts.sort()).toEqual(["sitemap-charging-[lang]-[part].xml.ts"]);
-    for (const f of parts) expect(ALL_SITEMAPS).toContain(`/${f.replace(/-\[lang\]-\[part\]\.xml\.ts$/u, ".xml")}`);
-    const routes = files.filter((f) => !f.includes("[part]")).map((f) => `/${f.replace(/\.ts$/u, "")}`);
+    // #49 A: no part file is left (the charging parts are retired; there is no fuel sitemap, #1167 S1)
+    expect(files.filter((f) => f.includes("[part]"))).toEqual([]);
+    const routes = files.map((f) => `/${f.replace(/\.ts$/u, "")}`);
     expect(routes.length).toBeGreaterThanOrEqual(5);
-    const expanded = routes.flatMap((r) => (r.includes("[lang]") ? LIVE_LANGS.map((l) => r.replace("[lang]", l)) : [r]));
+    // #49: a per-language route serves de and en alone (`SITEMAP_LANGS`); every other language answers 404
+    const expanded = routes.flatMap((r) => (r.includes("[lang]") ? SITEMAP_LANGS.map((l) => r.replace("[lang]", l)) : [r]));
     expect([...expanded].sort()).toEqual([...ALL_SITEMAPS].sort());
   });
   it("robots.txt names every sitemap, once each, and no other — after the last group, as a record of the whole file", () => {

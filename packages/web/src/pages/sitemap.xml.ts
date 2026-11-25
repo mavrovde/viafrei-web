@@ -1,6 +1,6 @@
 /**
- * `/sitemap.xml` (#380): every page of the map in every REVIEWED locale, each
- * entry carrying its language alternates. Unreviewed locales (#235) never
+ * `/sitemap.xml` (#380): every page of the map in each sitemap language (#49: de and en, `SITEMAP_LANGS` in
+ * `site/sitemaps.ts`), each entry carrying its alternates in every REVIEWED locale. Unreviewed locales (#235) never
  * appear. Built from `pages.ts` and `locales.ts`, so a page or a language is
  * listed by adding it there and nowhere else. The 404 is not a page anyone
  * should be sent to and is left out.
@@ -16,12 +16,14 @@ import { PAGES, DEFAULT_LANG, pathFor, type Lang, type PageId } from "../site/pa
 import { reviewedLocales } from "../i18n/locales.js";
 import { SITE_ORIGIN } from "../site/endpoints.js";
 import { lastmodOf } from "../site/lastmod.js";
+import { isSitemapLang } from "../site/sitemaps.js";
 
 /** The sitemap; `lastmod` is per page and language, `lastmodOf` unless a test hands another. */
 export function sitemapXml(lastmod: (page: PageId, lang: Lang) => string | null = lastmodOf): string {
   const langs = reviewedLocales().map((l) => l.code as Lang);
+  // #49: a <loc> in a sitemap language only (de, en: `SITEMAP_LANGS`); each entry keeps its alternates in every language
   const urls = PAGES.filter((p) => p.id !== "404").flatMap((p) =>
-    langs.map((lang) => {
+    langs.filter(isSitemapLang).map((lang) => {
       const alts = langs
         .map((l) => `<xhtml:link rel="alternate" hreflang="${l}" href="${SITE_ORIGIN}${pathFor(p.id, l)}"/>`)
         .concat(`<xhtml:link rel="alternate" hreflang="x-default" href="${SITE_ORIGIN}${pathFor(p.id, DEFAULT_LANG)}"/>`)

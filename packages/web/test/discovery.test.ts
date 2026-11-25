@@ -157,9 +157,9 @@ describe("robots.txt (#531)", () => {
       for (const ua of uas) for (const l of SEARCH_LINES) expect(group(ua).filter((x) => x === l), `${ua} ${l}`).toHaveLength(1);
       expect(txt.split("\n").filter((l) => SEARCH_LINES.includes(l))).toHaveLength(46 * 2);
     });
-    it("(4) unchanged but for #1025's exit files, #1041's station files, #1027's road files, #1074's Land files and #1076's charging index (#1167 S1: no fuel index): 136 sitemaps, Crawl-delay on the SEO crawlers and meta-webindexer only (#1205 review S2: no longer meta-externalagent), `*` and the search/user agents carry the fragment line alone", () => {
-      expect(txt.split("\n").filter((l) => l.startsWith("Sitemap: "))).toHaveLength(136);
-      expect(ALL_SITEMAPS).toHaveLength(136);
+    it("(4) unchanged but for #1025's exit files, #1041's station files, #1027's road files, #1074's Land files and #1076's charging index (#1167 S1: no fuel index), then #49 (de and en only, no charging index): 15 sitemaps, Crawl-delay on the SEO crawlers and meta-webindexer only (#1205 review S2: no longer meta-externalagent), `*` and the search/user agents carry the fragment line alone", () => {
+      expect(txt.split("\n").filter((l) => l.startsWith("Sitemap: "))).toHaveLength(15);
+      expect(ALL_SITEMAPS).toHaveLength(15);
       const delayed = uas.filter((ua) => group(ua).includes("Crawl-delay: 10"));
       expect(delayed.sort()).toEqual(["AhrefsBot", "BLEXBot", "DataForSeoBot", "DotBot", "MJ12bot", "SemrushBot", "SerpstatBot", "barkrowler", "meta-webindexer", "rogerbot"].sort());
       for (const ua of ["*", ...SEARCH_AGENTS]) expect(group(ua), ua).toEqual([`User-agent: ${ua}`, "Allow: /", "Disallow: /fragment/", ...SEARCH_LINES]);
@@ -349,14 +349,14 @@ describe("sitemap lastmod (#531, per page since 2.0.0)", () => {
   it("every url carries ITS page's day, and a test can hand another", () => {
     const xml = sitemapXml(() => "2026-10-08");
     const urls = xml.match(/<url>/g)?.length ?? 0;
-    expect(urls).toBeGreaterThan(40);
+    expect(urls).toBe((PAGES.length - 1) * 2); // #49: de and en
     expect(xml.match(/<loc>[^<]+<\/loc><lastmod>2026-10-08<\/lastmod>/g)?.length).toBe(urls);
     expect(all(sitemapXml(() => null), "lastmod")).toEqual([]);
   });
   it("is the content map's day per page and language, and the newest entry's day for the News page", () => {
     const xml = sitemapXml();
     for (const p of PAGES.filter((x) => x.id !== "404")) {
-      for (const l of LIVE_LANGS) {
+      for (const l of ["de", "en"] as const) { // #49: the sitemap's languages
         const day = lastmodOf(p.id, l);
         expect(day, `${p.id}:${l}`).toMatch(/^\d{4}-\d{2}-\d{2}$/);
         expect(nodeText(parse(xml).root)).toContain(`https://viafrei.de${pathFor(p.id, l)}${day!}`);

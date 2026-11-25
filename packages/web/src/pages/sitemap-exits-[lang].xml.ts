@@ -10,13 +10,14 @@ import type { APIRoute } from "astro";
 import { isLang } from "../i18n/index.js";
 import { readEnv } from "../lib/env.js";
 import { fetchExitRegister } from "../lib/motorway.js";
-import { exitsLangXml } from "../site/sitemaps.js";
+import { isSitemapLang, exitsLangXml } from "../site/sitemaps.js";
 import { sitemapAnswer } from "../lib/sitemap-held.js";
 import { INDEX_TIMEOUT_MS } from "./sitemap-places.xml.js";
 
 export const GET: APIRoute = async ({ params }) => {
   const lang = params["lang"] ?? "";
-  if (!isLang(lang)) return new Response(null, { status: 404 });
+  // #49: a language other than de and en has no sitemap (`SITEMAP_LANGS`)
+  if (!isLang(lang) || !isSitemapLang(lang)) return new Response(null, { status: 404 });
   const env = readEnv();
   const exits = await fetchExitRegister({ baseUrl: env.digestUrl, timeoutMs: INDEX_TIMEOUT_MS });
   // #1205: the digest not answering serves the last list this process built (a 200, logged), else the 503

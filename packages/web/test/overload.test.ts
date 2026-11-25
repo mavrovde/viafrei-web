@@ -740,9 +740,8 @@ describe("#1205: a sitemap the digest did not answer serves its last list, never
       expect(src, f).toContain("return sitemapAnswer(");
       expect(src, f).not.toMatch(/status:\s*503/);
     }
-    const energy = read("packages/web/src/lib/energy-sitemaps.ts");
-    expect(energy).toContain("sitemapAnswer(");
-    expect(energy).not.toMatch(/status:\s*503/);
+    // #49 A: the charging part files and their reader are retired
+    expect(readdirSync(dir).filter((f) => f.startsWith("sitemap-charging"))).toEqual([]);
   });
 });
 

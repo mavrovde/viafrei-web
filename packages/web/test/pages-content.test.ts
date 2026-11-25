@@ -198,10 +198,11 @@ describe("claims (#144), in every live language", () => {
 });
 
 describe("sitemap (#380)", () => {
-  it("lists every page but the 404 in every reviewed language, with alternates", () => {
+  it("lists every page but the 404 in de and en (#49), with alternates in every reviewed language", () => {
     const xml = sitemapXml();
     const locs = [...xml.matchAll(/<loc>([^<]+)<\/loc>/g)].map((m) => m[1]);
-    expect(locs).toHaveLength((PAGES.length - 1) * LIVE_LANGS.length);
+    expect(locs).toHaveLength((PAGES.length - 1) * 2);
+    for (const l of LIVE_LANGS) expect(xml).toContain(`hreflang="${l}"`);
     expect(xml).not.toMatch(/\/404/);
     expect(xml).toContain('hreflang="x-default"');
     // one catalogue per live language, and no stray one

@@ -34,7 +34,7 @@ import { DESCRIPTION_FIT_MIN, DESCRIPTION_MAX, TITLE_FIT, fitDescription, fitTit
 import { MOTORWAY_REGISTER, motorwayPath } from "../src/site/motorways.js";
 import { DEFAULT_LANG, LIVE_LANGS, PAGES, PAGE_IDS, pathFor, type Lang } from "../src/site/pages.js";
 import { POPULAR_PLACES, placePath, popularSlug } from "../src/site/places.js";
-import { ALL_SITEMAPS, motorwaysLangXml, placesLangXml } from "../src/site/sitemaps.js";
+import { ALL_SITEMAPS, SITEMAP_LANGS, motorwaysLangXml, placesLangXml } from "../src/site/sitemaps.js";
 import { motorwayJsonLd, placeJsonLd, structuredData } from "../src/site/structured-data.js";
 import { sitemapXml } from "../src/pages/sitemap.xml.js";
 import { LEGACY_FIXED } from "../src/lib/legacy-redirects.js";
@@ -159,11 +159,14 @@ describe("3. the sitemaps list exactly the pages that answer 200 (#1020)", () =>
   const redirects = new Set(rows.filter((r) => r.flags.startsWith("redirect=")).map((r) => `${SITE_ORIGIN}${r.route}`));
   it("sitemap.xml lists every page row of site-pages.txt (but the negotiated `/` and the files) and nothing else", () => {
     expect(html200.length).toBeGreaterThanOrEqual(9 * LIVE_LANGS.length);
-    expect([...locs(sitemapXml())].sort()).toEqual([...html200].sort());
+    // #49: the de and en rows only — every other language answers 200 for people but is in no sitemap
+    const deEn = html200.filter((u) => /^https:\/\/viafrei\.de\/(?:en(?:\/|$)|de(?:\/|$)|(?![a-z]{2}(?:\/|$)))/.test(u));
+    expect(deEn.length).toBe((PAGES.length - 1) * SITEMAP_LANGS.length);
+    expect([...locs(sitemapXml())].sort()).toEqual([...deEn].sort());
   });
   it("no sitemap lists a redirect, the 404, a noindex variant or a fragment", () => {
-    const all = [...locs(sitemapXml()), ...LIVE_LANGS.flatMap((l) => locs(placesLangXml(l, POPULAR_PLACES.map(popularSlug)))), ...LIVE_LANGS.flatMap((l) => locs(motorwaysLangXml(l, MOTORWAY_REGISTER)))];
-    expect(all.length).toBeGreaterThan(MOTORWAY_REGISTER.length * LIVE_LANGS.length);
+    const all = [...locs(sitemapXml()), ...SITEMAP_LANGS.flatMap((l) => locs(placesLangXml(l, POPULAR_PLACES.map(popularSlug)))), ...SITEMAP_LANGS.flatMap((l) => locs(motorwaysLangXml(l, MOTORWAY_REGISTER)))];
+    expect(all.length).toBeGreaterThan(MOTORWAY_REGISTER.length * SITEMAP_LANGS.length);
     for (const u of all) {
       expect(redirects.has(u), `${u} is a redirect`).toBe(false);
       expect(LEGACY_FIXED.some((f) => `${SITE_ORIGIN}${f.from}` === u), `${u} is a legacy 301`).toBe(false);
@@ -171,8 +174,8 @@ describe("3. the sitemaps list exactly the pages that answer 200 (#1020)", () =>
     }
     for (const l of LIVE_LANGS) expect(all).not.toContain(`${SITE_ORIGIN}${pathFor("404", l)}`);
   });
-  it("the place and motorway sitemaps hold the place and motorway pages, one per page and language", () => {
-    for (const l of LIVE_LANGS) {
+  it("the place and motorway sitemaps hold the place and motorway pages, one per page and language (#49: de and en)", () => {
+    for (const l of SITEMAP_LANGS) {
       expect(locs(motorwaysLangXml(l, MOTORWAY_REGISTER))).toEqual(MOTORWAY_REGISTER.map((r) => `${SITE_ORIGIN}${motorwayPath(l, r)}`));
       expect(locs(placesLangXml(l, ["koeln"]))).toEqual([`${SITE_ORIGIN}${placePath(l, "koeln")}`]);
     }
@@ -180,20 +183,22 @@ describe("3. the sitemaps list exactly the pages that answer 200 (#1020)", () =>
   it("hreflang is reciprocal in every sitemap that carries it (pages, motorways): each page's alternates are the same set from every language, and include the page itself", () => {
     const alternatesByLoc = new Map<string, string[]>();
     // the place, exit and station files list address and lastmod only (2.4.2); their alternates are in each page's head
-    for (const xml of [sitemapXml(), ...LIVE_LANGS.map((l) => motorwaysLangXml(l, ["A7", "A100"]))]) {
+    for (const xml of [sitemapXml(), ...SITEMAP_LANGS.map((l) => motorwaysLangXml(l, ["A7", "A100"]))]) {
       for (const u of xml.split("<url>").slice(1)) {
         const loc = /<loc>([^<]+)<\/loc>/.exec(u)![1]!;
         alternatesByLoc.set(loc, [...u.matchAll(/hreflang="([^"]+)" href="([^"]+)"/g)].map((m) => `${m[1]!} ${m[2]!}`));
       }
     }
-    expect(alternatesByLoc.size).toBeGreaterThan(10 * LIVE_LANGS.length);
+    expect(alternatesByLoc.size).toBeGreaterThan(10 * SITEMAP_LANGS.length);
     for (const [loc, alts] of alternatesByLoc) {
       // the page names itself under its OWN language (x-default alone is not a self-reference), and every live language once
       const own = /^https:\/\/viafrei\.de\/([a-z]{2})(?:\/|$)/.exec(loc)?.[1] ?? DEFAULT_LANG;
       expect(alts, `${loc} lists itself as ${own}`).toContain(`${own} ${loc}`);
       expect(alts, loc).toHaveLength(LIVE_LANGS.length + 1);
       expect(alts.filter((a) => a.startsWith("x-default "))).toHaveLength(1);
-      for (const a of alts) {
+      // #49: an alternate in another language is a page in no sitemap (it answers, with the same set in its head);
+      // every de, en and x-default alternate is listed and names this page back with the same set
+      for (const a of alts.filter((x) => /^(?:de|en|x-default) /.test(x))) {
         const href = a.split(" ")[1]!;
         const back = alternatesByLoc.get(href);
         expect(back, `${loc} → ${href} is listed`).toBeDefined();
@@ -204,7 +209,8 @@ describe("3. the sitemaps list exactly the pages that answer 200 (#1020)", () =>
   it("robots.txt names every sitemap and keeps the fuel pages — no longer the place pages (#1065) — off the corpus crawlers", () => {
     const txt = robotsTxt();
     // every sitemap the site serves, spelt out here rather than read from ALL_SITEMAPS, so a file dropped from that list is red
-    const served = ["/sitemap-index.xml", "/sitemap.xml", "/sitemap-places.xml", ...LIVE_LANGS.flatMap((l) => [`/sitemap-places-${l}.xml`, `/sitemap-motorways-${l}.xml`, `/sitemap-exits-${l}.xml`, `/sitemap-stations-${l}.xml`, `/sitemap-roads-${l}.xml`, `/sitemap-states-${l}.xml`]), "/sitemap-charging.xml"];
+    // #49: de and en only, and no charging index
+    const served = ["/sitemap-index.xml", "/sitemap.xml", "/sitemap-places.xml", ...(["de", "en"] as const).flatMap((l) => [`/sitemap-places-${l}.xml`, `/sitemap-motorways-${l}.xml`, `/sitemap-exits-${l}.xml`, `/sitemap-stations-${l}.xml`, `/sitemap-roads-${l}.xml`, `/sitemap-states-${l}.xml`])];
     for (const s of served) expect(txt).toContain(`Sitemap: ${SITE_ORIGIN}${s}\n`);
     // #1167 S1: no fuel sitemap — a list of every fuel station's page is the MTS-K station set
     expect(txt).not.toContain("sitemap-fuel");

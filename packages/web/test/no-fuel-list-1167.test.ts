@@ -61,8 +61,9 @@ describe("#1167 S1: no sitemap, robots line or llms*.txt names a fuel station's 
   const files = readdirSync(PAGES_DIR).filter((f) => /^sitemap.*\.xml\.ts$/u.test(f));
 
   it("reads the sitemap route files (a sweep of nothing would agree with anything); none is a fuel sitemap", () => {
-    expect(files.length).toBeGreaterThanOrEqual(10);
-    expect(files).toContain("sitemap-charging-[lang]-[part].xml.ts");
+    expect(files.length).toBeGreaterThanOrEqual(9); // #49 A: nine since the charging part files left
+    // #49 A: the charging part files are retired too — no route lists an energy page
+    expect(files.filter((f) => f.includes("charging"))).toEqual([]);
     expect(files.filter((f) => f.includes("fuel"))).toEqual([]);
     expect(ALL_SITEMAPS.filter((p) => p.includes("fuel"))).toEqual([]);
   });
@@ -81,17 +82,16 @@ describe("#1167 S1: no sitemap, robots line or llms*.txt names a fuel station's 
       expect(body, where).not.toContain("sitemap-fuel");
       for (const s of PLANTED) expect(body.includes(`/fuel/${s}`), where).toBe(false);
     }
-    // the sweep reached the planted list: the charging parts print it, and the site index names their files
-    expect(bodies.some(([w, b]) => w.startsWith("sitemap-charging-") && b.includes(`https://viafrei.de/de/charging/${PLANTED[0]!}`))).toBe(true);
-    expect(bodies.find(([w]) => w.startsWith("sitemap-index.xml.ts"))?.[1]).toContain("https://viafrei.de/sitemap-charging-de-1.xml");
-    // and nothing asked the digest for the fuel list
-    expect(asked).toContain("/internal/charging/list");
-    expect(asked.filter((p) => p.startsWith("/internal/fuel/"))).toEqual([]);
+    // the sweep served every route file; #49 A: no body names a charging page or a charging sitemap either
+    expect(bodies.length).toBeGreaterThanOrEqual(files.length);
+    for (const [where, body] of bodies) expect(body, where).not.toMatch(/\/charging\/|sitemap-charging/u);
+    // and nothing asked the digest for an energy list
+    expect(asked.filter((p) => /^\/internal\/(?:fuel|charging)\//u.test(p))).toEqual([]);
   });
 
   it("robots.txt names no fuel sitemap; llms.txt and llms-full.txt name no fuel station URL", () => {
     const robots = robotsTxt();
-    expect(robots).toContain("Sitemap: https://viafrei.de/sitemap-charging.xml\n");
+    expect(robots).not.toContain("sitemap-charging"); // #49 A
     expect(robots).not.toContain("sitemap-fuel");
     for (const [name, txt] of [["llms.txt", llmsTxt()], ["llms-full.txt", llmsFullTxt()]] as const) {
       expect(txt.length, name).toBeGreaterThan(1000);

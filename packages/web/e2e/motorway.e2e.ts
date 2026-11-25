@@ -154,7 +154,9 @@ describe("sitemaps and robots (#715)", () => {
       expect(r.headers.get("content-type"), s).toContain("application/xml");
       expect(robots, s).toContain(`Sitemap: https://viafrei.de${s}\n`);
     }
-    for (const l of LIVE_LANGS) {
+    // #49: de and en only — another language's file answers 404
+    for (const l of LIVE_LANGS.filter((x) => x !== "de" && x !== "en")) expect((await get(`/sitemap-motorways-${l}.xml`)).status, l).toBe(404);
+    for (const l of ["de", "en"] as const) {
       const xml = (await get(`/sitemap-motorways-${l}.xml`)).body;
       // the fixture's register: twelve roads, and the A10 of #1051 (D3)
       expect(xml.match(/<url>/g)?.length, l).toBe(13);

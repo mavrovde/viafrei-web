@@ -147,7 +147,7 @@ describe("the discovery routes (#531)", () => {
   it("the sitemap's every url carries a lastmod", async () => {
     const xml = (await get("/sitemap.xml")).body;
     const n = xml.match(/<url>/g)?.length ?? 0;
-    expect(n).toBeGreaterThan(40);
+    expect(n).toBeGreaterThan(20); // #49: the map in de and en
     expect(xml.match(/<\/loc><lastmod>\d{4}-\d{2}-\d{2}<\/lastmod>/g)?.length).toBe(n);
   });
 });
